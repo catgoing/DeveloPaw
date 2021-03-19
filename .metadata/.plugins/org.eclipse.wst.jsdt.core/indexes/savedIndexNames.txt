@@ -1,3 +1,0 @@
-INDEX VERSION 1.4+C:\MyStudy\Github\DeveloPaw\.metadata\.plugins\org.eclipse.wst.jsdt.core\indexes
-4041944287.index
-2881053249.index
