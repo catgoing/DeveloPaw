@@ -1,2 +1,0 @@
-# DeveloPaw
-bitcamp final project
