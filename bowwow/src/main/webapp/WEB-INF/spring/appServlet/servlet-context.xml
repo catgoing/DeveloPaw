@@ -12,13 +12,17 @@
 	<!-- Enables the Spring MVC @Controller programming model -->
 	<annotation-driven />
 
-	<!-- 파일업로드 관련 설정(MultipartResolver 등록) 
-		사용명칭 multipartResolver 이름은 대소문자 구분해서 동일하게 작성
-		~Resolver 명칭이 있는 객체명은 대체로 정해져 있음 -->
-	<beans:bean id="multipartResolver"
-		class="org.springframework.web.multipart.commons.CommonsMultipartResolver">
-		<beans:property name="maxUploadSize" value="10000000"></beans:property>
+	<!-- Handles HTTP GET requests for /resources/** by efficiently serving up static resources in the ${webappRoot}/resources directory -->
+	<resources mapping="/resources/**" location="/resources/" />
+
+	<!-- Resolves views selected for rendering by @Controllers to .jsp resources in the /WEB-INF/views directory -->
+	<beans:bean class="org.springframework.web.servlet.view.InternalResourceViewResolver">
+		<beans:property name="prefix" value="/WEB-INF/views/" />
+		<beans:property name="suffix" value=".jsp" />
 	</beans:bean>
 	
-	<context:component-scan base-package="com.deveopaw.bowwow" />
+	<context:component-scan base-package="ga.bowwow.user" />
+	
+	
+	
 </beans:beans>
