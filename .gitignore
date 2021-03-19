@@ -75,6 +75,7 @@ tmp/**/*
 *~.nib
 .classpath
 .settings/
+Servers/
 .loadpath
 /src/main/resources/rebel.xml
 # External tool builders
