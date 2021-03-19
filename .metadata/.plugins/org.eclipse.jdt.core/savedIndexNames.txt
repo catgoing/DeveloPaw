@@ -1,5 +1,0 @@
-INDEX VERSION 1.131+C:\MyStudy\Github\DeveloPaw\.metadata\.plugins\org.eclipse.jdt.core
-2881053249.index
-3457558412.index
-4041944287.index
-754492010.index
