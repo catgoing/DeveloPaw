@@ -22,7 +22,28 @@ File: style.css
       Custom css start
 ==========================  **/
 /* 상품 상세페이지 */
-.product_view { position : relative; padding : 0 0 0 395px; width : }
+.product_view { position : relative; padding : 0 0 0 395px; width : 962px; box-sizing: border-box;}
+.product_view .img { position: absolute; left: 0; top: 0;}
+.product_view .img > img { width: 368px; height: 370px; border: 1px solid #e8e8e8;}
+.product_view .img li:after { content: ""; display : block; clear: both;}
+.product_view .img li { float: left; padding : 10px;}
+.product_view .img li.on img { border-color: #0a56a9;}
+.product_view .img li img { width : 68px; height: 68px; border: 1px solid #e8e8e8;}
+.product_view h2 { margin : 0 0 15px; padding : 0 0 20px; font-size: 0 0 20px; border-bottom: 2px solid #333; color : #232323; line-height: 26px;}
+
+.product_view table th, 
+.product_view table td { padding: 14px 0; font-size: 15px; color: #444; text-align: left;}
+.product_view table td.price {font-size: 22px;}
+.product_view table td.total {font-size: 19px; color: #0a56a9;}
+.product_view table td.total b { font-size: 22px;}
+.product_view table .length { position: relative; width: 71px; height: 32px; border: 1px solid #333; }
+.product_view table .length input { width: 44px; height: 32px; border: none; text-align: center; border-right: 1px solid #000;}
+.product_view table .length a { overflow: hidden; position: absolute; right : 0; top: 0; width: 26px; height: 16px; color : transparent; }
+.product_view table .length a:nth-of-type(1) { top:0; background: url("../images/cat.jpg") no-repeat center; }
+.product_view table .length a:nth-of-type(1) { bottom: 0; background: url("../images/dog.jpg") no-repeat center; border-top: 1px solid #000;}
+/* 상품 상세페이지 끝*/ 
+
+
 
 .scroll-top {
 	position: fixed;
