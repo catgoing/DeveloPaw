@@ -142,3 +142,7 @@ fabric.properties
 
 # Sonarlint plugin
 .idea/sonarlint
+Bowwow/.springBeans
+*.properties
+*.properties
+*.properties
