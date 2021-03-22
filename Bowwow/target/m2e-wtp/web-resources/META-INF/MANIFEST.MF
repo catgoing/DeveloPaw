@@ -1,10 +1,5 @@
 Manifest-Version: 1.0
-<<<<<<< HEAD
-Built-By: LeeSH
-Build-Jdk: 1.8.0_181
-=======
 Built-By: SeungHyeon
 Build-Jdk: 1.8.0_281
->>>>>>> d76db90412a56347209dd0a1023c608c94dd83fc
 Created-By: Maven Integration for Eclipse
 
