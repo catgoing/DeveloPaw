@@ -52,7 +52,7 @@ public class BoardDAO {
 
 	public List<Board> getBoardList() {
 		// TODO Auto-generated method stub
-		return null;
+		return mybatis.selectList("BoardDAO.getBoardList");
 	}	
 
 }

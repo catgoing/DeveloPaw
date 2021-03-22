@@ -86,6 +86,11 @@
 		
 	</select> -->
 	
+	<select id="getBoardList" resultType="board">
+		SELECT * FROM BOARD 
+		WHERE 1=1
+		ORDER BY SEQ DESC
+	</select>
 </mapper>
 
 
