@@ -10,20 +10,15 @@
 	<!-- 
 		<typeAlias type="com.spring.biz.board.BoardVO" alias="board"/>
 		-->
+		<typeAlias type="ga.bowwow.user.UserAccount" alias="UserAccount"/>
+		<typeAlias type="ga.bowwow.board.Board" alias="Board"/>
 	</typeAliases>
 
   <mappers>
     <!-- 
     <mapper resource=""/>
      -->
+    <mapper resource="mappings/UserMapper.xml"/> 
+    <mapper resource="mappings/BoardMapper.xml"/> 
   </mappers>
 </configuration>
-
-
-
-
-
-
-
-
-
