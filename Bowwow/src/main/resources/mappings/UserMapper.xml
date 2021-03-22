@@ -10,8 +10,8 @@
 				#{title}, #{writer}, #{content})
 	</insert>
 	
-	<select id="getUser" parameterType="User" resultType="User">
-		SELECT * FROM User WHERE SEQ = #{seq}
+	<select id="getUserAccount" parameterType="UserAccount" resultType="UserAccount">
+		SELECT * FROM USER_ACCOUNT WHERE SEQ = #{MEMBER_SERIAL}
 	</select>
 	<!-- 
 	<select id="getUserList" parameterType="User" resultType="User">
