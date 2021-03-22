@@ -11,7 +11,7 @@
 		<typeAlias type="com.spring.biz.board.BoardVO" alias="board"/>
 		-->
 		<typeAlias type="ga.bowwow.user.UserAccount" alias="UserAccount"/>
-		<typeAlias type="ga.bowwow.board" alias="Board"/>
+		<typeAlias type="ga.bowwow.board.Board" alias="Board"/>
 	</typeAliases>
 
   <mappers>
