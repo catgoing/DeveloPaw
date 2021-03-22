@@ -1,0 +1,98 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="BoardDAO">
+
+	<insert id="insertBoard" parameterType="board">
+		INSERT INTO DIARY_BOARD (SEQ, BOARD_TITLE, WRITER, BOARD_CONTENT,REGDATE,HITS,ANIMAL_CLASS) 
+		VALUES ((SELECT NVL(MAX(SEQ),0) + 1 FROM DIARY_BOARD), 
+				#{board_title}, 3, 123456789,sysdate,0,0)
+	</insert>
+<!-- 	
+	<update id="updateBoard" parameterType="board">
+		UPDATE BOARD 
+		SET TITLE = #{title}, CONTENT = #{content} 
+		WHERE SEQ = #{seq}
+	</update>
+	
+	<delete id="deleteBoard" parameterType="board">
+		DELETE FROM BOARD WHERE SEQ = #{seq}
+	</delete>
+	
+	<select id="getBoard" parameterType="board" resultType="board">
+		SELECT * FROM BOARD WHERE SEQ = #{seq}
+	</select>
+	
+	<select id="getBoardList" parameterType="board" resultType="board">
+		SELECT * FROM BOARD 
+		WHERE 1=1
+		<if test="searchCondition == 'TITLE'">
+			AND TITLE LIKE '%'|| #{searchKeyword} ||'%'
+		</if> 
+		<if test="searchCondition == 'CONTENT'">
+			AND CONTENT LIKE '%'|| #{searchKeyword} ||'%'
+		</if>
+		ORDER BY SEQ DESC
+	</select>
+	
+	
+	<select id="getBoardList_T" parameterType="board" resultType="board">
+		SELECT * FROM BOARD WHERE TITLE LIKE '%'|| #{searchKeyword} ||'%'
+		ORDER BY SEQ DESC
+	</select>
+	<select id="getBoardList_C" parameterType="board" resultType="board">
+		SELECT * FROM BOARD WHERE CONTENT LIKE '%'|| #{searchKeyword} ||'%'
+		ORDER BY SEQ DESC
+	</select>
+	
+	
+	<sql id="criteria">
+		<trim prefix="and("suffix=")" prefixOverrides="OR">
+			<foreach item='type' collection="typeArr">
+				<trim prefix="OR">
+					<choose>
+						<when test="type== 'T'.toString()">
+							post_title like '%' || #{keyword}||'%'
+						</when>
+						<when test="type== 'C'.toString()">
+							post_title like '%' || #{keyword}||'%'
+						</when>
+						<when test="type== 'W'.toString()">
+							post_title like '%' || #{keyword}||'%'
+						</when>
+					</choose>		
+				</trim>	
+			</foreach>
+		</trim>
+	</sql>
+	
+	<select id="selectboardList" resultType="board">
+		select
+		*
+		from
+			(select
+				rownum rno,b.*
+			from
+				board_post b
+			where
+				isshow !='N'
+		<include refid="criteria"></include>
+			order by
+				post_no desc
+			)
+		where
+			rno between(#{pageNum}-1)*#{amount}+1 and (#{pageNum})*#{amount}
+		
+	</select> -->
+	
+</mapper>
+
+
+
+
+
+
+
+
+

@@ -13,6 +13,7 @@ import lombok.Setter;
 public class Board {
 	
 	private String board_no;		//게시판번호
+	private String board_title;		//게시판제목
 	private String member_serial;	//회원번호
 	private String goods;			//상품종류
 	private String board_content;	//게시판 내용
