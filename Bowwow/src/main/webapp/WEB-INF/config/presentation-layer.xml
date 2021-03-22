@@ -8,7 +8,7 @@
 		http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context-4.3.xsd">
 
 	<context:component-scan
-		base-package="ga.bowwow.biz.view" />
+		base-package="ga.bowwow" />
 
 	<!-- 파일업로드 관련 설정(MultipartResolver 등록) 사용명칭 multipartResolver 이름은 대소문자 구분해서 
 		동일하게 작성 ~Resolver 명칭이 있는 객체명은 대체로 정해져 있음 -->
@@ -37,6 +37,20 @@
 			</props>
 		</property>
 	</bean>
+	
+	<!-- Tiles viewResolver -->
+	<bean id="tilesViewResolver" class="org.springframework.web.servlet.view.UrlBasedViewResolver">
+		<property name="viewClass" value="org.springframework.web.servlet.view.tiles3.TilesView" />
+		<property name="order" value="1" />
+	</bean>
+	<bean id="tilesConfigurer" class="org.springframework.web.servlet.view.tiles3.TilesConfigurer">
+		<property name="definitions">
+			<list>
+				<value>tiles.xml</value>
+			</list>
+		</property>
+	</bean>
+	
 
 	<!-- @GetMapping, @PostMapping 사용을 위해 설정 추가 -->
 	<!-- 예외관련 설정 @ExceptionHanler 어노테이션 인식 처리 가능 -->
