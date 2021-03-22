@@ -70,6 +70,7 @@ tmp/**/*
 .classpath
 .settings/
 Servers/
+Bowwow/target/
 .loadpath
 /src/main/resources/rebel.xml
 # External tool builders
