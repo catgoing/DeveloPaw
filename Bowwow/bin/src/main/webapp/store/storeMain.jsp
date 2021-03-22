@@ -417,7 +417,7 @@
                                     </a>
                                     <ul class="pcoded-submenu">
                                         <li class="">
-                                            <a href="auth-normal-sign-in.html" class="waves-effect waves-dark">
+                                            <a href="dogFood.jsp" class="waves-effect waves-dark">
                                                 <span class="pcoded-micon"><i class="ti-angle-right"></i></span>
                                                 <span class="pcoded-mtext">사료</span>
                                                 <span class="pcoded-mcaret"></span>
@@ -452,7 +452,7 @@
                                             </a>
                                         </li>
                                         <li class="">
-                                            <a href="storeMain.html" class="waves-effect waves-dark">
+                                            <a href="storeToy.jsp" class="waves-effect waves-dark">
                                                 <span class="pcoded-micon"><i class="ti-angle-right"></i></span>
                                                 <span class="pcoded-mtext">장난감</span>
                                                 <span class="pcoded-mcaret"></span>
@@ -657,7 +657,7 @@
                     </div>
                 </div>
             </div>
-            <button class="scroll-top" id="js-button" style="margin-bottom: 190px; margin-right: 30px;">
+            <button class="scroll-top" id="js-button" style="margin-bottom: 190px; margin-right: 30px; font: 'Jua'">
                 <i class="fa fa-chevron-up" aria-hidden="true">TOP</i>
             </button>
             <script type="text/javascript">
@@ -696,7 +696,6 @@
 
         </div>
 
-    </div>
 
     <!-- Warning Section Starts -->
     <!-- Older IE warning message -->

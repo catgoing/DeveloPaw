@@ -1,58 +1,9 @@
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+    pageEncoding="UTF-8"%>
+    
 <!DOCTYPE html>
 <html>
-<head>
-<meta charset="utf-8">
-<title>상품 상세 페이지</title>
-<title>개발바닥</title>
-<!-- HTML5 Shim and Respond.js IE10 support of HTML5 elements and media queries -->
-<!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
-<!--[if lt IE 10]>
-  <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
-  <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
-  <![endif]-->
-<!-- Meta -->
-<meta charset="utf-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=0, minimal-ui">
-<meta http-equiv="X-UA-Compatible" content="IE=edge" />
 
-<meta name="keywords" content="bootstrap, bootstrap admin template, admin theme, admin dashboard, dashboard template, admin template, responsive" />
-<meta name="author" content="Codedthemes" />
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=0, minimal-ui">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-
-    <meta name="keywords" content="bootstrap, bootstrap admin template, admin theme, admin dashboard, dashboard template, admin template, responsive" />
-    <meta name="author" content="Codedthemes" />
-    <!--Jua 폰트 import-->
-    <link rel="preconnect" href="https://fonts.gstatic.com">
-    <link href="https://fonts.googleapis.com/css2?family=Jua&display=swap" rel="stylesheet">
-
-    <!-- Dohyeon 폰트 import-->
-    <link rel="preconnect" href="https://fonts.gstatic.com">
-    <link href="https://fonts.googleapis.com/css2?family=Do+Hyeon&display=swap" rel="stylesheet">
-
-    <!-- Favicon icon -->
-    <link rel="icon" href="../resources/images/favicon.ico" type="image/x-icon">
-    <!-- Google font-->
-    <link href="https://fonts.googleapis.com/css?family=Open+Sans:400,600,700" rel="stylesheet">
-    <!-- waves.css -->
-    <link rel="stylesheet" href="../resources/pages/waves/css/waves.min.css" type="text/css" media="all">
-    <!-- Required Fremwork -->
-    <link rel="stylesheet" type="text/css" href="../resources/css/bootstrap/css/bootstrap.min.css">
-    <!-- waves.css -->
-    <link rel="stylesheet" href="../resources/pages/waves/css/waves.min.css" type="text/css" media="all">
-    <!-- themify icon -->
-    <link rel="stylesheet" type="text/css" href="../resources/icon/themify-icons/themify-icons.css">
-    <!-- font-awesome-n -->
-    <link rel="stylesheet" type="text/css" href="../resources/css/font-awesome-n.min.css">
-    <link rel="stylesheet" type="text/css" href="../resources/css/font-awesome.min.css">
-    <!-- scrollbar.css -->
-    <link rel="stylesheet" type="text/css" href="../resources/css/jquery.mCustomScrollbar.css">
-    <!-- Style.css -->
-    <link rel="stylesheet" type="text/css" href="../resources/css/style.css">
-    <link rel="stylesheet" type="text/css" href="../resources/css/test.css">
-</head>
-<body>
 <head>
     <title>개발바닥</title>
     <!-- HTML5 Shim and Respond.js IE10 support of HTML5 elements and media queries -->
@@ -191,7 +142,7 @@
                                 <a href="index.html"> 커뮤니티 </a>
                             </li>
                             <li>
-                                <a href="storeMain.html"> 스토어 </a>
+                                <a href="storeMain.jsp"> 스토어 </a>
                             </li>
                         </ul>
                         <ul class="nav-right">
@@ -466,7 +417,7 @@
                                     </a>
                                     <ul class="pcoded-submenu">
                                         <li class="">
-                                            <a href="auth-normal-sign-in.html" class="waves-effect waves-dark">
+                                            <a href="storeFood.jsp" class="waves-effect waves-dark">
                                                 <span class="pcoded-micon"><i class="ti-angle-right"></i></span>
                                                 <span class="pcoded-mtext">사료</span>
                                                 <span class="pcoded-mcaret"></span>
@@ -501,7 +452,7 @@
                                             </a>
                                         </li>
                                         <li class="">
-                                            <a href="storeMain.html" class="waves-effect waves-dark">
+                                            <a href="storeToy.jsp" class="waves-effect waves-dark">
                                                 <span class="pcoded-micon"><i class="ti-angle-right"></i></span>
                                                 <span class="pcoded-mtext">장난감</span>
                                                 <span class="pcoded-mcaret"></span>
@@ -565,87 +516,151 @@
                             </ul>
                         </div>
                     </nav>
-    <!-- 본문 영역 -->
-					<div class="main-body">
-						<div class="page-wrapper">
-							<div class="product_view">
-								<h2>대왕빼빼로 캣닢 쿠션</h2>
-								<table>
-									<caption>
-										<details class="hide">
-											<summary>상품 정보</summary>
-											판매가, 상품코드, 옵션 및 결제 금액 안내
-										</details>
-									</caption>
-									<colgroup>
-										<col style="width: px;">
-										<col>
-									</colgroup>
-									<tbody>
-										<tr>
-											<th>판매가 :</th>
-											<td class="price">27,900원</td>
-										</tr>
-										<tr>
-											<th>상품코드 :</th>
-											<td>C1508ABD</td>
-										</tr>
-										<tr>
-											<th>제조사 / 공급사 :</th>
-											<td>개발바닥 / 개발바닥</td>
-										</tr>
-										<tr>
-											<th>구매 수량</th>
-											<td>
-												<div class="length">
-													<input type="number" min="1" value="1"> <a
-														href="#a" style="text-decoration: none;">+</a> <a
-														href="#a" style="text-decoration: none;">-</a>
-												</div>
-											</td>
-										</tr>
-										<tr>
-											<th>사용 가능 쿠폰 :</th>
-											<td>0개</td>
-										</tr>
-										<!-- <tr>
-                <th>옵션 선택</th>
-                <td>
-                    <select>
-                        <option>기본(+0)</option>    
-                    </select>
-                </td>
-            </tr> -->
-										<tr>
-											<th>배송비 :</th>
-											<td>무료 배송</td>
-										</tr>
-										<tr>
-											<th>결제 금액</th>
-											<td class="total"><b>27,900원</b></td>
-										</tr>
-									</tbody>
-								</table>
-								<div>
-									<img src="assets/images/cat.jpg" alt="">
-									<ul>
-										<li class="on"><a href="assets/images/cat.jpg" alt=""></a></li>
-										<li><a href="assets/images/cat.jpg" alt=""></a></li>
-									</ul>
-								</div>
-								<div class="btns">
-									<a href="#a" class="btnOne">장바구니</a> <a
-										href="src/main/webapp/store/storeMain.html" class="btnTwo">구매하기</a>
-								</div>
-							</div>
-						</div>
-					</div>
-					<!-- 본문 끝 -->
-					<button class="scroll-top" id="js-button"
-						style="margin-bottom: 190px; margin-right: 30px; font: 'Jua'">
-						<i class="fa fa-chevron-up" aria-hidden="true">TOP</i>
-					</button>
-					<script type="text/javascript">
+                    <div class="pcoded-content">
+                        <!-- Page-header start -->
+
+                        <!-- Page-header end -->
+                        <div class="pcoded-inner-content">
+                            <!-- Main-body start -->
+                            <div class="main-body">
+                                <div class="page-wrapper">
+                                    <!-- Page-body start -->
+                                    <div class="page-body">
+                                        <section class="featured spad">
+                                            <div class="container">
+                                                <div class="row">
+                                                    <div class="col-lg-12">
+                                                        <div class="section-title">
+                                                            <h2>이달의 인기상품</h2>
+                                                        </div>
+                                                        <br>
+                                                    </div>
+                                                </div>
+                                                <div class="monthly-products">
+                                                    <ul>
+                                                        <li>
+                                                            <div class="col-lg-3 col-md-4 col-sm-6 mix oranges fresh-meat">
+                                                                <div class="featured__item">
+                                                                    <div>
+                                                                        <a href="productDetail.html">
+                                                                         <img src="../resources/images/hanbok.jpg">
+                                                                        </a>
+                                                                    </div>
+                                                                        <div class="featured__item__pic set-bg" data-setbg="img/featured/feature-1.jpg">
+                                                                            <a href="#"><i class="fa fa-shopping-cart"></i></a>
+                                                                        </div>
+                                                                        <br>
+                                                                    <div class="featured__item__text"style="width: 200px;"> 
+                                                                        <h6><a href="productDetail.html">나래 한복 케이프 모음집</a></h6>
+                                                                        <h5>35,000원</h5>
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                        </li>
+                                                        <li>
+                                                            <div class="col-lg-3 col-md-4 col-sm-6 mix oranges fresh-meat">
+                                                                <div class="featured__item">
+                                                                    <div>
+                                                                        <img src="../resources/images/cat.jpg">
+                                                                    </div>
+                                                                    <div class="featured__item__pic set-bg" data-setbg="img/featured/feature-1.jpg">
+                                                                        <a href="#"><i class="fa fa-shopping-cart"></i></a>
+                                                                    </div>
+                                                                    <br>
+                                                                    <div class="featured__item__text" style="width: 200px;">
+                                                                        <h6><a href="#">대왕빼빼로 캣닢 쿠션</a></h6>
+                                                                        <h5>27,900원</h5>
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                        </li>
+                                                        <li>
+                                                            <div class="col-lg-3 col-md-4 col-sm-6 mix oranges fresh-meat">
+                                                                <div class="featured__item">
+                                                                    <div>
+                                                                        <img src="../resources/images/dog.jpg">
+                                                                    </div>
+                                                                    <div class="featured__item__pic set-bg" data-setbg="img/featured/feature-1.jpg">
+                                                                        <a href="#"><i class="fa fa-shopping-cart"></i></a>
+                                                                    </div>
+                                                                    <br>
+                                                                    <div class="featured__item__text" style="width: 200px;">
+                                                                        <h6><a href="#">냄새잡는 참숯 배변패드</a></h6>
+                                                                        <h5>25,900원</h5>
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                        </li>
+                                                        <li>
+                                                            <div class="col-lg-3 col-md-4 col-sm-6 mix oranges fresh-meat">
+                                                                <div class="featured__item">
+                                                                    <div>
+                                                                        <img src="../resources/images/food.png">
+                                                                    </div>
+                                                                    <div class="featured__item__pic set-bg" data-setbg="img/featured/feature-1.jpg">
+                                                                        <a href="#"><i class="fa fa-shopping-cart"></i></a>
+                                                                    </div>
+                                                                    <br>
+                                                                    <div class="featured__item__text" style="width: 200px;">
+                                                                        <h6><a href="#">퍼피레시피 치킨 주식캔 150g</a></h6>
+                                                                        <h5>14,900원</h5>
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                        </li>
+                                                        <li>
+                                                            <div class="col-lg-3 col-md-4 col-sm-6 mix oranges fresh-meat">
+                                                                <div class="featured__item">
+                                                                    <div>
+                                                                        <img src="../resources/images/hanbok.jpg">
+                                                                    </div>
+                                                                    <div class="featured__item__pic set-bg" data-setbg="img/featured/feature-1.jpg">
+                                                                        <a href="#"><i class="fa fa-shopping-cart"></i></a>
+                                                                    </div>
+                                                                    <br>
+                                                                    <div class="featured__item__text" style="width: 200px;"> 
+                                                                        <h6><a href="#">나래 한복 케이프 모음집</a></h6>
+                                                                        <h5>35,000원</h5>
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                        </li>
+                                                        <li>
+                                                            <div class="col-lg-3 col-md-4 col-sm-6 mix oranges fresh-meat">
+                                                                <div class="featured__item">
+                                                                    <div>
+                                                                        <img src="../resources/images/cat.jpg">
+                                                                    </div>
+                                                                    <div class="featured__item__pic set-bg" data-setbg="img/featured/feature-1.jpg">
+                                                                        <a href="#"><i class="fa fa-shopping-cart"></i></a>
+                                                                    </div>
+                                                                    <br>
+                                                                    <div class="featured__item__text" style="width: 200px;">
+                                                                        <h6><a href="#">대왕빼빼로 캣닢 쿠션</a></h6>
+                                                                        <h5>27,900원</h5>
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                        </li>
+                                                    </ul>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </section>
+
+                                    </div>
+                                    <!-- Page-body end -->
+                                </div>
+                                <div id="styleSelector"> </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <button class="scroll-top" id="js-button" style="margin-bottom: 190px; margin-right: 30px; font: 'Jua'">
+                <i class="fa fa-chevron-up" aria-hidden="true">TOP</i>
+            </button>
+            <script type="text/javascript">
                 scrollTop('js-button', 500);
                 function scrollTop(elem,duration) {
                     let target = document.getElementById(elem);
@@ -678,9 +693,74 @@
                 </footer>
                 <!-- footer 푸터 끝부분-->
             </div>
-            </div>
-		</div>
+
         </div>
+
+
+    <!-- Warning Section Starts -->
+    <!-- Older IE warning message -->
+    <!--[if lt IE 10]>
+<div class="ie-warning">
+    <h1>Warning!!</h1>
+    <p>You are using an outdated version of Internet Explorer, please upgrade <br/>to any of the following web browsers to access this website.</p>
+    <div class="iew-container">
+        <ul class="iew-download">
+            <li>
+                <a href="http://www.google.com/chrome/">
+                    <img src="../resources/images/browser/chrome.png" alt="Chrome">
+                    <div>Chrome</div>
+                </a>
+            </li>
+            <li>
+                <a href="https://www.mozilla.org/en-US/firefox/new/">
+                    <img src="../resources/images/browser/firefox.png" alt="Firefox">
+                    <div>Firefox</div>
+                </a>
+            </li>
+            <li>
+                <a href="http://www.opera.com">
+                    <img src="../resources/images/browser/opera.png" alt="Opera">
+                    <div>Opera</div>
+                </a>
+            </li>
+            <li>
+                <a href="https://www.apple.com/safari/">
+                    <img src="../resources/images/browser/safari.png" alt="Safari">
+                    <div>Safari</div>
+                </a>
+            </li>
+            <li>
+                <a href="http://windows.microsoft.com/en-us/internet-explorer/download-ie">
+                    <img src="../resources/images/browser/ie.png" alt="">
+                    <div>IE (9 & above)</div>
+                </a>
+            </li>
+        </ul>
     </div>
+    <p>Sorry for the inconvenience!</p>
+</div>
+<![endif]-->
+    <!-- Warning Section Ends -->
+
+    <!-- Required Jquery -->
+    <script type="text/javascript" src="../resources/js/jquery/jquery.min.js "></script>
+    <script type="text/javascript" src="../resources/js/jquery-ui/jquery-ui.min.js "></script>
+    <script type="text/javascript" src="../resources/js/popper.js/popper.min.js"></script>
+    <script type="text/javascript" src="../resources/js/bootstrap/js/bootstrap.min.js "></script>
+    <!-- waves js -->
+    <script src="../resources/pages/waves/js/waves.min.js"></script>
+    <!-- jquery slimscroll js -->
+    <script type="text/javascript" src="../resources/js/jquery-slimscroll/jquery.slimscroll.js"></script>
+
+    <!-- slimscroll js -->
+    <script src="../resources/js/jquery.mCustomScrollbar.concat.min.js "></script>
+
+    <!-- menu js -->
+    <script src="../resources/js/pcoded.min.js"></script>
+    <script src="../resources/js/vertical/vertical-layout.min.js "></script>
+
+    <script type="text/javascript" src="../resources/js/script.js "></script>
 </body>
+
+
 </html>
