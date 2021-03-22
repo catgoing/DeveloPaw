@@ -5,6 +5,8 @@ local.properties
 .idea/**/gradle.xml
 .idea/**/libraries
 
+pom.properties
+
 # CMake
 cmake-build-debug/
 
@@ -70,6 +72,7 @@ tmp/**/*
 .classpath
 .settings/
 Servers/
+Bowwow/target/
 .loadpath
 /src/main/resources/rebel.xml
 # External tool builders
