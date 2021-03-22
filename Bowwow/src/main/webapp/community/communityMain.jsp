@@ -412,7 +412,7 @@
                                 <li class="pcoded-hasmenu ">
                                     <a href="javascript:void(0)" class="waves-effect waves-dark">
                                         <span class="pcoded-micon"><i class="ti-id-badge"></i><b>A</b></span>
-                                        <span class="pcoded-mtext">펫일기장</span>
+                                        <span class="pcoded-mtext">댕댕이</span>
                                         <span class="pcoded-mcaret"></span>
                                     </a>
                                     <ul class="pcoded-submenu">
@@ -465,7 +465,7 @@
                                 <li class="pcoded-hasmenu ">
                                     <a href="javascript:void(0)" class="waves-effect waves-dark">
                                         <span class="pcoded-micon"><i class="ti-id-badge"></i><b>A</b></span>
-                                        <span class="pcoded-mtext">펫소개</span>
+                                        <span class="pcoded-mtext">냥냥이</span>
                                         <span class="pcoded-mcaret"></span>
                                     </a>
                                     <ul class="pcoded-submenu">
@@ -514,34 +514,6 @@
                                     </ul>
                                 </li>
                             </ul>
-                            <ul class="pcoded-item pcoded-left-item">
-                                <li class="pcoded-hasmenu ">
-                                    <a href="javascript:void(0)" class="waves-effect waves-dark">
-                                        <span class="pcoded-micon"><i class="ti-id-badge"></i><b>A</b></span>
-                                        <span class="pcoded-mtext">펫 노하우</span>
-                                        <span class="pcoded-mcaret"></span>
-                                    </a>
-                                </li>
-                            </ul>
-                            <ul class="pcoded-item pcoded-left-item">
-                                <li class="pcoded-hasmenu ">
-                                    <a href="javascript:void(0)" class="waves-effect waves-dark">
-                                        <span class="pcoded-micon"><i class="ti-id-badge"></i><b>A</b></span>
-                                        <span class="pcoded-mtext">잃어버린 펫 찾아요</span>
-                                        <span class="pcoded-mcaret"></span>
-                                    </a>
-                                </li>
-                            </ul>
-                            <ul class="pcoded-item pcoded-left-item">
-                                <li class="pcoded-hasmenu ">
-                                    <a href="javascript:void(0)" class="waves-effect waves-dark">
-                                        <span class="pcoded-micon"><i class="ti-id-badge"></i><b>A</b></span>
-                                        <span class="pcoded-mtext">중고나라</span>
-                                        <span class="pcoded-mcaret"></span>
-                                    </a>
-                                </li>
-                            </ul>
-                            
                         </div>
                     </nav>
                     <div class="pcoded-content">
@@ -565,8 +537,113 @@
                                                     </div>
                                                 </div>
                                                 <div class="monthly-products">
-                                                  
-                                                   </div>
+                                                    <ul>
+                                                        <li>
+                                                            <div class="col-lg-3 col-md-4 col-sm-6 mix oranges fresh-meat">
+                                                                <div class="featured__item">
+                                                                    <div>
+                                                                        <a href="productDetail.html">
+                                                                         <img src="../resources/images/hanbok.jpg">
+                                                                        </a>
+                                                                    </div>
+                                                                        <div class="featured__item__pic set-bg" data-setbg="img/featured/feature-1.jpg">
+                                                                            <a href="#"><i class="fa fa-shopping-cart"></i></a>
+                                                                        </div>
+                                                                        <br>
+                                                                    <div class="featured__item__text"style="width: 200px;"> 
+                                                                        <h6><a href="productDetail.html">나래 한복 케이프 모음집</a></h6>
+                                                                        <h5>35,000원</h5>
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                        </li>
+                                                        <li>
+                                                            <div class="col-lg-3 col-md-4 col-sm-6 mix oranges fresh-meat">
+                                                                <div class="featured__item">
+                                                                    <div>
+                                                                        <img src="../resources/images/cat.jpg">
+                                                                    </div>
+                                                                    <div class="featured__item__pic set-bg" data-setbg="img/featured/feature-1.jpg">
+                                                                        <a href="#"><i class="fa fa-shopping-cart"></i></a>
+                                                                    </div>
+                                                                    <br>
+                                                                    <div class="featured__item__text" style="width: 200px;">
+                                                                        <h6><a href="#">대왕빼빼로 캣닢 쿠션</a></h6>
+                                                                        <h5>27,900원</h5>
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                        </li>
+                                                        <li>
+                                                            <div class="col-lg-3 col-md-4 col-sm-6 mix oranges fresh-meat">
+                                                                <div class="featured__item">
+                                                                    <div>
+                                                                        <img src="../resources/images/dog.jpg">
+                                                                    </div>
+                                                                    <div class="featured__item__pic set-bg" data-setbg="img/featured/feature-1.jpg">
+                                                                        <a href="#"><i class="fa fa-shopping-cart"></i></a>
+                                                                    </div>
+                                                                    <br>
+                                                                    <div class="featured__item__text" style="width: 200px;">
+                                                                        <h6><a href="#">냄새잡는 참숯 배변패드</a></h6>
+                                                                        <h5>25,900원</h5>
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                        </li>
+                                                        <li>
+                                                            <div class="col-lg-3 col-md-4 col-sm-6 mix oranges fresh-meat">
+                                                                <div class="featured__item">
+                                                                    <div>
+                                                                        <img src="../resources/images/food.png">
+                                                                    </div>
+                                                                    <div class="featured__item__pic set-bg" data-setbg="img/featured/feature-1.jpg">
+                                                                        <a href="#"><i class="fa fa-shopping-cart"></i></a>
+                                                                    </div>
+                                                                    <br>
+                                                                    <div class="featured__item__text" style="width: 200px;">
+                                                                        <h6><a href="#">퍼피레시피 치킨 주식캔 150g</a></h6>
+                                                                        <h5>14,900원</h5>
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                        </li>
+                                                        <li>
+                                                            <div class="col-lg-3 col-md-4 col-sm-6 mix oranges fresh-meat">
+                                                                <div class="featured__item">
+                                                                    <div>
+                                                                        <img src="../resources/images/hanbok.jpg">
+                                                                    </div>
+                                                                    <div class="featured__item__pic set-bg" data-setbg="img/featured/feature-1.jpg">
+                                                                        <a href="#"><i class="fa fa-shopping-cart"></i></a>
+                                                                    </div>
+                                                                    <br>
+                                                                    <div class="featured__item__text" style="width: 200px;"> 
+                                                                        <h6><a href="#">나래 한복 케이프 모음집</a></h6>
+                                                                        <h5>35,000원</h5>
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                        </li>
+                                                        <li>
+                                                            <div class="col-lg-3 col-md-4 col-sm-6 mix oranges fresh-meat">
+                                                                <div class="featured__item">
+                                                                    <div>
+                                                                        <img src="../resources/images/cat.jpg">
+                                                                    </div>
+                                                                    <div class="featured__item__pic set-bg" data-setbg="img/featured/feature-1.jpg">
+                                                                        <a href="#"><i class="fa fa-shopping-cart"></i></a>
+                                                                    </div>
+                                                                    <br>
+                                                                    <div class="featured__item__text" style="width: 200px;">
+                                                                        <h6><a href="#">대왕빼빼로 캣닢 쿠션</a></h6>
+                                                                        <h5>27,900원</h5>
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                        </li>
+                                                    </ul>
+                                                    </div>
                                                 </div>
                                             </div>
                                         </section>
