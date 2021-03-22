@@ -1,5 +1,5 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8"
-	pageEncoding="UTF-8"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8"	pageEncoding="UTF-8"%>
+<%@ taglib uri="http://tiles.apache.org/tags-tiles" prefix="tiles" %>
 
 <!DOCTYPE html>
 <html>
@@ -130,8 +130,10 @@
 		<div class="pcoded-container navbar-wrapper">
 
 			<!-- header 헤더 시작 -->
-			<%@ include file="/common/header.jspf"%>
-
+			
+		<!-- footer 푸터 시작부분-->
+		<tiles:insertAttribute name="header"/>
+		<!-- footer 푸터 끝부분-->
 
 			<!-- 좌측 메뉴바 시작 -->
 			<div class="pcoded-main-container">
@@ -430,9 +432,8 @@
 		</script>
 
 		<!-- footer 푸터 시작부분-->
-		<%@ include file="/common/footer.jspf"%>
-
-
+		<tiles:insertAttribute name="footer"/>
+		<!-- footer 푸터 끝부분-->
 	</div>
 
 
