@@ -62,6 +62,7 @@
 <!-- Style.css -->
 <link rel="stylesheet" type="text/css" href="../resources/css/style.css">
 <link rel="stylesheet" type="text/css" href="../resources/css/test.css">
+
 <style>
 .featured__item__text {
 	width: 150px;
