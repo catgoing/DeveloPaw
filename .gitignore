@@ -142,5 +142,7 @@ fabric.properties
 
 # Sonarlint plugin
 .idea/sonarlint
-Bowwow/target/m2e-wtp/web-resources/META-INF/maven/ga.bowwow/user/pom.properties
-Bowwow/target/m2e-wtp/web-resources/META-INF/maven/ga.bowwow/user/pom.properties
+Bowwow/.springBeans
+*.properties
+*.properties
+*.properties
