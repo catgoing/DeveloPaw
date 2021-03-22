@@ -5,6 +5,8 @@ local.properties
 .idea/**/gradle.xml
 .idea/**/libraries
 
+target
+
 # CMake
 cmake-build-debug/
 
