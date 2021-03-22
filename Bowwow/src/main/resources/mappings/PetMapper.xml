@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="PetInfo">
+
+	<insert id="insertPetInfo" parameterType="pet">
+		INSERT INTO USER_PETINFO (
+			PET_SERIAL,MEMBER_SERIAL,IMAGE_SOURCE,ANIMAL_TYPE,PET_NAME,
+			PET_GENDER,PET_VARIETY,PET_AGE,PET_SIZE,TNR,
+			PET_WEIGHT,PET_BIRTH,NECK_LENGTH,BACK_LENGTH,CHEST_LENGTH)
+		VALUES 
+		 PET_SEQ.NEXTVAL, #{MEMBER_SERIAL}, #{IMAGE_SOURCE}, #{ANIMAL_TYPE}, #{PET_NAME},
+		 #{PET_GENDER}, #{PET_VARIETY}, #{PET_AGE}, #{PET_SIZE}, #{TNR},
+		 #{PET_WEIGHT},  #{PET_BIRTH}, #{NECK_LENGTH}, #{BACK_LENGTH}, #{CHEST_LENGTH})
+	</insert>
+	
+	<!-- String memberSerial로 pet검색 -->
+	<select id="getPetInfo" parameterType="pet" resultType="pet">
+		SELECT * FROM USER_PETINFO
+		WHERE MEMBER_SERIAL = #{member_serial }
+	</select>
+</mapper>
+
+
+
+
+
+
+
+
+
