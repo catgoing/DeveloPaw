@@ -110,90 +110,55 @@
     <!-- Pre-loader end -->
     <div id="pcoded" class="pcoded">
         <div class="pcoded-overlay-box"></div>
-        <div class="pcoded-main-container navbar-wrapper">
+        <div class="pcoded-container navbar-wrapper">
             
 		<!-- 헤더 -->
-		<%-- <tiles:insertAttribute name="header" /> --%>
+		<tiles:insertAttribute name="header" />
 		<!-- 좌측메뉴바 -->
-		<%-- <tiles:insertAttribute name="menubar" /> --%>
-                    
-                    <div class="pcoded-content">
-                        <div class="pcoded-inner-content">
-							<!-- 페이지 제목 -->
-							<h2>(pcoded-inner-content) 뫄뫄님의 페이지</h2>
-							
-							<!-- Main-body start 본문 시작 -->
-							<div class="main-body">
-							<div class="page-wrapper">
-		                                
-								<!-- Page-body start -->
-								<div class="page-body">
-									<!-- <section class="featured spad">
-										<div class="container">
-											<div class="row">
-												<div class="col-lg-12">
-													<div class="section-title">
-														<h2>(section-title)뫄뫄님의 페이지</h2>
-													</div>
-													<br>
-		 										</div>
-											</div>
-										</div>
-									</section> -->
-                                        
-                                        <div class="my-pet">
-	                                        <div class="pet-list">
-		                                        <div class="list-inner">
-			                                        <div class="pet-img"></div>
-			                                        <div class="pet-name"></div>
-			                                        <div class="pet-detail">
-			                                        <button>상세보기</button>
-			                                        </div>			                                        
-		                                        </div>
-	                                        </div>
-                                        </div>
-                                        
-                                    </div>
-                                    <!-- Page-body end -->
-                                </div>
-                                <div id="styleSelector"> </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <button class="scroll-top" id="js-button" style="margin-bottom: 190px; margin-right: 30px;">
-                <i class="fa fa-chevron-up" aria-hidden="true">TOP</i>
-            </button>
-            <script type="text/javascript">
-                scrollTop('js-button', 500);
-                function scrollTop(elem,duration) {
-                    let target = document.getElementById(elem);
-                
-                    target.addEventListener('click', function() {
-                        let currentY = window.pageYOffset; 
-                        let step = duration/currentY > 1 ? 10 : 100;
-                        let timeStep = duration/currentY * step;
-                        let intervalID = setInterval(scrollUp, timeStep);
-                
-                        function scrollUp(){
-                            currentY = window.pageYOffset;
-                            if(currentY === 0) {
-                                clearInterval(intervalID);
-                            } else {
-                                scrollBy( 0, -step );
-                            }
-                        }
-                    });
+		<tiles:insertAttribute name="menubar"/>
+			 
+			<div class="pcoded-content">
+				<div class="pcoded-inner-content">
+					
+					<!-- Main-body start 본문 시작 -->
+					<tiles:insertAttribute name="body" />
+					
+				</div>
+			</div>
+		</div>
+	</div>
+	
+    <button class="scroll-top" id="js-button" style="margin-bottom: 190px; margin-right: 30px;">
+        <i class="fa fa-chevron-up" aria-hidden="true">TOP</i>
+    </button>
+    <script type="text/javascript">
+        scrollTop('js-button', 500);
+        function scrollTop(elem,duration) {
+            let target = document.getElementById(elem);
+        
+            target.addEventListener('click', function() {
+                let currentY = window.pageYOffset; 
+                let step = duration/currentY > 1 ? 10 : 100;
+                let timeStep = duration/currentY * step;
+                let intervalID = setInterval(scrollUp, timeStep);
+        
+                function scrollUp(){
+                    currentY = window.pageYOffset;
+                    if(currentY === 0) {
+                        clearInterval(intervalID);
+                    } else {
+                        scrollBy( 0, -step );
+                    }
                 }
-                </script>
-                
-				<!-- footer 푸터 시작부분-->
-				<%-- <tiles:insertAttribute name="footer" /> --%>
-				<!-- footer 푸터 끝부분-->
-            </div>
-
-        </div>
+            });
+        }
+        </script>
+        
+	<!-- footer 푸터 시작부분-->
+	<tiles:insertAttribute name="footer" />
+	<!-- footer 푸터 끝부분-->
+    </div>
+</div>
 
     <!-- Required Jquery -->
     <script type="text/javascript" src="../resources/js/jquery/jquery.min.js "></script>
