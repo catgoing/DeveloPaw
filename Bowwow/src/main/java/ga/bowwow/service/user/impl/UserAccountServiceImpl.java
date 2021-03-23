@@ -1,10 +1,13 @@
-package ga.bowwow.user;
+package ga.bowwow.service.user.impl;
 
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.web.servlet.ViewResolver;
+
+import ga.bowwow.service.user.UserAccount;
+import ga.bowwow.service.user.UserAccountService;
 
 //@Service : @Component 상속확장 어노테이션
 //		비즈니스 로직처리 서비스 영역에 사용

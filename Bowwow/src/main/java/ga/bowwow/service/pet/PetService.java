@@ -1,4 +1,4 @@
-package ga.bowwow.pet;
+package ga.bowwow.service.pet;
 
 import java.util.List;
 

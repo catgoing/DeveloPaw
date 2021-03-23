@@ -1,14 +1,12 @@
-package ga.bowwow.board.impl;
+package ga.bowwow.service.board.impl;
 
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-
-
-import ga.bowwow.board.Board;
-import ga.bowwow.board.BoardService;
+import ga.bowwow.service.board.Board;
+import ga.bowwow.service.board.BoardService;
 
 
 @Service("boardService")

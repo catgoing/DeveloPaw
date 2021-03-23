@@ -15,8 +15,8 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.multipart.MultipartFile;
 
-import ga.bowwow.board.Board;
-import ga.bowwow.board.BoardService;
+import ga.bowwow.service.board.Board;
+import ga.bowwow.service.board.BoardService;
 
 
 @Controller

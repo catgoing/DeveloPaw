@@ -1,10 +1,12 @@
-package ga.bowwow.user;
+package ga.bowwow.service.user.impl;
 
 import java.util.List;
 
 import org.mybatis.spring.SqlSessionTemplate;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
+
+import ga.bowwow.service.user.UserAccount;
 
 @Repository("UserAccountDAO")
 public class UserAccountDAO {

@@ -1,8 +1,8 @@
-package ga.bowwow.user;
+package ga.bowwow.service.user;
 
 import java.util.List;
 
-import ga.bowwow.user.UserAccount;
+import ga.bowwow.service.user.UserAccount;
 
 public interface UserAccountService {
 	void insertUserAccount(UserAccount userAccount);
