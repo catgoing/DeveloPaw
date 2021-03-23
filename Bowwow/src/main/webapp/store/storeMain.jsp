@@ -544,7 +544,7 @@
                                                                 <div class="featured__item">
                                                                     <div>
                                                                         <a href="productDetail.html">
-                                                                         <img src="../resources/images/hanbok.jpg">
+                                                                         <img src="https://projectbit.s3.us-east-2.amazonaws.com/catImg/CL001L.jpg">
                                                                         </a>
                                                                     </div>
                                                                         <div class="featured__item__pic set-bg" data-setbg="img/featured/feature-1.jpg">
@@ -646,8 +646,8 @@
                                                     </ul>
                                                     </div>
                                                 </div>
-                                            </div>
                                         </section>
+                                            </div>
 
                                     </div>
                                     <!-- Page-body end -->
