@@ -2,23 +2,32 @@ package ga.bowwow.pet;
 
 import org.springframework.stereotype.Component;
 
+import lombok.AllArgsConstructor;
+import lombok.Getter;
+import lombok.NoArgsConstructor;
+import lombok.Setter;
+
+@Getter
+@Setter
+@NoArgsConstructor
+@AllArgsConstructor
 @Component
 public class Pet {
 	
-	private int PET_SERIAL;
-	private int MEMBER_SERIAL;
-	private String IMAGE_SOURCE;
-	private String ANIMAL_TYPE;
-	private String PET_NAME;
-	private String PET_GENDER;
-	private String PET_VARIETY;
-	private int PET_AGE;
-	private String PET_SIZE;
-	private int PET_WEIGHT;
-	private String PET_BIRTH;
-	private int NECK_LENGTH;
-	private int BACK_LENGTH;
-	private int CHEST_LENGTH;
-	private String TNR;
+	private String petSerial;
+	private String memberSerial;
+	private String imageSource;
+	private String animalType;
+	private String petName;
+	private String petGender;
+	private String petVariety;
+	private int petAge;
+	private String petSize;
+	private int petWeight;
+	private String petBirth;
+	private int neckLength;
+	private int backLength;
+	private int chestLength;
+	private String tnr;
 	
 }

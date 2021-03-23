@@ -15,6 +15,7 @@
 		<listener-class>org.springframework.web.context.ContextLoaderListener</listener-class>
 	</listener>
 	
+	
  	<!-- 필터정의 : 모든 *.do 요청에 characterEncoding을 UTF-8 설정 -->
  	<filter>
  		<filter-name>characterEncoding</filter-name>
@@ -28,8 +29,14 @@
  		<filter-name>characterEncoding</filter-name>
  		<url-pattern>*.do</url-pattern>
  	</filter-mapping>
+ 	
+	<jsp-config>
+	    <jsp-property-group>
+	        <url-pattern>*.jsp</url-pattern>
+	        <page-encoding>UTF-8</page-encoding>
+	    </jsp-property-group>
+	</jsp-config>
  		
-
 	<!-- Processes application requests -->
 	<servlet>
 		<servlet-name>main</servlet-name>
@@ -45,5 +52,7 @@
 		<servlet-name>main</servlet-name>
 		<url-pattern>*.do</url-pattern>
 	</servlet-mapping>
+	
+
 
 </web-app>
