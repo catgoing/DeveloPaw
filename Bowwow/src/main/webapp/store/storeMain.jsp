@@ -445,14 +445,14 @@
                                             </a>
                                         </li>
                                         <li class="">
-                                            <a href="sample-page.html" class="waves-effect waves-dark">
+                                            <a href="dogClothes.jsp " class="waves-effect waves-dark">
                                                 <span class="pcoded-micon"><i class="ti-layout-sidebar-left"></i><b>S</b></span>
                                                 <span class="pcoded-mtext">의류</span>
                                                 <span class="pcoded-mcaret"></span>
                                             </a>
                                         </li>
                                         <li class="">
-                                            <a href="storeToy.jsp" class="waves-effect waves-dark">
+                                            <a href="dogToy.jsp" class="waves-effect waves-dark">
                                                 <span class="pcoded-micon"><i class="ti-angle-right"></i></span>
                                                 <span class="pcoded-mtext">장난감</span>
                                                 <span class="pcoded-mcaret"></span>
