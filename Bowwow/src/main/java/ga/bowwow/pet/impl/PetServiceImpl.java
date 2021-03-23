@@ -8,11 +8,11 @@ import org.springframework.stereotype.Service;
 import ga.bowwow.pet.Pet;
 import ga.bowwow.pet.PetService;
 
-@Service("petService")
+@Service
 public class PetServiceImpl implements PetService {
 	
 	@Autowired
-	private PetDAOMyBatis petDAO;
+	private PetDAO petDAO;
 	
 	public PetServiceImpl() {
 		System.out.println(">> PetServiceImpl() 객체생성!!!");
@@ -35,7 +35,8 @@ public class PetServiceImpl implements PetService {
 
 	@Override
 	public List<Pet> getPetInfo(Pet pet) {
-		return petDAO.getPetInfo(pet);
+		//return petDAO.getPetInfo(pet);
+		return null;
 	}
 
 }

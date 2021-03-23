@@ -15,11 +15,39 @@
                 <put-attribute name="footer" value="/common/footer2.jsp" />
         </definition>
         
-        <definition name="/mypage" template="/mypage/myPageMain.jsp">
+        <!-- 마이페이지 -->
+        <!-- <definition name="/mypage" template="/mypage/myPageMain.jsp">
                 <put-attribute name="header" value="/common/header.jsp" />
+                <put-attribute name="menubar" value="/common/myPageMenuBar.jsp"/>
+                <put-attribute name="body" value="" />
+                <put-attribute name="footer" value="/common/footer.jsp" />
+        </definition> -->
+        
+		<definition name="/mypage" template="/mypage/myPageTemplate.jsp">
+                <put-attribute name="header" value="/common/header.jsp" />
+                <put-attribute name="menubar" value="/common/myPageMenuBar.jsp"/>
                 <put-attribute name="body" value="" />
                 <put-attribute name="footer" value="/common/footer2.jsp" />
         </definition>
         
-        
+        <definition name="/mypagemain" extends="/mypage">
+			<put-attribute name="body" value="/mypage/myPageMain.jsp" />
+		</definition>
+        <definition name="/myinfo" extends="/mypage">
+			<put-attribute name="body" value="/mypage/myInfo.jsp" />
+		</definition>
+        <definition name="/mypetinfolist" extends="/mypage">
+			<put-attribute name="body" value="/mypage/myPetInfoList.jsp" />
+		</definition>
+		<definition name="/mypostlist" extends="/mypage">
+			<put-attribute name="body" value="/mypage/myPostList.jsp" />
+		</definition>
+		<definition name="/mypoint" extends="/mypage">
+			<put-attribute name="body" value="/mypage/myPoint.jsp" />
+		</definition>
+		<definition name="/myinquiry" extends="/mypage">
+			<put-attribute name="body" value="/mypage/myInquiry.jsp" />
+		</definition>
+		
+		
 </tiles-definitions>
