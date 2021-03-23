@@ -5,8 +5,16 @@
  
         <definition name="/store" template="/store/storeMain.jsp">
                 <put-attribute name="header" value="/common/header.jsp" />
+                <put-attribute name="menubar" value="/common/myPageMenuBar.jsp"/>
                 <put-attribute name="body" value="" />
                 <put-attribute name="footer" value="/common/footer.jsp" />
         </definition>
         
+        <definition name="/productDetail" extends="/store">
+			<put-attribute name="body" value="/mypage/productDetail.jsp" />
+		</definition>
+        <definition name="/myinfo" extends="/store">
+			<put-attribute name="body" value="/mypage/myInfo.jsp" />
+		</definition>
+      
 </tiles-definitions>

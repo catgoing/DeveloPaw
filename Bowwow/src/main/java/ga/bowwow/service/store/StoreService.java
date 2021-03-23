@@ -1,4 +1,4 @@
-package ga.bowwow.store;
+package ga.bowwow.service.store;
 
 import java.util.List;
 

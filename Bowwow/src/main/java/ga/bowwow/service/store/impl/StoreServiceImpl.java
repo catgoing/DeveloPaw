@@ -1,9 +1,9 @@
-package ga.bowwow.store.impl;
+package ga.bowwow.service.store.impl;
 
 import java.util.List;
 
-import ga.bowwow.store.Products;
-import ga.bowwow.store.StoreService;
+import ga.bowwow.service.store.Products;
+import ga.bowwow.service.store.StoreService;
 
 public class StoreServiceImpl implements StoreService {
 

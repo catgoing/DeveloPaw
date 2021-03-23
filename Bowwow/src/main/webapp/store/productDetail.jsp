@@ -102,8 +102,8 @@ f<%@ page language="java" contentType="text/html; charset=UTF-8"
   .featured__item__text { width: 150px; }
 </style>
 </head>
-
 <body>
+
     <!-- Pre-loader start -->
     <div class="theme-loader">
         <div class="loader-track">
