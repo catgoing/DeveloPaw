@@ -1,4 +1,4 @@
-package ga.bowwow.controller;
+package ga.bowwow.controller.board;
 
 import java.io.File;
 import java.io.IOException;
