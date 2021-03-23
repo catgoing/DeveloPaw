@@ -1,6 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-
+    
 <!DOCTYPE html>
 <html>
 
@@ -294,7 +294,6 @@
                             <div class="p-15 p-b-0">
                                 <form class="form-material">
 
-
                                 </form>
                             </div>
                             <ul class="pcoded-item pcoded-left-item">
@@ -446,14 +445,14 @@
                                             </a>
                                         </li>
                                         <li class="">
-                                            <a href="dogClothes.jsp " class="waves-effect waves-dark">
+                                            <a href="sample-page.html" class="waves-effect waves-dark">
                                                 <span class="pcoded-micon"><i class="ti-layout-sidebar-left"></i><b>S</b></span>
                                                 <span class="pcoded-mtext">의류</span>
                                                 <span class="pcoded-mcaret"></span>
                                             </a>
                                         </li>
                                         <li class="">
-                                            <a href="dogToy.jsp" class="waves-effect waves-dark">
+                                            <a href="storeToy.jsp" class="waves-effect waves-dark">
                                                 <span class="pcoded-micon"><i class="ti-angle-right"></i></span>
                                                 <span class="pcoded-mtext">장난감</span>
                                                 <span class="pcoded-mcaret"></span>
@@ -532,7 +531,7 @@
                                                 <div class="row">
                                                     <div class="col-lg-12">
                                                         <div class="section-title">
-                                                            <h2>이달의 인기상품</h2>
+                                                            <h2>강아지 사료</h2>
                                                         </div>
                                                         <br>
                                                     </div>
@@ -551,7 +550,7 @@
                                                                             <a href="#"><i class="fa fa-shopping-cart"></i></a>
                                                                         </div>
                                                                         <br>
-                                                                    <div class="featured__item__text"style="width: 200px;">
+                                                                    <div class="featured__item__text"style="width: 200px;"> 
                                                                         <h6><a href="productDetail.html">나래 한복 케이프 모음집</a></h6>
                                                                         <h5>35,000원</h5>
                                                                     </div>
@@ -619,7 +618,7 @@
                                                                         <a href="#"><i class="fa fa-shopping-cart"></i></a>
                                                                     </div>
                                                                     <br>
-                                                                    <div class="featured__item__text" style="width: 200px;">
+                                                                    <div class="featured__item__text" style="width: 200px;"> 
                                                                         <h6><a href="#">나래 한복 케이프 모음집</a></h6>
                                                                         <h5>35,000원</h5>
                                                                     </div>
@@ -665,13 +664,13 @@
                 scrollTop('js-button', 500);
                 function scrollTop(elem,duration) {
                     let target = document.getElementById(elem);
-
+                
                     target.addEventListener('click', function() {
-                        let currentY = window.pageYOffset;
+                        let currentY = window.pageYOffset; 
                         let step = duration/currentY > 1 ? 10 : 100;
                         let timeStep = duration/currentY * step;
                         let intervalID = setInterval(scrollUp, timeStep);
-
+                
                         function scrollUp(){
                             currentY = window.pageYOffset;
                             if(currentY === 0) {
@@ -682,7 +681,7 @@
                         }
                     });
                 }
-                </script>
+                </script>   
             <!-- footer 푸터 시작부분-->
             <div style="display: block;">
                 <footer class="footer navbar-wrapper">
