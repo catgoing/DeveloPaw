@@ -12,6 +12,7 @@
 		-->
 		<typeAlias type="ga.bowwow.user.UserAccount" alias="UserAccount"/>
 		<typeAlias type="ga.bowwow.pet.Pet" alias="pet"/>
+		<typeAlias type="ga.bowwow.pet.Store" alias="Store"/>
 	</typeAliases>
 
   <mappers>
@@ -20,5 +21,8 @@
      -->
     <mapper resource="mappings/UserMapper.xml"/> 
     <mapper resource="mappings/PetMapper.xml"/> 
+    <mapper resource="mappings/StoreMapper.xml"/> 
+    <mapper resource="mappings/ProductsReviewMapper.xml"/> 
+    <mapper resource="mappings/StoreInquiryMapper.xml"/> 
   </mappers>
 </configuration>
