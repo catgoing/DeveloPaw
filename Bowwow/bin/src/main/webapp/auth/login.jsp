@@ -1,5 +1,8 @@
+<%@ page language="java" contentType="text/html; charset=UTF-8"	pageEncoding="UTF-8"%>
+<%@ taglib uri="http://tiles.apache.org/tags-tiles" prefix="tiles" %>
+
 <!DOCTYPE html>
-<html lang="en">
+<html>
 
 <head>
     <title>Login</title>
@@ -17,15 +20,6 @@
       <meta name="keywords" content="bootstrap, bootstrap admin template, admin theme, admin dashboard, dashboard template, admin template, responsive" />
       <meta name="author" content="Codedthemes" />
       <!-- Favicon icon -->
-
-    <!--Jua 폰트 import-->
-    <link rel="preconnect" href="https://fonts.gstatic.com">
-    <link href="https://fonts.googleapis.com/css2?family=Jua&display=swap" rel="stylesheet">
-
-    <!-- Dohyeon 폰트 import-->
-    <link rel="preconnect" href="https://fonts.gstatic.com">
-    <link href="https://fonts.googleapis.com/css2?family=Do+Hyeon&display=swap" rel="stylesheet">
-
 
       <link rel="icon" href="../resources/images/favicon.ico" type="image/x-icon">
       <!-- Google font-->
@@ -99,6 +93,7 @@
       </div>
   </div>
   <!-- Pre-loader end -->
+	<tiles:insertAttribute name="header"/>
     <section class="login-block">
         <!-- Container-fluid starts -->
         <div class="container">
@@ -114,7 +109,7 @@
                                 <div class="card-block">
                                     <div class="row m-b-20">
                                         <div class="col-md-12">
-                                            <h3 class="text-center">개발바닥</h3>
+                                            <h3 class="text-center">로그인</h3>
                                         </div>
                                     </div>
                                     <div class="form-group form-primary">
@@ -125,7 +120,7 @@
                                     <div class="form-group form-primary">
                                         <input type="password" name="password" class="form-control">
                                         <span class="form-bar"></span>
-                                        <label class="float-label">패스워드</label>
+                                        <label class="float-label">비밀번호</label>
                                     </div>
                                     <div class="row m-t-25 text-left">
                                         <div class="col-12">
@@ -167,6 +162,8 @@
         </div>
         <!-- end of container-fluid -->
     </section>
+    
+    <tiles:insertAttribute name="footer"/>
     <!-- Warning Section Starts -->
     <!-- Older IE warning message -->
     <!--[if lt IE 10]>
@@ -212,6 +209,7 @@
 <![endif]-->
 <!-- Warning Section Ends -->
 <!-- Required Jquery -->
+
 <script type="text/javascript" src="../resources/js/jquery/jquery.min.js "></script>
 <script type="text/javascript" src="../resources/js/jquery-ui/jquery-ui.min.js "></script>
 <script type="text/javascript" src="../resources/js/popper.js/popper.min.js"></script>
