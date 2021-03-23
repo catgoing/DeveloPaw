@@ -15,8 +15,8 @@ public class Page {
 	private int nowPage = 1;		//현재페이지
 	private int nowBlock = 1;		//현재 블록(페이지 담는 단위)
 	
-	private int pageUnit = 8;		//블록당 표시하는 페이지 갯수
-	private int pageSize = 8;		//한 페이지당 보여지는 게시물수
+	private int pageUnit = 20;		//블록당 표시하는 페이지 갯수
+	private int pageSize = 20;		//한 페이지당 보여지는 게시물수
 
 	private int totalRecord = 0;	//총 게시물 수
 	private int totalPage = 0; 		//전체 페이지 갯수
