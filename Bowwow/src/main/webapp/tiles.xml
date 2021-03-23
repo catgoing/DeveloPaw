@@ -12,6 +12,7 @@
         <definition name="/auth" template="/auth/login.jsp">
                 <put-attribute name="header" value="/common/header.jsp" />
                 <put-attribute name="body" value="" />
+                <put-attribute name="sidebar" value="/common/sidebar.jsp" />
                 <put-attribute name="footer" value="/common/footer2.jsp" />
         </definition>
         

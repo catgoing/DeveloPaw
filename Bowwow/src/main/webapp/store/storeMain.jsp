@@ -28,20 +28,14 @@
 
 <!-- Dohyeon 폰트 import-->
 <link rel="preconnect" href="https://fonts.gstatic.com">
-<link
-	href="https://fonts.googleapis.com/css2?family=Do+Hyeon&display=swap"
-	rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Do+Hyeon&display=swap" rel="stylesheet">
 
 <!-- Favicon icon -->
-<link rel="icon" href="../resources/images/favicon.ico"
-	type="image/x-icon">
+<link rel="icon" href="../resources/images/favicon.ico"	type="image/x-icon">
 <!-- Google font-->
-<link
-	href="https://fonts.googleapis.com/css?family=Open+Sans:400,600,700"
-	rel="stylesheet">
+<link href="https://fonts.googleapis.com/css?family=Open+Sans:400,600,700" rel="stylesheet">
 <!-- waves.css -->
-<link rel="stylesheet" href="../resources/pages/waves/css/waves.min.css"
-	type="text/css" media="all">
+<link rel="stylesheet" href="../resources/pages/waves/css/waves.min.css" type="text/css" media="all">
 <!-- Required Fremwork -->
 <link rel="stylesheet" type="text/css"
 	href="../resources/css/bootstrap/css/bootstrap.min.css">
