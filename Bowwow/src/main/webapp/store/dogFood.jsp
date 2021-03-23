@@ -531,7 +531,7 @@
                                                 <div class="row">
                                                     <div class="col-lg-12">
                                                         <div class="section-title">
-                                                            <h2>사료</h2>
+                                                            <h2>강아지 사료</h2>
                                                         </div>
                                                         <br>
                                                     </div>

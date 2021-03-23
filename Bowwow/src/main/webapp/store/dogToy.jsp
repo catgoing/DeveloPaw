@@ -531,7 +531,7 @@
                                                 <div class="row">
                                                     <div class="col-lg-12">
                                                         <div class="section-title">
-                                                            <h2>이달의 인기상품</h2>
+                                                            <h2>강아지 장난감</h2>
                                                         </div>
                                                         <br>
                                                     </div>
