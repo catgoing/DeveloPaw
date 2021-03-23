@@ -192,7 +192,6 @@
                                     </li>
                                 </ul>
                             </li>
-                            <!-- 알림부분 -->
                             <li class="header-notification">
                                 <a href="#!" class="waves-effect waves-light">
                                     <i class="fa fa-shopping-cart" aria-hidden="true"></i>
@@ -235,7 +234,6 @@
                                     </li>
                                 </ul>
                             </li>
-                            <!-- 알림부분 끝 -->
                             <li class="user-profile header-notification">
                                 <a href="#!" class="waves-effect waves-light">
                                     <img src="../resources/images/avatar-4.jpg" class="img-radius" alt="User-Profile-Image">
@@ -375,9 +373,19 @@
 
                             <ul class="pcoded-item pcoded-left-item">
                                 <li class="">
-                                    <a href="myPageMain.html" class="waves-effect waves-dark">
+                                    <a href="storeMain.html" class="waves-effect waves-dark">
                                         <span class="pcoded-micon"><i class="ti-layers"></i><b>FC</b></span>
-                                        <span class="pcoded-mtext">마이 홈</span>
+                                        <span class="pcoded-mtext">스토어</span>
+                                        <span class="pcoded-mcaret"></span>
+                                    </a>
+                                </li>
+                            </ul>
+
+                            <!-- <ul class="pcoded-item pcoded-left-item">
+                                <li class="">
+                                    <a href="bs-basic-table.html" class="waves-effect waves-dark">
+                                        <span class="pcoded-micon"><i class="ti-receipt"></i><b>B</b></span>
+                                        <span class="pcoded-mtext">Table</span>
                                         <span class="pcoded-mcaret"></span>
                                     </a>
                                 </li>
@@ -385,36 +393,68 @@
 
                             <ul class="pcoded-item pcoded-left-item">
                                 <li class="">
-                                    <a href="javascript:void(0)" class="waves-effect waves-dark">
-                                        <span class="pcoded-micon">
-                                            <!-- <i class="ti-id-badge"></i><b>A</b> -->
-                                        </span>
-                                        <span class="pcoded-mtext">프로필</span>
+                                    <a href="chart-morris.html" class="waves-effect waves-dark">
+                                        <span class="pcoded-micon"><i class="ti-bar-chart-alt"></i><b>C</b></span>
+                                        <span class="pcoded-mtext">Charts</span>
                                         <span class="pcoded-mcaret"></span>
                                     </a>
                                 </li>
-                            </ul>
+                                <li class="">
+                                    <a href="map-google.html" class="waves-effect waves-dark">
+                                        <span class="pcoded-micon"><i class="ti-map-alt"></i><b>M</b></span>
+                                        <span class="pcoded-mtext">Maps</span>
+                                        <span class="pcoded-mcaret"></span>
+                                    </a>
+                                </li>
+                            </ul> -->
+
                             <ul class="pcoded-item pcoded-left-item">
                                 <li class="pcoded-hasmenu ">
                                     <a href="javascript:void(0)" class="waves-effect waves-dark">
-                                        <span class="pcoded-micon">
-                                            <!-- <i class="ti-id-badge"></i><b>A</b> -->
-                                        </span>
-                                        <span class="pcoded-mtext">반려동물</span>
+                                        <span class="pcoded-micon"><i class="ti-id-badge"></i><b>A</b></span>
+                                        <span class="pcoded-mtext">펫일기장</span>
                                         <span class="pcoded-mcaret"></span>
                                     </a>
                                     <ul class="pcoded-submenu">
-                                        <li class=" ">
-                                            <a href="breadcrumb.html" class="waves-effect waves-dark">
+                                        <li class="">
+                                            <a href="auth-normal-sign-in.html" class="waves-effect waves-dark">
                                                 <span class="pcoded-micon"><i class="ti-angle-right"></i></span>
-                                                <span class="pcoded-mtext">테스트1</span>
+                                                <span class="pcoded-mtext">사료</span>
                                                 <span class="pcoded-mcaret"></span>
                                             </a>
                                         </li>
-                                        <li class=" ">
-                                            <a href="breadcrumb.html" class="waves-effect waves-dark">
+                                        <li class="">
+                                            <a href="auth-normal-sign-in.html" class="waves-effect waves-dark">
                                                 <span class="pcoded-micon"><i class="ti-angle-right"></i></span>
-                                                <span class="pcoded-mtext">테스트2</span>
+                                                <span class="pcoded-mtext">간식</span>
+                                                <span class="pcoded-mcaret"></span>
+                                            </a>
+                                        </li>
+                                        <li class="">
+                                            <a href="auth-normal-sign-in.html" class="waves-effect waves-dark">
+                                                <span class="pcoded-micon"><i class="ti-angle-right"></i></span>
+                                                <span class="pcoded-mtext">케어</span>
+                                                <span class="pcoded-mcaret"></span>
+                                            </a>
+                                        </li>
+                                        <li class="">
+                                            <a href="auth-sign-up.html" class="waves-effect waves-dark">
+                                                <span class="pcoded-micon"><i class="ti-angle-right"></i></span>
+                                                <span class="pcoded-mtext">리빙</span>
+                                                <span class="pcoded-mcaret"></span>
+                                            </a>
+                                        </li>
+                                        <li class="">
+                                            <a href="sample-page.html" class="waves-effect waves-dark">
+                                                <span class="pcoded-micon"><i class="ti-layout-sidebar-left"></i><b>S</b></span>
+                                                <span class="pcoded-mtext">의류</span>
+                                                <span class="pcoded-mcaret"></span>
+                                            </a>
+                                        </li>
+                                        <li class="">
+                                            <a href="storeMain.html" class="waves-effect waves-dark">
+                                                <span class="pcoded-micon"><i class="ti-angle-right"></i></span>
+                                                <span class="pcoded-mtext">장난감</span>
                                                 <span class="pcoded-mcaret"></span>
                                             </a>
                                         </li>
@@ -422,38 +462,86 @@
                                 </li>
                             </ul>
                             <ul class="pcoded-item pcoded-left-item">
-                                <li class="">
+                                <li class="pcoded-hasmenu ">
                                     <a href="javascript:void(0)" class="waves-effect waves-dark">
-                                        <span class="pcoded-micon">
-                                            <!-- <i class="ti-id-badge"></i><b>A</b> -->
-                                        </span>
-                                        <span class="pcoded-mtext">게시글</span>
+                                        <span class="pcoded-micon"><i class="ti-id-badge"></i><b>A</b></span>
+                                        <span class="pcoded-mtext">펫소개</span>
+                                        <span class="pcoded-mcaret"></span>
+                                    </a>
+                                    <ul class="pcoded-submenu">
+                                        <li class="">
+                                            <a href="storeMain.html" class="waves-effect waves-dark">
+                                                <span class="pcoded-micon"><i class="ti-angle-right"></i></span>
+                                                <span class="pcoded-mtext">사료</span>
+                                                <span class="pcoded-mcaret"></span>
+                                            </a>
+                                        </li>
+                                        <li class="">
+                                            <a href="storeMain.html" class="waves-effect waves-dark">
+                                                <span class="pcoded-micon"><i class="ti-angle-right"></i></span>
+                                                <span class="pcoded-mtext">간식</span>
+                                                <span class="pcoded-mcaret"></span>
+                                            </a>
+                                        </li>
+                                        <li class="">
+                                            <a href="auth-normal-sign-in.html" class="waves-effect waves-dark">
+                                                <span class="pcoded-micon"><i class="ti-angle-right"></i></span>
+                                                <span class="pcoded-mtext">케어</span>
+                                                <span class="pcoded-mcaret"></span>
+                                            </a>
+                                        </li>
+                                        <li class="">
+                                            <a href="auth-sign-up.html" class="waves-effect waves-dark">
+                                                <span class="pcoded-micon"><i class="ti-angle-right"></i></span>
+                                                <span class="pcoded-mtext">리빙</span>
+                                                <span class="pcoded-mcaret"></span>
+                                            </a>
+                                        </li>
+                                        <li class="">
+                                            <a href="sample-page.html" class="waves-effect waves-dark">
+                                                <span class="pcoded-micon"><i class="ti-layout-sidebar-left"></i><b>S</b></span>
+                                                <span class="pcoded-mtext">의류</span>
+                                                <span class="pcoded-mcaret"></span>
+                                            </a>
+                                        </li>
+                                        <li class="">
+                                            <a href="auth-normal-sign-in.html" class="waves-effect waves-dark">
+                                                <span class="pcoded-micon"><i class="ti-angle-right"></i></span>
+                                                <span class="pcoded-mtext">장난감</span>
+                                                <span class="pcoded-mcaret"></span>
+                                            </a>
+                                        </li>
+                                    </ul>
+                                </li>
+                            </ul>
+                            <ul class="pcoded-item pcoded-left-item">
+                                <li class="pcoded-hasmenu ">
+                                    <a href="javascript:void(0)" class="waves-effect waves-dark">
+                                        <span class="pcoded-micon"><i class="ti-id-badge"></i><b>A</b></span>
+                                        <span class="pcoded-mtext">펫 노하우</span>
                                         <span class="pcoded-mcaret"></span>
                                     </a>
                                 </li>
                             </ul>
                             <ul class="pcoded-item pcoded-left-item">
-                                <li class="">
+                                <li class="pcoded-hasmenu ">
                                     <a href="javascript:void(0)" class="waves-effect waves-dark">
-                                        <span class="pcoded-micon">
-                                            <!-- <i class="ti-id-badge"></i><b>A</b> -->
-                                        </span>
-                                        <span class="pcoded-mtext">적립금(?)</span>
+                                        <span class="pcoded-micon"><i class="ti-id-badge"></i><b>A</b></span>
+                                        <span class="pcoded-mtext">잃어버린 펫 찾아요</span>
                                         <span class="pcoded-mcaret"></span>
                                     </a>
                                 </li>
                             </ul>
                             <ul class="pcoded-item pcoded-left-item">
-                                <li class="">
+                                <li class="pcoded-hasmenu ">
                                     <a href="javascript:void(0)" class="waves-effect waves-dark">
-                                        <span class="pcoded-micon">
-                                            <!-- <i class="ti-id-badge"></i><b>A</b> -->
-                                        </span>
-                                        <span class="pcoded-mtext">1:1문의</span>
+                                        <span class="pcoded-micon"><i class="ti-id-badge"></i><b>A</b></span>
+                                        <span class="pcoded-mtext">중고나라</span>
                                         <span class="pcoded-mcaret"></span>
                                     </a>
                                 </li>
                             </ul>
+                            
                         </div>
                     </nav>
                     <div class="pcoded-content">
@@ -471,26 +559,18 @@
                                                 <div class="row">
                                                     <div class="col-lg-12">
                                                         <div class="section-title">
-                                                            <h2>뫄뫄님의 페이지</h2>
+                                                            <h2>이달의 인기상품</h2>
                                                         </div>
                                                         <br>
                                                     </div>
                                                 </div>
+                                                <div class="monthly-products">
+                                                  
+                                                   </div>
+                                                </div>
                                             </div>
                                         </section>
 
-									<div class="mypage_main_content">
-										<h2>본문??</h2>
-										<div class="mypage_main_content mypointlist">
-											적립금출력영역
-										</div>
-                                        <div class="mypage_main_content petlist">
-                                        	반려동물영역
-                                        </div>
-                                        <div class="mypage_main_content boardlist">
-                                        	게시글영역
-                                        </div>									    
-									</div>
                                     </div>
                                     <!-- Page-body end -->
                                 </div>

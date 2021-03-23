@@ -62,7 +62,6 @@
 <!-- Style.css -->
 <link rel="stylesheet" type="text/css" href="../resources/css/style.css">
 <link rel="stylesheet" type="text/css" href="../resources/css/test.css">
-
 <style>
 .featured__item__text {
 	width: 150px;
@@ -146,7 +145,7 @@
 
 							<ul class="pcoded-item pcoded-left-item">
 								<li class=""><a href="storeMain.html"
-									class="waves-effect waves-dark"> <span class="pcoded-micon"></span> 
+									class="waves-effect waves-dark"> <span class="pcoded-micon"></span>
 									<span class="pcoded-mtext">스토어</span>
 										<span class="pcoded-mcaret"></span>
 								</a></li>
@@ -154,7 +153,7 @@
 
 							<ul class="pcoded-item pcoded-left-item">
 								<li class="pcoded-hasmenu "><a href="javascript:void(0)"
-									class="waves-effect waves-dark"> <span class="pcoded-micon"></span> 
+									class="waves-effect waves-dark"> <span class="pcoded-micon"></span>
 									<span class="pcoded-mtext">댕댕이</span>
 										<span class="pcoded-mcaret"></span>
 								</a>
@@ -194,7 +193,7 @@
 							</ul>
 							<ul class="pcoded-item pcoded-left-item">
 								<li class="pcoded-hasmenu "><a href="javascript:void(0)"
-									class="waves-effect waves-dark"> <span class="pcoded-micon"></span> 
+									class="waves-effect waves-dark"> <span class="pcoded-micon"></span>
 									<span class="pcoded-mtext">냥냥이</span>
 										<span class="pcoded-mcaret"></span>
 								</a>
@@ -234,14 +233,14 @@
 							</ul>
 						</div>
 					</nav>
-					
+
 					<!-- 좌측 메뉴바 끝 -->
-					
-					
+
+
 					<div class="pcoded-content">
 						<div class="pcoded-inner-content">
-						
-						
+
+
 							<!-- Main-body start 본문 시작 -->
 							<div class="main-body">
 								<div class="page-wrapper">
@@ -417,21 +416,165 @@
 					let timeStep = duration / currentY * step;
 					let intervalID = setInterval(scrollUp, timeStep);
 
-					function scrollUp() {
-						currentY = window.pageYOffset;
-						if (currentY === 0) {
-							clearInterval(intervalID);
-						} else {
-							scrollBy(0, -step);
-						}
-					}
-				});
-			}
-		</script>
+                            <ul class="pcoded-item pcoded-left-item">
+                                <li class="pcoded-hasmenu ">
+                                    <a href="javascript:void(0)" class="waves-effect waves-dark">
+                                        <span class="pcoded-micon"><i class="ti-id-badge"></i><b>A</b></span>
+                                        <span class="pcoded-mtext">댕댕이</span>
+                                        <span class="pcoded-mcaret"></span>
+                                    </a>
+                                    <ul class="pcoded-submenu">
+                                        <li class="">
+                                            <a href="dogFood.jsp" class="waves-effect waves-dark">
+                                                <span class="pcoded-micon"><i class="ti-angle-right"></i></span>
+                                                <span class="pcoded-mtext">사료</span>
+                                                <span class="pcoded-mcaret"></span>
+                                            </a>
+                                        </li>
+                                        <li class="">
+                                            <a href="auth-normal-sign-in.html" class="waves-effect waves-dark">
+                                                <span class="pcoded-micon"><i class="ti-angle-right"></i></span>
+                                                <span class="pcoded-mtext">간식</span>
+                                                <span class="pcoded-mcaret"></span>
+                                            </a>
+                                        </li>
+                                        <li class="">
+                                            <a href="auth-normal-sign-in.html" class="waves-effect waves-dark">
+                                                <span class="pcoded-micon"><i class="ti-angle-right"></i></span>
+                                                <span class="pcoded-mtext">케어</span>
+                                                <span class="pcoded-mcaret"></span>
+                                            </a>
+                                        </li>
+                                        <li class="">
+                                            <a href="auth-sign-up.html" class="waves-effect waves-dark">
+                                                <span class="pcoded-micon"><i class="ti-angle-right"></i></span>
+                                                <span class="pcoded-mtext">리빙</span>
+                                                <span class="pcoded-mcaret"></span>
+                                            </a>
+                                        </li>
+                                        <li class="">
+                                            <a href="sample-page.html" class="waves-effect waves-dark">
+                                                <span class="pcoded-micon"><i class="ti-layout-sidebar-left"></i><b>S</b></span>
+                                                <span class="pcoded-mtext">의류</span>
+                                                <span class="pcoded-mcaret"></span>
+                                            </a>
+                                        </li>
+                                        <li class="">
+                                            <a href="storeToy.jsp" class="waves-effect waves-dark">
+                                                <span class="pcoded-micon"><i class="ti-angle-right"></i></span>
+                                                <span class="pcoded-mtext">장난감</span>
+                                                <span class="pcoded-mcaret"></span>
+                                            </a>
+                                        </li>
+                                    </ul>
+                                </li>
+                            </ul>
+                            <ul class="pcoded-item pcoded-left-item">
+                                <li class="pcoded-hasmenu ">
+                                    <a href="javascript:void(0)" class="waves-effect waves-dark">
+                                        <span class="pcoded-micon"><i class="ti-id-badge"></i><b>A</b></span>
+                                        <span class="pcoded-mtext">냥냥이</span>
+                                        <span class="pcoded-mcaret"></span>
+                                    </a>
+                                    <ul class="pcoded-submenu">
+                                        <li class="">
+                                            <a href="storeMain.html" class="waves-effect waves-dark">
+                                                <span class="pcoded-micon"><i class="ti-angle-right"></i></span>
+                                                <span class="pcoded-mtext">사료</span>
+                                                <span class="pcoded-mcaret"></span>
+                                            </a>
+                                        </li>
+                                        <li class="">
+                                            <a href="storeMain.html" class="waves-effect waves-dark">
+                                                <span class="pcoded-micon"><i class="ti-angle-right"></i></span>
+                                                <span class="pcoded-mtext">간식</span>
+                                                <span class="pcoded-mcaret"></span>
+                                            </a>
+                                        </li>
+                                        <li class="">
+                                            <a href="auth-normal-sign-in.html" class="waves-effect waves-dark">
+                                                <span class="pcoded-micon"><i class="ti-angle-right"></i></span>
+                                                <span class="pcoded-mtext">케어</span>
+                                                <span class="pcoded-mcaret"></span>
+                                            </a>
+                                        </li>
+                                        <li class="">
+                                            <a href="auth-sign-up.html" class="waves-effect waves-dark">
+                                                <span class="pcoded-micon"><i class="ti-angle-right"></i></span>
+                                                <span class="pcoded-mtext">리빙</span>
+                                                <span class="pcoded-mcaret"></span>
+                                            </a>
+                                        </li>
+                                        <li class="">
+                                            <a href="sample-page.html" class="waves-effect waves-dark">
+                                                <span class="pcoded-micon"><i class="ti-layout-sidebar-left"></i><b>S</b></span>
+                                                <span class="pcoded-mtext">의류</span>
+                                                <span class="pcoded-mcaret"></span>
+                                            </a>
+                                        </li>
+                                        <li class="">
+                                            <a href="auth-normal-sign-in.html" class="waves-effect waves-dark">
+                                                <span class="pcoded-micon"><i class="ti-angle-right"></i></span>
+                                                <span class="pcoded-mtext">장난감</span>
+                                                <span class="pcoded-mcaret"></span>
+                                            </a>
+                                        </li>
+                                    </ul>
+                                </li>
+                            </ul>
+                        </div>
+                    </nav>
+                    <div class="pcoded-content">
+                        <!-- Page-header start -->
 
 		<!-- footer 푸터 시작부분-->
 		<%@ include file="/common/footer.jspf"%>
 
+                                    </div>
+                                    <!-- Page-body end -->
+                                </div>
+                                <div id="styleSelector"> </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <button class="scroll-top" id="js-button" style="margin-bottom: 190px; margin-right: 30px; font: 'Jua'">
+                <i class="fa fa-chevron-up" aria-hidden="true">TOP</i>
+            </button>
+            <script type="text/javascript">
+                scrollTop('js-button', 500);
+                function scrollTop(elem,duration) {
+                    let target = document.getElementById(elem);
+
+                    target.addEventListener('click', function() {
+                        let currentY = window.pageYOffset;
+                        let step = duration/currentY > 1 ? 10 : 100;
+                        let timeStep = duration/currentY * step;
+                        let intervalID = setInterval(scrollUp, timeStep);
+
+                        function scrollUp(){
+                            currentY = window.pageYOffset;
+                            if(currentY === 0) {
+                                clearInterval(intervalID);
+                            } else {
+                                scrollBy( 0, -step );
+                            }
+                        }
+                    });
+                }
+                </script>
+            <!-- footer 푸터 시작부분-->
+            <div style="display: block;">
+                <footer class="footer navbar-wrapper">
+                    <div class="footer-wrapper navbar-wrapper">
+                        <div class="footer-box" style="height: 100px; text-align: center;">
+                            푸터
+                        </div>
+                    </div>
+                </footer>
+                <!-- footer 푸터 끝부분-->
+            </div>
 
 	</div>
 

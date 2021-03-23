@@ -4,7 +4,7 @@
 	<footer class="footer navbar-wrapper">
 		<div class="footer-wrapper navbar-wrapper">
 			<div class="footer-box" style="height: 100px; text-align: center;">
-				푸터 조각</div>
+				동적으로 변하는 로그인용 푸터 조각</div>
 		</div>
 	</footer>
 </div>
