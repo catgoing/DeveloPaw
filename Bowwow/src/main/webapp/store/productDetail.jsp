@@ -1,9 +1,11 @@
+f<%@ page language="java" contentType="text/html; charset=UTF-8"
+    pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html>
 <head>
 <meta charset="utf-8">
-<title>상품 상세 페이지</title>
-<title>개발바닥</title>
+<title>ìí ìì¸ íì´ì§</title>
+<title>ê°ë°ë°ë¥</title>
 <!-- HTML5 Shim and Respond.js IE10 support of HTML5 elements and media queries -->
 <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
 <!--[if lt IE 10]>
@@ -23,11 +25,11 @@
 
     <meta name="keywords" content="bootstrap, bootstrap admin template, admin theme, admin dashboard, dashboard template, admin template, responsive" />
     <meta name="author" content="Codedthemes" />
-    <!--Jua 폰트 import-->
+    <!--Jua í°í¸ import-->
     <link rel="preconnect" href="https://fonts.gstatic.com">
     <link href="https://fonts.googleapis.com/css2?family=Jua&display=swap" rel="stylesheet">
 
-    <!-- Dohyeon 폰트 import-->
+    <!-- Dohyeon í°í¸ import-->
     <link rel="preconnect" href="https://fonts.gstatic.com">
     <link href="https://fonts.googleapis.com/css2?family=Do+Hyeon&display=swap" rel="stylesheet">
 
@@ -54,7 +56,7 @@
 </head>
 <body>
 <head>
-    <title>개발바닥</title>
+    <title>ê°ë°ë°ë¥</title>
     <!-- HTML5 Shim and Respond.js IE10 support of HTML5 elements and media queries -->
     <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
     <!--[if lt IE 10]>
@@ -68,11 +70,11 @@
 
     <meta name="keywords" content="bootstrap, bootstrap admin template, admin theme, admin dashboard, dashboard template, admin template, responsive" />
     <meta name="author" content="Codedthemes" />
-    <!--Jua 폰트 import-->
+    <!--Jua í°í¸ import-->
     <link rel="preconnect" href="https://fonts.gstatic.com">
     <link href="https://fonts.googleapis.com/css2?family=Jua&display=swap" rel="stylesheet">
 
-    <!-- Dohyeon 폰트 import-->
+    <!-- Dohyeon í°í¸ import-->
     <link rel="preconnect" href="https://fonts.gstatic.com">
     <link href="https://fonts.googleapis.com/css2?family=Do+Hyeon&display=swap" rel="stylesheet">
 
@@ -188,15 +190,15 @@
                                 <div class="sidebar_toggle"><a href="javascript:void(0)"><i class="ti-menu"></i></a></div>
                             </li>
                             <li>
-                                <a href="index.html"> 커뮤니티 </a>
+                                <a href="index.html"> ì»¤ë®¤ëí° </a>
                             </li>
                             <li>
-                                <a href="storeMain.html"> 스토어 </a>
+                                <a href="storeMain.html"> ì¤í ì´ </a>
                             </li>
                         </ul>
                         <ul class="nav-right">
                             <li class="form-group form-primary">
-                                <input type="text" name="footer-email" style="margin-top: 12px; width: 250px;" class="form-control" placeholder="검색창">
+                                <input type="text" name="footer-email" style="margin-top: 12px; width: 250px;" class="form-control" placeholder="ê²ìì°½">
                                 <span class="form-bar"></span>
                             </li>
                             <li class="header-notification">
@@ -290,30 +292,30 @@
                                 </a>
                                 <ul class="show-notification profile-notification">
                                     <li class="waves-effect waves-light">
-                                        <a href="#!">마이홈
+                                        <a href="#!">ë§ì´í
                                         </a>
                                     </li>
                                     <li class="waves-effect waves-light">
-                                        <a href="user-profile.html">프로필
+                                        <a href="user-profile.html">íë¡í
                                         </a>
                                     </li>
                                     <li class="waves-effect waves-light">
-                                        <a href="email-inbox.html">반려동물
+                                        <a href="email-inbox.html">ë°ë ¤ëë¬¼
                                         </a>
                                     </li>
                                     <li class="waves-effect waves-light">
-                                        <a href="auth-lock-screen.html">게시글</a>
+                                        <a href="auth-lock-screen.html">ê²ìê¸</a>
                                     </li>
                                     <li class="waves-effect waves-light">
-                                        <a href="auth-normal-sign-in.html">포인트 내역
+                                        <a href="auth-normal-sign-in.html">í¬ì¸í¸ ë´ì­
                                         </a>
                                     </li>
                                     <li class="waves-effect waves-light">
-                                        <a href="auth-normal-sign-in.html">나의 쇼핑
+                                        <a href="auth-normal-sign-in.html">ëì ì¼í
                                         </a>
                                     </li>
                                     <li class="waves-effect waves-light">
-                                        <a href="auth-normal-sign-in.html">로그아웃
+                                        <a href="auth-normal-sign-in.html">ë¡ê·¸ìì
                                         </a>
                                     </li>
                                 </ul>
@@ -424,7 +426,7 @@
                                 <li class="">
                                     <a href="storeMain.html" class="waves-effect waves-dark">
                                         <span class="pcoded-micon"><i class="ti-layers"></i><b>FC</b></span>
-                                        <span class="pcoded-mtext">스토어</span>
+                                        <span class="pcoded-mtext">ì¤í ì´</span>
                                         <span class="pcoded-mcaret"></span>
                                     </a>
                                 </li>
@@ -461,49 +463,49 @@
                                 <li class="pcoded-hasmenu ">
                                     <a href="javascript:void(0)" class="waves-effect waves-dark">
                                         <span class="pcoded-micon"><i class="ti-id-badge"></i><b>A</b></span>
-                                        <span class="pcoded-mtext">댕댕이</span>
+                                        <span class="pcoded-mtext">ëëì´</span>
                                         <span class="pcoded-mcaret"></span>
                                     </a>
                                     <ul class="pcoded-submenu">
                                         <li class="">
                                             <a href="auth-normal-sign-in.html" class="waves-effect waves-dark">
                                                 <span class="pcoded-micon"><i class="ti-angle-right"></i></span>
-                                                <span class="pcoded-mtext">사료</span>
+                                                <span class="pcoded-mtext">ì¬ë£</span>
                                                 <span class="pcoded-mcaret"></span>
                                             </a>
                                         </li>
                                         <li class="">
                                             <a href="auth-normal-sign-in.html" class="waves-effect waves-dark">
                                                 <span class="pcoded-micon"><i class="ti-angle-right"></i></span>
-                                                <span class="pcoded-mtext">간식</span>
+                                                <span class="pcoded-mtext">ê°ì</span>
                                                 <span class="pcoded-mcaret"></span>
                                             </a>
                                         </li>
                                         <li class="">
                                             <a href="auth-normal-sign-in.html" class="waves-effect waves-dark">
                                                 <span class="pcoded-micon"><i class="ti-angle-right"></i></span>
-                                                <span class="pcoded-mtext">케어</span>
+                                                <span class="pcoded-mtext">ì¼ì´</span>
                                                 <span class="pcoded-mcaret"></span>
                                             </a>
                                         </li>
                                         <li class="">
                                             <a href="auth-sign-up.html" class="waves-effect waves-dark">
                                                 <span class="pcoded-micon"><i class="ti-angle-right"></i></span>
-                                                <span class="pcoded-mtext">리빙</span>
+                                                <span class="pcoded-mtext">ë¦¬ë¹</span>
                                                 <span class="pcoded-mcaret"></span>
                                             </a>
                                         </li>
                                         <li class="">
                                             <a href="sample-page.html" class="waves-effect waves-dark">
                                                 <span class="pcoded-micon"><i class="ti-layout-sidebar-left"></i><b>S</b></span>
-                                                <span class="pcoded-mtext">의류</span>
+                                                <span class="pcoded-mtext">ìë¥</span>
                                                 <span class="pcoded-mcaret"></span>
                                             </a>
                                         </li>
                                         <li class="">
                                             <a href="storeMain.html" class="waves-effect waves-dark">
                                                 <span class="pcoded-micon"><i class="ti-angle-right"></i></span>
-                                                <span class="pcoded-mtext">장난감</span>
+                                                <span class="pcoded-mtext">ì¥ëê°</span>
                                                 <span class="pcoded-mcaret"></span>
                                             </a>
                                         </li>
@@ -514,49 +516,49 @@
                                 <li class="pcoded-hasmenu ">
                                     <a href="javascript:void(0)" class="waves-effect waves-dark">
                                         <span class="pcoded-micon"><i class="ti-id-badge"></i><b>A</b></span>
-                                        <span class="pcoded-mtext">냥냥이</span>
+                                        <span class="pcoded-mtext">ë¥ë¥ì´</span>
                                         <span class="pcoded-mcaret"></span>
                                     </a>
                                     <ul class="pcoded-submenu">
                                         <li class="">
                                             <a href="storeMain.html" class="waves-effect waves-dark">
                                                 <span class="pcoded-micon"><i class="ti-angle-right"></i></span>
-                                                <span class="pcoded-mtext">사료</span>
+                                                <span class="pcoded-mtext">ì¬ë£</span>
                                                 <span class="pcoded-mcaret"></span>
                                             </a>
                                         </li>
                                         <li class="">
                                             <a href="storeMain.html" class="waves-effect waves-dark">
                                                 <span class="pcoded-micon"><i class="ti-angle-right"></i></span>
-                                                <span class="pcoded-mtext">간식</span>
+                                                <span class="pcoded-mtext">ê°ì</span>
                                                 <span class="pcoded-mcaret"></span>
                                             </a>
                                         </li>
                                         <li class="">
                                             <a href="auth-normal-sign-in.html" class="waves-effect waves-dark">
                                                 <span class="pcoded-micon"><i class="ti-angle-right"></i></span>
-                                                <span class="pcoded-mtext">케어</span>
+                                                <span class="pcoded-mtext">ì¼ì´</span>
                                                 <span class="pcoded-mcaret"></span>
                                             </a>
                                         </li>
                                         <li class="">
                                             <a href="auth-sign-up.html" class="waves-effect waves-dark">
                                                 <span class="pcoded-micon"><i class="ti-angle-right"></i></span>
-                                                <span class="pcoded-mtext">리빙</span>
+                                                <span class="pcoded-mtext">ë¦¬ë¹</span>
                                                 <span class="pcoded-mcaret"></span>
                                             </a>
                                         </li>
                                         <li class="">
                                             <a href="sample-page.html" class="waves-effect waves-dark">
                                                 <span class="pcoded-micon"><i class="ti-layout-sidebar-left"></i><b>S</b></span>
-                                                <span class="pcoded-mtext">의류</span>
+                                                <span class="pcoded-mtext">ìë¥</span>
                                                 <span class="pcoded-mcaret"></span>
                                             </a>
                                         </li>
                                         <li class="">
                                             <a href="auth-normal-sign-in.html" class="waves-effect waves-dark">
                                                 <span class="pcoded-micon"><i class="ti-angle-right"></i></span>
-                                                <span class="pcoded-mtext">장난감</span>
+                                                <span class="pcoded-mtext">ì¥ëê°</span>
                                                 <span class="pcoded-mcaret"></span>
                                             </a>
                                         </li>
@@ -565,16 +567,16 @@
                             </ul>
                         </div>
                     </nav>
-    <!-- 본문 영역 -->
+    <!-- ë³¸ë¬¸ ìì­ -->
 					<div class="main-body">
 						<div class="page-wrapper">
 							<div class="product_view">
-								<h2>대왕빼빼로 캣닢 쿠션</h2>
+								<h2>ëìë¹¼ë¹¼ë¡ ìº£ë¢ ì¿ ì</h2>
 								<table>
 									<caption>
 										<details class="hide">
-											<summary>상품 정보</summary>
-											판매가, 상품코드, 옵션 및 결제 금액 안내
+											<summary>ìí ì ë³´</summary>
+											íë§¤ê°, ìíì½ë, ìµì ë° ê²°ì  ê¸ì¡ ìë´
 										</details>
 									</caption>
 									<colgroup>
@@ -583,19 +585,19 @@
 									</colgroup>
 									<tbody>
 										<tr>
-											<th>판매가 :</th>
-											<td class="price">27,900원</td>
+											<th>íë§¤ê° :</th>
+											<td class="price">27,900ì</td>
 										</tr>
 										<tr>
-											<th>상품코드 :</th>
+											<th>ìíì½ë :</th>
 											<td>C1508ABD</td>
 										</tr>
 										<tr>
-											<th>제조사 / 공급사 :</th>
-											<td>개발바닥 / 개발바닥</td>
+											<th>ì ì¡°ì¬ / ê³µê¸ì¬ :</th>
+											<td>ê°ë°ë°ë¥ / ê°ë°ë°ë¥</td>
 										</tr>
 										<tr>
-											<th>구매 수량</th>
+											<th>êµ¬ë§¤ ìë</th>
 											<td>
 												<div class="length">
 													<input type="number" min="1" value="1"> <a
@@ -605,24 +607,24 @@
 											</td>
 										</tr>
 										<tr>
-											<th>사용 가능 쿠폰 :</th>
-											<td>0개</td>
+											<th>ì¬ì© ê°ë¥ ì¿ í° :</th>
+											<td>0ê°</td>
 										</tr>
 										<!-- <tr>
-                <th>옵션 선택</th>
+                <th>ìµì ì í</th>
                 <td>
                     <select>
-                        <option>기본(+0)</option>    
+                        <option>ê¸°ë³¸(+0)</option>    
                     </select>
                 </td>
             </tr> -->
 										<tr>
-											<th>배송비 :</th>
-											<td>무료 배송</td>
+											<th>ë°°ì¡ë¹ :</th>
+											<td>ë¬´ë£ ë°°ì¡</td>
 										</tr>
 										<tr>
-											<th>결제 금액</th>
-											<td class="total"><b>27,900원</b></td>
+											<th>ê²°ì  ê¸ì¡</th>
+											<td class="total"><b>27,900ì</b></td>
 										</tr>
 									</tbody>
 								</table>
@@ -634,13 +636,13 @@
 									</ul>
 								</div>
 								<div class="btns">
-									<a href="#a" class="btnOne">장바구니</a> <a
-										href="src/main/webapp/store/storeMain.html" class="btnTwo">구매하기</a>
+									<a href="#a" class="btnOne">ì¥ë°êµ¬ë</a> <a
+										href="src/main/webapp/store/storeMain.html" class="btnTwo">êµ¬ë§¤íê¸°</a>
 								</div>
 							</div>
 						</div>
 					</div>
-					<!-- 본문 끝 -->
+					<!-- ë³¸ë¬¸ ë -->
 					<button class="scroll-top" id="js-button"
 						style="margin-bottom: 190px; margin-right: 30px; font: 'Jua'">
 						<i class="fa fa-chevron-up" aria-hidden="true">TOP</i>
@@ -667,16 +669,16 @@
                     });
                 }
                 </script>   
-            <!-- footer 푸터 시작부분-->
+            <!-- footer í¸í° ììë¶ë¶-->
             <div style="display: block;">
                 <footer class="footer navbar-wrapper">
                     <div class="footer-wrapper navbar-wrapper">
                         <div class="footer-box" style="height: 100px; text-align: center;">
-                            푸터
+                            í¸í°
                         </div>
                     </div>
                 </footer>
-                <!-- footer 푸터 끝부분-->
+                <!-- footer í¸í° ëë¶ë¶-->
             </div>
             </div>
 		</div>
