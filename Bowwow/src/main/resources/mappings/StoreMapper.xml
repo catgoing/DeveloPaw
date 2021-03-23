@@ -7,7 +7,7 @@
 	<insert id="insertProducts" parameterType="Store">
 		INSERT INTO STORE_PRODUCTS (P_ID, P_PICK, P_NAME, P_TYPE, P_CATEGORY, P_CONTENT,
 									PRICE, STOCK, S_IMAGE, L_IMAGE)
-		VALUES 
+		VALUES( 
 		 P_SEQ.NEXTVAL, #{p_pick}, #{p_name}, #{p_type}, #{p_category}, #{p_content}, 
 		 #{price}, #{stock}, #{s_image}, #{l_image})
 	</insert>
