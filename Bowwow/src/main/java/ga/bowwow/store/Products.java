@@ -1,13 +1,17 @@
 package ga.bowwow.store;
 
+import lombok.AllArgsConstructor;
 import lombok.Getter;
+import lombok.NoArgsConstructor;
 import lombok.Setter;
 import lombok.ToString;
 
 @Getter
 @Setter
 @ToString
-public class store {
+@NoArgsConstructor
+@AllArgsConstructor
+public class Products {
 	private int p_id;
 	private String p_name;
 	private String p_type;
