@@ -12,7 +12,7 @@ import lombok.ToString;
 @NoArgsConstructor
 @AllArgsConstructor
 public class Products {
-	private int p_id;			// 상품 번호
+	private String p_id;		// 상품 번호
 	private String p_name;		// 상품 이름
 	private String p_type;		// 댕댕이, 냥냥이
 	private String p_category;  // 상품 종류

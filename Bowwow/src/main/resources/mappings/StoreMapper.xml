@@ -3,7 +3,26 @@
   PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
   "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="Store">
-
+	<insert id="insertProduct" parameterType="Store">
+		INSERT INTO STORE_PRODUCTS (P_ID, P_NAME, P_TYPE, P_CATEGORY, PRICE, 
+									STOCK, S_IMAGE, L_IMAGE, P_PICK)
+		VALUES (P_SEQ.NEXTVAL, #{p_name}, #{p_type}, #{p_category}, #{price}, 
+									#{stock}, #{s_image}, #{l_image}, #{p_pick})
+	</insert>
+	
+	<select id="getProductList" parameterType="Store" resultType="Store">
+		SELECT P_ID, P_NAME, P_TYPE, P_CATEGORY, PRICE, STOCK, S_IMAGE, L_IMAGE
+		FROM STORE_PRODUCTS
+		WHERE 1=1
+		<if test="searchCondition == 'P_NAME'">
+			AND P_NAME LIKE '%' || #{searchKeyword} || '%'
+			ORDER BY P_ID DESC
+		</if>
+		<if test="searchCondition == 'P_CATEGORY'">
+			AND P_CATEGORY LIKE '%' || #{searchKeyword} || '%'
+			ORDER BY P_ID DESC
+		</if>
+	</select>
 
 </mapper>
 

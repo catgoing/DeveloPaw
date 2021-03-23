@@ -8,14 +8,18 @@ import ga.bowwow.service.store.Products;
 
 @Repository("storeDAO")
 public class StoreDAO {
+	
 	@Autowired
 	private SqlSessionTemplate mybatis;
 	
 	public StoreDAO() {
-		
+		System.out.println(">> StoreDAO 객체 생성");
 	}
 	
-	public void insertProducts(Products products) {
-		mybatis.insert("StoreDAO.insertProducts", products);
-	}
+	
+	
+	
+	
+	
+	
 }
