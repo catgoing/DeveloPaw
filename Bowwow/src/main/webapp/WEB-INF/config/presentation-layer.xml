@@ -7,8 +7,10 @@
 		http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd
 		http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context-4.3.xsd">
 
-	<context:component-scan
-		base-package="ga.bowwow" />
+
+	<!-- controller 객체 생성부분만 경로입력 -->
+	<!-- <context:component-scan	base-package="ga.bowwow.controller" /> -->
+
 
 	<!-- 파일업로드 관련 설정(MultipartResolver 등록) 사용명칭 multipartResolver 이름은 대소문자 구분해서 
 		동일하게 작성 ~Resolver 명칭이 있는 객체명은 대체로 정해져 있음 -->
@@ -17,7 +19,7 @@
 		<property name="maxUploadSize" value="20000000"></property>
 	</bean>
 
-	<!-- 예외처리를 위한 설정 -->
+	<!-- 예외처리를 위한 설정
 	<bean id="exceptionResolver"
 		class="org.springframework.web.servlet.handler.SimpleMappingExceptionResolver">
 		<property name="defaultErrorView" value="/common/error.jsp" />
@@ -30,13 +32,15 @@
 					common/nullPointerError.jsp
 				</prop>
 				<prop key="org.springframework.web.multipart.MaxUploadSizeExceededException"> 
-				<!--
+				
  					common/imgUploadErr.jsp
-				 -->
+				 
 				</prop>
 			</props>
 		</property>
 	</bean>
+
+ -->
 	
 	<!-- Tiles viewResolver -->
 	<bean id="tilesViewResolver" class="org.springframework.web.servlet.view.UrlBasedViewResolver">
@@ -47,6 +51,7 @@
 		<property name="definitions">
 			<list>
 				<value>tiles.xml</value>
+				<value>tiles2.xml</value>
 			</list>
 		</property>
 	</bean>

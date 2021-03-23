@@ -110,129 +110,36 @@
     <!-- Pre-loader end -->
     <div id="pcoded" class="pcoded">
         <div class="pcoded-overlay-box"></div>
-        <div class="pcoded-container navbar-wrapper">
+        <div class="pcoded-main-container navbar-wrapper">
             
-		<!-- 헤더시작 -->
-		<tiles:insertAttribute name="header" />
-		<!-- 헤더끝 -->
-
-			<!-- 좌측 메뉴바 시작 -->
-			<div class="pcoded-main-container">
-                <div class="pcoded-wrapper">
-					<nav class="pcoded-navbar">
-                        <div class="sidebar_toggle"><a href="#"><i class="icon-close icons"></i></a></div>
-                        <div class="pcoded-inner-navbar main-menu">
-                           <div class="p-15 p-b-0">
-                                <form class="form-material">
-                              	<!-- 이부분 없애면 좌측메뉴 시작부분이 위쪽으로 조금 올라감 -->
-                                </form>
-                            </div>
-                         
-                            <ul class="pcoded-item pcoded-left-item">
-                                <li class="">
-                                    <a href="mypage.do" class="waves-effect waves-dark">
-                                        <span class="pcoded-micon"><i class="ti-layers"></i><b>FC</b></span>
-                                        <span class="pcoded-mtext">마이 홈</span>
-                                        <span class="pcoded-mcaret"></span>
-                                    </a>
-                                </li>
-                            </ul>
-
-                            <ul class="pcoded-item pcoded-left-item">
-                                <li class="">
-                                    <a href="myInfo.do" class="waves-effect waves-dark">
-                                        <span class="pcoded-micon">
-                                            <!-- <i class="ti-id-badge"></i><b>A</b> -->
-                                        </span>
-                                        <span class="pcoded-mtext">프로필</span>
-                                        <span class="pcoded-mcaret"></span>
-                                    </a>
-                                </li>
-                            </ul>
-                            <ul class="pcoded-item pcoded-left-item">
-                                <li class="pcoded-hasmenu ">
-                                    <a href="javascript:void(0)" class="waves-effect waves-dark">
-                                        <span class="pcoded-micon">
-                                            <!-- <i class="ti-id-badge"></i><b>A</b> -->
-                                        </span>
-                                        <span class="pcoded-mtext">반려동물</span>
-                                        <span class="pcoded-mcaret"></span>
-                                    </a>
-                                    <ul class="pcoded-submenu">
-                                        <li class=" ">
-                                            <a href="breadcrumb.html" class="waves-effect waves-dark">
-                                                <span class="pcoded-micon"><i class="ti-angle-right"></i></span>
-                                                <span class="pcoded-mtext">테스트1</span>
-                                                <span class="pcoded-mcaret"></span>
-                                            </a>
-                                        </li>
-                                        <li class=" ">
-                                            <a href="breadcrumb.html" class="waves-effect waves-dark">
-                                                <span class="pcoded-micon"><i class="ti-angle-right"></i></span>
-                                                <span class="pcoded-mtext">테스트2</span>
-                                                <span class="pcoded-mcaret"></span>
-                                            </a>
-                                        </li>
-                                    </ul>
-                                </li>
-                            </ul>
-                            <ul class="pcoded-item pcoded-left-item">
-                                <li class="">
-                                    <a href="javascript:void(0)" class="waves-effect waves-dark">
-                                        <span class="pcoded-micon">
-                                            <!-- <i class="ti-id-badge"></i><b>A</b> -->
-                                        </span>
-                                        <span class="pcoded-mtext">게시글</span>
-                                        <span class="pcoded-mcaret"></span>
-                                    </a>
-                                </li>
-                            </ul>
-                            <ul class="pcoded-item pcoded-left-item">
-                                <li class="">
-                                    <a href="javascript:void(0)" class="waves-effect waves-dark">
-                                        <span class="pcoded-micon">
-                                            <!-- <i class="ti-id-badge"></i><b>A</b> -->
-                                        </span>
-                                        <span class="pcoded-mtext">적립금(?)</span>
-                                        <span class="pcoded-mcaret"></span>
-                                    </a>
-                                </li>
-                            </ul>
-                            <ul class="pcoded-item pcoded-left-item">
-                                <li class="">
-                                    <a href="javascript:void(0)" class="waves-effect waves-dark">
-                                        <span class="pcoded-micon">
-                                            <!-- <i class="ti-id-badge"></i><b>A</b> -->
-                                        </span>
-                                        <span class="pcoded-mtext">1:1문의</span>
-                                        <span class="pcoded-mcaret"></span>
-                                    </a>
-                                </li>
-                            </ul>
-                        </div>
-					</nav>
-			<!-- 좌측 메뉴바 끝 -->
+		<!-- 헤더 -->
+		<%-- <tiles:insertAttribute name="header" /> --%>
+		<!-- 좌측메뉴바 -->
+		<%-- <tiles:insertAttribute name="menubar" /> --%>
                     
                     <div class="pcoded-content">
                         <div class="pcoded-inner-content">
-
+							<!-- 페이지 제목 -->
+							<h2>(pcoded-inner-content) 뫄뫄님의 페이지</h2>
+							
 							<!-- Main-body start 본문 시작 -->
-                            <div class="main-body">
-                                <div class="page-wrapper">
-                                    <!-- Page-body start -->
-                                    <div class="page-body">
-                                        <section class="featured spad">
-                                            <div class="container">
-                                                <div class="row">
-                                                    <div class="col-lg-12">
-                                                        <div class="section-title">
-                                                            <h2>뫄뫄님의 페이지</h2>
-                                                        </div>
-                                                        <br>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </section>
+							<div class="main-body">
+							<div class="page-wrapper">
+		                                
+								<!-- Page-body start -->
+								<div class="page-body">
+									<!-- <section class="featured spad">
+										<div class="container">
+											<div class="row">
+												<div class="col-lg-12">
+													<div class="section-title">
+														<h2>(section-title)뫄뫄님의 페이지</h2>
+													</div>
+													<br>
+		 										</div>
+											</div>
+										</div>
+									</section> -->
                                         
                                         <div class="my-pet">
 	                                        <div class="pet-list">
@@ -282,7 +189,7 @@
                 </script>
                 
 				<!-- footer 푸터 시작부분-->
-				<tiles:insertAttribute name="footer" />
+				<%-- <tiles:insertAttribute name="footer" /> --%>
 				<!-- footer 푸터 끝부분-->
             </div>
 

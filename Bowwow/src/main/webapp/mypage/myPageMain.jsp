@@ -110,183 +110,87 @@
     <!-- Pre-loader end -->
     <div id="pcoded" class="pcoded">
         <div class="pcoded-overlay-box"></div>
-        <div class="pcoded-container navbar-wrapper">
+        <div class="pcoded-main-container navbar-wrapper">
             
-		<!-- 헤더시작 -->
-		<tiles:insertAttribute name="header" />
-		<!-- 헤더끝 -->
-
-			<!-- 좌측 메뉴바 시작 -->
-			<div class="pcoded-main-container">
-                <div class="pcoded-wrapper">
-					<nav class="pcoded-navbar">
-                        <div class="sidebar_toggle"><a href="#"><i class="icon-close icons"></i></a></div>
-                        <div class="pcoded-inner-navbar main-menu">
-                           <div class="p-15 p-b-0">
-                                <form class="form-material">
-                              	<!-- 이부분 없애면 좌측메뉴 시작부분이 위쪽으로 조금 올라감 -->
-                                </form>
-                            </div>
-                         
-                            <ul class="pcoded-item pcoded-left-item">
-                                <li class="">
-                                    <a href="mypage.do" class="waves-effect waves-dark">
-                                        <span class="pcoded-micon"><i class="ti-layers"></i><b>FC</b></span>
-                                        <span class="pcoded-mtext">마이 홈</span>
-                                        <span class="pcoded-mcaret"></span>
-                                    </a>
-                                </li>
-                            </ul>
-
-                            <ul class="pcoded-item pcoded-left-item">
-                                <li class="">
-                                    <a href="myInfo.do" class="waves-effect waves-dark">
-                                        <span class="pcoded-micon">
-                                            <!-- <i class="ti-id-badge"></i><b>A</b> -->
-                                        </span>
-                                        <span class="pcoded-mtext">프로필</span>
-                                        <span class="pcoded-mcaret"></span>
-                                    </a>
-                                </li>
-                            </ul>
-                            <ul class="pcoded-item pcoded-left-item">
-                                <li class="pcoded-hasmenu ">
-                                    <a href="javascript:void(0)" class="waves-effect waves-dark">
-                                        <span class="pcoded-micon">
-                                            <!-- <i class="ti-id-badge"></i><b>A</b> -->
-                                        </span>
-                                        <span class="pcoded-mtext">반려동물</span>
-                                        <span class="pcoded-mcaret"></span>
-                                    </a>
-                                    <ul class="pcoded-submenu">
-                                        <li class=" ">
-                                            <a href="breadcrumb.html" class="waves-effect waves-dark">
-                                                <span class="pcoded-micon"><i class="ti-angle-right"></i></span>
-                                                <span class="pcoded-mtext">테스트1</span>
-                                                <span class="pcoded-mcaret"></span>
-                                            </a>
-                                        </li>
-                                        <li class=" ">
-                                            <a href="breadcrumb.html" class="waves-effect waves-dark">
-                                                <span class="pcoded-micon"><i class="ti-angle-right"></i></span>
-                                                <span class="pcoded-mtext">테스트2</span>
-                                                <span class="pcoded-mcaret"></span>
-                                            </a>
-                                        </li>
-                                    </ul>
-                                </li>
-                            </ul>
-                            <ul class="pcoded-item pcoded-left-item">
-                                <li class="">
-                                    <a href="javascript:void(0)" class="waves-effect waves-dark">
-                                        <span class="pcoded-micon">
-                                            <!-- <i class="ti-id-badge"></i><b>A</b> -->
-                                        </span>
-                                        <span class="pcoded-mtext">게시글</span>
-                                        <span class="pcoded-mcaret"></span>
-                                    </a>
-                                </li>
-                            </ul>
-                            <ul class="pcoded-item pcoded-left-item">
-                                <li class="">
-                                    <a href="javascript:void(0)" class="waves-effect waves-dark">
-                                        <span class="pcoded-micon">
-                                            <!-- <i class="ti-id-badge"></i><b>A</b> -->
-                                        </span>
-                                        <span class="pcoded-mtext">적립금(?)</span>
-                                        <span class="pcoded-mcaret"></span>
-                                    </a>
-                                </li>
-                            </ul>
-                            <ul class="pcoded-item pcoded-left-item">
-                                <li class="">
-                                    <a href="javascript:void(0)" class="waves-effect waves-dark">
-                                        <span class="pcoded-micon">
-                                            <!-- <i class="ti-id-badge"></i><b>A</b> -->
-                                        </span>
-                                        <span class="pcoded-mtext">1:1문의</span>
-                                        <span class="pcoded-mcaret"></span>
-                                    </a>
-                                </li>
-                            </ul>
-                        </div>
-					</nav>
-			<!-- 좌측 메뉴바 끝 -->
-                    
-                    <div class="pcoded-content">
-                        <div class="pcoded-inner-content">
-
-							<!-- Main-body start 본문 시작 -->
-                            <div class="main-body">
-                                <div class="page-wrapper">
-                                    <!-- Page-body start -->
-                                    <div class="page-body">
-                                        <section class="featured spad">
-                                            <div class="container">
-                                                <div class="row">
-                                                    <div class="col-lg-12">
-                                                        <div class="section-title">
-                                                            <h2>뫄뫄님의 페이지</h2>
-                                                        </div>
-                                                        <br>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </section>
-
-										<div class="mypage_main_content">
-											<h2>본문??</h2>
-											<div class="mypage_main_content mypointlist">
-												적립금출력영역
+ 		<!-- 헤더 -->
+		<%-- <tiles:insertAttribute name="header" /> --%>
+		<!-- 좌측메뉴바 -->
+		<%-- <tiles:insertAttribute name="menubar"/> --%>
+			 
+			<div class="pcoded-content">
+				<div class="pcoded-inner-content">
+					<!-- Main-body start 본문 시작 -->
+					<div class="main-body">
+					<div class="page-wrapper">
+					<!-- Page-body start -->
+						<div class="page-body">
+							<!-- <section class="featured spad">
+ 								<div class="container">
+									<div class="row">
+										<div class="col-lg-12">
+											<div class="section-title">
+												<h2>(section-title)뫄뫄님의 페이지</h2>
 											</div>
-	                                        <div class="mypage_main_content petlist">
-	                                        	반려동물영역
-	                                        </div>
-	                                        <div class="mypage_main_content boardlist">
-	                                        	게시글영역
-	                                        </div>									    
+											<br>
 										</div>
-                                    </div>
-                                    <!-- Page-body end -->
-                                </div>
-                                <div id="styleSelector"> </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <button class="scroll-top" id="js-button" style="margin-bottom: 190px; margin-right: 30px;">
-                <i class="fa fa-chevron-up" aria-hidden="true">TOP</i>
-            </button>
-            <script type="text/javascript">
-                scrollTop('js-button', 500);
-                function scrollTop(elem,duration) {
-                    let target = document.getElementById(elem);
-                
-                    target.addEventListener('click', function() {
-                        let currentY = window.pageYOffset; 
-                        let step = duration/currentY > 1 ? 10 : 100;
-                        let timeStep = duration/currentY * step;
-                        let intervalID = setInterval(scrollUp, timeStep);
-                
-                        function scrollUp(){
-                            currentY = window.pageYOffset;
-                            if(currentY === 0) {
-                                clearInterval(intervalID);
-                            } else {
-                                scrollBy( 0, -step );
-                            }
-                        }
-                    });
-                }
-                </script>
-                
-				<!-- footer 푸터 시작부분-->
-				<tiles:insertAttribute name="footer" />
-				<!-- footer 푸터 끝부분-->
-            </div>
+									</div>
+								</div>
+							</section> -->
 
-        </div>
+						<div class="mypage_main_content">
+						<h2>본문??</h2>
+						<%-- <tiles:insertAttribute name="body" /> --%>				
+							<div class="mypage_main_content mypointlist">
+								적립금출력영역
+							</div>
+							<div class="mypage_main_content petlist">
+								반려동물영역
+							</div>
+							<div class="mypage_main_content boardlist">
+								게시글영역
+							</div>									    
+						</div>
+					</div>
+					<!-- Page-body end -->
+					</div>
+					<div id="styleSelector"> </div>
+	               	</div>
+				</div>
+			</div>
+		</div>
+	</div>
+	
+    <button class="scroll-top" id="js-button" style="margin-bottom: 190px; margin-right: 30px;">
+        <i class="fa fa-chevron-up" aria-hidden="true">TOP</i>
+    </button>
+    <script type="text/javascript">
+        scrollTop('js-button', 500);
+        function scrollTop(elem,duration) {
+            let target = document.getElementById(elem);
+        
+            target.addEventListener('click', function() {
+                let currentY = window.pageYOffset; 
+                let step = duration/currentY > 1 ? 10 : 100;
+                let timeStep = duration/currentY * step;
+                let intervalID = setInterval(scrollUp, timeStep);
+        
+                function scrollUp(){
+                    currentY = window.pageYOffset;
+                    if(currentY === 0) {
+                        clearInterval(intervalID);
+                    } else {
+                        scrollBy( 0, -step );
+                    }
+                }
+            });
+        }
+        </script>
+        
+	<!-- footer 푸터 시작부분-->
+	<%-- <tiles:insertAttribute name="footer" /> --%>
+	<!-- footer 푸터 끝부분-->
+    </div>
+</div>
 
     <!-- Required Jquery -->
     <script type="text/javascript" src="../resources/js/jquery/jquery.min.js "></script>
