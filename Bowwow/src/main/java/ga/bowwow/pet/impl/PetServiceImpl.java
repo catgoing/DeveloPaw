@@ -8,7 +8,7 @@ import org.springframework.stereotype.Service;
 import ga.bowwow.pet.Pet;
 import ga.bowwow.pet.PetService;
 
-@Service("petService")
+@Service
 public class PetServiceImpl implements PetService {
 	
 	@Autowired
