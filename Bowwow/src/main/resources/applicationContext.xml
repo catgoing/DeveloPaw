@@ -7,7 +7,6 @@
 
 	<context:component-scan base-package="com.bowwow" />
 
-
 	<!-- === Spring JDBC 관련 설정 === -->
 	<!-- DataSource 설정 -->
 	<!-- <bean id="dataSource" class="org.apache.commons.dbcp.BasicDataSource" -->
