@@ -5,7 +5,7 @@
 	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd
 		http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context-4.3.xsd">
 
-	<context:component-scan base-package="com.spring.biz.board, com.spring.biz.user" />
+	<context:component-scan base-package="com.bowwow" />
 
 	<!-- === Spring JDBC 관련 설정 === -->
 	<!-- DataSource 설정 -->
