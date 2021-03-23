@@ -36,7 +36,7 @@
 		<!-- <tr>
 			<th>작성자</th>
 			<td>
-				<input type="text" name="writer">
+				<input type="text" name="member_serial">
 			</td>
 		</tr> -->
 		<tr>
