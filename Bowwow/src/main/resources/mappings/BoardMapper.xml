@@ -5,9 +5,8 @@
 <mapper namespace="BoardDAO">
 
 	<insert id="insertBoard" parameterType="board">
-		INSERT INTO DIARY_BOARD (SEQ, BOARD_TITLE, WRITER, BOARD_CONTENT,REGDATE,HITS,ANIMAL_CLASS) 
-		VALUES ((SELECT NVL(MAX(SEQ),0) + 1 FROM DIARY_BOARD), 
-				#{board_title}, 3, 123456789,sysdate,0,0)
+		INSERT INTO DIARY_BOARD (BOARD_NO, BOARD_TITLE, MEMBER_SERIAL, BOARD_CONTENT, REGDATE, HITS, ANIMAL_CLASS) 
+		VALUES (DIARY_BOARD_SEQ.NEXTVAL, #{board_title}, 999, 123456789, SYSDATE, 0, 0)
 	</insert>
 <!-- 	
 	<update id="updateBoard" parameterType="board">

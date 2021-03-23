@@ -10,6 +10,6 @@ public class PagingTest {
 		PageController pageController = ac.getBean("pageController", ga.bowwow.common.PageController.class);
 		
 		Page page = new Page();
-		pageController.paging(page, 30, "1", 7, 7, "getBoardList");
+		pageController.paging(page, 30, "1", 7, 7, "/community/getBoardList");
 	}
 }

@@ -30,25 +30,25 @@
 		<tr>
 			<th width="70">제목</th>
 			<td>
-				<input type="text" name="title" size="30">
+				<input type="text" name="board_title" size="30">
 			</td>
 		</tr>
 		<tr>
 			<th>작성자</th>
 			<td>
-				<input type="text" name="writer">
+				<input type="text" name="member_serial">
 			</td>
 		</tr>
 		<tr>
 			<th>내용</th>
 			<td>
-				<textarea name="content" rows="10" cols="40"></textarea>
+				<textarea name="board_content" rows="10" cols="40"></textarea>
 			</td>
 		</tr>
 		<tr>
 			<th>동물분류</th>
 			<td>
-				<input type="text" name="pet">
+				<input type="text" name="animal_class">
 			</td>
 		</tr>
 		<tr>
