@@ -1,4 +1,4 @@
-package ga.bowwow.board.impl;
+package ga.bowwow.service.board.impl;
 
 import java.util.List;
 
@@ -6,7 +6,7 @@ import org.mybatis.spring.SqlSessionTemplate;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
-import ga.bowwow.board.Board;
+import ga.bowwow.service.board.Board;
 
 
 @Repository("boardDAO")

@@ -1,4 +1,4 @@
-package ga.bowwow.board;
+package ga.bowwow.service.board;
 
 import lombok.AllArgsConstructor;
 import lombok.Getter;

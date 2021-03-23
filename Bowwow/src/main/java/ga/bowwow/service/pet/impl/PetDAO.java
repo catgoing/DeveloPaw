@@ -1,4 +1,4 @@
-package ga.bowwow.pet.impl;
+package ga.bowwow.service.pet.impl;
 
 import java.util.List;
 
@@ -6,7 +6,7 @@ import org.mybatis.spring.SqlSessionTemplate;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
-import ga.bowwow.pet.Pet;
+import ga.bowwow.service.pet.Pet;
 
 @Repository("PetDAO")
 public class PetDAO {

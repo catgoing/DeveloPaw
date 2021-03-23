@@ -1,12 +1,12 @@
-package ga.bowwow.pet.impl;
+package ga.bowwow.service.pet.impl;
 
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import ga.bowwow.pet.Pet;
-import ga.bowwow.pet.PetService;
+import ga.bowwow.service.pet.Pet;
+import ga.bowwow.service.pet.PetService;
 
 @Service
 public class PetServiceImpl implements PetService {
