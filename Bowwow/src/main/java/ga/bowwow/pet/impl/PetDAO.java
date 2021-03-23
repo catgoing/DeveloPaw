@@ -8,13 +8,13 @@ import org.springframework.stereotype.Repository;
 
 import ga.bowwow.pet.Pet;
 
-@Repository("PetDAOMyBatis")
-public class PetDAOMyBatis {
+@Repository("PetDAO")
+public class PetDAO {
 	
 	@Autowired
 	private SqlSessionTemplate mybatis;
 	
-	public PetDAOMyBatis() {
+	public PetDAO() {
 		System.out.println(">> PetDAOMyBatis() 객체생성!!!");
 	}
 	

@@ -4,9 +4,9 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>Insert title here</title>
+<title>Bow-Wow!!!!!!!!</title>
 </head>
 <body>
-
+	<h2>탈퇴~~~~</h2>
 </body>
 </html>

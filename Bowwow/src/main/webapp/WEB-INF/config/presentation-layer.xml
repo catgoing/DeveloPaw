@@ -47,6 +47,7 @@
 		<property name="definitions">
 			<list>
 				<value>tiles.xml</value>
+				<value>tiles2.xml</value>
 			</list>
 		</property>
 	</bean>
