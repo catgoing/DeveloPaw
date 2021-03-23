@@ -33,12 +33,12 @@
 				<input type="text" name="board_title" size="30">
 			</td>
 		</tr>
-		<tr>
+		<!-- <tr>
 			<th>작성자</th>
 			<td>
 				<input type="text" name="member_serial">
 			</td>
-		</tr>
+		</tr> -->
 		<tr>
 			<th>내용</th>
 			<td>

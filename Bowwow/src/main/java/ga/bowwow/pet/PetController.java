@@ -2,11 +2,12 @@ package ga.bowwow.pet;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.SessionAttributes;
 
 @Controller
-//@SessionAttributes("pet")
+//@SessionAttributes("pet") //세션에 저장
 public class PetController {
 	
 	@Autowired
@@ -20,6 +21,13 @@ public class PetController {
 		System.out.println("....> 반려동물 리스트를 가져옵니다");
 		return null;
 	}
+	
+//	@RequestMapping("/updatePetInfo.do")
+//	public String updatePetInfo(Pet pet, Model model) {
+//		
+//		return "/tiles/myPetInfo.do";
+//	}
+	
 	
 //	@RequestMapping("/myPageMain.do")
 //	public String getPetList(Pet pet) {

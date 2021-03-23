@@ -50,6 +50,27 @@
     <link rel="stylesheet" type="text/css" href="../resources/css/test.css">
 <style>
   .featured__item__text { width: 150px; }
+  
+  .input-content .input-wrap {
+	margin-bottom: 15px;
+	position: relative;
+}
+ .input-content .input-wrap:last-of-type {
+	margin-bottom: 0;
+}
+
+ .input-content .input-wrap input {
+	width: 100%;
+	height: 50px;
+	border-radius: 10px;
+	color: #48484d;
+	font-size: 15px;
+	font-weight: 700;
+	padding: 14px 20px;
+	border: 1px solid #e4e4e4;
+	padding-right: 50px;
+}
+
 </style>
 </head>
 
@@ -108,6 +129,7 @@
         </div>
     </div>
     <!-- Pre-loader end -->
+    
     <div id="pcoded" class="pcoded">
         <div class="pcoded-overlay-box"></div>
         <div class="pcoded-main-container navbar-wrapper">
@@ -115,85 +137,72 @@
 		<!-- 헤더 -->
 		<%-- <tiles:insertAttribute name="header" /> --%>
 		<!-- 좌측메뉴바 -->
-		<%-- <tiles:insertAttribute name="menubar" /> --%>
+		<%-- <tiles:insertAttribute name="menubar"/> --%>
                     
-                    <div class="pcoded-content">
-                        <div class="pcoded-inner-content">
-							<!-- 페이지 제목 -->
-							<h2>(pcoded-inner-content) 뫄뫄님의 페이지</h2>
-							
-							<!-- Main-body start 본문 시작 -->
-							<div class="main-body">
-							<div class="page-wrapper">
-		                                
-								<!-- Page-body start -->
-								<div class="page-body">
-									<!-- <section class="featured spad">
-										<div class="container">
-											<div class="row">
-												<div class="col-lg-12">
-													<div class="section-title">
-														<h2>(section-title)뫄뫄님의 페이지</h2>
-													</div>
-													<br>
-		 										</div>
+			<div class="pcoded-content">
+				<div class="pcoded-inner-content">
+					<!-- Main-body start 본문 시작 -->
+					<div class="main-body">
+					<div class="page-wrapper">
+                                
+						<!-- Page-body start -->
+						<div class="page-body">
+							<!-- <section class="featured spad">
+								<div class="container">
+									<div class="row">
+										<div class="col-lg-12">
+											<div class="section-title">
+												<h2>(section-title)뫄뫄님의 페이지</h2>
 											</div>
-										</div>
-									</section> -->
-                                        
-                                        <div class="my-pet">
-	                                        <div class="pet-list">
-		                                        <div class="list-inner">
-			                                        <div class="pet-img"></div>
-			                                        <div class="pet-name"></div>
-			                                        <div class="pet-detail">
-			                                        <button>상세보기</button>
-			                                        </div>			                                        
-		                                        </div>
-	                                        </div>
-                                        </div>
-                                        
-                                    </div>
-                                    <!-- Page-body end -->
-                                </div>
-                                <div id="styleSelector"> </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <button class="scroll-top" id="js-button" style="margin-bottom: 190px; margin-right: 30px;">
-                <i class="fa fa-chevron-up" aria-hidden="true">TOP</i>
-            </button>
-            <script type="text/javascript">
-                scrollTop('js-button', 500);
-                function scrollTop(elem,duration) {
-                    let target = document.getElementById(elem);
+											<br>
+ 										</div>
+									</div>
+								</div>
+							</section> -->
+										
+							<!-- 여기서 회원정보 수정하겠습니다~~~ -->
+							포인트 출력페이지
+										
+							</div>
+							<!-- Page-body end -->
+						</div>
+						<div id="styleSelector"> </div>
+					</div>
+					<!-- Main-body start 본문 끝 -->
+				</div>
+			</div>
+		</div>
+	</div>
+            
+	<button class="scroll-top" id="js-button" style="margin-bottom: 190px; margin-right: 30px;">
+	<i class="fa fa-chevron-up" aria-hidden="true">TOP</i>
+	</button>
+	<script type="text/javascript">
+		scrollTop('js-button', 500);
+		function scrollTop(elem,duration) {
+		    let target = document.getElementById(elem);
+		
+		    target.addEventListener('click', function() {
+		        let currentY = window.pageYOffset; 
+		        let step = duration/currentY > 1 ? 10 : 100;
+		        let timeStep = duration/currentY * step;
+		        let intervalID = setInterval(scrollUp, timeStep);
+		
+		        function scrollUp(){
+		            currentY = window.pageYOffset;
+		            if(currentY === 0) {
+		                clearInterval(intervalID);
+		            } else {
+		                scrollBy( 0, -step );
+		            }
+		        }
+		    });
+		}
+	</script>
                 
-                    target.addEventListener('click', function() {
-                        let currentY = window.pageYOffset; 
-                        let step = duration/currentY > 1 ? 10 : 100;
-                        let timeStep = duration/currentY * step;
-                        let intervalID = setInterval(scrollUp, timeStep);
-                
-                        function scrollUp(){
-                            currentY = window.pageYOffset;
-                            if(currentY === 0) {
-                                clearInterval(intervalID);
-                            } else {
-                                scrollBy( 0, -step );
-                            }
-                        }
-                    });
-                }
-                </script>
-                
-				<!-- footer 푸터 시작부분-->
-				<%-- <tiles:insertAttribute name="footer" /> --%>
-				<!-- footer 푸터 끝부분-->
-            </div>
-
-        </div>
+	<!-- footer 푸터 시작부분-->
+	<%-- <tiles:insertAttribute name="footer" /> --%>
+	<!-- footer 푸터 끝부분-->
 
     <!-- Required Jquery -->
     <script type="text/javascript" src="../resources/js/jquery/jquery.min.js "></script>

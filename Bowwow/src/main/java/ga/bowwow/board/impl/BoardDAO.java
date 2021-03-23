@@ -51,8 +51,8 @@ public class BoardDAO {
 	}
 
 	public List<Board> getBoardList() {
-		// TODO Auto-generated method stub
-		return mybatis.selectList("BoardDAO.getBoardList");
+		
+		return null;
 	}	
 
 }

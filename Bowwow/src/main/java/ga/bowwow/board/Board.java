@@ -4,11 +4,13 @@ import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
+import lombok.ToString;
 
 @Setter
 @Getter
 @NoArgsConstructor
 @AllArgsConstructor
+@ToString
 
 public class Board {
 	
@@ -34,7 +36,6 @@ public class Board {
 	private String img0;
 	private String animal_class; 	//동물분류
 	
-	private String searchCondition;
-	private String searchKeyword;
+	
 	
 }
