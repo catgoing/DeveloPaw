@@ -25,7 +25,7 @@
 						<div class="mypage_main_content">
 						<h2>본문??</h2>
 						<%-- <tiles:insertAttribute name="body" /> --%>				
-							<div class="mypage_main_content mypointlist">
+								<div class="mypage_main_content mypointlist">
 								적립금출력영역
 							</div>
 							<div class="mypage_main_content petlist">
