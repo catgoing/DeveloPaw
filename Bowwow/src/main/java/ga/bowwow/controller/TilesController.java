@@ -9,7 +9,8 @@ import org.springframework.web.servlet.ModelAndView;
 public class TilesController {
 	@RequestMapping("/tiles/{path}.do")
 	public ModelAndView tiles(@PathVariable("path") String path) {
-		System.out.println(">> tiles 객체 생성!");
+		System.out.println(">> tiles 객체 생성!"
+				+ path);
 		ModelAndView mav = new ModelAndView();
 		mav.setViewName("/" + path);
 		return mav;

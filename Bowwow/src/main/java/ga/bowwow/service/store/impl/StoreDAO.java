@@ -8,7 +8,6 @@ import ga.bowwow.service.store.Products;
 
 @Repository("storeDAO")
 public class StoreDAO {
-	@Autowired
 	private SqlSessionTemplate mybatis;
 	
 	public StoreDAO() {
