@@ -5,7 +5,7 @@
 <mapper namespace="UserAccount">
 
 	<insert id="insertUserAccount" parameterType="UserAccount">
-		INSERT INTO USER_ACCOUNT (SEQ, TITLE, WRITER, CONTENT) 
+		INSERT INTO USER_ACCOUNT () 
 		VALUES ((SELECT NVL(MAX(SEQ),0) + 1 FROM User), 
 				#{title}, #{writer}, #{content})
 	</insert>

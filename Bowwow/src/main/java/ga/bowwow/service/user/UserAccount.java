@@ -8,6 +8,13 @@ import lombok.Setter;
 @Setter @Getter
 @NoArgsConstructor @AllArgsConstructor
 public class UserAccount {
-	String MemberSerial;
-	String Id;
+	int memberSerial;
+	String id;
+	String email;
+	String citizenId;
+	String phone;
+	String Password;
+	String status;
+	int point;
+	String coupons;
 }

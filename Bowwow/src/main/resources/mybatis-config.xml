@@ -7,6 +7,7 @@
 		<setting name="jdbcTypeForNull" value="NULL"/>
 	</settings>
 	<typeAliases>
+			<typeAlias type="ga.bowwow.service.user.UserAccount" alias="userAccount"/>
 	<!-- 
 		<typeAlias type="com.spring.biz.board.BoardVO" alias="board"/>
 		-->
@@ -16,6 +17,7 @@
 	</typeAliases>
 
   <mappers>
+  	<mapper resource="mappings/UserMapper.xml"/>
     <!-- 
     <mapper resource=""/>
      -->
