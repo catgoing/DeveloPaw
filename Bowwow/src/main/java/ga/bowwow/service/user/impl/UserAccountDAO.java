@@ -10,7 +10,7 @@ import ga.bowwow.service.user.UserAccount;
 @Repository("UserAccountDAO")
 public class UserAccountDAO {
 	@Autowired
-	@Qualifier("")
+	@Qualifier("local")
 	private SqlSessionTemplate mybatis;
 	
 	public UserAccountDAO() {
