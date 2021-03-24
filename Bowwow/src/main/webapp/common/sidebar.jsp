@@ -1,8 +1,5 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-<nav>
-	<div class="pcoded-main-container">
-		<div class="pcoded-wrapper">
 			<nav class="pcoded-navbar">
 				<div class="pcoded-inner-navbar main-menu">
 					<div class="p-15 p-b-0">

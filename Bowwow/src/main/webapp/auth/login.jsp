@@ -41,6 +41,14 @@
       <link rel="stylesheet" type="text/css" href="../resources/icon/font-awesome/css/font-awesome.min.css">
       <!-- Style.css -->
       <link rel="stylesheet" type="text/css" href="../resources/css/style.css">
+      
+      
+<style>
+.featured__item__text {
+	width: 150px;
+}
+</style>
+
   </head>
 
   <body>
@@ -97,10 +105,15 @@
           </div>
       </div>
   </div>
+  
   <!-- Pre-loader end -->
+  
+  
+	<div id="pcoded" class="pcoded">
+		<div class="pcoded-overlay-box"></div>
 	<tiles:insertAttribute name="header"/>
 	
-	<tiles:insertAttribute name="sidebar"/>
+<%-- 	<tiles:insertAttribute name="sidebar"/> --%>
     <section class="login-block">
         <!-- Container-fluid starts -->
         <div class="container">
@@ -171,6 +184,7 @@
     </section>
     
     <tiles:insertAttribute name="footer"/>
+    </div>
     <!-- Warning Section Starts -->
     <!-- Older IE warning message -->
     <!--[if lt IE 10]>

@@ -7,7 +7,7 @@
 		<setting name="jdbcTypeForNull" value="NULL"/>
 	</settings>
 	<typeAliases>
-			<typeAlias type="ga.bowwow.service.user.UserAccount" alias="userAccount"/>
+		<typeAlias type="ga.bowwow.service.user.UserAccount" alias="userAccount"/>
 	<!-- 
 		<typeAlias type="com.spring.biz.board.BoardVO" alias="board"/>
 		-->

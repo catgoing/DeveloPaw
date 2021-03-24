@@ -3,8 +3,9 @@
 <tiles-definitions>
         <!-- base tiles layout add -->
  
-        <definition name="/store" template="/store/storeMain.jsp">
+        <definition name="/store" template="/store/storeMainTiles.jsp">
                 <put-attribute name="header" value="/common/header.jsp" />
+                <put-attribute name="menubar" value="/common/myPageMenuBar.jsp"/>
                 <put-attribute name="body" value="" />
                 <put-attribute name="footer" value="/common/footer.jsp" />
         </definition>
@@ -12,8 +13,7 @@
         <definition name="/auth" template="/auth/login.jsp">
                 <put-attribute name="header" value="/common/header.jsp" />
                 <put-attribute name="body" value="" />
-                <put-attribute name="sidebar" value="/common/sidebar.jsp" />
-                <put-attribute name="footer" value="/common/footer2.jsp" />
+                <put-attribute name="footer" value="/common/footer.jsp" />
         </definition>
         
         <!-- 마이페이지 -->

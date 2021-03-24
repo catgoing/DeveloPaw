@@ -1,7 +1,8 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"	pageEncoding="UTF-8"%>
 
+
 <nav class="navbar header-navbar pcoded-header">
-	<div class="navbar-wrapper" style="color: red;">
+	<div class="navbar-wrapper">
 		<div class="navbar-logo">
 			<a class="mobile-menu waves-effect waves-light"
 				id="mobile-collapse" href="#!"> <i class="ti-menu"></i>

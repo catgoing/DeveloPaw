@@ -114,14 +114,15 @@
             
 		<!-- 헤더 -->
 		<tiles:insertAttribute name="header" />
-		<!-- 좌측메뉴바 -->
-		<tiles:insertAttribute name="menubar"/>
-			 
-			<div class="pcoded-content">
-				<div class="pcoded-inner-content">
-					
-					<!-- Main-body start 본문 시작 -->
-					<tiles:insertAttribute name="body" />
+		
+		
+		<div class="pcoded-main-container">
+			<div class="pcoded-wrapper">
+				<!-- 좌측메뉴바 -->
+				<tiles:insertAttribute name="menubar"/>
+				
+				<!-- Main-body start 본문 시작 -->
+				<tiles:insertAttribute name="body" />
 					
 				</div>
 			</div>
@@ -152,13 +153,11 @@
                 }
             });
         }
-        </script>
+    </script>
         
 	<!-- footer 푸터 시작부분-->
 	<tiles:insertAttribute name="footer" />
 	<!-- footer 푸터 끝부분-->
-    </div>
-</div>
 
     <!-- Required Jquery -->
     <script type="text/javascript" src="../resources/js/jquery/jquery.min.js "></script>
