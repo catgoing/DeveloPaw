@@ -1,6 +1,4 @@
 <!-- 좌측 메뉴바 시작 -->
-<div class="pcoded-main-container">
-	<div class="pcoded-wrapper">
 		<nav class="pcoded-navbar">
 			<div class="sidebar_toggle"><a href="#"><i class="icon-close icons"></i></a></div>
 				<div class="pcoded-inner-navbar main-menu">

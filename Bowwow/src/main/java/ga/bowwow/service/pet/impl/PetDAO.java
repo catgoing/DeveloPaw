@@ -11,7 +11,6 @@ import ga.bowwow.service.pet.Pet;
 @Repository("PetDAO")
 public class PetDAO {
 	
-	@Autowired
 	private SqlSessionTemplate mybatis;
 	
 	public PetDAO() {

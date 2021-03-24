@@ -5020,6 +5020,7 @@ table tbody .border-bottom-info td {
 ==========================  **/
 
 .header-navbar {
+	background-color: #f7b5b7;
     min-height: 56px;
     padding: 0;
 }
@@ -10177,7 +10178,7 @@ table.dataTable.dtr-inline.collapsed>tbody>tr>th:first-child:before {
 .social-user .card-block .bg-icon {
     position: absolute;
     font-size: 95px;
-    opacity: 0.1;
+    opacity: 0.5;
     top: 0;
     right: 0;
     height: 100%;

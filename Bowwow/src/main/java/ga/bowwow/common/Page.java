@@ -10,13 +10,8 @@ import lombok.ToString;
 @ToString
 @NoArgsConstructor
 public class Page {
-
-	private int nowPage = 1;		//현재페이지
-	private int nowBlock = 1;		//현재 블록(페이지 담는 단위)
-	
-	private int pageUnit = 20;		//블록당 표시하는 페이지 갯수
-	private int pageSize = 20;		//한 페이지당 보여지는 게시물수
-
+	private int nowPage = 1; //현재페이지
+	private int nowBlock = 1; //현재 블록(페이지 담는 단위)
 
 	private int recordPerPage = 10; //하나의 페이지에 표시할 게시글 수
 	private int pagePerBlock = 5; //블록당 표시하는 페이지 갯수
@@ -30,7 +25,7 @@ public class Page {
 
 	private int pageBeginIdx = 0; //현재 블록의 시작 페이지 번호
 	private int pageEndIdx = 0; //현재 블록의 끝 페이지 번호
-	
+
 	public Page setPage(int recordCount, String nowPage, int recordPerPage, int pagePerBlock) {
 		this.setRecordPerPage(recordPerPage);
 		this.setPagePerBlock(pagePerBlock);
@@ -52,7 +47,7 @@ public class Page {
 		this.setTotalRecord(recordCount);	//전체 게시물 수 설정
 		this.setTotalPage();  				//받아온 전체 게시물 수를 이용해 전체 페이지 수 설정
 	}
-	public void setTotalPage() {	//받아온 전체 게시물 수를 이용해 전체 페이지 수 설정 
+	public void setTotalPage() {	//받아온 전체 게시물 수를 이용해 전체 페이지 수 설정
 		this.setTotalPage(this.getTotalRecord() % this.getRecordPerPage() > 0
 				? (this.getTotalRecord() / this.getRecordPerPage())+1
 						: this.getTotalRecord() / this.getRecordPerPage());
@@ -88,5 +83,3 @@ public class Page {
 
 
 }
-
-

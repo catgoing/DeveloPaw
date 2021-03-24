@@ -1,19 +1,12 @@
 package ga.bowwow.controller.board;
 
-import java.io.File;
 import java.io.IOException;
 import java.util.HashMap;
-import java.util.List;
 import java.util.Map;
 
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
-import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.ResponseBody;
-import org.springframework.web.multipart.MultipartFile;
 
 import ga.bowwow.service.board.Board;
 import ga.bowwow.service.board.BoardService;
@@ -21,7 +14,6 @@ import ga.bowwow.service.board.BoardService;
 
 @Controller
 public class BoardController {
-	@Autowired //의존주입(DI) : 동일한 데이터 타입 객체
 	private BoardService boardService; //의존주입<-- BoardServiceImpl
 	
 	public BoardController() {
