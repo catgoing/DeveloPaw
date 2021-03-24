@@ -32,7 +32,7 @@
     <!-- Google font-->
     <link href="https://fonts.googleapis.com/css?family=Open+Sans:400,600,700" rel="stylesheet">
     <!-- waves.css -->
-    <link rel="stylesheet" href="../resources/pages/waves/css/waves.min.css" type="text/css" media="all">
+    <link rel="stylesheet" href="../	resources/pages/waves/css/waves.min.css" type="text/css" media="all">
     <!-- Required Fremwork -->
     <link rel="stylesheet" type="text/css" href="../resources/css/bootstrap/css/bootstrap.min.css">
     <!-- waves.css -->

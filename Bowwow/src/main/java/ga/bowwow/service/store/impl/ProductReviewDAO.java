@@ -1,9 +1,12 @@
 package ga.bowwow.service.store.impl;
 
+import java.util.List;
+
 import org.mybatis.spring.SqlSessionTemplate;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
+import ga.bowwow.service.board.Board;
 import ga.bowwow.service.store.Review;
 
 @Repository("productReviewDAO")
@@ -36,7 +39,12 @@ public class ProductReviewDAO {
 	//리뷰 1개 조회
 	public Review getProductReview(Review review) {
 		System.out.println("===> MyBatis로 getProductReview() 실행");
-		return mybatis.selectOne("productReviewDAO.getProductReview", review);
+		return mybatis.selectOne("ProductReview.selectProductReview", review);
 	}
+	
+	public List<Review> getProductReviewList() {
+		
+		return null;
+	}	
 	
 }

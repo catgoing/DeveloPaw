@@ -1,4 +1,4 @@
-f<%@ page language="java" contentType="text/html; charset=UTF-8"
+<%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html>
@@ -623,8 +623,8 @@ f<%@ page language="java" contentType="text/html; charset=UTF-8"
 											<td>ë¬´ë£ ë°°ì¡</td>
 										</tr>
 										<tr>
-											<th>ê²°ì  ê¸ì¡</th>
-											<td class="total"><b>27,900ì</b></td>
+											<th>판매가</th>
+											<td class="total"><b>27,900원</b></td>
 										</tr>
 									</tbody>
 								</table>
@@ -637,7 +637,7 @@ f<%@ page language="java" contentType="text/html; charset=UTF-8"
 								</div>
 								<div class="btns">
 									<a href="#a" class="btnOne">ì¥ë°êµ¬ë</a> <a
-										href="src/main/webapp/store/storeMain.html" class="btnTwo">êµ¬ë§¤íê¸°</a>
+										href="src/main/webapp/store/reviewTest.jsp" class="btnTwo">êµ¬ë§¤íê¸°</a>
 								</div>
 							</div>
 						</div>
