@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="store">
+
+	<!-- ========리뷰 관련========-->
+	<!-- REVIEW_ID 값으로 리뷰 하나 조회 -->
+	<select id="selectProductReview" parameterType="store" resultType="store">
+		SELECT FROM STORE_REVIEW WHERE REVIEW_ID = #{review_id}
+	</select>
+	
+	<!-- 리뷰 작성 -->
+	<insert id="insertProductReview" parameterType="store">
+		INSERT INTO STORE_REVIEW (REVIEW_ID, P_ID, MEMBER_SERIAL, REVIEW_TITLE, REVIEW_CONTENT, REVIEW_REGDATE)
+		VALUES (REVIEW_SEQ.NEXTVAL, #{p_id}, #{member_serial}, #{review_title}, #{review_content}, SYSDATE)
+	</insert>
+	
+	<!-- 리뷰 수정 -->
+	<update id="updateProductReview" parameterType="store">
+		UPDATE STORE_REVIEW SET REVIEW_TITLE =#{review_title}, REVIEW_CONTENT =#{review_content} 
+		WHERE REVIEW_ID = #{review_id}
+	</update>
+	
+	<!-- 리뷰 삭제 -->
+	<delete id="deleteProductReview" parameterType="store">
+		DELETE FROM STORE_REVIEW WHERE REVIEW_ID = #{review_id}
+	</delete>
+	
+</mapper>
