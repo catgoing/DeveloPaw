@@ -8,8 +8,8 @@ public interface StoreService {
 	void updateProductReview(Review review);
 	void deleteProductReview(Review review);
 	Review getProductReview(Review review);
-	List<Review> getProductReviewList();
-	List<Review> getProductReviewList(Review review);
+//	List<Review> getProductReviewList();
+//	List<Review> getProductReviewList(Review review);
 	
 	
 	

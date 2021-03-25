@@ -20,7 +20,7 @@ public class StoreController {
 		System.out.println("---->>> storeService() 객체생성");
 		System.out.println("> storeService : " + storeService); //null
 	}
-
+	
 	@RequestMapping("/store/insertProductReview.do")
 	public String insertProductReview(Review review) throws IllegalStateException, IOException {
 		System.out.println(">>> 리뷰 입력 - insertProductReview()");
@@ -39,7 +39,7 @@ public class StoreController {
 		}*/
 		
 		storeService.insertProductReview(review);
-		return "getProductReviewList.do";
+		return "test.jsp";
 	}		
 	
 }

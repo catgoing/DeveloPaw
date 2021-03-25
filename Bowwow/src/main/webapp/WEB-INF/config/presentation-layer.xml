@@ -9,7 +9,8 @@
 
 
 	<!-- controller 객체 생성부분만 경로입력 -->
-	<context:component-scan	base-package="ga.bowwow.controller" />
+	<context:component-scan	base-package="ga.bowwow.controller.store" />
+	<context:component-scan	base-package="ga.bowwow.controller.board" />
 
 
 	<!-- 파일업로드 관련 설정(MultipartResolver 등록) 사용명칭 multipartResolver 이름은 대소문자 구분해서 

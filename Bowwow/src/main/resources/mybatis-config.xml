@@ -11,25 +11,24 @@
 	<!--
 		<typeAlias type="com.spring.biz.board.BoardVO" alias="board"/>
 		-->
-		<typeAlias type="ga.bowwow.user.UserAccount" alias="UserAccount"/>
-		<typeAlias type="ga.bowwow.board.Board" alias="Board"/>
-		<typeAlias type="ga.bowwow.pet.Pet" alias="pet"/>
-		<typeAlias type="ga.bowwow.store.Cartlist" alias="storeCartlist"/>
-		<typeAlias type="ga.bowwow.store.Comm" alias="productComm"/>
-		<typeAlias type="ga.bowwow.store.Inquiry" alias="storeInquiry"/>
-		<typeAlias type="ga.bowwow.store.Order" alias="storeOrder"/>
-		<typeAlias type="ga.bowwow.store.Products" alias="storeProducts"/>
-		<typeAlias type="ga.bowwow.store.Response" alias="storeInquiryResponse"/>
-		<typeAlias type="ga.bowwow.store.Review" alias="productReview"/>
+		<typeAlias type="ga.bowwow.service.user.UserAccount" alias="UserAccount"/>
+		<typeAlias type="ga.bowwow.service.board.Board" alias="Board"/>
+		<typeAlias type="ga.bowwow.service.pet.Pet" alias="pet"/>
+		<typeAlias type="ga.bowwow.service.store.Cartlist" alias="storeCartlist"/>
+		<typeAlias type="ga.bowwow.service.store.Comm" alias="productComm"/>
+		<typeAlias type="ga.bowwow.service.store.Inquiry" alias="storeInquiry"/>
+		<typeAlias type="ga.bowwow.service.store.Order" alias="storeOrder"/>
+		<typeAlias type="ga.bowwow.service.store.Products" alias="storeProducts"/>
+		<typeAlias type="ga.bowwow.service.store.Response" alias="storeInquiryResponse"/>
+		<typeAlias type="ga.bowwow.service.store.Review" alias="productReview"/>
 
 	</typeAliases>
 
   <mappers>
-  	<mapper resource="mappings/UserMapper.xml"/>
     <!--
     <mapper resource=""/>
      -->
-    <mapper resource="mappings/UserMapper.xml"/>
+	<mapper resource="mappings/UserMapper.xml"/>
     <mapper resource="mappings/BoardMapper.xml"/>
     <mapper resource="mappings/PetMapper.xml"/>
     <mapper resource="mappings/ProductsReviewMapper.xml"/>

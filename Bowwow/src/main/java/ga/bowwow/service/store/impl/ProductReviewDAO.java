@@ -3,15 +3,13 @@ package ga.bowwow.service.store.impl;
 import java.util.List;
 
 import org.mybatis.spring.SqlSessionTemplate;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
-import ga.bowwow.service.board.Board;
 import ga.bowwow.service.store.Review;
 
 @Repository("productReviewDAO")
 public class ProductReviewDAO {
-	@Autowired
+	
 	private SqlSessionTemplate mybatis;
 	
 	public ProductReviewDAO() {
