@@ -93,7 +93,7 @@ public class BoardController {
 	}	
 	
 	
-	@RequestMapping("/community/insertBoard.do")
+	@RequestMapping("/insertBoard.do")
 	public String insertBoard(Board vo) throws IllegalStateException, IOException {
 		System.out.println(">>> 게시글 입력 - insertBoard()");
 		System.out.println("vo : " + vo);
@@ -111,7 +111,7 @@ public class BoardController {
 		}*/
 		
 		boardService.insertBoard(vo);
-		return "getBoardList.do";
+		return "test";
 	}	
 	
 	/*
