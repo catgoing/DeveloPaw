@@ -12,16 +12,7 @@
 	
 	<select id="getProductList" parameterType="Store" resultType="Store">
 		SELECT P_ID, P_NAME, P_TYPE, P_CATEGORY, PRICE, STOCK, S_IMAGE, L_IMAGE
-		FROM STORE_PRODUCTS
-		WHERE 1=1
-		<if test="searchCondition == 'P_NAME'">
-			AND P_NAME LIKE '%' || #{searchKeyword} || '%'
-			ORDER BY P_ID DESC
-		</if>
-		<if test="searchCondition == 'P_CATEGORY'">
-			AND P_CATEGORY LIKE '%' || #{searchKeyword} || '%'
-			ORDER BY P_ID DESC
-		</if>
+		  FROM STORE_PRODUCTS
 	</select>
 
 </mapper>

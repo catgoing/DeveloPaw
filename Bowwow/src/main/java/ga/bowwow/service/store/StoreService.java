@@ -8,7 +8,6 @@ public interface StoreService {
 	void updateProducts(Products products);
 	void deleteProducts(Products products);
 	Products getProducts(Products products);
-	List<Products> getProductsList();
 	List<Products> getProductsList(Products products);
 	
 	
