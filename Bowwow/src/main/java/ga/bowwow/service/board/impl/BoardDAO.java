@@ -1,9 +1,13 @@
 package ga.bowwow.service.board.impl;
 
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
+import org.apache.commons.collections.map.HashedMap;
 import org.mybatis.spring.SqlSessionTemplate;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Repository;
 
 import ga.bowwow.service.board.Board;
@@ -39,20 +43,24 @@ public class BoardDAO {
 	}		
 	
 	//게시글 1개 조회
-	public Board getBoard(Board vo) {
+	public Board getBoard(String board_no) {
 		System.out.println("===> MyBatis로 getBoard() 실행");
-		return mybatis.selectOne("BoardDAO.getBoard", vo);
+		return mybatis.selectOne("BoardDAO.getBoard", board_no);
 	}
 	
-	public List<Board> getBoardList(Board vo) {
-		System.out.println("===> MyBatis로 getBoardList() 실행-vo");
+	public List<Board> getBoardList(int idx) {
+		Map<String, Integer> map = new HashMap<String, Integer>();
+		map.put("board_idx", idx);
 		
-		return mybatis.selectList("BoardDAO.getBoardList", vo);
+		System.out.println("===> MyBatis로 getBoardList() 실행-vo");
+//		System.out.println("dao board_name: " + board_name);
+		
+		return mybatis.selectList("BoardDAO.getBoardList", map);
 	}
 
-	public List<Board> getBoardList() {
-		
-		return null;
-	}	
+//	public List<Board> getBoardList() {
+//		
+//		return null;
+//	}	
 
 }

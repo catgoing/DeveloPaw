@@ -7,9 +7,8 @@
 		http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd
 		http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context-4.3.xsd">
 
-
 	<!-- controller 객체 생성부분만 경로입력 -->
-	<!-- <context:component-scan	base-package="ga.bowwow.controller" /> -->
+	<context:component-scan	base-package="ga.bowwow.controller" />
 
 
 	<!-- 파일업로드 관련 설정(MultipartResolver 등록) 사용명칭 multipartResolver 이름은 대소문자 구분해서 
@@ -42,10 +41,10 @@
 
  -->
 	
-	<!-- Tiles viewResolver -->
+	<!-- Tiles viewResolver 
 	<bean id="tilesViewResolver" class="org.springframework.web.servlet.view.UrlBasedViewResolver">
 		<property name="viewClass" value="org.springframework.web.servlet.view.tiles3.TilesView" />
-		<property name="order" value="1" />
+		<property name="order" value="2" />
 	</bean>
 	<bean id="tilesConfigurer" class="org.springframework.web.servlet.view.tiles3.TilesConfigurer">
 		<property name="definitions">
@@ -55,7 +54,13 @@
 			</list>
 		</property>
 	</bean>
+	-->
 	
+	<bean id="viewResolver"
+		class="org.springframework.web.servlet.view.InternalResourceViewResolver">
+		<property name="prefix" value="/WEB-INF/community/" />
+		<property name="suffix" value=".jsp"></property>
+	</bean>
 
 	<!-- @GetMapping, @PostMapping 사용을 위해 설정 추가 -->
 	<!-- 예외관련 설정 @ExceptionHanler 어노테이션 인식 처리 가능 -->
