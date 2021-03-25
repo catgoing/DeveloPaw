@@ -1,5 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+	
 
 
 <!--  <nav class="pcoded-navbar">
@@ -74,6 +76,7 @@
 
 <!-- Page-header end -->
 <!-- Main-body start -->
+
 <div class="main-body">
 	<div class="page-wrapper">
 		<!-- Page-body start -->

@@ -11,7 +11,7 @@
 	<context:component-scan	base-package="ga.bowwow.controller" />
 
 
-	<!-- 파일업로드 관련 설정(MultipartResolver 등록) 사용명칭 multipartResolver 이름은 대소문자 구분해서
+	<!-- 파일업로드 관련 설정(MultipartResolver 등록) 사용명칭 multipartResolver 이름은 대소문자 구분해서 
 		동일하게 작성 ~Resolver 명칭이 있는 객체명은 대체로 정해져 있음 -->
 	<bean id="multipartResolver"
 		class="org.springframework.web.multipart.commons.CommonsMultipartResolver">
@@ -30,42 +30,50 @@
 				<prop key="java.lang.NullPointerException">
 					common/nullPointerError.jsp
 				</prop>
-				<prop key="org.springframework.web.multipart.MaxUploadSizeExceededException">
-
+				<prop key="org.springframework.web.multipart.MaxUploadSizeExceededException"> 
+				
  					common/imgUploadErr.jsp
-
+				 
 				</prop>
 			</props>
 		</property>
 	</bean>
 
  -->
-
-	<!-- Tiles viewResolver
+	
+	<!-- Tiles viewResolver -->
 	<bean id="tilesViewResolver" class="org.springframework.web.servlet.view.UrlBasedViewResolver">
 		<property name="viewClass" value="org.springframework.web.servlet.view.tiles3.TilesView" />
-		<property name="order" value="2" />
+		<property name="order" value="1" />
 	</bean>
 	<bean id="tilesConfigurer" class="org.springframework.web.servlet.view.tiles3.TilesConfigurer">
 		<property name="definitions">
 			<list>
 				<value>tiles.xml</value>
-<!-- 				<value>tiles2.xml</value> -->
+				<value>tiles2.xml</value>
 			</list>
 		</property>
 	</bean>
-	-->
-
+	
 	<bean id="viewResolver"
 		class="org.springframework.web.servlet.view.InternalResourceViewResolver">
-		<property name="prefix" value="/WEB-INF/community/" />
+		<property name="prefix" value="" />
 		<property name="suffix" value=".jsp"></property>
+		<property name="order" value="2" />
+		
 	</bean>
 
 	<!-- @GetMapping, @PostMapping 사용을 위해 설정 추가 -->
 	<!-- 예외관련 설정 @ExceptionHanler 어노테이션 인식 처리 가능 -->
-	<!-- JSON 변환관련 HttpMessageConverter(인터페이스)를 구현한 객체 MappingJackson2HttpMessageConverter
+	<!-- JSON 변환관련 HttpMessageConverter(인터페이스)를 구현한 객체 MappingJackson2HttpMessageConverter 
 		객체 사용 -->
 	<mvc:annotation-driven />
 
 </beans>
+
+
+
+
+
+
+

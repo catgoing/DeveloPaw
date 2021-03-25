@@ -3,8 +3,9 @@ package ga.bowwow.service.pet;
 import java.util.List;
 
 public interface PetService {
-	void insertPetInfo(Pet pet);
-	void updatePetInfo(Pet pet);
-	void deletePetInfo(Pet pet);
-	List<Pet> getPetInfo(Pet pet);
+	int insertPetInfo(Pet pet);
+	int updatePetInfo(Pet pet);
+	int deletePetInfo(Pet pet);
+	Pet getPetInfo(Pet pet);
+	List<Pet> getPetInfoList(Pet pet);
 }

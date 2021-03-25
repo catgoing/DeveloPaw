@@ -29,5 +29,6 @@ public class Pet {
 	private int backLength;
 	private int chestLength;
 	private String tnr;
+	private String petEtc;
 	
 }
