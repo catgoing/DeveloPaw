@@ -5,8 +5,8 @@
 <head>
 <meta charset="UTF-8">
 <title>글등록</title>
-<link href="http://netdna.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.css" rel="stylesheet"> 
-<script src="http://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.js"></script> 
+<link href="http://netdna.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.css" rel="stylesheet">
+<script src="http://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.js"></script>
 <script src="http://netdna.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.js"></script>
 
 <script src="common/summernote/lang/summernote-ko-KR.js"></script>
@@ -29,7 +29,7 @@
 <script>
 /*
 $(document).ready(function() {
-	
+
 
 	//여기 아래 부분
 	$('#summernote').summernote({
@@ -54,7 +54,7 @@ $(document).ready(function() {
 				}
 			}
 		}
-	
+
 });
 
 });
@@ -65,7 +65,7 @@ $(function() {
 		 	placeholder: '최대 500자 작성 가능합니다.',
 	        height: 300,
 	        lang: 'ko-KR'
-	        , callbacks : { 
+	        , callbacks : {
             	onImageUpload : function(files, editor, welEditable) {
             // 파일 업로드(다중업로드를 위해 반복문 사용)
             for (var i = files.length - 1; i >= 0; i--) {
@@ -74,7 +74,7 @@ $(function() {
             		}
             	}
             }
-	
+
 	 });
 });
 
@@ -103,7 +103,7 @@ function uploadSummernoteImageFile(file, el) {
 	<h1>글등록</h1>
 	<p><a href="logout.do">Log-out</a></p>
 	<hr>
-	
+
 <!-- 	<form action="insertBoard.do" method="post"	>
 	<table>
 		<tr>
@@ -121,9 +121,9 @@ function uploadSummernoteImageFile(file, el) {
 		<tr>
 			<th>내용</th>
 			<td>
-				
-	  				
-				
+
+
+
 			</td>
 		</tr>
 		<tr>
@@ -139,14 +139,14 @@ function uploadSummernoteImageFile(file, el) {
 		</tr>
 	</table>
 	</form> -->
-	
+
 	<form action="community/insertBoard.do" method="post" enctype="multipart/form-data">
 
   		<textarea id="summernote" name="board_content"></textarea>
-  		
+
   		<input type="submit" value="전송">
 	</form>
-	
+
 </div>
 
 
