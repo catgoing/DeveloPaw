@@ -13,6 +13,10 @@
 	<select id="getUserAccount" parameterType="UserAccount" resultType="UserAccount">
 		SELECT * FROM USER_ACCOUNT WHERE MEMBER_SERIAL = #{MEMBER_SERIAL}
 	</select>
+	
+	<select id="loginValidation" parameterType="UserAccount" resultType="UserAccount">
+		SELECT * FROM USER_ACCOUNT WHERE ID = #{ID} AND PASSWORD = #{PASSWORD}
+	</select>
 	<!-- 
 	<select id="getUserList" parameterType="User" resultType="User">
 		SELECT * FROM User 

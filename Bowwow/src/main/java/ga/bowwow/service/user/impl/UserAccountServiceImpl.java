@@ -1,10 +1,7 @@
 package ga.bowwow.service.user.impl;
 
-import java.util.List;
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-import org.springframework.web.servlet.ViewResolver;
 
 import ga.bowwow.service.user.UserAccount;
 import ga.bowwow.service.user.UserAccountService;
@@ -29,6 +26,6 @@ public class UserAccountServiceImpl implements UserAccountService {
 
 	@Override
 	public UserAccount getUserAccount(UserAccount userAccount) {
-		return null;
+		return UserAccountDAO.getUserAccount(userAccount);
 	}
 }
