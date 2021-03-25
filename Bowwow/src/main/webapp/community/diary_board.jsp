@@ -25,35 +25,38 @@
 	rel="stylesheet">
 
 <!-- Favicon icon -->
-<link rel="icon" href="../resources/images/favicon.ico"
+<link rel="icon" href="resources/images/favicon.ico"
 	type="image/x-icon">
 <!-- Google font-->
 <link
 	href="https://fonts.googleapis.com/css?family=Open+Sans:400,600,700"
 	rel="stylesheet">
 <!-- waves.css -->
-<link rel="stylesheet" href="../resources/pages/waves/css/waves.min.css"
+<link rel="stylesheet" href="resources/pages/waves/css/waves.min.css"
 	type="text/css" media="all">
 <!-- Required Fremwork -->
 <link rel="stylesheet" type="text/css"
-	href="../resources/css/bootstrap/css/bootstrap.min.css">
+	href="resources/css/bootstrap/css/bootstrap.min.css">
 <!-- waves.css -->
-<link rel="stylesheet" href="../resources/pages/waves/css/waves.min.css"
+<link rel="stylesheet" href="resources/pages/waves/css/waves.min.css"
 	type="text/css" media="all">
 <!-- themify icon -->
 <link rel="stylesheet" type="text/css"
-	href="../resources/icon/themify-icons/themify-icons.css">
+	href="resources/icon/themify-icons/themify-icons.css">
 <!-- font-awesome-n -->
 <link rel="stylesheet" type="text/css"
-	href="../resources/css/font-awesome-n.min.css">
+	href="resources/css/font-awesome-n.min.css">
 <link rel="stylesheet" type="text/css"
-	href="../resources/css/font-awesome.min.css">
+	href="resources/css/font-awesome.min.css">
 <!-- scrollbar.css -->
 <link rel="stylesheet" type="text/css"
-	href="../resources/css/jquery.mCustomScrollbar.css">
+	href="resources/css/jquery.mCustomScrollbar.css">
 <!-- Style.css -->
-<link rel="stylesheet" type="text/css" href="../resources/css/style.css">
-<link rel="stylesheet" type="text/css" href="../resources/css/test.css">
+<!-- <link rel="stylesheet" type="text/css" href="/Bowwow/src/main/webapp/resources/css/style.css"> -->
+
+<link rel="stylesheet" type="text/css" href="/main/resources/css/style.css">
+<link rel="stylesheet" type="text/css" href="resources/css/test.css">
+
 <title>펫 다이어리</title>
 <style>
 </style>
@@ -65,7 +68,7 @@
 		<div class="pcoded-container navbar-wrapper">
 
 			<!-- header 헤더 영역 -->
-			<%@ include file="../common/header.jspf"%>
+			<%@ include file="/common/header.jspf"%>
 			<!-- header 헤더 영역 -->
 
 
@@ -283,7 +286,7 @@
 		</script>
 
 		<!-- footer 푸터 영역 -->
-		<%@ include file="../common/footer.jspf"%>
+		<%@ include file="/common/footer.jspf"%>
 		<!-- footer 푸터 영역 -->
 
 	</div>
