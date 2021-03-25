@@ -29,103 +29,29 @@
     <link href="https://fonts.googleapis.com/css2?family=Do+Hyeon&display=swap" rel="stylesheet">
 
     <!-- Favicon icon -->
-    <link rel="icon" href="../resources/images/favicon.ico" type="image/x-icon">
+    <link rel="icon" href="/main/resources/images/favicon.ico" type="image/x-icon">
     <!-- Google font-->
     <link href="https://fonts.googleapis.com/css?family=Open+Sans:400,600,700" rel="stylesheet">
     <!-- waves.css -->
-    <link rel="stylesheet" href="../resources/pages/waves/css/waves.min.css" type="text/css" media="all">
+    <link rel="stylesheet" href="/main/resources/pages/waves/css/waves.min.css" type="text/css" media="all">
     <!-- Required Fremwork -->
-    <link rel="stylesheet" type="text/css" href="../resources/css/bootstrap/css/bootstrap.min.css">
+    <link rel="stylesheet" type="text/css" href="/main/resources/css/bootstrap/css/bootstrap.min.css">
     <!-- waves.css -->
-    <link rel="stylesheet" href="../resources/pages/waves/css/waves.min.css" type="text/css" media="all">
+    <link rel="stylesheet" href="/main/resources/pages/waves/css/waves.min.css" type="text/css" media="all">
     <!-- themify icon -->
-    <link rel="stylesheet" type="text/css" href="../resources/icon/themify-icons/themify-icons.css">
+    <link rel="stylesheet" type="text/css" href="/main/resources/icon/themify-icons/themify-icons.css">
     <!-- font-awesome-n -->
-    <link rel="stylesheet" type="text/css" href="../resources/css/font-awesome-n.min.css">
-    <link rel="stylesheet" type="text/css" href="../resources/css/font-awesome.min.css">
+    <link rel="stylesheet" type="text/css" href="/main/resources/css/font-awesome-n.min.css">
+    <link rel="stylesheet" type="text/css" href="/main/resources/css/font-awesome.min.css">
     <!-- scrollbar.css -->
-    <link rel="stylesheet" type="text/css" href="../resources/css/jquery.mCustomScrollbar.css">
+    <link rel="stylesheet" type="text/css" href="/main/resources/css/jquery.mCustomScrollbar.css">
     <!-- Style.css -->
-    <link rel="stylesheet" type="text/css" href="../resources/css/style.css">
-    <link rel="stylesheet" type="text/css" href="../resources/css/test.css">
+    <link rel="stylesheet" type="text/css" href="/main/resources/css/style.css">
+    <link rel="stylesheet" type="text/css" href="/main/resources/css/test.css">
+    <!-- 개별CSS -->
+    <link rel="stylesheet" type="text/css" href="/main/resources/css/myinfo.css">
 <style>
   .featured__item__text { width: 150px; }
-  
-  .form-group .input_content .input_label{
-  	font-size : 20px;
-  }
-  
-  .input-content .input-wrap {
-	margin-bottom: 15px;
-	position: relative;
-}
- .input-content .input-wrap:last-of-type {
-	margin-bottom: 0;
-}
-
- .input-content .input-wrap input {
-	width: 100%;
-	height: 50px;
-	border-radius: 10px;
-	color: #48484d;
-	font-size: 15px;
-	font-weight: 700;
-	padding: 14px 20px;
-	border: 1px solid #e4e4e4;
-	padding-right: 50px;
-}
-
- .side-content .my-area{
-	padding : 30px;
-	float: left;
-}
-
- .side-content .my-area .side-profile-img{
-	/* float: left; */
-    background-size: cover;
-    width: 140px;
-    height: 140px;
-    border-radius: 70px;
-    margin: 0 auto 10px;
-}
-
- .side-content .my-area .side-profile-img{
-    border: 1px solid rgba(228, 228, 228, 0.5);
-    border-radius: 10px;
-}
-
- .side-content .my-area p{
-    text-align: center;
-    font-size: 20px;
-    font-weight: 700;
-    line-height: 29px;
-}
-
- .mainMypage-content {
-    width: calc( 100% - 280px);
-    float: right;
-    margin-bottom: 50px;
-}
-
- .block-title a{
-    line-height: 28px;
-    color: #b0b0b0;
-    font-size: 10px;
-    font-weight: 300;
-    /* display: -ms-flexbox;
-    display: -webkit-flex;
-    display: flex;
-    -ms-flex-align: center;
-    -webkit-align-items: center;
-    align-items: center; */
-    border: 0;
-    background: none;
-    float: right;
- }
-
-.block-title h3{
-	font-size: 1.5em;
-}
 </style>
 </head>
 
@@ -187,23 +113,28 @@
     
     <div id="pcoded" class="pcoded">
         <div class="pcoded-overlay-box"></div>
-        <div class="pcoded-main-container navbar-wrapper">
-            
+        <div class="pcoded-container navbar-wrapper">
 		<!-- 헤더 -->
 		<%-- <tiles:insertAttribute name="header" /> --%>
-		<!-- 좌측메뉴바 -->
-		<%-- <tiles:insertAttribute name="menubar"/> --%>
-                    
-			<div class="pcoded-content">
-				<div class="pcoded-inner-content">
-					<!-- 페이지 제목 -->
-					<h2>(pcoded-inner-content) 뫄뫄님의 페이지</h2>
-					<!-- Main-body start 본문 시작 -->
+		<%@include file="/common/header.jsp" %>
+		
+		<div class="pcoded-main-container">
+			<div class="pcoded-wrapper">
+				<!-- 좌측메뉴바 -->
+				<%-- <tiles:insertAttribute name="menubar"/> --%>
+				<%@include file="/common/myPageMenuBar.jsp" %>
+				
+				<!-- Main-body start 본문 시작 -->
 					<div class="main-body">
 					<div class="page-wrapper">
                                 
 						<!-- Page-body start -->
 						<div class="page-body">
+						<div class="myPageInfo-header">
+							<h2> 뫄뫄님의 페이지</h2>
+						</div>
+						<div class="myPageInfo-wrapper">
+							
 							<!-- <section class="featured spad">
 								<div class="container">
 									<div class="row">
@@ -218,10 +149,10 @@
 							</section> -->
 								<!-- 회원정보수정 부분 -->
 								<div class="form-group">
-									<div class="input_content">
+									<div class="input-content">
 									<div class="side-content">
 										<div class="my-area">
-											<div class="side-profile-img">으아아</div>
+											<div class="side-profile-img">프로필사진영역</div>
 											<p>닉네임</p>
 										</div>
 									</div>
@@ -234,74 +165,101 @@
 									<form>
 									<%-- <input type="text" value="${id }" readonly> --%>
 										
-										<div class="input_label">아이디 
-											<div>
-												<input type="text" value="sunsetar" disabled>												
+										<div class="input-label">아이디 
+											<div class="input-wrap">
+												<input type="text" name="id" value="sunsetar" disabled>
 											</div>
+											<label class="col-sm-2 col-form-label">아이디</label>
+                                            <div class="col-sm-10">
+                                                <input type="text" class="form-control form-control-round" placeholder=".form-control-round">
+                                            </div>
+											<p></p>												
 										</div>
 										
-										<div class="input_label">비밀번호
-											<div>
-												<input type="password" placeholder="비밀번호 입력">
+										<div class="input-label">비밀번호
+											<div class="input-wrap">
+												<input type="password" name="password" placeholder="비밀번호 입력">
 											</div>
 											<p>비밀번호는 이만~~~~~큼 입력해야합니다.</p>
 										</div>
 													
-										<div class="input_label">비밀번호 확인
-											<div>
+										<div class="input-label">비밀번호 확인
+											<div class="input-wrap">
 												<input type="password" placeholder="비밀번호 재입력">
 											</div>
-											<p>비밀번호를 또 입력해야합니다</p>
+											<p>비밀번호를 또 입력해야합니다 -- 비밀번호 입력 안하고 수정해도 수정됨?</p>
 										</div>
 													
-										<div class="input_label">이름
-											<div class="input_wrap">
-												<input type="text" value="${name }">
+										<div class="input-label">이름
+											<div class="input-wrap">
+												<input type="text" name="name" value="${name }">
 											</div>
+											<p></p>
 										</div>
 													
-										<div class="input_label">닉네임
-											<div class="input_wrap">
-												<input type="text" value="${nickname }">
-											</div>	
+										<div class="input-label">닉네임
+											<div class="input-wrap">
+												<input type="text" name="nickname" value="${nickname }">
+											</div>
+											<p></p>
 										</div>
 													
-										<div class="input_label">이메일
-											<div class="input_wrap">
-												<input type="text" value="${email }">
+										<div class="input-label">이메일
+											<div class="input-wrap">
+												<input type="text" name="email" value="${email }">
 											</div>
+											<p></p>
 										</div>
 										
-										<div class="input_label">전화번호
-											<div class="input_wrap">
-												<input type="text" value="${phone }">
+										<div class="input-label">전화번호
+											<div class="input-wrap">
+												<input type="text" name="phone" value="${phone }">
 											</div>
+											<p></p>
 										</div>
 										
-										<div class="input_label">주소
-											
+										<div class="input-label">주소
+											<div></div>
+											<p></p>
 										</div>
 										
-										<div class="input_label">생일
-											<div class="input_wrap">
-												<input type="text" value="${birthday }">
+										<div class="input-label">생일
+											<div class="input-wrap">
+												<%-- <input type="text" name="birthday" value="${birthday }">
+												<input type="text" name="birthday" value="${birthday }">
+												<input type="text" name="birthday" value="${birthday }"> --%>
 											</div>
+											<p></p>
 										</div>
 										
-										<div class="input_label">성별
-											<div class="input_wrap">
-												<input type="text" value="${gender }">
+										<div class="input-label">성별
+											<div class="input-wrap">
+												<span class="radio-gender">
+													<input type="radio" name="gender" value="female" id="genderF">
+													<label for="genderF">여자</label>
+												</span>
+												<span class="radio-gender">
+       												<input type="radio" name="gender" value="male" id="genderM">
+       												<label for="genderM">남자</label>
+												</span>
 											</div>
+											<p>설정한 정보로 checked하기??</p>
 										</div>
 										
-										<div class="input_label">
-											<div class="input_wrap">
-												<input type="file" value="${IMAGE_SOURCE }">		
+										<div class="input-label">
+											<div class="input-wrap">
+												<div class="my-profile">
+													<label for="uploadImage" id="imageview">
+														<img src="" class="thumb">
+													</label>
+													<input type="file" id="uploadImage" accept="image/gif, image/jpeg, image/jpg, image/png" name="uploadImage" onchange="readURL(this);">		
+												</div>
 											</div>
+											<p></p>
 										</div>
 										
 										<div class="action_btn">
-											<input type="button" value="정보수정">							    
+											<input type="button" value="정보수정test" onclick="javascript:goDetail();">							    
 										</div>																    
 	
 									</form>
@@ -310,64 +268,81 @@
 								</div>
 										
 							</div>
-							<!-- Page-body end -->
 						</div>
-						<div id="styleSelector"> </div>
 					</div>
-					<!-- Main-body start 본문 끝 -->
 				</div>
+			</div>
+							
+					<!-- 레이어팝업테스트 -->
+							
+					<div id="mask"></div>
+					
+					<div id="layerbox" class="layerpop" style="width: 300px; height: 300px;">
+						<div class="layerbox-content">
+							<article class="layerpop_area">
+								<!-- ajax로 입력한 정보 보내서 수정 후 완료처리-_-;; -->팝업 테스트
+								<form>
+									<input type="button" value="정보수정 완료~" onclick="javascript:closePopup();" class="layerpop_close">
+								</form>
+							</article>
+						</div>
+					</div>
+					
+					
 			</div>
 		</div>
 	</div>
-            
-	<button class="scroll-top" id="js-button" style="margin-bottom: 190px; margin-right: 30px;">
-	<i class="fa fa-chevron-up" aria-hidden="true">TOP</i>
-	</button>
-	<script type="text/javascript">
-		scrollTop('js-button', 500);
-		function scrollTop(elem,duration) {
-		    let target = document.getElementById(elem);
-		
-		    target.addEventListener('click', function() {
-		        let currentY = window.pageYOffset; 
-		        let step = duration/currentY > 1 ? 10 : 100;
-		        let timeStep = duration/currentY * step;
-		        let intervalID = setInterval(scrollUp, timeStep);
-		
-		        function scrollUp(){
-		            currentY = window.pageYOffset;
-		            if(currentY === 0) {
-		                clearInterval(intervalID);
-		            } else {
-		                scrollBy( 0, -step );
-		            }
-		        }
-		    });
-		}
-	</script>
-                
+</div>
+	
+    <button class="scroll-top" id="js-button" style="margin-bottom: 190px; margin-right: 30px;">
+        <i class="fa fa-chevron-up" aria-hidden="true">TOP</i>
+    </button>
+    <script type="text/javascript">
+        scrollTop('js-button', 500);
+        function scrollTop(elem,duration) {
+            let target = document.getElementById(elem);
+        
+            target.addEventListener('click', function() {
+                let currentY = window.pageYOffset; 
+                let step = duration/currentY > 1 ? 10 : 100;
+                let timeStep = duration/currentY * step;
+                let intervalID = setInterval(scrollUp, timeStep);
+        
+                function scrollUp(){
+                    currentY = window.pageYOffset;
+                    if(currentY === 0) {
+                        clearInterval(intervalID);
+                    } else {
+                        scrollBy( 0, -step );
+                    }
+                }
+            });
+        }
+    </script>
+        
 	<!-- footer 푸터 시작부분-->
 	<%-- <tiles:insertAttribute name="footer" /> --%>
+	<%@include file="/common/footer.jsp" %>
 	<!-- footer 푸터 끝부분-->
 
     <!-- Required Jquery -->
-    <script type="text/javascript" src="../resources/js/jquery/jquery.min.js "></script>
-    <script type="text/javascript" src="../resources/js/jquery-ui/jquery-ui.min.js "></script>
-    <script type="text/javascript" src="../resources/js/popper.js/popper.min.js"></script>
-    <script type="text/javascript" src="../resources/js/bootstrap/js/bootstrap.min.js "></script>
+    <script type="text/javascript" src="/main/resources/js/jquery/jquery.min.js "></script>
+    <script type="text/javascript" src="/main/resources/js/jquery-ui/jquery-ui.min.js "></script>
+    <script type="text/javascript" src="/main/resources/js/popper.js/popper.min.js"></script>
+    <script type="text/javascript" src="/main/resources/js/bootstrap/js/bootstrap.min.js "></script>
     <!-- waves js -->
-    <script src="../resources/pages/waves/js/waves.min.js"></script>
+    <script src="/main/resources/pages/waves/js/waves.min.js"></script>
     <!-- jquery slimscroll js -->
-    <script type="text/javascript" src="../resources/js/jquery-slimscroll/jquery.slimscroll.js"></script>
+    <script type="text/javascript" src="/main/resources/js/jquery-slimscroll/jquery.slimscroll.js"></script>
 
     <!-- slimscroll js -->
-    <script src="../resources/js/jquery.mCustomScrollbar.concat.min.js "></script>
+    <script src="/main/resources/js/jquery.mCustomScrollbar.concat.min.js "></script>
 
     <!-- menu js -->
-    <script src="../resources/js/pcoded.min.js"></script>
-    <script src="../resources/js/vertical/vertical-layout.min.js "></script>
+    <script src="/main/resources/js/pcoded.min.js"></script>
+    <script src="/main/resources/js/vertical/vertical-layout.min.js "></script>
 
-    <script type="text/javascript" src="../resources/js/script.js "></script>
+    <script type="text/javascript" src="/main/resources/js/script.js "></script>
 </body>
 
 

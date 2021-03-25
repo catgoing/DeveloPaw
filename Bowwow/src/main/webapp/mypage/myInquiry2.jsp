@@ -110,19 +110,13 @@
    background: #fff;
    width: 100%;
  }   
- .trans-btn {
-   position: absolute;
-   width: 200px;
-   height: 50px;
- }
- .cancel-btn{
- 	display: none;
- }
+
  .content-list {
    display : block;
    width: 100%;
     margin-bottom: 50px;
  } 
+ 
  .select-category{
  	width : 100%;	
     font-size: 25px;
@@ -180,111 +174,23 @@
 		console.log(val);
 		$('input[name="contact_us_type"]').val(val);
 	}
-
 	$(document).ready(function(){
-		//문의버튼 클릭시 문의입력메뉴 드롭다운
-		$('.trans-btn').click(function(){
+		$('.contact-btn').click(function(){
+			console.log($(this));			
+			console.log("ajax전달");		
+		});
+		
+		$('.cancel-btn').click(function(){
 			console.log($(this));
-			if($(this).siblings('.question-title').hasClass('active')){
-				console.log("active 있음");			
-				console.log("ajax전달");			
-			} else {
-				console.log("active 없음");	
-		        $(this).siblings('.question-section').slideDown(300);
-		        $(this).siblings('.question-title').addClass('active');
-		        console.log($(this));
-		        console.log($(this).siblings('.question-title').children(":last"));
-		        //취소버튼 안보이다가 보이게 처리
-		        $(this).siblings('.question-title').children(":last").addClass('active');
-		        if($(this).siblings('.question-title').children(":last").hasClass('active')){
-		        	console.log($(this));
-		        	console.log($(this).siblings('.question-title').children(":last"));
-		        	$(this).siblings('.question-title').children(":last").css('display', 'block');
-		        }
-			}
-	    });
-		//문의입력 취소버튼
-		$('.question-title .cancel-btn').click(function(){
-			console.log($(this));
-			console.log("취소버튼 클릭");		
-	        $(this).parent().siblings('.question-section').slideUp(300);
-	        $(this).parent().removeClass('active');
-	        //취소버튼 안보이게 처리
-	        if($(this).hasClass('active')){
-	        	$(this).css('display','none');
-	        	$(this).removeClass('active');
-	        }
-	    });
-		//카테고리 선택 클릭시 카테고리 drop
-	    /* $('.drop-category').click(function(){
-	        $(this).children('ul').toggleClass('active');
-	        $(this).children('img').toggleClass('active');
-	    }); */
-		//drop된 카테고리 클릭시 span에 입력
-		/*  $('.drop-category ul li').click(function(){
-	        var category = $(this).text();
-	        $(this).parent('ul').siblings('span').text(category);
-	    }); */
+			$('input[type="text"]').val('');
+			$('#textbox').val('');
+		});
 	});
 	
 </script>
 </head>
 
 <body>
-    <!-- Pre-loader start -->
-    <div class="theme-loader">
-        <div class="loader-track">
-            <div class="preloader-wrapper">
-                <div class="spinner-layer spinner-blue">
-                    <div class="circle-clipper left">
-                        <div class="circle"></div>
-                    </div>
-                    <div class="gap-patch">
-                        <div class="circle"></div>
-                    </div>
-                    <div class="circle-clipper right">
-                        <div class="circle"></div>
-                    </div>
-                </div>
-                <div class="spinner-layer spinner-red">
-                    <div class="circle-clipper left">
-                        <div class="circle"></div>
-                    </div>
-                    <div class="gap-patch">
-                        <div class="circle"></div>
-                    </div>
-                    <div class="circle-clipper right">
-                        <div class="circle"></div>
-                    </div>
-                </div>
-
-                <div class="spinner-layer spinner-yellow">
-                    <div class="circle-clipper left">
-                        <div class="circle"></div>
-                    </div>
-                    <div class="gap-patch">
-                        <div class="circle"></div>
-                    </div>
-                    <div class="circle-clipper right">
-                        <div class="circle"></div>
-                    </div>
-                </div>
-
-                <div class="spinner-layer spinner-green">
-                    <div class="circle-clipper left">
-                        <div class="circle"></div>
-                    </div>
-                    <div class="gap-patch">
-                        <div class="circle"></div>
-                    </div>
-                    <div class="circle-clipper right">
-                        <div class="circle"></div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
-    <!-- Pre-loader end -->
     <div id="pcoded" class="pcoded">
         <div class="pcoded-overlay-box"></div>
         <div class="pcoded-main-container navbar-wrapper">
@@ -297,7 +203,9 @@
 			<!-- 좌측메뉴바 -->
 			<%-- <tiles:insertAttribute name="menubar"/> --%>
 			<%@include file="/common/myPageMenuBar.jsp" %>
-	
+				
+			<div class="pcoded-content">
+				<div class="pcoded-inner-content">
 		<!-- Main-body start 본문 시작 -->
 		<div class="main-body">
 	    <div class="page-wrapper">
@@ -306,37 +214,50 @@
 						<div class="my-inquiry">
 							<div class="question-write">
 								<div class="question-title">
-							     	<h2>고객님의 문의사항을 해결해드리겠습니다.</h2>
-							     	<input type="button" class="cancel-btn" value="취소">
+							     	<!-- <h2>고객님의 문의사항을 해결해드리겠습니다.</h2> -->
+							     	<!-- <input type="button" class="cancel-btn" value="취소"> -->
 						     	</div>
-							    <div class="question-section" id="question-section">
+						     	
+						     	<div class="card-block accordion-block">
+                                   <div id="accordion" role="tablist" aria-multiselectable="true">
+                                       <div class="accordion-panel">
+                                           <div class="accordion-heading" role="tab" id="headingOne">
+                                               <h2 class="card-title accordion-title">고객님의 문의사항을 해결해드리겠습니다.</h2>
+                                                   <a id="tt" class="accordion-msg waves-effect waves-dark" data-toggle="collapse"
+                                                   data-parent="#accordion" href="#collapseOne"
+                                                   aria-expanded="true" aria-controls="collapseOne"></a>
+										</div>
+                                       <div id="collapseOne" class="panel-collapse collapse in" role="tabpanel" aria-labelledby="headingOne">
+                                           <div class="accordion-content accordion-desc">
+                                               <div class="form-group row" id="question-section">
 							    	<input type="text" name="inquiryTitle" placeholder="제목을 입력하세요">
-							    	<div class="drop-category">
+							    	<div class="col-sm-10">
 							    		<input type="hidden" name="contact_us_type" value="">
-							    		<select class="form-select form-select-lg mb-3" aria-label="문의유형선택">
+							    		<select class="form-control" aria-label="문의유형선택">
 										  <option selected>문의 유형 선택</option>
 										  <option value="1" onclick="inquiryType('contactUs')">이용문의</option>
 										  <option value="2" onclick="inquiryType('buy')">구매문의</option>
 										  <option value="3" onclick="inquiryType('delivery')">배송문의</option>
 										  <option value="4" onclick="inquiryType('etc')">기타문의</option>
 										</select>
-							    		<!--
-							    		<span class="select-category">카테고리 선택</span>
-							    		<ul class="list-group">
-							    			<li class="list-group-item list-group-item-light"onclick="inquiryType('contactUs')">이용문의</li>
-							    			<li class="list-group-item list-group-item-light"onclick="inquiryType('buy')">구매문의</li>
-							    			<li class="list-group-item list-group-item-light"onclick="inquiryType('delivery')">배송문의</li>
-							    			<li class="list-group-item list-group-item-light"onclick="inquiryType('etc')">기타</li>
-							    		</ul> -->
 							    	</div>
-							    	<textarea name="inquiryContent" placeholder="질문을 입력하세요!"></textarea>
+							    	<textarea id="textbox" name="inquiryContent" placeholder="질문을 입력하세요!"></textarea>
 								    <div class="upload-file">
 								    	<div class="upload-file-content">
-									    	<input type="file" class="upload-file" id="contactUsImage" name="contactUsImage" accept="image/*">
+									    	<input type="file" class="form-control" id="contactUsImage" name="contactUsImage" accept="image/*">
 								    	</div>
 								    </div>
 							    </div>
-							    <input type="button" class="trans-btn" value="문의하기" >	
+                                           </div>
+                                           <input type="button" class="contact-btn" value="문의하기" >	
+							    <input type="button" class="cancel-btn" value="취소">
+                                       </div>
+                                   </div>
+                               </div>
+                           </div>
+						     	
+							    <!-- <input type="button" class="trans-btn" value="문의하기" >	
+							    <input type="button" class="cancel-btn" value="취소"> -->
 							</div>
 							
 							<div class="content-list">
@@ -369,7 +290,7 @@
 									<table class="border-none">
 										<tr>
 											<td class="input-group">
-											    <select class="form-select" id="inputGroupSelect04" aria-label="Example select with button addon">
+											    <select class="form-control" id="inputGroupSelect04" aria-label="Example select with button addon">
 											      <option selected>전체보기</option>
 											      <option value="1">이용문의</option>
 											      <option value="2">구매문의</option>
@@ -421,6 +342,8 @@
 	<%-- <tiles:insertAttribute name="footer" /> --%>
 	<%@include file="/common/footer.jsp" %>
 	<!-- footer 푸터 끝부분-->
+    </div>
+</div>
     </div>
 </div>
 	<!-- Required Jquery -->

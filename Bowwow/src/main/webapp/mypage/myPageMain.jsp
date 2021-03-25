@@ -14,6 +14,8 @@
       <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
       <![endif]-->
     <!-- Meta -->
+    <script src="http://code.jquery.com/jquery-3.5.1.min.js"></script>
+   
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=0, minimal-ui">
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
@@ -111,12 +113,16 @@
     <div id="pcoded" class="pcoded">
         <div class="pcoded-overlay-box"></div>
         <div class="pcoded-main-container navbar-wrapper">
-            
- 		<!-- 헤더 -->
+        <!-- 헤더 -->
 		<%-- <tiles:insertAttribute name="header" /> --%>
-		<!-- 좌측메뉴바 -->
-		<%-- <tiles:insertAttribute name="menubar"/> --%>
-			 
+		<%@include file="/common/header.jsp" %>
+		
+		<div class="pcoded-main-container">
+			<div class="pcoded-wrapper">
+			<!-- 좌측메뉴바 -->
+			<%-- <tiles:insertAttribute name="menubar"/> --%>
+			<%@include file="/common/myPageMenuBar.jsp" %>
+				
 			<div class="pcoded-content">
 				<div class="pcoded-inner-content">
 					<!-- Main-body start 본문 시작 -->
@@ -124,31 +130,40 @@
 					<div class="page-wrapper">
 					<!-- Page-body start -->
 						<div class="page-body">
-							<!-- <section class="featured spad">
- 								<div class="container">
-									<div class="row">
-										<div class="col-lg-12">
-											<div class="section-title">
-												<h2>(section-title)뫄뫄님의 페이지</h2>
-											</div>
-											<br>
-										</div>
-									</div>
-								</div>
-							</section> -->
+						<div class="myPageInfo-header">
+							<h2> 뫄뫄님의 페이지</h2>
+						</div>
 
 						<div class="mypage_main_content">
-						<h2>본문??</h2>
-						<%-- <tiles:insertAttribute name="body" /> --%>				
+							
 							<div class="mypage_main_content mypointlist">
-								적립금출력영역
+								누적적립금출력영역
 							</div>
-							<div class="mypage_main_content petlist">
-								반려동물영역
+							<div class="container">
+							  <div class="row">
+							    <div class="col-sm">
+							      반려동물1
+							      <div class="card" style="width: 8rem;">
+									  <img src="..." class="card-img-top" alt="...">
+								  </div>
+							    </div>
+							    <div class="col-sm">
+							      반려동물2						    
+							      <div class="card" style="width: 8rem;">
+									  <img src="..." class="card-img-top" alt="...">
+								  </div>
+							    </div>
+							    <div class="col-sm">
+							      반려동물3
+							      <div class="card" style="width: 8rem;">
+									  <img src="..." class="card-img-top" alt="...">
+								  </div>
+								</div>
+							  </div>
 							</div>
 							<div class="mypage_main_content boardlist">
-								게시글영역
-							</div>									    
+								게시글출력영역
+							</div>		
 						</div>
 					</div>
 					<!-- Page-body end -->
@@ -188,6 +203,7 @@
         
 	<!-- footer 푸터 시작부분-->
 	<%-- <tiles:insertAttribute name="footer" /> --%>
+	<%@include file="/common/footer.jsp" %>
 	<!-- footer 푸터 끝부분-->
     </div>
 </div>
