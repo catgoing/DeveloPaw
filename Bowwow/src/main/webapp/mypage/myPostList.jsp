@@ -111,11 +111,91 @@
     <div id="pcoded" class="pcoded">
         <div class="pcoded-overlay-box"></div>
         <div class="pcoded-main-container navbar-wrapper">
-            
-		<!-- 헤더 -->
-		<%-- <tiles:insertAttribute name="header" /> --%>
-		<!-- 좌측메뉴바 -->
-		<%-- <tiles:insertAttribute name="menubar" /> --%>
+        <!-- 헤더 -->
+		<%@include file="/common/header.jsp" %>
+		<!-- 좌측 메뉴바 시작 -->
+<div class="pcoded-main-container">
+	<div class="pcoded-wrapper">
+		<nav class="pcoded-navbar">
+			<div class="sidebar_toggle"><a href="#"><i class="icon-close icons"></i></a></div>
+				<div class="pcoded-inner-navbar main-menu">
+			    <div class="p-15 p-b-0">
+			         <form class="form-material">
+						<!-- 이부분 form을 없애면 좌측메뉴 시작부분이 위쪽으로 조금 올라감 -->
+			         </form>
+			     </div>
+			  
+			     <ul class="pcoded-item pcoded-left-item">
+			         <li class="">
+			             <a href="myPageMain.do" class="waves-effect waves-dark">
+			                 <span class="pcoded-micon"><i class="ti-layers"></i><b>FC</b></span>
+			                 <span class="pcoded-mtext">마이 홈</span>
+			                 <span class="pcoded-mcaret"></span>
+			             </a>
+			         </li>
+			     </ul>
+			
+			     <ul class="pcoded-item pcoded-left-item">
+			         <li class="">
+			          <!-- 회원번호(memberSerial)을 이용해서 내 정보 출력 -->
+			             <a href="myInfo.do" class="waves-effect waves-dark">
+			             <%-- <a href="myInfo.do?memberSerial=${memberSerial }" class="waves-effect waves-dark"> --%>
+			                 <span class="pcoded-micon">
+			                     <!-- <i class="ti-id-badge"></i><b>A</b> -->
+			                 </span>
+			                 <span class="pcoded-mtext">프로필</span>
+			                 <span class="pcoded-mcaret"></span>
+			             </a>
+			         </li>
+			     </ul>
+			     <ul class="pcoded-item pcoded-left-item">
+			         <li class="">
+			             <a href="myPetInfoList.do" class="waves-effect waves-dark">
+			                 <span class="pcoded-micon">
+			                     <!-- <i class="ti-id-badge"></i><b>A</b> -->
+			                 </span>
+			                 <span class="pcoded-mtext">반려동물</span>
+			                 <span class="pcoded-mcaret"></span>
+			             </a>
+			         </li>
+			     </ul>
+			     <ul class="pcoded-item pcoded-left-item">
+			         <li class="">
+			             <a href="myPostList.do" class="waves-effect waves-dark">
+			                 <span class="pcoded-micon">
+			                     <!-- <i class="ti-id-badge"></i><b>A</b> -->
+			                 </span>
+			                 <span class="pcoded-mtext">게시글</span>
+			                 <span class="pcoded-mcaret"></span>
+			             </a>
+			         </li>
+			     </ul>
+			     <ul class="pcoded-item pcoded-left-item">
+			         <li class="">
+			             <a href="myPoint.do" class="waves-effect waves-dark">
+			                 <span class="pcoded-micon">
+			                     <!-- <i class="ti-id-badge"></i><b>A</b> -->
+			                 </span>
+			                 <span class="pcoded-mtext">적립금(?)</span>
+			                 <span class="pcoded-mcaret"></span>
+			             </a>
+			         </li>
+			     </ul>
+			     <ul class="pcoded-item pcoded-left-item">
+			         <li class="">
+			             <a href="myInquiry.do" class="waves-effect waves-dark">
+			                 <span class="pcoded-micon">
+			                     <!-- <i class="ti-id-badge"></i><b>A</b> -->
+			                 </span>
+			                 <span class="pcoded-mtext">1:1문의</span>
+			                 <span class="pcoded-mcaret"></span>
+			             </a>
+			         </li>
+			     </ul>
+			 </div>
+		</nav>
+		
+	<!-- 좌측 메뉴바 끝 -->
                     
                     <div class="pcoded-content">
                         <div class="pcoded-inner-content">
@@ -124,19 +204,7 @@
 							<div class="page-wrapper">
 		                        <!-- Page-body start -->
 								<div class="page-body">
-									<!-- <section class="featured spad">
-										<div class="container">
-											<div class="row">
-												<div class="col-lg-12">
-													<div class="section-title">
-														<h2>(section-title)뫄뫄님의 페이지</h2>
-													</div>
-													<br>
-		 										</div>
-											</div>
-										</div>
-									</section> -->
-                                        
+									                                       
                                         <div class="my-post">
 	                                        게시글 출력
                                         </div>
@@ -176,10 +244,10 @@
                 }
                 </script>
                 
-				<!-- footer 푸터 시작부분-->
-				<%-- <tiles:insertAttribute name="footer" /> --%>
-				<!-- footer 푸터 끝부분-->
-            </div>
+		<!-- footer 푸터 시작부분-->
+		<%@include file="/common/footer.jsp" %>
+		<!-- footer 푸터 끝부분-->
+        </div>
 
         </div>
 

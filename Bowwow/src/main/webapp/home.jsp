@@ -7,7 +7,7 @@
 	<title>Home</title>
 </head>
 <body>
-<script> window.location.href = 'http://localhost:8080/main/tiles/store.do';
+<script> window.location.href = 'http://localhost:8080/tiles/store.do';
 </script>
 <h1>
 	Hello world!  

@@ -8,7 +8,7 @@ import org.springframework.stereotype.Service;
 import ga.bowwow.service.pet.Pet;
 import ga.bowwow.service.pet.PetService;
 
-@Service
+@Service("petService")
 public class PetServiceImpl implements PetService {
 	
 	@Autowired
@@ -19,24 +19,28 @@ public class PetServiceImpl implements PetService {
 	}
 	
 	@Override
-	public void insertPetInfo(Pet pet) {
-		petDAO.insertPetInfo(pet);
+	public int insertPetInfo(Pet pet) {
+		return petDAO.insertPetInfo(pet);
 	}
 
 	@Override
-	public void updatePetInfo(Pet pet) {
-		//petDAO.updatePetInfo(pet);
+	public int updatePetInfo(Pet pet) {
+		return petDAO.updatePetInfo(pet);
 	}
 
 	@Override
-	public void deletePetInfo(Pet pet) {
-		//petDAO.deletePetInfo(pet);
+	public int deletePetInfo(Pet pet) {
+		return petDAO.deletePetInfo(pet);
 	}
 
 	@Override
-	public List<Pet> getPetInfo(Pet pet) {
-		//return petDAO.getPetInfo(pet);
-		return null;
+	public List<Pet> getPetInfoList(Pet pet) {
+		return petDAO.getPetInfoList(pet);
+	}
+
+	@Override
+	public Pet getPetInfo(Pet pet) {
+		return petDAO.getPetInfo(pet);
 	}
 
 }

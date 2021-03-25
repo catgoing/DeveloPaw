@@ -48,81 +48,190 @@
     <!-- Style.css -->
     <link rel="stylesheet" type="text/css" href="/main/resources/css/style.css">
     <link rel="stylesheet" type="text/css" href="/main/resources/css/test.css">
-    <!-- 개별CSS -->
-    <link rel="stylesheet" type="text/css" href="/main/resources/css/myinfo.css">
 <style>
-  .featured__item__text { width: 150px; }
+  .form-group .input-content .input-label{
+  	font-size : 20px;
+  }
+  
+  .myPageInfo-header {
+  	text-align: center;
+  }  
+  .myPageInfo-wrapper {
+	display: flex;
+	justify-content: center;
+  }
+  
+  .input-content .input-wrap {
+	margin-bottom: 15px;
+	position: relative;
+}
+ .input-content .input-wrap:last-of-type {
+	margin-bottom: 0;
+}
+
+ .input-content .input-wrap input {
+	width: 100%;
+	height: 50px;
+	border-radius: 10px;
+	color: #48484d;
+	font-size: 15px;
+	font-weight: 700;
+	padding: 14px 20px;
+	border: 1px solid #e4e4e4;
+	padding-right: 50px;
+}
+
+.input-wrap>.radio-gender>#genderF, .input-wrap>.radio-gender>#genderM{
+	width: 15px;
+	height: 10px;
+	
+}
+.side-content {
+	position: relative;
+	display: inline-block;
+	float: left;
+}
+ .side-content .my-area {
+    border-radius: 70px;
+    margin: 30px;
+    border: 1px solid rgba(228, 228, 228, 0.5);
+    border-radius: 10px;
+ 
+ }
+ .side-content .my-area .side-profile-img{
+	/* float: left; */
+    background-size: cover;
+    width: 140px;
+    height: 140px;
+    border-radius: 70px;
+    margin: 0 auto 10px;
+}
+
+  .side-content .my-area p{
+    text-align: center;
+    font-size: 20px;
+    font-weight: 700;
+    line-height: 29px;
+}
+
+ .mainMypage-content {
+ 	display: inline-block;
+    width: calc( 100% - 280px);
+    margin-bottom: 50px;
+}
+ .block-title a{
+    line-height: 28px;
+    color: #b0b0b0;
+    font-size: 10px;
+    font-weight: 300;
+    /* display: -ms-flexbox;
+    display: -webkit-flex;
+    display: flex;
+    -ms-flex-align: center;
+    -webkit-align-items: center;
+    align-items: center; */
+    border: 0;
+    background: none;
+    float: right;
+ }
+.block-title h3{
+	font-size: 1.5em;
+}
 </style>
 </head>
 
-<body>
-    <!-- Pre-loader start -->
-    <div class="theme-loader">
-        <div class="loader-track">
-            <div class="preloader-wrapper">
-                <div class="spinner-layer spinner-blue">
-                    <div class="circle-clipper left">
-                        <div class="circle"></div>
-                    </div>
-                    <div class="gap-patch">
-                        <div class="circle"></div>
-                    </div>
-                    <div class="circle-clipper right">
-                        <div class="circle"></div>
-                    </div>
-                </div>
-                <div class="spinner-layer spinner-red">
-                    <div class="circle-clipper left">
-                        <div class="circle"></div>
-                    </div>
-                    <div class="gap-patch">
-                        <div class="circle"></div>
-                    </div>
-                    <div class="circle-clipper right">
-                        <div class="circle"></div>
-                    </div>
-                </div>
-
-                <div class="spinner-layer spinner-yellow">
-                    <div class="circle-clipper left">
-                        <div class="circle"></div>
-                    </div>
-                    <div class="gap-patch">
-                        <div class="circle"></div>
-                    </div>
-                    <div class="circle-clipper right">
-                        <div class="circle"></div>
-                    </div>
-                </div>
-
-                <div class="spinner-layer spinner-green">
-                    <div class="circle-clipper left">
-                        <div class="circle"></div>
-                    </div>
-                    <div class="gap-patch">
-                        <div class="circle"></div>
-                    </div>
-                    <div class="circle-clipper right">
-                        <div class="circle"></div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
-    <!-- Pre-loader end -->
-    
+<body>    
     <div id="pcoded" class="pcoded">
         <div class="pcoded-overlay-box"></div>
         <div class="pcoded-container navbar-wrapper">
 		<!-- 헤더 -->
-		<%-- <tiles:insertAttribute name="header" /> --%>
 		<%@include file="/common/header.jsp" %>
 		
 		<div class="pcoded-main-container">
 			<div class="pcoded-wrapper">
-				<!-- 좌측메뉴바 -->
-				<%-- <tiles:insertAttribute name="menubar"/> --%>
-				<%@include file="/common/myPageMenuBar.jsp" %>
+				<!-- 좌측 메뉴바 시작 -->
+<div class="pcoded-main-container">
+	<div class="pcoded-wrapper">
+		<nav class="pcoded-navbar">
+			<div class="sidebar_toggle"><a href="#"><i class="icon-close icons"></i></a></div>
+				<div class="pcoded-inner-navbar main-menu">
+			    <div class="p-15 p-b-0">
+			         <form class="form-material">
+						<!-- 이부분 form을 없애면 좌측메뉴 시작부분이 위쪽으로 조금 올라감 -->
+			         </form>
+			     </div>
+			  
+			     <ul class="pcoded-item pcoded-left-item">
+			         <li class="">
+			             <a href="myPageMain.do" class="waves-effect waves-dark">
+			                 <span class="pcoded-micon"><i class="ti-layers"></i><b>FC</b></span>
+			                 <span class="pcoded-mtext">마이 홈</span>
+			                 <span class="pcoded-mcaret"></span>
+			             </a>
+			         </li>
+			     </ul>
+			
+			     <ul class="pcoded-item pcoded-left-item">
+			         <li class="">
+			          <!-- 회원번호(memberSerial)을 이용해서 내 정보 출력 -->
+			             <a href="myInfo.do" class="waves-effect waves-dark">
+			             <%-- <a href="myInfo.do?memberSerial=${memberSerial }" class="waves-effect waves-dark"> --%>
+			                 <span class="pcoded-micon">
+			                     <!-- <i class="ti-id-badge"></i><b>A</b> -->
+			                 </span>
+			                 <span class="pcoded-mtext">프로필</span>
+			                 <span class="pcoded-mcaret"></span>
+			             </a>
+			         </li>
+			     </ul>
+			     <ul class="pcoded-item pcoded-left-item">
+			         <li class="">
+			             <a href="myPetInfoList.do" class="waves-effect waves-dark">
+			                 <span class="pcoded-micon">
+			                     <!-- <i class="ti-id-badge"></i><b>A</b> -->
+			                 </span>
+			                 <span class="pcoded-mtext">반려동물</span>
+			                 <span class="pcoded-mcaret"></span>
+			             </a>
+			         </li>
+			     </ul>
+			     <ul class="pcoded-item pcoded-left-item">
+			         <li class="">
+			             <a href="myPostList.do" class="waves-effect waves-dark">
+			                 <span class="pcoded-micon">
+			                     <!-- <i class="ti-id-badge"></i><b>A</b> -->
+			                 </span>
+			                 <span class="pcoded-mtext">게시글</span>
+			                 <span class="pcoded-mcaret"></span>
+			             </a>
+			         </li>
+			     </ul>
+			     <ul class="pcoded-item pcoded-left-item">
+			         <li class="">
+			             <a href="myPoint.do" class="waves-effect waves-dark">
+			                 <span class="pcoded-micon">
+			                     <!-- <i class="ti-id-badge"></i><b>A</b> -->
+			                 </span>
+			                 <span class="pcoded-mtext">적립금(?)</span>
+			                 <span class="pcoded-mcaret"></span>
+			             </a>
+			         </li>
+			     </ul>
+			     <ul class="pcoded-item pcoded-left-item">
+			         <li class="">
+			             <a href="myInquiry.do" class="waves-effect waves-dark">
+			                 <span class="pcoded-micon">
+			                     <!-- <i class="ti-id-badge"></i><b>A</b> -->
+			                 </span>
+			                 <span class="pcoded-mtext">1:1문의</span>
+			                 <span class="pcoded-mcaret"></span>
+			             </a>
+			         </li>
+			     </ul>
+			 </div>
+		</nav>
+		
+	<!-- 좌측 메뉴바 끝 -->
 				
 				<!-- Main-body start 본문 시작 -->
 					<div class="main-body">
@@ -160,7 +269,7 @@
 									<div class="mainMypage-content">
 									<div class="block-title">
 										<h3>정보수정</h3>
-										<a href="#">회원탈퇴</a>
+										<a href="withdrawl.do">회원탈퇴</a>
 									</div>
 									<form>
 									<%-- <input type="text" value="${id }" readonly> --%>
@@ -272,22 +381,6 @@
 					</div>
 				</div>
 			</div>
-							
-					<!-- 레이어팝업테스트 -->
-							
-					<div id="mask"></div>
-					
-					<div id="layerbox" class="layerpop" style="width: 300px; height: 300px;">
-						<div class="layerbox-content">
-							<article class="layerpop_area">
-								<!-- ajax로 입력한 정보 보내서 수정 후 완료처리-_-;; -->팝업 테스트
-								<form>
-									<input type="button" value="정보수정 완료~" onclick="javascript:closePopup();" class="layerpop_close">
-								</form>
-							</article>
-						</div>
-					</div>
-					
 					
 			</div>
 		</div>
@@ -321,7 +414,6 @@
     </script>
         
 	<!-- footer 푸터 시작부분-->
-	<%-- <tiles:insertAttribute name="footer" /> --%>
 	<%@include file="/common/footer.jsp" %>
 	<!-- footer 푸터 끝부분-->
 
@@ -344,6 +436,4 @@
 
     <script type="text/javascript" src="/main/resources/js/script.js "></script>
 </body>
-
-
 </html>
