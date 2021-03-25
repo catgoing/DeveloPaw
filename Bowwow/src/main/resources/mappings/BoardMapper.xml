@@ -6,9 +6,29 @@
 
 	<insert id="insertBoard" parameterType="board">
 		INSERT INTO DIARY_BOARD (BOARD_NO, BOARD_TITLE, MEMBER_SERIAL, BOARD_CONTENT,REGDATE,HITS,ANIMAL_CLASS) 
-		VALUES (DIARY_BOARD_SEQ.NEXTVAL, #{board_title}, 999, #{board_content},sysdate,0,#{animal_class})
+		VALUES (DIARY_BOARD_SEQ.NEXTVAL, #{board_title}, 999, #{board_content}, SYSDATE, 0, #{animal_class})
 	</insert>
+	
+
+	
+	<select id="getBoardList" parameterType="Map" resultType="board" >
+		SELECT BOARD_NO, B.MEMBER_SERIAL, BOARD_TITLE, ID 
+		FROM 
+		<choose>
+			<when test="board_idx == 1"> DIARY_BOARD B, USER_ACCOUNT U WHERE B.MEMBER_SERIAL = U.MEMBER_SERIAL </when>
+			<when test="board_idx == 2"> INTRO_BOARD B, USER_ACCOUNT U WHERE B.MEMBER_SERIAL = U.MEMBER_SERIAL </when>
+		</choose>
+	</select>
 <!-- 	
+
+	<select id="getBoardList" parameterType="string" resultType="board" >
+		SELECT BOARD_NO, MEMBER_SERIAL, BOARD_TITLE
+		FROM DIARY_BOARD D, USER_ACCOUNT U
+		WHERE D.MEMBER_SERIAL = U.MEMBER_SERIAL
+		AND BOARD_NO = #{board_no}
+	</select>
+	
+	
 	<update id="updateBoard" parameterType="board">
 		UPDATE BOARD 
 		SET TITLE = #{title}, CONTENT = #{content} 
