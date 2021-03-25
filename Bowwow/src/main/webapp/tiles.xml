@@ -50,4 +50,16 @@
 		</definition>
 		
 		
+       	<definition name="/community" template="/community/boardTemplate.jsp">
+                <put-attribute name="header" value="/common/header.jsp" />
+                <put-attribute name="menubar" value="/common/communityMenuBar.jsp"/>
+                <put-attribute name="body" value="" />
+                <put-attribute name="footer" value="/common/footer.jsp" />
+        </definition>
+        
+         <definition name="/godiary" extends="/community">
+			<put-attribute name="body" value="/community/diary.jsp" />
+		</definition>
+		
+		
 </tiles-definitions>

@@ -25,6 +25,8 @@
  			<param-value>UTF-8</param-value>
  		</init-param>
  	</filter>
+ 	
+ 	<!-- *.do에서 /로 변경 21.03.25 09:30 -->
  	<filter-mapping>
  		<filter-name>characterEncoding</filter-name>
  		<url-pattern>*.do</url-pattern>
@@ -47,7 +49,8 @@
 		</init-param>
 	 <load-on-startup>1</load-on-startup> 
 	</servlet>
-		
+	
+	<!-- *.do에서 /로 변경 21.03.25 09:30 -->
 	<servlet-mapping>
 		<servlet-name>main</servlet-name>
 		<url-pattern>/</url-pattern>

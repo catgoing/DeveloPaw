@@ -1,8 +1,11 @@
 package ga.bowwow.service.board.impl;
 
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Service;
 
 import ga.bowwow.service.board.Board;
@@ -34,18 +37,21 @@ public class BoardServiceImpl implements BoardService{
 	}
 
 	@Override
-	public Board getBoard(Board vo) {
-		return boardDAO.getBoard(vo);
+	public Board getBoard(String board_no) {
+		return boardDAO.getBoard(board_no);
 	}
 
-	@Override
-	public List<Board> getBoardList() {
-		return boardDAO.getBoardList();
-	}
+//	@Override
+//	public List<Board> getBoardList() {
+//		return boardDAO.getBoardList();
+//	}
 
 	@Override
-	public List<Board> getBoardList(Board vo) {
-		return boardDAO.getBoardList(vo);
+	public List<Board> getBoardList(int idx) {
+//		Map<Integer, String> map = new HashMap<Integer, String>();
+//		map.put(idx, board_name);
+
+		return boardDAO.getBoardList(idx);
 	}
 
 }

@@ -14,13 +14,14 @@
 		<typeAlias type="ga.bowwow.board.Board" alias="Board"/>
 		<typeAlias type="ga.bowwow.pet.Pet" alias="pet"/>
 		<typeAlias type="ga.bowwow.service.store.Products" alias="Product"/>
+
 	</typeAliases>
 
   <mappers>
     <!-- 
     <mapper resource=""/>
      -->
-    <mapper resource="mappings/UserMapper.xml"/> 
+    <!-- <mapper resource="mappings/UserMapper.xml"/> --> 
     <mapper resource="mappings/BoardMapper.xml"/> 
     <mapper resource="mappings/PetMapper.xml"/> 
     <mapper resource="mappings/StoreMapper.xml"/>
