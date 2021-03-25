@@ -8,5 +8,6 @@
                 <put-attribute name="body" value="" />
                 <put-attribute name="footer" value="/common/footer.jsp" />
         </definition>
+       
         
 </tiles-definitions>

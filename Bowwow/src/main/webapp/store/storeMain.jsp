@@ -1,11 +1,12 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+
 
 <!DOCTYPE html>
-<html>
 
+<html>
 <head>
-    <title>개발바닥</title>
     <!-- HTML5 Shim and Respond.js IE10 support of HTML5 elements and media queries -->
     <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
     <!--[if lt IE 10]>
@@ -28,25 +29,26 @@
     <link href="https://fonts.googleapis.com/css2?family=Do+Hyeon&display=swap" rel="stylesheet">
 
     <!-- Favicon icon -->
-    <link rel="icon" href="../resources/images/favicon.ico" type="image/x-icon">
+    <link rel="icon" href="/main/resources/images/favicon.ico" type="image/x-icon">
     <!-- Google font-->
     <link href="https://fonts.googleapis.com/css?family=Open+Sans:400,600,700" rel="stylesheet">
     <!-- waves.css -->
-    <link rel="stylesheet" href="../resources/pages/waves/css/waves.min.css" type="text/css" media="all">
+    <link rel="stylesheet" href="/main/resources/pages/waves/css/waves.min.css" type="text/css" media="all">
     <!-- Required Fremwork -->
-    <link rel="stylesheet" type="text/css" href="../resources/css/bootstrap/css/bootstrap.min.css">
+    <link rel="stylesheet" type="text/css" href="/main/resources/css/bootstrap/css/bootstrap.min.css">
     <!-- waves.css -->
-    <link rel="stylesheet" href="../resources/pages/waves/css/waves.min.css" type="text/css" media="all">
+    <link rel="stylesheet" href="/main/resources/pages/waves/css/waves.min.css" type="text/css" media="all">
     <!-- themify icon -->
-    <link rel="stylesheet" type="text/css" href="../resources/icon/themify-icons/themify-icons.css">
+    <link rel="stylesheet" type="text/css" href="/main/resources/icon/themify-icons/themify-icons.css">
     <!-- font-awesome-n -->
-    <link rel="stylesheet" type="text/css" href="../resources/css/font-awesome-n.min.css">
-    <link rel="stylesheet" type="text/css" href="../resources/css/font-awesome.min.css">
+    <link rel="stylesheet" type="text/css" href="/main/resources/css/font-awesome-n.min.css">
+    <link rel="stylesheet" type="text/css" href="/main/resources/css/font-awesome.min.css">
     <!-- scrollbar.css -->
-    <link rel="stylesheet" type="text/css" href="../resources/css/jquery.mCustomScrollbar.css">
+    <link rel="stylesheet" type="text/css" href="/main/resources/css/jquery.mCustomScrollbar.css">
     <!-- Style.css -->
-    <link rel="stylesheet" type="text/css" href="../resources/css/style.css">
-    <link rel="stylesheet" type="text/css" href="../resources/css/test.css">
+    <link rel="stylesheet" type="text/css" href="/main/resources/css/style.css">
+    <link rel="stylesheet" type="text/css" href="/main/resources/css/test.css">
+
 <style>
   .featured__item__text { width: 150px; }
 </style>
@@ -54,7 +56,7 @@
 
 <body>
     <!-- Pre-loader start -->
-    <div class="theme-loader">
+     <div class="theme-loader">
         <div class="loader-track">
             <div class="preloader-wrapper">
                 <div class="spinner-layer spinner-blue">
@@ -142,7 +144,7 @@
                                 <a href="index.html"> 커뮤니티 </a>
                             </li>
                             <li>
-                                <a href="storeMain.html"> 스토어 </a>
+                                <a href="storeMain.do"> 스토어 </a>
                             </li>
                         </ul>
                         <ul class="nav-right">
@@ -374,7 +376,7 @@
 
                             <ul class="pcoded-item pcoded-left-item">
                                 <li class="">
-                                    <a href="storeMain.html" class="waves-effect waves-dark">
+                                    <a href="storeMain.do" class="waves-effect waves-dark">
                                         <span class="pcoded-micon"><i class="ti-layers"></i><b>FC</b></span>
                                         <span class="pcoded-mtext">스토어</span>
                                         <span class="pcoded-mcaret"></span>
@@ -417,6 +419,13 @@
                                         <span class="pcoded-mcaret"></span>
                                     </a>
                                     <ul class="pcoded-submenu">
+                                    	<li class="">
+                                            <a href="dogList.do" class="waves-effect waves-dark">
+                                                <span class="pcoded-micon"><i class="ti-angle-right"></i></span>
+                                                <span class="pcoded-mtext">상품 전체보기</span>
+                                                <span class="pcoded-mcaret"></span>
+                                            </a>
+                                        </li>
                                         <li class="">
                                             <a href="dogFood.jsp" class="waves-effect waves-dark">
                                                 <span class="pcoded-micon"><i class="ti-angle-right"></i></span>
@@ -470,6 +479,13 @@
                                         <span class="pcoded-mcaret"></span>
                                     </a>
                                     <ul class="pcoded-submenu">
+                                    	<li class="">
+                                            <a href="catList.do" class="waves-effect waves-dark">
+                                                <span class="pcoded-micon"><i class="ti-angle-right"></i></span>
+                                                <span class="pcoded-mtext">상품 전체보기</span>
+                                                <span class="pcoded-mcaret"></span>
+                                            </a>
+                                        </li>
                                         <li class="">
                                             <a href="storeMain.html" class="waves-effect waves-dark">
                                                 <span class="pcoded-micon"><i class="ti-angle-right"></i></span>
@@ -532,117 +548,34 @@
                                                 <div class="row">
                                                     <div class="col-lg-12">
                                                         <div class="section-title">
-                                                            <h2>이달의 인기상품</h2>
+                                                            <h2>댕댕이 상품보기</h2>
                                                         </div>
                                                         <br>
                                                     </div>
                                                 </div>
                                                 <div class="monthly-products">
                                                     <ul>
-                                                        <li>
-                                                            <div class="col-lg-3 col-md-4 col-sm-6 mix oranges fresh-meat">
-                                                                <div class="featured__item">
-                                                                    <div>
-                                                                        <a href="productDetail.html">
-                                                                         <img src="https://projectbit.s3.us-east-2.amazonaws.com/catImg/CL001L.jpg">
-                                                                        </a>
-                                                                    </div>
-                                                                        <div class="featured__item__pic set-bg" data-setbg="img/featured/feature-1.jpg">
-                                                                            <a href="#"><i class="fa fa-shopping-cart"></i></a>
-                                                                        </div>
-                                                                        <br>
-                                                                    <div class="featured__item__text"style="width: 200px;">
-                                                                        <h6><a href="productDetail.html">나래 한복 케이프 모음집</a></h6>
-                                                                        <h5>35,000원</h5>
-                                                                    </div>
-                                                                </div>
-                                                            </div>
-                                                        </li>
-                                                        <li>
-                                                            <div class="col-lg-3 col-md-4 col-sm-6 mix oranges fresh-meat">
-                                                                <div class="featured__item">
-                                                                    <div>
-                                                                        <img src="../resources/images/cat.jpg">
-                                                                    </div>
-                                                                    <div class="featured__item__pic set-bg" data-setbg="img/featured/feature-1.jpg">
-                                                                        <a href="#"><i class="fa fa-shopping-cart"></i></a>
-                                                                    </div>
-                                                                    <br>
-                                                                    <div class="featured__item__text" style="width: 200px;">
-                                                                        <h6><a href="#">대왕빼빼로 캣닢 쿠션</a></h6>
-                                                                        <h5>27,900원</h5>
-                                                                    </div>
-                                                                </div>
-                                                            </div>
-                                                        </li>
-                                                        <li>
-                                                            <div class="col-lg-3 col-md-4 col-sm-6 mix oranges fresh-meat">
-                                                                <div class="featured__item">
-                                                                    <div>
-                                                                        <img src="../resources/images/dog.jpg">
-                                                                    </div>
-                                                                    <div class="featured__item__pic set-bg" data-setbg="img/featured/feature-1.jpg">
-                                                                        <a href="#"><i class="fa fa-shopping-cart"></i></a>
-                                                                    </div>
-                                                                    <br>
-                                                                    <div class="featured__item__text" style="width: 200px;">
-                                                                        <h6><a href="#">냄새잡는 참숯 배변패드</a></h6>
-                                                                        <h5>25,900원</h5>
-                                                                    </div>
-                                                                </div>
-                                                            </div>
-                                                        </li>
-                                                        <li>
-                                                            <div class="col-lg-3 col-md-4 col-sm-6 mix oranges fresh-meat">
-                                                                <div class="featured__item">
-                                                                    <div>
-                                                                        <img src="../resources/images/food.png">
-                                                                    </div>
-                                                                    <div class="featured__item__pic set-bg" data-setbg="img/featured/feature-1.jpg">
-                                                                        <a href="#"><i class="fa fa-shopping-cart"></i></a>
-                                                                    </div>
-                                                                    <br>
-                                                                    <div class="featured__item__text" style="width: 200px;">
-                                                                        <h6><a href="#">퍼피레시피 치킨 주식캔 150g</a></h6>
-                                                                        <h5>14,900원</h5>
-                                                                    </div>
-                                                                </div>
-                                                            </div>
-                                                        </li>
-                                                        <li>
-                                                            <div class="col-lg-3 col-md-4 col-sm-6 mix oranges fresh-meat">
-                                                                <div class="featured__item">
-                                                                    <div>
-                                                                        <img src="../resources/images/hanbok.jpg">
-                                                                    </div>
-                                                                    <div class="featured__item__pic set-bg" data-setbg="img/featured/feature-1.jpg">
-                                                                        <a href="#"><i class="fa fa-shopping-cart"></i></a>
-                                                                    </div>
-                                                                    <br>
-                                                                    <div class="featured__item__text" style="width: 200px;">
-                                                                        <h6><a href="#">나래 한복 케이프 모음집</a></h6>
-                                                                        <h5>35,000원</h5>
-                                                                    </div>
-                                                                </div>
-                                                            </div>
-                                                        </li>
-                                                        <li>
-                                                            <div class="col-lg-3 col-md-4 col-sm-6 mix oranges fresh-meat">
-                                                                <div class="featured__item">
-                                                                    <div>
-                                                                        <img src="../resources/images/cat.jpg">
-                                                                    </div>
-                                                                    <div class="featured__item__pic set-bg" data-setbg="img/featured/feature-1.jpg">
-                                                                        <a href="#"><i class="fa fa-shopping-cart"></i></a>
-                                                                    </div>
-                                                                    <br>
-                                                                    <div class="featured__item__text" style="width: 200px;">
-                                                                        <h6><a href="#">대왕빼빼로 캣닢 쿠션</a></h6>
-                                                                        <h5>27,900원</h5>
-                                                                    </div>
-                                                                </div>
-                                                            </div>
-                                                        </li>
+	                                                    <c:forEach var="list" items="${dogList }">
+	                                                        <li>
+	                                                            <div class="col-lg-3 col-md-4 col-sm-6 mix oranges fresh-meat">
+	                                                                <div class="featured__item">
+	                                                                    <div>
+	                                                                        <a href="productDetail.html">
+	                                                                         <img src="https://projectbit.s3.us-east-2.amazonaws.com/dogImg/CL001L.jpg">
+	                                                                        </a>
+	                                                                    </div>
+	                                                                        <div class="featured__item__pic set-bg" data-setbg="img/featured/feature-1.jpg">
+	                                                                            <a href="#"><i class="fa fa-shopping-cart"></i></a>
+	                                                                        </div>
+	                                                                        <br>
+	                                                                    <div class="featured__item__text"style="width: 200px;">
+	                                                                        <h6><a href="productDetail.html">나래 한복 케이프 모음집</a></h6>
+	                                                                        <h5>35,000원</h5>
+	                                                                    </div>
+	                                                                </div>
+	                                                            </div>
+	                                                        </li>
+	                                                    </c:forEach>
                                                     </ul>
                                                     </div>
                                                 </div>
@@ -744,23 +677,23 @@
     <!-- Warning Section Ends -->
 
     <!-- Required Jquery -->
-    <script type="text/javascript" src="../resources/js/jquery/jquery.min.js "></script>
-    <script type="text/javascript" src="../resources/js/jquery-ui/jquery-ui.min.js "></script>
-    <script type="text/javascript" src="../resources/js/popper.js/popper.min.js"></script>
-    <script type="text/javascript" src="../resources/js/bootstrap/js/bootstrap.min.js "></script>
+    <script type="text/javascript" src="/main/resources/js/jquery/jquery.min.js "></script>
+    <script type="text/javascript" src="/main/resources/js/jquery-ui/jquery-ui.min.js "></script>
+    <script type="text/javascript" src="/main/resources/js/popper.js/popper.min.js"></script>
+    <script type="text/javascript" src="/main/resources/js/bootstrap/js/bootstrap.min.js "></script>
     <!-- waves js -->
-    <script src="../resources/pages/waves/js/waves.min.js"></script>
+    <script src="/main/resources/pages/waves/js/waves.min.js"></script>
     <!-- jquery slimscroll js -->
-    <script type="text/javascript" src="../resources/js/jquery-slimscroll/jquery.slimscroll.js"></script>
+    <script type="text/javascript" src="/main/resources/js/jquery-slimscroll/jquery.slimscroll.js"></script>
 
     <!-- slimscroll js -->
-    <script src="../resources/js/jquery.mCustomScrollbar.concat.min.js "></script>
+    <script src="/main/resources/js/jquery.mCustomScrollbar.concat.min.js "></script>
 
     <!-- menu js -->
-    <script src="../resources/js/pcoded.min.js"></script>
-    <script src="../resources/js/vertical/vertical-layout.min.js "></script>
+    <script src="/main/resources/js/pcoded.min.js"></script>
+    <script src="/main/resources/js/vertical/vertical-layout.min.js "></script>
 
-    <script type="text/javascript" src="../resources/js/script.js "></script>
+    <script type="text/javascript" src="/main/resources/js/script.js "></script>
 </body>
 
 

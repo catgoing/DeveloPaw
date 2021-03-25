@@ -12,7 +12,7 @@
 			  
 			     <ul class="pcoded-item pcoded-left-item">
 			         <li class="">
-			             <a href="mypagemain.do" class="waves-effect waves-dark">
+			             <a href="myPageMain.jsp" class="waves-effect waves-dark">
 			                 <span class="pcoded-micon"><i class="ti-layers"></i><b>FC</b></span>
 			                 <span class="pcoded-mtext">마이 홈</span>
 			                 <span class="pcoded-mcaret"></span>
@@ -23,7 +23,7 @@
 			     <ul class="pcoded-item pcoded-left-item">
 			         <li class="">
 			          <!-- 회원번호(memberSerial)을 이용해서 내 정보 출력 -->
-			             <a href="myinfo.do" class="waves-effect waves-dark">
+			             <a href="myInfo.jsp" class="waves-effect waves-dark">
 			             <%-- <a href="myInfo.do?memberSerial=${memberSerial }" class="waves-effect waves-dark"> --%>
 			                 <span class="pcoded-micon">
 			                     <!-- <i class="ti-id-badge"></i><b>A</b> -->
@@ -34,35 +34,19 @@
 			         </li>
 			     </ul>
 			     <ul class="pcoded-item pcoded-left-item">
-			         <li class="pcoded-hasmenu ">
-			             <a href="mypetinfolist.do" class="waves-effect waves-dark">
+			         <li class="">
+			             <a href="myPetInfoList.jsp" class="waves-effect waves-dark">
 			                 <span class="pcoded-micon">
 			                     <!-- <i class="ti-id-badge"></i><b>A</b> -->
 			                 </span>
 			                 <span class="pcoded-mtext">반려동물</span>
 			                 <span class="pcoded-mcaret"></span>
 			             </a>
-			             <ul class="pcoded-submenu">
-			                 <li class=" ">
-			                     <a href="breadcrumb.html" class="waves-effect waves-dark">
-			                         <span class="pcoded-micon"><i class="ti-angle-right"></i></span>
-			                         <span class="pcoded-mtext">테스트1</span>
-			                         <span class="pcoded-mcaret"></span>
-			                     </a>
-			                 </li>
-			                 <li class=" ">
-			                     <a href="breadcrumb.html" class="waves-effect waves-dark">
-			                         <span class="pcoded-micon"><i class="ti-angle-right"></i></span>
-			                         <span class="pcoded-mtext">테스트2</span>
-			                         <span class="pcoded-mcaret"></span>
-			                     </a>
-			                 </li>
-			             </ul>
 			         </li>
 			     </ul>
 			     <ul class="pcoded-item pcoded-left-item">
 			         <li class="">
-			             <a href="mypostlist.do" class="waves-effect waves-dark">
+			             <a href="myPostList.jsp" class="waves-effect waves-dark">
 			                 <span class="pcoded-micon">
 			                     <!-- <i class="ti-id-badge"></i><b>A</b> -->
 			                 </span>
@@ -73,7 +57,7 @@
 			     </ul>
 			     <ul class="pcoded-item pcoded-left-item">
 			         <li class="">
-			             <a href="mypoint.do" class="waves-effect waves-dark">
+			             <a href="myPoint.jsp" class="waves-effect waves-dark">
 			                 <span class="pcoded-micon">
 			                     <!-- <i class="ti-id-badge"></i><b>A</b> -->
 			                 </span>
@@ -84,7 +68,7 @@
 			     </ul>
 			     <ul class="pcoded-item pcoded-left-item">
 			         <li class="">
-			             <a href="myinquiry.do" class="waves-effect waves-dark">
+			             <a href="myInquiry.jsp" class="waves-effect waves-dark">
 			                 <span class="pcoded-micon">
 			                     <!-- <i class="ti-id-badge"></i><b>A</b> -->
 			                 </span>
