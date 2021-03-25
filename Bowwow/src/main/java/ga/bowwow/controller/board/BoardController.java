@@ -51,26 +51,41 @@ public class BoardController {
 	*/
 	
 	
-	/*
-	@RequestMapping("/getBoardList.do")
-	public String getBoardList(Board vo, Model model) {
+	
+//	@RequestMapping("/getBoardList.do")
+//	public String getBoardList(Board vo, Model model) {
+//		System.out.println(">>> 게시글 전체 목록- String getBoardList()");
+//		System.out.println("> boardService : " + boardService);
+//
+//				
+//		List<Board> boardList = boardService.getBoardList(1);
+//		
+//		model.addAttribute("boardList", boardList);
+//		
+//		return "getBoardList.jsp";
+//	}	
+	
+	@RequestMapping("/community/list.do")
+	public String getBoardList(Model model) {
 		System.out.println(">>> 게시글 전체 목록- String getBoardList()");
 		System.out.println("> boardService : " + boardService);
+
 		
-		//검색조건 값이 없을 때 기본값 설정
-		if (vo.getSearchCondition() == null) {
-			vo.setSearchCondition("TITLE");
-		}
-		if (vo.getSearchKeyword() == null) {
-			vo.setSearchKeyword("");
-		}
-		List<Board> boardList = boardService.getBoardList(vo);
+		int board_idx = 1;
+		
+		List<Board> boardList = boardService.getBoardList(board_idx);
+		System.out.println("bowwow list : " + boardList);
 		
 		model.addAttribute("boardList", boardList);
 		
-		return "getBoardList.jsp";
+		
+
+		
+//		return "/godiary";
+//		return "redirect:/tiles/godiary.do";
+		return "diary_board";
 	}	
-	*/
+	
 	
 	@RequestMapping("/community/insertBoard.do")
 	public String insertBoard(Board vo) throws IllegalStateException, IOException {

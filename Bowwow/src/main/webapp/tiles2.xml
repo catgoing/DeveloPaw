@@ -9,6 +9,7 @@
                 <put-attribute name="body" value="" />
                 <put-attribute name="footer" value="/common/footer.jsp" />
         </definition>
+       
         
         <definition name="/productDetail" extends="/store">
 			<put-attribute name="body" value="/mypage/productDetail.jsp" />

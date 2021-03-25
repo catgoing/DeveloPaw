@@ -28,10 +28,9 @@
     <!--
     <mapper resource=""/>
      -->
-	<mapper resource="mappings/UserMapper.xml"/>
+    <!-- <mapper resource="mappings/UserMapper.xml"/> -->
     <mapper resource="mappings/BoardMapper.xml"/>
     <mapper resource="mappings/PetMapper.xml"/>
-    <mapper resource="mappings/ProductsReviewMapper.xml"/>
     <!--
     <mapper resource="mappings/StoreMapper.xml"/>
      -->

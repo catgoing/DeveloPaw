@@ -7,12 +7,12 @@
 	<title>Home</title>
 </head>
 <body>
-<script> window.location.href = 'http://localhost:8080/main/tiles/auth.do';
+<script> window.location.href = 'http://localhost:8080/main/tiles/list.do';
 </script>
 <h1>
-	Hello world!  
+	Hello world!
 </h1>
-	
+
 <P>  The time on the server is ${serverTime}. </P>
 </body>
 </html>
