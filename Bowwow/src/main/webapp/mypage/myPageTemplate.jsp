@@ -188,7 +188,7 @@
 			     </ul>
 			     <ul class="pcoded-item pcoded-left-item">
 			         <li class="">
-			             <a href="myInquiry.jsp" class="waves-effect waves-dark">
+			             <a href="myInquiry2.jsp" class="waves-effect waves-dark">
 			                 <span class="pcoded-micon">
 			                     <!-- <i class="ti-id-badge"></i><b>A</b> -->
 			                 </span>

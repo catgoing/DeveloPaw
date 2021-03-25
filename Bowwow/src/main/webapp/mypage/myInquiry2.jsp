@@ -7,7 +7,6 @@
 
 <head>
     <title>개발바닥</title>
-    <title>개발바닥</title>
     <!-- HTML5 Shim and Respond.js IE10 support of HTML5 elements and media queries -->
     <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
     <!--[if lt IE 10]>
@@ -135,38 +134,6 @@
 	width: 100%;
 }
 
-/* drop메뉴 사용 css
- .question-section .drop-category ul.active {
-    display: block;
- }
- .question-write .select-category{
- 	display: inline-block;
- 	text-align : left; 
- 	margin: 10px 0px 10px 60px; 
-	width: 80%;	
- }
- .drop-category {
-     position: relative;
- }
- .drop-category ul {
- 	display:none;
- 	position: absolute;
-  	background: #fff;
-	padding: 0 50px;
-    height: 50px;
-    line-height: 50px;
- }
- .drop-category ul li{
-  	background: #fff;
- 	width: 100%;
-  }
-.list-group-item{
-    position: static;
-    display: block;
-    padding: 0 20em 0 5em;
-    margin-bottom: -1px;
-} */
-
 </style>
 <script>
 
@@ -191,15 +158,227 @@
 </head>
 
 <body>
-    <div id="pcoded" class="pcoded">
-        <div class="pcoded-overlay-box"></div>
-        <div class="pcoded-main-container navbar-wrapper">
-        <!-- 헤더 -->
-		<%-- <tiles:insertAttribute name="header" /> --%>
-		<%@include file="/common/header.jsp" %>
-		
-		<div class="pcoded-main-container">
-			<div class="pcoded-wrapper">
+	<!-- Pre-loader start -->
+	<div class="theme-loader">
+		<div class="loader-track">
+			<div class="preloader-wrapper">
+				<div class="spinner-layer spinner-blue">
+					<div class="circle-clipper left">
+						<div class="circle"></div>
+					</div>
+					<div class="gap-patch">
+						<div class="circle"></div>
+					</div>
+					<div class="circle-clipper right">
+						<div class="circle"></div>
+					</div>
+				</div>
+				<div class="spinner-layer spinner-red">
+					<div class="circle-clipper left">
+						<div class="circle"></div>
+					</div>
+					<div class="gap-patch">
+						<div class="circle"></div>
+					</div>
+					<div class="circle-clipper right">
+						<div class="circle"></div>
+					</div>
+				</div>
+
+				<div class="spinner-layer spinner-yellow">
+					<div class="circle-clipper left">
+						<div class="circle"></div>
+					</div>
+					<div class="gap-patch">
+						<div class="circle"></div>
+					</div>
+					<div class="circle-clipper right">
+						<div class="circle"></div>
+					</div>
+				</div>
+
+				<div class="spinner-layer spinner-green">
+					<div class="circle-clipper left">
+						<div class="circle"></div>
+					</div>
+					<div class="gap-patch">
+						<div class="circle"></div>
+					</div>
+					<div class="circle-clipper right">
+						<div class="circle"></div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+	<!-- Pre-loader end -->
+	<div id="pcoded" class="pcoded">
+		<div class="pcoded-overlay-box"></div>
+		<div class="pcoded-container navbar-wrapper">
+			<nav class="navbar header-navbar pcoded-header">
+				<div class="navbar-wrapper" style="color: red;">
+					<div class="navbar-logo">
+						<a class="mobile-menu waves-effect waves-light"
+							id="mobile-collapse" href="#!"> <i class="ti-menu"></i>
+						</a>
+						<div class="mobile-search waves-effect waves-light">
+							<div class="header-search">
+								<div class="main-search morphsearch-search">
+									<div class="input-group">
+										<span class="input-group-prepend search-close"><i
+											class="ti-close input-group-text"></i></span> <input type="text"
+											class="form-control" placeholder="Enter Keyword"> <span
+											class="input-group-append search-btn"><i
+											class="ti-search input-group-text"></i></span>
+									</div>
+								</div>
+							</div>
+						</div>
+						<a href="storeMain.html"
+							style="text-align: center; font-weight: bold; font-size: 30px; margin-top: 7px;">BOW-WOW</a>
+
+						<a class="mobile-options waves-effect waves-light"> <i
+							class="ti-more"></i>
+						</a>
+					</div>
+					<div class="navbar-container container-fluid">
+						<ul class="nav-left">
+							<li>
+								<div class="sidebar_toggle">
+									<a href="javascript:void(0)"><i class="ti-menu"></i></a>
+								</div>
+							</li>
+							<li><a href="index.html"> 커뮤니티 </a></li>
+							<li><a href="storeMain.do"> 스토어 </a></li>
+						</ul>
+						<ul class="nav-right">
+							<li class="form-group form-primary"><input type="text"
+								name="footer-email" style="margin-top: 12px; width: 250px;"
+								class="form-control" placeholder="검색창"> <span
+								class="form-bar"></span></li>
+							<li class="header-notification"><a href="#!"
+								class="waves-effect waves-light"> <i class="ti-bell"></i> <span
+									class="badge bg-c-red"></span>
+							</a>
+								<ul class="show-notification">
+									<li>
+										<h6>Notifications</h6> <label class="label label-danger">New</label>
+									</li>
+									<li class="waves-effect waves-light">
+										<div class="media">
+											<img class="d-flex align-self-center img-radius"
+												src="../resources/images/avatar-2.jpg"
+												alt="Generic placeholder image">
+											<div class="media-body">
+												<h5 class="notification-user">John Doe</h5>
+												<p class="notification-msg">Lorem ipsum dolor sit amet,
+													consectetuer elit.</p>
+												<span class="notification-time">30 minutes ago</span>
+											</div>
+										</div>
+									</li>
+									<li class="waves-effect waves-light">
+										<div class="media">
+											<img class="d-flex align-self-center img-radius"
+												src="../resources/images/avatar-4.jpg"
+												alt="Generic placeholder image">
+											<div class="media-body">
+												<h5 class="notification-user">Joseph William</h5>
+												<p class="notification-msg">Lorem ipsum dolor sit amet,
+													consectetuer elit.</p>
+												<span class="notification-time">30 minutes ago</span>
+											</div>
+										</div>
+									</li>
+									<li class="waves-effect waves-light">
+										<div class="media">
+											<img class="d-flex align-self-center img-radius"
+												src="../resources/images/avatar-3.jpg"
+												alt="Generic placeholder image">
+											<div class="media-body">
+												<h5 class="notification-user">Sara Soudein</h5>
+												<p class="notification-msg">Lorem ipsum dolor sit amet,
+													consectetuer elit.</p>
+												<span class="notification-time">30 minutes ago</span>
+											</div>
+										</div>
+									</li>
+								</ul></li>
+							<li class="header-notification"><a href="#!"
+								class="waves-effect waves-light"> <i
+									class="fa fa-shopping-cart" aria-hidden="true"></i> <span
+									class="badge bg-c-red"></span>
+							</a>
+								<ul class="show-notification">
+									<li>
+										<h6>Notifications</h6> <label class="label label-danger">New</label>
+									</li>
+									<li class="waves-effect waves-light">
+										<div class="media">
+											<img class="d-flex align-self-center img-radius"
+												src="../resources/images/avatar-2.jpg"
+												alt="Generic placeholder image">
+											<div class="media-body">
+												<h5 class="notification-user">John Doe</h5>
+												<p class="notification-msg">Lorem ipsum dolor sit amet,
+													consectetuer elit.</p>
+												<span class="notification-time">30 minutes ago</span>
+											</div>
+										</div>
+									</li>
+									<li class="waves-effect waves-light">
+										<div class="media">
+											<img class="d-flex align-self-center img-radius"
+												src="../resources/images/avatar-4.jpg"
+												alt="Generic placeholder image">
+											<div class="media-body">
+												<h5 class="notification-user">Joseph William</h5>
+												<p class="notification-msg">Lorem ipsum dolor sit amet,
+													consectetuer elit.</p>
+												<span class="notification-time">30 minutes ago</span>
+											</div>
+										</div>
+									</li>
+									<li class="waves-effect waves-light">
+										<div class="media">
+											<img class="d-flex align-self-center img-radius"
+												src="../resources/images/avatar-3.jpg"
+												alt="Generic placeholder image">
+											<div class="media-body">
+												<h5 class="notification-user">Sara Soudein</h5>
+												<p class="notification-msg">Lorem ipsum dolor sit amet,
+													consectetuer elit.</p>
+												<span class="notification-time">30 minutes ago</span>
+											</div>
+										</div>
+									</li>
+								</ul></li>
+							<li class="user-profile header-notification"><a href="#!"
+								class="waves-effect waves-light"> <img
+									src="../resources/images/avatar-4.jpg" class="img-radius"
+									alt="User-Profile-Image"> <i class="ti-angle-down"></i>
+							</a>
+								<ul class="show-notification profile-notification">
+									<li class="waves-effect waves-light"><a href="#!">마이홈
+									</a></li>
+									<li class="waves-effect waves-light"><a
+										href="user-profile.html">프로필 </a></li>
+									<li class="waves-effect waves-light"><a
+										href="email-inbox.html">반려동물 </a></li>
+									<li class="waves-effect waves-light"><a
+										href="auth-lock-screen.html">게시글</a></li>
+									<li class="waves-effect waves-light"><a
+										href="auth-normal-sign-in.html">포인트 내역 </a></li>
+									<li class="waves-effect waves-light"><a
+										href="auth-normal-sign-in.html">나의 쇼핑 </a></li>
+									<li class="waves-effect waves-light"><a
+										href="auth-normal-sign-in.html">로그아웃 </a></li>
+								</ul></li>
+						</ul>
+					</div>
+				</div>
+			</nav>
+
 			<!-- 좌측 메뉴바 시작 -->
 <div class="pcoded-main-container">
 	<div class="pcoded-wrapper">
@@ -214,7 +393,7 @@
 			  
 			     <ul class="pcoded-item pcoded-left-item">
 			         <li class="">
-			             <a href="myPageMain.do" class="waves-effect waves-dark">
+			             <a href="myPageMain.jsp" class="waves-effect waves-dark">
 			                 <span class="pcoded-micon"><i class="ti-layers"></i><b>FC</b></span>
 			                 <span class="pcoded-mtext">마이 홈</span>
 			                 <span class="pcoded-mcaret"></span>
@@ -225,7 +404,7 @@
 			     <ul class="pcoded-item pcoded-left-item">
 			         <li class="">
 			          <!-- 회원번호(memberSerial)을 이용해서 내 정보 출력 -->
-			             <a href="myInfo.do" class="waves-effect waves-dark">
+			             <a href="myInfo.jsp" class="waves-effect waves-dark">
 			             <%-- <a href="myInfo.do?memberSerial=${memberSerial }" class="waves-effect waves-dark"> --%>
 			                 <span class="pcoded-micon">
 			                     <!-- <i class="ti-id-badge"></i><b>A</b> -->
@@ -237,7 +416,7 @@
 			     </ul>
 			     <ul class="pcoded-item pcoded-left-item">
 			         <li class="">
-			             <a href="myPetInfoList.do" class="waves-effect waves-dark">
+			             <a href="myPetInfoList2.jsp" class="waves-effect waves-dark">
 			                 <span class="pcoded-micon">
 			                     <!-- <i class="ti-id-badge"></i><b>A</b> -->
 			                 </span>
@@ -248,7 +427,7 @@
 			     </ul>
 			     <ul class="pcoded-item pcoded-left-item">
 			         <li class="">
-			             <a href="myPostList.do" class="waves-effect waves-dark">
+			             <a href="myPostList.jsp" class="waves-effect waves-dark">
 			                 <span class="pcoded-micon">
 			                     <!-- <i class="ti-id-badge"></i><b>A</b> -->
 			                 </span>
@@ -259,7 +438,7 @@
 			     </ul>
 			     <ul class="pcoded-item pcoded-left-item">
 			         <li class="">
-			             <a href="myPoint.do" class="waves-effect waves-dark">
+			             <a href="myPoint.jsp" class="waves-effect waves-dark">
 			                 <span class="pcoded-micon">
 			                     <!-- <i class="ti-id-badge"></i><b>A</b> -->
 			                 </span>
@@ -270,7 +449,7 @@
 			     </ul>
 			     <ul class="pcoded-item pcoded-left-item">
 			         <li class="">
-			             <a href="myInquiry.do" class="waves-effect waves-dark">
+			             <a href="myInquiry2.jsp" class="waves-effect waves-dark">
 			                 <span class="pcoded-micon">
 			                     <!-- <i class="ti-id-badge"></i><b>A</b> -->
 			                 </span>
@@ -282,10 +461,10 @@
 			 </div>
 		</nav>
 		
-	<!-- 좌측 메뉴바 끝 -->
-				
-			<div class="pcoded-content">
-				<div class="pcoded-inner-content">
+<!-- 좌측 메뉴바 끝 -->
+	
+<div class="pcoded-content">
+	<div class="pcoded-inner-content">
 		<!-- Main-body start 본문 시작 -->
 		<div class="main-body">
 	    <div class="page-wrapper">
@@ -294,8 +473,8 @@
 						<div class="my-inquiry">
 							<div class="question-write">
 								<div class="question-title">
-							     	<!-- <h2>고객님의 문의사항을 해결해드리겠습니다.</h2> -->
-							     	<!-- <input type="button" class="cancel-btn" value="취소"> -->
+							     	<h2>고객님의 문의사항을 해결해드리겠습니다.<label for="tt">^^</label></h2>
+									<br>
 						     	</div>
 						     	
 						     	<div class="card-block accordion-block">
@@ -306,38 +485,35 @@
                                                    <a id="tt" class="accordion-msg waves-effect waves-dark" data-toggle="collapse"
                                                    data-parent="#accordion" href="#collapseOne"
                                                    aria-expanded="true" aria-controls="collapseOne"></a>
-										</div>
-                                       <div id="collapseOne" class="panel-collapse collapse in" role="tabpanel" aria-labelledby="headingOne">
+										  </div>
+                                      	  <div id="collapseOne" class="panel-collapse collapse in" role="tabpanel" aria-labelledby="headingOne">
                                            <div class="accordion-content accordion-desc">
                                                <div class="form-group row" id="question-section">
-							    	<input type="text" name="inquiryTitle" placeholder="제목을 입력하세요">
-							    	<div class="col-sm-10">
-							    		<input type="hidden" name="contact_us_type" value="">
-							    		<select class="form-control" aria-label="문의유형선택">
-										  <option selected>문의 유형 선택</option>
-										  <option value="1" onclick="inquiryType('contactUs')">이용문의</option>
-										  <option value="2" onclick="inquiryType('buy')">구매문의</option>
-										  <option value="3" onclick="inquiryType('delivery')">배송문의</option>
-										  <option value="4" onclick="inquiryType('etc')">기타문의</option>
-										</select>
-							    	</div>
-							    	<textarea id="textbox" name="inquiryContent" placeholder="질문을 입력하세요!"></textarea>
-								    <div class="upload-file">
-								    	<div class="upload-file-content">
-									    	<input type="file" class="form-control" id="contactUsImage" name="contactUsImage" accept="image/*">
-								    	</div>
-								    </div>
-							    </div>
+                                               	<input type="text" class="form-control" name="inquiryTitle" placeholder="제목을 입력하세요">
+							    					<div class="col-sm-10">
+							    							<input type="hidden" name="contact_us_type" value="">
+													    		<select class="form-control" aria-label="문의유형선택">
+																  <option selected disabled>문의 유형 선택</option>
+																  <option value="1" onclick="inquiryType('contactUs')">이용문의</option>
+																  <option value="2" onclick="inquiryType('buy')">구매문의</option>
+																  <option value="3" onclick="inquiryType('delivery')">배송문의</option>
+																  <option value="4" onclick="inquiryType('etc')">기타문의</option>
+																</select>
+							    					</div>
+							    					<textarea class="form-control" name="inquiryContent" rows="5" placeholder="질문을 입력하세요!"></textarea>
+								  					<div class="upload-file">
+												    	<div class="upload-file-content">
+													    	<input type="file" class="form-control" id="contactUsImage" name="contactUsImage" accept="image/*">
+												    	</div>
+												    </div>
+							    				</div>
                                            </div>
                                            <input type="button" class="contact-btn" value="문의하기" >	
-							    <input type="button" class="cancel-btn" value="취소">
+						    			   <input type="button" class="cancel-btn" value="취소">
                                        </div>
-                                   </div>
-                               </div>
-                           </div>
-						     	
-							    <!-- <input type="button" class="trans-btn" value="문의하기" >	
-							    <input type="button" class="cancel-btn" value="취소"> -->
+                                  </div>
+                                </div>
+                              </div>
 							</div>
 							
 							<div class="content-list">
@@ -347,7 +523,6 @@
 										<th width="150">작성자</th>
 										<th width="150">작성일</th>
 									</tr>
-									
 								<c:if test="${empty inquiryList }">
 									<tr>
 										<td colspan="5" class="center">데이터가 없습니다.</td>
@@ -357,7 +532,7 @@
 									<c:forEach var="inquiry" items="${inquiryList }">
 									<tr>
 										<td>
-											<a href="myInquiryDetail.do?seq=${inquiry.seq }">
+											<a href="myInquiryDetail.jsp?seq=${inquiry.seq }">
 												${inquiry.title }</a>
 										</td>
 										<td>${inquiry.writer }</td>
@@ -367,21 +542,21 @@
 								</c:if>
 								</table>
 								<form action="getInquiryTypeList.do" method="post">
-									<table class="border-none">
-										<tr>
-											<td class="input-group">
-											    <select class="form-control" id="inputGroupSelect04" aria-label="Example select with button addon">
-											      <option selected>전체보기</option>
-											      <option value="1">이용문의</option>
-											      <option value="2">구매문의</option>
-											      <option value="3">배송문의</option>
-											      <option value="4">기타문의</option>
-											    </select>
-												<input type="button" class="btn btn-outline-secondary" value="검색">
-											</td>
-										</tr>
-									</table>
-									</form>
+								<table class="border-none">
+									<tr>
+										<td class="input-group">
+										    <select class="form-control" id="inputGroupSelect04" aria-label="Example select with button addon">
+										      <option selected>전체보기</option>
+										      <option value="1">이용문의</option>
+										      <option value="2">구매문의</option>
+										      <option value="3">배송문의</option>
+										      <option value="4">기타문의</option>
+										    </select>
+											<input type="button" class="btn btn-outline-secondary" value="검색">
+										</td>
+									</tr>
+								</table>
+								</form>
 						     </div>
 					    </div>
 				    </div>
@@ -389,9 +564,8 @@
             	</div>
 	            <div id="styleSelector"> </div>
 	        </div>
-	    </div>
-	</div>
-	
+	      </div>
+	      
 	<button class="scroll-top" id="js-button" style="margin-bottom: 190px; margin-right: 30px;">
         <i class="fa fa-chevron-up" aria-hidden="true">TOP</i>
     </button>
@@ -419,13 +593,19 @@
         </script>
         
 	<!-- footer 푸터 시작부분-->
-	<%-- <tiles:insertAttribute name="footer" /> --%>
-	<%@include file="/common/footer.jsp" %>
-	<!-- footer 푸터 끝부분-->
-    </div>
-</div>
-    </div>
-</div>
+            <div style="display: block;">
+                <footer class="footer navbar-wrapper">
+                    <div class="footer-wrapper navbar-wrapper">
+                        <div class="footer-box" style="height: 100px; text-align: center;">
+                            푸터
+                        </div>
+                    </div>
+                </footer>
+                <!-- footer 푸터 끝부분-->
+          </div>
+        </div>
+      </div>
+    </div></div></div>
 	<!-- Required Jquery -->
     <script type="text/javascript" src="../resources/js/jquery/jquery.min.js "></script>
     <script type="text/javascript" src="../resources/js/jquery-ui/jquery-ui.min.js "></script>
@@ -443,6 +623,6 @@
     <script src="../resources/js/pcoded.min.js"></script>
     <script src="../resources/js/vertical/vertical-layout.min.js "></script>
 
-    <script type="text/javascript" src="../resources/js/script.js "></script>   
+    <script type="text/javascript" src="../resources/js/script.js "></script>
 </body>
 </html>

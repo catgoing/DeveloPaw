@@ -76,8 +76,16 @@
 </style>
 <script>
 
- function newPetInfo(frm) {
+ function savePetInfo(frm) {
 	 /* 폼 받아서 ajax처리 - patch */
+	 var pSerial = document.petinfoform.petSerial.value;
+	 if(!pSerial){
+		 console.log(pSerial);
+		 /* insert 처리 */
+	 } else {
+		 console.log(pSerial);
+		 /* update 처리 */
+	 }
  }
  
  function deletePetInfo(frm){
@@ -88,17 +96,7 @@
 	 var petType = frm.petType.value;
 	 console.log(petType);
 	 
-	 if(petType=='dog'){
-		 console.log("개선택");
-		 closePopup();
-		 openPopup2();
-		 wrapWindowByMask();
-	 } else if(petType=='cat'){
-		 console.log("냥선택");
-		 closePopup();
-		 openPopup3();
-		 wrapWindowByMask();
-	 }
+	 
  }
  
  function setPetSerial(serial){
@@ -108,7 +106,7 @@
  
  function transferType(type){
 	 console.log(type);
-	 $('#animalType').val(type);
+	 $('#petType').val(type);
  }
 /*  $('#closeModalBtn').on('click', function(){
 	 $('#petInfo').modal('hide');
@@ -120,150 +118,310 @@
 </head>
 
 <body>
-    <!-- Pre-loader start -->
-     <div class="theme-loader">
-        <div class="loader-track">
-            <div class="preloader-wrapper">
-                <div class="spinner-layer spinner-blue">
-                    <div class="circle-clipper left">
-                        <div class="circle"></div>
-                    </div>
-                    <div class="gap-patch">
-                        <div class="circle"></div>
-                    </div>
-                    <div class="circle-clipper right">
-                        <div class="circle"></div>
-                    </div>
-                </div>
-                <div class="spinner-layer spinner-red">
-                    <div class="circle-clipper left">
-                        <div class="circle"></div>
-                    </div>
-                    <div class="gap-patch">
-                        <div class="circle"></div>
-                    </div>
-                    <div class="circle-clipper right">
-                        <div class="circle"></div>
-                    </div>
-                </div>
+	<!-- Pre-loader start -->
+	<div class="theme-loader">
+		<div class="loader-track">
+			<div class="preloader-wrapper">
+				<div class="spinner-layer spinner-blue">
+					<div class="circle-clipper left">
+						<div class="circle"></div>
+					</div>
+					<div class="gap-patch">
+						<div class="circle"></div>
+					</div>
+					<div class="circle-clipper right">
+						<div class="circle"></div>
+					</div>
+				</div>
+				<div class="spinner-layer spinner-red">
+					<div class="circle-clipper left">
+						<div class="circle"></div>
+					</div>
+					<div class="gap-patch">
+						<div class="circle"></div>
+					</div>
+					<div class="circle-clipper right">
+						<div class="circle"></div>
+					</div>
+				</div>
 
-                <div class="spinner-layer spinner-yellow">
-                    <div class="circle-clipper left">
-                        <div class="circle"></div>
-                    </div>
-                    <div class="gap-patch">
-                        <div class="circle"></div>
-                    </div>
-                    <div class="circle-clipper right">
-                        <div class="circle"></div>
-                    </div>
-                </div>
+				<div class="spinner-layer spinner-yellow">
+					<div class="circle-clipper left">
+						<div class="circle"></div>
+					</div>
+					<div class="gap-patch">
+						<div class="circle"></div>
+					</div>
+					<div class="circle-clipper right">
+						<div class="circle"></div>
+					</div>
+				</div>
 
-                <div class="spinner-layer spinner-green">
-                    <div class="circle-clipper left">
-                        <div class="circle"></div>
-                    </div>
-                    <div class="gap-patch">
-                        <div class="circle"></div>
-                    </div>
-                    <div class="circle-clipper right">
-                        <div class="circle"></div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
-    <!-- Pre-loader end -->
-    <div id="pcoded" class="pcoded">
-        <div class="pcoded-overlay-box"></div>
-        <div class="pcoded-main-container navbar-wrapper">
-        <!-- 헤더 -->
-		<%@include file="/common/header.jsp" %>
-		
-		<div class="pcoded-main-container">
-			<div class="pcoded-wrapper">
+				<div class="spinner-layer spinner-green">
+					<div class="circle-clipper left">
+						<div class="circle"></div>
+					</div>
+					<div class="gap-patch">
+						<div class="circle"></div>
+					</div>
+					<div class="circle-clipper right">
+						<div class="circle"></div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+	<!-- Pre-loader end -->
+	<div id="pcoded" class="pcoded">
+		<div class="pcoded-overlay-box"></div>
+		<div class="pcoded-container navbar-wrapper">
+			<nav class="navbar header-navbar pcoded-header">
+				<div class="navbar-wrapper" style="color: red;">
+					<div class="navbar-logo">
+						<a class="mobile-menu waves-effect waves-light"
+							id="mobile-collapse" href="#!"> <i class="ti-menu"></i>
+						</a>
+						<div class="mobile-search waves-effect waves-light">
+							<div class="header-search">
+								<div class="main-search morphsearch-search">
+									<div class="input-group">
+										<span class="input-group-prepend search-close"><i
+											class="ti-close input-group-text"></i></span> <input type="text"
+											class="form-control" placeholder="Enter Keyword"> <span
+											class="input-group-append search-btn"><i
+											class="ti-search input-group-text"></i></span>
+									</div>
+								</div>
+							</div>
+						</div>
+						<a href="storeMain.html"
+							style="text-align: center; font-weight: bold; font-size: 30px; margin-top: 7px;">BOW-WOW</a>
+
+						<a class="mobile-options waves-effect waves-light"> <i
+							class="ti-more"></i>
+						</a>
+					</div>
+					<div class="navbar-container container-fluid">
+						<ul class="nav-left">
+							<li>
+								<div class="sidebar_toggle">
+									<a href="javascript:void(0)"><i class="ti-menu"></i></a>
+								</div>
+							</li>
+							<li><a href="index.html"> 커뮤니티 </a></li>
+							<li><a href="storeMain.do"> 스토어 </a></li>
+						</ul>
+						<ul class="nav-right">
+							<li class="form-group form-primary"><input type="text"
+								name="footer-email" style="margin-top: 12px; width: 250px;"
+								class="form-control" placeholder="검색창"> <span
+								class="form-bar"></span></li>
+							<li class="header-notification"><a href="#!"
+								class="waves-effect waves-light"> <i class="ti-bell"></i> <span
+									class="badge bg-c-red"></span>
+							</a>
+								<ul class="show-notification">
+									<li>
+										<h6>Notifications</h6> <label class="label label-danger">New</label>
+									</li>
+									<li class="waves-effect waves-light">
+										<div class="media">
+											<img class="d-flex align-self-center img-radius"
+												src="../resources/images/avatar-2.jpg"
+												alt="Generic placeholder image">
+											<div class="media-body">
+												<h5 class="notification-user">John Doe</h5>
+												<p class="notification-msg">Lorem ipsum dolor sit amet,
+													consectetuer elit.</p>
+												<span class="notification-time">30 minutes ago</span>
+											</div>
+										</div>
+									</li>
+									<li class="waves-effect waves-light">
+										<div class="media">
+											<img class="d-flex align-self-center img-radius"
+												src="../resources/images/avatar-4.jpg"
+												alt="Generic placeholder image">
+											<div class="media-body">
+												<h5 class="notification-user">Joseph William</h5>
+												<p class="notification-msg">Lorem ipsum dolor sit amet,
+													consectetuer elit.</p>
+												<span class="notification-time">30 minutes ago</span>
+											</div>
+										</div>
+									</li>
+									<li class="waves-effect waves-light">
+										<div class="media">
+											<img class="d-flex align-self-center img-radius"
+												src="../resources/images/avatar-3.jpg"
+												alt="Generic placeholder image">
+											<div class="media-body">
+												<h5 class="notification-user">Sara Soudein</h5>
+												<p class="notification-msg">Lorem ipsum dolor sit amet,
+													consectetuer elit.</p>
+												<span class="notification-time">30 minutes ago</span>
+											</div>
+										</div>
+									</li>
+								</ul></li>
+							<li class="header-notification"><a href="#!"
+								class="waves-effect waves-light"> <i
+									class="fa fa-shopping-cart" aria-hidden="true"></i> <span
+									class="badge bg-c-red"></span>
+							</a>
+								<ul class="show-notification">
+									<li>
+										<h6>Notifications</h6> <label class="label label-danger">New</label>
+									</li>
+									<li class="waves-effect waves-light">
+										<div class="media">
+											<img class="d-flex align-self-center img-radius"
+												src="../resources/images/avatar-2.jpg"
+												alt="Generic placeholder image">
+											<div class="media-body">
+												<h5 class="notification-user">John Doe</h5>
+												<p class="notification-msg">Lorem ipsum dolor sit amet,
+													consectetuer elit.</p>
+												<span class="notification-time">30 minutes ago</span>
+											</div>
+										</div>
+									</li>
+									<li class="waves-effect waves-light">
+										<div class="media">
+											<img class="d-flex align-self-center img-radius"
+												src="../resources/images/avatar-4.jpg"
+												alt="Generic placeholder image">
+											<div class="media-body">
+												<h5 class="notification-user">Joseph William</h5>
+												<p class="notification-msg">Lorem ipsum dolor sit amet,
+													consectetuer elit.</p>
+												<span class="notification-time">30 minutes ago</span>
+											</div>
+										</div>
+									</li>
+									<li class="waves-effect waves-light">
+										<div class="media">
+											<img class="d-flex align-self-center img-radius"
+												src="../resources/images/avatar-3.jpg"
+												alt="Generic placeholder image">
+											<div class="media-body">
+												<h5 class="notification-user">Sara Soudein</h5>
+												<p class="notification-msg">Lorem ipsum dolor sit amet,
+													consectetuer elit.</p>
+												<span class="notification-time">30 minutes ago</span>
+											</div>
+										</div>
+									</li>
+								</ul></li>
+							<li class="user-profile header-notification"><a href="#!"
+								class="waves-effect waves-light"> <img
+									src="../resources/images/avatar-4.jpg" class="img-radius"
+									alt="User-Profile-Image"> <i class="ti-angle-down"></i>
+							</a>
+								<ul class="show-notification profile-notification">
+									<li class="waves-effect waves-light"><a href="#!">마이홈
+									</a></li>
+									<li class="waves-effect waves-light"><a
+										href="user-profile.html">프로필 </a></li>
+									<li class="waves-effect waves-light"><a
+										href="email-inbox.html">반려동물 </a></li>
+									<li class="waves-effect waves-light"><a
+										href="auth-lock-screen.html">게시글</a></li>
+									<li class="waves-effect waves-light"><a
+										href="auth-normal-sign-in.html">포인트 내역 </a></li>
+									<li class="waves-effect waves-light"><a
+										href="auth-normal-sign-in.html">나의 쇼핑 </a></li>
+									<li class="waves-effect waves-light"><a
+										href="auth-normal-sign-in.html">로그아웃 </a></li>
+								</ul></li>
+						</ul>
+					</div>
+				</div>
+			</nav>
+
 			<!-- 좌측 메뉴바 시작 -->
-			<div class="pcoded-main-container">
-				<div class="pcoded-wrapper">
-					<nav class="pcoded-navbar">
-						<div class="sidebar_toggle"><a href="#"><i class="icon-close icons"></i></a></div>
-							<div class="pcoded-inner-navbar main-menu">
-						    <div class="p-15 p-b-0">
-						         <form class="form-material">
-									<!-- 이부분 form을 없애면 좌측메뉴 시작부분이 위쪽으로 조금 올라감 -->
-						         </form>
-						     </div>
-						  
-						     <ul class="pcoded-item pcoded-left-item">
-						         <li class="">
-						             <a href="myPageMain.jsp" class="waves-effect waves-dark">
-						                 <span class="pcoded-micon"><i class="ti-layers"></i><b>FC</b></span>
-						                 <span class="pcoded-mtext">마이 홈</span>
-						                 <span class="pcoded-mcaret"></span>
-						             </a>
-						         </li>
-						     </ul>
-						
-						     <ul class="pcoded-item pcoded-left-item">
-						         <li class="">
-						          <!-- 회원번호(memberSerial)을 이용해서 내 정보 출력 -->
-						             <a href="myInfo.jsp" class="waves-effect waves-dark">
-						             <%-- <a href="myInfo.do?memberSerial=${memberSerial }" class="waves-effect waves-dark"> --%>
-						                 <span class="pcoded-micon">
-						                     <!-- <i class="ti-id-badge"></i><b>A</b> -->
-						                 </span>
-						                 <span class="pcoded-mtext">프로필</span>
-						                 <span class="pcoded-mcaret"></span>
-						             </a>
-						         </li>
-						     </ul>
-						     <ul class="pcoded-item pcoded-left-item">
-						         <li class="">
-						             <a href="myPetInfoList2.jsp" class="waves-effect waves-dark">
-						                 <span class="pcoded-micon">
-						                     <!-- <i class="ti-id-badge"></i><b>A</b> -->
-						                 </span>
-						                 <span class="pcoded-mtext">반려동물</span>
-						                 <span class="pcoded-mcaret"></span>
-						             </a>
-						         </li>
-						     </ul>
-						     <ul class="pcoded-item pcoded-left-item">
-						         <li class="">
-						             <a href="myPostList.jsp" class="waves-effect waves-dark">
-						                 <span class="pcoded-micon">
-						                     <!-- <i class="ti-id-badge"></i><b>A</b> -->
-						                 </span>
-						                 <span class="pcoded-mtext">게시글</span>
-						                 <span class="pcoded-mcaret"></span>
-						             </a>
-						         </li>
-						     </ul>
-						     <ul class="pcoded-item pcoded-left-item">
-						         <li class="">
-						             <a href="myPoint.jsp" class="waves-effect waves-dark">
-						                 <span class="pcoded-micon">
-						                     <!-- <i class="ti-id-badge"></i><b>A</b> -->
-						                 </span>
-						                 <span class="pcoded-mtext">적립금(?)</span>
-						                 <span class="pcoded-mcaret"></span>
-						             </a>
-						         </li>
-						     </ul>
-						     <ul class="pcoded-item pcoded-left-item">
-						         <li class="">
-						             <a href="myInquiry.jsp" class="waves-effect waves-dark">
-						                 <span class="pcoded-micon">
-						                     <!-- <i class="ti-id-badge"></i><b>A</b> -->
-						                 </span>
-						                 <span class="pcoded-mtext">1:1문의</span>
-						                 <span class="pcoded-mcaret"></span>
-						             </a>
-						         </li>
-						     </ul>
-						 </div>
-					</nav>
-				<!-- 좌측 메뉴바 끝 -->
+<div class="pcoded-main-container">
+	<div class="pcoded-wrapper">
+		<nav class="pcoded-navbar">
+			<div class="sidebar_toggle"><a href="#"><i class="icon-close icons"></i></a></div>
+				<div class="pcoded-inner-navbar main-menu">
+			    <div class="p-15 p-b-0">
+			         <form class="form-material">
+						<!-- 이부분 form을 없애면 좌측메뉴 시작부분이 위쪽으로 조금 올라감 -->
+			         </form>
+			     </div>
+			  
+			     <ul class="pcoded-item pcoded-left-item">
+			         <li class="">
+			             <a href="myPageMain.jsp" class="waves-effect waves-dark">
+			                 <span class="pcoded-micon"><i class="ti-layers"></i><b>FC</b></span>
+			                 <span class="pcoded-mtext">마이 홈</span>
+			                 <span class="pcoded-mcaret"></span>
+			             </a>
+			         </li>
+			     </ul>
+			
+			     <ul class="pcoded-item pcoded-left-item">
+			         <li class="">
+			          <!-- 회원번호(memberSerial)을 이용해서 내 정보 출력 -->
+			             <a href="myInfo.jsp" class="waves-effect waves-dark">
+			             <%-- <a href="myInfo.do?memberSerial=${memberSerial }" class="waves-effect waves-dark"> --%>
+			                 <span class="pcoded-micon">
+			                     <!-- <i class="ti-id-badge"></i><b>A</b> -->
+			                 </span>
+			                 <span class="pcoded-mtext">프로필</span>
+			                 <span class="pcoded-mcaret"></span>
+			             </a>
+			         </li>
+			     </ul>
+			     <ul class="pcoded-item pcoded-left-item">
+			         <li class="">
+			             <a href="myPetInfoList2.jsp" class="waves-effect waves-dark">
+			                 <span class="pcoded-micon">
+			                     <!-- <i class="ti-id-badge"></i><b>A</b> -->
+			                 </span>
+			                 <span class="pcoded-mtext">반려동물</span>
+			                 <span class="pcoded-mcaret"></span>
+			             </a>
+			         </li>
+			     </ul>
+			     <ul class="pcoded-item pcoded-left-item">
+			         <li class="">
+			             <a href="myPostList.jsp" class="waves-effect waves-dark">
+			                 <span class="pcoded-micon">
+			                     <!-- <i class="ti-id-badge"></i><b>A</b> -->
+			                 </span>
+			                 <span class="pcoded-mtext">게시글</span>
+			                 <span class="pcoded-mcaret"></span>
+			             </a>
+			         </li>
+			     </ul>
+			     <ul class="pcoded-item pcoded-left-item">
+			         <li class="">
+			             <a href="myPoint.jsp" class="waves-effect waves-dark">
+			                 <span class="pcoded-micon">
+			                     <!-- <i class="ti-id-badge"></i><b>A</b> -->
+			                 </span>
+			                 <span class="pcoded-mtext">적립금(?)</span>
+			                 <span class="pcoded-mcaret"></span>
+			             </a>
+			         </li>
+			     </ul>
+			     <ul class="pcoded-item pcoded-left-item">
+			         <li class="">
+			             <a href="myInquiry2.jsp" class="waves-effect waves-dark">
+			                 <span class="pcoded-micon">
+			                     <!-- <i class="ti-id-badge"></i><b>A</b> -->
+			                 </span>
+			                 <span class="pcoded-mtext">1:1문의</span>
+			                 <span class="pcoded-mcaret"></span>
+			             </a>
+			         </li>
+			     </ul>
+			 </div>
+		</nav>
+		
+<!-- 좌측 메뉴바 끝 -->
 				<!-- 본문 시작 -->  
                     <div class="pcoded-content">
                         <div class="pcoded-inner-content">
@@ -282,7 +440,7 @@
 			                                        <div class="pet-name">이름</div>
 			                                        <div class="pet-detail">
 			                                        <%-- <input type="hidden" id="petSerial" value="${pet.petSerial }"> --%>
-			                                        <input type="button" value="상세보기" data-toggle="modal" href="#petDetail" role="button" onclick="setPetSerial(${pet.petSerial })">
+			                                        <input type="button" value="상세보기" data-toggle="modal" href="#petDetail" role="button">
 			                                        </div>			                                        
 		                                        </div>
 	                                        </div>
@@ -300,7 +458,7 @@
         <h4 class="modal-title" id="myModalLabel">반려동물 정보등록</h4>
       </div>
       <div class="modal-body">
-       <form class="pet-form">
+       <form class="pet-form" name="petinfoform">
        	<div class="form-group">
 	        <table class="table table-bordered">
 	        <tbody>
@@ -364,11 +522,12 @@
 	         </tbody>
             </table>
           </div>
-          <input type="hidden" id="animalType">
+          <input type="hidden" id="petType" name="petType" value="">
+          <input type="hidden" id="petSerial" name="petSerial" value="">
 		</form>
       </div>
       <div class="modal-footer">
-        <button type="button" class="btn btn-primary" onclick="javascript:newPetInfo(this.form)">반려동물 정보저장</button>
+        <button type="button" class="btn btn-primary" onclick="javascript:savePetInfo(this.form)">반려동물 정보저장</button>
         <button type="button" class="btn btn-secondary" data-dismiss="modal" id="closeModalBtn">Close</button>
       </div>
     </div>
@@ -431,13 +590,13 @@
 				</div>
 			</div>
 			</div>
-			<input type="hidden" id="petSerial" value="">
+			<input type="hidden" id="petSerial" name="petSerial" value="">
 		</form>
       <div style="float:left">
       </div>
       <div class="modal-footer">
         <!-- Toogle to second dialog -->
-	    <button class="btn btn-primary" data-target="#petInfo" data-toggle="modal" data-dismiss="modal" onclick="">정보 수정</button>
+	    <button class="btn btn-primary" data-target="#petInfo" data-toggle="modal" data-dismiss="modal" onclick="setPetSerial(this.form)">정보 수정</button>
 	    <button class="btn btn-primary" onclick="javascript:deletePetInfo(this.form);">정보 삭제</button>
       	<button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
       </div>
@@ -451,12 +610,14 @@
     <div class="modal-content">
 	    <form>
           <div class="form-group">
-          	<input type="checkbox" name="animalType" value="dog">강아지
-          	<input type="checkbox" name="animalType" value="dog">고양이
+          	<label class="radio-inline">
+			  <input type="radio" name="petType" id="inlineRadio1" value="dog"> 강아지
+			</label>
+			<label class="radio-inline">
+			  <input type="radio" name="petType" id="inlineRadio2" value="cat"> 고양이
+			</label>
           </div>
         </form>
-      <div style="float:left">
-      </div>
       <div class="modal-footer">
         <!-- Toogle to second dialog -->
 	    <button class="btn btn-primary" data-target="#petInfo" data-toggle="modal" data-dismiss="modal" onclick="javascript:transferType(this.form)">선택</button>
@@ -465,83 +626,6 @@
     </div>
   </div>
 </div>
-
-<!-- Second modal2 dialog : 정보등록  -->
-<div class="modal fade" id="modifyPet" aria-hidden="true" aria-labelledby="..." tabindex="-1">
-  <div class="modal-dialog modal-dialog-centered">
-    <div class="modal-content">
-      	<form class="pet-form">
-	        <table class="table table-bordered">
-	        <tbody>
-		        <tr>
-					<td class="insert-title">이름</td>
-					<td><input type="text" name="petName"></td>
-					<td class="insert-title">나이</td>
-					<td><input type="text" name="petAge"></td>
-		        </tr>
-		        <tr>
-			        <td class="insert-title">성별</td>
-					<td>
-					<select>
-						<option name="petGender" value="girl">암</option>
-						<option name="petGender" value="boy">수</option>
-					</select>
-					</td>
-					<td class="insert-title">생일</td>
-					<td>d</td>
-		        </tr>
-		        <tr>
-			        <td class="insert-title">품종</td>
-					<td><input type="text" name="petVariety"></td>
-					<td class="insert-title">중성화여부</td>
-					<td>
-					<select>
-						<option name="tnr" value="yes">예</option>
-						<option name="tnr" value="no">아니요</option>
-					</select>
-					</td>
-		        </tr>
-		        <tr>
-			        <td class="insert-title">사이즈</td>
-					<td>
-					<select>
-						<option name="petSize" value="s">소형</option>
-						<option name="petSize" value="m">중형</option>
-						<option name="petSize" value="l">대형</option>
-					</select>
-					</td>
-					<td class="insert-title">체중</td>
-					<td><input type="text" name="petWeight"></td>
-		        </tr>
-		        <tr>
-			        <td rowspan="3" colspan="2"><input type="file" accept="image/*" name="imageSource"></td>
-					<td class="insert-title">목둘레</td>
-					<td><input type="text" name="neckLength"></td>
-		        </tr>
-		        <tr>
-					<td class="insert-title">등길이</td>
-					<td><input type="text" name="backLength"></td>
-		        </tr>
-		        <tr>
-					<td class="insert-title">가슴둘레</td>
-					<td><input type="text" name="chestLength"></td>
-		        </tr>
-		        <tr>
-					<td class="insert-title">특이사항</td>
-					<td colspan="3"><textarea name="petEtc"></textarea></td>
-		        </tr>
-	        </tbody>
-			
-        </table>
-		</form>
-      <div class="modal-footer">
-        <button type="button" class="btn btn-primary">Save changes</button>
-        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-      </div>
-    </div>
-  </div>
-</div>
-
                                     
                                     <!-- Page-body end -->
                                 </div>
