@@ -561,7 +561,7 @@
 	                                                                <div class="featured__item">
 	                                                                    <div>
 	                                                                        <a href="productDetail.html">
-	                                                                         <img src="https://projectbit.s3.us-east-2.amazonaws.com/dogImg/CL001L.jpg">
+	                                                                         <img src="https://projectbit.s3.us-east-2.amazonaws.com/dogImg/${list.s_image }.jpg" alt="">
 	                                                                        </a>
 	                                                                    </div>
 	                                                                        <div class="featured__item__pic set-bg" data-setbg="img/featured/feature-1.jpg">
@@ -569,8 +569,8 @@
 	                                                                        </div>
 	                                                                        <br>
 	                                                                    <div class="featured__item__text"style="width: 200px;">
-	                                                                        <h6><a href="productDetail.html">나래 한복 케이프 모음집</a></h6>
-	                                                                        <h5>35,000원</h5>
+	                                                                        <h6><a href="productDetail.html">${list.p_name }</a></h6>
+	                                                                        <h5>${list.price }원</h5>
 	                                                                    </div>
 	                                                                </div>
 	                                                            </div>

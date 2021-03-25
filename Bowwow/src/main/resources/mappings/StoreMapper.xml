@@ -3,18 +3,27 @@
   PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
   "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="Store">
-	<insert id="insertProduct" parameterType="Store">
+
+
+	<insert id="insertProduct" parameterType="Product">
 		INSERT INTO STORE_PRODUCTS (P_ID, P_NAME, P_TYPE, P_CATEGORY, PRICE, 
 									STOCK, S_IMAGE, L_IMAGE, P_PICK)
 		VALUES (P_SEQ.NEXTVAL, #{p_name}, #{p_type}, #{p_category}, #{price}, 
 									#{stock}, #{s_image}, #{l_image}, #{p_pick})
 	</insert>
 	
-	<select id="getProductList" parameterType="Store" resultType="Store">
-		SELECT P_ID, P_NAME, P_TYPE, P_CATEGORY, PRICE, STOCK, S_IMAGE, L_IMAGE
+	<select id="dogProductList" parameterType="Product" resultType="Product">
+		SELECT P_ID, SUBSTR(P_NAME, 0, 17) AS P_NAME, P_TYPE, P_CATEGORY, PRICE, STOCK, S_IMAGE, L_IMAGE
 		  FROM STORE_PRODUCTS
+		 WHERE P_TYPE = '댕댕이'
 	</select>
-
+	
+	<select id="catProductList" parameterType="Product" resultType="Product">
+		SELECT P_ID, SUBSTR(P_NAME, 0, 17) AS P_NAME, P_TYPE, P_CATEGORY, PRICE, STOCK, S_IMAGE, L_IMAGE
+		  FROM STORE_PRODUCTS
+		 WHERE P_TYPE = '냥냥이'
+	</select>
+	
 </mapper>
 
 

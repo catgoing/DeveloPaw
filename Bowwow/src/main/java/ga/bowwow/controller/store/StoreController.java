@@ -21,25 +21,25 @@ public class StoreController {
 		System.out.println(">> StoreController 실행");
 	}
 	
-	@RequestMapping(value = "/getProductList.do")
-	public String getProductList(Products products, Model model) {
-		List<Products> productList = storeService.getProductsList(products);
+	@RequestMapping(value = "/store/dogList.do")
+	public String getDogProductList(Products products, Model model) {
+		List<Products> productList = storeService.getDogProductList(products);
+		model.addAttribute("dogList", productList);
 		
-		System.out.println("produects?" + products);
-		
-		model.addAttribute("productList", productList);
-		
-		return "productList.jsp";
+		return "dogList";
 	}
 	
-	@RequestMapping(value = "main")
-	public String getMain() {
-		return "storeMain.jsp";
+	@RequestMapping(value = "/store/catList.do")
+	public String getCatProductList(Products products, Model model) {
+		List<Products> productList = storeService.getCatProductList(products);
+		model.addAttribute("catList", productList);
+		
+		return "catList";
 	}
 	
-	@RequestMapping("/test")
-	public String getTest() {
-		return "hello";
+	@RequestMapping(value = "/store/storeMain.do")
+	public String storeMain() {
+		return "storeMain";
 	}
 	
 	

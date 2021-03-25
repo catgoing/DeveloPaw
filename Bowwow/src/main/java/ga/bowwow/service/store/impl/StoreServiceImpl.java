@@ -36,8 +36,13 @@ public class StoreServiceImpl implements StoreService {
 
 
 	@Override
-	public List<Products> getProductsList(Products products) {
-		return null;
+	public List<Products> getDogProductList(Products products) {
+		return storeDAO.getDogProductList(products);
+	}
+	
+	@Override
+	public List<Products> getCatProductList(Products products) {
+		return storeDAO.getCatProductList(products);
 	}
 
 }
