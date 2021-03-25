@@ -51,7 +51,7 @@
 		</definition>
 		
 		
-       	<definition name="/community" template="/community/boardTemplate.jsp">
+       	<definition name="/community" template="/WEB-INF/community/boardTemplate.jsp">
                 <put-attribute name="header" value="/common/header.jsp" />
                 <put-attribute name="menubar" value="/common/communityMenuBar.jsp"/>
                 <put-attribute name="body" value="" />
@@ -59,7 +59,7 @@
         </definition>
         
          <definition name="/godiary" extends="/community">
-			<put-attribute name="body" value="/community/diary.jsp" />
+			<put-attribute name="body" value="/WEB-INF/community/diary.jsp" />
 		</definition>
 		
 		 <definition name="/ok" template="/OK.jsp">

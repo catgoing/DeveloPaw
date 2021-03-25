@@ -29,25 +29,25 @@
     <link href="https://fonts.googleapis.com/css2?family=Do+Hyeon&display=swap" rel="stylesheet">
 
     <!-- Favicon icon -->
-    <link rel="icon" href="../resources/images/favicon.ico" type="image/x-icon">
+    <link rel="icon" href="/main/resources/images/favicon.ico" type="image/x-icon">
     <!-- Google font-->
     <link href="https://fonts.googleapis.com/css?family=Open+Sans:400,600,700" rel="stylesheet">
     <!-- waves.css -->
-    <link rel="stylesheet" href="../resources/pages/waves/css/waves.min.css" type="text/css" media="all">
+    <link rel="stylesheet" href="/main/resources/pages/waves/css/waves.min.css" type="text/css" media="all">
     <!-- Required Fremwork -->
-    <link rel="stylesheet" type="text/css" href="../resources/css/bootstrap/css/bootstrap.min.css">
+    <link rel="stylesheet" type="text/css" href="/main/resources/css/bootstrap/css/bootstrap.min.css">
     <!-- waves.css -->
-    <link rel="stylesheet" href="../resources/pages/waves/css/waves.min.css" type="text/css" media="all">
+    <link rel="stylesheet" href="/main/resources/pages/waves/css/waves.min.css" type="text/css" media="all">
     <!-- themify icon -->
-    <link rel="stylesheet" type="text/css" href="../resources/icon/themify-icons/themify-icons.css">
+    <link rel="stylesheet" type="text/css" href="/main/resources/icon/themify-icons/themify-icons.css">
     <!-- font-awesome-n -->
-    <link rel="stylesheet" type="text/css" href="../resources/css/font-awesome-n.min.css">
-    <link rel="stylesheet" type="text/css" href="../resources/css/font-awesome.min.css">
+    <link rel="stylesheet" type="text/css" href="/main/resources/css/font-awesome-n.min.css">
+    <link rel="stylesheet" type="text/css" href="/main/resources/css/font-awesome.min.css">
     <!-- scrollbar.css -->
-    <link rel="stylesheet" type="text/css" href="../resources/css/jquery.mCustomScrollbar.css">
+    <link rel="stylesheet" type="text/css" href="/main/resources/css/jquery.mCustomScrollbar.css">
     <!-- Style.css -->
-    <link rel="stylesheet" type="text/css" href="../resources/css/style.css">
-    <link rel="stylesheet" type="text/css" href="../resources/css/test.css">
+    <link rel="stylesheet" type="text/css" href="/main/resources/css/style.css">
+    <link rel="stylesheet" type="text/css" href="/main/resources/css/test.css">
 <style>
   .featured__item__text { width: 150px; }
 </style>
@@ -108,10 +108,10 @@
         </div>
     </div>
     <!-- Pre-loader end -->
+    
     <div id="pcoded" class="pcoded">
         <div class="pcoded-overlay-box"></div>
         <div class="pcoded-container navbar-wrapper">
-            
 		<!-- 헤더 -->
 		<tiles:insertAttribute name="header" />
 		
@@ -160,23 +160,23 @@
 	<!-- footer 푸터 끝부분-->
 
     <!-- Required Jquery -->
-    <script type="text/javascript" src="../resources/js/jquery/jquery.min.js "></script>
-    <script type="text/javascript" src="../resources/js/jquery-ui/jquery-ui.min.js "></script>
-    <script type="text/javascript" src="../resources/js/popper.js/popper.min.js"></script>
-    <script type="text/javascript" src="../resources/js/bootstrap/js/bootstrap.min.js "></script>
+    <script type="text/javascript" src="/main/resources/js/jquery/jquery.min.js "></script>
+    <script type="text/javascript" src="/main/resources/js/jquery-ui/jquery-ui.min.js "></script>
+    <script type="text/javascript" src="/main/resources/js/popper.js/popper.min.js"></script>
+    <script type="text/javascript" src="/main/resources/js/bootstrap/js/bootstrap.min.js "></script>
     <!-- waves js -->
-    <script src="../resources/pages/waves/js/waves.min.js"></script>
+    <script src="/main/resources/pages/waves/js/waves.min.js"></script>
     <!-- jquery slimscroll js -->
-    <script type="text/javascript" src="../resources/js/jquery-slimscroll/jquery.slimscroll.js"></script>
+    <script type="text/javascript" src="/main/resources/js/jquery-slimscroll/jquery.slimscroll.js"></script>
 
     <!-- slimscroll js -->
-    <script src="../resources/js/jquery.mCustomScrollbar.concat.min.js "></script>
+    <script src="/main/resources/js/jquery.mCustomScrollbar.concat.min.js "></script>
 
     <!-- menu js -->
-    <script src="../resources/js/pcoded.min.js"></script>
-    <script src="../resources/js/vertical/vertical-layout.min.js "></script>
+    <script src="/main/resources/js/pcoded.min.js"></script>
+    <script src="/main/resources/js/vertical/vertical-layout.min.js "></script>
 
-    <script type="text/javascript" src="../resources/js/script.js "></script>
+    <script type="text/javascript" src="/main/resources/js/script.js "></script>
 </body>
 
 

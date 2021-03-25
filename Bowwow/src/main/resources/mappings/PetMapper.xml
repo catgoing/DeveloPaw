@@ -4,6 +4,7 @@
   "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="PetInfo">
 
+	<!-- 반려동물 정보 등록 -->
 	<insert id="insertPetInfo" parameterType="pet">
 		INSERT INTO USER_PETINFO (
 			PET_SERIAL,MEMBER_SERIAL,IMAGE_SOURCE,ANIMAL_TYPE,PET_NAME,
@@ -15,11 +16,44 @@
 		 #{PET_WEIGHT},  #{PET_BIRTH}, #{NECK_LENGTH}, #{BACK_LENGTH}, #{CHEST_LENGTH})
 	</insert>
 	
-	<!-- String memberSerial로 pet검색 -->
+	<!-- 반려동물 정보수정 - 유형, 이름, 성별, 품종은 안바꿔도 되잖아!! -->
+	<update id="updatePetInfo" parameterType="pet">
+		UPDATE FORM USER_PETINFO
+		 SET
+			IMAGE_SOURCE = #{imageSource},
+			PET_NAME = #{petName},
+			PET_GENDER = #{petGender},
+			PET_VARIETY = #{petVariety},
+			PET_AGE = #{petAge},
+			PET_SIZE = #{petSize},
+			TNR = #{tnr },
+			PET_WEIGHT = #{petWeight},
+			PET_BIRTH = #{petBirth},
+			NECK_LENGTH = #{neckLength},
+			BACK_LENGTH = #{backLength},
+			CHEST_LENGTH = #{chestLength},
+			PET_ETC = #{petEtc}
+	</update>
+	
+	<!-- 정보 삭제 -->
+	<delete id="deletePetInfo" parameterType="pet">
+		DELETE FROM USER_PETINFO
+		WHERE PET_SERIAL = #{petSerial }
+	</delete>
+	
+	<!-- 조회 : petSerial로 검색 -->
 	<select id="getPetInfo" parameterType="pet" resultType="pet">
 		SELECT * FROM USER_PETINFO
-		WHERE MEMBER_SERIAL = #{member_serial }
+		WHERE PET_SERIAL = #{petSerial }
 	</select>
+	
+	<!-- 조회 : String memberSerial로 pet검색 -->
+	<select id="getPetInfoList" parameterType="pet" resultType="pet">
+		SELECT * FROM USER_PETINFO
+		WHERE MEMBER_SERIAL = #{memberSerial }
+	</select>
+	
+	
 </mapper>
 
 

@@ -29,25 +29,25 @@
     <link href="https://fonts.googleapis.com/css2?family=Do+Hyeon&display=swap" rel="stylesheet">
 
     <!-- Favicon icon -->
-    <link rel="icon" href="../resources/images/favicon.ico" type="image/x-icon">
+    <link rel="icon" href="/main/resources/images/favicon.ico" type="image/x-icon">
     <!-- Google font-->
     <link href="https://fonts.googleapis.com/css?family=Open+Sans:400,600,700" rel="stylesheet">
     <!-- waves.css -->
-    <link rel="stylesheet" href="../resources/pages/waves/css/waves.min.css" type="text/css" media="all">
+    <link rel="stylesheet" href="/main/resources/pages/waves/css/waves.min.css" type="text/css" media="all">
     <!-- Required Fremwork -->
-    <link rel="stylesheet" type="text/css" href="../resources/css/bootstrap/css/bootstrap.min.css">
+    <link rel="stylesheet" type="text/css" href="/main/resources/css/bootstrap/css/bootstrap.min.css">
     <!-- waves.css -->
-    <link rel="stylesheet" href="../resources/pages/waves/css/waves.min.css" type="text/css" media="all">
+    <link rel="stylesheet" href="/main/resources/pages/waves/css/waves.min.css" type="text/css" media="all">
     <!-- themify icon -->
-    <link rel="stylesheet" type="text/css" href="../resources/icon/themify-icons/themify-icons.css">
+    <link rel="stylesheet" type="text/css" href="/main/resources/icon/themify-icons/themify-icons.css">
     <!-- font-awesome-n -->
-    <link rel="stylesheet" type="text/css" href="../resources/css/font-awesome-n.min.css">
-    <link rel="stylesheet" type="text/css" href="../resources/css/font-awesome.min.css">
+    <link rel="stylesheet" type="text/css" href="/main/resources/css/font-awesome-n.min.css">
+    <link rel="stylesheet" type="text/css" href="/main/resources/css/font-awesome.min.css">
     <!-- scrollbar.css -->
-    <link rel="stylesheet" type="text/css" href="../resources/css/jquery.mCustomScrollbar.css">
+    <link rel="stylesheet" type="text/css" href="/main/resources/css/jquery.mCustomScrollbar.css">
     <!-- Style.css -->
-    <link rel="stylesheet" type="text/css" href="../resources/css/style.css">
-    <link rel="stylesheet" type="text/css" href="../resources/css/test.css">
+    <link rel="stylesheet" type="text/css" href="/main/resources/css/style.css">
+    <link rel="stylesheet" type="text/css" href="/main/resources/css/test.css">
 <style>
   .featured__item__text { width: 150px; }
 </style>
@@ -111,11 +111,91 @@
     <div id="pcoded" class="pcoded">
         <div class="pcoded-overlay-box"></div>
         <div class="pcoded-main-container navbar-wrapper">
-            
-		<!-- 헤더 -->
-		<%-- <tiles:insertAttribute name="header" /> --%>
-		<!-- 좌측메뉴바 -->
-		<%-- <tiles:insertAttribute name="menubar" /> --%>
+        <!-- 헤더 -->
+		<%@include file="/common/header.jsp" %>
+		<!-- 좌측 메뉴바 시작 -->
+<div class="pcoded-main-container">
+	<div class="pcoded-wrapper">
+		<nav class="pcoded-navbar">
+			<div class="sidebar_toggle"><a href="#"><i class="icon-close icons"></i></a></div>
+				<div class="pcoded-inner-navbar main-menu">
+			    <div class="p-15 p-b-0">
+			         <form class="form-material">
+						<!-- 이부분 form을 없애면 좌측메뉴 시작부분이 위쪽으로 조금 올라감 -->
+			         </form>
+			     </div>
+			  
+			     <ul class="pcoded-item pcoded-left-item">
+			         <li class="">
+			             <a href="myPageMain.do" class="waves-effect waves-dark">
+			                 <span class="pcoded-micon"><i class="ti-layers"></i><b>FC</b></span>
+			                 <span class="pcoded-mtext">마이 홈</span>
+			                 <span class="pcoded-mcaret"></span>
+			             </a>
+			         </li>
+			     </ul>
+			
+			     <ul class="pcoded-item pcoded-left-item">
+			         <li class="">
+			          <!-- 회원번호(memberSerial)을 이용해서 내 정보 출력 -->
+			             <a href="myInfo.do" class="waves-effect waves-dark">
+			             <%-- <a href="myInfo.do?memberSerial=${memberSerial }" class="waves-effect waves-dark"> --%>
+			                 <span class="pcoded-micon">
+			                     <!-- <i class="ti-id-badge"></i><b>A</b> -->
+			                 </span>
+			                 <span class="pcoded-mtext">프로필</span>
+			                 <span class="pcoded-mcaret"></span>
+			             </a>
+			         </li>
+			     </ul>
+			     <ul class="pcoded-item pcoded-left-item">
+			         <li class="">
+			             <a href="myPetInfoList.do" class="waves-effect waves-dark">
+			                 <span class="pcoded-micon">
+			                     <!-- <i class="ti-id-badge"></i><b>A</b> -->
+			                 </span>
+			                 <span class="pcoded-mtext">반려동물</span>
+			                 <span class="pcoded-mcaret"></span>
+			             </a>
+			         </li>
+			     </ul>
+			     <ul class="pcoded-item pcoded-left-item">
+			         <li class="">
+			             <a href="myPostList.do" class="waves-effect waves-dark">
+			                 <span class="pcoded-micon">
+			                     <!-- <i class="ti-id-badge"></i><b>A</b> -->
+			                 </span>
+			                 <span class="pcoded-mtext">게시글</span>
+			                 <span class="pcoded-mcaret"></span>
+			             </a>
+			         </li>
+			     </ul>
+			     <ul class="pcoded-item pcoded-left-item">
+			         <li class="">
+			             <a href="myPoint.do" class="waves-effect waves-dark">
+			                 <span class="pcoded-micon">
+			                     <!-- <i class="ti-id-badge"></i><b>A</b> -->
+			                 </span>
+			                 <span class="pcoded-mtext">적립금(?)</span>
+			                 <span class="pcoded-mcaret"></span>
+			             </a>
+			         </li>
+			     </ul>
+			     <ul class="pcoded-item pcoded-left-item">
+			         <li class="">
+			             <a href="myInquiry.do" class="waves-effect waves-dark">
+			                 <span class="pcoded-micon">
+			                     <!-- <i class="ti-id-badge"></i><b>A</b> -->
+			                 </span>
+			                 <span class="pcoded-mtext">1:1문의</span>
+			                 <span class="pcoded-mcaret"></span>
+			             </a>
+			         </li>
+			     </ul>
+			 </div>
+		</nav>
+		
+	<!-- 좌측 메뉴바 끝 -->
                     
                     <div class="pcoded-content">
                         <div class="pcoded-inner-content">
@@ -124,19 +204,7 @@
 							<div class="page-wrapper">
 		                        <!-- Page-body start -->
 								<div class="page-body">
-									<!-- <section class="featured spad">
-										<div class="container">
-											<div class="row">
-												<div class="col-lg-12">
-													<div class="section-title">
-														<h2>(section-title)뫄뫄님의 페이지</h2>
-													</div>
-													<br>
-		 										</div>
-											</div>
-										</div>
-									</section> -->
-                                        
+									                                       
                                         <div class="my-post">
 	                                        게시글 출력
                                         </div>
@@ -176,31 +244,31 @@
                 }
                 </script>
                 
-				<!-- footer 푸터 시작부분-->
-				<%-- <tiles:insertAttribute name="footer" /> --%>
-				<!-- footer 푸터 끝부분-->
-            </div>
+		<!-- footer 푸터 시작부분-->
+		<%@include file="/common/footer.jsp" %>
+		<!-- footer 푸터 끝부분-->
+        </div>
 
         </div>
 
     <!-- Required Jquery -->
-    <script type="text/javascript" src="../resources/js/jquery/jquery.min.js "></script>
-    <script type="text/javascript" src="../resources/js/jquery-ui/jquery-ui.min.js "></script>
-    <script type="text/javascript" src="../resources/js/popper.js/popper.min.js"></script>
-    <script type="text/javascript" src="../resources/js/bootstrap/js/bootstrap.min.js "></script>
+    <script type="text/javascript" src="/main/resources/js/jquery/jquery.min.js "></script>
+    <script type="text/javascript" src="/main/resources/js/jquery-ui/jquery-ui.min.js "></script>
+    <script type="text/javascript" src="/main/resources/js/popper.js/popper.min.js"></script>
+    <script type="text/javascript" src="/main/resources/js/bootstrap/js/bootstrap.min.js "></script>
     <!-- waves js -->
-    <script src="../resources/pages/waves/js/waves.min.js"></script>
+    <script src="/main/resources/pages/waves/js/waves.min.js"></script>
     <!-- jquery slimscroll js -->
-    <script type="text/javascript" src="../resources/js/jquery-slimscroll/jquery.slimscroll.js"></script>
+    <script type="text/javascript" src="/main/resources/js/jquery-slimscroll/jquery.slimscroll.js"></script>
 
     <!-- slimscroll js -->
-    <script src="../resources/js/jquery.mCustomScrollbar.concat.min.js "></script>
+    <script src="/main/resources/js/jquery.mCustomScrollbar.concat.min.js "></script>
 
     <!-- menu js -->
-    <script src="../resources/js/pcoded.min.js"></script>
-    <script src="../resources/js/vertical/vertical-layout.min.js "></script>
+    <script src="/main/resources/js/pcoded.min.js"></script>
+    <script src="/main/resources/js/vertical/vertical-layout.min.js "></script>
 
-    <script type="text/javascript" src="../resources/js/script.js "></script>
+    <script type="text/javascript" src="/main/resources/js/script.js "></script>
 </body>
 
 

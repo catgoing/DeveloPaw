@@ -11,12 +11,10 @@
 	<!--
 		<typeAlias type="com.spring.biz.board.BoardVO" alias="board"/>
 		-->
-		<!-- <typeAlias type="ga.bowwow.user.UserAccount" alias="UserAccount"/> -->
 		<typeAlias type="ga.bowwow.service.board.Board" alias="Board"/>
 		<typeAlias type="ga.bowwow.service.pet.Pet" alias="pet"/>
-		<!--
-		<typeAlias type="ga.bowwow.pet.Store" alias="Store"/>
-		 -->
+		<typeAlias type="ga.bowwow.service.store.Products" alias="Product"/>
+
 	</typeAliases>
 
   <mappers>
@@ -27,11 +25,8 @@
     <!-- <mapper resource="mappings/UserMapper.xml"/> -->
     <mapper resource="mappings/BoardMapper.xml"/>
     <mapper resource="mappings/PetMapper.xml"/>
-    <!--
     <mapper resource="mappings/StoreMapper.xml"/>
-     -->
-    <!--
+    <mapper resource="mappings/ProductsReviewMapper.xml"/>
     <mapper resource="mappings/StoreInquiryMapper.xml"/>
-     -->
   </mappers>
 </configuration>
