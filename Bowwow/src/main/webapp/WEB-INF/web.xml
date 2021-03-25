@@ -32,13 +32,6 @@
  		<url-pattern>*.do</url-pattern>
  	</filter-mapping>
  	
-	<jsp-config>
-	    <jsp-property-group>
-	        <url-pattern>*.jsp</url-pattern>
-	        <page-encoding>UTF-8</page-encoding>
-	    </jsp-property-group>
-	</jsp-config>
- 		
 	<!-- Processes application requests -->
 	<servlet>
 		<servlet-name>main</servlet-name>

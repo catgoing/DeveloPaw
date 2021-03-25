@@ -31,7 +31,7 @@ public class UserAccountDAO {
 		System.out.println("===> MyBatis로 getUserAccount() 실행");
 		return mybatis.selectOne("UserAccount.getUserAccount", userAccount);
 	}
-	public UserAccount verifyLogin(UserAccount userAccount) {
+	public UserAccount verifyAccount(UserAccount userAccount) {
 		System.out.println("===> MyBatis로 verifyLogin() 실행");
 		return mybatis.selectOne("UserAccount.verifyAccount", userAccount);
 	}

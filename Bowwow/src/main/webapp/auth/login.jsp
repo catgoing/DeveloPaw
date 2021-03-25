@@ -1,5 +1,5 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"	pageEncoding="UTF-8"%>
-<%@ taglib uri="http://tiles.apache.org/tags-tiles" prefix="tiles" %>
+<%-- <%@ taglib uri="http://tiles.apache.org/tags-tiles" prefix="tiles" %> --%>
 
 <!DOCTYPE html>
 <html>
@@ -121,9 +121,9 @@
                 <div class="col-sm-12">
                     <!-- Authentication card start -->
 
-                        <form class="md-float-material form-material">
+                        <form class="md-float-material form-material" action="getUserAccount.do">
                             <div class="text-center">
-                                <img src="../resources/images/logo.png" alt="logo.png">
+                                <img src="./resources/images/logo.png" alt="logo.png">
                             </div>
                             <div class="auth-box card">
                                 <div class="card-block">
@@ -133,7 +133,7 @@
                                         </div>
                                     </div>
                                     <div class="form-group form-primary">
-                                        <input type="text" name="email" class="form-control">
+                                        <input type="text" name="id" class="form-control" value="${id }">
                                         <span class="form-bar"></span>
                                         <label class="float-label">아이디</label>
                                     </div>
@@ -158,7 +158,7 @@
                                     </div>
                                     <div class="row m-t-30">
                                         <div class="col-md-12">
-                                            <button type="button" class="btn btn-primary btn-md btn-block waves-effect waves-light text-center m-b-20">로그인</button>
+                                            <button type="submit" class="btn btn-primary btn-md btn-block waves-effect waves-light text-center m-b-20">로그인</button>
                                         </div>
                                     </div>
                                     <hr/>
@@ -168,7 +168,7 @@
                                             <p class="text-inverse text-left"><a href="index.html"><b>메인화면으로 돌아가기</b></a></p>
                                         </div>
                                         <div class="col-md-2">
-                                            <img src="../resources/images/colored_logo.png" alt="colored_logo.png">
+                                            <img src="./resources/images/colored_logo.png" alt="colored_logo.png">
                                         </div>
                                     </div>
                                 </div>
@@ -183,7 +183,7 @@
         <!-- end of container-fluid -->
     </section>
     
-    <tiles:insertAttribute name="footer"/>
+<%--     <tiles:insertAttribute name="footer"/> --%>
     </div>
     <!-- Warning Section Starts -->
     <!-- Older IE warning message -->

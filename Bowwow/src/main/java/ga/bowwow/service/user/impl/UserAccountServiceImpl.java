@@ -22,10 +22,16 @@ public class UserAccountServiceImpl implements UserAccountService {
 
 	@Override
 	public void insertUserAccount(UserAccount userAccount) {
+		UserAccountDAO.insertUserAccount(userAccount);
 	}
 
 	@Override
 	public UserAccount getUserAccount(UserAccount userAccount) {
 		return UserAccountDAO.getUserAccount(userAccount);
+	}
+
+	@Override
+	public UserAccount attemptLogin(UserAccount userAccount) {
+		return UserAccountDAO.verifyAccount(userAccount);
 	}
 }

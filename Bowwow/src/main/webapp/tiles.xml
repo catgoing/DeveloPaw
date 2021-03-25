@@ -62,5 +62,7 @@
 			<put-attribute name="body" value="/community/diary.jsp" />
 		</definition>
 		
+		 <definition name="/ok" template="/OK.jsp">
+		 </definition>
 		
 </tiles-definitions>

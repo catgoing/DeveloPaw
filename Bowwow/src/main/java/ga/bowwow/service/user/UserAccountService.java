@@ -9,6 +9,7 @@ public interface UserAccountService {
 //	void updateUserAccount(UserAccount userAccount );
 //	void deleteUserAccount(UserAccount userAccount );
 	UserAccount getUserAccount(UserAccount userAccount);
+	UserAccount attemptLogin(UserAccount userAccount);
 //	List<UserAccount> getUserAccountList();
 //	List<UserAccount> getUserAccountList(UserAccount userAccount );
 }

@@ -49,10 +49,7 @@
 		-->
 	</bean>
 	<!-- 방법2: SqlSessionTemplate 사용 -->
-	<bean class="org.mybatis.spring.SqlSessionTemplate">
-		<constructor-arg ref="serviceSqlSessionFactory" />
-		<qualifier value="service" />
-	</bean>
+	
 	<bean class="org.mybatis.spring.SqlSessionTemplate">
 		<constructor-arg ref="localSqlSessionFactory" />
 		<qualifier value="local" />
