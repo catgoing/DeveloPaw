@@ -113,51 +113,148 @@
         <div class="pcoded-overlay-box"></div>
         <div class="pcoded-container navbar-wrapper">
 		<!-- 헤더 -->
-		<tiles:insertAttribute name="header" />
+		<%@include file="/common/header.jsp" %>
 		
 		
 		<div class="pcoded-main-container">
 			<div class="pcoded-wrapper">
-				<!-- 좌측메뉴바 -->
-				<tiles:insertAttribute name="menubar"/>
+				<!-- 좌측 메뉴바 시작 -->
+<div class="pcoded-main-container">
+	<div class="pcoded-wrapper">
+		<nav class="pcoded-navbar">
+			<div class="sidebar_toggle"><a href="#"><i class="icon-close icons"></i></a></div>
+				<div class="pcoded-inner-navbar main-menu">
+			    <div class="p-15 p-b-0">
+			         <form class="form-material">
+						<!-- 이부분 form을 없애면 좌측메뉴 시작부분이 위쪽으로 조금 올라감 -->
+			         </form>
+			     </div>
+			  
+			     <ul class="pcoded-item pcoded-left-item">
+			         <li class="">
+			             <a href="myPageMain.jsp" class="waves-effect waves-dark">
+			                 <span class="pcoded-micon"><i class="ti-layers"></i><b>FC</b></span>
+			                 <span class="pcoded-mtext">마이 홈</span>
+			                 <span class="pcoded-mcaret"></span>
+			             </a>
+			         </li>
+			     </ul>
+			
+			     <ul class="pcoded-item pcoded-left-item">
+			         <li class="">
+			          <!-- 회원번호(memberSerial)을 이용해서 내 정보 출력 -->
+			             <a href="myInfo.jsp" class="waves-effect waves-dark">
+			             <%-- <a href="myInfo.do?memberSerial=${memberSerial }" class="waves-effect waves-dark"> --%>
+			                 <span class="pcoded-micon">
+			                     <!-- <i class="ti-id-badge"></i><b>A</b> -->
+			                 </span>
+			                 <span class="pcoded-mtext">프로필</span>
+			                 <span class="pcoded-mcaret"></span>
+			             </a>
+			         </li>
+			     </ul>
+			     <ul class="pcoded-item pcoded-left-item">
+			         <li class="">
+			             <a href="myPetInfoList2.jsp" class="waves-effect waves-dark">
+			                 <span class="pcoded-micon">
+			                     <!-- <i class="ti-id-badge"></i><b>A</b> -->
+			                 </span>
+			                 <span class="pcoded-mtext">반려동물</span>
+			                 <span class="pcoded-mcaret"></span>
+			             </a>
+			         </li>
+			     </ul>
+			     <ul class="pcoded-item pcoded-left-item">
+			         <li class="">
+			             <a href="myPostList.jsp" class="waves-effect waves-dark">
+			                 <span class="pcoded-micon">
+			                     <!-- <i class="ti-id-badge"></i><b>A</b> -->
+			                 </span>
+			                 <span class="pcoded-mtext">게시글</span>
+			                 <span class="pcoded-mcaret"></span>
+			             </a>
+			         </li>
+			     </ul>
+			     <ul class="pcoded-item pcoded-left-item">
+			         <li class="">
+			             <a href="myPoint.jsp" class="waves-effect waves-dark">
+			                 <span class="pcoded-micon">
+			                     <!-- <i class="ti-id-badge"></i><b>A</b> -->
+			                 </span>
+			                 <span class="pcoded-mtext">적립금(?)</span>
+			                 <span class="pcoded-mcaret"></span>
+			             </a>
+			         </li>
+			     </ul>
+			     <ul class="pcoded-item pcoded-left-item">
+			         <li class="">
+			             <a href="myInquiry.jsp" class="waves-effect waves-dark">
+			                 <span class="pcoded-micon">
+			                     <!-- <i class="ti-id-badge"></i><b>A</b> -->
+			                 </span>
+			                 <span class="pcoded-mtext">1:1문의</span>
+			                 <span class="pcoded-mcaret"></span>
+			             </a>
+			         </li>
+			     </ul>
+			 </div>
+		</nav>
+		
+	<!-- 좌측 메뉴바 끝 -->
 				
-				<!-- Main-body start 본문 시작 -->
-				<tiles:insertAttribute name="body" />
-					
-				</div>
-			</div>
-		</div>
-	</div>
-	
-    <button class="scroll-top" id="js-button" style="margin-bottom: 190px; margin-right: 30px;">
-        <i class="fa fa-chevron-up" aria-hidden="true">TOP</i>
-    </button>
-    <script type="text/javascript">
-        scrollTop('js-button', 500);
-        function scrollTop(elem,duration) {
-            let target = document.getElementById(elem);
-        
-            target.addEventListener('click', function() {
-                let currentY = window.pageYOffset; 
-                let step = duration/currentY > 1 ? 10 : 100;
-                let timeStep = duration/currentY * step;
-                let intervalID = setInterval(scrollUp, timeStep);
-        
-                function scrollUp(){
-                    currentY = window.pageYOffset;
-                    if(currentY === 0) {
-                        clearInterval(intervalID);
-                    } else {
-                        scrollBy( 0, -step );
-                    }
+				<div class="pcoded-content">
+                        <div class="pcoded-inner-content">
+							<!-- Main-body start 본문 시작 -->
+							<div class="main-body">
+							<div class="page-wrapper">
+		                        <!-- Page-body start -->
+								<div class="page-body">
+									                                       
+                                        <div class="my-post">
+	                                        게시글 출력
+                                        </div>
+                                        
+                                    </div>
+                                    <!-- Page-body end -->
+                                </div>
+                                <div id="styleSelector"> </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <button class="scroll-top" id="js-button" style="margin-bottom: 190px; margin-right: 30px;">
+                <i class="fa fa-chevron-up" aria-hidden="true">TOP</i>
+            </button>
+            <script type="text/javascript">
+                scrollTop('js-button', 500);
+                function scrollTop(elem,duration) {
+                    let target = document.getElementById(elem);
+                
+                    target.addEventListener('click', function() {
+                        let currentY = window.pageYOffset; 
+                        let step = duration/currentY > 1 ? 10 : 100;
+                        let timeStep = duration/currentY * step;
+                        let intervalID = setInterval(scrollUp, timeStep);
+                
+                        function scrollUp(){
+                            currentY = window.pageYOffset;
+                            if(currentY === 0) {
+                                clearInterval(intervalID);
+                            } else {
+                                scrollBy( 0, -step );
+                            }
+                        }
+                    });
                 }
-            });
-        }
-    </script>
-        
-	<!-- footer 푸터 시작부분-->
-	<tiles:insertAttribute name="footer" />
-	<!-- footer 푸터 끝부분-->
+                </script>
+                
+		<!-- footer 푸터 시작부분-->
+		<%@include file="/common/footer.jsp" %>
+		<!-- footer 푸터 끝부분-->
+        </div>
+
+        </div>
 
     <!-- Required Jquery -->
     <script type="text/javascript" src="/main/resources/js/jquery/jquery.min.js "></script>

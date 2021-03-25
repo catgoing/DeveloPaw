@@ -7,6 +7,7 @@
 <title>Insert title here</title>
 </head>
 <body>
+
 <div class="popup-content detail-animal">
 	<div class="popup-inner img-pet" id="petimg">동물이미지</div>
 	<div class="popup-inner text-pet">

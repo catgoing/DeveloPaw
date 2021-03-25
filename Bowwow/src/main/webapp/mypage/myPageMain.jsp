@@ -1,6 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-<%@ taglib uri="http://tiles.apache.org/tags-tiles" prefix="tiles"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 
 <!DOCTYPE html>
 <html>
@@ -56,7 +56,60 @@
 </head>
 
 <body>
-    
+    <!-- Pre-loader start -->
+     <div class="theme-loader">
+        <div class="loader-track">
+            <div class="preloader-wrapper">
+                <div class="spinner-layer spinner-blue">
+                    <div class="circle-clipper left">
+                        <div class="circle"></div>
+                    </div>
+                    <div class="gap-patch">
+                        <div class="circle"></div>
+                    </div>
+                    <div class="circle-clipper right">
+                        <div class="circle"></div>
+                    </div>
+                </div>
+                <div class="spinner-layer spinner-red">
+                    <div class="circle-clipper left">
+                        <div class="circle"></div>
+                    </div>
+                    <div class="gap-patch">
+                        <div class="circle"></div>
+                    </div>
+                    <div class="circle-clipper right">
+                        <div class="circle"></div>
+                    </div>
+                </div>
+
+                <div class="spinner-layer spinner-yellow">
+                    <div class="circle-clipper left">
+                        <div class="circle"></div>
+                    </div>
+                    <div class="gap-patch">
+                        <div class="circle"></div>
+                    </div>
+                    <div class="circle-clipper right">
+                        <div class="circle"></div>
+                    </div>
+                </div>
+
+                <div class="spinner-layer spinner-green">
+                    <div class="circle-clipper left">
+                        <div class="circle"></div>
+                    </div>
+                    <div class="gap-patch">
+                        <div class="circle"></div>
+                    </div>
+                    <div class="circle-clipper right">
+                        <div class="circle"></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- Pre-loader end -->
     <div id="pcoded" class="pcoded">
         <div class="pcoded-overlay-box"></div>
         <div class="pcoded-main-container navbar-wrapper">
@@ -79,7 +132,7 @@
 			  
 			     <ul class="pcoded-item pcoded-left-item">
 			         <li class="">
-			             <a href="myPageMain.do" class="waves-effect waves-dark">
+			             <a href="myPageMain.jsp" class="waves-effect waves-dark">
 			                 <span class="pcoded-micon"><i class="ti-layers"></i><b>FC</b></span>
 			                 <span class="pcoded-mtext">마이 홈</span>
 			                 <span class="pcoded-mcaret"></span>
@@ -90,7 +143,7 @@
 			     <ul class="pcoded-item pcoded-left-item">
 			         <li class="">
 			          <!-- 회원번호(memberSerial)을 이용해서 내 정보 출력 -->
-			             <a href="myInfo.do" class="waves-effect waves-dark">
+			             <a href="myInfo.jsp" class="waves-effect waves-dark">
 			             <%-- <a href="myInfo.do?memberSerial=${memberSerial }" class="waves-effect waves-dark"> --%>
 			                 <span class="pcoded-micon">
 			                     <!-- <i class="ti-id-badge"></i><b>A</b> -->
@@ -102,7 +155,7 @@
 			     </ul>
 			     <ul class="pcoded-item pcoded-left-item">
 			         <li class="">
-			             <a href="myPetInfoList.do" class="waves-effect waves-dark">
+			             <a href="myPetInfoList2.jsp" class="waves-effect waves-dark">
 			                 <span class="pcoded-micon">
 			                     <!-- <i class="ti-id-badge"></i><b>A</b> -->
 			                 </span>
@@ -113,7 +166,7 @@
 			     </ul>
 			     <ul class="pcoded-item pcoded-left-item">
 			         <li class="">
-			             <a href="myPostList.do" class="waves-effect waves-dark">
+			             <a href="myPostList.jsp" class="waves-effect waves-dark">
 			                 <span class="pcoded-micon">
 			                     <!-- <i class="ti-id-badge"></i><b>A</b> -->
 			                 </span>
@@ -124,7 +177,7 @@
 			     </ul>
 			     <ul class="pcoded-item pcoded-left-item">
 			         <li class="">
-			             <a href="myPoint.do" class="waves-effect waves-dark">
+			             <a href="myPoint.jsp" class="waves-effect waves-dark">
 			                 <span class="pcoded-micon">
 			                     <!-- <i class="ti-id-badge"></i><b>A</b> -->
 			                 </span>
@@ -135,7 +188,7 @@
 			     </ul>
 			     <ul class="pcoded-item pcoded-left-item">
 			         <li class="">
-			             <a href="myInquiry.do" class="waves-effect waves-dark">
+			             <a href="myInquiry.jsp" class="waves-effect waves-dark">
 			                 <span class="pcoded-micon">
 			                     <!-- <i class="ti-id-badge"></i><b>A</b> -->
 			                 </span>

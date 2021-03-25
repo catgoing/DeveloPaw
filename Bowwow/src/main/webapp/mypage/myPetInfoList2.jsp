@@ -22,8 +22,6 @@
     <meta name="keywords" content="bootstrap, bootstrap admin template, admin theme, admin dashboard, dashboard template, admin template, responsive" />
     <meta name="author" content="Codedthemes" />
     
-   <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-eOJMYsd53ii+scO/bJGFsiCZc+5NDVN2yr8+0RDqr0Ql0h+rP48ckxlpbzKgwra6" crossorigin="anonymous">
-<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta3/dist/js/bootstrap.bundle.min.js" integrity="sha384-JEW9xMcG8R+pH31jmWH6WWP0WintQrMb4s7ZOdauHnUtxwoG2vI5DkLtS3qm9Ekf" crossorigin="anonymous"></script>
     <!--Jua 폰트 import-->
     <link rel="preconnect" href="https://fonts.gstatic.com">
     <link href="https://fonts.googleapis.com/css2?family=Jua&display=swap" rel="stylesheet">
@@ -70,53 +68,20 @@
     width: 96%;    
     margin: 2%;
     color: #828282; }
-   .ererer{
- 	  border: 1px solid black;
-   } 
+.insert-title{
+	width : 15%;
+}
+    
+    
 </style>
 <script>
- function wrapWindowByMask(){
-	 var maskHeight = $(document).height();
-	 var maskWidth = $(window).width();
-	 
-	 console.log("도큐먼트 높이: "+ maskHeight);
-	 console.log("윈도우 사이즈: "+ maskWidth);
-	 
-	 $('#mask').css({'width': maskWidth,'height': maskHeight});
-	 $('#mask').fadeTo("slow", 0.5);
- }
- 
- function openPopup(){
-	 $('.layerpop').css("position", "absolute");
-	 $('.layerpop').css('top', (($(window).height() - $('.layerpop').outerHeight()) / 2) + $(window).scrollTop());
-	 $('.layerpop').css('right',(($(window).width() - $('.layerpop').outerWidth()) / 2) + $(window).scrollLeft());
-	 $('.layerpop').draggable();
-	 $('#layerbox').show();
- }
- function openPopup2(){
-	 $('.layerpop sub1').css("position", "absolute");
-	 $('.layerpop sub1').css('top', (($(window).height() - $('.layerpop').outerHeight()) / 2) + $(window).scrollTop());
-	 $('.layerpop sub1').css('right',(($(window).width() - $('.layerpop').outerWidth()) / 2) + $(window).scrollLeft());
-	 $('.layerpop sub1').draggable();
-	 $('#layerbox sub1').show();
- }
- function openPopup3(){
-	 $('.layerpop sub2').css("position", "absolute");
-	 $('.layerpop sub2').css('top', (($(window).height() - $('.layerpop').outerHeight()) / 2) + $(window).scrollTop());
-	 $('.layerpop sub2').css('right',(($(window).width() - $('.layerpop').outerWidth()) / 2) + $(window).scrollLeft());
-	 $('.layerpop sub2').draggable();
-	 $('#layerbox sub2').show();
- }
- 
- function closePopup(){
-	 $('#layerbox').hide();
-	 $('#mask').hide();
- }
 
- function goNewPet(frm) {
-	 /* 폼 받아서 ajax처리 */
-	 openPopup(); //레이어팝업 오픈
-	 wrapWindowByMask(); //화면 마스크 효과
+ function newPetInfo(frm) {
+	 /* 폼 받아서 ajax처리 - patch */
+ }
+ 
+ function deletePetInfo(frm){
+	 /*petSerial로 ajax처리*/
  }
  
  function goSub(frm){
@@ -136,14 +101,27 @@
 	 }
  }
  
+ function setPetSerial(serial){
+	console.log(serial);
+	$('#petSerial').val(serial);
+ }
  
+ function transferType(type){
+	 console.log(type);
+	 $('#animalType').val(type);
+ }
+/*  $('#closeModalBtn').on('click', function(){
+	 $('#petInfo').modal('hide');
+	 console.log("click close");
+}); */
+
  
 </script>
 </head>
 
 <body>
     <!-- Pre-loader start -->
-    <div class="theme-loader">
+     <div class="theme-loader">
         <div class="loader-track">
             <div class="preloader-wrapper">
                 <div class="spinner-layer spinner-blue">
@@ -196,288 +174,369 @@
         </div>
     </div>
     <!-- Pre-loader end -->
-    
     <div id="pcoded" class="pcoded">
         <div class="pcoded-overlay-box"></div>
-        <div class="pcoded-container navbar-wrapper">
-		<!-- 헤더 -->
-		<%-- <tiles:insertAttribute name="header" /> --%>
+        <div class="pcoded-main-container navbar-wrapper">
+        <!-- 헤더 -->
 		<%@include file="/common/header.jsp" %>
 		
 		<div class="pcoded-main-container">
 			<div class="pcoded-wrapper">
-				<!-- 좌측 메뉴바 시작 -->
-<div class="pcoded-main-container">
-	<div class="pcoded-wrapper">
-		<nav class="pcoded-navbar">
-			<div class="sidebar_toggle"><a href="#"><i class="icon-close icons"></i></a></div>
-				<div class="pcoded-inner-navbar main-menu">
-			    <div class="p-15 p-b-0">
-			         <form class="form-material">
-						<!-- 이부분 form을 없애면 좌측메뉴 시작부분이 위쪽으로 조금 올라감 -->
-			         </form>
-			     </div>
-			  
-			     <ul class="pcoded-item pcoded-left-item">
-			         <li class="">
-			             <a href="myPageMain.do" class="waves-effect waves-dark">
-			                 <span class="pcoded-micon"><i class="ti-layers"></i><b>FC</b></span>
-			                 <span class="pcoded-mtext">마이 홈</span>
-			                 <span class="pcoded-mcaret"></span>
-			             </a>
-			         </li>
-			     </ul>
-			
-			     <ul class="pcoded-item pcoded-left-item">
-			         <li class="">
-			          <!-- 회원번호(memberSerial)을 이용해서 내 정보 출력 -->
-			             <a href="myInfo.do" class="waves-effect waves-dark">
-			             <%-- <a href="myInfo.do?memberSerial=${memberSerial }" class="waves-effect waves-dark"> --%>
-			                 <span class="pcoded-micon">
-			                     <!-- <i class="ti-id-badge"></i><b>A</b> -->
-			                 </span>
-			                 <span class="pcoded-mtext">프로필</span>
-			                 <span class="pcoded-mcaret"></span>
-			             </a>
-			         </li>
-			     </ul>
-			     <ul class="pcoded-item pcoded-left-item">
-			         <li class="">
-			             <a href="myPetInfoList.do" class="waves-effect waves-dark">
-			                 <span class="pcoded-micon">
-			                     <!-- <i class="ti-id-badge"></i><b>A</b> -->
-			                 </span>
-			                 <span class="pcoded-mtext">반려동물</span>
-			                 <span class="pcoded-mcaret"></span>
-			             </a>
-			         </li>
-			     </ul>
-			     <ul class="pcoded-item pcoded-left-item">
-			         <li class="">
-			             <a href="myPostList.do" class="waves-effect waves-dark">
-			                 <span class="pcoded-micon">
-			                     <!-- <i class="ti-id-badge"></i><b>A</b> -->
-			                 </span>
-			                 <span class="pcoded-mtext">게시글</span>
-			                 <span class="pcoded-mcaret"></span>
-			             </a>
-			         </li>
-			     </ul>
-			     <ul class="pcoded-item pcoded-left-item">
-			         <li class="">
-			             <a href="myPoint.do" class="waves-effect waves-dark">
-			                 <span class="pcoded-micon">
-			                     <!-- <i class="ti-id-badge"></i><b>A</b> -->
-			                 </span>
-			                 <span class="pcoded-mtext">적립금(?)</span>
-			                 <span class="pcoded-mcaret"></span>
-			             </a>
-			         </li>
-			     </ul>
-			     <ul class="pcoded-item pcoded-left-item">
-			         <li class="">
-			             <a href="myInquiry.do" class="waves-effect waves-dark">
-			                 <span class="pcoded-micon">
-			                     <!-- <i class="ti-id-badge"></i><b>A</b> -->
-			                 </span>
-			                 <span class="pcoded-mtext">1:1문의</span>
-			                 <span class="pcoded-mcaret"></span>
-			             </a>
-			         </li>
-			     </ul>
-			 </div>
-		</nav>
-		
-	<!-- 좌측 메뉴바 끝 -->
+			<!-- 좌측 메뉴바 시작 -->
+			<div class="pcoded-main-container">
+				<div class="pcoded-wrapper">
+					<nav class="pcoded-navbar">
+						<div class="sidebar_toggle"><a href="#"><i class="icon-close icons"></i></a></div>
+							<div class="pcoded-inner-navbar main-menu">
+						    <div class="p-15 p-b-0">
+						         <form class="form-material">
+									<!-- 이부분 form을 없애면 좌측메뉴 시작부분이 위쪽으로 조금 올라감 -->
+						         </form>
+						     </div>
+						  
+						     <ul class="pcoded-item pcoded-left-item">
+						         <li class="">
+						             <a href="myPageMain.jsp" class="waves-effect waves-dark">
+						                 <span class="pcoded-micon"><i class="ti-layers"></i><b>FC</b></span>
+						                 <span class="pcoded-mtext">마이 홈</span>
+						                 <span class="pcoded-mcaret"></span>
+						             </a>
+						         </li>
+						     </ul>
+						
+						     <ul class="pcoded-item pcoded-left-item">
+						         <li class="">
+						          <!-- 회원번호(memberSerial)을 이용해서 내 정보 출력 -->
+						             <a href="myInfo.jsp" class="waves-effect waves-dark">
+						             <%-- <a href="myInfo.do?memberSerial=${memberSerial }" class="waves-effect waves-dark"> --%>
+						                 <span class="pcoded-micon">
+						                     <!-- <i class="ti-id-badge"></i><b>A</b> -->
+						                 </span>
+						                 <span class="pcoded-mtext">프로필</span>
+						                 <span class="pcoded-mcaret"></span>
+						             </a>
+						         </li>
+						     </ul>
+						     <ul class="pcoded-item pcoded-left-item">
+						         <li class="">
+						             <a href="myPetInfoList2.jsp" class="waves-effect waves-dark">
+						                 <span class="pcoded-micon">
+						                     <!-- <i class="ti-id-badge"></i><b>A</b> -->
+						                 </span>
+						                 <span class="pcoded-mtext">반려동물</span>
+						                 <span class="pcoded-mcaret"></span>
+						             </a>
+						         </li>
+						     </ul>
+						     <ul class="pcoded-item pcoded-left-item">
+						         <li class="">
+						             <a href="myPostList.jsp" class="waves-effect waves-dark">
+						                 <span class="pcoded-micon">
+						                     <!-- <i class="ti-id-badge"></i><b>A</b> -->
+						                 </span>
+						                 <span class="pcoded-mtext">게시글</span>
+						                 <span class="pcoded-mcaret"></span>
+						             </a>
+						         </li>
+						     </ul>
+						     <ul class="pcoded-item pcoded-left-item">
+						         <li class="">
+						             <a href="myPoint.jsp" class="waves-effect waves-dark">
+						                 <span class="pcoded-micon">
+						                     <!-- <i class="ti-id-badge"></i><b>A</b> -->
+						                 </span>
+						                 <span class="pcoded-mtext">적립금(?)</span>
+						                 <span class="pcoded-mcaret"></span>
+						             </a>
+						         </li>
+						     </ul>
+						     <ul class="pcoded-item pcoded-left-item">
+						         <li class="">
+						             <a href="myInquiry.jsp" class="waves-effect waves-dark">
+						                 <span class="pcoded-micon">
+						                     <!-- <i class="ti-id-badge"></i><b>A</b> -->
+						                 </span>
+						                 <span class="pcoded-mtext">1:1문의</span>
+						                 <span class="pcoded-mcaret"></span>
+						             </a>
+						         </li>
+						     </ul>
+						 </div>
+					</nav>
+				<!-- 좌측 메뉴바 끝 -->
 				<!-- 본문 시작 -->  
                     <div class="pcoded-content">
                         <div class="pcoded-inner-content">
-							<!-- 페이지 제목 -->
-							
 							<!-- Main-body start 본문 시작 -->
 							<div class="main-body">
 							<div class="page-wrapper">
-		                                
-								<!-- Page-body start -->
+		                        <!-- Page-body start -->
 								<div class="page-body">
-								<div class="myPageInfo-header">
-									<h2> 뫄뫄님의 페이지</h2>
-								</div>
+									<div class="myPageInfo-header">
+										<h2> 뫄뫄님의 페이지</h2>
+									</div>
                                         <div class="my-pet">
 	                                        <div class="pet-list">
 		                                        <div class="list-inner">
 			                                        <div class="pet-img">이미지</div>
 			                                        <div class="pet-name">이름</div>
 			                                        <div class="pet-detail">
-			                                        <!-- <button onclick="openPopUp('mypage/myPetInfo.jsp', '오픈팝업', 1, 2)">상세보기</button> -->
-			                                        <input type="button" value="상세보기" data-bs-toggle="modal" href="#petDetail" role="button">
+			                                        <%-- <input type="hidden" id="petSerial" value="${pet.petSerial }"> --%>
+			                                        <input type="button" value="상세보기" data-toggle="modal" href="#petDetail" role="button" onclick="setPetSerial(${pet.petSerial })">
 			                                        </div>			                                        
 		                                        </div>
 	                                        </div>
-	                                        <div class="action-button">
-	                                        	<input type="button" value="반려동물 추가하기" data-bs-toggle="modal" data-bs-target="#petInfo">
-	                                        </div>
+                                        <div class="action-button">
+                                        	<input type="button" value="반려동물 추가하기" data-toggle="modal" data-target="#petType">
                                         </div>
-                                    </div>
-                             
-<!-- Modal -->
-<div class="modal fade" id="petInfo" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-  <div class="modal-dialog">
+                                       </div>
+                                   </div>
+
+<!-- Modal - 정보등록 -->
+<div class="modal fade" id="petInfo" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+  <div class="modal-dialog" role="document" style="max-width: 100%; width: auto; display: table;">
     <div class="modal-content">
       <div class="modal-header">
-        <h5 class="modal-title" id="addPetInfo">반려동물 정보등록</h5>
+        <h4 class="modal-title" id="myModalLabel">반려동물 정보등록</h4>
       </div>
       <div class="modal-body">
-        <form>
-	        <table class="ererer">
-	       	 <thead>
-	        </thead>
+       <form class="pet-form">
+       	<div class="form-group">
+	        <table class="table table-bordered">
 	        <tbody>
 		        <tr>
-					<td>1</td>
-					<td>2</td>
-					<td>3</td>
-					<td>4</td>
+					<td class="insert-title">이름</td>
+					<td><input type="text" name="petName"></td>
+					<td class="insert-title">나이</td>
+					<td><input type="text" name="petAge"></td>
 		        </tr>
 		        <tr>
-			        <td>d</td>
-					<td>d</td>
-					<td>d</td>
-					<td>d</td>
-		        </tr>
-		        <tr>
-			        <td>1</td>
-					<td>2</td>
-					<td>3</td>
-					<td>4</td>
-		        </tr>
-		        <tr>
-			        <td>5</td>
-					<td>4</td>
-					<td>3</td>
-					<td>2</td>
-		        </tr>
-		        <tr>
-			        <td rowspan="4" colspan="2">1</td>
-					<td>3</td>
-					<td>4</td>
-		        </tr>
-		        <tr>
-					<td>3</td>
-					<td>2</td>
-		        </tr>
-		        <tr>
-					<td>2</td>
-					<td>2</td>
-		        </tr>
-		        <tr>
-					<td>1</td>
-					<td>1</td>
-		        </tr>
-	        </tbody>
-			<!-- <div class="popup-inner text-pet">
-				<div class="my-pet-detail">
-					<select>
-						<option name="animalType" value="dog">강아지</option>
-						<option name="animalType" value="cat">고양이</option>
+			        <td class="insert-title">성별</td>
+					<td>
+					<select name="petGender">
+						<option value="girl">암</option>
+						<option value="boy">수</option>
 					</select>
-					<input type="text" name="petName">
-					<input type="text" name="petAge">
-					<input type="text" name="petGender">
-					<input type="text" name="petBirth">
-					<input type="text" name="petVariety">
-					<input type="text" name="tnr">
-					<input type="text" name="petSize">
-					<input type="text" name="petWeight">
-					<input type="text" name="neckLength">
-					<input type="text" name="backLength">
-					<input type="text" name="chestLength">
-					<textarea value="petEtc"></textarea>
-					<input type="file" accept="image/*" name="imageSource">
-				</div>
-			</div> -->
-        </table>
+					</td>
+					<td class="insert-title">생일</td>
+					<td>d</td>
+		        </tr>
+		        <tr>
+			        <td class="insert-title">품종</td>
+					<td><input type="text" name="petVariety"></td>
+					<td class="insert-title">중성화여부</td>
+					<td>
+					<select name="tnr">
+						<option value="yes">예</option>
+						<option value="no">아니요</option>
+					</select>
+					</td>
+		        </tr>
+		        <tr>
+			        <td class="insert-title">사이즈</td>
+					<td>
+					<select name="petSize">
+						<option value="s">소형</option>
+						<option value="m">중형</option>
+						<option value="l">대형</option>
+					</select>
+					</td>
+					<td class="insert-title">체중</td>
+					<td><input type="text" name="petWeight"></td>
+		        </tr>
+		        <tr>
+			        <td rowspan="3" colspan="2"><input type="file" accept="image/*" name="imageSource"></td>
+					<td class="insert-title">목둘레</td>
+					<td><input type="text" name="neckLength"></td>
+		        </tr>
+		        <tr>
+					<td class="insert-title">등길이</td>
+					<td><input type="text" name="backLength"></td>
+		        </tr>
+		        <tr>
+					<td class="insert-title">가슴둘레</td>
+					<td><input type="text" name="chestLength"></td>
+		        </tr>
+		        <tr>
+					<td class="insert-title">특이사항</td>
+					<td colspan="3"><textarea name="petEtc"></textarea></td>
+		        </tr>
+	         </tbody>
+            </table>
+          </div>
+          <input type="hidden" id="animalType">
 		</form>
       </div>
       <div class="modal-footer">
-        <button type="button" class="btn btn-primary" onclick="saveInfo(this.form)">정보 저장</button>
-        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+        <button type="button" class="btn btn-primary" onclick="javascript:newPetInfo(this.form)">반려동물 정보저장</button>
+        <button type="button" class="btn btn-secondary" data-dismiss="modal" id="closeModalBtn">Close</button>
       </div>
     </div>
   </div>
 </div>
 
 
-
 <!-- First modal dialog : 상세보기-->
 <div class="modal" id="petDetail" aria-hidden="true" aria-labelledby="..." tabindex="-1">
-  <div class="modal-dialog modal-dialog-centered">
+  <div class="modal-dialog modal-dialog-centered" >
     <div class="modal-content">
-	    <form>
-			<div class="popup-inner img-pet" id="petimg">동물이미지1</div>
+	    <form class="pet-form">
+			<div class="popup-inner img-pet" id="petimg"><img src="" alt="">${pet.ImageSource }</div>
 			<div class="popup-inner text-pet">
-			<div class="my-pet-detail">
+			<div class="form-group">
 				<h2 id="petname">${pet.petName }</h2>
-				<ul>
-					<li id="gender">성별${pet.petGender }</li>
-					<li id="variety">품종${pet.petVariety }</li>
-					<li id="birthday">생일${pet.petBirth }</li>
-				</ul>
 				<div class="textMain-wrap">
+					<div class="box-detail" id="detail_gender">
+						<h5>성별</h5>
+						<p id="gender">${pet.petGender }</p>
+					</div>
+					<div class="box-detail" id="detail_variety">
+						<h5>품종</h5>
+						<p id="variety">${pet.petVariety }</p>
+					</div>
+					<div class="box-detail" id="detail_birth">	
+						<h5>생일</h5>
+						<p id="birthday">${pet.petBirth }</p>
+					</div>
 					<div class="box-detail" id="detail_age">
-						<h3>나이</h3>
+						<h5>나이</h5>
 						<p id="petAge">${pet.petAge }</p>
 					</div>
 					<div class="box-detail" id="detail_size">
-						<h3>체형</h3>
+						<h5>체형</h5>
 						<p id="petSize">${pet.petSize }</p>
 					</div>
 					<div class="box-detail" id="detatl_weight">
-						<h3>무게</h3>
+						<h5>무게</h5>
 						<p id="petWeight">${pet.petWeight }</p>
 					</div>
 					<div class="box-detail" id="detail_neck">
-						<h3>목둘레</h3>
+						<h5>목둘레</h5>
 						<p id="petNeck">${pet.neckLength }</p>
 					</div>
 					<div class="box-detail" id="detail_back">
-						<h3>등길이</h3>
+						<h5>등길이</h5>
 						<p id="petBack">${pet.backLength }</p>
 					</div>
 					<div class="box-detail" id="detail_chest">
-						<h3>가슴둘레</h3>
+						<h5>가슴둘레</h5>
 						<p id="petChest">${pet.chestLength }</p>
 					</div>
 				</div>
 				<div class="textSub-wrap">
 					<div class="box-detail" id="detail_etc">
-						<h3>특이사항</h3>
+						<h5>특이사항</h5>
 						<p id="petEtc">${pet.petEtc }</p>
 					</div>
 				</div>
 			</div>
 			</div>
+			<input type="hidden" id="petSerial" value="">
 		</form>
       <div style="float:left">
       </div>
       <div class="modal-footer">
         <!-- Toogle to second dialog -->
-      <button class="btn btn-primary" data-bs-target="#petInfo" data-bs-toggle="modal" data-bs-dismiss="modal">정보 수정</button>
-      <button class="btn btn-primary" onclick="javascript:goDelete(this.form);">정보 삭제</button>
-      <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+	    <button class="btn btn-primary" data-target="#petInfo" data-toggle="modal" data-dismiss="modal" onclick="">정보 수정</button>
+	    <button class="btn btn-primary" onclick="javascript:deletePetInfo(this.form);">정보 삭제</button>
+      	<button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
       </div>
     </div>
   </div>
 </div>
 
-<!-- Second modal2 dialog : 수정 -->
+<!-- First modal dialog : 타입고르기-->
+<div class="modal" id="petType" aria-hidden="true" aria-labelledby="..." tabindex="-1">
+  <div class="modal-dialog modal-dialog-centered">
+    <div class="modal-content">
+	    <form>
+          <div class="form-group">
+          	<input type="checkbox" name="animalType" value="dog">강아지
+          	<input type="checkbox" name="animalType" value="dog">고양이
+          </div>
+        </form>
+      <div style="float:left">
+      </div>
+      <div class="modal-footer">
+        <!-- Toogle to second dialog -->
+	    <button class="btn btn-primary" data-target="#petInfo" data-toggle="modal" data-dismiss="modal" onclick="javascript:transferType(this.form)">선택</button>
+      	<button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- Second modal2 dialog : 정보등록  -->
 <div class="modal fade" id="modifyPet" aria-hidden="true" aria-labelledby="..." tabindex="-1">
   <div class="modal-dialog modal-dialog-centered">
     <div class="modal-content">
-      	
+      	<form class="pet-form">
+	        <table class="table table-bordered">
+	        <tbody>
+		        <tr>
+					<td class="insert-title">이름</td>
+					<td><input type="text" name="petName"></td>
+					<td class="insert-title">나이</td>
+					<td><input type="text" name="petAge"></td>
+		        </tr>
+		        <tr>
+			        <td class="insert-title">성별</td>
+					<td>
+					<select>
+						<option name="petGender" value="girl">암</option>
+						<option name="petGender" value="boy">수</option>
+					</select>
+					</td>
+					<td class="insert-title">생일</td>
+					<td>d</td>
+		        </tr>
+		        <tr>
+			        <td class="insert-title">품종</td>
+					<td><input type="text" name="petVariety"></td>
+					<td class="insert-title">중성화여부</td>
+					<td>
+					<select>
+						<option name="tnr" value="yes">예</option>
+						<option name="tnr" value="no">아니요</option>
+					</select>
+					</td>
+		        </tr>
+		        <tr>
+			        <td class="insert-title">사이즈</td>
+					<td>
+					<select>
+						<option name="petSize" value="s">소형</option>
+						<option name="petSize" value="m">중형</option>
+						<option name="petSize" value="l">대형</option>
+					</select>
+					</td>
+					<td class="insert-title">체중</td>
+					<td><input type="text" name="petWeight"></td>
+		        </tr>
+		        <tr>
+			        <td rowspan="3" colspan="2"><input type="file" accept="image/*" name="imageSource"></td>
+					<td class="insert-title">목둘레</td>
+					<td><input type="text" name="neckLength"></td>
+		        </tr>
+		        <tr>
+					<td class="insert-title">등길이</td>
+					<td><input type="text" name="backLength"></td>
+		        </tr>
+		        <tr>
+					<td class="insert-title">가슴둘레</td>
+					<td><input type="text" name="chestLength"></td>
+		        </tr>
+		        <tr>
+					<td class="insert-title">특이사항</td>
+					<td colspan="3"><textarea name="petEtc"></textarea></td>
+		        </tr>
+	        </tbody>
+			
+        </table>
+		</form>
       <div class="modal-footer">
-        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
         <button type="button" class="btn btn-primary">Save changes</button>
+        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
       </div>
     </div>
   </div>
@@ -526,6 +585,8 @@
 	<%-- <tiles:insertAttribute name="footer" /> --%>
 	<%@include file="/common/footer.jsp" %>
 	<!-- footer 푸터 끝부분-->
+	</div>
+</div>
 
     <!-- Required Jquery -->
     <script type="text/javascript" src="../resources/js/jquery/jquery.min.js "></script>
