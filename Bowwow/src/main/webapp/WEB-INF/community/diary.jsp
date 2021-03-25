@@ -74,6 +74,8 @@
 
 <!-- Page-header end -->
 <!-- Main-body start -->
+${ boardList}
+
 <div class="main-body">
 	<div class="page-wrapper">
 		<!-- Page-body start -->
