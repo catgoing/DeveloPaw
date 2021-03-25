@@ -548,7 +548,7 @@
                                                 <div class="row">
                                                     <div class="col-lg-12">
                                                         <div class="section-title">
-                                                            <h2>댕댕이 상품보기</h2>
+                                                            <h2>스토어 메인</h2>
                                                         </div>
                                                         <br>
                                                     </div>
