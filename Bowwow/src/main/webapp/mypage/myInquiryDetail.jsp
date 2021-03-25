@@ -1,7 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@ taglib uri="http://tiles.apache.org/tags-tiles" prefix="tiles"%>
-<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 
 <!DOCTYPE html>
 <html>
@@ -51,116 +50,84 @@
     <link rel="stylesheet" type="text/css" href="/main/resources/css/test.css">
 <style>
   .featured__item__text { width: 150px; }
-  
-  .input-content .input-wrap {
-	margin-bottom: 15px;
-	position: relative;
-}
- .input-content .input-wrap:last-of-type {
-	margin-bottom: 0;
-}
-
- .input-content .input-wrap input {
-	width: 100%;
-	height: 50px;
-	border-radius: 10px;
-	color: #48484d;
-	font-size: 15px;
-	font-weight: 700;
-	padding: 14px 20px;
-	border: 1px solid #e4e4e4;
-	padding-right: 50px;
-}
-
 </style>
 </head>
 
 <body>
     
-    
+    <!-- Pre-loader end -->
     <div id="pcoded" class="pcoded">
         <div class="pcoded-overlay-box"></div>
-        <div class="pcoded-main-container navbar-wrapper">
+        <div class="pcoded-container navbar-wrapper">
             
 		<!-- 헤더 -->
 		<%-- <tiles:insertAttribute name="header" /> --%>
-		<!-- 좌측메뉴바 -->
-		<%-- <tiles:insertAttribute name="menubar"/> --%>
-                    
-			<div class="pcoded-content">
-				<div class="pcoded-inner-content">
-					<!-- Main-body start 본문 시작 -->
-					<div class="main-body">
-						<div class="page-wrapper">
-	                                
-							<!-- Page-body start -->
-							<div class="page-body">
-											
-								<!-- 여기서 회원정보 수정하겠습니다~~~ -->
-								<div class="content-list">
-						     	<table>
-									<tr>
-										<th width="200">추가일</th>
-										<th width="150">추가포인트</th>
-										<th width="150">누적포인트</th>
-									</tr>
-									
-								<c:if test="${empty pointList }">
-									<tr>
-										<td colspan="5" class="center">데이터가 없습니다.</td>
-									</tr>
-								</c:if>
-								<c:if test="${not empty pointList }">	
-									<c:forEach var="point" items="${pointList }">
-									<tr>
-										<td>${point.addDate }</td>
-										<td>${point.addPoint }</td>
-										<td>${point.totalPoint }</td>
-									</tr>
-									</c:forEach>
-								</c:if>
-								</table>
-						     </div>
-											
-							</div>
-								<!-- Page-body end -->
-						</div>
-						<div id="styleSelector"> </div>
-					</div>
-					<!-- Main-body start 본문 끝 -->
+		<%@include file="/common/header.jsp" %>
+		
+		<div class="pcoded-main-container">
+			<div class="pcoded-wrapper">
+				<!-- 좌측메뉴바 -->
+				<%@include file="/common/myPageMenuBar.jsp" %>
+				
+				<!-- Main-body start 본문 시작 -->
+				<%-- <tiles:insertAttribute name="body" /> --%>
+					<table>
+						<tr>
+							<th>제목</th>
+							<th>내용</th>
+							<th>작성일</th>
+						</tr>
+						<tr>
+							<td>${detail.title }</td>
+							<td>${detail.content }</td>
+							<td>${detail.writeDate }</td>
+						</tr>					
+					</table>
+					<table>
+						<tr>
+							<th>등록일</th>
+							<th>관리자 답변</th>
+						</tr>
+						<tr>
+							<td>${detail.reWriteDate }</td>
+							<td>${detail.reContent }</td>
+						</tr>
+					</table>
+					
 				</div>
 			</div>
 		</div>
 	</div>
-            
-	<button class="scroll-top" id="js-button" style="margin-bottom: 190px; margin-right: 30px;">
-	<i class="fa fa-chevron-up" aria-hidden="true">TOP</i>
-	</button>
-	<script type="text/javascript">
-		scrollTop('js-button', 500);
-		function scrollTop(elem,duration) {
-		    let target = document.getElementById(elem);
-		
-		    target.addEventListener('click', function() {
-		        let currentY = window.pageYOffset; 
-		        let step = duration/currentY > 1 ? 10 : 100;
-		        let timeStep = duration/currentY * step;
-		        let intervalID = setInterval(scrollUp, timeStep);
-		
-		        function scrollUp(){
-		            currentY = window.pageYOffset;
-		            if(currentY === 0) {
-		                clearInterval(intervalID);
-		            } else {
-		                scrollBy( 0, -step );
-		            }
-		        }
-		    });
-		}
-	</script>
-                
+	
+    <button class="scroll-top" id="js-button" style="margin-bottom: 190px; margin-right: 30px;">
+        <i class="fa fa-chevron-up" aria-hidden="true">TOP</i>
+    </button>
+    <script type="text/javascript">
+        scrollTop('js-button', 500);
+        function scrollTop(elem,duration) {
+            let target = document.getElementById(elem);
+        
+            target.addEventListener('click', function() {
+                let currentY = window.pageYOffset; 
+                let step = duration/currentY > 1 ? 10 : 100;
+                let timeStep = duration/currentY * step;
+                let intervalID = setInterval(scrollUp, timeStep);
+        
+                function scrollUp(){
+                    currentY = window.pageYOffset;
+                    if(currentY === 0) {
+                        clearInterval(intervalID);
+                    } else {
+                        scrollBy( 0, -step );
+                    }
+                }
+            });
+        }
+    </script>
+        
 	<!-- footer 푸터 시작부분-->
 	<%-- <tiles:insertAttribute name="footer" /> --%>
+	<%@include file="/common/footer.jsp" %>
 	<!-- footer 푸터 끝부분-->
 
     <!-- Required Jquery -->

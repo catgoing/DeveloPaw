@@ -14,6 +14,8 @@
       <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
       <![endif]-->
     <!-- Meta -->
+    <script src="http://code.jquery.com/jquery-3.5.1.min.js"></script>
+   
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=0, minimal-ui">
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
@@ -54,69 +56,99 @@
 </head>
 
 <body>
-    <!-- Pre-loader start -->
-    <div class="theme-loader">
-        <div class="loader-track">
-            <div class="preloader-wrapper">
-                <div class="spinner-layer spinner-blue">
-                    <div class="circle-clipper left">
-                        <div class="circle"></div>
-                    </div>
-                    <div class="gap-patch">
-                        <div class="circle"></div>
-                    </div>
-                    <div class="circle-clipper right">
-                        <div class="circle"></div>
-                    </div>
-                </div>
-                <div class="spinner-layer spinner-red">
-                    <div class="circle-clipper left">
-                        <div class="circle"></div>
-                    </div>
-                    <div class="gap-patch">
-                        <div class="circle"></div>
-                    </div>
-                    <div class="circle-clipper right">
-                        <div class="circle"></div>
-                    </div>
-                </div>
-
-                <div class="spinner-layer spinner-yellow">
-                    <div class="circle-clipper left">
-                        <div class="circle"></div>
-                    </div>
-                    <div class="gap-patch">
-                        <div class="circle"></div>
-                    </div>
-                    <div class="circle-clipper right">
-                        <div class="circle"></div>
-                    </div>
-                </div>
-
-                <div class="spinner-layer spinner-green">
-                    <div class="circle-clipper left">
-                        <div class="circle"></div>
-                    </div>
-                    <div class="gap-patch">
-                        <div class="circle"></div>
-                    </div>
-                    <div class="circle-clipper right">
-                        <div class="circle"></div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
-    <!-- Pre-loader end -->
+    
     <div id="pcoded" class="pcoded">
         <div class="pcoded-overlay-box"></div>
         <div class="pcoded-main-container navbar-wrapper">
-            
- 		<!-- 헤더 -->
-		<%-- <tiles:insertAttribute name="header" /> --%>
-		<!-- 좌측메뉴바 -->
-		<%-- <tiles:insertAttribute name="menubar"/> --%>
-			 
+        <!-- 헤더 -->
+		<%@include file="/common/header.jsp" %>
+		
+		<div class="pcoded-main-container">
+			<div class="pcoded-wrapper">
+			<!-- 좌측 메뉴바 시작 -->
+<div class="pcoded-main-container">
+	<div class="pcoded-wrapper">
+		<nav class="pcoded-navbar">
+			<div class="sidebar_toggle"><a href="#"><i class="icon-close icons"></i></a></div>
+				<div class="pcoded-inner-navbar main-menu">
+			    <div class="p-15 p-b-0">
+			         <form class="form-material">
+						<!-- 이부분 form을 없애면 좌측메뉴 시작부분이 위쪽으로 조금 올라감 -->
+			         </form>
+			     </div>
+			  
+			     <ul class="pcoded-item pcoded-left-item">
+			         <li class="">
+			             <a href="myPageMain.do" class="waves-effect waves-dark">
+			                 <span class="pcoded-micon"><i class="ti-layers"></i><b>FC</b></span>
+			                 <span class="pcoded-mtext">마이 홈</span>
+			                 <span class="pcoded-mcaret"></span>
+			             </a>
+			         </li>
+			     </ul>
+			
+			     <ul class="pcoded-item pcoded-left-item">
+			         <li class="">
+			          <!-- 회원번호(memberSerial)을 이용해서 내 정보 출력 -->
+			             <a href="myInfo.do" class="waves-effect waves-dark">
+			             <%-- <a href="myInfo.do?memberSerial=${memberSerial }" class="waves-effect waves-dark"> --%>
+			                 <span class="pcoded-micon">
+			                     <!-- <i class="ti-id-badge"></i><b>A</b> -->
+			                 </span>
+			                 <span class="pcoded-mtext">프로필</span>
+			                 <span class="pcoded-mcaret"></span>
+			             </a>
+			         </li>
+			     </ul>
+			     <ul class="pcoded-item pcoded-left-item">
+			         <li class="">
+			             <a href="myPetInfoList.do" class="waves-effect waves-dark">
+			                 <span class="pcoded-micon">
+			                     <!-- <i class="ti-id-badge"></i><b>A</b> -->
+			                 </span>
+			                 <span class="pcoded-mtext">반려동물</span>
+			                 <span class="pcoded-mcaret"></span>
+			             </a>
+			         </li>
+			     </ul>
+			     <ul class="pcoded-item pcoded-left-item">
+			         <li class="">
+			             <a href="myPostList.do" class="waves-effect waves-dark">
+			                 <span class="pcoded-micon">
+			                     <!-- <i class="ti-id-badge"></i><b>A</b> -->
+			                 </span>
+			                 <span class="pcoded-mtext">게시글</span>
+			                 <span class="pcoded-mcaret"></span>
+			             </a>
+			         </li>
+			     </ul>
+			     <ul class="pcoded-item pcoded-left-item">
+			         <li class="">
+			             <a href="myPoint.do" class="waves-effect waves-dark">
+			                 <span class="pcoded-micon">
+			                     <!-- <i class="ti-id-badge"></i><b>A</b> -->
+			                 </span>
+			                 <span class="pcoded-mtext">적립금(?)</span>
+			                 <span class="pcoded-mcaret"></span>
+			             </a>
+			         </li>
+			     </ul>
+			     <ul class="pcoded-item pcoded-left-item">
+			         <li class="">
+			             <a href="myInquiry.do" class="waves-effect waves-dark">
+			                 <span class="pcoded-micon">
+			                     <!-- <i class="ti-id-badge"></i><b>A</b> -->
+			                 </span>
+			                 <span class="pcoded-mtext">1:1문의</span>
+			                 <span class="pcoded-mcaret"></span>
+			             </a>
+			         </li>
+			     </ul>
+			 </div>
+		</nav>
+		
+	<!-- 좌측 메뉴바 끝 -->
+				
 			<div class="pcoded-content">
 				<div class="pcoded-inner-content">
 					<!-- Main-body start 본문 시작 -->
@@ -124,31 +156,40 @@
 					<div class="page-wrapper">
 					<!-- Page-body start -->
 						<div class="page-body">
-							<!-- <section class="featured spad">
- 								<div class="container">
-									<div class="row">
-										<div class="col-lg-12">
-											<div class="section-title">
-												<h2>(section-title)뫄뫄님의 페이지</h2>
-											</div>
-											<br>
-										</div>
-									</div>
-								</div>
-							</section> -->
+						<div class="myPageInfo-header">
+							<h2> 뫄뫄님의 페이지</h2>
+						</div>
 
 						<div class="mypage_main_content">
-						<h2>본문??</h2>
-						<%-- <tiles:insertAttribute name="body" /> --%>				
+							
 							<div class="mypage_main_content mypointlist">
-								적립금출력영역
+								<h3>누적적립금출력영역</h3>
 							</div>
-							<div class="mypage_main_content petlist">
-								반려동물영역
+							<div class="container">
+							<h3>반려동물</h3>
+							  <div class="row">
+							    <div class="col-sm">
+							      <div class="card" style="width: 8rem;">
+									  <img src="..." class="card-img-top" alt="...">
+								  </div>
+							    </div>
+							    <div class="col-sm">
+							      반려동물2						    
+							      <div class="card" style="width: 8rem;">
+									  <img src="..." class="card-img-top" alt="...">
+								  </div>
+							    </div>
+							    <div class="col-sm">
+							      반려동물3
+							      <div class="card" style="width: 8rem;">
+									  <img src="..." class="card-img-top" alt="...">
+								  </div>
+								</div>
+							  </div>
 							</div>
 							<div class="mypage_main_content boardlist">
-								게시글영역
-							</div>									    
+								<h3>게시글출력영역</h3>
+							</div>		
 						</div>
 					</div>
 					<!-- Page-body end -->
@@ -187,7 +228,7 @@
         </script>
         
 	<!-- footer 푸터 시작부분-->
-	<%-- <tiles:insertAttribute name="footer" /> --%>
+	<%@include file="/common/footer.jsp" %>
 	<!-- footer 푸터 끝부분-->
     </div>
 </div>
