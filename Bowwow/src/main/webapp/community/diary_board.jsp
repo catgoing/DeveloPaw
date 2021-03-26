@@ -68,7 +68,7 @@
 		<div class="pcoded-container navbar-wrapper">
 
 			<!-- header 헤더 영역 -->
-			<%@ include file="/common/header.jspf"%>
+			<%@ include file="/common/header.jsp"%>
 			<!-- header 헤더 영역 -->
 
 
@@ -286,7 +286,7 @@
 		</script>
 
 		<!-- footer 푸터 영역 -->
-		<%@ include file="/common/footer.jspf"%>
+		<%@ include file="/common/footer.jsp"%>
 		<!-- footer 푸터 영역 -->
 
 	</div>
