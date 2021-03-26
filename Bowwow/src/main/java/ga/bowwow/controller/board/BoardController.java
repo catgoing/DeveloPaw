@@ -17,6 +17,7 @@ import ga.bowwow.service.board.BoardService;
 
 @Controller
 public class BoardController {
+	@Autowired
 	private BoardService boardService; //의존주입<-- BoardServiceImpl
 
 	public BoardController() {

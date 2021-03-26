@@ -22,7 +22,7 @@ public class StoreController {
 
 	@RequestMapping(value = "/store/storeMain")
 	public String storeMain() {
-		return "storeMain";
+		return "store/storeMain";
 	}
 	
 	// 댕댕이 상품 전체 출력

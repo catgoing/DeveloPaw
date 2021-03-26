@@ -3,27 +3,22 @@
 <tiles-definitions>
         <!-- base tiles layout add -->
 
-       <!--  <definition name="/store" template="/store/storeMain.jsp">
-                <put-attribute name="header" value="/common/header.jsp" />
-                <put-attribute name="menubar" value="/common/myPageMenuBar.jsp"/>
-                <put-attribute name="body" value="" />
-                <put-attribute name="footer" value="/common/footer.jsp" />
-        </definition>
+       
+<!--        <definition name="/store" template="/store/storeMain.jsp"> -->
+<!--                 <put-attribute name="header" value="/common/header.jsp" /> -->
+<!--                 <put-attribute name="menubar" value="/common/myPageMenuBar.jsp"/> -->
+<!--                 <put-attribute name="body" value="" /> -->
+<!--                 <put-attribute name="footer" value="/common/footer.jsp" /> -->
+<!--         </definition> -->
 
+<!-- 		user -->
         <definition name="/auth" template="/auth/login.jsp">
                 <put-attribute name="header" value="/common/header.jsp" />
                 <put-attribute name="body" value="" />
                 <put-attribute name="footer" value="/common/footer2.jsp" />
-        </definition> -->
+        </definition>
 
         <!-- 마이페이지 -->
-        <!-- <definition name="/mypage" template="/mypage/myPageMain.jsp">
-                <put-attribute name="header" value="/common/header.jsp" />
-                <put-attribute name="menubar" value="/common/myPageMenuBar.jsp"/>
-                <put-attribute name="body" value="" />
-                <put-attribute name="footer" value="/common/footer.jsp" />
-        </definition> -->
-
 		<definition name="/mypage" template="/mypage/myPageTemplate.jsp">
                 <put-attribute name="header" value="/common/header.jsp" />
                 <put-attribute name="menubar" value="/common/myPageMenuBar.jsp"/>
@@ -50,17 +45,10 @@
 			<put-attribute name="body" value="/mypage/myInquiry.jsp" />
 		</definition>
 
-
-       	<definition name="/community" template="/WEB-INF/community/boardTemplate.jsp">
-                <put-attribute name="header" value="/common/header.jsp" />
-                <put-attribute name="menubar" value="/common/communityMenuBar.jsp"/>
-                <put-attribute name="body" value="" />
-                <put-attribute name="footer" value="/common/footer.jsp" />
-        </definition>
-
-         <definition name="/godiary" extends="/community">
-			<put-attribute name="body" value="/WEB-INF/community/diary.jsp" />
-		</definition>
+<!-- 		<definition name="user/*/*" extends="withLeft"> -->
+<!-- 			<put-attribute name="left" value="/WEB-INF/views/layout/left.jsp"/> -->
+<!-- 			<put-attribute name="body" value="/WEB-INF/views/{1}/{2}.jsp" /> -->
+<!-- 		</definition> -->
 
 		 <definition name="/ok" template="/OK.jsp">
 		 </definition>
