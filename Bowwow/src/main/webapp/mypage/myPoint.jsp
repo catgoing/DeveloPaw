@@ -1,8 +1,17 @@
+<%@page import="ga.bowwow.service.user.UserAccount"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@ taglib uri="http://tiles.apache.org/tags-tiles" prefix="tiles"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
-
+<% 
+	//임시 로그인처리
+	String memberSerial = "1";
+	String id = "1";
+	UserAccount user= new UserAccount();
+	user.setId(id);
+	user.setMemberSerial(memberSerial);
+	session.setAttribute("user", user);
+%>
 <!DOCTYPE html>
 <html>
 
@@ -73,7 +82,24 @@
 	border: 1px solid #e4e4e4;
 	padding-right: 50px;
 }
-
+ .content-list {
+   display : block;
+   width: 80%;
+    margin-bottom: 50px;
+ } 
+ 
+ table { border-collapse: collapse; }
+ th, td {
+	border: 1px solid black;
+	margin: 0 auto;
+ }
+ th { background-color: orange; }
+ .center { text-align: center; }
+ .border-none, .border-none td { border: none; }
+ td .input-group{
+ 	width : 100%;
+ }
+ 
 </style>
 </head>
 
@@ -391,8 +417,16 @@
 	                                
 							<!-- Page-body start -->
 							<div class="page-body">
-											
-								<!-- 여기서 회원정보 수정하겠습니다~~~ -->
+								<section class="featured spad">
+									<div class="container">
+										<div class="row">
+											<div class="col-lg-12">
+												<div class="section-title">
+													<h2>포인트 출력</h2>
+												</div>
+												<br>
+											</div>
+										</div>			
 								<div class="content-list">
 						     	<table>
 									<tr>
@@ -419,6 +453,7 @@
 						     </div>
 											
 							</div>
+							</section>
 								<!-- Page-body end -->
 						</div>
 						<div id="styleSelector"> </div>

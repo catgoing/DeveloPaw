@@ -50,6 +50,7 @@
 	<!-- 예외관련 설정 @ExceptionHanler 어노테이션 인식 처리 가능 -->
 	<!-- JSON 변환관련 HttpMessageConverter(인터페이스)를 구현한 객체 MappingJackson2HttpMessageConverter 
 		객체 사용 -->
+	<mvc:default-servlet-handler />
 	<mvc:annotation-driven />
 
 </beans>

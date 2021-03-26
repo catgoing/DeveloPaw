@@ -1,7 +1,17 @@
+<%@page import="ga.bowwow.service.user.UserAccount"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@ taglib uri="http://tiles.apache.org/tags-tiles" prefix="tiles"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<% 
+	//임시 로그인처리
+	String memberSerial = "1";
+	String id = "z";
+	UserAccount user= new UserAccount();
+	user.setId(id);
+	user.setMemberSerial(memberSerial);
+	session.setAttribute("user", user);
+%>
 <!DOCTYPE html>
 <html>
 
@@ -112,7 +122,7 @@
 
  .content-list {
    display : block;
-   width: 100%;
+   width: 80%;
     margin-bottom: 50px;
  } 
  
@@ -541,7 +551,7 @@
 									</c:forEach>
 								</c:if>
 								</table>
-								<form action="getInquiryTypeList.do" method="post">
+								<form action="/getInquiryTypeList" method="post">
 								<table class="border-none">
 									<tr>
 										<td class="input-group">

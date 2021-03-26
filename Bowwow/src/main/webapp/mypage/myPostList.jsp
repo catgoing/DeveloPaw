@@ -1,7 +1,16 @@
+<%@page import="ga.bowwow.service.user.UserAccount"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
-
+<% 
+	//임시 로그인처리
+	String memberSerial = "1";
+	String id = "1";
+	UserAccount user= new UserAccount();
+	user.setId(id);
+	user.setMemberSerial(memberSerial);
+	session.setAttribute("user", user);
+%>
 
 <!DOCTYPE html>
 
@@ -69,9 +78,24 @@
 	href="/resources/css/test.css">
 
 <style>
-.featured__item__text {
-	width: 150px;
-}
+ table { border-collapse: collapse; }
+ th, td {
+	border: 1px solid black;
+	margin: 0 auto;
+ }
+ th { background-color: orange; }
+ .center { text-align: center; }
+ .border-none, .border-none td { border: none; }
+ td .input-group{
+ 	width : 100%;
+ }
+  .content-list {
+   display : block;
+   width: 80%;
+    margin-bottom: 50px;
+ } 
+ 
+
 </style>
 </head>
 
@@ -425,12 +449,12 @@
 														</c:forEach>
 													</c:if>
 													</table>
-													<form action="getPostList.do" method="post">
+													<form action="/getPostList" method="post">
 													<table class="border-none">
 														<tr>
 															<td class="input-group">
 															    <select class="form-control" id="inputGroupSelect04" aria-label="Example select with button addon">
-															      <option selected></option>
+															      <option selected>전체보기</option>
 															      <option value="1">펫 일기</option>
 															      <option value="2">노하우</option>
 															      <option value="3">중고마켓</option>

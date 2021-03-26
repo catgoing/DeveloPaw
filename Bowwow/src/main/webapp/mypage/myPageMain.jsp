@@ -1,7 +1,16 @@
+<%@page import="ga.bowwow.service.user.UserAccount"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
-
+<% 
+	//임시 로그인처리
+	String memberSerial = "1";
+	String id = "z";
+	UserAccount user= new UserAccount();
+	user.setId(id);
+	user.setMemberSerial(memberSerial);
+	session.setAttribute("user", user);
+%>
 <!DOCTYPE html>
 <html>
 
@@ -291,7 +300,7 @@
 			  
 			     <ul class="pcoded-item pcoded-left-item">
 			         <li class="">
-			             <a href="myPageMain.jsp" class="waves-effect waves-dark">
+			             <a href="myPageMain" class="waves-effect waves-dark">
 			                 <span class="pcoded-micon"><i class="ti-layers"></i><b>FC</b></span>
 			                 <span class="pcoded-mtext">마이 홈</span>
 			                 <span class="pcoded-mcaret"></span>
@@ -302,7 +311,7 @@
 			     <ul class="pcoded-item pcoded-left-item">
 			         <li class="">
 			          <!-- 회원번호(memberSerial)을 이용해서 내 정보 출력 -->
-			             <a href="myInfo.jsp" class="waves-effect waves-dark">
+			             <a href="myInfo" class="waves-effect waves-dark">
 			             <%-- <a href="myInfo.do?memberSerial=${memberSerial }" class="waves-effect waves-dark"> --%>
 			                 <span class="pcoded-micon">
 			                     <!-- <i class="ti-id-badge"></i><b>A</b> -->
@@ -314,7 +323,8 @@
 			     </ul>
 			     <ul class="pcoded-item pcoded-left-item">
 			         <li class="">
-			             <a href="myPetInfoList2.jsp" class="waves-effect waves-dark">
+			             <a href="getPetInfoList3?member_serial=${user.memberSerial }" class="waves-effect waves-dark">
+			             <!-- <a href="getPetInfoList3" class="waves-effect waves-dark"> -->
 			                 <span class="pcoded-micon">
 			                     <!-- <i class="ti-id-badge"></i><b>A</b> -->
 			                 </span>
@@ -325,7 +335,7 @@
 			     </ul>
 			     <ul class="pcoded-item pcoded-left-item">
 			         <li class="">
-			             <a href="myPostList.jsp" class="waves-effect waves-dark">
+			             <a href="myPostList" class="waves-effect waves-dark">
 			                 <span class="pcoded-micon">
 			                     <!-- <i class="ti-id-badge"></i><b>A</b> -->
 			                 </span>
@@ -336,7 +346,7 @@
 			     </ul>
 			     <ul class="pcoded-item pcoded-left-item">
 			         <li class="">
-			             <a href="myPoint.jsp" class="waves-effect waves-dark">
+			             <a href="myPoint" class="waves-effect waves-dark">
 			                 <span class="pcoded-micon">
 			                     <!-- <i class="ti-id-badge"></i><b>A</b> -->
 			                 </span>
@@ -347,7 +357,7 @@
 			     </ul>
 			     <ul class="pcoded-item pcoded-left-item">
 			         <li class="">
-			             <a href="myInquiry2.jsp" class="waves-effect waves-dark">
+			             <a href="myInquiry2" class="waves-effect waves-dark">
 			                 <span class="pcoded-micon">
 			                     <!-- <i class="ti-id-badge"></i><b>A</b> -->
 			                 </span>
@@ -369,7 +379,7 @@
 					<!-- Page-body start -->
 						<div class="page-body">
 						<div class="myPageInfo-header">
-							<h2> 뫄뫄님의 페이지</h2>
+							<h2> ${user.memberSerial} 님의 페이지</h2>
 						</div>
 
 						<div class="mypage_main_content">

@@ -420,7 +420,7 @@
                                     </a>
                                     <ul class="pcoded-submenu">
                                     	<li class="">
-                                            <a href="dogList.do" class="waves-effect waves-dark">
+                                            <a href="dogList" class="waves-effect waves-dark">
                                                 <span class="pcoded-micon"><i class="ti-angle-right"></i></span>
                                                 <span class="pcoded-mtext">상품 전체보기</span>
                                                 <span class="pcoded-mcaret"></span>

@@ -1,8 +1,17 @@
+<%@page import="ga.bowwow.service.user.UserAccount"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@ taglib uri="http://tiles.apache.org/tags-tiles" prefix="tiles"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
-
+<% 
+	//임시 로그인처리
+	String memberSerial = "1";
+	String id = "z";
+	UserAccount user= new UserAccount();
+	user.setId(id);
+	user.setMemberSerial(memberSerial);
+	session.setAttribute("user", user);
+%>
 <!DOCTYPE html>
 <html>
 
@@ -50,6 +59,7 @@
     <!-- Style.css -->
     <link rel="stylesheet" type="text/css" href="../resources/css/style.css">
     <link rel="stylesheet" type="text/css" href="../resources/css/test.css">
+    <script src="https://code.jquery.com/jquery-3.6.0.js"></script>
 <style>
 #mask {
     position: absolute;
@@ -70,38 +80,83 @@
     color: #828282; }
 .insert-title{
 	width : 15%;
-}
-    
-    
+}   
 </style>
 <script>
-
- function savePetInfo(frm) {
-	 /* 폼 받아서 ajax처리 - fetch */
-	 var pSerial = document.petinfoform.petSerial.value;
-	 if(!pSerial){
-		 console.log(pSerial);
-		 /* insert 처리 */
-	 } else {
-		 console.log(pSerial);
-		 /* update 처리 */
-	 }
+ function newPetInfo(frm){
+	/* ajax insert 처리*/	 
+	var newPet = $("form[name=petinfoform1]").serialize();
+	console.log(newPet);
+	
+	$.ajax('insertPetInfo',{
+		type : "post",
+		data : newPet,
+		async : false,
+		success : function(result){
+			console.log(result);
+			if(result > 0){
+				alert("반려동물 정보를 등록했습니다.");
+			}
+		}, error: function(){
+			alert("등록 실패ㅜㅜ");
+		}
+	});
+ }
+ 
+ function modiPetInfo(frm) {
+	/* ajax update 처리 */
+	var pSerial = document.petinfoform2.pet_serial.value;
+	/* var dataString = $("form[name=petinfoform2]").serialize(); */
+	console.log(pSerial);
+	console.log(dataString);
+	
+	fetch("updatePetInfo",{
+		method : "post",
+		header :{
+			"Content-Type": "application/json"
+		},
+		body : dataString
+	});
+	
+	/* $.ajax({
+		url : "updatePetInfo",
+		type : "fetch",
+		data : dataString ,
+		async : false,
+		success : function(result){
+			console.log(result);
+			if(result > 0){
+				alert("정보를 수정하였습니다.");				
+			}
+		}, error : function(){
+			alert("정보수정실패!");
+		}
+	}); */
  }
  
  function deletePetInfo(frm){
-	 /*petSerial로 ajax처리*/
+	 /*pet_serial로 ajax처리*/
+	var pSerial = $('#pet_serial').val();
+	console.log(pSerial);
+	
+	$.ajax({
+		url : "deletePetInfo", 
+		type : "post",
+		data : { 'pet_serial' : pSerial },
+		success : function(result){
+			if(result > 0){
+				console.log(result);
+				alert("잘 삭제되었습니다.");					
+			}
+		}, error : function(){
+			alert("삭제를 실패했습니다.");
+		}
+	});
  }
  
- function goSub(frm){
-	 var petType = frm.petType.value;
-	 console.log(petType);
-	 
-	 
- }
- 
-/*  function setPetSerial(serial){
+/*  function setpet_serial(serial){
 	console.log(serial);
-	$('#petSerial').val(serial);
+	$('#pet_serial').val(serial);
  } */
  
  function transferType(type){
@@ -109,11 +164,11 @@
 	 $('#petType').val(type);
  }
  
- /* $('#closeModalBtn').on('click', function(){
-	$('#petInfo').modal('hide');
-	console.log("click close");
-});  */
-
+$(function(){
+	$(".numberonly").keyup(function(){
+		$(this).val($(this).val().replace(/[^0-9]/gi,"") );
+	});
+});
  
 </script>
 </head>
@@ -432,58 +487,98 @@
 		                        <!-- Page-body start -->
 								<div class="page-body">
 									<div class="myPageInfo-header">
-										<h2> 뫄뫄님의 페이지</h2>
+										<h2> ${user_name }님의 페이지</h2>
 									</div>
                                         <div class="my-pet">
+                                        <c:if test="${not empty pet }">
+                                        <c:forEach var="pet" items="${pet }">
 	                                        <div class="pet-list">
 		                                        <div class="list-inner">
-			                                        <div class="pet-img">이미지</div>
-			                                        <div class="pet-name">이름</div>
+			                                        <div class="pet-img"><img src="" alt="이미지"></div>
+			                                        <div class="pet-name">${pet.pet_name }</div>
 			                                        <div class="pet-detail">
-			                                        <%-- <input type="hidden" id="petSerial" value="${pet.petSerial }"> --%>
-			                                        <input type="button" value="상세보기" data-toggle="modal" href="#petDetail" role="button">
+			                                        <form>
+				                                        <input type="hidden" id="pet_serial" value="${pet.pet_serial }">
+				                                        <input type="button" value="상세보기" data-toggle="modal" href="#petDetail" role="button">
+			                                        </form>
 			                                        </div>			                                        
 		                                        </div>
 	                                        </div>
+                                        </c:forEach>
+                                        </c:if>
+                                        <c:if test="${empty pet }">
+                                        	 <div class="pet-list">
+		                                        <div class="list-inner">
+		                                        	<h3>등록된 반려동물이 없습니다.</h3>
+		                                        </div>
+	                                        </div>
+                                        </c:if>
                                         <div class="action-button">
-                                        	<input type="button" value="반려동물 추가하기" data-toggle="modal" data-target="#petType">
+                                        	<input type="button" value="반려동물 추가하기" data-toggle="modal" href="#petType" role="button">
                                         </div>
                                        </div>
                                    </div>
 
 <!-- Modal - 정보등록 -->
-<div class="modal fade" id="petInfo" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+<!-- modal dialog : 타입고르기-->
+<!-- <div class="modal" id="petType" aria-hidden="true" aria-labelledby="..." tabindex="-1">
+  <div class="modal-dialog modal-dialog-centered" >
+    <div class="modal-content">
+	<div class="modal-header">
+			<h4 class="modal-title" id="myModalLabel">강아지? 고양이?</h4>
+		</div>
+	    <form class="pet-form" name="petinform1">
+          <div class="form-group">
+          	<label class="radio-inline">
+			  <input type="radio" name="petType" id="inlineRadio1" value="dog"> 강아지
+			</label>
+			<label class="radio-inline">
+			  <input type="radio" name="petType" id="inlineRadio2" value="cat"> 고양이
+			</label>
+          </div>
+        </form>
+      <div class="modal-footer"> -->
+        <!-- Toogle to second dialog -->
+<!-- 	    <button class="btn btn-primary" data-target="#newPet" data-toggle="modal" data-dismiss="modal" >선택</button>
+      	<button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+      </div>
+    </div>
+  </div>
+</div> -->
+
+
+<!-- Modal - 새 정보 등록 -->
+<div class="modal fade" id="newPet" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
   <div class="modal-dialog" role="document" style="max-width: 100%; width: auto; display: table;">
     <div class="modal-content">
       <div class="modal-header">
-        <h4 class="modal-title" id="myModalLabel">반려동물 정보등록</h4>
+        <h4 class="modal-title" id="myModalLabe2">반려동물 정보등록</h4>
       </div>
-      	<form class="pet-form" name="petinfoform">
-	      <c:if test="${empty pet }">
+      	<form class="pet-form" name="petinfoform1" action="/insertPetInfo" method="post">
 	      <div class="modal-body">
 	       	<div class="form-group">
 		        <table class="table table-bordered">
 		        <tbody>
 			        <tr>
 						<td class="insert-title">이름</td>
-						<td><input type="text" name="petName" value="${pet.pet_name }"></td>
+						<td><input type="text" name="pet_name" ></td>
 						<td class="insert-title">나이</td>
-						<td><input type="text" name="petAge" value="${pet.pet_age }"></td>
+						<td><input type="text" name="pet_age" oninput="this.value = this.value.replace(/[^0-9.]/g, '').replace(/(\..*)\./g, '$1');" /></td>
 			        </tr>
 			        <tr>
 				        <td class="insert-title">성별</td>
 						<td>
-						<select name="petGender">
+						<select name="pet_gender">
 							<option value="girl">암</option>
 							<option value="boy">수</option>
 						</select>
 						</td>
 						<td class="insert-title">생일</td>
-						<td value="${pet.pet_birth }">생일입력창</td>
+						<td class="insert-title"></td>
 			        </tr>
 			        <tr>
 				        <td class="insert-title">품종</td>
-						<td><input type="text" name="petVariety" value="${pet.pet_variety }"></td>
+						<td><input type="text" name="pet_variety" ></td>
 						<td class="insert-title" >중성화여부</td>
 						<td>
 						<select name="tnr">
@@ -495,140 +590,203 @@
 			        <tr>
 				        <td class="insert-title">사이즈</td>
 						<td>
-						<select name="petSize">
+						<select name="pet_size">
 							<option value="s">소형</option>
 							<option value="m">중형</option>
 							<option value="l">대형</option>
 						</select>
 						</td>
 						<td class="insert-title">체중</td>
-						<td><input type="text" name="petWeight" value="${pet.pet_weight }"></td>
+						<td><input type="text" name="pet_weight"oninput="this.value = this.value.replace(/[^0-9.]/g, '').replace(/(\..*)\./g, '$1');" /></td>
 			        </tr>
 			        <tr>
 				        <td rowspan="3" colspan="2"><input type="file" accept="image/*" name="image_source"></td>
 						<td class="insert-title">목둘레</td>
-						<td><input type="text" name="neckLength" value="${pet.pet_birth }"></td>
+						<td><input type="text" name="neck_length"oninput="this.value = this.value.replace(/[^0-9.]/g, '').replace(/(\..*)\./g, '$1');" /></td>
 			        </tr>
 			        <tr>
 						<td class="insert-title">등길이</td>
-						<td><input type="text" name="backLength" value="${pet.neck_length }"></td>
+						<td><input type="text" name="back_length" oninput="this.value = this.value.replace(/[^0-9.]/g, '').replace(/(\..*)\./g, '$1');" /></td>
 			        </tr>
 			        <tr>
 						<td class="insert-title">가슴둘레</td>
-						<td><input type="text" name="chestLength" value="${pet.back_length }"></td>
+						<td><input type="text" name="chest_length" oninput="this.value = this.value.replace(/[^0-9.]/g, '').replace(/(\..*)\./g, '$1');" /></td>
 			        </tr>
 			        <tr>
 						<td class="insert-title">특이사항</td>
-						<td colspan="3"><textarea name="petEtc" value="${pet.chest_length }"></textarea></td>
+						<td colspan="3"><textarea name="pet_etc" ></textarea></td>
 			        </tr>
 		         </tbody>
 	            </table>
 	          </div>
 	          <input type="hidden" id="petType" name="petType" value="">
-	          <input type="hidden" id="petSerial" name="petSerial" value="${pet.pet_serial }">
 	      </div>
 	      <div class="modal-footer">
-	        <button type="button" class="btn btn-primary" onclick="javascript:savePetInfo(this.form)">반려동물 정보저장</button>
+	        <button type="button" class="btn btn-primary" onclick="newPetInfo(this.form)">반려동물 정보저장</button>
 	        <button type="button" class="btn btn-secondary" data-dismiss="modal" id="closeModalBtn">Close</button>
 	      </div>
-		</c:if>
 		</form>
     </div>
   </div>
 </div>
 
 
+
 <!-- First modal dialog : 상세보기-->
-<div class="modal" id="petDetail" aria-hidden="true" aria-labelledby="..." tabindex="-1">
+<%-- <div class="modal" id="petDetail" aria-hidden="true" aria-labelledby="..." tabindex="-1">
   <div class="modal-dialog modal-dialog-centered" >
     <div class="modal-content">
+	<div class="modal-header">
+			<h4 class="modal-title" id="myModalLabel">반려동물 상세보기</h4>
+		</div>
 	    <form class="pet-form">
-			<div class="popup-inner img-pet" id="petimg"><img src="" alt="">${pet.ImageSource }</div>
+			<div class="popup-inner img-pet" id="petimg"><img src="" alt="이미지"></div>
 			<div class="popup-inner text-pet">
 			<div class="form-group">
-				<h2 id="petname">${pet.petName }</h2>
+				<h2 id="pet_name">${pet.pet_name }</h2>
 				<div class="textMain-wrap">
 					<div class="box-detail" id="detail_gender">
 						<h5>성별</h5>
-						<p id="gender">${pet.petGender }</p>
+						<p id="gender">${pet.pet_gender }</p>
 					</div>
 					<div class="box-detail" id="detail_variety">
 						<h5>품종</h5>
-						<p id="variety">${pet.petVariety }</p>
+						<p id="variety">${pet.pet_variety }</p>
 					</div>
 					<div class="box-detail" id="detail_birth">	
 						<h5>생일</h5>
-						<p id="birthday">${pet.petBirth }</p>
+						<p id="birthday">${pet.pet_birth }</p>
 					</div>
 					<div class="box-detail" id="detail_age">
 						<h5>나이</h5>
-						<p id="petAge">${pet.petAge }</p>
+						<p id="pet_age">${pet.pet_age }</p>
 					</div>
 					<div class="box-detail" id="detail_size">
 						<h5>체형</h5>
-						<p id="petSize">${pet.petSize }</p>
+						<p id="pet_size">${pet.pet_size }</p>
 					</div>
 					<div class="box-detail" id="detatl_weight">
 						<h5>무게</h5>
-						<p id="petWeight">${pet.petWeight }</p>
+						<p id="pet_weight">${pet.pet_weight }</p>
 					</div>
 					<div class="box-detail" id="detail_neck">
 						<h5>목둘레</h5>
-						<p id="petNeck">${pet.neckLength }</p>
+						<p id="petNeck">${pet.neck_length }</p>
 					</div>
 					<div class="box-detail" id="detail_back">
 						<h5>등길이</h5>
-						<p id="petBack">${pet.backLength }</p>
+						<p id="petBack">${pet.back_length }</p>
 					</div>
 					<div class="box-detail" id="detail_chest">
 						<h5>가슴둘레</h5>
-						<p id="petChest">${pet.chestLength }</p>
+						<p id="petChest">${pet.chest_length }</p>
 					</div>
 				</div>
 				<div class="textSub-wrap">
 					<div class="box-detail" id="detail_etc">
 						<h5>특이사항</h5>
-						<p id="petEtc">${pet.petEtc }</p>
+						<p id="pet_etc">${pet.pet_etc }</p>
 					</div>
 				</div>
 			</div>
 			</div>
-			<input type="hidden" id="petSerial" name="petSerial" value="">
+	      <div class="modal-footer"> --%>
+	        <!-- Toogle to second dialog -->
+			<%-- <input type="hidden" id="pet_serial" name="pet_serial" value="${pet.pet_serial }">
+		    <button class="btn btn-primary" data-target="#modiPetInfo" data-toggle="modal" data-dismiss="modal" >정보 수정</button>
+		    <button class="btn btn-primary" onclick="javascript:deletePetInfo(this.form);">정보 삭제</button>
+	      	<button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+	      </div>
 		</form>
-      <div style="float:left">
-      </div>
-      <div class="modal-footer">
-        <!-- Toogle to second dialog -->
-	    <button class="btn btn-primary" data-target="#petInfo" data-toggle="modal" data-dismiss="modal" >정보 수정</button>
-	    <button class="btn btn-primary" onclick="javascript:deletePetInfo(this.form);">정보 삭제</button>
-      	<button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-      </div>
+    </div>
+  </div>
+</div> --%>
+
+<!-- modal dialog : 정보수정 -->
+<div class="modal fade" id="modiPetInfo" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+  <div class="modal-dialog" role="document" style="max-width: 100%; width: auto; display: table;">
+    <div class="modal-content">
+      <div class="modal-header">
+			<h4 class="modal-title" id="myModalLabel">반려동물 정보수정-/updatePetInfo</h4>
+		</div>
+      	<form class="pet-form" name="petinfoform2" >
+	      <div class="modal-body">
+	       	<div class="form-group">
+		        <table class="table table-bordered">
+		        <tbody>
+			        <tr>
+						<td class="insert-title">이름</td>
+						<td><input type="text" name="pet_name" ></td>
+						<td class="insert-title">나이</td>
+						<td><input type="text" name="pet_age"oninput="this.value = this.value.replace(/[^0-9.]/g, '').replace(/(\..*)\./g, '$1');" /></td>
+			        </tr>
+			        <tr>
+				        <td class="insert-title">성별</td>
+						<td>
+						<select name="pet_gender">
+							<option value="girl">암</option>
+							<option value="boy">수</option>
+						</select>
+						</td>
+						<td class="insert-title">생일</td>
+						<%-- <td value="${pet.pet_birth }">생일입력창</td> --%>
+			        </tr>
+			        <tr>
+				        <td class="insert-title">품종</td>
+						<td><input type="text" name="pet_variety" ></td>
+						<td class="insert-title" >중성화여부</td>
+						<td>
+						<select name="tnr">
+							<option value="yes">예</option>
+							<option value="no">아니요</option>
+						</select>
+						</td>
+			        </tr>
+			        <tr>
+				        <td class="insert-title">사이즈</td>
+						<td>
+						<select name="pet_size">
+							<option value="s">소형</option>
+							<option value="m">중형</option>
+							<option value="l">대형</option>
+						</select>
+						</td>
+						<td class="insert-title">체중</td>
+						<td><input type="text" name="pet_weight"oninput="this.value = this.value.replace(/[^0-9.]/g, '').replace(/(\..*)\./g, '$1');" /></td>
+			        </tr>
+			        <tr>
+				        <td rowspan="3" colspan="2"><input type="file" accept="image/*" name="image_source"></td>
+						<td class="insert-title">목둘레</td>
+						<td><input type="text" name="neck_length"oninput="this.value = this.value.replace(/[^0-9.]/g, '').replace(/(\..*)\./g, '$1');" /></td>
+			        </tr>
+			        <tr>
+						<td class="insert-title">등길이</td>
+						<td><input type="text" name="back_length"oninput="this.value = this.value.replace(/[^0-9.]/g, '').replace(/(\..*)\./g, '$1');" /></td>
+			        </tr>
+			        <tr>
+						<td class="insert-title">가슴둘레</td>
+						<td><input type="text" name="chest_length"oninput="this.value = this.value.replace(/[^0-9.]/g, '').replace(/(\..*)\./g, '$1');" /></td>
+			        </tr>
+			        <tr>
+						<td class="insert-title">특이사항</td>
+						<td colspan="3"><textarea name="pet_etc"oninput="this.value = this.value.replace(/[^0-9.]/g, '').replace(/(\..*)\./g, '$1');" /></textarea></td>
+			        </tr>
+		         </tbody>
+	            </table>
+	          </div>
+	      </div>
+	      <div class="modal-footer">
+	        <button type="button" class="btn btn-primary" onclick="modiPetInfo(this.form)">반려동물 정보수정</button>
+	        <button type="button" class="btn btn-secondary" data-dismiss="modal" id="closeModalBtn">Close</button>
+	      </div>
+		</form>
     </div>
   </div>
 </div>
 
-<!-- First modal dialog : 타입고르기-->
-<div class="modal" id="petType" aria-hidden="true" aria-labelledby="..." tabindex="-1">
-  <div class="modal-dialog modal-dialog-centered">
-    <div class="modal-content">
-	    <form>
-          <div class="form-group">
-          	<label class="radio-inline">
-			  <input type="radio" name="petType" id="inlineRadio1" value="dog"> 강아지
-			</label>
-			<label class="radio-inline">
-			  <input type="radio" name="petType" id="inlineRadio2" value="cat"> 고양이
-			</label>
-          </div>
-        </form>
-      <div class="modal-footer">
-        <!-- Toogle to second dialog -->
-	    <button class="btn btn-primary" data-target="#petInfo" data-toggle="modal" data-dismiss="modal" onclick="javascript:transferType(this.form)">선택</button>
-      	<button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-      </div>
-    </div>
-  </div>
-</div>
+
+
+
                                     
                                     <!-- Page-body end -->
                                 </div>

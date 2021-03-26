@@ -1,6 +1,16 @@
+<%@page import="ga.bowwow.service.user.UserAccount"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-    
+<%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<% 
+	//임시 로그인처리
+	String memberSerial = "1";
+	String id = "z";
+	UserAccount user= new UserAccount();
+	user.setId(id);
+	user.setMemberSerial(memberSerial);
+	session.setAttribute("user", user);
+%>
 <!DOCTYPE html>
 <html>
 
@@ -52,6 +62,36 @@
 <style>
 
 </style>
+<script>
+
+ function goModify(form){
+	 var idCheck = form.id.value;
+	 var emailCheck = form.email.value;
+	 var phoneCheck = form.phone.value;
+	 
+	//아이디 검증=_=
+   	if(/[ㄱ-ㅎ|ㅏ-ㅣ|가-힝]/.test(idCheck)){
+   		console.log(idCheck);
+   		alert("아이디 안에 한글은 포함될 수 없습니다.");
+   	}
+     //email 검증=_=
+	 if(!/^[0-9a-zA-Z]([-_.]?[0-9a-zA-Z])*@[0-9a-zA-Z]([-_.]?[0-9a-zA-Z])*.[a-zA-Z]{2,3}$/i.test(emailCheck)) { 
+		console.log(emailCheck);
+		alert("이메일 형식을 지켜주세요.");
+	 }
+	//휴대폰번호 검증=_=
+   	 var cellPhoneRule = /^\d{3}-\d{3,4}-\d{4}$/;
+	if(!/01[01689]-[1-9]{1}[0-9]{2,3}-[0-9]{4}$/.test(phoneCheck) ||
+   		 !/01[01689][1-9]{1}[0-9]{2,3}[0-9]{4}$/.test(phoneCheck)){
+		console.log(phoneCheck);
+		alert("전화번호 형식을 지켜주세요.");
+	}
+   	 
+ }
+  
+  
+  
+</script>
 </head>
 
 <body>
@@ -134,8 +174,7 @@
 						<a href="storeMain.html"
 							style="text-align: center; font-weight: bold; font-size: 30px; margin-top: 7px;">BOW-WOW</a>
 
-						<a class="mobile-options waves-effect waves-light"> <i
-							class="ti-more"></i>
+						<a class="mobile-options waves-effect waves-light"> <i class="ti-more"></i>
 						</a>
 					</div>
 					<div class="navbar-container container-fluid">
@@ -290,7 +329,7 @@
 			  
 			     <ul class="pcoded-item pcoded-left-item">
 			         <li class="">
-			             <a href="myPageMain.jsp" class="waves-effect waves-dark">
+			             <a href="myPageMain" class="waves-effect waves-dark">
 			                 <span class="pcoded-micon"><i class="ti-layers"></i><b>FC</b></span>
 			                 <span class="pcoded-mtext">마이 홈</span>
 			                 <span class="pcoded-mcaret"></span>
@@ -301,7 +340,7 @@
 			     <ul class="pcoded-item pcoded-left-item">
 			         <li class="">
 			          <!-- 회원번호(memberSerial)을 이용해서 내 정보 출력 -->
-			             <a href="myInfo.jsp" class="waves-effect waves-dark">
+			             <a href="myInfo" class="waves-effect waves-dark">
 			             <%-- <a href="myInfo.do?memberSerial=${memberSerial }" class="waves-effect waves-dark"> --%>
 			                 <span class="pcoded-micon">
 			                     <!-- <i class="ti-id-badge"></i><b>A</b> -->
@@ -313,7 +352,7 @@
 			     </ul>
 			     <ul class="pcoded-item pcoded-left-item">
 			         <li class="">
-			             <a href="myPetInfoList2.jsp" class="waves-effect waves-dark">
+			             <a href="myPetInfoList3" class="waves-effect waves-dark">
 			                 <span class="pcoded-micon">
 			                     <!-- <i class="ti-id-badge"></i><b>A</b> -->
 			                 </span>
@@ -324,7 +363,7 @@
 			     </ul>
 			     <ul class="pcoded-item pcoded-left-item">
 			         <li class="">
-			             <a href="myPostList.jsp" class="waves-effect waves-dark">
+			             <a href="myPostList" class="waves-effect waves-dark">
 			                 <span class="pcoded-micon">
 			                     <!-- <i class="ti-id-badge"></i><b>A</b> -->
 			                 </span>
@@ -335,7 +374,7 @@
 			     </ul>
 			     <ul class="pcoded-item pcoded-left-item">
 			         <li class="">
-			             <a href="myPoint.jsp" class="waves-effect waves-dark">
+			             <a href="myPoint" class="waves-effect waves-dark">
 			                 <span class="pcoded-micon">
 			                     <!-- <i class="ti-id-badge"></i><b>A</b> -->
 			                 </span>
@@ -346,7 +385,7 @@
 			     </ul>
 			     <ul class="pcoded-item pcoded-left-item">
 			         <li class="">
-			             <a href="myInquiry2.jsp" class="waves-effect waves-dark">
+			             <a href="myInquiry2" class="waves-effect waves-dark">
 			                 <span class="pcoded-micon">
 			                     <!-- <i class="ti-id-badge"></i><b>A</b> -->
 			                 </span>
@@ -405,10 +444,6 @@
 											<div class="input-wrap">
 												<input type="text" name="id" value="sunsetar" disabled>
 											</div>
-											<label class="col-sm-2 col-form-label">아이디</label>
-                                            <div class="col-sm-10">
-                                                <input type="text" class="form-control form-control-round" placeholder=".form-control-round">
-                                            </div>
 											<p></p>												
 										</div>
 										
@@ -428,21 +463,21 @@
 													
 										<div class="input-label">이름
 											<div class="input-wrap">
-												<input type="text" name="name" value="${name }">
+												<input type="text" name="name" value="${user.name }">
 											</div>
 											<p></p>
 										</div>
 													
 										<div class="input-label">닉네임
 											<div class="input-wrap">
-												<input type="text" name="nickname" value="${nickname }">
+												<input type="text" name="nickname" value="${user.nickname }">
 											</div>
 											<p></p>
 										</div>
 													
 										<div class="input-label">이메일
 											<div class="input-wrap">
-												<input type="text" name="email" value="${email }">
+												<input type="text" name="email" value="${user.email }">
 											</div>
 											<p></p>
 										</div>
@@ -495,7 +530,7 @@
 										</div>
 										
 										<div class="action_btn">
-											<input type="button" value="정보수정test" onclick="javascript:goDetail();">							    
+											<input type="button" value="정보수정" onclick="javascript:goModify(this.form);">							    
 										</div>																    
 	
 									</form>
