@@ -3,7 +3,7 @@
 <tiles-definitions>
         <!-- base tiles layout add -->
  
-        <definition name="/store" template="/store/storeMain.jsp">
+       <!--  <definition name="/store" template="/store/storeMain.jsp">
                 <put-attribute name="header" value="/common/header.jsp" />
                 <put-attribute name="body" value="" />
                 <put-attribute name="footer" value="/common/footer.jsp" />
@@ -13,7 +13,7 @@
                 <put-attribute name="header" value="/common/header.jsp" />
                 <put-attribute name="body" value="" />
                 <put-attribute name="footer" value="/common/footer2.jsp" />
-        </definition>
+        </definition> -->
         
         <!-- 마이페이지 -->
         <!-- <definition name="/mypage" template="/mypage/myPageMain.jsp">
@@ -50,7 +50,7 @@
 		</definition>
 		
 		
-       	<definition name="/community" template="/community/boardTemplate.jsp">
+       	<definition name="/community" template="/WEB-INF/community/boardTemplate.jsp">
                 <put-attribute name="header" value="/common/header.jsp" />
                 <put-attribute name="menubar" value="/common/communityMenuBar.jsp"/>
                 <put-attribute name="body" value="" />
@@ -58,7 +58,7 @@
         </definition>
         
          <definition name="/godiary" extends="/community">
-			<put-attribute name="body" value="/community/diary.jsp" />
+			<put-attribute name="body" value="/WEB-INF/community/diary.jsp" />
 		</definition>
 		
 		
