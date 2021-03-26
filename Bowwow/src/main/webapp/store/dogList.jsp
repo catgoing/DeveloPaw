@@ -376,7 +376,7 @@
 
                             <ul class="pcoded-item pcoded-left-item">
                                 <li class="">
-                                    <a href="storeMain.do" class="waves-effect waves-dark">
+                                    <a href="storeMain" class="waves-effect waves-dark">
                                         <span class="pcoded-micon"><i class="ti-layers"></i><b>FC</b></span>
                                         <span class="pcoded-mtext">스토어</span>
                                         <span class="pcoded-mcaret"></span>
@@ -420,7 +420,7 @@
                                     </a>
                                     <ul class="pcoded-submenu">
                                     	<li class="">
-                                            <a href="dogList.do" class="waves-effect waves-dark">
+                                            <a href="dogList" class="waves-effect waves-dark">
                                                 <span class="pcoded-micon"><i class="ti-angle-right"></i></span>
                                                 <span class="pcoded-mtext">상품 전체보기</span>
                                                 <span class="pcoded-mcaret"></span>
@@ -480,7 +480,7 @@
                                     </a>
                                     <ul class="pcoded-submenu">
                                     	<li class="">
-                                            <a href="catList.do" class="waves-effect waves-dark">
+                                            <a href="catList" class="waves-effect waves-dark">
                                                 <span class="pcoded-micon"><i class="ti-angle-right"></i></span>
                                                 <span class="pcoded-mtext">상품 전체보기</span>
                                                 <span class="pcoded-mcaret"></span>
@@ -560,7 +560,7 @@
 	                                                            <div class="col-lg-3 col-md-4 col-sm-6 mix oranges fresh-meat">
 	                                                                <div class="featured__item">
 	                                                                    <div>
-	                                                                        <a href="productDetail.jsp">
+	                                                                        <a href="detailDog?p_id=${list.p_id }">
 	                                                                         <img src="https://projectbit.s3.us-east-2.amazonaws.com/dogImg/${list.s_image }.jpg" alt="">
 	                                                                        </a>
 	                                                                    </div>
@@ -569,7 +569,7 @@
 	                                                                        </div>
 	                                                                        <br>
 	                                                                    <div class="featured__item__text"style="width: 200px;">
-	                                                                        <h6><a href="productDetail.html">${list.p_name }...</a></h6>
+	                                                                        <h6><a href="detailDog?p_id=${list.p_id }">${list.p_name }...</a></h6>
 	                                                                        <h5><fmt:formatNumber value="${list.price }" pattern="#,###" />원</h5>
 	                                                                    </div>
 	                                                                </div>

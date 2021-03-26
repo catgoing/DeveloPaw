@@ -10,7 +10,7 @@
 
 		<typeAlias type="ga.bowwow.service.board.Board" alias="Board" />
 		<typeAlias type="ga.bowwow.service.pet.Pet" alias="pet" />
-		<typeAlias type="ga.bowwow.service.store.Products" alias="Product" />
+		<typeAlias type="ga.bowwow.service.store.Product" alias="Product" />
 
 	</typeAliases>
 

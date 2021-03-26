@@ -144,7 +144,7 @@
                                 <a href="index.html"> 커뮤니티 </a>
                             </li>
                             <li>
-                                <a href="storeMain.do"> 스토어 </a>
+                                <a href="storeMain"> 스토어 </a>
                             </li>
                         </ul>
                         <ul class="nav-right">
@@ -420,7 +420,7 @@
                                     </a>
                                     <ul class="pcoded-submenu">
                                     	<li class="">
-                                            <a href="dogList.do" class="waves-effect waves-dark">
+                                            <a href="dogList" class="waves-effect waves-dark">
                                                 <span class="pcoded-micon"><i class="ti-angle-right"></i></span>
                                                 <span class="pcoded-mtext">상품 전체보기</span>
                                                 <span class="pcoded-mcaret"></span>
@@ -480,7 +480,7 @@
                                     </a>
                                     <ul class="pcoded-submenu">
                                     	<li class="">
-                                            <a href="catList.do" class="waves-effect waves-dark">
+                                            <a href="catList" class="waves-effect waves-dark">
                                                 <span class="pcoded-micon"><i class="ti-angle-right"></i></span>
                                                 <span class="pcoded-mtext">상품 전체보기</span>
                                                 <span class="pcoded-mcaret"></span>

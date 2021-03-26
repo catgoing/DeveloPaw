@@ -2,10 +2,9 @@
     pageEncoding="UTF-8"%>
 
 <!DOCTYPE html>
-<html>
 
+<html>
 <head>
-    <title>개발바닥</title>
     <!-- HTML5 Shim and Respond.js IE10 support of HTML5 elements and media queries -->
     <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
     <!--[if lt IE 10]>
@@ -13,22 +12,19 @@
       <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
       <![endif]-->
 <!-- Meta -->
-<meta charset="utf-8">
-<meta name="viewport"
-	content="width=device-width, initial-scale=1.0, user-scalable=0, minimal-ui">
-<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=0, minimal-ui">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
 
-<meta name="keywords"
-	content="bootstrap, bootstrap admin template, admin theme, admin dashboard, dashboard template, admin template, responsive" />
-<meta name="author" content="Codedthemes" />
-<!--Jua 폰트 import-->
-<link rel="preconnect" href="https://fonts.gstatic.com">
-<link href="https://fonts.googleapis.com/css2?family=Jua&display=swap"
-	rel="stylesheet">
+    <meta name="keywords" content="bootstrap, bootstrap admin template, admin theme, admin dashboard, dashboard template, admin template, responsive" />
+    <meta name="author" content="Codedthemes" />
+    <!--Jua 폰트 import-->
+    <link rel="preconnect" href="https://fonts.gstatic.com">
+    <link href="https://fonts.googleapis.com/css2?family=Jua&display=swap" rel="stylesheet">
 
-<!-- Dohyeon 폰트 import-->
-<link rel="preconnect" href="https://fonts.gstatic.com">
-<link href="https://fonts.googleapis.com/css2?family=Do+Hyeon&display=swap" rel="stylesheet">
+    <!-- Dohyeon 폰트 import-->
+    <link rel="preconnect" href="https://fonts.gstatic.com">
+    <link href="https://fonts.googleapis.com/css2?family=Do+Hyeon&display=swap" rel="stylesheet">
 
     <!-- Favicon icon -->
     <link rel="icon" href="/resources/images/favicon.ico" type="image/x-icon">
@@ -49,19 +45,17 @@
     <link rel="stylesheet" type="text/css" href="/resources/css/jquery.mCustomScrollbar.css">
     <!-- Style.css -->
     <link rel="stylesheet" type="text/css" href="/resources/css/style.css">
-    <link rel="stylesheet" type="text/css" href="/resources/css/storeStyle.css">
     <link rel="stylesheet" type="text/css" href="/resources/css/test.css">
+
 <style>
   .featured__item__text { width: 150px; }
-  
-  img { display:block; 
-    	margin:auto;}
+  .detailProduct { display:block; margin:auto;}
 </style>
 </head>
 
 <body>
     <!-- Pre-loader start -->
-    <div class="theme-loader">
+     <div class="theme-loader">
         <div class="loader-track">
             <div class="preloader-wrapper">
                 <div class="spinner-layer spinner-blue">
@@ -149,7 +143,7 @@
                                 <a href="index.html"> 커뮤니티 </a>
                             </li>
                             <li>
-                                <a href="storeMain.html"> 스토어 </a>
+                                <a href="storeMain"> 스토어 </a>
                             </li>
                         </ul>
                         <ul class="nav-right">
@@ -221,7 +215,7 @@
                                     </li>
                                     <li class="waves-effect waves-light">
                                         <div class="media">
-                                            <img class="d-flex align-self-center img-radius" src="../resources/images/avatar-4.jpg" alt="Generic placeholder image">
+                                            <img class="d-flex align-self-center img-radius" src="resources/images/avatar-4.jpg" alt="Generic placeholder image">
                                             <div class="media-body">
                                                 <h5 class="notification-user">Joseph William</h5>
                                                 <p class="notification-msg">Lorem ipsum dolor sit amet, consectetuer elit.</p>
@@ -231,7 +225,7 @@
                                     </li>
                                     <li class="waves-effect waves-light">
                                         <div class="media">
-                                            <img class="d-flex align-self-center img-radius" src="../resources/images/avatar-3.jpg" alt="Generic placeholder image">
+                                            <img class="d-flex align-self-center img-radius" src="resources/images/avatar-3.jpg" alt="Generic placeholder image">
                                             <div class="media-body">
                                                 <h5 class="notification-user">Sara Soudein</h5>
                                                 <p class="notification-msg">Lorem ipsum dolor sit amet, consectetuer elit.</p>
@@ -243,7 +237,7 @@
                             </li>
                             <li class="user-profile header-notification">
                                 <a href="#!" class="waves-effect waves-light">
-                                    <img src="../resources/images/avatar-4.jpg" class="img-radius" alt="User-Profile-Image">
+                                    <img src="resources/images/avatar-4.jpg" class="img-radius" alt="User-Profile-Image">
                                     <i class="ti-angle-down"></i>
                                 </a>
                                 <ul class="show-notification profile-notification">
@@ -381,9 +375,9 @@
 
                             <ul class="pcoded-item pcoded-left-item">
                                 <li class="">
-                                    <a href="storeMain.html" class="waves-effect waves-dark">
+                                    <a href="storeMain" class="waves-effect waves-dark">
                                         <span class="pcoded-micon"><i class="ti-layers"></i><b>FC</b></span>
-                                        <span class="pcoded-mtext">스토어 전체보기</span>
+                                        <span class="pcoded-mtext">스토어</span>
                                         <span class="pcoded-mcaret"></span>
                                     </a>
                                 </li>
@@ -424,6 +418,13 @@
                                         <span class="pcoded-mcaret"></span>
                                     </a>
                                     <ul class="pcoded-submenu">
+                                    	<li class="">
+                                            <a href="dogList" class="waves-effect waves-dark">
+                                                <span class="pcoded-micon"><i class="ti-angle-right"></i></span>
+                                                <span class="pcoded-mtext">상품 전체보기</span>
+                                                <span class="pcoded-mcaret"></span>
+                                            </a>
+                                        </li>
                                         <li class="">
                                             <a href="dogFood.jsp" class="waves-effect waves-dark">
                                                 <span class="pcoded-micon"><i class="ti-angle-right"></i></span>
@@ -477,6 +478,13 @@
                                         <span class="pcoded-mcaret"></span>
                                     </a>
                                     <ul class="pcoded-submenu">
+                                    	<li class="">
+                                            <a href="catList" class="waves-effect waves-dark">
+                                                <span class="pcoded-micon"><i class="ti-angle-right"></i></span>
+                                                <span class="pcoded-mtext">상품 전체보기</span>
+                                                <span class="pcoded-mcaret"></span>
+                                            </a>
+                                        </li>
                                         <li class="">
                                             <a href="storeMain.html" class="waves-effect waves-dark">
                                                 <span class="pcoded-micon"><i class="ti-angle-right"></i></span>
@@ -536,7 +544,7 @@
             <div class="row">
                 <div class="col-lg-12">
                     <div class="breadcrumb__links">
-                        <a href="storeMain.jsp"><i class="fa fa-home"></i> 스토어 메인  </a>
+                        <a href="storeMain"><i class="fa fa-home"></i> 스토어 메인  </a>
                         <a href="#"> 카테고리 </a>
                         <span></span>
                     </div>
@@ -556,15 +564,14 @@
                     <div class="product__details__pic">
                         <div class="product__details__slider__content">
                             <div class="product__details__pic__slider owl-carousel">
-                                <img data-hash="product-1" class="product__big__img" src="../resources/images/dog.jpg" alt="">
+                                <img src="https://projectbit.s3.us-east-2.amazonaws.com/catImg/${p.s_image }.jpg" alt="">
                             </div>
                         </div>
                     </div>
                 </div>
                 <div class="col-lg-6">
                     <div class="product__details__text">
-                        <h3>강아지 배변패드<span> 개발바닥</span></h3>
-                        <p>대충 상품 설명입니다.</p>
+                        <h3>${p.p_name }</h3>
                         <div class="product__details__button">
                             <div class="quantity">
                                 <span>상품 수량</span>
@@ -581,55 +588,7 @@
 						<div class="product__details__widget">
                             <ul>
                                 <li>
-                                    <span>Availability:</span>
-                                    <div class="stock__checkbox">
-                                        <label for="stockin">
-                                            In Stock
-                                            <input type="checkbox" id="stockin">
-                                            <span class="checkmark"></span>
-                                        </label>
-                                    </div>
-                                </li>
-                                <li>
-                                    <span>Available color:</span>
-                                    <div class="color__checkbox">
-                                        <label for="red">
-                                            <input type="radio" name="color__radio" id="red" checked>
-                                            <span class="checkmark"></span>
-                                        </label>
-                                        <label for="black">
-                                            <input type="radio" name="color__radio" id="black">
-                                            <span class="checkmark black-bg"></span>
-                                        </label>
-                                        <label for="grey">
-                                            <input type="radio" name="color__radio" id="grey">
-                                            <span class="checkmark grey-bg"></span>
-                                        </label>
-                                    </div>
-                                </li>
-                                <li>
-                                    <span>Available size:</span>
-                                    <div class="size__btn">
-                                        <label for="xs-btn" class="active">
-                                            <input type="radio" id="xs-btn">
-                                            xs
-                                        </label>
-                                        <label for="s-btn">
-                                            <input type="radio" id="s-btn">
-                                            s
-                                        </label>
-                                        <label for="m-btn">
-                                            <input type="radio" id="m-btn">
-                                            m
-                                        </label>
-                                        <label for="l-btn">
-                                            <input type="radio" id="l-btn">
-                                            l
-                                        </label>
-                                    </div>
-                                </li>
-                                <li>
-                                    <h3><span>판매금액: 18000원</span></h3>
+                                    <h3>판매금액: ${p.price }원</h3>
                                 </li>
                             </ul>
                         </div>
@@ -650,18 +609,7 @@
                         </ul>
                         <div class="tab-content">
                             <div class="tab-pane active" id="tabs-1" role="tabpanel">
-                                <h6>상세 정보</h6>
-                                <p>Nemo enim ipsam voluptatem quia voluptas sit aspernatur aut odit aut loret fugit, sed
-                                    quia consequuntur magni dolores eos qui ratione voluptatem sequi nesciunt loret.
-                                    Neque porro lorem quisquam est, qui dolorem ipsum quia dolor si. Nemo enim ipsam
-                                    voluptatem quia voluptas sit aspernatur aut odit aut loret fugit, sed quia ipsu
-                                    consequuntur magni dolores eos qui ratione voluptatem sequi nesciunt. Nulla
-                                consequat massa quis enim.</p>
-                                <p>Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Aenean commodo ligula eget
-                                    dolor. Aenean massa. Cum sociis natoque penatibus et magnis dis parturient montes,
-                                    nascetur ridiculus mus. Donec quam felis, ultricies nec, pellentesque eu, pretium
-                                quis, sem.</p>
-                                <img alt="" src="../resources/images/F021L.jpg">
+                                <img class="detailProduct" src="https://projectbit.s3.us-east-2.amazonaws.com/catImg/${p.l_image }.jpg" alt="">
                             </div>
                             <div class="tab-pane" id="tabs-2" role="tabpanel">
                                 <h6>Specification</h6>
@@ -850,31 +798,31 @@
         <ul class="iew-download">
             <li>
                 <a href="http://www.google.com/chrome/">
-                    <img src="../resources/images/browser/chrome.png" alt="Chrome">
+                    <img src="/resources/images/browser/chrome.png" alt="Chrome">
                     <div>Chrome</div>
                 </a>
             </li>
             <li>
                 <a href="https://www.mozilla.org/en-US/firefox/new/">
-                    <img src="../resources/images/browser/firefox.png" alt="Firefox">
+                    <img src="/resources/images/browser/firefox.png" alt="Firefox">
                     <div>Firefox</div>
                 </a>
             </li>
             <li>
                 <a href="http://www.opera.com">
-                    <img src="../resources/images/browser/opera.png" alt="Opera">
+                    <img src="/resources/images/browser/opera.png" alt="Opera">
                     <div>Opera</div>
                 </a>
             </li>
             <li>
                 <a href="https://www.apple.com/safari/">
-                    <img src="../resources/images/browser/safari.png" alt="Safari">
+                    <img src="/resources/images/browser/safari.png" alt="Safari">
                     <div>Safari</div>
                 </a>
             </li>
             <li>
                 <a href="http://windows.microsoft.com/en-us/internet-explorer/download-ie">
-                    <img src="../resources/images/browser/ie.png" alt="">
+                    <img src="/resources/images/browser/ie.png" alt="">
                     <div>IE (9 & above)</div>
                 </a>
             </li>

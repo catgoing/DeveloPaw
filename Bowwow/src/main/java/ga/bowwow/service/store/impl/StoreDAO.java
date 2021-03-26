@@ -6,7 +6,7 @@ import org.mybatis.spring.SqlSessionTemplate;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
-import ga.bowwow.service.store.Products;
+import ga.bowwow.service.store.Product;
 
 @Repository("storeDAO")
 public class StoreDAO {
@@ -18,11 +18,19 @@ public class StoreDAO {
 		System.out.println(">> StoreDAO 객체 생성");
 	}
 	
-	public List<Products> getDogProductList(Products products) {
+	public Product getProductDetailCat(int p_id) {
+	    return mybatis.selectOne("Store.getProductDetail", p_id);
+	}
+	
+	public Product getProductDetailDog(int p_id) {
+	    return mybatis.selectOne("Store.getProductDetail", p_id);
+	}
+	
+	public List<Product> getDogProductList(Product products) {
 		return mybatis.selectList("Store.dogProductList", products);
 	}
 	
-	public List<Products> getCatProductList(Products products) {
+	public List<Product> getCatProductList(Product products) {
 		return mybatis.selectList("Store.catProductList", products);
 	}
 	
