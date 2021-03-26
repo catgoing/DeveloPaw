@@ -28,20 +28,6 @@ import com.google.gson.JsonObject;
 @Controller
 public class MultipartController {
 	
-//	@PostMapping("registerImage.do")
-//	public String registerImage(ImageVO vo, Model model, HttpServletRequest request) throws IllegalStateException, IOException, AmazonClientException, InterruptedException {
-//		
-//		MultipartFile uploadFile = vo.getUploadFile();
-//		File file = new File(request.getServletContext().getRealPath("/temp"));
-//		uploadFile.transferTo(file);
-//		String s3 = s3upload(file, uploadFile.getOriginalFilename(),"폴더명 여기에 기입");
-//		System.out.println(s3);
-//		
-//		//String s3 DB에 이미지 경로로 저장할것
-//		
-//		return "index2.jsp";
-//	}
-//	
 	@RequestMapping(value="/uploadSummernoteImageFile.do", produces = "application/json; charset=utf8")
 	@ResponseBody
 	public String uploadSummernoteImageFile(@RequestParam("file") MultipartFile multipartFile, HttpServletRequest request ) throws AmazonClientException, InterruptedException, IllegalStateException, IOException  {
@@ -76,10 +62,7 @@ public class MultipartController {
 		String a = jsonObject.toString();
 		System.out.println("파일 주소: " + a);
 		*/
-		
-		
-		
-		
+	
 		String fs_url = "https://projectbit.s3.us-east-2.amazonaws.com/diary/";
 		
 		String originalFileName = multipartFile.getOriginalFilename();	//오리지날 파일명

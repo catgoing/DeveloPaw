@@ -88,7 +88,7 @@ public class BoardController {
 */
 
 
-	@RequestMapping("/list.do")
+	@RequestMapping("list")
 	public String getBoardList(Model model) {
 		System.out.println(">>> 게시글 전체 목록- String getBoardList()");
 		System.out.println("> boardService : " + boardService);
@@ -108,7 +108,23 @@ public class BoardController {
 		//		return "/godiary";
 		//		return "redirect:/tiles/godiary.do";
 		return "/community/diary_board";
-	}	
+	}
+	
+	
+	@RequestMapping("detail")
+	public String getBoard(Model model) {
+		
+		System.out.println(">>> 글상세 - String getBoard()");
+		Board board = boardService.getBoard("1");
+		model.addAttribute("vo", board);
+
+
+
+
+		//		return "/godiary";
+		//		return "redirect:/tiles/godiary.do";
+		return "/community/detail_board";
+	}
 
 	//메소드에 선언된 @ModelAttribute : 리턴된 데이터를 View에 전달
 	//@ModelAttribute 선언된 메소드는 @RequestMapping 메소드보다 먼저 실행됨
@@ -139,7 +155,7 @@ public class BoardController {
 
 
 
-	//	@RequestMapping("/getBoardList.do")
+	//	@RequestMapping("getBoardList")
 	//	public String getBoardList(Board vo, Model model) {
 	//		System.out.println(">>> 게시글 전체 목록- String getBoardList()");
 	//		System.out.println("> boardService : " + boardService);
@@ -153,7 +169,7 @@ public class BoardController {
 	//	}	
 
 
-	@RequestMapping("/community/insertBoard.do")
+	@RequestMapping("insertBoard")
 	public String insertBoard(Board vo) throws IllegalStateException, IOException {
 		System.out.println(">>> 게시글 입력 - insertBoard()");
 		System.out.println("vo : " + vo);
@@ -172,29 +188,29 @@ public class BoardController {
 
 		
 //		boardService.insertBoard(vo);
-//		return "getBoardList.do";
-		return "list.do";
+//		return "getBoardList";
+		return "list";
 	}	
 
 	/*
-	@RequestMapping("/updateBoard.do")
+	@RequestMapping("updateBoard")
 	public String updateBoard(Board vo) {
 		System.out.println(">>> 글수정 - updateBoard()");
 		boardService.updateBoard(vo);
 
-		return "getBoardList.do";
+		return "getBoardList";
 	}	
 
-	@RequestMapping("/deleteBoard.do")
+	@RequestMapping("deleteBoard")
 	public String deleteBoard(Board vo) {
 		System.out.println(">>> 글수정 - deleteBoard()");
 		boardService.deleteBoard(vo);
 		S
-		return "getBoardList.do";
+		return "getBoardList";
 	}	
 
 	//Ajax 요청을 받고 JSON 배열 데이터 리턴
-	@RequestMapping("/ajaxGetBoardList.do")
+	@RequestMapping("ajaxGetBoardList")
 	@ResponseBody
 	public List<Board> ajaxGetBoardList(Board vo) {
 		List<Board> boardList = boardService.getBoardList(vo);

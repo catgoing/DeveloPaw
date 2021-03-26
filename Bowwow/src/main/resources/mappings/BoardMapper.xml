@@ -19,6 +19,10 @@
 			<when test="board_idx == 2"> INTRO_BOARD B, USER_ACCOUNT U WHERE B.MEMBER_SERIAL = U.MEMBER_SERIAL </when>
 		</choose>
 	</select>
+	
+	<select id="getBoard" parameterType="board" resultType="board">
+		SELECT BOARD_NO, BOARD_CONTENT FROM DIARY_BOARD WHERE BOARD_NO = 72
+	</select>
 <!-- 	
 
 	<select id="getBoardList" parameterType="string" resultType="board" >

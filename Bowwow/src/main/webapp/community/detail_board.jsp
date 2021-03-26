@@ -172,79 +172,26 @@
 													</div>
 												</div>
 												<div class="monthly-products">
-													<ul>
-
-														<c:forEach var="list" items="${ boardList}">
-															<li>
-																<div class="block-item default-item">
-																	<div class="best-label">${list.board_no }</div>
-																	<div class="bookmark_btn click-btn">
-																		<div class="scrap" id="scrapBtn_311"
-																			onclick="WitCommon.boardScrap('knowhow', '311')">
-																			<img id="scrapImg_311"
-																				src="/resources/images/dog.jpg" alt="">
-																		</div>
-																	</div>
-																	<div class="img-area"
-																		onclick="location.href='/board/knowhow/311'">
-																		<div class="imgItem"
-																			style="background: url('https://web-wit.s3.ap-northeast-2.amazonaws.com/images/boardKnowhow/311/knowhow_1609169403_0.gif') center center no-repeat; background-size: cover;">
-																		</div>
-																	</div>
-																	<div class="text-area">
-																		<div class="item-title"
-																			onclick="location.href='/board/knowhow/311'">
-																			<h4>${list.board_title }</h4>
-																		</div>
-																		<p class="hashtag">
-																			<span>#마사지 </span><span>#강아지마사지 </span><span>#강아지테라피
-																			</span><span>#예민한강아지 </span><span>#강아지</span><span>#...</span>
-																		</p>
-																		<div class="item-items">
-																			<div class="profile"
-																				onclick="pagePopup.openGotoPopup()">
-																				<p>${list.id }</p>
-																			</div>
-																		</div>
-																	</div>
-																</div>
-															</li>
-														</c:forEach>
-														<li>
-															<div class="block-item default-item">
-																<div class="best-label">1</div>
-																<div class="bookmark_btn click-btn">
-																	<div class="scrap" id="scrapBtn_311"
-																		onclick="WitCommon.boardScrap('knowhow', '311')">
-																		<img id="scrapImg_311"
-																			src="/resources/images/dog.jpg" alt="">
-																	</div>
-																</div>
-																<div class="img-area"
-																	onclick="location.href='/board/knowhow/311'">
-																	<div class="imgItem"
-																		style="background: url('https://web-wit.s3.ap-northeast-2.amazonaws.com/images/boardKnowhow/311/knowhow_1609169403_0.gif') center center no-repeat; background-size: cover;">
-																	</div>
-																</div>
-																<div class="text-area">
-																	<div class="item-title"
-																		onclick="location.href='/board/knowhow/311'">
-																		<h4>제목</h4>
-																	</div>
-																	<p class="hashtag">
-																		<span>#마사지 </span><span>#강아지마사지 </span><span>#강아지테라피
-																		</span><span>#예민한강아지 </span><span>#강아지</span><span>#...</span>
-																	</p>
-																	<div class="item-items">
-																		<div class="profile"
-																			onclick="pagePopup.openGotoPopup()">
-																			<p>닉네임</p>
-																		</div>
-																	</div>
-																</div>
-															</div>
-														</li>
-													</ul>
+													                <!-- 주문번호 -->
+                <div>
+                    <h3 class="join_title"><label for="buylist_no">글번호</label></h3>
+                    <span class="box int_buylist_no">
+                        <input type="text" id="buylist_no" name="buylist_no" class="int" readonly value="${vo.board_no }" maxlength="20">
+                    </span>
+                </div>
+                
+                <!-- NAME -->
+                <div>
+                    <h3 class="join_title"><label for="id">내용</label></h3>
+                    <span class="box int_id">
+                        ${vo.board_content }
+                       
+                    </span>
+                </div>
+            
+ 
+                 
+                 <br>
 												</div>
 											</div>
 										</section>

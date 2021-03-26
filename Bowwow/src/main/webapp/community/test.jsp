@@ -104,7 +104,7 @@ function uploadSummernoteImageFile(file, el) {
 	<p><a href="logout.do">Log-out</a></p>
 	<hr>
 
-<!-- 	<form action="insertBoard.do" method="post"	>
+<!-- 	<form action="insertBoard" method="post"	>
 	<table>
 		<tr>
 			<th width="70">제목</th>
