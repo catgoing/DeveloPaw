@@ -17,7 +17,7 @@ public class StoreController {
 	private StoreService storeService;
 	
 	public StoreController() {
-		System.out.println(">> StoreController 실행");
+		System.out.println(">> StoreController 실행.");
 	}
 
 	@RequestMapping(value = "/store/storeMain")
