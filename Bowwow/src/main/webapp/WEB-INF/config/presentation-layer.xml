@@ -42,7 +42,7 @@
  -->
 	
 	<!-- Tiles viewResolver -->
-	<bean id="tilesViewResolver" class="org.springframework.web.servlet.view.UrlBasedViewResolver">
+<!-- 	<bean id="tilesViewResolver" class="org.springframework.web.servlet.view.UrlBasedViewResolver">
 		<property name="viewClass" value="org.springframework.web.servlet.view.tiles3.TilesView" />
 		<property name="order" value="1" />
 	</bean>
@@ -53,13 +53,13 @@
 				<value>tiles2.xml</value>
 			</list>
 		</property>
-	</bean>
+	</bean> -->
 	
 	<bean id="viewResolver"
 		class="org.springframework.web.servlet.view.InternalResourceViewResolver">
 		<property name="prefix" value="" />
 		<property name="suffix" value=".jsp"></property>
-		<property name="order" value="2" />
+<!-- 		<property name="order" value="2" /> -->
 		
 	</bean>
 

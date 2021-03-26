@@ -5,13 +5,13 @@
 <mapper namespace="UserAccount">
 
 	<insert id="insertUserAccount" parameterType="UserAccount">
-		INSERT INTO USER_ACCOUNT (MEMBER_SERIAL, ID, EMAIL, CITIZEN_ID, PHONE, PASSWORD, STATUS, POINT, COUPONS) 
-		VALUES (MEMBER_SERIAL_SEQ.NEXTVAL, 
-				#{id}, #{email}, #{citizenId}, #{phone}, #{status}, #{point}, #{coupons})
+		INSERT INTO USER_ACCOUNT (SEQ, TITLE, WRITER, CONTENT) 
+		VALUES ((SELECT NVL(MAX(SEQ),0) + 1 FROM User), 
+				#{title}, #{writer}, #{content})
 	</insert>
 	
 	<select id="getUserAccount" parameterType="UserAccount" resultType="UserAccount">
-		SELECT * FROM USER_ACCOUNT WHERE MEMBER_SERIAL = #{MEMBER_SERIAL}
+		SELECT * FROM USER_ACCOUNT WHERE SEQ = #{MEMBER_SERIAL}
 	</select>
 	<!-- 
 	<select id="getUserList" parameterType="User" resultType="User">

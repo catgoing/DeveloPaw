@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="ProductsReview">
+	<insert id="insertProductReview" parameterType="review">
+		INSERT INTO STORE_REVIEW (REVIEW_ID, P_ID, MEMBER_SERIAL, REVIEW_TITLE, REVIEW_CONTENT, REVIEW_REGDATE, REVIEW_IMAGE) 
+		VALUES (REVIEW_SEQ.NEXTVAL, #{p_id}, 1, #{review_title}, #{review_content}, SYSDATE)
+	</insert>
+</mapper>
+
+
+
+
+
+
+
+
+

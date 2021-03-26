@@ -20,11 +20,6 @@
       <meta name="keywords" content="bootstrap, bootstrap admin template, admin theme, admin dashboard, dashboard template, admin template, responsive" />
       <meta name="author" content="Codedthemes" />
       <!-- Favicon icon -->
-      
-      <!--Jua 폰트 import-->
-      <link rel="preconnect" href="https://fonts.gstatic.com">
-      <link href="https://fonts.googleapis.com/css2?family=Jua&display=swap"
-			rel="stylesheet">
 
       <link rel="icon" href="../resources/images/favicon.ico" type="image/x-icon">
       <!-- Google font-->
@@ -41,17 +36,9 @@
       <link rel="stylesheet" type="text/css" href="../resources/icon/font-awesome/css/font-awesome.min.css">
       <!-- Style.css -->
       <link rel="stylesheet" type="text/css" href="../resources/css/style.css">
-      
-      
-<style>
-.featured__item__text {
-	width: 150px;
-}
-</style>
-
   </head>
 
-  <body>
+  <body themebg-pattern="theme1">
   <!-- Pre-loader start -->
   <div class="theme-loader">
       <div class="loader-track">
@@ -105,15 +92,8 @@
           </div>
       </div>
   </div>
-  
   <!-- Pre-loader end -->
-  
-  
-	<div id="pcoded" class="pcoded">
-		<div class="pcoded-overlay-box"></div>
 	<tiles:insertAttribute name="header"/>
-	
-<%-- 	<tiles:insertAttribute name="sidebar"/> --%>
     <section class="login-block">
         <!-- Container-fluid starts -->
         <div class="container">
@@ -184,7 +164,6 @@
     </section>
     
     <tiles:insertAttribute name="footer"/>
-    </div>
     <!-- Warning Section Starts -->
     <!-- Older IE warning message -->
     <!--[if lt IE 10]>
