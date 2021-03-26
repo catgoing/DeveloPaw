@@ -1,33 +1,15 @@
 package ga.bowwow.controller.board;
 
 import java.io.IOException;
-import java.io.InputStream;
-import java.io.PrintWriter;
-import java.util.Calendar;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
-import java.util.Random;
-import java.util.UUID;
 
-import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpServletRequestWrapper;
-import javax.servlet.http.HttpServletResponse;
-
-import org.apache.commons.io.FileUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.ModelAttribute;
-import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.ResponseBody;
-import org.springframework.web.multipart.MultipartFile;
-
-import com.amazonaws.AmazonClientException;
-import com.google.gson.JsonObject;
 
 import ga.bowwow.service.board.Board;
 import ga.bowwow.service.board.BoardService;
@@ -42,7 +24,7 @@ public class BoardController {
 		System.out.println("> boardService : " + boardService); //null
 	}
 
-
+/*
 	@RequestMapping(value="/uploadSummernoteImageFile.do", produces = "application/json; charset=utf8")
 	@ResponseBody
 	public String uploadSummernoteImageFile(@RequestParam("file") MultipartFile multipartFile, HttpServletRequest request ) throws AmazonClientException, InterruptedException, IllegalStateException, IOException  {
@@ -50,7 +32,7 @@ public class BoardController {
 
         /*
 		 * String fileRoot = "C:\\summernote_image\\"; // 외부경로로 저장을 희망할때.
-		 */
+
 
 		// 내부경로로 저장
 		/*
@@ -76,7 +58,7 @@ public class BoardController {
 		}
 		String a = jsonObject.toString();
 		System.out.println("파일 주소: " + a);
-		*/
+
 
 
 
@@ -86,10 +68,10 @@ public class BoardController {
 		String originalFileName = multipartFile.getOriginalFilename();	//오리지날 파일명
 		String extension = originalFileName.substring(originalFileName.lastIndexOf("."));	//파일 확장자
 		String savedFileName = UUID.randomUUID() + extension;	//저장될 파일 명
-		s3upload s2 = new s3upload();
+		MultipartController s2 = new MultipartController();
 	    File file = new File(request.getServletContext().getRealPath("/temp"));
 	    multipartFile.transferTo(file);
-		String s3 = s2.s3upload3(file, savedFileName,"diary");
+		String s3 = s2.s3upload(file, savedFileName,"diary");
 
 		System.out.println(s3);
 
@@ -102,7 +84,7 @@ public class BoardController {
 		return a;
 	}
 
-
+*/
 
 
 	@RequestMapping("/list.do")

@@ -4,13 +4,10 @@
   "http://mybatis.org/dtd/mybatis-3-config.dtd">
 <configuration>
 	<settings>
-		<setting name="jdbcTypeForNull" value="NULL"/>
+		<setting name="jdbcTypeForNull" value="NULL" />
 	</settings>
 	<typeAliases>
 		<typeAlias type="ga.bowwow.service.user.UserAccount" alias="userAccount"/>
-	<!--
-		<typeAlias type="com.spring.biz.board.BoardVO" alias="board"/>
-		-->
 		<typeAlias type="ga.bowwow.service.board.Board" alias="Board"/>
 		<typeAlias type="ga.bowwow.service.pet.Pet" alias="pet"/>
 		<typeAlias type="ga.bowwow.service.store.Products" alias="Product"/>
@@ -19,10 +16,6 @@
 
   <mappers>
   	<mapper resource="mappings/UserMapper.xml"/>
-    <!--
-    <mapper resource=""/>
-     -->
-    <!-- <mapper resource="mappings/UserMapper.xml"/> -->
     <mapper resource="mappings/BoardMapper.xml"/>
     <mapper resource="mappings/PetMapper.xml"/>
     <mapper resource="mappings/StoreMapper.xml"/>
