@@ -5,7 +5,7 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import ga.bowwow.service.store.Products;
+import ga.bowwow.service.store.Product;
 import ga.bowwow.service.store.StoreService;
 
 @Service
@@ -15,33 +15,37 @@ public class StoreServiceImpl implements StoreService {
 	private StoreDAO storeDAO;
 	
 	@Override
-	public void insertProducts(Products products) {
+	public void insertProducts(Product products) {
 
 	}
 
 	@Override
-	public void updateProducts(Products products) {
+	public void updateProducts(Product products) {
 
 	}
 
 	@Override
-	public void deleteProducts(Products products) {
+	public void deleteProducts(Product products) {
 
 	}
 
 	@Override
-	public Products getProducts(Products products) {
-		return null;
+	public Product getProductDetailCat(int p_id) {
+		return storeDAO.getProductDetailCat(p_id);
+	}
+	
+	@Override
+	public Product getProductDetailDog(int p_id) {
+		return storeDAO.getProductDetailDog(p_id);
 	}
 
-
 	@Override
-	public List<Products> getDogProductList(Products products) {
+	public List<Product> getDogProductList(Product products) {
 		return storeDAO.getDogProductList(products);
 	}
 	
 	@Override
-	public List<Products> getCatProductList(Products products) {
+	public List<Product> getCatProductList(Product products) {
 		return storeDAO.getCatProductList(products);
 	}
 
