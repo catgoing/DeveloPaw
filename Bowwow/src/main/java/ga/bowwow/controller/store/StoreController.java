@@ -11,7 +11,6 @@ import ga.bowwow.service.store.Products;
 import ga.bowwow.service.store.StoreService;
 
 @Controller
-//@RequestMapping("/store")
 public class StoreController {
 	
 	@Autowired
@@ -20,7 +19,13 @@ public class StoreController {
 	public StoreController() {
 		System.out.println(">> StoreController 실행");
 	}
+
+	@RequestMapping(value = "/store/storeMain.do")
+	public String storeMain() {
+		return "storeMain";
+	}
 	
+	// 댕댕이 상품 전체 출력
 	@RequestMapping(value = "/store/dogList.do")
 	public String getDogProductList(Products products, Model model) {
 		List<Products> productList = storeService.getDogProductList(products);
@@ -29,6 +34,7 @@ public class StoreController {
 		return "dogList";
 	}
 	
+	// 냥냥이 상품 전체 출력
 	@RequestMapping(value = "/store/catList.do")
 	public String getCatProductList(Products products, Model model) {
 		List<Products> productList = storeService.getCatProductList(products);
@@ -37,10 +43,6 @@ public class StoreController {
 		return "catList";
 	}
 	
-	@RequestMapping(value = "/store/storeMain.do")
-	public String storeMain() {
-		return "storeMain";
-	}
 	
 	
 }
