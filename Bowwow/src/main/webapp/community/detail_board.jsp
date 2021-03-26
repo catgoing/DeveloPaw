@@ -172,26 +172,47 @@
 													</div>
 												</div>
 												<div class="monthly-products">
-													                <!-- 주문번호 -->
-                <div>
-                    <h3 class="join_title"><label for="buylist_no">글번호</label></h3>
-                    <span class="box int_buylist_no">
-                        <input type="text" id="buylist_no" name="buylist_no" class="int" readonly value="${vo.board_no }" maxlength="20">
-                    </span>
-                </div>
-                
-                <!-- NAME -->
-                <div>
-                    <h3 class="join_title"><label for="id">내용</label></h3>
-                    <span class="box int_id">
-                        ${vo.board_content }
-                       
-                    </span>
-                </div>
-            
- 
-                 
-                 <br>
+													<!-- 주문번호 -->
+													<div>
+														<h3 class="join_title">
+															<label for="buylist_no">글번호</label>
+														</h3>
+														<span class="box int_buylist_no"> <input
+															type="text" id="buylist_no" name="buylist_no" class="int"
+															readonly value="${vo.board_no }" maxlength="20">
+														</span>
+													</div>
+
+													<!-- NAME -->
+													<div>
+														<h3 class="join_title">
+															<label for="id">내용</label>
+														</h3>
+														<span class="box int_id"> ${vo.board_content } </span>
+													</div>
+													
+													<hr>
+													댓글
+													<br>
+													<div class="comments_div">
+														<c:forEach var="comvo" items="${commentList }">
+															<h4>${comvo.comment_content } // ${comvo.nickname } // ${comvo.regdate }</h4>
+															<c:set var="com1" value="${comvo.comment_no }" />
+															<hr>
+																대댓글<br>
+															<c:forEach var="com2vo" items="${comment2List }">
+																<c:set var="com2" value="${com2vo.comment_no }" />
+																<c:if test="${com1 == com2}">
+																${com2vo.comment_content } // ${com2vo.nickname } // ${com2vo.regdate }
+																<hr>
+																</c:if>
+															</c:forEach>
+														</c:forEach>		
+													</div>
+
+
+
+													<br>
 												</div>
 											</div>
 										</section>

@@ -63,26 +63,31 @@ public class MultipartController {
 		String a = jsonObject.toString();
 		System.out.println("파일 주소: " + a);
 		*/
-	
-		String fs_url = "https://projectbit.s3.us-east-2.amazonaws.com/diary/";
 		
-		String originalFileName = multipartFile.getOriginalFilename();	//오리지날 파일명
-		String extension = originalFileName.substring(originalFileName.lastIndexOf("."));	//파일 확장자
-		String savedFileName = UUID.randomUUID() + extension;	//저장될 파일 명
-	    File file = new File(request.getServletContext().getRealPath("/temp"));
-	    multipartFile.transferTo(file);
-		String s3 = this.s3upload(file, savedFileName,"diary");
 		
-		System.out.println(s3);
 		
-		jsonObject.addProperty("url", fs_url + savedFileName); // contextroot + resources + 저장할 내부 폴더명
+		
+		String fs_url = "https://projectbit.s3.us-east-2.amazonaws.com/";					//AWS S3 경로
+		String foldername = "";																//폴더명
+		
+		String originalFileName = multipartFile.getOriginalFilename();						//원본 파일명
+		String extension = originalFileName.substring(originalFileName.lastIndexOf("."));	//원본 파일 확장자
+		String savedFileName = UUID.randomUUID() + extension;								//저장될 파일 명(무작위 생성) + 확장자명
+	    File file = new File(request.getServletContext().getRealPath("/temp"));				//EC2 서버에 내용 없는 새 파일 생성
+	    multipartFile.transferTo(file);														//원본 파일 내용을 새 파일에 입력
+		String s3 = this.s3upload(file, savedFileName, foldername);							//S3 저장경로에 폴더명/파일이름으로 업로드
+		
+		System.out.println(s3); //S3에 업로드된 파일의 URL 주소 출력(콘솔 확인용)
+		
+	   // 요청이 들어온 JSP 파일에 JSON 형식으로 리턴하기 위한 과정
+		jsonObject.addProperty("url", fs_url + savedFileName); //contextroot + S3에 파일이 저장된 경로
 		jsonObject.addProperty("responseCode", "success");
 		
-		String a = jsonObject.toString();
+		String a = jsonObject.toString(); //JSON 결과 출력(확인용) ["url" : "경로명"]으로 나오면 정상
 		
-		
-		return a;
+		return a; //최종 a를 리턴하여 요청 들어온 JSP 파일에 JSON 형식으로 전달
 	}
+	
 	
 	public String s3upload(File file, String fileName, String folder) throws AmazonClientException, InterruptedException {
         //수정 금지
