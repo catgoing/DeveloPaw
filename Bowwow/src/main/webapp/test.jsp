@@ -53,7 +53,7 @@ function uploadSummernoteImageFile(file, el) {
 	$.ajax({
 		data : data,
 		type : "POST",
-		url : "/community/uploadSummernoteImageFile.do",
+		url : "uploadSummernoteImageFile.do",
 		contentType : false,
 		enctype : 'multipart/form-data',
 		processData : false,
@@ -72,7 +72,6 @@ function uploadSummernoteImageFile(file, el) {
 	<h1>펫 일기장</h1>
 	
 	<hr>
-
 
 	<form action="insertBoard" method="post" enctype="multipart/form-data">
 	

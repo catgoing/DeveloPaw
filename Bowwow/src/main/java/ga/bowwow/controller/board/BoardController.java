@@ -25,74 +25,10 @@ public class BoardController {
 		System.out.println("> boardService : " + boardService); //null
 	}
 
-/*
-	@RequestMapping(value="/uploadSummernoteImageFile.do", produces = "application/json; charset=utf8")
-	@ResponseBody
-	public String uploadSummernoteImageFile(@RequestParam("file") MultipartFile multipartFile, HttpServletRequest request ) throws AmazonClientException, InterruptedException, IllegalStateException, IOException  {
-		JsonObject jsonObject = new JsonObject();
-		
-        /*
-		 * String fileRoot = "C:\\summernote_image\\"; // 외부경로로 저장을 희망할때.
-		 
-		
-		// 내부경로로 저장
-		/*
-		String contextRoot = new HttpServletRequestWrapper(request).getRealPath("/");
-		String fileRoot = contextRoot+"resources/upload/";
-		
-		String originalFileName = multipartFile.getOriginalFilename();	//오리지날 파일명
-		String extension = originalFileName.substring(originalFileName.lastIndexOf("."));	//파일 확장자
-		String savedFileName = UUID.randomUUID() + extension;	//저장될 파일 명
-
-		
-		File targetFile = new File(fileRoot + savedFileName);	
-		try {
-			InputStream fileStream = multipartFile.getInputStream();
-			FileUtils.copyInputStreamToFile(fileStream, targetFile);	//파일 저장
-			jsonObject.addProperty("url", "/main/resources/upload/"+savedFileName); // contextroot + resources + 저장할 내부 폴더명
-			jsonObject.addProperty("responseCode", "success");
-				
-		} catch (IOException e) {
-			FileUtils.deleteQuietly(targetFile);	//저장된 파일 삭제
-			jsonObject.addProperty("responseCode", "error");
-			e.printStackTrace();
-		}
-		String a = jsonObject.toString();
-		System.out.println("파일 주소: " + a);
-		
-		
-		
-		
-		
-		String fs_url = "https://projectbit.s3.us-east-2.amazonaws.com/diary/";
-		
-		String originalFileName = multipartFile.getOriginalFilename();	//오리지날 파일명
-		String extension = originalFileName.substring(originalFileName.lastIndexOf("."));	//파일 확장자
-		String savedFileName = UUID.randomUUID() + extension;	//저장될 파일 명
-		MultipartController s2 = new MultipartController();
-	    File file = new File(request.getServletContext().getRealPath("/temp"));
-	    multipartFile.transferTo(file);
-		String s3 = s2.s3upload(file, savedFileName,"diary");
-		
-		System.out.println(s3);
-		
-		jsonObject.addProperty("url", fs_url + savedFileName); // contextroot + resources + 저장할 내부 폴더명
-		jsonObject.addProperty("responseCode", "success");
-		
-		String a = jsonObject.toString();
-		
-		
-		return a;
-	}
-	
-*/
-
-
-	@RequestMapping("list")
+	@RequestMapping("/community/list")
 	public String getBoardList(Model model) {
 		System.out.println(">>> 게시글 전체 목록- String getBoardList()");
 		System.out.println("> boardService : " + boardService);
-
 
 		int board_idx = 1;
 
@@ -102,29 +38,21 @@ public class BoardController {
 		model.addAttribute("boardList", boardList);
 		System.out.println("board model : " + model);
 
-
-
-
-		//		return "/godiary";
-		//		return "redirect:/tiles/godiary.do";
 		return "/community/diary_board";
+
 	}
 	
 	
-	@RequestMapping("detail")
+	@RequestMapping("/community/detail")
 	public String getBoard(Model model) {
 		
 		System.out.println(">>> 글상세 - String getBoard()");
 		Board board = boardService.getBoard("1");
 		model.addAttribute("vo", board);
 
-
-
-
-		//		return "/godiary";
-		//		return "redirect:/tiles/godiary.do";
 		return "/community/detail_board";
 	}
+	
 
 	//메소드에 선언된 @ModelAttribute : 리턴된 데이터를 View에 전달
 	//@ModelAttribute 선언된 메소드는 @RequestMapping 메소드보다 먼저 실행됨
@@ -140,56 +68,16 @@ public class BoardController {
 		return conditionMap;
 	}
 
-	/*
-	//리턴타입 ModelAndView -> String
-	//전달하는 데이터 타입 ModelAndView -> Model
-	@RequestMapping("/getBoard.do")
-	public String getBoard(Board vo, Model model) {
-		System.out.println(">>> 글상세 - String getBoard()");
-		Board board = boardService.getBoard(vo);
-		model.addAttribute("board", board);
 
-		return "getBoard.jsp";
-	}	
-	 */
-
-
-
-	//	@RequestMapping("getBoardList")
-	//	public String getBoardList(Board vo, Model model) {
-	//		System.out.println(">>> 게시글 전체 목록- String getBoardList()");
-	//		System.out.println("> boardService : " + boardService);
-	//
-	//				
-	//		List<Board> boardList = boardService.getBoardList(1);
-	//		
-	//		model.addAttribute("boardList", boardList);
-	//		
-	//		return "getBoardList.jsp";
-	//	}	
-
-
-	@RequestMapping("insertBoard")
+	@RequestMapping("/community/insertBoard")
 	public String insertBoard(Board vo) throws IllegalStateException, IOException {
 		System.out.println(">>> 게시글 입력 - insertBoard()");
 		System.out.println("vo : " + vo);
+	
+		boardService.insertBoard(vo);
 
-		/* 파일업로드 관련 처리
-		 * MultipartFile 인터페이스 주요 메소드
-		 * String getOriginalFilename() : 업로드할 파일명 찾기
-		 * void transferTo(File) : 업로드할 파일을 업로드 처리
-		 * boolean isEmpty() : 업로드할 파일의 존재여부(없으면 true)
-		 */
-		/*	MultipartFile uploadFile = vo.getUploadFile();
-		if (!uploadFile.isEmpty()) { //파일이 있으면
-			String fileName = uploadFile.getOriginalFilename();
-			uploadFile.transferTo(new File("c:/MyStudy/temp/" + fileName ));
-		}*/
+		return "/community/list";
 
-		
-//		boardService.insertBoard(vo);
-//		return "getBoardList";
-		return "list";
 	}	
 
 	/*

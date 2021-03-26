@@ -28,7 +28,8 @@ import com.google.gson.JsonObject;
 @Controller
 public class MultipartController {
 	
-	@RequestMapping(value="/uploadSummernoteImageFile.do", produces = "application/json; charset=utf8")
+
+	@RequestMapping(value="/community/uploadSummernoteImageFile.do", produces = "application/json; charset=utf8")
 	@ResponseBody
 	public String uploadSummernoteImageFile(@RequestParam("file") MultipartFile multipartFile, HttpServletRequest request ) throws AmazonClientException, InterruptedException, IllegalStateException, IOException  {
 		JsonObject jsonObject = new JsonObject();
