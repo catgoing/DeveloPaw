@@ -87,8 +87,8 @@ public class BoardController {
 	
 */
 
-
-	@RequestMapping("/list.do")
+/*
+	@RequestMapping("/list")
 	public String getBoardList(Model model) {
 		System.out.println(">>> 게시글 전체 목록- String getBoardList()");
 		System.out.println("> boardService : " + boardService);
@@ -109,7 +109,9 @@ public class BoardController {
 		//		return "redirect:/tiles/godiary.do";
 		return "/community/diary_board";
 	}	
-	@RequestMapping("/community/list.do")
+	
+	
+	@RequestMapping("/list")
 	public String getTilesBoardList(Model model) {
 		System.out.println(">>> 게시글 전체 목록- String getBoardList()");
 		System.out.println("> boardService : " + boardService);
@@ -123,13 +125,11 @@ public class BoardController {
 		model.addAttribute("boardList", boardList);
 		System.out.println("board model : " + model);
 
-
-
-
 		//		return "/godiary";
 		//		return "redirect:/tiles/godiary.do";
 		return "/godiary";
 	}	
+	*/
 
 	//메소드에 선언된 @ModelAttribute : 리턴된 데이터를 View에 전달
 	//@ModelAttribute 선언된 메소드는 @RequestMapping 메소드보다 먼저 실행됨
@@ -174,7 +174,7 @@ public class BoardController {
 	//	}	
 
 
-	@RequestMapping("/community/insertBoard.do")
+	@RequestMapping("/community/insertBoard")
 	public String insertBoard(Board vo) throws IllegalStateException, IOException {
 		System.out.println(">>> 게시글 입력 - insertBoard()");
 		System.out.println("vo : " + vo);
@@ -192,9 +192,9 @@ public class BoardController {
 		}*/
 
 		
-//		boardService.insertBoard(vo);
+		boardService.insertBoard(vo);
 //		return "getBoardList.do";
-		return "list.do";
+		return "diary_board";
 	}	
 
 	/*
