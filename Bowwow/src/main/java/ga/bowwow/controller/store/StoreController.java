@@ -85,7 +85,8 @@ public class StoreController {
 		
 		// 메소드 호출
 		storeService.insertReview(review);
-		return "storeMain";
+		System.out.println(review.getP_id());
+		return "redirect:detailDog?p_id=" + review.getP_id();
 	}	
 	
 }

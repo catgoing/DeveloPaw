@@ -5,7 +5,7 @@
 <mapper namespace="ProductsReview">
 	<insert id="insertProductReview" parameterType="review">
 		INSERT INTO STORE_REVIEW (REVIEW_ID, P_ID, MEMBER_SERIAL, REVIEW_TITLE, REVIEW_CONTENT, REVIEW_REGDATE, REVIEW_IMAGE) 
-		VALUES (REVIEW_SEQ.NEXTVAL, #{p_id}, #{member_serial}, #{review_title}, #{review_content}, SYSDsATE)
+		VALUES (REVIEW_SEQ.NEXTVAL, #{p_id}, #{member_serial}, #{review_title}, #{review_content}, SYSDATE, #{review_image})
 	</insert>
 </mapper>
 

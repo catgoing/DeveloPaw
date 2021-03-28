@@ -621,7 +621,7 @@
 																</tr>
 																<tr>
 																	<th>회원번호</th>
-																	<td><input type="text" name="member_serial"></td>
+																	<td><input type="text" name="member_serial" value=999></td>
 																</tr>
 																<tr>
 																	<th>리뷰 제목</th>
