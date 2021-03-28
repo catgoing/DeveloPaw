@@ -53,7 +53,7 @@
 	<!-- *.do에서 /로 변경 21.03.25 09:30 -->
 	<servlet-mapping>
 		<servlet-name>main</servlet-name>
-		<url-pattern>*.do</url-pattern>
+		<url-pattern>/</url-pattern>
 	</servlet-mapping>
 	
 

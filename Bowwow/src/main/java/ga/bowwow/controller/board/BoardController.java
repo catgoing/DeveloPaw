@@ -77,17 +77,17 @@ public class BoardController {
 		
 		int board_idx = 1;
 		
-		List<Board> boardList = boardService.getBoardList(board_idx);
-		System.out.println("bowwow list : " + boardList);
+//		List<Board> boardList = boardService.getBoardList(board_idx);
+//		System.out.println("bowwow list : " + boardList);
 		
-		model.addAttribute("boardList", boardList);
+//		model.addAttribute("boardList", boardList);
 		
 		
 
 		
 //		return "/godiary";
 //		return "redirect:/tiles/godiary.do";
-		return "/godiary";
+		return "/auth";
 	}	
 	
 	

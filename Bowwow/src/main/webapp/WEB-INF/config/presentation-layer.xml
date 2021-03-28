@@ -44,13 +44,12 @@
 	<!-- Tiles viewResolver -->
 	<bean id="tilesViewResolver" class="org.springframework.web.servlet.view.UrlBasedViewResolver">
 		<property name="viewClass" value="org.springframework.web.servlet.view.tiles3.TilesView" />
-		<property name="order" value="1" />
+		<property name="order" value="0" />
 	</bean>
 	<bean id="tilesConfigurer" class="org.springframework.web.servlet.view.tiles3.TilesConfigurer">
 		<property name="definitions">
 			<list>
 				<value>tiles.xml</value>
-				<value>tiles2.xml</value>
 			</list>
 		</property>
 	</bean>
@@ -68,6 +67,7 @@
 	<!-- JSON 변환관련 HttpMessageConverter(인터페이스)를 구현한 객체 MappingJackson2HttpMessageConverter 
 		객체 사용 -->
 	<mvc:annotation-driven />
+	<mvc:default-servlet-handler />
 
 </beans>
 
