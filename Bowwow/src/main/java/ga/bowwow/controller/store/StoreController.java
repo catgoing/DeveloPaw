@@ -37,7 +37,7 @@ public class StoreController {
 		int p_id = Integer.parseInt(request.getParameter("p_id"));
 		System.out.println("p_id : " + p_id);
 
-		Product p = storeService.getProductDetailCat(p_id);
+		Product p = storeService.getProductDetail(p_id);
 		model.addAttribute("p", p);
 		
 		return "productDetailCat";

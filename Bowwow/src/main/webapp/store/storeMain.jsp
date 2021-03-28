@@ -216,7 +216,7 @@
                                     </li>
                                     <li class="waves-effect waves-light">
                                         <div class="media">
-                                            <img class="d-flex align-self-center img-radius" src="resources/images/avatar-4.jpg" alt="Generic placeholder image">
+                                            <img class="d-flex align-self-center img-radius" src="../resources/images/avatar-4.jpg" alt="Generic placeholder image">
                                             <div class="media-body">
                                                 <h5 class="notification-user">Joseph William</h5>
                                                 <p class="notification-msg">Lorem ipsum dolor sit amet, consectetuer elit.</p>
@@ -226,7 +226,7 @@
                                     </li>
                                     <li class="waves-effect waves-light">
                                         <div class="media">
-                                            <img class="d-flex align-self-center img-radius" src="resources/images/avatar-3.jpg" alt="Generic placeholder image">
+                                            <img class="d-flex align-self-center img-radius" src="../resources/images/avatar-3.jpg" alt="Generic placeholder image">
                                             <div class="media-body">
                                                 <h5 class="notification-user">Sara Soudein</h5>
                                                 <p class="notification-msg">Lorem ipsum dolor sit amet, consectetuer elit.</p>
@@ -462,7 +462,7 @@
                                             </a>
                                         </li>
                                         <li class="">
-                                            <a href="dogToy.jsp" class="waves-effect waves-dark">
+                                            <a href="productList?p_type=dog&p_category=toy" class="waves-effect waves-dark">
                                                 <span class="pcoded-micon"><i class="ti-angle-right"></i></span>
                                                 <span class="pcoded-mtext">장난감</span>
                                                 <span class="pcoded-mcaret"></span>
@@ -487,42 +487,42 @@
                                             </a>
                                         </li>
                                         <li class="">
-                                            <a href="storeMain.html" class="waves-effect waves-dark">
+                                            <a href="productList?p_type=cat&p_category=food" class="waves-effect waves-dark">
                                                 <span class="pcoded-micon"><i class="ti-angle-right"></i></span>
                                                 <span class="pcoded-mtext">사료</span>
                                                 <span class="pcoded-mcaret"></span>
                                             </a>
                                         </li>
                                         <li class="">
-                                            <a href="storeMain.html" class="waves-effect waves-dark">
+                                            <a href="productList?p_type=cat&p_category=snack" class="waves-effect waves-dark">
                                                 <span class="pcoded-micon"><i class="ti-angle-right"></i></span>
                                                 <span class="pcoded-mtext">간식</span>
                                                 <span class="pcoded-mcaret"></span>
                                             </a>
                                         </li>
                                         <li class="">
-                                            <a href="auth-normal-sign-in.html" class="waves-effect waves-dark">
+                                            <a href="productList?p_type=cat&p_category=care" class="waves-effect waves-dark">
                                                 <span class="pcoded-micon"><i class="ti-angle-right"></i></span>
                                                 <span class="pcoded-mtext">케어</span>
                                                 <span class="pcoded-mcaret"></span>
                                             </a>
                                         </li>
                                         <li class="">
-                                            <a href="auth-sign-up.html" class="waves-effect waves-dark">
+                                            <a href="productList?p_type=cat&p_category=living" class="waves-effect waves-dark">
                                                 <span class="pcoded-micon"><i class="ti-angle-right"></i></span>
                                                 <span class="pcoded-mtext">리빙</span>
                                                 <span class="pcoded-mcaret"></span>
                                             </a>
                                         </li>
                                         <li class="">
-                                            <a href="sample-page.html" class="waves-effect waves-dark">
-                                                <span class="pcoded-micon"><i class="ti-layout-sidebar-left"></i><b></b></span>
+                                            <a href="productList?p_type=cat&p_category=clothes" class="waves-effect waves-dark">
+                                                <span class="pcoded-micon"><i class="ti-layout-sidebar-left"></i><b>S</b></span>
                                                 <span class="pcoded-mtext">의류</span>
                                                 <span class="pcoded-mcaret"></span>
                                             </a>
                                         </li>
                                         <li class="">
-                                            <a href="auth-normal-sign-in.html" class="waves-effect waves-dark">
+                                            <a href="productList?p_type=cat&p_category=toy" class="waves-effect waves-dark">
                                                 <span class="pcoded-micon"><i class="ti-angle-right"></i></span>
                                                 <span class="pcoded-mtext">장난감</span>
                                                 <span class="pcoded-mcaret"></span>
