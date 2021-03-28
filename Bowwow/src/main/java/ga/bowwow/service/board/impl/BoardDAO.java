@@ -62,5 +62,12 @@ public class BoardDAO {
 //		
 //		return null;
 //	}	
+	
+
+	public Board search(String keyword) {
+		
+		System.out.println("===> MyBatis로 search() 실행-vo");
+		return mybatis.selectOne("BoardDAO.search",keyword);
+	}
 
 }

@@ -23,6 +23,15 @@
 	<select id="getBoard" parameterType="board" resultType="board">
 		SELECT BOARD_NO, BOARD_CONTENT FROM DIARY_BOARD WHERE BOARD_NO = 72
 	</select>
+	
+	<select id="search" parameterType="board" resultType="board">
+		SELECT BOARD_NO, BOARD_CONTENT,ANIMAL_CLASS
+		FROM DIARY_BOARD
+		WHERE 1=1 AND BOARD_TITLE LIKE '%'|| #{Keyword} ||'%'
+		
+	</select>
+	
+	
 <!-- 	
 
 	<select id="getBoardList" parameterType="string" resultType="board" >

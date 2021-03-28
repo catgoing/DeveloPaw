@@ -53,5 +53,10 @@ public class BoardServiceImpl implements BoardService{
 
 		return boardDAO.getBoardList(idx);
 	}
+	
+	public Board search(String keyword) {
+		return boardDAO.search(keyword);
+	}
+	
 
 }

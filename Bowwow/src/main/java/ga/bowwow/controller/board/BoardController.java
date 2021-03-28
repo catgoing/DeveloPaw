@@ -57,15 +57,17 @@ public class BoardController {
 	//메소드에 선언된 @ModelAttribute : 리턴된 데이터를 View에 전달
 	//@ModelAttribute 선언된 메소드는 @RequestMapping 메소드보다 먼저 실행됨
 	//뷰에 전달될 때 설정된 명칭(예: conditionMap)으로 전달
-	@ModelAttribute("conditionMap")
-	public Map<String, String> searchConditionMap() {
-		System.out.println("--->>@ModelAttribute - Map searchConditionMap()");
-		//key : 제목, value : TITLE
-		//key : 내용, value : CONTENT
-		Map<String, String> conditionMap = new HashMap<String, String>();
-		conditionMap.put("제목", "TITLE");
-		conditionMap.put("내용", "CONTENT");
-		return conditionMap;
+	@RequestMapping("/community/search")
+	public String search(Board board ,Model model) {
+		System.out.println(">> 통합검색 - String search()");
+		System.out.println(board);
+		System.out.println("search vo:"+board.getKeyword());
+		board=boardService.search(board.getKeyword());
+		System.out.println("searchboard:" + board);
+		model.addAttribute("search",board);
+		
+	
+		return "/community/search";
 	}
 
 

@@ -10,5 +10,5 @@ public interface BoardService {
 	Board getBoard(String board_no);
 //	List<Board> getBoardList();
 	List<Board> getBoardList(int idx);
-
+	Board search(String keyword);
 }
