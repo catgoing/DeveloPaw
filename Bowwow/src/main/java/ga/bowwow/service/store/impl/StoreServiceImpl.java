@@ -16,33 +16,28 @@ public class StoreServiceImpl implements StoreService {
 	private StoreDAO storeDAO;
 	
 	@Override
-	public void insertProducts(Product products) {
+	public void insertProducts(Product product) {
 
 	}
 
 	@Override
-	public void updateProducts(Product products) {
+	public void updateProducts(Product product) {
 
 	}
 
 	@Override
-	public void deleteProducts(Product products) {
+	public void deleteProducts(Product product) {
 
 	}
 
 	@Override
-	public Product getProductDetailCat(int p_id) {
-		return storeDAO.getProductDetailCat(p_id);
-	}
-	
-	@Override
-	public Product getProductDetailDog(int p_id) {
-		return storeDAO.getProductDetailDog(p_id);
+	public Product getProductDetail(int p_id) {
+		return storeDAO.getProductDetail(p_id);
 	}
 
 	@Override
-	public List<Product> getProductList(String p_type) {
-		return storeDAO.getProductList(p_type);
+	public List<Product> getProductList(Product product) {
+		return storeDAO.getProductList(product);
 	}
 
 	@Override

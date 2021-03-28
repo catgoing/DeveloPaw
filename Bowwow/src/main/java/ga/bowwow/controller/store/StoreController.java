@@ -17,10 +17,10 @@ import ga.bowwow.service.store.StoreService;
 
 @Controller
 public class StoreController {
-	
+
 	@Autowired
 	private StoreService storeService;
-	
+
 	public StoreController() {
 		System.out.println(">> StoreController 실행");
 	}
@@ -29,97 +29,53 @@ public class StoreController {
 	public String storeMain() {
 		return "storeMain";
 	}
-	
-	// 상품 하나 출력(냥냥이)
-	@RequestMapping(value = "/store/detailCat")
-	public String getProductDetailCat(Model model, HttpServletRequest request) {
-		
-		int p_id = Integer.parseInt(request.getParameter("p_id"));
-		System.out.println("p_id : " + p_id);
 
-		Product p = storeService.getProductDetailCat(p_id);
-		model.addAttribute("p", p);
-		
-		return "productDetailCat";
-	}
-	
-	// 상품 하나 출력(댕댕이)
-	@RequestMapping(value = "/store/detailDog")
+	// 상품 상세 보기
+	@RequestMapping(value = "/store/detail")
 	public String getProductDetailDog(Model model, HttpServletRequest request) {
-		
+
 		int p_id = Integer.parseInt(request.getParameter("p_id"));
 		System.out.println("p_id : " + p_id);
 
-		Product p = storeService.getProductDetailDog(p_id);
+		Product p = storeService.getProductDetail(p_id);
 		model.addAttribute("p", p);
-		
+
 		List<Review> reviewList = storeService.getReviewList(p_id);
 		model.addAttribute("reviewList", reviewList);
-		
+
 		
 		return "productDetailDog";
 	}
-	
+
 	// 상품 전체 출력
 	@RequestMapping(value = "/store/productList")
-	public String getProductList(Product products, Model model, HttpServletRequest request) {
-		String p_type = request.getParameter("p_type");
+	public String getProductList(Product product, Model model, HttpServletRequest request) {
 
-		List<Product> productList = storeService.getProductList(p_type);
-		model.addAttribute("pList", productList);
-		
-		System.out.println("type : " + p_type);
-		System.out.println("getP_type() : " + products.getP_type());
+		System.out.println("products " + product);
 
-		if (p_type.equals("dog")) {
-			return "dogList";
-			
-		} else if (p_type.equals("cat")) {
-			return "catList";
-			
-		} else {
-			return null;
+		if (product.getP_type().equals("dog")) {
+			model.addAttribute("imgDir", "dogImg");
+		} else if (product.getP_type().equals("cat")) {
+			model.addAttribute("imgDir", "catImg");
 		}
+
+		List<Product> productList = storeService.getProductList(product);
+		model.addAttribute("pList", productList);
+
+		return "list";
+
 	}
-	
+
 
 	@RequestMapping("/store/insertReview")
 	public String insertReview(Review review) throws IllegalStateException, IOException {
 		System.out.println(">>> 게시글 입력 - insertReview()");
 		System.out.println("review : " + review);
-		
+
 		// 메소드 호출
 		storeService.insertReview(review);
 		System.out.println(review.getP_id());
 		return "redirect:detailDog?p_id=" + review.getP_id();
-	}	
-	
+	}
+
 }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
