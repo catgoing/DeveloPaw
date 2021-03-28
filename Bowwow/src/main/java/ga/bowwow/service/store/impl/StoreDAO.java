@@ -26,13 +26,13 @@ public class StoreDAO {
 	    return mybatis.selectOne("Store.getProductDetail", p_id);
 	}
 	
-	public List<Product> getDogProductList(Product products) {
-		return mybatis.selectList("Store.dogProductList", products);
+	public List<Product> getProductList(String p_type) {
+		return mybatis.selectList("Store.ProductList", p_type);
 	}
 	
-	public List<Product> getCatProductList(Product products) {
-		return mybatis.selectList("Store.catProductList", products);
-	}
+//	public List<Product> getCatProductList(Product products) {
+//		return mybatis.selectList("Store.catProductList", products);
+//	}
 	
 	
 	

@@ -9,8 +9,8 @@ public interface StoreService {
 	public void deleteProducts(Product products);
 	public Product getProductDetailCat(int p_id);
 	public Product getProductDetailDog(int p_id);
-	public List<Product> getDogProductList(Product products);
-	public List<Product> getCatProductList(Product products);
+	public List<Product> getProductList(String p_type);
+//	public List<Product> getCatProductList(Product products);
 	
 	
 	
