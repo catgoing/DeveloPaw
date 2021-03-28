@@ -30,7 +30,7 @@
 
     <meta name="keywords" content="bootstrap, bootstrap admin template, admin theme, admin dashboard, dashboard template, admin template, responsive" />
     <meta name="author" content="Codedthemes" />
-    
+    <script src="https://code.jquery.com/jquery-3.6.0.js"></script>
     <!--Jua 폰트 import-->
     <link rel="preconnect" href="https://fonts.gstatic.com">
     <link href="https://fonts.googleapis.com/css2?family=Jua&display=swap" rel="stylesheet">
@@ -40,75 +40,77 @@
     <link href="https://fonts.googleapis.com/css2?family=Do+Hyeon&display=swap" rel="stylesheet">
 
     <!-- Favicon icon -->
-    <link rel="icon" href="../resources/images/favicon.ico" type="image/x-icon">
+    <link rel="icon" href="/resources/images/favicon.ico" type="image/x-icon">
     <!-- Google font-->
     <link href="https://fonts.googleapis.com/css?family=Open+Sans:400,600,700" rel="stylesheet">
     <!-- waves.css -->
-    <link rel="stylesheet" href="../resources/pages/waves/css/waves.min.css" type="text/css" media="all">
+    <link rel="stylesheet" href="/resources/pages/waves/css/waves.min.css" type="text/css" media="all">
     <!-- Required Fremwork -->
-    <link rel="stylesheet" type="text/css" href="../resources/css/bootstrap/css/bootstrap.min.css">
+    <link rel="stylesheet" type="text/css" href="/resources/css/bootstrap/css/bootstrap.min.css">
     <!-- waves.css -->
-    <link rel="stylesheet" href="../resources/pages/waves/css/waves.min.css" type="text/css" media="all">
+    <link rel="stylesheet" href="/resources/pages/waves/css/waves.min.css" type="text/css" media="all">
     <!-- themify icon -->
-    <link rel="stylesheet" type="text/css" href="../resources/icon/themify-icons/themify-icons.css">
+    <link rel="stylesheet" type="text/css" href="/resources/icon/themify-icons/themify-icons.css">
     <!-- font-awesome-n -->
-    <link rel="stylesheet" type="text/css" href="../resources/css/font-awesome-n.min.css">
-    <link rel="stylesheet" type="text/css" href="../resources/css/font-awesome.min.css">
+    <link rel="stylesheet" type="text/css" href="/resources/css/font-awesome-n.min.css">
+    <link rel="stylesheet" type="text/css" href="/resources/css/font-awesome.min.css">
     <!-- scrollbar.css -->
-    <link rel="stylesheet" type="text/css" href="../resources/css/jquery.mCustomScrollbar.css">
+    <link rel="stylesheet" type="text/css" href="/resources/css/jquery.mCustomScrollbar.css">
     <!-- Style.css -->
-    <link rel="stylesheet" type="text/css" href="../resources/css/style.css">
-    <link rel="stylesheet" type="text/css" href="../resources/css/test.css">
-    <script src="https://code.jquery.com/jquery-3.6.0.js"></script>
+    <link rel="stylesheet" type="text/css" href="/resources/css/style.css">
+    <link rel="stylesheet" type="text/css" href="/resources/css/test.css">
+    
 <style>
-#mask {
-    position: absolute;
-    left: 0;
-    top: 0;
-    z-index: 999;
-    background-color: #000000;
-    display: none; }
-.layerpop {
-    display: none;
-    z-index: 1000;
-    border: 2px solid #ccc;
-    background: #fff;
-    cursor: move; }
-.layerpop_area .content {
-    width: 96%;    
-    margin: 2%;
-    color: #828282; }
 .insert-title{
 	width : 15%;
 }   
+/* 반려동물 정보 출력영역 설정*/
+.col-md-4 .list-inner{
+	text-align : center;
+	margin: 10px 0px 0px 0px; 
+}
+.action-button{
+	display : flex;
+	justify-content: center;
+}
+.action-button-inner{
+	margin : 20px 0 0 0 ;
+}
 </style>
 <script>
- function newPetInfo(frm){
-	/* ajax insert 처리*/	 
-	var newPet = $("form[name=petinfoform1]").serialize();
+$().ready(function(){
+	$("#newPetInsert").on("click", function(frm){
+	var $base = $("#insertPetInfo");
+	var frm = $base.serializeArray();
+	console.log(frm);
+	
+	console.log("구분");
+	var newPet = new FormData($base[0]);
 	console.log(newPet);
 	
-	$.ajax('insertPetInfo',{
-		type : "post",
+	/* $.ajax('insertPetInfo',{
+		enctype: 'multipart/form-data',
+		processData: false,
+		type : "POST",
 		data : newPet,
 		async : false,
 		success : function(result){
 			console.log(result);
-			if(result > 0){
-				alert("반려동물 정보를 등록했습니다.");
+ 			if(result > 0){
 			}
+				alert("반려동물 정보를 등록했습니다.");
 		}, error: function(){
 			alert("등록 실패ㅜㅜ");
 		}
-	});
- }
- 
+	 }); */
+   });
+}); 
  function modiPetInfo(frm) {
 	/* ajax update 처리 */
-	var pSerial = document.petinfoform2.pet_serial.value;
-	/* var dataString = $("form[name=petinfoform2]").serialize(); */
+	var pSerial = frm.pet_serial.value;
+	/* var dataString = $("form[name=updatePetInfo]").serialize(); */
 	console.log(pSerial);
-	console.log(dataString);
+	/* console.log(dataString);
 	
 	fetch("updatePetInfo",{
 		method : "post",
@@ -116,7 +118,7 @@
 			"Content-Type": "application/json"
 		},
 		body : dataString
-	});
+	}); */
 	
 	/* $.ajax({
 		url : "updatePetInfo",
@@ -134,34 +136,103 @@
 	}); */
  }
  
+/*  $().ready(function(){
+	 $("#deletePetData").on("click", function(){ */
  function deletePetInfo(frm){
-	 /*pet_serial로 ajax처리*/
-	var pSerial = $('#pet_serial').val();
-	console.log(pSerial);
-	
-	$.ajax({
-		url : "deletePetInfo", 
-		type : "post",
+	 console.log("deletePetInfo 실행");
+	 var mSerial = frm.pet-detail-form.detail_member_serial.value;
+	 var pSerial = frm.pet-detail-form.detail_pet_serial.value;
+
+	 //var mSerial = $("#pet-detail-form #detail_member_serial").val();
+	 //var pSerial = $("#pet-detail-form #detail_pet_serial").val();
+	 console.log(mSerial);
+	 console.log(pSerial);
+	 
+	 $.ajax({
+		url : "/ajaxDeletePetInfo", 
+		type : "get",
 		data : { 'pet_serial' : pSerial },
+		async : "false",
+		dataType : "text",
 		success : function(result){
-			if(result > 0){
-				console.log(result);
-				alert("잘 삭제되었습니다.");					
-			}
+			console.log(result);
+			/* result = result * 1; */
+			/* if(result > 0){
+				alert(result);	
+				console.log(result);				
+			} */
 		}, error : function(){
 			alert("삭제를 실패했습니다.");
+			location.href="getPetInfoList3?member_serial=" + mSerial;
 		}
 	});
+ } 
+/* });
+ }); */
+
+
+function getPetInfo(frm){	
+		console.log("getPetInfo 시작");
+		var mSerial = frm.member_serial.value;
+		console.log(mSerial);
+		
+		var pSerial = frm.pet_serial.value;
+		console.log(pSerial);
+		
+		var serialData =  { 'pet_serial' : pSerial }
+		console.log(serialData);
+		
+		$.ajax("/ajaxGetPetInfo", { 
+			type : "get",
+			data : serialData ,
+			async : "false",
+			dataType: "json",
+			success : function(petDetail){
+				console.log("성공");
+				console.log(petDetail);
+				
+				console.log(petDetail.tnr);
+				console.log(petDetail.animal_type);
+				console.log(petDetail.pet_etc);
+				if(petDetail.pet_birth === undefined || petDetail.pet_birth === null){
+					petDetail.pet_birth = "-/-/-";
+				}
+				
+				$("#detail-petname").html(petDetail.pet_name);
+				$("#detail_gender").html(petDetail.pet_gender);
+				$("#detail_pet_serial").val(petDetail.pet_serial); 
+				$("#detail_variety").html(petDetail.pet_variety);
+				$("#detail_birth").html(petDetail.pet_birth);
+				$("#detail_age").html(petDetail.pet_age);
+				$("#detail_size").html(petDetail.pet_size);
+				$("#detail_weight").html(petDetail.pet_weight + " kg");
+				$("#detail_neck").html(petDetail.neck_length + " cm");
+				$("#detail_back").html(petDetail.back_length + " cm");
+				$("#detail_chest").html(petDetail.chest_length + " cm");
+				$("#detail_etc").html(petDetail.pet_etc);
+				
+				$("#detail_member_serial").val(mSerial);
+				
+				$("#petDetail").modal('show'); //모달창 오픈
+				
+			}, error : function(){
+				console.log("에러발생");
+			}
+		});
+}
+
+ function transferType(){
+	 console.log("test");	 
+	 var type = $("input[type='radio'][name='animal_type']:checked").val();
+	 $("#animal_type").val(type);
+	 console.log($("#animal_type").val());	 
  }
  
-/*  function setpet_serial(serial){
-	console.log(serial);
-	$('#pet_serial').val(serial);
- } */
- 
- function transferType(type){
-	 console.log(type);
-	 $('#petType').val(type);
+ function inputMemberSerial(){
+	 var mSerial = ${user.memberSerial };
+	 console.log(mSerial);
+	
+	 $("#insertPetInfo #member_serial").val(mSerial);
  }
  
 $(function(){
@@ -170,6 +241,27 @@ $(function(){
 	});
 });
  
+ 
+function clearInput(){
+	/* 정보입력하다가 취소하면 입력했던 것 지우기 */
+	var inputText = $(".pet-form input[type='text']");
+	console.log(inputText);
+	for(var i = 0; i < inputText.length; i++){
+		inputText[i].value = "";
+	}
+	var inputSelect = $(".pet-form input[type='select']");
+	console.log(inputSelect);
+	for(var i = 0; i < inputSelect.length; i++){
+		inputSelect[i].checked = false;
+	}
+	var typeCheck = $(".pet-form input[type='radio']");
+	console.log(typeCheck);
+	for(var i = 0; i < typeCheck.length; i++){
+		typeCheck[i].checked = false;
+	}
+}
+
+
 </script>
 </head>
 
@@ -432,7 +524,7 @@ $(function(){
 			     </ul>
 			     <ul class="pcoded-item pcoded-left-item">
 			         <li class="">
-			             <a href="myPetInfoList2.jsp" class="waves-effect waves-dark">
+			             <a href="getPetInfoList3?member_serial=${user.memberSerial }" class="waves-effect waves-dark">
 			                 <span class="pcoded-micon">
 			                     <!-- <i class="ti-id-badge"></i><b>A</b> -->
 			                 </span>
@@ -489,39 +581,43 @@ $(function(){
 									<div class="myPageInfo-header">
 										<h2> ${user_name }님의 페이지</h2>
 									</div>
-                                        <div class="my-pet">
-                                        <c:if test="${not empty pet }">
-                                        <c:forEach var="pet" items="${pet }">
-	                                        <div class="pet-list">
+                                        <div class="row">
+                                        <c:if test="${not empty petList }">
+                                        <c:forEach var="petList" items="${petList }">
+	                                        <div class="col-md-4">
 		                                        <div class="list-inner">
-			                                        <div class="pet-img"><img src="" alt="이미지"></div>
-			                                        <div class="pet-name">${pet.pet_name }</div>
+			                                        <div class="pet-img"><img src="../resources/images/avatar-2.jpg" alt="이미지" class="img-circle img-thumbnail"></div>
+			                                        <div class="pet-name">${petList.pet_name }</div>
 			                                        <div class="pet-detail">
-			                                        <form>
-				                                        <input type="hidden" id="pet_serial" value="${pet.pet_serial }">
-				                                        <input type="button" value="상세보기" data-toggle="modal" href="#petDetail" role="button">
+			                                        <form name="thisform">
+				                                        <input type="hidden" id="pet_serial" name="thispetserial" value="${petList.pet_serial }">
+				                                        <input type="hidden" id="member_serial" name="thismemberserial" value="${user.memberSerial }">
+				                                        <input type="button" value="상세보기" data-toggle="modal" role="button" onclick="getPetInfo(this.form)">
 			                                        </form>
 			                                        </div>			                                        
 		                                        </div>
 	                                        </div>
                                         </c:forEach>
                                         </c:if>
-                                        <c:if test="${empty pet }">
-                                        	 <div class="pet-list">
-		                                        <div class="list-inner">
+                                        <c:if test="${empty petList }">
+                                        	<div class="col-md-6">
+	                                        <div class="list-inner">
 		                                        	<h3>등록된 반려동물이 없습니다.</h3>
 		                                        </div>
 	                                        </div>
                                         </c:if>
-                                        <div class="action-button">
-                                        	<input type="button" value="반려동물 추가하기" data-toggle="modal" href="#petType" role="button">
-                                        </div>
                                        </div>
+                                        <div class="action-button">
+	                                        <div class="action-button-inner">
+	                                        	<input type="hidden" id="member_serial" name="memberserialnewpet" value="${user.memberSerial }">
+	                                        	<input type="button" value="반려동물 추가하기" data-toggle="modal" href="#petType" role="button" onclick="inputMemberSerial()">
+	                                        </div>
+                                        </div>
                                    </div>
 
 <!-- Modal - 정보등록 -->
 <!-- modal dialog : 타입고르기-->
-<!-- <div class="modal" id="petType" aria-hidden="true" aria-labelledby="..." tabindex="-1">
+<div class="modal" id="petType" aria-hidden="true" aria-labelledby="..." tabindex="-1">
   <div class="modal-dialog modal-dialog-centered" >
     <div class="modal-content">
 	<div class="modal-header">
@@ -530,21 +626,20 @@ $(function(){
 	    <form class="pet-form" name="petinform1">
           <div class="form-group">
           	<label class="radio-inline">
-			  <input type="radio" name="petType" id="inlineRadio1" value="dog"> 강아지
+			  <input type="radio" name="animal_type" id="inlineRadio1" value="dog"> 강아지
 			</label>
 			<label class="radio-inline">
-			  <input type="radio" name="petType" id="inlineRadio2" value="cat"> 고양이
+			  <input type="radio" name="animal_type" id="inlineRadio2" value="cat"> 고양이
 			</label>
           </div>
+	      <div class="modal-footer">
+		    <button class="btn btn-primary" data-target="#newPet" data-toggle="modal" data-dismiss="modal" onclick="transferType()">선택</button>
+	      	<button type="button" class="btn btn-secondary" data-dismiss="modal" onclick="clearInput()">Close</button>
+	      </div>
         </form>
-      <div class="modal-footer"> -->
-        <!-- Toogle to second dialog -->
-<!-- 	    <button class="btn btn-primary" data-target="#newPet" data-toggle="modal" data-dismiss="modal" >선택</button>
-      	<button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-      </div>
     </div>
   </div>
-</div> -->
+</div>
 
 
 <!-- Modal - 새 정보 등록 -->
@@ -554,7 +649,7 @@ $(function(){
       <div class="modal-header">
         <h4 class="modal-title" id="myModalLabe2">반려동물 정보등록</h4>
       </div>
-      	<form class="pet-form" name="petinfoform1" action="/insertPetInfo" method="post">
+      	<form class="pet-form" name="insertPetInfo" id="insertPetInfo">
 	      <div class="modal-body">
 	       	<div class="form-group">
 		        <table class="table table-bordered">
@@ -619,11 +714,12 @@ $(function(){
 		         </tbody>
 	            </table>
 	          </div>
-	          <input type="hidden" id="petType" name="petType" value="">
+	          <input type="hidden" id="animal_type" name="animal_type" value="">
+	          <input type="hidden" id="member_serial" name="member_serial" value="">
 	      </div>
 	      <div class="modal-footer">
-	        <button type="button" class="btn btn-primary" onclick="newPetInfo(this.form)">반려동물 정보저장</button>
-	        <button type="button" class="btn btn-secondary" data-dismiss="modal" id="closeModalBtn">Close</button>
+	        <button type="button" class="btn btn-primary" id="newPetInsert" onclick="newPetInfo(this.form)">반려동물 정보저장</button>
+	        <button type="button" class="btn btn-secondary" data-dismiss="modal" id="closeModalBtn" onclick="clearInput()">Close</button>
 	      </div>
 		</form>
     </div>
@@ -633,83 +729,85 @@ $(function(){
 
 
 <!-- First modal dialog : 상세보기-->
-<%-- <div class="modal" id="petDetail" aria-hidden="true" aria-labelledby="..." tabindex="-1">
+<div class="modal" id="petDetail" aria-hidden="true" aria-labelledby="..." tabindex="-1">
   <div class="modal-dialog modal-dialog-centered" >
     <div class="modal-content">
 	<div class="modal-header">
 			<h4 class="modal-title" id="myModalLabel">반려동물 상세보기</h4>
 		</div>
-	    <form class="pet-form">
-			<div class="popup-inner img-pet" id="petimg"><img src="" alt="이미지"></div>
+	    <form class="pet-form" id="pet-detail-form" name="pet-detail-form">
+			<div class="popup-inner img-pet" id="detail-petimg"><img src="" alt="이미지"></div>
 			<div class="popup-inner text-pet">
-			<div class="form-group">
-				<h2 id="pet_name">${pet.pet_name }</h2>
+			<div class="form-group-detail">
+				<h2 id="detail-petname"></h2>
 				<div class="textMain-wrap">
-					<div class="box-detail" id="detail_gender">
+					<div class="box-detail">
 						<h5>성별</h5>
-						<p id="gender">${pet.pet_gender }</p>
+						<p id="detail_gender"></p>
 					</div>
-					<div class="box-detail" id="detail_variety">
+					<div class="box-detail">
 						<h5>품종</h5>
-						<p id="variety">${pet.pet_variety }</p>
+						<p id="detail_variety"></p>
 					</div>
-					<div class="box-detail" id="detail_birth">	
+					<div class="box-detail">	
 						<h5>생일</h5>
-						<p id="birthday">${pet.pet_birth }</p>
+						<p id="detail_birth"></p>
 					</div>
-					<div class="box-detail" id="detail_age">
+					<div class="box-detail">
 						<h5>나이</h5>
-						<p id="pet_age">${pet.pet_age }</p>
+						<p id="detail_age"></p>
 					</div>
-					<div class="box-detail" id="detail_size">
+					<div class="box-detail">
 						<h5>체형</h5>
-						<p id="pet_size">${pet.pet_size }</p>
+						<p id="detail_size"></p>
 					</div>
-					<div class="box-detail" id="detatl_weight">
+					<div class="box-detail">
 						<h5>무게</h5>
-						<p id="pet_weight">${pet.pet_weight }</p>
+						<p id="detail_weight"></p>
 					</div>
-					<div class="box-detail" id="detail_neck">
+					<div class="box-detail">
 						<h5>목둘레</h5>
-						<p id="petNeck">${pet.neck_length }</p>
+						<p id="detail_neck"></p>
 					</div>
-					<div class="box-detail" id="detail_back">
+					<div class="box-detail">
 						<h5>등길이</h5>
-						<p id="petBack">${pet.back_length }</p>
+						<p id="detail_back"></p>
 					</div>
-					<div class="box-detail" id="detail_chest">
+					<div class="box-detail">
 						<h5>가슴둘레</h5>
-						<p id="petChest">${pet.chest_length }</p>
+						<p id="detail_chest"></p>
 					</div>
 				</div>
 				<div class="textSub-wrap">
-					<div class="box-detail" id="detail_etc">
+					<div class="box-detail">
 						<h5>특이사항</h5>
-						<p id="pet_etc">${pet.pet_etc }</p>
+						<p id="detail_etc"></p>
 					</div>
 				</div>
 			</div>
 			</div>
-	      <div class="modal-footer"> --%>
-	        <!-- Toogle to second dialog -->
-			<%-- <input type="hidden" id="pet_serial" name="pet_serial" value="${pet.pet_serial }">
-		    <button class="btn btn-primary" data-target="#modiPetInfo" data-toggle="modal" data-dismiss="modal" >정보 수정</button>
-		    <button class="btn btn-primary" onclick="javascript:deletePetInfo(this.form);">정보 삭제</button>
+	      <div class="modal-footer">
+			<input type="hidden" id="detail_tnr" name="tnr" value="">
+			<input type="hidden" id="detail_animal_type" name="animal_type" value="">
+			<input type="hidden" id="detail_pet_serial" name="pet_serial" value="">
+			<input type="hidden" id="detail_member_serial" name="member_serial" value="">
+		    <button class="btn btn-primary" data-toggle="modal" data-dismiss="modal" onclick="modiPetInfo(this.form)">정보 수정</button>
+		    <button class="btn btn-primary" id="deletePetData" onclick="deletePetInfo(this.form)">정보 삭제</button>
 	      	<button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
 	      </div>
 		</form>
     </div>
   </div>
-</div> --%>
+</div>
 
 <!-- modal dialog : 정보수정 -->
 <div class="modal fade" id="modiPetInfo" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
   <div class="modal-dialog" role="document" style="max-width: 100%; width: auto; display: table;">
     <div class="modal-content">
       <div class="modal-header">
-			<h4 class="modal-title" id="myModalLabel">반려동물 정보수정-/updatePetInfo</h4>
+			<h4 class="modal-title" id="myModalLabel">반려동물 정보수정</h4>
 		</div>
-      	<form class="pet-form" name="petinfoform2" >
+      	<form class="pet-form" name="updatePetInfo" >
 	      <div class="modal-body">
 	       	<div class="form-group">
 		        <table class="table table-bordered">
@@ -718,7 +816,7 @@ $(function(){
 						<td class="insert-title">이름</td>
 						<td><input type="text" name="pet_name" ></td>
 						<td class="insert-title">나이</td>
-						<td><input type="text" name="pet_age"oninput="this.value = this.value.replace(/[^0-9.]/g, '').replace(/(\..*)\./g, '$1');" /></td>
+						<td><input type="text" name="pet_age" oninput="this.value = this.value.replace(/[^0-9.]/g, '').replace(/(\..*)\./g, '$1');" /></td>
 			        </tr>
 			        <tr>
 				        <td class="insert-title">성별</td>
@@ -834,23 +932,23 @@ $(function(){
 </div>
 
     <!-- Required Jquery -->
-    <script type="text/javascript" src="../resources/js/jquery/jquery.min.js "></script>
-    <script type="text/javascript" src="../resources/js/jquery-ui/jquery-ui.min.js "></script>
-    <script type="text/javascript" src="../resources/js/popper.js/popper.min.js"></script>
-    <script type="text/javascript" src="../resources/js/bootstrap/js/bootstrap.min.js "></script>
+    <script type="text/javascript" src="/resources/js/jquery/jquery.min.js "></script>
+    <script type="text/javascript" src="/resources/js/jquery-ui/jquery-ui.min.js "></script>
+    <script type="text/javascript" src="/resources/js/popper.js/popper.min.js"></script>
+    <script type="text/javascript" src="/resources/js/bootstrap/js/bootstrap.min.js "></script>
     <!-- waves js -->
-    <script src="../resources/pages/waves/js/waves.min.js"></script>
+    <script src="/resources/pages/waves/js/waves.min.js"></script>
     <!-- jquery slimscroll js -->
-    <script type="text/javascript" src="../resources/js/jquery-slimscroll/jquery.slimscroll.js"></script>
+    <script type="text/javascript" src="/resources/js/jquery-slimscroll/jquery.slimscroll.js"></script>
 
     <!-- slimscroll js -->
-    <script src="../resources/js/jquery.mCustomScrollbar.concat.min.js "></script>
+    <script src="/resources/js/jquery.mCustomScrollbar.concat.min.js "></script>
 
     <!-- menu js -->
-    <script src="../resources/js/pcoded.min.js"></script>
-    <script src="../resources/js/vertical/vertical-layout.min.js "></script>
+    <script src="/resources/js/pcoded.min.js"></script>
+    <script src="/resources/js/vertical/vertical-layout.min.js "></script>
 
-    <script type="text/javascript" src="../resources/js/script.js "></script>
+    <script type="text/javascript" src="/resources/js/script.js "></script>
 </body>
 
 

@@ -1,14 +1,19 @@
 package ga.bowwow.service.pet;
 
+import org.springframework.format.annotation.DateTimeFormat;
 import org.springframework.stereotype.Component;
+
+import com.fasterxml.jackson.annotation.JsonFormat;
 
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
+import lombok.ToString;
 
 @Getter
 @Setter
+@ToString
 @NoArgsConstructor
 @AllArgsConstructor
 @Component
@@ -24,11 +29,15 @@ public class Pet {
 	private int pet_age;
 	private String pet_size;
 	private int pet_weight;
+	
+	@DateTimeFormat(pattern = "yyyy/MM/dd")
+	@JsonFormat(pattern = "yyyy/MM/dd")
 	private String pet_birth;
+	
 	private int neck_length;
 	private int back_length;
 	private int chest_length;
 	private String tnr;
-	private String petEtc;
+	private String pet_etc;
 	
 }

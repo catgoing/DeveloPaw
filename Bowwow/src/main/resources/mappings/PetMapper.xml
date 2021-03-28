@@ -7,13 +7,15 @@
 	<!-- 반려동물 정보 등록 -->
 	<insert id="insertPetInfo" parameterType="pet">
 		INSERT INTO USER_PETINFO (
-			PET_SERIAL,MEMBER_SERIAL,IMAGE_SOURCE,ANIMAL_TYPE,PET_NAME,
-			PET_GENDER,PET_VARIETY,PET_AGE,PET_SIZE,TNR,
-			PET_WEIGHT,PET_BIRTH,NECK_LENGTH,BACK_LENGTH,CHEST_LENGTH)
+			PET_SERIAL, MEMBER_SERIAL, IMAGE_SOURCE, ANIMAL_TYPE,
+			PET_NAME, PET_GENDER, PET_VARIETY, PET_AGE, PET_SIZE,
+			TNR, PET_WEIGHT, PET_BIRTH, NECK_LENGTH, BACK_LENGTH,
+			CHEST_LENGTH, PET_ETC)
 		VALUES (
-		 PET_SEQ.NEXTVAL, #{member_serial}, #{image_source}, #{animal_type}, #{pet_name},
-		 #{pet_gender}, #{pet_variety}, #{pet_age}, #{pet_size}, #{tnr},
-		 #{pet_weight},  #{pet_birth}, #{neck_length}, #{back_length}, #{chest_length})
+		 PET_SEQ.NEXTVAL, #{member_serial}, #{image_source}, #{animal_type},
+		 #{pet_name}, #{pet_gender}, #{pet_variety}, #{pet_age}, #{pet_size},
+		 #{tnr}, #{pet_weight},  #{pet_birth}, #{neck_length}, #{back_length},
+		 #{chest_length}, #{pet_etc})
 	</insert>
 	
 	<!-- 반려동물 정보수정 - 유형, 이름, 성별, 품종은 안바꿔도 되잖아!! -->
@@ -43,16 +45,25 @@
 	
 	<!-- 조회 : petSerial로 검색 -->
 	<select id="getPetInfo" parameterType="pet" resultType="pet">
-		SELECT * FROM USER_PETINFO
+		SELECT 
+			PET_SERIAL, MEMBER_SERIAL, IMAGE_SOURCE, ANIMAL_TYPE, PET_NAME,
+			PET_GENDER, PET_VARIETY, PET_AGE, PET_SIZE, TNR,
+			PET_WEIGHT, TO_CHAR(PET_BIRTH, 'YYYY/MM/DD') as PET_BIRTH,
+			NECK_LENGTH, BACK_LENGTH, CHEST_LENGTH, PET_ETC
+		 FROM USER_PETINFO
 		WHERE PET_SERIAL = #{pet_serial }
 	</select>
 	
 	<!-- 조회 : String memberSerial로 pet검색 -->
 	<select id="getPetInfoList" parameterType="pet" resultType="pet">
-		SELECT * FROM USER_PETINFO
+		SELECT 
+			PET_SERIAL, MEMBER_SERIAL, IMAGE_SOURCE, ANIMAL_TYPE, PET_NAME,
+			PET_GENDER, PET_VARIETY, PET_AGE, PET_SIZE, TNR,
+			PET_WEIGHT, TO_CHAR(PET_BIRTH, 'YYYY/MM/DD') as PET_BIRTH,
+			NECK_LENGTH, BACK_LENGTH, CHEST_LENGTH, PET_ETC
+		 FROM USER_PETINFO
 		WHERE MEMBER_SERIAL = #{member_serial }
 	</select>
-	
 	
 </mapper>
 
