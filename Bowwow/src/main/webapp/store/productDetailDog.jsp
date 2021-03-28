@@ -667,8 +667,11 @@
 																	<th>리뷰 이미지</th>
 																	<td>${rList.review_image}</td>
 																</tr>
-																
+																<tr>
+																	<button onclick="deleteReview(${rList.review_id})">삭제</button>
+																</tr>
 															</table>
+															<br>
 														</c:forEach>
 														</table>
 													</div>
@@ -710,6 +713,11 @@
 						}
 					}
 				});
+			}
+			
+			function deleteReview(review_id) {
+				console.log('리뷰번호 : '+ review_id);
+				
 			}
 		</script>
 		<!-- footer 푸터 시작부분-->
