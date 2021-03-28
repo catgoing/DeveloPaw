@@ -560,8 +560,8 @@
 	                                                            <div class="col-lg-3 col-md-4 col-sm-6 mix oranges fresh-meat">
 	                                                                <div class="featured__item">
 	                                                                    <div>
-	                                                                        <a href="detailDog?p_id=${list.p_id }">
-	                                                                         <img src="https://projectbit.s3.us-east-2.amazonaws.com/dogImg/${list.s_image }.jpg" alt="">
+	                                                                        <a href="detail?p_id=${list.p_id }">
+	                                                                         <img src="https://projectbit.s3.us-east-2.amazonaws.com/${imgDir }/${list.s_image }" alt="">
 	                                                                        </a>
 	                                                                    </div>
 	                                                                        <div class="featured__item__pic set-bg" data-setbg="img/featured/feature-1.jpg">
@@ -569,7 +569,7 @@
 	                                                                        </div>
 	                                                                        <br>
 	                                                                    <div class="featured__item__text"style="width: 200px;">
-	                                                                        <h6><a href="detailDog?p_id=${list.p_id }">${list.p_name }...</a></h6>
+	                                                                        <h6><a href="detail?p_id=${list.p_id }">${list.p_name }...</a></h6>
 	                                                                        <h5><fmt:formatNumber value="${list.price }" pattern="#,###" />원</h5>
 	                                                                    </div>
 	                                                                </div>
@@ -578,7 +578,7 @@
 	                                                    </c:forEach>
                                                     </ul>
                                                     </div>
-                                                </div>W
+                                                </div>
                                         </section>
                                             </div>
 

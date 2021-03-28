@@ -7,9 +7,8 @@ public interface StoreService {
 	public void insertProducts(Product products);
 	public void updateProducts(Product products);
 	public void deleteProducts(Product products);
-	public Product getProductDetailCat(int p_id);
-	public Product getProductDetailDog(int p_id);
-	public List<Product> getProductList(String p_type);
+	public Product getProductDetail(int p_id);
+	public List<Product> getProductList(Product product);
 //	public List<Product> getCatProductList(Product products);
 	
 	

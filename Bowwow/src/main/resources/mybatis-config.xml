@@ -11,6 +11,7 @@
 		<typeAlias type="ga.bowwow.service.board.Board" alias="Board" />
 		<typeAlias type="ga.bowwow.service.pet.Pet" alias="pet" />
 		<typeAlias type="ga.bowwow.service.store.Product" alias="Product" />
+		<typeAlias type="ga.bowwow.service.store.Review" alias="Review" />
 
 	</typeAliases>
 

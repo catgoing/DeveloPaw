@@ -11,11 +11,27 @@
 									#{stock}, #{s_image}, #{l_image}, #{p_pick})
 	</insert>
 	
-	<!-- 강아지 전체 상품 조회 -->
-	<select id="ProductList" parameterType="String" resultType="Product">
-		SELECT P_ID, SUBSTR(P_NAME, 0, 17) AS P_NAME, P_TYPE, P_CATEGORY, PRICE, STOCK, S_IMAGE, L_IMAGE
-		  FROM STORE_PRODUCTS
-		 WHERE P_TYPE = #{p_type}
+	<!-- 전체 상품 조회 -->
+	<select id="ProductList" parameterType="Product" resultType="Product">
+		SELECT * FROM 
+			(
+				SELECT ROWNUM AS RN, PROD.* FROM 
+				( 
+					SELECT 
+						P_ID, SUBSTR(P_NAME, 0, 17) AS P_NAME, P_TYPE, P_CATEGORY, 
+		  				PRICE, STOCK, S_IMAGE, L_IMAGE 
+		  			FROM STORE_PRODUCTS
+		 			WHERE 1=1
+		 			<if test="p_type != null">
+		 			  AND P_TYPE = #{p_type}
+		 			</if>
+		 			<if test="p_category != null">
+		 			  AND P_CATEGORY = #{p_category}
+		 			</if>
+		 			ORDER BY P_ID DESC 
+		 		) PROD 
+		 	)
+		 WHERE RN BETWEEN 0 AND 20
 	</select>
 	
 	<!--상품 상세 조회 -->
@@ -25,15 +41,6 @@
 		 WHERE P_ID = #{p_id}
     </select>
     
-    <!-- 카테고리별 상품 조회 -->
-	<!-- <select id="">
-		SELECT P_ID, SUBSTR(P_NAME, 0, 17) AS P_NAME, P_TYPE, P_CATEGORY, PRICE, STOCK, S_IMAGE, L_IMAGE
-		  FROM STORE_PRODUCTS
-		 <choose>
-		 
-		 </choose> 
-	</select> -->
-	
 </mapper>
 
 

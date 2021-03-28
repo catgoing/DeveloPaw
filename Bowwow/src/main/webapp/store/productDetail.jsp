@@ -1,5 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 
 <!DOCTYPE html>
 
@@ -558,13 +560,21 @@
 							<section class="product-details spad">
 								<div class="container" style="border: 2px solid white;">
 									<br>
+									<c:choose>
+										<c:when test="${p.p_type == 'dog'}">
+											<c:set var="imgDir" value="dogImg" />
+										</c:when>
+										<c:when test="${p.p_type == 'cat'}">
+											<c:set var="imgDir" value="catImg" />
+										</c:when>
+									</c:choose>
 									<div class="row">
 										<div class="col-lg-6">
 											<div class="product__details__pic">
 												<div class="product__details__slider__content">
 													<div class="product__details__pic__slider owl-carousel">
 														<img
-															src="https://projectbit.s3.us-east-2.amazonaws.com/dogImg/${p.s_image }.jpg"
+															src="https://projectbit.s3.us-east-2.amazonaws.com/${imgDir }/${p.s_image }"
 															alt="">
 													</div>
 												</div>
@@ -611,7 +621,7 @@
 												<div class="tab-content">
 													<div class="tab-pane active" id="tabs-1" role="tabpanel">
 														<img class="detailProduct"
-															src="https://projectbit.s3.us-east-2.amazonaws.com/dogImg/${p.l_image }.jpg"
+															src="https://projectbit.s3.us-east-2.amazonaws.com/${imgDir }/${p.l_image }"
 															alt="">
 													</div>
 													<div class="tab-pane" id="tabs-2" role="tabpanel">

@@ -18,25 +18,12 @@ public class StoreDAO {
 		System.out.println(">> StoreDAO 객체 생성");
 	}
 	
-	public Product getProductDetailCat(int p_id) {
+	public Product getProductDetail(int p_id) {
 	    return mybatis.selectOne("Store.getProductDetail", p_id);
 	}
 	
-	public Product getProductDetailDog(int p_id) {
-	    return mybatis.selectOne("Store.getProductDetail", p_id);
-	}
-	
-	public List<Product> getProductList(String p_type) {
-		return mybatis.selectList("Store.ProductList", p_type);
-	}
-	
-//	public List<Product> getCatProductList(Product products) {
-//		return mybatis.selectList("Store.catProductList", products);
-//	}
-	
-	
-	
-	
-	
+	public List<Product> getProductList(Product product) {
+		return mybatis.selectList("Store.ProductList", product);
+	} 
 	
 }
