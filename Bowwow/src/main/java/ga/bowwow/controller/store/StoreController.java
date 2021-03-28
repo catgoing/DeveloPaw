@@ -55,7 +55,7 @@ public class StoreController {
 		List<Product> productList = storeService.getProductList(product);
 		model.addAttribute("pList", productList);
 		
-		return "list";
+		return "productList";
 		
 	}
 }
