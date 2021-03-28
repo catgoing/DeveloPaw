@@ -20,7 +20,7 @@ public class UserAccountController extends UserCRUDGenericController<UserAccount
 	
 	@RequestMapping(value="/getUserAccount")
 	public String getUserAccount(@ModelAttribute("userAccount") UserAccount userAccount) {
-		return "login";
+		return "/myinfo";
 	}
 
 	@Override

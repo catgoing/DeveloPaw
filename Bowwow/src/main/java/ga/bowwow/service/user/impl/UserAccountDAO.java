@@ -16,15 +16,12 @@ public class UserAccountDAO {
 	public UserAccountDAO() {
 		System.out.println(">> UserAccountDAO() 객체생성");
 	}
-	
 	public void insertUserAccount(UserAccount userAccount) {
 		mybatis.insert("UserAccountDAO.insertUserAccount", userAccount);
 	}
-	
-	public void updateUserAccount(UserAccount userAccount) {
-		mybatis.update("UserAccountDAO.updateUserAccount", userAccount);
-	}
-	
+//	public void updateUserAccount(UserAccount userAccount) {
+//		mybatis.update("UserAccountDAO.updateUserAccount", userAccount);
+//	}
 	public UserAccount getUserAccount(UserAccount userAccount) {
 		return mybatis.selectOne("UserAccount.getUserAccount", userAccount);
 	}
