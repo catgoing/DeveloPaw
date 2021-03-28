@@ -34,10 +34,10 @@ public class StoreServiceImpl implements StoreService {
 	public Product getProductDetail(int p_id) {
 		return storeDAO.getProductDetail(p_id);
 	}
-
+	
 	@Override
-	public List<Product> getProductList(Product product) {
-		return storeDAO.getProductList(product);
+	public List<Product> getProductList(String p_type) {
+		return storeDAO.getProductList(p_type);
 	}
 
 	@Override
