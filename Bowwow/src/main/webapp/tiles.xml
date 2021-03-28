@@ -12,10 +12,11 @@
 <!--         </definition> -->
 
 <!-- 		user -->
-        <definition name="/auth" template="/auth/login.jsp">
+        <definition name="/auth" template="/mypage/myPageTemplate.jsp">
                 <put-attribute name="header" value="/common/header.jsp" />
-                <put-attribute name="body" value="" />
-                <put-attribute name="footer" value="/common/footer2.jsp" />
+                <put-attribute name="menubar" value="/common/myPageMenuBar.jsp"/>
+                <put-attribute name="body" value="/auth/login.jsp" />
+                <put-attribute name="footer" value="/common/footer.jsp" />
         </definition>
 
         <!-- 마이페이지 -->

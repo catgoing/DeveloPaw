@@ -30,6 +30,6 @@ public class UserAccountController extends UserCRUDGenericController<UserAccount
 	
 	@RequestMapping(value="/ok")
 	public String okay() {
-		return "../ok";
+		return "/auth";
 	}
 }
