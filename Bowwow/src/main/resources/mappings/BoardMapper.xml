@@ -20,8 +20,40 @@
 		</choose>
 	</select>
 	
-	<select id="getBoard" parameterType="board" resultType="board">
-		SELECT BOARD_NO, BOARD_CONTENT FROM DIARY_BOARD WHERE BOARD_NO = 72
+	<select id="getBoard" parameterType="Map" resultType="board">
+		SELECT BOARD_NO, BOARD_CONTENT
+		FROM 
+		<choose>
+			<when test="board_idx == 1"> DIARY_BOARD </when>
+			<when test="board_idx == 2"> INTRO_BOARD </when>
+		</choose>
+		WHERE BOARD_NO = #{board_no}
+	</select>
+	
+	
+	<select id="getCommentList" parameterType="Map" resultType="comment" >
+		SELECT COMMENT_NO, BOARD_NO, COMMENT_CONTENT, REGDATE, NICKNAME
+		FROM 
+		<choose>
+			<when test="board_idx == 1"> DIARY_COMMENTS C, USER_DETAIL U WHERE C.MEMBER_SERIAL = U.MEMBER_SERIAL </when>
+			<when test="board_idx == 2"> INTRO_COMMENTS C, USER_DETAIL U WHERE C.MEMBER_SERIAL = U.MEMBER_SERIAL </when>
+		</choose>
+		AND BOARD_NO = #{board_no}
+	</select>
+	
+	<select id="getComment2List" parameterType="Map" resultType="comment" >
+		SELECT COMMENT_NO2, C2.COMMENT_NO, C2.COMMENT_CONTENT2 AS COMMENT_CONTENT, C2.REGDATE, NICKNAME
+		FROM 
+		<choose>
+			<when test="board_idx == 1"> 
+			DIARY_COMMENTS2 C2, DIARY_COMMENTS C, USER_DETAIL U 
+			</when>
+			<when test="board_idx == 2"> 
+			INTRO_COMMENTS2 C2, INTRO_COMMENTS C, USER_DETAIL U 
+			</when>
+		</choose>
+		WHERE C2.COMMENT_NO = C.COMMENT_NO
+		AND C2.MEMBER_SERIAL = U.MEMBER_SERIAL
 	</select>
 	
 	<select id="search" parameterType="board" resultType="board">

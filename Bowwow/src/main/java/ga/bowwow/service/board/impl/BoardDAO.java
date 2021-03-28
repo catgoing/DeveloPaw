@@ -11,6 +11,7 @@ import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Repository;
 
 import ga.bowwow.service.board.Board;
+import ga.bowwow.service.board.Comment;
 
 
 @Repository("boardDAO")
@@ -43,19 +44,30 @@ public class BoardDAO {
 	}		
 	
 	//게시글 1개 조회
-	public Board getBoard(String board_no) {
+	public Board getBoard(Map<String, Integer> map) {
 		System.out.println("===> MyBatis로 getBoard() 실행");
-		return mybatis.selectOne("BoardDAO.getBoard", board_no);
+		return mybatis.selectOne("BoardDAO.getBoard", map);
 	}
 	
-	public List<Board> getBoardList(int idx) {
-		Map<String, Integer> map = new HashMap<String, Integer>();
-		map.put("board_idx", idx);
+	public List<Board> getBoardList(Map<String, Integer> map) {
 		
 		System.out.println("===> MyBatis로 getBoardList() 실행-vo");
 //		System.out.println("dao board_name: " + board_name);
 		
 		return mybatis.selectList("BoardDAO.getBoardList", map);
+	}
+	
+	
+	public List<Comment> getCommentList(Map<String, Integer> map) {
+		System.out.println("===> MyBatis로 getCommentList() 실행-vo");
+		
+		return mybatis.selectList("BoardDAO.getCommentList", map);
+	}
+	
+	public List<Comment> getComment2List(Map<String, Integer> map) {
+		System.out.println("===> MyBatis로 getComment2List() 실행-vo");
+		
+		return mybatis.selectList("BoardDAO.getComment2List", map);
 	}
 
 //	public List<Board> getBoardList() {

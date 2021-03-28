@@ -13,6 +13,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 
 import ga.bowwow.service.board.Board;
 import ga.bowwow.service.board.BoardService;
+import ga.bowwow.service.board.Comment;
 
 
 @Controller
@@ -30,12 +31,15 @@ public class BoardController {
 		System.out.println(">>> 게시글 전체 목록- String getBoardList()");
 		System.out.println("> boardService : " + boardService);
 
-		int board_idx = 1;
+		Map<String, Integer> map = new HashMap<String, Integer>();
+		map.put("board_idx", 1);
+		map.put("board_no", 72);
 
-		List<Board> boardList = boardService.getBoardList(board_idx);
-		System.out.println("bowwow list : " + boardList);
+		List<Board> boardList = boardService.getBoardList(map);
 
 		model.addAttribute("boardList", boardList);
+			
+		System.out.println("bowwow list : " + boardList);
 		System.out.println("board model : " + model);
 
 		return "/community/diary_board";
@@ -47,10 +51,24 @@ public class BoardController {
 	public String getBoard(Model model) {
 		
 		System.out.println(">>> 글상세 - String getBoard()");
-		Board board = boardService.getBoard("1");
+		
+		Map<String, Integer> map = new HashMap<String, Integer>();
+		map.put("board_idx", 1);
+		map.put("board_no", 72);
+		
+		Board board = boardService.getBoard(map);
+		List<Comment> commentList = boardService.getCommentList(map);
+		List<Comment> comment2List = boardService.getComment2List(map);
+		
+		System.out.println("commentList : " + commentList);
+		System.out.println("comment2List : " + comment2List);
+		
 		model.addAttribute("vo", board);
+		model.addAttribute("commentList", commentList);
+		model.addAttribute("comment2List", comment2List);
 
 		return "/community/detail_board";
+		
 	}
 	
 
@@ -80,7 +98,8 @@ public class BoardController {
 
 		return "/community/list";
 
-	}	
+	}
+	
 
 	/*
 	@RequestMapping("updateBoard")
