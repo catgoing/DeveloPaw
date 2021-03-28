@@ -40,11 +40,19 @@ public class StoreDAO {
 //		return mybatis.selectList("Store.catProductList", products);
 //	}
 
-
 	public void insertReview(Review review) {
 		System.out.println("-----------------------");
 		System.out.println(review);
 		mybatis.insert("ProductsReview.insertProductReview", review);
+	}
+
+	public void deleteReview(int review_id) {
+		System.out.println("리뷰 삭제" + review_id);
+		mybatis.delete("ProductsReview.deleteProductReview", review_id);
+	}
+
+	public Review getLastReview(int p_id) {
+		return mybatis.selectOne("ProductsReview.getLastReview", p_id);
 	}
 
 

@@ -14,4 +14,6 @@ public interface StoreService {
 	//
 	public void insertReview(Review review);
 	public List<Review> getReviewList(int p_id);
+	public void deleteReview(int review_id);
+	public Review getLastReview(int p_id);
 }

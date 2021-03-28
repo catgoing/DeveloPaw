@@ -48,13 +48,19 @@ public class StoreServiceImpl implements StoreService {
 	}
 
 	@Override
+	public void deleteReview(int review_id) {
+		storeDAO.deleteReview(review_id);
+		
+	}
+
+	@Override
 	public List<Review> getReviewList(int p_id) {
 		return storeDAO.getReviewList(p_id);
 	}
-	
-//	@Override
-//	public List<Product> getCatProductList(Product products) {
-//		return storeDAO.getCatProductList(products);
-//	}
+
+	@Override
+	public Review getLastReview(int p_id) {
+		return storeDAO.getLastReview(p_id);
+	}
 
 }

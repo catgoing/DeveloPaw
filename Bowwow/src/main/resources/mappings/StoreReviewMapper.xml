@@ -8,10 +8,22 @@
 		VALUES (REVIEW_SEQ.NEXTVAL, #{p_id}, #{member_serial}, #{review_title}, #{review_content}, SYSDATE, #{review_image})
 	</insert>
 	
+	<select id="getLastReview" parameterType="int" resultType="review">
+		SELECT * FROM(
+    		SELECT *  FROM STORE_REVIEW
+    	ORDER BY REVIEW_ID DESC)
+		WHERE ROWNUM = 1
+	</select>
+	
 	<select id="reviewList" parameterType="int" resultType="Review">
 		SELECT * FROM STORE_REVIEW
 		WHERE P_ID = #{p_id}
 	</select>
+	
+	<delete id="deleteProductReview" parameterType="int">
+		DELETE FROM STORE_REVIEW
+		WHERE REVIEW_ID = #{review_id}
+	</delete>
 </mapper>
 
 
