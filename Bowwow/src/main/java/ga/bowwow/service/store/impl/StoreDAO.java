@@ -27,8 +27,8 @@ public class StoreDAO {
 	    return mybatis.selectOne("Store.getProductDetail", p_id);
 	}
 
-	public List<Product> getProductList(String p_type) {
-		return mybatis.selectList("Store.ProductList", p_type);
+	public List<Product> getProductList(Product product) {
+		return mybatis.selectList("Store.ProductList", product);
 	}
 
 	public List<Review> getReviewList(int p_id) {

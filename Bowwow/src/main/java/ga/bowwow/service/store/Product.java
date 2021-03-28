@@ -20,6 +20,5 @@ public class Product {
 	private int stock;			// 상품 재고
 	private String s_image;		// 미리보기 이미지
 	private String l_image;		// 상세페이지 이미지
-	private String p_pick;		// 상품 옵션
 
 }

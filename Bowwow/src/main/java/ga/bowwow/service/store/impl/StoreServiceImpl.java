@@ -36,8 +36,8 @@ public class StoreServiceImpl implements StoreService {
 	}
 	
 	@Override
-	public List<Product> getProductList(String p_type) {
-		return storeDAO.getProductList(p_type);
+	public List<Product> getProductList(Product product) {
+		return storeDAO.getProductList(product);
 	}
 
 	@Override

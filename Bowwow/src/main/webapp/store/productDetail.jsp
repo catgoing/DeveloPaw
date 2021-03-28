@@ -643,20 +643,67 @@
 													</div>
 													<div class="tab-pane" id="tabs-3" role="tabpanel">
 														<h6>상품 후기 ( 2 )</h6>
-														<p>Nemo enim ipsam voluptatem quia voluptas sit
-															aspernatur aut odit aut loret fugit, sed quia
-															consequuntur magni dolores eos qui ratione voluptatem
-															sequi nesciunt loret. Neque porro lorem quisquam est, qui
-															dolorem ipsum quia dolor si. Nemo enim ipsam voluptatem
-															quia voluptas sit aspernatur aut odit aut loret fugit,
-															sed quia ipsu consequuntur magni dolores eos qui ratione
-															voluptatem sequi nesciunt. Nulla consequat massa quis
-															enim.</p>
-														<p>Lorem ipsum dolor sit amet, consectetuer adipiscing
-															elit. Aenean commodo ligula eget dolor. Aenean massa. Cum
-															sociis natoque penatibus et magnis dis parturient montes,
-															nascetur ridiculus mus. Donec quam felis, ultricies nec,
-															pellentesque eu, pretium quis, sem.</p>
+														<form action="insertReview" method="post" enctype="multipart/form-data">
+															<table>
+																<tr>
+																	<th>상품번호</th>
+																	<td><input type="text" name="p_id" value="${p.p_id}"></td>
+																</tr>
+																<tr>
+																	<th>회원번호</th>
+																	<td><input type="text" name="member_serial" value=999></td>
+																</tr>
+																<tr>
+																	<th>리뷰 제목</th>
+																	<td><input type="text" name="review_title"></td>
+																</tr>
+																<tr>
+																	<th>리뷰 내용</th>
+																	<td><input type="text" name="review_content"></td>
+																</tr>
+																<tr>
+																	<th></th>
+																	<td><input type="submit" value="전송하기"></td>
+																</tr>
+															</table>
+														</form>
+														<c:forEach var="rList" items="${reviewList}">
+															<table>
+																<tr>
+																	<th>리뷰번호</th>
+																	<td>${rList.review_id}</td>
+																</tr>
+																<tr>
+																	<th>상품번호</th>
+																	<td>${rList.p_id}</td>
+																</tr>
+																<tr>
+																	<th>회원번호</th>
+																	<td>${rList.member_serial}</td>
+																</tr>
+																<tr>
+																	<th>리뷰제목</th>
+																	<td>${rList.review_title}</td>
+																</tr>
+																<tr>
+																	<th>리뷰 내용</th>
+																	<td>${rList.review_content}</td>
+																</tr>
+																<tr>
+																	<th>리뷰 작성일</th>
+																	<td>${rList.review_regdate}</td>
+																</tr>
+																<tr>
+																	<th>리뷰 이미지</th>
+																	<td>${rList.review_image}</td>
+																</tr>
+																<tr>
+																	<button onclick="deleteReview(${rList.review_id})">삭제</button>
+																</tr>
+															</table>
+															<br>
+														</c:forEach>
+														</table>
 													</div>
 												</div>
 											</div>
@@ -696,6 +743,10 @@
                             }
                         }
                     });
+                }
+                
+                function deleteReview(review_id) {
+                	console.log('리뷰아이디 : ' + review_id);
                 }
                 </script>
             <!-- footer 푸터 시작부분-->
