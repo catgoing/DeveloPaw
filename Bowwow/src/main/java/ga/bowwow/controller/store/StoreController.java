@@ -53,6 +53,10 @@ public class StoreController {
 		Product p = storeService.getProductDetailDog(p_id);
 		model.addAttribute("p", p);
 		
+		List<Review> reviewList = storeService.getReviewList(p_id);
+		model.addAttribute("reviewList", reviewList);
+		
+		
 		return "productDetailDog";
 	}
 	
@@ -78,6 +82,7 @@ public class StoreController {
 		}
 	}
 	
+
 	@RequestMapping("/store/insertReview")
 	public String insertReview(Review review) throws IllegalStateException, IOException {
 		System.out.println(">>> 게시글 입력 - insertReview()");

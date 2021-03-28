@@ -1,6 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
-
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <!DOCTYPE html>
 
 <html>
@@ -637,6 +637,40 @@
 																</tr>
 															</table>
 														</form>
+														<c:forEach var="rList" items="${reviewList}">
+															<table>
+																<tr>
+																	<th>리뷰번호</th>
+																	<td>${rList.review_id}</td>
+																</tr>
+																<tr>
+																	<th>상품번호</th>
+																	<td>${rList.p_id}</td>
+																</tr>
+																<tr>
+																	<th>회원번호</th>
+																	<td>${rList.member_serial}</td>
+																</tr>
+																<tr>
+																	<th>리뷰제목</th>
+																	<td>${rList.review_title}</td>
+																</tr>
+																<tr>
+																	<th>리뷰 내용</th>
+																	<td>${rList.review_content}</td>
+																</tr>
+																<tr>
+																	<th>리뷰 작성일</th>
+																	<td>${rList.review_regdate}</td>
+																</tr>
+																<tr>
+																	<th>리뷰 이미지</th>
+																	<td>${rList.review_image}</td>
+																</tr>
+																
+															</table>
+														</c:forEach>
+														</table>
 													</div>
 												</div>
 											</div>

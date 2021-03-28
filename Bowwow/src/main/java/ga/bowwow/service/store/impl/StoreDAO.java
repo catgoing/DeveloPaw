@@ -31,6 +31,11 @@ public class StoreDAO {
 		return mybatis.selectList("Store.ProductList", p_type);
 	}
 	
+	public List<Review> getReviewList(int p_id) {
+		System.out.println("확인용");
+		return mybatis.selectList("ProductsReview.reviewList", p_id);
+	}
+	
 //	public List<Product> getCatProductList(Product products) {
 //		return mybatis.selectList("Store.catProductList", products);
 //	}

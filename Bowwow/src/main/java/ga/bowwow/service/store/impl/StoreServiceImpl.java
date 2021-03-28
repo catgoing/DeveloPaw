@@ -51,6 +51,11 @@ public class StoreServiceImpl implements StoreService {
 		System.out.println(review);
 		storeDAO.insertReview(review);
 	}
+
+	@Override
+	public List<Review> getReviewList(int p_id) {
+		return storeDAO.getReviewList(p_id);
+	}
 	
 //	@Override
 //	public List<Product> getCatProductList(Product products) {
