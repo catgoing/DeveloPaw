@@ -144,7 +144,7 @@
                                 <a href="index.html"> 커뮤니티 </a>
                             </li>
                             <li>
-                                <a href="storeMain.do"> 스토어 </a>
+                                <a href="storeMain"> 스토어 </a>
                             </li>
                         </ul>
                         <ul class="nav-right">
@@ -216,7 +216,7 @@
                                     </li>
                                     <li class="waves-effect waves-light">
                                         <div class="media">
-                                            <img class="d-flex align-self-center img-radius" src="../resources/images/avatar-4.jpg" alt="Generic placeholder image">
+                                            <img class="d-flex align-self-center img-radius" src="resources/images/avatar-4.jpg" alt="Generic placeholder image">
                                             <div class="media-body">
                                                 <h5 class="notification-user">Joseph William</h5>
                                                 <p class="notification-msg">Lorem ipsum dolor sit amet, consectetuer elit.</p>
@@ -226,7 +226,7 @@
                                     </li>
                                     <li class="waves-effect waves-light">
                                         <div class="media">
-                                            <img class="d-flex align-self-center img-radius" src="../resources/images/avatar-3.jpg" alt="Generic placeholder image">
+                                            <img class="d-flex align-self-center img-radius" src="resources/images/avatar-3.jpg" alt="Generic placeholder image">
                                             <div class="media-body">
                                                 <h5 class="notification-user">Sara Soudein</h5>
                                                 <p class="notification-msg">Lorem ipsum dolor sit amet, consectetuer elit.</p>
@@ -238,7 +238,7 @@
                             </li>
                             <li class="user-profile header-notification">
                                 <a href="#!" class="waves-effect waves-light">
-                                    <img src="../resources/images/avatar-4.jpg" class="img-radius" alt="User-Profile-Image">
+                                    <img src="resources/images/avatar-4.jpg" class="img-radius" alt="User-Profile-Image">
                                     <i class="ti-angle-down"></i>
                                 </a>
                                 <ul class="show-notification profile-notification">
@@ -420,7 +420,7 @@
                                     </a>
                                     <ul class="pcoded-submenu">
                                     	<li class="">
-                                            <a href="dogList" class="waves-effect waves-dark">
+                                            <a href="productList?p_type=dog" class="waves-effect waves-dark">
                                                 <span class="pcoded-micon"><i class="ti-angle-right"></i></span>
                                                 <span class="pcoded-mtext">상품 전체보기</span>
                                                 <span class="pcoded-mcaret"></span>
@@ -480,7 +480,7 @@
                                     </a>
                                     <ul class="pcoded-submenu">
                                     	<li class="">
-                                            <a href="catList" class="waves-effect waves-dark">
+                                            <a href="productList?p_type=cat" class="waves-effect waves-dark">
                                                 <span class="pcoded-micon"><i class="ti-angle-right"></i></span>
                                                 <span class="pcoded-mtext">상품 전체보기</span>
                                                 <span class="pcoded-mcaret"></span>
@@ -555,7 +555,7 @@
                                                 </div>
                                                 <div class="monthly-products">
                                                     <ul>
-	                                                    <c:forEach var="list" items="${dogList }">
+	                                                    <c:forEach var="list" items="${pList }">
 	                                                        <li>
 	                                                            <div class="col-lg-3 col-md-4 col-sm-6 mix oranges fresh-meat">
 	                                                                <div class="featured__item">

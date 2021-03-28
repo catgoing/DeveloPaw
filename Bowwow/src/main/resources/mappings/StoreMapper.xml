@@ -12,17 +12,10 @@
 	</insert>
 	
 	<!-- 강아지 전체 상품 조회 -->
-	<select id="dogProductList" parameterType="Product" resultType="Product">
+	<select id="ProductList" parameterType="String" resultType="Product">
 		SELECT P_ID, SUBSTR(P_NAME, 0, 17) AS P_NAME, P_TYPE, P_CATEGORY, PRICE, STOCK, S_IMAGE, L_IMAGE
 		  FROM STORE_PRODUCTS
-		 WHERE P_TYPE = '댕댕이'
-	</select>
-	
-	<!-- 고양이 전체 상품 조회 -->
-	<select id="catProductList" parameterType="Product" resultType="Product">
-		SELECT P_ID, SUBSTR(P_NAME, 0, 17) AS P_NAME, P_TYPE, P_CATEGORY, PRICE, STOCK, S_IMAGE, L_IMAGE
-		  FROM STORE_PRODUCTS
-		 WHERE P_TYPE = '냥냥이'
+		 WHERE P_TYPE = #{p_type}
 	</select>
 	
 	<!--상품 상세 조회 -->
