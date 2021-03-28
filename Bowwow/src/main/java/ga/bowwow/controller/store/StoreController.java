@@ -1,5 +1,6 @@
 package ga.bowwow.controller.store;
 
+import java.io.IOException;
 import java.util.List;
 
 import javax.servlet.http.HttpServletRequest;
@@ -9,7 +10,9 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 
+import ga.bowwow.service.board.Board;
 import ga.bowwow.service.store.Product;
+import ga.bowwow.service.store.Review;
 import ga.bowwow.service.store.StoreService;
 
 @Controller
@@ -74,6 +77,17 @@ public class StoreController {
 			return null;
 		}
 	}
+	
+	@RequestMapping("/store/insertReview")
+	public String insertReview(Review review) throws IllegalStateException, IOException {
+		System.out.println(">>> 게시글 입력 - insertReview()");
+		System.out.println("review : " + review);
+		
+		// 메소드 호출
+		storeService.insertReview(review);
+		return "storeMain";
+	}	
+	
 }
 
 

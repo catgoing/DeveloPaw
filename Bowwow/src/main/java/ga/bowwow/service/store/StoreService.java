@@ -12,6 +12,6 @@ public interface StoreService {
 	public List<Product> getProductList(String p_type);
 //	public List<Product> getCatProductList(Product products);
 	
-	
+	public void insertReview(Review review);
 	
 }

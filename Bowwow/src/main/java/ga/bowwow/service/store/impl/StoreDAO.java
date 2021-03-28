@@ -7,6 +7,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
 import ga.bowwow.service.store.Product;
+import ga.bowwow.service.store.Review;
 
 @Repository("storeDAO")
 public class StoreDAO {
@@ -35,7 +36,11 @@ public class StoreDAO {
 //	}
 	
 	
-	
+	public void insertReview(Review review) {
+		System.out.println("-----------------------");
+		System.out.println(review);
+		mybatis.insert("ProductsReview.insertProductReview", review);
+	}
 	
 	
 	
