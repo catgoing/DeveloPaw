@@ -50,7 +50,6 @@
 	.center { text-align: center; }
 	.border-none, .border-none td { border: none; }
 </style>
-<script src="../common/summernote/summernote.js"></script>
 <script>
 $(document).ready(function() {
 	//여기 아래 부분
@@ -64,6 +63,24 @@ $(document).ready(function() {
           
 	});
 });
+
+function insertInquiry(p_id) {
+	var data = {'p_id' : p_id, 'member_serial' : member_serial, 'inq_title' : inq_title, 'inq_content' : inq_content};
+	
+	$.ajax({
+		url : '/store/insertInquiry',
+		type: 'POST',
+        data: data,
+        success: function(data){
+			console.log(data)
+			 if(data) {
+				/* $('#tabs-3').append('<table>'+
+										'<tr><th>리뷰번호</th><td>${rList.review_id}</td></tr>'+
+									'</table>'); */
+			} 
+    	}
+	});
+}
 </script>
 
 
@@ -72,46 +89,60 @@ $(document).ready(function() {
 
 <div id="container">
 	<h1>글등록</h1>
-	<p><a href="logout.do">Log-out</a></p>
 	<hr>
 	
-	<form action="insertBoard.do" method="post"	>
+	<form>
 	<table>
 		<tr>
-			<th width="70">제목</th>
+			<th width="70">상품번호</th>
 			<td>
-				<input type="text" name="board_title" size="30">
+				<input type="text" name="p_id" size="30" value=1>
 			</td>
 		</tr>
-		<!-- <tr>
+		<tr>
 			<th>작성자</th>
 			<td>
-				<input type="text" name="member_serial">
+				<input type="text" name="member_serial" value=999>
 			</td>
-		</tr> -->
+		</tr>
+		<tr>
+			<th>제목</th>
+			<td>
+				<input type="text" name="inq_title" size="30">
+			</td>
+		</tr>
 		<tr>
 			<th>내용</th>
 			<td>
-				
-	  				<textarea id="summernote" name="editordata"></textarea>
-				
+	  				<textarea id="summernote" name="inq_content"></textarea>
 			</td>
 		</tr>
 		<tr>
-			<th>동물분류</th>
+			<th>대분류</th>
 			<td>
-				<input type="text" name="animal_class">
+				<input type="text" name="inq_maincategory" value="1">
+			</td>
+		</tr>
+		<tr>
+			<th>중분류</th>
+			<td>
+				<input type="text" name="inq_subcategory" value="2">
+			</td>
+		</tr>
+		<tr>
+			<th>소분류</th>
+			<td>
+				<input type="text" name="inq_inquiry_type" value="3">
 			</td>
 		</tr>
 		<tr>
 			<td colspan="2" class="center">
-				<input type="submit" value="새글 등록">
+				<button onclick="insertInquiry(${p.p_id})">작성</button>
 			</td>
 		</tr>
 	</table>
 	</form>
 	
-	<p><a href="getBoardList.do">글 목록 가기</a></p>
 </div>
 
     <script type="text/javascript" src="/resources/js/jquery/jquery.min.js "></script>

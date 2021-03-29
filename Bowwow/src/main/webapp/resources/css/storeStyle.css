@@ -31,20 +31,13 @@
 
 /* Template default CSS
 /*----------------------------------------*/
-
-html,
-body {
+html, body {
 	height: 100%;
 	/* font-family: "Montserrat", sans-serif; */
 	-webkit-font-smoothing: antialiased;
 }
 
-h1,
-h2,
-h3,
-h4,
-h5,
-h6 {
+h1, h2, h3, h4, h5, h6 {
 	margin: 0;
 	color: #111111;
 	font-weight: 400;
@@ -88,21 +81,16 @@ img {
 	max-width: 100%;
 }
 
-input:focus,
-select:focus,
-button:focus,
-textarea:focus {
+input:focus, select:focus, button:focus, textarea:focus {
 	outline: none;
 }
 
-a:hover,
-a:focus {
+a:hover, a:focus {
 	text-decoration: none;
 	outline: none;
 }
 
-ul,
-ol {
+ul, ol {
 	padding: 0;
 	margin: 0;
 }
@@ -110,6 +98,7 @@ ol {
 /*---------------------
   Helper CSS
 -----------------------*/
+
 
 .section-title {
 	margin-bottom: 45px;
@@ -144,21 +133,13 @@ ol {
 	padding-bottom: 100px;
 }
 
-.text-white h1,
-.text-white h2,
-.text-white h3,
-.text-white h4,
-.text-white h5,
-.text-white h6,
-.text-white p,
-.text-white span,
-.text-white li,
-.text-white a {
+.text-white h1, .text-white h2, .text-white h3, .text-white h4,
+	.text-white h5, .text-white h6, .text-white p, .text-white span,
+	.text-white li, .text-white a {
 	color: #fff;
 }
 
 /* buttons */
-
 .primary-btn {
 	display: inline-block;
 	font-size: 14px;
@@ -182,7 +163,6 @@ ol {
 }
 
 /* Preloder */
-
 #preloder {
 	position: fixed;
 	width: 100%;
@@ -206,45 +186,101 @@ ol {
 	-webkit-animation: loader 0.8s linear infinite;
 }
 
-@keyframes loader {
-	0% {
-		-webkit-transform: rotate(0deg);
-		transform: rotate(0deg);
-		border: 4px solid #f44336;
-		border-left-color: transparent;
-	}
-	50% {
-		-webkit-transform: rotate(180deg);
-		transform: rotate(180deg);
-		border: 4px solid #673ab7;
-		border-left-color: transparent;
-	}
-	100% {
-		-webkit-transform: rotate(360deg);
-		transform: rotate(360deg);
-		border: 4px solid #f44336;
-		border-left-color: transparent;
-	}
+@
+keyframes loader { 0% {
+	-webkit-transform: rotate(0deg);
+	transform: rotate(0deg);
+	border: 4px solid #f44336;
+	border-left-color: transparent;
 }
 
-@-webkit-keyframes loader {
-	0% {
-		-webkit-transform: rotate(0deg);
-		border: 4px solid #f44336;
-		border-left-color: transparent;
-	}
-	50% {
-		-webkit-transform: rotate(180deg);
-		border: 4px solid #673ab7;
-		border-left-color: transparent;
-	}
-	100% {
-		-webkit-transform: rotate(360deg);
-		border: 4px solid #f44336;
-		border-left-color: transparent;
-	}
+50
+%
+{
+-webkit-transform
+:
+rotate(
+180deg
+);
+transform
+:
+rotate(
+180deg
+);
+border
+:
+4px
+solid
+#673ab7;
+border-left-color
+:
+transparent;
+}
+100
+%
+{
+-webkit-transform
+:
+rotate(
+360deg
+);
+transform
+:
+rotate(
+360deg
+);
+border
+:
+4px
+solid
+#f44336;
+border-left-color
+:
+transparent;
+}
+}
+@
+-webkit-keyframes loader { 0% {
+	-webkit-transform: rotate(0deg);
+	border: 4px solid #f44336;
+	border-left-color: transparent;
 }
 
+50
+%
+{
+-webkit-transform
+:
+rotate(
+180deg
+);
+border
+:
+4px
+solid
+#673ab7;
+border-left-color
+:
+transparent;
+}
+100
+%
+{
+-webkit-transform
+:
+rotate(
+360deg
+);
+border
+:
+4px
+solid
+#f44336;
+border-left-color
+:
+transparent;
+}
+}
 .spacial-controls {
 	position: fixed;
 	width: 111px;
@@ -316,7 +352,6 @@ ol {
 /*---------------------
   Header
 -----------------------*/
-
 .header {
 	background: #ffffff;
 	-webkit-box-shadow: 0px 5px 10px rgba(91, 91, 91, 0.1);
@@ -505,7 +540,6 @@ ol {
 /*---------------------
   Banner
 -----------------------*/
-
 .banner {
 	height: 500px;
 }
@@ -575,7 +609,6 @@ ol {
 /*---------------------
   Trend
 -----------------------*/
-
 .trend {
 	padding-top: 80px;
 	padding-bottom: 50px;
@@ -639,7 +672,6 @@ ol {
 /*---------------------
   Discount
 -----------------------*/
-
 .discount__pic img {
 	min-width: 100%;
 	height: 100%;
@@ -750,7 +782,6 @@ ol {
 /*---------------------
   Services
 -----------------------*/
-
 .services {
 	padding-top: 80px;
 	padding-bottom: 50px;
@@ -783,7 +814,6 @@ ol {
 /*---------------------
   Instagram
 -----------------------*/
-
 .instagram__item {
 	height: 320px;
 	display: -webkit-box;
@@ -848,7 +878,6 @@ ol {
 /*---------------------
   Footer
 -----------------------*/
-
 .footer {
 	padding-top: 55px;
 }
@@ -992,7 +1021,6 @@ ol {
 /*---------------------
   Breadcrumb
 -----------------------*/
-
 .breadcrumb-option {
 	padding-top: 35px;
 }
@@ -1028,7 +1056,6 @@ ol {
 /*---------------------
   Categories
 -----------------------*/
-
 .categories {
 	overflow: hidden;
 	margin-top: 10px;
@@ -1102,7 +1129,6 @@ ol {
 /*---------------------
   Product
 -----------------------*/
-
 .product {
 	padding-top: 60px;
 	padding-bottom: 50px;
@@ -1309,7 +1335,6 @@ ol {
 /*---------------------
   Shop
 -----------------------*/
-
 .shop {
 	padding-top: 70px;
 	padding-bottom: 80px;
@@ -1380,8 +1405,8 @@ ol {
 	line-height: 30px;
 }
 
-.categories__accordion .card-heading a:after,
-.categories__accordion .card-heading>a.active[aria-expanded=false]:after {
+.categories__accordion .card-heading a:after, .categories__accordion .card-heading>a.active[aria-expanded=false]:after
+	{
 	content: "";
 	font-size: 14px;
 	/* font-family: "FontAwesome"; */
@@ -1402,7 +1427,7 @@ ol {
 }
 
 .categories__accordion .card-heading a[aria-expanded=true]:after,
-.categories__accordion .card-heading>a.active:after {
+	.categories__accordion .card-heading>a.active:after {
 	content: "";
 	font-size: 14px;
 	/* font-family: "FontAwesome"; */
@@ -1499,23 +1524,19 @@ ol {
 	border-radius: 0;
 }
 
-.sidebar__sizes,
-.sidebar__color {
+.sidebar__sizes, .sidebar__color {
 	margin-bottom: 40px;
 }
 
-.sidebar__sizes .section-title,
-.sidebar__color .section-title {
+.sidebar__sizes .section-title, .sidebar__color .section-title {
 	margin-bottom: 35px;
 }
 
-.sidebar__sizes .section-title h4,
-.sidebar__color .section-title h4 {
+.sidebar__sizes .section-title h4, .sidebar__color .section-title h4 {
 	font-size: 18px;
 }
 
-.sidebar__sizes .size__list label,
-.sidebar__color .size__list label {
+.sidebar__sizes .size__list label, .sidebar__color .size__list label {
 	display: block;
 	padding-left: 20px;
 	font-size: 14px;
@@ -1525,25 +1546,25 @@ ol {
 	cursor: pointer;
 }
 
-.sidebar__sizes .size__list label input,
-.sidebar__color .size__list label input {
+.sidebar__sizes .size__list label input, .sidebar__color .size__list label input
+	{
 	position: absolute;
 	visibility: hidden;
 }
 
-.sidebar__sizes .size__list label input:checked~.checkmark,
-.sidebar__color .size__list label input:checked~.checkmark {
+.sidebar__sizes .size__list label input:checked ~.checkmark,
+	.sidebar__color .size__list label input:checked ~.checkmark {
 	border-color: #ca1515;
 }
 
-.sidebar__sizes .size__list label input:checked~.checkmark:after,
-.sidebar__color .size__list label input:checked~.checkmark:after {
+.sidebar__sizes .size__list label input:checked ~.checkmark:after,
+	.sidebar__color .size__list label input:checked ~.checkmark:after {
 	border-color: #ca1515;
 	opacity: 1;
 }
 
-.sidebar__sizes .size__list label .checkmark,
-.sidebar__color .size__list label .checkmark {
+.sidebar__sizes .size__list label .checkmark, .sidebar__color .size__list label .checkmark
+	{
 	position: absolute;
 	left: 0;
 	top: 4px;
@@ -1553,8 +1574,8 @@ ol {
 	border-radius: 2px;
 }
 
-.sidebar__sizes .size__list label .checkmark:after,
-.sidebar__color .size__list label .checkmark:after {
+.sidebar__sizes .size__list label .checkmark:after, .sidebar__color .size__list label .checkmark:after
+	{
 	position: absolute;
 	left: 0px;
 	top: -2px;
@@ -1607,7 +1628,6 @@ ol {
 /*---------------------
   Product Details
 -----------------------*/
-
 .product-details {
 	padding-top: 70px;
 	padding-bottom: 50px;
@@ -1770,14 +1790,14 @@ ol {
 }
 
 .pro-qty input {
-	font-size: 14px;
+	font-size: 8px;
 	color: #666666;
 	font-weight: 500;
 	border: none;
-	float: left;
-	width: 84px;
+	float: right;
+	width: 60px;
 	text-align: center;
-	height: 48px;
+	height: 15px;
 }
 
 .product__details__button {
@@ -1870,11 +1890,13 @@ ol {
 	visibility: hidden;
 }
 
-.product__details__widget ul li .stock__checkbox label input:checked~.checkmark {
+.product__details__widget ul li .stock__checkbox label input:checked ~.checkmark
+	{
 	border-color: #ca1515;
 }
 
-.product__details__widget ul li .stock__checkbox label input:checked~.checkmark:after {
+.product__details__widget ul li .stock__checkbox label input:checked ~.checkmark:after
+	{
 	border-color: #ca1515;
 	opacity: 1;
 }
@@ -1889,7 +1911,8 @@ ol {
 	border-radius: 2px;
 }
 
-.product__details__widget ul li .stock__checkbox label .checkmark:after {
+.product__details__widget ul li .stock__checkbox label .checkmark:after
+	{
 	position: absolute;
 	left: 0px;
 	top: -2px;
@@ -1911,7 +1934,8 @@ ol {
 	margin-right: 20px;
 }
 
-.product__details__widget ul li .color__checkbox label.active input~.checkmark:after {
+.product__details__widget ul li .color__checkbox label.active input ~.checkmark:after
+	{
 	border-color: #ffffff;
 	opacity: 1;
 }
@@ -1925,7 +1949,8 @@ ol {
 	visibility: hidden;
 }
 
-.product__details__widget ul li .color__checkbox label input:checked~.checkmark:after {
+.product__details__widget ul li .color__checkbox label input:checked ~.checkmark:after
+	{
 	border-color: #ffffff;
 	opacity: 1;
 }
@@ -1941,15 +1966,18 @@ ol {
 	content: "";
 }
 
-.product__details__widget ul li .color__checkbox label .checkmark.black-bg {
+.product__details__widget ul li .color__checkbox label .checkmark.black-bg
+	{
 	background: #111111;
 }
 
-.product__details__widget ul li .color__checkbox label .checkmark.grey-bg {
+.product__details__widget ul li .color__checkbox label .checkmark.grey-bg
+	{
 	background: #e4aa8b;
 }
 
-.product__details__widget ul li .color__checkbox label .checkmark:after {
+.product__details__widget ul li .color__checkbox label .checkmark:after
+	{
 	position: absolute;
 	left: 3px;
 	top: 5px;
@@ -2069,7 +2097,6 @@ ol {
 /*---------------------
   Shop Cart
 -----------------------*/
-
 .shop-cart {
 	padding-top: 70px;
 	padding-bottom: 90px;
@@ -2113,17 +2140,20 @@ ol {
 	margin-right: 25px;
 }
 
-.shop__cart__table tbody tr .cart__product__item .cart__product__item__title {
+.shop__cart__table tbody tr .cart__product__item .cart__product__item__title
+	{
 	overflow: hidden;
 	padding-top: 23px;
 }
 
-.shop__cart__table tbody tr .cart__product__item .cart__product__item__title h6 {
+.shop__cart__table tbody tr .cart__product__item .cart__product__item__title h6
+	{
 	color: #111111;
 	font-weight: 600;
 }
 
-.shop__cart__table tbody tr .cart__product__item .cart__product__item__title .rating i {
+.shop__cart__table tbody tr .cart__product__item .cart__product__item__title .rating i
+	{
 	font-size: 10px;
 	color: #e3c01c;
 	margin-right: -4px;
@@ -2296,7 +2326,6 @@ ol {
 /*---------------------
   Checkout
 -----------------------*/
-
 .checkout {
 	padding-top: 80px;
 	padding-bottom: 70px;
@@ -2352,7 +2381,8 @@ ol {
 	color: #666666;
 }
 
-.checkout__form .checkout__form__input input::-webkit-input-placeholder {
+.checkout__form .checkout__form__input input::-webkit-input-placeholder
+	{
 	color: #666666;
 }
 
@@ -2392,11 +2422,13 @@ ol {
 	visibility: hidden;
 }
 
-.checkout__form .checkout__form__checkbox label input:checked~.checkmark {
+.checkout__form .checkout__form__checkbox label input:checked ~.checkmark
+	{
 	border-color: #ca1515;
 }
 
-.checkout__form .checkout__form__checkbox label input:checked~.checkmark:after {
+.checkout__form .checkout__form__checkbox label input:checked ~.checkmark:after
+	{
 	border-color: #ca1515;
 	opacity: 1;
 }
@@ -2525,11 +2557,11 @@ ol {
 	visibility: hidden;
 }
 
-.checkout__order__widget label input:checked~.checkmark {
+.checkout__order__widget label input:checked ~.checkmark {
 	border-color: #ca1515;
 }
 
-.checkout__order__widget label input:checked~.checkmark:after {
+.checkout__order__widget label input:checked ~.checkmark:after {
 	border-color: #ca1515;
 	opacity: 1;
 }
@@ -2562,7 +2594,6 @@ ol {
 /*---------------------
     Blog
 -----------------------*/
-
 .blog {
 	padding-top: 70px;
 	padding-bottom: 80px;
@@ -2635,7 +2666,6 @@ ol {
 /*---------------------
   Blog Sidebar
 -----------------------*/
-
 .blog__sidebar {
 	padding-left: 40px;
 }
@@ -2743,7 +2773,6 @@ ol {
 /*---------------------
   Blog Details
 -----------------------*/
-
 .blog-details {
 	padding-top: 80px;
 	padding-bottom: 80px;
@@ -2995,7 +3024,6 @@ ol {
 /*---------------------
   Contact
 -----------------------*/
-
 .contact {
 	padding-top: 80px;
 	padding-bottom: 80px;
@@ -3146,7 +3174,6 @@ ol {
 }
 
 /*--------------------------------- Responsive Media Quaries -----------------------------*/
-
 @media only screen and (min-width: 1600px) and (max-width: 1900px) {
 	.header {
 		padding: 0 85px;
@@ -3169,7 +3196,6 @@ ol {
 }
 
 /* Medium Device = 1200px */
-
 @media only screen and (min-width: 992px) and (max-width: 1199px) {
 	.header__menu ul li {
 		margin-right: 20px;
@@ -3189,7 +3215,6 @@ ol {
 }
 
 /* Tablet Device = 768px */
-
 @media only screen and (min-width: 768px) and (max-width: 991px) {
 	.filter__controls li {
 		margin-right: 15px;
@@ -3308,8 +3333,7 @@ ol {
 	.slicknav_nav ul {
 		margin: 0;
 	}
-	.slicknav_nav .slicknav_row,
-	.slicknav_nav a {
+	.slicknav_nav .slicknav_row, .slicknav_nav a {
 		padding: 7px 0;
 		margin: 0;
 		color: #111111;
@@ -3394,7 +3418,6 @@ ol {
 }
 
 /* Wide Mobile = 480px */
-
 @media only screen and (max-width: 767px) {
 	.canvas__open {
 		display: block;
@@ -3476,8 +3499,7 @@ ol {
 	.slicknav_nav ul {
 		margin: 0;
 	}
-	.slicknav_nav .slicknav_row,
-	.slicknav_nav a {
+	.slicknav_nav .slicknav_row, .slicknav_nav a {
 		padding: 7px 0;
 		margin: 0;
 		color: #111111;
@@ -3621,7 +3643,6 @@ ol {
 }
 
 /* Small Device = 320px */
-
 @media only screen and (max-width: 479px) {
 	.categories__item.categories__large__item {
 		padding-left: 30px;

@@ -10,7 +10,5 @@ public interface StoreService {
 	public Product getProductDetail(int p_id);
 	public List<Product> getProductList(Product product);
 	
-	//
-	public void insertReview(Review review);
-	public List<Review> getReviewList(int p_id);
+
 }

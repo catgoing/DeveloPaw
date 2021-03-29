@@ -1,4 +1,4 @@
-/**
+`/**
 Template Name: Material Able Admin Template
 Author: #
 Email: #
@@ -52,7 +52,67 @@ font-size: 16px; color : #fff; border-radius: 2px; line-height: 42px;}
 
 /* 상품 상세페이지 끝*/ 
 
-
+   .store_btn{
+     background:#ff6347;
+     color:#fff;
+     border:none;
+     position:relative;
+     height:25px;
+     font-size:1.0em;
+     padding:0 2em;
+     cursor:pointer;
+     transition:800ms ease all;
+     outline:none;
+   }
+   .store_btn:hover{
+     background:#fff;
+     color:#ff6347;
+   }
+   .store_btn:before,button:after{
+     content:'';
+     position:absolute;
+     top:0;
+     right:0;
+     height:1px;
+     width:0;
+     transition:400ms ease all;
+   }
+   .store_btn:after{
+     right:inherit;
+     top:inherit;
+     left:0;
+     bottom:0;
+   }
+   .store_btn:hover:before,button:hover:after{
+     width:100%;
+     transition:800ms ease all;
+   }
+   
+   .store_btn2 {
+	 border : 1px solid #faf3f4;
+	 background-color : #eeeeee;
+	 color : #000;
+	 border-radius: 25px;
+   }
+   
+    .store_btn2:hover{
+     background:#fff;
+     color:#ff6347;
+   }
+   
+   .store_input {
+     border : 1px solid #faf3f4;
+     text-align : center;
+   }
+   
+   .store_input2 {
+     border : 1px solid #faf3f4;
+     background-color : #faf3f4;
+     color: #ff6347;
+     font-weight: bold;
+     text-align : center;
+   }
+   	
 
 .scroll-top {
 	position: fixed;
