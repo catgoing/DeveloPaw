@@ -52,9 +52,4 @@ public class StoreServiceImpl implements StoreService {
 		return storeDAO.getReviewList(p_id);
 	}
 	
-//	@Override
-//	public List<Product> getCatProductList(Product products) {
-//		return storeDAO.getCatProductList(products);
-//	}
-
 }

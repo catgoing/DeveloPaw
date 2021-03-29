@@ -600,7 +600,7 @@
 												<div class="product__details__widget">
 													<ul>
 														<li>
-															<h3>판매금액: ${p.price }원</h3>
+															<h3><fmt:formatNumber value="${p.price }" pattern="#,###" />원</h3>
 														</li>
 													</ul>
 												</div>
@@ -702,8 +702,8 @@
 																</tr>
 															</table>
 															<br>
-														</c:forEach>
 														</table>
+														</c:forEach>
 													</div>
 												</div>
 											</div>

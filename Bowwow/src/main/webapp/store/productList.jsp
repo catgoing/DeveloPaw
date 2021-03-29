@@ -570,8 +570,8 @@
 	                                                                        <br>
 	                                                                    <div class="featured__item__text"style="width: 200px;">
 	                                                                        <h6><a href="detail?p_id=${list.p_id }">${list.p_name }...</a></h6>
-	                                                                        <h5><fmt:formatNumber value="${list.price }" pattern="#,###" />원</h5>
 	                                                                    </div>
+	                                                                        <h5><fmt:formatNumber value="${list.price }" pattern="#,###" />원</h5>
 	                                                                </div>
 	                                                            </div>
 	                                                        </li>
