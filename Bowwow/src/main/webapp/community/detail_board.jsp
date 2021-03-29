@@ -199,10 +199,11 @@
 															<h4>${comvo.comment_content } // ${comvo.nickname } // ${comvo.regdate }</h4>
 															<c:set var="com1" value="${comvo.comment_no }" />
 															<hr>
-																대댓글<br>
+															
 															<c:forEach var="com2vo" items="${comment2List }">
 																<c:set var="com2" value="${com2vo.comment_no }" />
 																<c:if test="${com1 == com2}">
+																대댓글<br>
 																${com2vo.comment_content } // ${com2vo.nickname } // ${com2vo.regdate }
 																<hr>
 																</c:if>

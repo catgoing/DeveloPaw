@@ -2,11 +2,17 @@ package ga.bowwow.controller.common;
 
 import java.io.File;
 import java.io.IOException;
+import java.io.InputStream;
 import java.util.UUID;
 
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletRequestWrapper;
 
+import org.apache.commons.io.FileUtils;
+import org.apache.velocity.texen.util.FileUtil;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
@@ -25,11 +31,13 @@ import com.amazonaws.services.s3.transfer.TransferManagerBuilder;
 import com.amazonaws.services.s3.transfer.Upload;
 import com.google.gson.JsonObject;
 
+import ga.bowwow.service.common.ImageVO;
+
 @Controller
 public class MultipartController {
 	
 
-	@RequestMapping(value="/community/uploadSummernoteImageFile.do", produces = "application/json; charset=utf8")
+	@RequestMapping(value="*/uploadSummernoteImageFile", produces = "application/json; charset=utf8")
 	@ResponseBody
 	public String uploadSummernoteImageFile(@RequestParam("file") MultipartFile multipartFile, HttpServletRequest request ) throws AmazonClientException, InterruptedException, IllegalStateException, IOException  {
 		JsonObject jsonObject = new JsonObject();
@@ -39,7 +47,7 @@ public class MultipartController {
 		 */
 		
 		// 내부경로로 저장
-		/*
+		
 		String contextRoot = new HttpServletRequestWrapper(request).getRealPath("/");
 		String fileRoot = contextRoot+"resources/upload/";
 		
@@ -52,7 +60,7 @@ public class MultipartController {
 		try {
 			InputStream fileStream = multipartFile.getInputStream();
 			FileUtils.copyInputStreamToFile(fileStream, targetFile);	//파일 저장
-			jsonObject.addProperty("url", "/main/resources/upload/"+savedFileName); // contextroot + resources + 저장할 내부 폴더명
+			jsonObject.addProperty("url", "/resources/upload/"+savedFileName); // contextroot + resources + 저장할 내부 폴더명
 			jsonObject.addProperty("responseCode", "success");
 				
 		} catch (IOException e) {
@@ -62,11 +70,11 @@ public class MultipartController {
 		}
 		String a = jsonObject.toString();
 		System.out.println("파일 주소: " + a);
-		*/
 		
 		
 		
 		
+		/*
 		String fs_url = "https://projectbit.s3.us-east-2.amazonaws.com/";					//AWS S3 경로
 		String foldername = "";																//폴더명
 		
@@ -84,17 +92,38 @@ public class MultipartController {
 		jsonObject.addProperty("responseCode", "success");
 		
 		String a = jsonObject.toString(); //JSON 결과 출력(확인용) ["url" : "경로명"]으로 나오면 정상
+		System.out.println(a);
+		*/
 		
 		return a; //최종 a를 리턴하여 요청 들어온 JSP 파일에 JSON 형식으로 전달
 	}
+	
+	
+	@PostMapping("registerImage")
+	public void registerImage(MultipartFile multipartFile, Model model, HttpServletRequest request, String foldername) throws IllegalStateException, IOException, AmazonClientException, InterruptedException {
+		
+//		String fs_url = "https://projectbit.s3.us-east-2.amazonaws.com/";				//AWS S3 경로
+			
+		String originalFileName = multipartFile.getOriginalFilename();							//원본 파일명
+		String extension = originalFileName.substring(originalFileName.lastIndexOf("."));	//원본 파일 확장자
+		String savedFileName = UUID.randomUUID() + extension;				
+		
+		File file = new File(request.getServletContext().getRealPath("/temp"));
+		multipartFile.transferTo(file);
+		String s3 = s3upload(file, savedFileName, foldername);
+		System.out.println("success: " + s3);
+		
+		//String s3 DB에 이미지 경로로 저장할것
+	}
+	
 	
 	
 	public String s3upload(File file, String fileName, String folder) throws AmazonClientException, InterruptedException {
         //수정 금지
 		final Regions clientRegion = Regions.US_EAST_2;
         final String bucketName = "projectbit";
-        final String key1 = "AKIAUCYTNA3MORAUCXGX";
-        final String key2 = "3T4Tg5imRGJR6lL3I4DUSJYXIKn5K1dRfFN2Oje+";
+        final String key1 = "AKIAUCYTNA3MI5D3JMMP";
+        final String key2 = "Nekb/D7ysjuxr5wikBAyukC6TsdYQlH1Bm2bmipQ";
         //폴더명 기입
         String folderName = folder;
         
