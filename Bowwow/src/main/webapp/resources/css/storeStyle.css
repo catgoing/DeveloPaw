@@ -1790,14 +1790,14 @@ transparent;
 }
 
 .pro-qty input {
-	font-size: 14px;
+	font-size: 8px;
 	color: #666666;
 	font-weight: 500;
 	border: none;
-	float: left;
-	width: 84px;
+	float: right;
+	width: 60px;
 	text-align: center;
-	height: 48px;
+	height: 15px;
 }
 
 .product__details__button {

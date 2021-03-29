@@ -64,6 +64,9 @@
 <link rel="stylesheet" type="text/css" href="/resources/css/style.css">
 <link rel="stylesheet" type="text/css" href="/resources/css/test.css">
 
+	<script type="text/javascript"
+		src="/resources/js/jquery/jquery.min.js "></script>
+
 <style>
 .featured__item__text {
 	width: 150px;
@@ -77,7 +80,48 @@
 
 <script type="text/javascript">
 
+		var sell_price;
+		var amount;
+		
+		$(function init () {
+			sell_price = document.getElementById('sell_price').value;
+			document.getElementById('sum').value = sell_price;
+			sell_price = document.form.sell_price.value;
+			amount = document.form.amount.value;
+			document.form.sum.value = sell_price;
+			change();
+		});
+		
+		function add () {
+			hm = document.form.amount;
+			sum = document.form.sum;
+			hm.value ++ ;
+		
+			document.getElementById('sum').value = parseInt(hm.value) * sell_price;
+		}
+		
+		function del () {
+			hm = document.form.amount;
+			sum = document.form.sum;
+				if (hm.value > 1) {
+					hm.value -- ;
+					document.getElementById('sum').value = parseInt(hm.value) * sell_price;
+				}
+				
+		}
+		
+		function change () {
+			hm = document.form.amount;
+			sum = document.form.sum;
+		
+				if (hm.value < 0) {
+					hm.value = 0;
+				}
+			sum.value = parseInt(hm.value) * sell_price;
+		}  
 </script>
+
+
 </head>
 
 <body>
@@ -578,19 +622,25 @@
 										</div>
 											<div class="col-lg-6">
 												<div class="product__details__text">
-													<h3 style="color : #000">${p.p_name }</h3>
+													<h4 style="color : #000">${p.p_name }</h4>
 													<div class="product__details__button">
 														<div class="product__details__widget">
 															<ul>
 																<li>
-																	<h4>판매금액: ${p.price }원</h4>
+																	<h4>판매금액: <fmt:formatNumber value="${p.price }" pattern="#,###" />원</h4>
 																</li>
 															</ul>
 														</div>
 														<div class="quantity">
-															<span>상품 수량</span>
 															<div class="pro-qty">
-																<input type="text" name="amount" value="1">
+															<form name="form" method="POST">
+																<h5> 상품 수량 :
+																	<input type="hidden" id="sell_price" value="${p.price }">
+																	<input type="button" class="store_btn2" value=" - " onclick="del()">
+																	<input type="text" class="store_input" name="amount" value="1" size="3" onchange="change();">
+																	<input type="button" class="store_btn2" value=" + " onclick="add()">
+																</h5>
+															</form>
 															</div>
 															<br>
 														</div>
@@ -598,7 +648,7 @@
 														<div class="product__details__widget">
 															<ul>
 																<li>
-																	<h4>총 주문금액: ${p.price }원</h4>
+																	<h4>총 상품금액: <input type="text" class="store_input2" size="7" id="sum" readonly>원</h4>
 																</li>
 															</ul>
 														</div>
@@ -608,25 +658,14 @@
 														</ul>
 													</div>
 													<div class="btn_area">
-														<button class="store_btn" href="insertCartlist">장바구니에 담기</button>
-														<button class="store_btn" href="#">주문하기</button>
+														<button class="store_btn" onclick="cartList()">장바구니에 담기</button>
+														<button class="store_btn" onclick="storeOrder()">주문하기</button>
 													</div>
 													<ul>
 														<li><a href="#"><span class="icon_heart_alt"></span></a></li>
 														<li><a href="#"><span class="icon_adjust-horiz"></span></a></li>
 													</ul>
 												</div>
-												<div class="product__details__widget">
-													<ul>
-														<li>
-															<h3>판매금액: <fmt:formatNumber value="${p.price }" pattern="#,###" />원</h3>
-														</li>
-													</ul>
-												</div>
-													<div class="btn_area">
-														<button class="store_btn" onclick="cartList()">장바구니에 담기</button>
-														<button class="store_btn" onclick="storeOrder()">주문하기</button>
-													</div>
 												</div>
 											</div>
 										<div class="col-lg-12">
@@ -798,8 +837,8 @@
 										</div>
 									</div>
 									<br> <br>
+								</section>
 								</div>
-							</section>
 							<!-- Product Details Section End -->
 							<div id="styleSelector"></div>
 						</div>
@@ -882,8 +921,6 @@
 			<!-- footer 푸터 끝부분-->
 		</div>
 
-	</div>
-
 	<!-- Warning Section Ends -->
 
 	<!-- Required Jquery -->
@@ -909,7 +946,7 @@
 	<script src="/resources/js/vertical/vertical-layout.min.js "></script>
 
 	<script type="text/javascript" src="/resources/js/script.js "></script>
+	
 </body>
-
 
 </html>

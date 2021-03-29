@@ -57,8 +57,8 @@ font-size: 16px; color : #fff; border-radius: 2px; line-height: 42px;}
      color:#fff;
      border:none;
      position:relative;
-     height:20px;
-     font-size:0.8em;
+     height:25px;
+     font-size:1.0em;
      padding:0 2em;
      cursor:pointer;
      transition:800ms ease all;
@@ -87,6 +87,32 @@ font-size: 16px; color : #fff; border-radius: 2px; line-height: 42px;}
      width:100%;
      transition:800ms ease all;
    }
+   
+   .store_btn2 {
+	 border : 1px solid #faf3f4;
+	 background-color : #eeeeee;
+	 color : #000;
+	 border-radius: 25px;
+   }
+   
+    .store_btn2:hover{
+     background:#fff;
+     color:#ff6347;
+   }
+   
+   .store_input {
+     border : 1px solid #faf3f4;
+     text-align : center;
+   }
+   
+   .store_input2 {
+     border : 1px solid #faf3f4;
+     background-color : #faf3f4;
+     color: #ff6347;
+     font-weight: bold;
+     text-align : center;
+   }
+   	
 
 .scroll-top {
 	position: fixed;
