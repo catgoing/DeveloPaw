@@ -1,5 +1,7 @@
 package ga.bowwow.service.user.impl;
 
+import static org.junit.Assert.assertNotNull;
+
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -14,27 +16,55 @@ import ga.bowwow.service.user.UserGenericService;
 public class UserAccountServiceImpl implements UserGenericService<UserAccount> {
 	@Autowired
 	private UserAccountDAO userAccountDAO;
-
-	@Override
-	public void addUser(UserAccount vo) {
+	
+	public boolean loginAttemp(UserAccount userAccount) {
+		return isNotNull(userAccountDAO.verifyAccount(userAccount));
 	}
-
-	@Override
-	public void updateUser(UserAccount vo) {
+	public UserAccount searchUser(UserAccount userAccount) {
+		return userAccountDAO.searchUserAccount(userAccount);
 	}
-
-	@Override
-	public void deleteUser(UserAccount vo) {
+	private boolean isNotNull(Object object) {
+		return (object != null) ? true : false;
 	}
-
+	
+	
 	@Override
-	public UserAccount getUser(UserAccount vo) {
-		return null;
+	public boolean addUser(UserAccount userAccount) {
+		userAccountDAO.insertUserAccount(userAccount);
+		return isRegisterSuccess(userAccount);
 	}
-
 	@Override
-	public List<UserAccount> getUserList(UserAccount vo) {
+	public boolean updateUser(UserAccount userAccount) {
+		userAccountDAO.updateUserAccount(userAccount);
+		return isUserValueExist(userAccount);
+	}
+	@Override
+	public boolean deleteUser(UserAccount userAccount) {
+		userAccountDAO.deleteUserAccount(userAccount);
+		return isResignSuccess(userAccount);
+	}
+	@Override
+	public UserAccount getUser(UserAccount userAccount) {
+		return userAccountDAO.getUserAccount(userAccount);
+	}
+	@Override
+	public List<UserAccount> getUserList(UserAccount userAccount) {
 		return null;
 	}
 	
+	private boolean isUpdateSuccess(UserAccount userAccount, boolean expectBool) {
+		return isUserValueExist(userAccount) ? expectBool : !expectBool;
+	}
+	private boolean isResignSuccess(UserAccount userAccount) {
+		return isUpdateSuccess(userAccount, false);
+	}
+	private boolean isRegisterSuccess(UserAccount userAccount) {
+		return isUpdateSuccess(userAccount, true);
+	}
+	private boolean isUserValueExist(UserAccount userAccount) {
+		return userAccount.equals(searchUser(userAccount));
+	}
+	private UserAccount cleanUserAccount() {
+		return new UserAccount();
+	}
 }

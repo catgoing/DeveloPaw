@@ -7,7 +7,7 @@
 		<setting name="jdbcTypeForNull" value="NULL" />
 	</settings>
 	<typeAliases>
-		<typeAlias type="ga.bowwow.service.user.UserAccount" alias="userAccount"/>
+		<typeAlias type="ga.bowwow.service.user.UserAccount" alias="UserAccount"/>
 		<typeAlias type="ga.bowwow.service.board.Board" alias="Board"/>
 		<typeAlias type="ga.bowwow.service.pet.Pet" alias="pet"/>
 		<typeAlias type="ga.bowwow.service.store.Products" alias="Product"/>

@@ -26,10 +26,10 @@
  		</init-param>
  	</filter>
  	
- 	<!-- *.do에서 /로 변경 21.03.25 09:30 -->
+ 	<!-- *.do에서 /*로 변경 21.03.25 09:30 -->
  	<filter-mapping>
  		<filter-name>characterEncoding</filter-name>
- 		<url-pattern>/</url-pattern>
+ 		<url-pattern>/*</url-pattern>
  	</filter-mapping>
  	
 	<!-- Processes application requests -->

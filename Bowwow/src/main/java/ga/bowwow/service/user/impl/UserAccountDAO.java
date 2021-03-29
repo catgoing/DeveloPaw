@@ -17,15 +17,22 @@ public class UserAccountDAO {
 		System.out.println(">> UserAccountDAO() 객체생성");
 	}
 	public void insertUserAccount(UserAccount userAccount) {
-		mybatis.insert("UserAccountDAO.insertUserAccount", userAccount);
+//		mybatis.insert("UserAccount.insertUserAccount", userAccount);
+		mybatis.insert("UserAccount.insertTemporaryUserAccount", userAccount);
 	}
-//	public void updateUserAccount(UserAccount userAccount) {
-//		mybatis.update("UserAccountDAO.updateUserAccount", userAccount);
-//	}
+	public void updateUserAccount(UserAccount userAccount) {
+		mybatis.update("UserAccount.updateUserAccount", userAccount);
+	}
+	public void deleteUserAccount(UserAccount userAccount) {
+		mybatis.update("UserAccount.deleteUserAccount", userAccount);
+	}
 	public UserAccount getUserAccount(UserAccount userAccount) {
 		return mybatis.selectOne("UserAccount.getUserAccount", userAccount);
 	}
+	public UserAccount searchUserAccount(UserAccount userAccount) {
+		return mybatis.selectOne("UserAccount.searchUserAccount", userAccount);
+	}
 	public UserAccount verifyAccount(UserAccount userAccount) {
-		return mybatis.selectOne("UserAccount.verifyAccount", userAccount);
+		return mybatis.selectOne("UserAccount.loginValidation", userAccount);
 	}
 }

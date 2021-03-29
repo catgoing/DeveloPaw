@@ -7,7 +7,7 @@
                 <div class="col-sm-12">
                     <!-- Authentication card start -->
 
-                        <form class="md-float-material form-material" action="getUserAccount.do">
+                        <form class="md-float-material form-material" action="/account/login">
                             <div class="text-center">
                                 <img src="./resources/images/logo.png" alt="logo.png">
                             </div>
@@ -15,11 +15,11 @@
                                 <div class="card-block">
                                     <div class="row m-b-20">
                                         <div class="col-md-12">
-                                            <h3 class="text-center">로그인</h3>
+                                            <h3 class="text-center">개발바닥</h3>
                                         </div>
                                     </div>
                                     <div class="form-group form-primary">
-                                        <input type="text" name="id" class="form-control" value="${id }">
+                                        <input type="text" name="id" class="form-control" value="${userAccount.id }">
                                         <span class="form-bar"></span>
                                         <label class="float-label">아이디</label>
                                     </div>
