@@ -28,7 +28,8 @@ public class BoardDAO {
 	//글 입력
 	public void insertBoard(Board vo) {
 		System.out.println("===> MyBatis로 insertBoard() 실행");
-		mybatis.insert("BoardDAO.insertBoard", vo);
+//		mybatis.insert("BoardDAO.insertBoard", vo);
+		System.out.println("boarddao : " + vo);
 	}
 	
 	//글 수정

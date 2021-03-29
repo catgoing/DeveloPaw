@@ -16,6 +16,7 @@ public class Comment {
 	
 	private String comment_no;		//댓글 번호	
 	private String comment_no2;		//대댓글 번호
+	private String member_serial;		//대댓글 번호
 	private String nickname;		//회원 닉네임
 	private String board_no;		//게시판 번호
 	private String comment_content;	//댓글 내용

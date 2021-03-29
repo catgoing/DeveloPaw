@@ -9,7 +9,7 @@
 <script src="http://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.js"></script>
 <script src="http://netdna.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.js"></script>
 
-<script src="common/summernote/lang/summernote-ko-KR.js"></script>
+<script src="/common/summernote/lang/summernote-ko-KR.js"></script>
 <link href="http://cdnjs.cloudflare.com/ajax/libs/summernote/0.8.8/summernote.css" rel="stylesheet">
 <script src="http://cdnjs.cloudflare.com/ajax/libs/summernote/0.8.8/summernote.js"></script>
 
@@ -53,7 +53,7 @@ function uploadSummernoteImageFile(file, el) {
 	$.ajax({
 		data : data,
 		type : "POST",
-		url : "/community/uploadSummernoteImageFile.do",
+		url : "uploadSummernoteImageFile",
 		contentType : false,
 		enctype : 'multipart/form-data',
 		processData : false,
@@ -103,6 +103,7 @@ function uploadSummernoteImageFile(file, el) {
 	
 
   	<textarea id="summernote" name="board_content"></textarea>
+  	<input type="file" name="uploadImage">
 
   	<input type="submit" value="전송">
   		
