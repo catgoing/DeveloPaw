@@ -68,7 +68,7 @@ public class BoardController {
 		model.addAttribute("comment2List", comment2List);
 
 		return "/community/detail_board";
-		
+
 	}
 	
 
@@ -77,12 +77,19 @@ public class BoardController {
 	//뷰에 전달될 때 설정된 명칭(예: conditionMap)으로 전달
 	@RequestMapping("/community/search")
 	public String search(Board board ,Model model) {
+		String keyword = board.getKeyword();
 		System.out.println(">> 통합검색 - String search()");
 		System.out.println(board);
 		System.out.println("search vo:"+board.getKeyword());
-		board=boardService.search(board.getKeyword());
-		System.out.println("searchboard:" + board);
-		model.addAttribute("search",board);
+		List<Board> diarylist =boardService.search("1", keyword);
+		List<Board> introlist =boardService.search("2", keyword);
+		List<Board> knowhowlist =boardService.search("3", keyword);
+		System.out.println("searchboard:" + diarylist);
+		System.out.println("searchboard:" + introlist);
+		System.out.println("searchboard:" + knowhowlist);
+		model.addAttribute("diarylist",diarylist);
+		model.addAttribute("introlist",introlist);
+		model.addAttribute("knowhowlist",knowhowlist);
 		
 	
 		return "/community/search";
@@ -97,9 +104,8 @@ public class BoardController {
 		boardService.insertBoard(vo);
 
 		return "/community/list";
-
+		
 	}
-	
 
 	/*
 	@RequestMapping("updateBoard")

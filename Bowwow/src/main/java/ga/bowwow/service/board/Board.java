@@ -1,23 +1,25 @@
 package ga.bowwow.service.board;
 
+
+import lombok.Setter;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
-import lombok.Setter;
 import lombok.ToString;
 
-@Setter
+
 @Getter
 @NoArgsConstructor
 @AllArgsConstructor
 @ToString
+@Setter
 
 public class Board {
 	
 	private String board_no;		//게시판번호
 	private String board_title;		//게시판제목
 	private String member_serial;	//회원번호
-	private String id;	//회원번호
+	private String id;				//회원번호
 	private String goods;			//상품종류
 	private String board_content;	//게시판 내용
 	private String regdate;			//작성일
@@ -38,7 +40,8 @@ public class Board {
 	private String animal_class; 	//동물분류
 	
 	private String keyword;
-	
+
+
 	
 	
 }

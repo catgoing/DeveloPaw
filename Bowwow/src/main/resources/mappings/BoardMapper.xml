@@ -5,8 +5,8 @@
 <mapper namespace="BoardDAO">
 
 	<insert id="insertBoard" parameterType="board">
-		INSERT INTO DIARY_BOARD (BOARD_NO, BOARD_TITLE, MEMBER_SERIAL, BOARD_CONTENT,REGDATE,HITS,ANIMAL_CLASS) 
-		VALUES (DIARY_BOARD_SEQ.NEXTVAL, #{board_title}, 999, #{board_content}, SYSDATE, 0, #{animal_class})
+		INSERT INTO KNOWHOW_BOARD (BOARD_NO, BOARD_TITLE, MEMBER_SERIAL, BOARD_CONTENT,REGDATE,HITS,ANIMAL_CLASS) 
+		VALUES (INTRO_BOARD_SEQ.NEXTVAL, #{board_title}, 999, #{board_content}, SYSDATE, 0, #{animal_class})
 	</insert>
 	
 
@@ -56,12 +56,23 @@
 		AND C2.MEMBER_SERIAL = U.MEMBER_SERIAL
 	</select>
 	
-	<select id="search" parameterType="board" resultType="board">
-		SELECT BOARD_NO, BOARD_CONTENT,ANIMAL_CLASS
-		FROM DIARY_BOARD
-		WHERE 1=1 AND BOARD_TITLE LIKE '%'|| #{Keyword} ||'%'
-		
-	</select>
+	 <select id="search" parameterType="Map" resultType="board">
+		SELECT *
+		FROM 
+		<choose>
+			<when test='board.equals("1")'> 
+			DIARY_BOARD
+			</when>
+			<when test='board.equals("2")'> 
+			INTRO_BOARD 
+			</when>
+			<when test='board.equals("3")'> 
+			KNOWHOW_BOARD
+			</when>
+		</choose>
+			WHERE BOARD_CONTENT LIKE '%'||#{keyword}||'%'
+			OR  BOARD_TITLE LIKE '%'||#{keyword}||'%' 	
+	</select> 
 	
 	
 <!-- 	

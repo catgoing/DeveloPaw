@@ -11,8 +11,9 @@ public interface BoardService {
 	Board getBoard(Map<String, Integer> map);
 //	List<Board> getBoardList();
 
-	List<Board> getBoardList(int idx);
-	Board search(String keyword);
+	//List<Board> getBoardList(int idx);
+	
+	List<Board> search(String string, String keyword);
 
 	List<Board> getBoardList(Map<String, Integer> map);
 	List<Comment> getCommentList(Map<String, Integer> map);

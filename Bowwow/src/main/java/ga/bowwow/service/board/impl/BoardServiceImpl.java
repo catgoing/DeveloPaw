@@ -46,24 +46,24 @@ public class BoardServiceImpl implements BoardService{
 //	public List<Board> getBoardList() {
 //		return boardDAO.getBoardList();
 //	}
-
+	
 	@Override
 	public List<Board> getBoardList(Map<String, Integer> map) {
 		return boardDAO.getBoardList(map);
 	}
-	
+	//댓글
 	@Override
 	public List<Comment> getCommentList(Map<String, Integer> map) {
 		return boardDAO.getCommentList(map);
 	}
-
+	//대댓글
 	@Override
 	public List<Comment> getComment2List(Map<String, Integer> map) {
 		return boardDAO.getComment2List(map);
 	}
 	
-	public Board search(String keyword) {
-		return boardDAO.search(keyword);
+	public List<Board> search(String board, String keyword) {
+		return boardDAO.search(board, keyword);
 	}
 	
 
