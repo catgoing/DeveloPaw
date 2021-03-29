@@ -74,6 +74,10 @@
 	margin: auto;
 }
 </style>
+
+<script type="text/javascript">
+
+</script>
 </head>
 
 <body>
@@ -607,6 +611,22 @@
 														<button class="store_btn" href="insertCartlist">장바구니에 담기</button>
 														<button class="store_btn" href="#">주문하기</button>
 													</div>
+													<ul>
+														<li><a href="#"><span class="icon_heart_alt"></span></a></li>
+														<li><a href="#"><span class="icon_adjust-horiz"></span></a></li>
+													</ul>
+												</div>
+												<div class="product__details__widget">
+													<ul>
+														<li>
+															<h3>판매금액: <fmt:formatNumber value="${p.price }" pattern="#,###" />원</h3>
+														</li>
+													</ul>
+												</div>
+													<div class="btn_area">
+														<button class="store_btn" onclick="cartList()">장바구니에 담기</button>
+														<button class="store_btn" onclick="storeOrder()">주문하기</button>
+													</div>
 												</div>
 											</div>
 										<div class="col-lg-12">
@@ -765,7 +785,9 @@
 																	<td>${rList.review_image}</td>
 																</tr>
 																<tr>
-																	<th><button onclick="deleteReview(${rList.review_id})">삭제</button></th>
+																	<th>
+																		<button onclick="deleteReview(${rList.review_id})">삭제</button>
+																	</th>
 																</tr>
 															</table>
 															<br>
@@ -815,9 +837,9 @@
                 	var getMemValue = $('#member_serial').val();
                 	var getTitleValue = $('#review_title').val();
                 	var getContentValue = $('#review_content').val();
-                	
+
                 	var data = {'p_id' : p_id, 'member_serial' : getMemValue, 'review_title' : getTitleValue, 'review_content' : getContentValue};
-                	
+
                 	$.ajax({
                 		url : '/store/insertReview',
                 		type: 'POST',
@@ -828,11 +850,11 @@
 								/* $('#tabs-3').append('<table>'+
 														'<tr><th>리뷰번호</th><td>${rList.review_id}</td></tr>'+
 													'</table>'); */
-							} 
+							}
                     	}
                 	});
                 }
-                
+
                 function deleteReview(review_id) {
                 	console.log('리뷰아이디 : ' + review_id);
                 	var data = {"r_id": review_id};
