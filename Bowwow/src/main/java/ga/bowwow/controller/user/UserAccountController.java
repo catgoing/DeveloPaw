@@ -20,7 +20,12 @@ public class UserAccountController extends UserCRUDGenericController<UserAccount
 	
 	@RequestMapping(value="/getUserAccount")
 	public String getUserAccount(@ModelAttribute("userAccount") UserAccount userAccount) {
-		return "/myinfo";
+		return "/auth.myInfo";
+	}
+	
+	@RequestMapping(value="/signup")
+	public String userTermsConfirm() {
+		return "/auth.terms";
 	}
 
 	@Override
@@ -30,6 +35,6 @@ public class UserAccountController extends UserCRUDGenericController<UserAccount
 	
 	@RequestMapping(value="/ok")
 	public String okay() {
-		return "/auth";
+		return "/auth.login";
 	}
 }
