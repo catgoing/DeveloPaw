@@ -572,40 +572,50 @@
 												</div>
 											</div>
 										</div>
-										<div class="col-lg-6">
-											<div class="product__details__text">
-												<h3>${p.p_name }</h3>
-												<div class="product__details__button">
-													<div class="quantity">
-														<span>상품 수량</span>
-														<div class="pro-qty">
-															<input type="text" value="1">
+											<div class="col-lg-6">
+												<div class="product__details__text">
+													<h3 style="color : #000">${p.p_name }</h3>
+													<div class="product__details__button">
+														<div class="product__details__widget">
+															<ul>
+																<li>
+																	<h4>판매금액: ${p.price }원</h4>
+																</li>
+															</ul>
 														</div>
+														<div class="quantity">
+															<span>상품 수량</span>
+															<div class="pro-qty">
+																<input type="text" name="amount" value="1">
+															</div>
+															<br>
+														</div>
+
+														<div class="product__details__widget">
+															<ul>
+																<li>
+																	<h4>총 주문금액: ${p.price }원</h4>
+																</li>
+															</ul>
+														</div>
+														<ul>
+															<li><a href="#"><span class="icon_heart_alt"></span></a></li>
+															<li><a href="#"><span class="icon_adjust-horiz"></span></a></li>
+														</ul>
 													</div>
-													<a href="#" class="cart-btn"><span class="icon_bag_alt"></span>장바구니에
-														담기</a>
-													<ul>
-														<li><a href="#"><span class="icon_heart_alt"></span></a></li>
-														<li><a href="#"><span class="icon_adjust-horiz"></span></a></li>
-													</ul>
-												</div>
-												<div class="product__details__widget">
-													<ul>
-														<li>
-															<h3>판매금액: ${p.price }원</h3>
-														</li>
-													</ul>
+													<div class="btn_area">
+														<button class="store_btn" href="insertCartlist">장바구니에 담기</button>
+														<button class="store_btn" href="#">주문하기</button>
+													</div>
 												</div>
 											</div>
-										</div>
 										<div class="col-lg-12">
 											<div class="product__details__tab">
 												<ul class="nav nav-tabs" role="tablist">
 													<li class="nav-item"><a class="nav-link active"
 														data-toggle="tab" href="#tabs-1" role="tab">상세 정보</a></li>
 													<li class="nav-item"><a class="nav-link"
-														data-toggle="tab" href="#tabs-2" role="tab">Specification</a>
-													</li>
+														data-toggle="tab" href="#tabs-2" role="tab">리뷰 남기기</a></li>
 													<li class="nav-item"><a class="nav-link"
 														data-toggle="tab" href="#tabs-3" role="tab">상품 후기 ( 2
 															)</a></li>
@@ -617,48 +627,113 @@
 															alt="">
 													</div>
 													<div class="tab-pane" id="tabs-2" role="tabpanel">
-														<h6>Specification</h6>
-														<p>Nemo enim ipsam voluptatem quia voluptas sit
-															aspernatur aut odit aut loret fugit, sed quia
-															consequuntur magni dolores eos qui ratione voluptatem
-															sequi nesciunt loret. Neque porro lorem quisquam est, qui
-															dolorem ipsum quia dolor si. Nemo enim ipsam voluptatem
-															quia voluptas sit aspernatur aut odit aut loret fugit,
-															sed quia ipsu consequuntur magni dolores eos qui ratione
-															voluptatem sequi nesciunt. Nulla consequat massa quis
-															enim.</p>
-														<p>Lorem ipsum dolor sit amet, consectetuer adipiscing
-															elit. Aenean commodo ligula eget dolor. Aenean massa. Cum
-															sociis natoque penatibus et magnis dis parturient montes,
-															nascetur ridiculus mus. Donec quam felis, ultricies nec,
-															pellentesque eu, pretium quis, sem.</p>
+														<h6>리뷰</h6>
+														<div class="tab-pane fade show active" id="review"
+															role="tabpanel" aria-labelledby="review-tab">
+															<div class="row">
+																<div class="col-lg-6">
+
+																	<div class="review_list">
+																		<div class="review_item">
+																			<div class="media">
+																				<div class="d-flex">
+																					<img src="img/product/single-product/review-2.png"
+																						alt="" />
+																				</div>
+																				<div class="media-body">
+																					<h4>Blake Ruiz</h4>
+																					<i class="fa fa-star"></i> <i class="fa fa-star"></i>
+																					<i class="fa fa-star"></i> <i class="fa fa-star"></i>
+																					<i class="fa fa-star"></i>
+																				</div>
+																			</div>
+																			<p>${rList.review_content}</p>
+																		</div>
+																		<div class="review_item">
+																			<div class="media">
+																				<div class="d-flex">
+																					<img src="img/product/single-product/review-3.png"
+																						alt="" />
+																				</div>
+																				<div class="media-body">
+																					<h4>Blake Ruiz</h4>
+																					<i class="fa fa-star"></i> <i class="fa fa-star"></i>
+																					<i class="fa fa-star"></i> <i class="fa fa-star"></i>
+																					<i class="fa fa-star"></i>
+																				</div>
+																			</div>
+																			<p>Lorem ipsum dolor sit amet, consectetur
+																				adipisicing elit, sed do eiusmod tempor incididunt
+																				ut labore et dolore magna aliqua. Ut enim ad minim
+																				veniam, quis nostrud exercitation ullamco laboris
+																				nisi ut aliquip ex ea commodo</p>
+																		</div>
+																	</div>
+																</div>
+																<div class="col-lg-6">
+																	<div class="review_box">
+																		<h4>리뷰 작성하기</h4>
+																		<form class="row contact_form"
+																			action="contact_process.php" method="post"
+																			id="contactForm">
+																			<div class="col-md-12">
+																				<div class="form-group">
+																					<input type="text" class="form-control" id="name"
+																						name="name" placeholder="Your Full name" />
+																				</div>
+																			</div>
+																			<div class="col-md-12">
+																				<div class="form-group">
+																					<input type="text" class="form-control" id="number"
+																						name="number" placeholder="후기 제목을 입력하세요" />
+																				</div>
+																			</div>
+																			<div class="col-md-12">
+																				<div class="form-group">
+																					<textarea class="form-control" name="message"
+																						id="message" rows="2" placeholder="후기 내용을 입력하세요"></textarea>
+																				</div>
+																			</div>
+																			<div class="col-md-12 text-right">
+																				<button type="submit" value="submit"
+																					class="btn submit_btn">작성하기</button>
+																			</div>
+																		</form>
+																	</div>
+																</div>
+															</div>
+														</div>
 													</div>
 													<div class="tab-pane" id="tabs-3" role="tabpanel">
 														<h6>상품 후기 ( 2 )</h6>
-													
-															<table>
-																<tr>
-																	<th>상품번호</th>
-																	<td><input type="text" id="p_id" name="p_id" value="${p.p_id}"></td>
-																</tr>
-																<tr>
-																	<th>회원번호</th>
-																	<td><input type="text" id="member_serial" name="member_serial" value=999></td>
-																</tr>
-																<tr>
-																	<th>리뷰 제목</th>
-																	<td><input type="text" id="review_title" name="review_title"></td>
-																</tr>
-																<tr>
-																	<th>리뷰 내용</th>
-																	<td><input type="text" id="review_content" name="review_content"></td>
-																</tr>
-																<tr>
-																	<th></th>
-																	<td><button onclick="insertReview(${p.p_id})">작성</button></td>
-																</tr>
-															</table>
-										
+
+														<table>
+															<tr>
+																<th>상품번호</th>
+																<td><input type="text" id="p_id" name="p_id"
+																	value="${p.p_id}"></td>
+															</tr>
+															<tr>
+																<th>회원번호</th>
+																<td><input type="text" id="member_serial"
+																	name="member_serial" value=999></td>
+															</tr>
+															<tr>
+																<th>리뷰 제목</th>
+																<td><input type="text" id="review_title"
+																	name="review_title"></td>
+															</tr>
+															<tr>
+																<th>리뷰 내용</th>
+																<td><input type="text" id="review_content"
+																	name="review_content"></td>
+															</tr>
+															<tr>
+																<th></th>
+																<td><button onclick="insertReview(${p.p_id})">작성</button></td>
+															</tr>
+														</table>
+
 														<c:forEach var="rList" items="${reviewList}">
 															<table id="rList_${rList.review_id}">
 																<tr>

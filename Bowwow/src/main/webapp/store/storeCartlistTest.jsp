@@ -1,6 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <!DOCTYPE html>
 <html>
 
@@ -563,6 +563,7 @@
                                 </tr>
                             </thead>
                             <tbody>
+                            	<c:forEach var="cList" items="${cartList }"></c:forEach>
                                 <tr>
                                     <td class="cart__product__item">
                                         <img src="img/shop-cart/cp-1.jpg" alt="">
@@ -593,7 +594,7 @@
                                         </div>
                                     </td>
                                     <td class="cart__total">$ 170.0</td>
-                                    <td class="cart__close"><span class="icon_close"></span></td>
+                                    <td class="cart__close"><button onclick="deleteCartlist(${rList.review_id})"></td>
                                 </tr>
                                 <tr>
                                     <td class="cart__product__item">
