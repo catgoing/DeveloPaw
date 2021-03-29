@@ -1,8 +1,11 @@
 package ga.bowwow.controller.pet;
 
+import java.io.UnsupportedEncodingException;
+import java.net.URLDecoder;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpRequest;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -12,11 +15,13 @@ import org.springframework.web.bind.annotation.SessionAttributes;
 
 import com.google.gson.Gson;
 
+import freemarker.template.utility.StringUtil;
 import ga.bowwow.service.pet.Pet;
 import ga.bowwow.service.pet.PetService;
 
 @Controller
 @SessionAttributes("petList") //pet이라는 model을 세션에 저장
+//@RequestMapping(value = "/mypage")
 public class PetController {
 	
 	@Autowired
@@ -31,7 +36,7 @@ public class PetController {
 		return "myPageMain";
 	}
 	
-	@RequestMapping(value = "/mypage/getPetInfoList3")
+	@RequestMapping(value = "/getPetInfoList3")
 	public String getPetInfoList(Pet pet, Model model) {
 		System.out.println("....> 반려동물 리스트를 가져옵니다");
 		
@@ -43,13 +48,13 @@ public class PetController {
 		model.addAttribute("petList", petList);
 		System.out.println("pet리스트를 넘겨줄게요~");
 		
-		return "myPetInfoList3";
+		return "/mypage/myPetInfoList3";
 	}
 	
 	//ajax이용 - 상세정보
 	//produces = "application/text; charset=UTF-8" 
-	// - 가져온 데이터 전송시 한글깨짐방지
-	@RequestMapping(value= "/ajaxGetPetInfo", 
+	// - 리턴데이터 전송시 한글깨짐방지
+	@RequestMapping(value= "/ajaxGetPetInfo", method=RequestMethod.POST,
 			produces = "application/text; charset=UTF-8")
 	@ResponseBody
 	public String ajaxGetPetInfo(Pet pet) {
@@ -66,19 +71,19 @@ public class PetController {
 		return petDetail;		
 	}
 	
-	//ajax이용
-	@RequestMapping(value="/insertPetInfo", method = RequestMethod.POST)
-	public int ajaxInsertPetInfo(Pet pet) {
-		System.out.println("ajax 반려동물 정보 입력");
-		System.out.println("pet:"+ pet);
-				
-		return petService.insertPetInfo(pet);		
+	@RequestMapping(value="/insertPetInfo", method=RequestMethod.POST, produces = "application/json; charset=UTF-8")
+	public String InsertPetInfo(Pet pet) throws UnsupportedEncodingException {
+		System.out.println("> 반려동물 정보 입력");
+		System.out.println("들어온 pet:"+ pet);
+		
+		petService.insertPetInfo(pet);
+		
+		return "/mypage/myPetInfoList3";		
 	}
 	
-	//ajax이용	
-	@RequestMapping("/updatePetInfo")
-	public int ajaxUpdatePetInfo(Pet pet, Model model) {
-		System.out.println("ajax 반려동물 정보 수정");
+	@RequestMapping(value="/updatePetInfo", method=RequestMethod.POST)
+	public int UpdatePetInfo(Pet pet, Model model) {
+		System.out.println("반려동물 정보 수정");
 		System.out.println("pet:"+ pet);
 		
 		return petService.updatePetInfo(pet);

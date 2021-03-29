@@ -311,7 +311,7 @@
 			     <ul class="pcoded-item pcoded-left-item">
 			         <li class="">
 			          <!-- 회원번호(memberSerial)을 이용해서 내 정보 출력 -->
-			             <a href="myInfo.jsp?member_serial=${user.memberSerial }" class="waves-effect waves-dark">
+			             <a href="myInfo?member_serial=${user.memberSerial }" class="waves-effect waves-dark">
 			             <%-- <a href="getMyInfo?member_serial=${user.memberSerial }" class="waves-effect waves-dark"> --%>
 			                 <span class="pcoded-micon">
 			                     <!-- <i class="ti-id-badge"></i><b>A</b> -->
@@ -323,7 +323,7 @@
 			     </ul>
 			     <ul class="pcoded-item pcoded-left-item">
 			         <li class="">
-			             <a href="getPetInfoList3?member_serial=${user.memberSerial }" class="waves-effect waves-dark">
+			             <a href="/getPetInfoList3?member_serial=${user.memberSerial }" class="waves-effect waves-dark">
 			             <!-- <a href="getPetInfoList3" class="waves-effect waves-dark"> -->
 			                 <span class="pcoded-micon">
 			                     <!-- <i class="ti-id-badge"></i><b>A</b> -->
