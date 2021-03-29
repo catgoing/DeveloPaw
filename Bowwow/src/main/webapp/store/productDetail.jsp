@@ -53,6 +53,10 @@
   .featured__item__text { width: 150px; }
   .detailProduct { display:block; margin:auto;}
 </style>
+
+<script type="text/javascript">
+	
+</script>
 </head>
 
 <body>
@@ -590,8 +594,6 @@
 															<input type="text" value="1">
 														</div>
 													</div>
-													<a href="#" class="cart-btn"><span class="icon_bag_alt"></span>장바구니에
-														담기</a>
 													<ul>
 														<li><a href="#"><span class="icon_heart_alt"></span></a></li>
 														<li><a href="#"><span class="icon_adjust-horiz"></span></a></li>
@@ -600,12 +602,16 @@
 												<div class="product__details__widget">
 													<ul>
 														<li>
-															<h3>판매금액: ${p.price }원</h3>
+															<h3>판매금액: <fmt:formatNumber value="${p.price }" pattern="#,###" />원</h3>
 														</li>
 													</ul>
 												</div>
+													<div class="btn_area">
+														<button class="store_btn" onclick="cartList()">장바구니에 담기</button>
+														<button class="store_btn" onclick="storeOrder()">주문하기</button>
+													</div>
+												</div>
 											</div>
-										</div>
 										<div class="col-lg-12">
 											<div class="product__details__tab">
 												<ul class="nav nav-tabs" role="tablist">
@@ -698,12 +704,13 @@
 																	<td>${rList.review_image}</td>
 																</tr>
 																<tr>
-																	<button onclick="deleteReview(${rList.review_id})">삭제</button>
+																	<th>
+																		<button onclick="deleteReview(${rList.review_id})">삭제</button>
+																	</th>
 																</tr>
 															</table>
 															<br>
 														</c:forEach>
-														</table>
 													</div>
 												</div>
 											</div>
