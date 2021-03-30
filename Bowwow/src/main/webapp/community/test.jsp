@@ -9,7 +9,6 @@
 <script src="http://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.js"></script>
 <script src="http://netdna.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.js"></script>
 
-<script src="/common/summernote/lang/summernote-ko-KR.js"></script>
 <link href="http://cdnjs.cloudflare.com/ajax/libs/summernote/0.8.8/summernote.css" rel="stylesheet">
 <script src="http://cdnjs.cloudflare.com/ajax/libs/summernote/0.8.8/summernote.js"></script>
 
@@ -24,31 +23,60 @@
 	th { background-color: orange; }
 	.center { text-align: center; }
 	.border-none, .border-none td { border: none; }
+	
+	.thum_select::after {
+  content: "";
+  clear: both;
+  display: table;
+}
+
+.radio-container {
+  float: left;
+  width: 33.33%;
+  padding: 5px;
+}
+
 </style>
 <script>
 
 
-
-
 $(function() {
+	console.log("start");
+	imageChangeCheck();
+});
+
+ $(function() {
 	$('#summernote').summernote({
 		 	placeholder: '최대 500자 작성 가능합니다.',
 	        height: 300,
 	        lang: 'ko-KR'
 	        , callbacks : {
             	onImageUpload : function(files, editor, welEditable) {
-            // 파일 업로드(다중업로드를 위해 반복문 사용)
-            for (var i = files.length - 1; i >= 0; i--) {
-            uploadSummernoteImageFile(files[i],
-            this);
-            		}
-            	}
+          	
+	           		// 파일 업로드(다중업로드를 위해 반복문 사용)
+		            for (var i = files.length - 1; i >= 0; i--) {
+			            uploadSummernoteImageFile(files[i], this);
+	            	}	
+            	},
+            	
+        	    onChange: function(contents, $editable) {
+        		      /* console.log('onChange:', contents, $editable); */
+        		      imageChangeCheck();
+        		    }
+	
+	
             }
-
+	
 	 });
-});
+}); 
+ 
+$('#summernote').on('summernote.change', function(we, contents, $editable) {
+	  console.log('summernote\'s content is changed.');
+	});
+
 
 function uploadSummernoteImageFile(file, el) {
+	
 	data = new FormData();
 	data.append("file", file);
 	$.ajax({
@@ -60,9 +88,39 @@ function uploadSummernoteImageFile(file, el) {
 		processData : false,
 		success : function(data) {
 			$(el).summernote('editor.insertImage', data.url);
-		}
+			
+			/* imageChangeCheck(); */
+/* 			$("#thum_select").append('<div class="radio-container" style="text-align:center">');
+	  		$("#thum_select").append('<input type="radio" style="text-align:center" class="thum" name="img1" value="'+ data.url + '"/>');
+
+	  		$("#thum_select").append('<img style="width:200px" src="'+ data.url + '"/>');
+	  		$("#thum_select").append('</div>'); */
+		    
+		}, 
 	});
 }
+
+function imageChangeCheck(){
+/* 	var $img1 = $("div img");
+	console.log($img1);
+	var imgar = new Array();
+	 console.log($img1.length);
+	 console.log($img1);
+	for (var n = 0; n < $img1.length ; n++){
+		imgar.push($img1[0].arrt("src"));
+		console.log(imgar[n]);
+	} */
+	
+	$("p").find('img').each(function(){
+		console.log($(this).attr('src'));
+		
+		});
+	
+	/* var img1 = new Array();
+	img1 =  document.getElementsByTagName("img").src;
+	console.log(img1); */
+}
+
 
 
 </script>
@@ -103,13 +161,20 @@ function uploadSummernoteImageFile(file, el) {
 	
 	
 
-  	<textarea id="summernote" name="board_content"></textarea>
+  	<textarea id="summernote" name="board_content" ></textarea>
   	<input type="file" name="uploadImage">
+  	
+  	<div class="thum_select" id="thum_select" style="float:left;, padding: 500px;">
 
-  	<input type="submit" value="전송">
   		
+  	</div>
+  	<br><br>
+	<div style="text-align:center">
+  	<input type="submit" value="전송">
+	</div>
   		
 	</form>
+	<input type="button" value="체크" onclick="imageChangeCheck()"/>
 
 </div>
 
