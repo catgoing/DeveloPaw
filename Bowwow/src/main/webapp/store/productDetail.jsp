@@ -82,45 +82,50 @@
 
 		var sell_price;
 		var amount;
-
+		
 		$(function init () {
 			sell_price = document.getElementById('sell_price').value;
-			document.getElementById('sum').value = sell_price;
+			document.getElementById('sum').value = sell_price.replace(/\B(?=(\d{3})+(?!\d))/g, ",");
 			sell_price = document.form.sell_price.value;
 			amount = document.form.amount.value;
 			document.form.sum.value = sell_price;
-			change();
 		});
-
+		
 		function add () {
 			hm = document.form.amount;
 			sum = document.form.sum;
 			hm.value ++ ;
-
-			document.getElementById('sum').value = parseInt(hm.value) * sell_price;
+			
+			var temp = parseInt(hm.value) * sell_price
+		
+			document.getElementById('sum').value = temp;
+			document.getElementById('sum').value = document.getElementById('sum').value.replace(/\B(?=(\d{3})+(?!\d))/g, ",");
 		}
-
+		
 		function del () {
 			hm = document.form.amount;
 			sum = document.form.sum;
 				if (hm.value > 1) {
 					hm.value -- ;
-					document.getElementById('sum').value = parseInt(hm.value) * sell_price;
+					var temp = parseInt(hm.value) * sell_price
+					
+					document.getElementById('sum').value = temp;
+					document.getElementById('sum').value = document.getElementById('sum').value.replace(/\B(?=(\d{3})+(?!\d))/g, ",");
 				}
-
+				
 		}
-
-		function change () {
+		
+		function changeValue(){
 			hm = document.form.amount;
 			sum = document.form.sum;
-
-				if (hm.value < 0) {
-					hm.value = 0;
-				}
-			sum.value = parseInt(hm.value) * sell_price;
+			
+			var temp = parseInt(hm.value) * sell_price
+		
+			document.getElementById('sum').value = temp;
+			document.getElementById('sum').value = document.getElementById('sum').value.replace(/\B(?=(\d{3})+(?!\d))/g, ",");
 		}
+		
 </script>
-
 
 </head>
 
@@ -633,31 +638,28 @@
 														</div>
 														<div class="quantity">
 															<div class="pro-qty">
-															<form name="form" method="POST">
+															<form name="form" onsubmit="return false;" method="POST">
 																<h5> 상품 수량 :
 																	<input type="hidden" id="sell_price" value="${p.price }">
 																	<input type="button" class="store_btn2" value=" - " onclick="del()">
-																	<input type="text" class="store_input" name="amount" value="1" size="3" onchange="change();">
+																	<input type="text" class="store_input" autocomplete="off" min="1" name="amount" value="1" size="3" onchange="changeValue();">
 																	<input type="button" class="store_btn2" value=" + " onclick="add()">
 																</h5>
 															</form>
 															</div>
 															<br>
 														</div>
-														<br>
-													</div>
 
 														<div class="product__details__widget">
 															<ul>
 																<li>
-																	<h4>총 상품금액: <input type="text" class="store_input2" size="7" id="sum" readonly>원</h4>
+																	<h4>총 상품금액: <input type="text" class="store_input2" size="10" id="sum" readonly>원</h4>
 																</li>
 															</ul>
 														</div>
 														<ul>
-															<li>
-																<h4>총 주문금액: ${p.price }원</h4>
-															</li>
+															<li><a href="#"><span class="icon_heart_alt"></span></a></li>
+															<li><a href="#"><span class="icon_adjust-horiz"></span></a></li>
 														</ul>
 													</div>
 													<div class="btn_area">
@@ -670,186 +672,171 @@
 													</ul>
 												</div>
 												</div>
-												<ul>
-													<li><a href="#"><span class="icon_heart_alt"></span></a></li>
-													<li><a href="#"><span class="icon_adjust-horiz"></span></a></li>
+											</div>
+										<div class="col-lg-12">
+											<div class="product__details__tab">
+												<ul class="nav nav-tabs" role="tablist">
+													<li class="nav-item"><a class="nav-link active"
+														data-toggle="tab" href="#tabs-1" role="tab">상세 정보</a></li>
+													<li class="nav-item"><a class="nav-link"
+														data-toggle="tab" href="#tabs-2" role="tab">리뷰 남기기</a></li>
+													<li class="nav-item"><a class="nav-link"
+														data-toggle="tab" href="#tabs-3" role="tab">상품 후기 ( 2
+															)</a></li>
 												</ul>
-											</div>
-											<div class="product__details__widget">
-												<ul>
-													<li>
-														<h3>
-															판매금액:
-															<fmt:formatNumber value="${p.price }" pattern="#,###" />
-															원
-														</h3>
-													</li>
-												</ul>
-											</div>
-											<div class="btn_area">
-												<button class="store_btn" onclick="cartList()">장바구니에
-													담기</button>
-												<button class="store_btn" onclick="storeOrder()">주문하기</button>
-											</div>
-										</div>
-									</div>
-									<div class="col-lg-12">
-										<div class="product__details__tab">
-											<ul class="nav nav-tabs" role="tablist">
-												<li class="nav-item"><a class="nav-link active"
-													data-toggle="tab" href="#tabs-1" role="tab">상세 정보</a></li>
-												<li class="nav-item"><a class="nav-link"
-													data-toggle="tab" href="#tabs-2" role="tab">리뷰 남기기</a></li>
-												<li class="nav-item"><a class="nav-link"
-													data-toggle="tab" href="#tabs-3" role="tab">상품 후기 ( 2 )</a></li>
-											</ul>
-											<div class="tab-content">
-												<div class="tab-pane active" id="tabs-1" role="tabpanel" style="margin: 30px;">
-													<img class="detailProduct"
-														src="https://projectbit.s3.us-east-2.amazonaws.com/${imgDir }/${p.l_image }"
-														alt="">
-												</div>
-												<div class="tab-pane" id="tabs-2" role="tabpanel" style="margin : 30px;">
-													<div class="tab-pane fade show active" id="review"
-														role="tabpanel" aria-labelledby="review-tab" >
-														<div class="row">
-															<div class="col-lg-6">
-																<div class="review_list">
-																	<c:forEach var="rList" items="${reviewList}">
-																		<div id="rList_${rList.review_id}" class="review_item">
-																			<div class="media" style="border : 2px solid white;">
-																				<form style="margin : 10px;">
-																					<div class="d-flex">
-																						<img src="img/product/single-product/review-2.png"
-																							alt="" />
-																					</div>
-																					<div class="media-body">
-																						<h4>작성자 닉네임</h4>
-																						<p>${rList.review_regdate}</p>
-																					</div>
-																					<div>
-																						<p>${rList.review_title}</p>
-																						<p>${rList.review_content}</p>
-																					</div>
-																					<div>
-																						<button class="store_btn" onclick="deleteReview(${rList.review_id})">삭제</button>
-																					</div>
-																				</form>
+												<div class="tab-content">
+													<div class="tab-pane active" id="tabs-1" role="tabpanel" style="margin: 30px;">
+														<img class="detailProduct"
+															src="https://projectbit.s3.us-east-2.amazonaws.com/${imgDir }/${p.l_image }"
+															alt="">
+													</div>
+													<div class="tab-pane" id="tabs-2" role="tabpanel">
+														<h6>리뷰</h6>
+														<div class="tab-pane fade show active" id="review"
+															role="tabpanel" aria-labelledby="review-tab">
+															<div class="row">
+																<div class="col-lg-6">
+
+																	<div class="review_list">
+																		<div class="review_item">
+																			<div class="media">
+																				<div class="d-flex">
+																					<img src="img/product/single-product/review-2.png"
+																						alt="" />
+																				</div>
+																				<div class="media-body">
+																					<h4>Blake Ruiz</h4>
+																					<i class="fa fa-star"></i> <i class="fa fa-star"></i>
+																					<i class="fa fa-star"></i> <i class="fa fa-star"></i>
+																					<i class="fa fa-star"></i>
+																				</div>
 																			</div>
+																			<p>${rList.review_content}</p>
 																		</div>
-																	</c:forEach>
+																		<div class="review_item">
+																			<div class="media">
+																				<div class="d-flex">
+																					<img src="img/product/single-product/review-3.png"
+																						alt="" />
+																				</div>
+																				<div class="media-body">
+																					<h4>Blake Ruiz</h4>
+																					<i class="fa fa-star"></i> <i class="fa fa-star"></i>
+																					<i class="fa fa-star"></i> <i class="fa fa-star"></i>
+																					<i class="fa fa-star"></i>
+																				</div>
+																			</div>
+																			<p>Lorem ipsum dolor sit amet, consectetur
+																				adipisicing elit, sed do eiusmod tempor incididunt
+																				ut labore et dolore magna aliqua. Ut enim ad minim
+																				veniam, quis nostrud exercitation ullamco laboris
+																				nisi ut aliquip ex ea commodo</p>
+																		</div>
+																	</div>
 																</div>
-															</div>
-															<div class="col-lg-6">
-																<div class="review_box">
-																	<h4>리뷰 작성하기</h4>
-																	<form class="row contact_form" id="contactForm">
-																		<div class="col-md-6">
-																			<div class="form-group">
-																				<input type="text" class="form-control" id="p_id"
-																					name="p_id" value="${p.p_id}" />
+																<div class="col-lg-6">
+																	<div class="review_box">
+																		<h4>리뷰 작성하기</h4>
+																		<form class="row contact_form"
+																			action="contact_process.php" method="post"
+																			id="contactForm">
+																			<div class="col-md-12">
+																				<div class="form-group">
+																					<input type="text" class="form-control" id="name"
+																						name="name" placeholder="Your Full name" />
+																				</div>
 																			</div>
-																		</div>
-																		<div class="col-md-6">
-																			<div class="form-group">
-																				<input type="text" class="form-control"
-																					id="member_serial" name="member_serial" value=999 />
+																			<div class="col-md-12">
+																				<div class="form-group">
+																					<input type="text" class="form-control" id="number"
+																						name="number" placeholder="후기 제목을 입력하세요" />
+																				</div>
 																			</div>
-																		</div>
-																		<div class="col-md-12">
-																			<div class="form-group">
-																				<input type="text" class="form-control"
-																					id="review_title" name="review_title"
-																					placeholder="후기 제목을 입력하세요" />
+																			<div class="col-md-12">
+																				<div class="form-group">
+																					<textarea class="form-control" name="message"
+																						id="message" rows="2" placeholder="후기 내용을 입력하세요"></textarea>
+																				</div>
 																			</div>
-																		</div>
-																		<div class="col-md-12">
-																			<div class="form-group">
-																				<textarea class="form-control" style="resize: none;" name="review_content"
-																					id="review_content" rows="2"
-																					placeholder="후기 내용을 입력하세요"></textarea>
+																			<div class="col-md-12 text-right">
+																				<button type="submit" value="submit"
+																					class="btn submit_btn">작성하기</button>
 																			</div>
-																		</div>
-																		<div class="col-md-12 text-right">
-																			<button onclick="insertReview(${p.p_id})"
-																				class="store_btn">작성하기</button>
-																		</div>
-																	</form>
+																		</form>
+																	</div>
 																</div>
 															</div>
 														</div>
 													</div>
-												</div>
+													<div class="tab-pane" id="tabs-3" role="tabpanel">
+														<h6>상품 후기 ( 2 )</h6>
 
-												<div class="tab-pane" id="tabs-3" role="tabpanel">
-													<h6>상품 후기 ( 2 )</h6>
-
-													<table>
-														<tr>
-															<th>상품번호</th>
-															<td><input type="text" id="p_id" name="p_id"
-																value="${p.p_id}"></td>
-														</tr>
-														<tr>
-															<th>회원번호</th>
-															<td><input type="text" id="member_serial"
-																name="member_serial" value=999></td>
-														</tr>
-														<tr>
-															<th>리뷰 제목</th>
-															<td><input type="text" id="review_title"
-																name="review_title"></td>
-														</tr>
-														<tr>
-															<th>리뷰 내용</th>
-															<td><input type="text" id="review_content"
-																name="review_content"></td>
-														</tr>
-														<tr>
-															<th></th>
-															<td><button onclick="insertReview(${p.p_id})">작성</button></td>
-														</tr>
-													</table>
-
-													<c:forEach var="rList" items="${reviewList}">
-														<table id="rList_${rList.review_id}">
-															<tr>
-																<th>리뷰번호</th>
-																<td>${rList.review_id}</td>
-															</tr>
+														<table>
 															<tr>
 																<th>상품번호</th>
-																<td>${rList.p_id}</td>
+																<td><input type="text" id="p_id" name="p_id"
+																	value="${p.p_id}"></td>
 															</tr>
 															<tr>
 																<th>회원번호</th>
-																<td>${rList.member_serial}</td>
+																<td><input type="text" id="member_serial"
+																	name="member_serial" value=999></td>
 															</tr>
 															<tr>
-																<th>리뷰제목</th>
-																<td>${rList.review_title}</td>
+																<th>리뷰 제목</th>
+																<td><input type="text" id="review_title"
+																	name="review_title"></td>
 															</tr>
 															<tr>
 																<th>리뷰 내용</th>
-																<td>${rList.review_content}</td>
+																<td><input type="text" id="review_content"
+																	name="review_content"></td>
 															</tr>
 															<tr>
-																<th>리뷰 작성일</th>
-																<td>${rList.review_regdate}</td>
-															</tr>
-															<tr>
-																<th>리뷰 이미지</th>
-																<td>${rList.review_image}</td>
-															</tr>
-															<tr>
-																<th>
-																	<button onclick="deleteReview(${rList.review_id})">삭제</button>
-																	<a href="updateTest?review_id=${rList.review_id }"><button>수정</button></a>
-																</th>
+																<th></th>
+																<td><button onclick="insertReview(${p.p_id})">작성</button></td>
 															</tr>
 														</table>
-														<br>
-													</c:forEach>
+
+														<c:forEach var="rList" items="${reviewList}">
+															<table id="rList_${rList.review_id}">
+																<tr>
+																	<th>리뷰번호</th>
+																	<td>${rList.review_id}</td>
+																</tr>
+																<tr>
+																	<th>상품번호</th>
+																	<td>${rList.p_id}</td>
+																</tr>
+																<tr>
+																	<th>회원번호</th>
+																	<td>${rList.member_serial}</td>
+																</tr>
+																<tr>
+																	<th>리뷰제목</th>
+																	<td>${rList.review_title}</td>
+																</tr>
+																<tr>
+																	<th>리뷰 내용</th>
+																	<td>${rList.review_content}</td>
+																</tr>
+																<tr>
+																	<th>리뷰 작성일</th>
+																	<td>${rList.review_regdate}</td>
+																</tr>
+																<tr>
+																	<th>리뷰 이미지</th>
+																	<td>${rList.review_image}</td>
+																</tr>
+																<tr>
+																	<th>
+																		<button onclick="deleteReview(${rList.review_id})">삭제</button>
+																	</th>
+																</tr>
+															</table>
+															<br>
+														</c:forEach>
+													</div>
 												</div>
 											</div>
 										</div>
@@ -860,19 +847,15 @@
 							<!-- Product Details Section End -->
 							<div id="styleSelector"></div>
 						</div>
-						</section>
-						<!-- Product Details Section End -->
-						<div id="styleSelector"></div>
 					</div>
 				</div>
 			</div>
 		</div>
-	</div>
-	<button class="scroll-top" id="js-button"
-		style="margin-bottom: 190px; margin-right: 30px; font: 'Jua'">
-		<i class="fa fa-chevron-up" aria-hidden="true">TOP</i>
-	</button>
-	<script type="text/javascript">
+		<button class="scroll-top" id="js-button"
+			style="margin-bottom: 190px; margin-right: 30px; font: 'Jua'">
+			<i class="fa fa-chevron-up" aria-hidden="true">TOP</i>
+		</button>
+		<script type="text/javascript">
                 scrollTop('js-button', 500);
                 function scrollTop(elem,duration) {
                     let target = document.getElementById(elem);
@@ -893,19 +876,13 @@
                         }
                     });
                 }
-
                 function insertReview(p_id) {
                 	console.log('상품번호 : ' + p_id);
-                	//var getReviewId = $('#review_id').val();
-                	var getProductId = $('#p_id').val();
                 	var getMemValue = $('#member_serial').val();
                 	var getTitleValue = $('#review_title').val();
                 	var getContentValue = $('#review_content').val();
-                	//var getRegdate = $('#review_regdate').val();
-                	var getReviewImage = $('#review_image').val();
 
-                	var data = {'p_id' : getProductId, 'member_serial' : getMemValue, 'review_title' : getTitleValue,
-                				'review_content' : getContentValue,'review_image' : getReviewImage};
+                	var data = {'p_id' : p_id, 'member_serial' : getMemValue, 'review_title' : getTitleValue, 'review_content' : getContentValue};
 
                 	$.ajax({
                 		url : '/store/insertReview',
@@ -914,37 +891,9 @@
                         success: function(data){
 							console.log(data)
 							 if(data) {
-/* 						$('#tabs-3').append('<table>'+
-														'<tr><th>상품번호</th><td>'+p_id+'</td></tr>'+
-														'<tr><th>회원번호</th><td>'+member_serial+'</td></tr>'+
-														'<tr><th>리뷰제목</th><td>'+review_title+'</td></tr>'+
-														'<tr><th>리뷰내용</th><td>'+review_content+'</td></tr>'+
-
-														'<tr><th>리뷰 이미지</th><td>'+review_image+'</td></tr>'+
+								/* $('#tabs-3').append('<table>'+
+														'<tr><th>리뷰번호</th><td>${rList.review_id}</td></tr>'+
 													'</table>'); */
-							}
-                    	}
-                	});
-                }
-
-                function updateReview(review_id) {
-                	console.log('리뷰아이디 : ' + review_id);
-                	var data = {"r_id": review_id};
-                	$.ajax({
-                        url: '/store/updateReview',
-                        type: 'POST',
-                        data: data,
-                        success: function(data){
-							console.log('?? ' + data)
-							if(data == "success") {
-/* 						$('#tabs-3').append('<table>'+
-								'<tr><th>상품번호</th><td>'+p_id+'</td></tr>'+
-								'<tr><th>회원번호</th><td>'+member_serial+'</td></tr>'+
-								'<tr><th>리뷰제목</th><td>'+review_title+'</td></tr>'+
-								'<tr><th>리뷰내용</th><td>'+review_content+'</td></tr>'+
-
-								'<tr><th>리뷰 이미지</th><td>'+review_image+'</td></tr>'+
-							'</table>'); */
 							}
                     	}
                 	});
@@ -966,16 +915,16 @@
                 	});
                 }
                 </script>
-	<!-- footer 푸터 시작부분-->
-	<div style="display: block;">
-		<footer class="footer navbar-wrapper">
-			<div class="footer-wrapper navbar-wrapper">
-				<div class="footer-box" style="height: 100px; text-align: center;">
-					푸터</div>
-			</div>
-		</footer>
-		<!-- footer 푸터 끝부분-->
-	</div>
+		<!-- footer 푸터 시작부분-->
+		<div style="display: block;">
+			<footer class="footer navbar-wrapper">
+				<div class="footer-wrapper navbar-wrapper">
+					<div class="footer-box" style="height: 100px; text-align: center;">
+						푸터</div>
+				</div>
+			</footer>
+			<!-- footer 푸터 끝부분-->
+		</div>
 
 	<!-- Warning Section Ends -->
 
@@ -1002,7 +951,7 @@
 	<script src="/resources/js/vertical/vertical-layout.min.js "></script>
 
 	<script type="text/javascript" src="/resources/js/script.js "></script>
-
+	
 </body>
 
 </html>
