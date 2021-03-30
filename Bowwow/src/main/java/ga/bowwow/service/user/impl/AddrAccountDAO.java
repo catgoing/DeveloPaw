@@ -11,7 +11,6 @@ import ga.bowwow.service.user.UserAccount;
 @Repository("AddrAccountDAO")
 public class AddrAccountDAO {
 	@Autowired
-	@Qualifier("local")
 	private SqlSessionTemplate mybatis;
 	
 	public AddrAccountDAO() {
