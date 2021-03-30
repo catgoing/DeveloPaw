@@ -34,7 +34,7 @@
 	<!-- 방법2: SqlSessionTemplate 사용 -->
 
 	<bean class="org.mybatis.spring.SqlSessionTemplate">
-		<constructor-arg ref="localSqlSessionFactory" />
+		<constructor-arg ref="sqlSessionFactory" />
 		<qualifier value="local" />
 	</bean>
 </beans>

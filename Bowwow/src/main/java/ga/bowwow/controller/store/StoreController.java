@@ -37,7 +37,7 @@ public class StoreController {
 
 	@RequestMapping(value = "/store/storeMain")
 	public String storeMain() {
-		return "store/storeMain";
+		return "storeMain";
 	}
 	
 	@RequestMapping(value = "/store/storeInquiry")

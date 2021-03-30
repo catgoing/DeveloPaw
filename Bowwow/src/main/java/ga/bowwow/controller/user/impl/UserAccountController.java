@@ -30,7 +30,7 @@ public class UserAccountController extends UserCRUDGenericController<UserAccount
 
 	@RequestMapping(value="/signupAccount") //CRUD페이지
 	public String getUserInfo(@ModelAttribute("userAccount") UserAccount userAccount) {
-		return "/auth.myInfo2";
+		return "/auth.myInfo";
 	}
 	@RequestMapping(value="/login")
 	public String getUserAccount(@ModelAttribute("userAccount") UserAccount userAccount, Model model) {
@@ -38,7 +38,7 @@ public class UserAccountController extends UserCRUDGenericController<UserAccount
 		if(result) {
 			model.addAttribute("userDTO", userAccount);
 		}
-		return result ? "/ok" : "/auth.login";
+		return result ? "redirect:/store/storeMain" : "/auth.login";
 	}
 	@RequestMapping(value="/signup")
 	public String confirmUserTerms() {
