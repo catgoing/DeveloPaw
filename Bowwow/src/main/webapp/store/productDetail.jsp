@@ -617,16 +617,14 @@
 										<div class="col-lg-6">
 											<div class="product__details__pic">
 												<div class="product__details__slider__content">
-													<div class="product__details__pic__slider owl-carousel">
-														<img
-															src="https://projectbit.s3.us-east-2.amazonaws.com/${imgDir }/${p.s_image }"
-															alt="">
+													<div class="details_pic">
+														<img src="https://projectbit.s3.us-east-2.amazonaws.com/${imgDir }/${p.s_image }" alt="" >
 													</div>
 												</div>
 											</div>
 										</div>
 											<div class="col-lg-6">
-												<div class="product__details__text">
+												<div class="details_text">
 													<h4 style="color : #000">${p.p_name }</h4>
 													<div class="product__details__button">
 														<div class="product__details__widget">
@@ -653,7 +651,7 @@
 														<div class="product__details__widget">
 															<ul>
 																<li>
-																	<h4>총 상품금액: <input type="text" class="store_input2" size="10" id="sum" readonly>원</h4>
+																	<h3>총 상품금액: <input type="text" class="store_input2" size="9" id="sum" readonly>원</h3>
 																</li>
 															</ul>
 														</div>
@@ -663,7 +661,7 @@
 														</ul>
 													</div>
 													<div class="btn_area">
-														<button class="store_btn" onclick="cartList()">장바구니에 담기</button>
+														<button class="store_btn" onclick="cartList()">장바구니</button>
 														<button class="store_btn" onclick="storeOrder()">주문하기</button>
 													</div>
 													<ul>
@@ -674,7 +672,7 @@
 												</div>
 											</div>
 										<div class="col-lg-12">
-											<div class="product__details__tab">
+											<div class="product__details__tab" style="margin: 20px">
 												<ul class="nav nav-tabs" role="tablist">
 													<li class="nav-item"><a class="nav-link active"
 														data-toggle="tab" href="#tabs-1" role="tab">상세 정보</a></li>
