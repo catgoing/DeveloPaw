@@ -31,6 +31,7 @@
     <mapper resource="mappings/StoreMapper.xml"/>
     <mapper resource="mappings/ProductsReviewMapper.xml"/>
     <mapper resource="mappings/StoreInquiryMapper.xml"/>
-		<mapper resource="mappings/StoreCartlistMapper.xml" />
-		<mapper resource="mappings/StoreReviewMapper.xml" />
+	<mapper resource="mappings/StoreCartlistMapper.xml" />
+	<mapper resource="mappings/StoreReviewMapper.xml" />
   </mappers>
+</configuration>
