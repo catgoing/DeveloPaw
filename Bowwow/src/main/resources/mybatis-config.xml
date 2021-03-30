@@ -5,7 +5,9 @@
 <configuration>
 	<settings>
 		<setting name="jdbcTypeForNull" value="NULL" />
+		<setting name="mapUnderscoreToCamelCase" value="true"/>
 	</settings>
+
 	<typeAliases>
 		<typeAlias type="ga.bowwow.service.user.UserAccount" alias="UserAccount"/>
 		<typeAlias type="ga.bowwow.service.user.UserDetail" alias="UserDetail"/>

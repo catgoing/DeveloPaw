@@ -2,6 +2,7 @@ package ga.bowwow.controller.user;
 
 import java.util.List;
 
+import org.apache.ibatis.exceptions.TooManyResultsException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.dao.DataIntegrityViolationException;
 import org.springframework.stereotype.Controller;
@@ -32,6 +33,8 @@ public abstract class UserCRUDGenericController<T, SN, S extends UserGenericServ
 		try {
 			return router(service.addVo(vo), resolveRoute, errorRoute);
 		} catch (DataIntegrityViolationException e) {
+			e.printStackTrace();
+		} catch (TooManyResultsException e) {
 			e.printStackTrace();
 		}
 		return errorRoute;

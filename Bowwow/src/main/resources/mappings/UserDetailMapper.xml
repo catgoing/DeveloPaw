@@ -11,18 +11,18 @@
 
 	<insert id="insertUserDetailAccount" parameterType="UserDetail">
 		INSERT INTO USER_DETAIL (MEMBER_SERIAL, NICKNAME, REG_DATE, REALNAME, BIRTHDAY, GENDER, IMAGE_SOURCE) 
-		VALUES (MEMBER_SERIAL_SEQ.NEXTVAL, 
-		#{nickname}, #{regDate}, #{realname}, #{birthday}, #{gender}, #{imageSource})
+		VALUES (#{memberSerial}
+		,#{nickname}, #{regDate}, #{realname}, #{birthday}, #{gender}, #{imageSource})
 	</insert>
 	
 	<insert id="insertTemporaryUserDetail" parameterType="UserDetail" >
 		INSERT INTO USER_DETAIL (MEMBER_SERIAL, NICKNAME, REG_DATE, REALNAME, BIRTHDAY, GENDER) 
-		VALUES (MEMBER_SERIAL_SEQ.NEXTVAL, 
-		#{nickname}, #{regDate}, #{realname}, #{birthday}, #{gender})
+		VALUES (#{memberSerial}
+		, #{nickname}, #{regDate}, #{realname}, #{birthday}, #{gender})
 	</insert>
 	
 	<delete id="deleteUserDetail" parameterType="UserDetail">
-		DELETE FROM USER_DETAIL WHERE MEMBER_SERIAL = #{member_serial}
+		DELETE FROM USER_DETAIL WHERE MEMBER_SERIAL = #{memberSerial}
 	</delete>
 	
 	<update id="updateUserDetail" parameterType="UserDetail">
@@ -32,7 +32,7 @@
 		, REALNAME = #{realname}
 		, BIRTHDAY = #{birthday}
 		, GENDER = #{gender}
-		WHERE MEMBER_SERIAL = #{member_serial}
+		WHERE MEMBER_SERIAL = #{memberSerial}
 	</update>
 	
 	
@@ -41,7 +41,7 @@
 	</select>
 	
 	<select id="searchUserDetail" parameterType="UserDetail" resultType="UserDetail">
-		SELECT * FROM USER_DETAIl WHERE NICKNAME = #{nickname}
+		SELECT * FROM USER_DETAIL WHERE MEMBER_SERIAL = #{memberSerial}
 	</select>
 	
 	<!-- 

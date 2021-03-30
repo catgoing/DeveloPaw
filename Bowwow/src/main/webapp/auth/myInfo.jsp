@@ -34,7 +34,7 @@
 									</div>
 									<form>
 										<div class="form-group form-primary">
-	                                        <input type="number" name="memberSeiral" class="form-control" value="1">
+	                                        <input type="number" name="memberSerial" class="form-control">
 	                                        <span class="form-bar"></span>
 	                                        <label class="float-label">멤버 시리얼</label>
                                         </div>

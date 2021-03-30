@@ -16,7 +16,7 @@ public class UserDetailController extends UserCRUDGenericController<UserDetail, 
 	
 	public UserDetailController() {
 		System.out.println("---->>> UserDetailController() 객체생성");
-		setRoute("/ok2", "auth.login");
+		setRoute("/ok2", "/auth.login");
 		System.out.println("detailRouted");
 	}
 	

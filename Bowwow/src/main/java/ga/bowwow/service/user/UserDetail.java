@@ -10,6 +10,8 @@ import lombok.NoArgsConstructor;
 import lombok.Setter;
 import lombok.ToString;
 
+
+//TODO imageSource의 equals 추가
 @Getter @Setter
 @NoArgsConstructor @AllArgsConstructor
 @ToString
@@ -38,8 +40,6 @@ public class UserDetail {
 	}
 	@Override
 	public boolean equals(Object obj) {
-		if (this == obj)
-			return true;
 		if (obj == null)
 			return false;
 		if (getClass() != obj.getClass())
@@ -54,11 +54,6 @@ public class UserDetail {
 			if (other.gender != null)
 				return false;
 		} else if (!gender.equals(other.gender))
-			return false;
-		if (imageSource == null) {
-			if (other.imageSource != null)
-				return false;
-		} else if (!imageSource.equals(other.imageSource))
 			return false;
 		if (memberSerial != other.memberSerial)
 			return false;
@@ -79,7 +74,4 @@ public class UserDetail {
 			return false;
 		return true;
 	}
-	
-	
-	
 }
