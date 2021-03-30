@@ -642,7 +642,7 @@
 																<h5> 상품 수량 :
 																	<input type="hidden" id="sell_price" value="${p.price }">
 																	<input type="button" class="store_btn2" value=" - " onclick="del()">
-																	<input type="text" class="store_input" min="1" name="amount" value="1" size="3" onchange="changeValue();">
+																	<input type="text" class="store_input" autocomplete="off" min="1" name="amount" value="1" size="3" onchange="changeValue();">
 																	<input type="button" class="store_btn2" value=" + " onclick="add()">
 																</h5>
 															</form>
@@ -685,7 +685,7 @@
 															)</a></li>
 												</ul>
 												<div class="tab-content">
-													<div class="tab-pane active" id="tabs-1" role="tabpanel">
+													<div class="tab-pane active" id="tabs-1" role="tabpanel" style="margin: 30px;">
 														<img class="detailProduct"
 															src="https://projectbit.s3.us-east-2.amazonaws.com/${imgDir }/${p.l_image }"
 															alt="">
