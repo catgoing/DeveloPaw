@@ -7,12 +7,13 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 import ga.bowwow.controller.user.UserCRUDGenericController;
+import ga.bowwow.service.user.AddrAccount;
 import ga.bowwow.service.user.UserAccount;
 import ga.bowwow.service.user.impl.UserAccountServiceImpl;
 
 @Controller
 @RequestMapping("/account")
-public class UserAccountController extends UserCRUDGenericController<UserAccount, Integer, UserAccountServiceImpl> {
+public class UserAccountController extends UserCRUDGenericController<UserAccount, Integer, UserAccountServiceImpl>{
 	
 	public UserAccountController() {
 		System.out.println("---->>> UserAccountController() 객체생성");
@@ -29,7 +30,7 @@ public class UserAccountController extends UserCRUDGenericController<UserAccount
 	}
 	@RequestMapping(value="/signupDetail")
 	public String getUserInfo(@ModelAttribute("userAccount") UserAccount userAccount) {
-		return "/auth.myInfo";
+		return "/auth.myInfo2";
 	}
 	@RequestMapping(value="/signup")
 	public String confirmUserTerms() {

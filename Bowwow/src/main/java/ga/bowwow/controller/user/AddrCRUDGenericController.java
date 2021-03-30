@@ -5,24 +5,25 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 
+import ga.bowwow.service.user.AddrGenericService;
 import ga.bowwow.service.user.UserGenericService;
 
 @Controller
-public abstract class UserCRUDGenericController<T, SN, S extends UserGenericService<T>> {
+public abstract class AddrCRUDGenericController<T, SN, S extends AddrGenericService<T>> {
 	@Autowired
 	protected S service;
 	
 	protected String add(T vo, String resolveRoute, String errorRoute) {
-		return router(service.addUser(vo), resolveRoute, errorRoute);
+		return router(service.addAddr(vo), resolveRoute, errorRoute);
 	}
 	protected String update(T vo, String resolveRoute, String errorRoute) {
-		return router(service.updateUser(vo), resolveRoute, errorRoute);
+		return router(service.updateAddr(vo), resolveRoute, errorRoute);
 	}
 	protected String delete(T vo, String resolveRoute, String errorRoute) {
-		return router(service.deleteUser(vo), resolveRoute, errorRoute);
+		return router(service.deleteAddr(vo), resolveRoute, errorRoute);
 	}
 	protected T get(T vo) {
-		return (T)service.getUser(vo);
+		return (T)service.getAddr(vo);
 	}
 	protected abstract List<T> list(T vo);
 	
