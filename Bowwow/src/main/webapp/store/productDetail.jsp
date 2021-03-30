@@ -83,21 +83,25 @@
 		var sell_price;
 		var amount;
 		
+
+		
 		$(function init () {
 			sell_price = document.getElementById('sell_price').value;
-			document.getElementById('sum').value = sell_price;
+			document.getElementById('sum').value = sell_price.replace(/\B(?=(\d{3})+(?!\d))/g, ",");
 			sell_price = document.form.sell_price.value;
 			amount = document.form.amount.value;
 			document.form.sum.value = sell_price;
-			change();
 		});
 		
 		function add () {
 			hm = document.form.amount;
 			sum = document.form.sum;
 			hm.value ++ ;
+			
+			var temp = parseInt(hm.value) * sell_price
 		
-			document.getElementById('sum').value = parseInt(hm.value) * sell_price;
+			document.getElementById('sum').value = temp;
+			document.getElementById('sum').value = document.getElementById('sum').value.replace(/\B(?=(\d{3})+(?!\d))/g, ",");
 		}
 		
 		function del () {
@@ -105,20 +109,23 @@
 			sum = document.form.sum;
 				if (hm.value > 1) {
 					hm.value -- ;
-					document.getElementById('sum').value = parseInt(hm.value) * sell_price;
+					var temp = parseInt(hm.value) * sell_price
+					
+					document.getElementById('sum').value = temp;
+					document.getElementById('sum').value = document.getElementById('sum').value.replace(/\B(?=(\d{3})+(?!\d))/g, ",");
 				}
 				
 		}
 		
-		function change () {
+		function changeValue(){
 			hm = document.form.amount;
 			sum = document.form.sum;
+			
+			var temp = parseInt(hm.value) * sell_price
 		
-				if (hm.value < 0) {
-					hm.value = 0;
-				}
-			sum.value = parseInt(hm.value) * sell_price;
-		}  
+			document.getElementById('sum').value = temp;
+			document.getElementById('sum').value = document.getElementById('sum').value.replace(/\B(?=(\d{3})+(?!\d))/g, ",");
+		}
 </script>
 
 
@@ -633,11 +640,11 @@
 														</div>
 														<div class="quantity">
 															<div class="pro-qty">
-															<form name="form" method="POST">
+															<form name="form" onsubmit="return false;" method="POST">
 																<h5> 상품 수량 :
 																	<input type="hidden" id="sell_price" value="${p.price }">
 																	<input type="button" class="store_btn2" value=" - " onclick="del()">
-																	<input type="text" class="store_input" name="amount" value="1" size="3" onchange="change();">
+																	<input type="text" class="store_input" min="1" name="amount" value="1" size="3" onchange="changeValue();">
 																	<input type="button" class="store_btn2" value=" + " onclick="add()">
 																</h5>
 															</form>
@@ -648,7 +655,7 @@
 														<div class="product__details__widget">
 															<ul>
 																<li>
-																	<h4>총 상품금액: <input type="text" class="store_input2" size="7" id="sum" readonly>원</h4>
+																	<h4>총 상품금액: <input type="text" class="store_input2" size="10" id="sum" readonly>원</h4>
 																</li>
 															</ul>
 														</div>
