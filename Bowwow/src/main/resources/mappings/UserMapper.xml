@@ -10,11 +10,14 @@
 				#{id}, #{email}, #{citizenId}, #{phone}, #{status}, #{point}, #{coupons})
 	</insert>
 	
-	<insert id="insertTemporaryUserAccount" parameterType="UserAccount">
+	<insert id="insertTemporaryUserAccount" parameterType="UserAccount" >
 		INSERT INTO USER_ACCOUNT (MEMBER_SERIAL, ID, EMAIL, PHONE, PASSWORD) 
 		VALUES (MEMBER_SERIAL_SEQ.NEXTVAL, 
 				#{id}, #{email}, #{phone}, #{password})
 	</insert>
+
+	
+	
 	
 	<delete id="deleteUserAccount" parameterType="UserAccount">
 		DELETE FROM USER_ACCOUNT WHERE ID = #{id}
@@ -27,6 +30,8 @@
 		, PHONE = #{phone}
 		WHERE ID = #{id}
 	</update>
+	
+	
 	
 	<select id="getUserAccount" parameterType="UserAccount" resultType="UserAccount">
 		SELECT * FROM USER_ACCOUNT WHERE MEMBER_SERIAL = #{memberSerial}

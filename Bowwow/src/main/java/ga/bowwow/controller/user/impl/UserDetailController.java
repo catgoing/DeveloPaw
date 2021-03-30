@@ -7,77 +7,42 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 import ga.bowwow.controller.user.UserCRUDGenericController;
-import ga.bowwow.service.user.UserAccount;
-import ga.bowwow.service.user.impl.UserAccountServiceImpl;
+import ga.bowwow.service.user.UserDetail;
+import ga.bowwow.service.user.impl.UserDetailServiceImpl;
 
 @Controller
-@RequestMapping("/accountDetail")
-public class UserDetailController extends UserCRUDGenericController<UserAccount, Integer, UserAccountServiceImpl> {
+@RequestMapping("/detail")
+public class UserDetailController extends UserCRUDGenericController<UserDetail, Integer, UserDetailServiceImpl> {
 	
 	public UserDetailController() {
 		System.out.println("---->>> UserAccountController() 객체생성");
 	}
-	//TODO 일관된 resolve/error 리턴 환경 만들 수 있는가?
-	//TODO =>DI하는 식으로, 실패시 돌아가는 경로를 담은 리스트를 쓴다? -> 클래스가 될 수도 있음.
-	//TODO =>일반적으로, 1. 실패하는 경우는 자기 자신으로 돌아감. 2. 부모로 돌아감.(트랜잭션의 시작지점?) <-이게 클래스의 생성자 타입이 될 수 있음.
-	//TODO =>DB에서 찾아올 때, 실패하길 원하는가, 성공하길 원하는가?가 클래스의 생성자 두번째일 수 있음.
-	//TODO =>트랜잭션이란, 결국에 2+개의 boolean을 and처리한 결과임.
 	
-	@RequestMapping(value="/login")
-	public String getUserAccount(@ModelAttribute("userAccount") UserAccount userAccount) {
-		return (super.service.loginAttemp(userAccount))? "/ok" : "/auth.login";
+	@RequestMapping(value="/modifyDetail")
+	public String modifyUserInDB(@ModelAttribute("userDetail") UserDetail userDetail) {
+		return super.update(userDetail, "/ok", "/auth.login");
 	}
-	@RequestMapping(value="/signupDetail")
-	public String getUserInfo(@ModelAttribute("userAccount") UserAccount userAccount) {
-		return "/auth.myInfo";
+	@RequestMapping(value="/registDetail")
+	public String registUserToDB(@ModelAttribute("userDetail") UserDetail userDetail) {
+		return super.add(userDetail, "/ok" , "/auth.login");
 	}
-	@RequestMapping(value="/signup")
-	public String confirmUserTerms() {
-		return "/auth.terms";
+	@RequestMapping(value="/deleteDetail")
+	public String deleteUserFromDB(@ModelAttribute("userDetail") UserDetail userDetail) {
+		return super.delete(userDetail, "/ok", "/auth.login");
 	}
-	@RequestMapping(value="/modifyUser")
-	public String modifyUserInDB(@ModelAttribute("userAccount") UserAccount userAccount) {
-		super.service.updateUser(userAccount);
-		
-		return (isUserValueExist(userAccount))? "/ok" : "/auth.login";
-	}
-	@RequestMapping(value="/registUser")
-	public String registUserToDB(@ModelAttribute("userAccount") UserAccount userAccount) {
-		super.service.addUser(userAccount);
-		return (isRegisterSuccess(userAccount))? "/ok" : "/auth.login";
-	}
-	@RequestMapping(value="/deleteUser")
-	public String deleteUserFromDB(@ModelAttribute("userAccount") UserAccount userAccount) {
-		super.service.deleteUser(userAccount);
-		return isResignSuccess(userAccount)?  "/ok" : "/auth.login";
+	@RequestMapping(value="/getUser")
+	public UserDetail getUserFromDB(@ModelAttribute("userDetail") UserDetail userDetail) {
+		return super.get(userDetail);
 	}
 	
 	//TODO 컨트롤러가 너무 구체적인 작업을 하고 있음, GENERICCONTROLLER를 사용하지 않고 있음. 파이프라인 정도의 역할만 해아함.
-	private boolean isUpdateSuccess(UserAccount userAccount, boolean expectBool) {
-		return isUserValueExist(userAccount) ? expectBool : !expectBool;
-	}
-	private boolean isResignSuccess(UserAccount userAccount) {
-		return isUpdateSuccess(userAccount, false);
-	}
-	private boolean isRegisterSuccess(UserAccount userAccount) {
-		return isUpdateSuccess(userAccount, true);
-	}
-	private boolean isUserValueExist(UserAccount userAccount) {
-		return userAccount.equals(super.service.searchUser(userAccount));
-	}
-	private UserAccount cleanUserAccount() {
-		return new UserAccount();
-	}
 	private String simpleOkPageDistributor(boolean isOK) {
 		return (isOK) ? "/ok" : "failedRoute <- usually itself";
 	}
 
 	@Override
-	public List<UserAccount> list(UserAccount vo) {
+	protected List<UserDetail> list(UserDetail vo) {
+		// TODO Auto-generated method stub
 		return null;
-	}
-	@RequestMapping(value="/ok")
-	public String okay() {
-		return "/auth.login";
 	}
 }
