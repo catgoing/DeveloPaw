@@ -557,7 +557,7 @@
                                                     <ul>
 	                                                    <c:forEach var="list" items="${pList }">
 	                                                        <li>
-	                                                            <div class="col-lg-3 col-md-4 col-sm-6 mix oranges fresh-meat">
+	                                                            <div class="col-lg-3 col-md-4 col-sm-6 mix oranges fresh-meat" style="margin : 5px; margin-bottom : 10px;">
 	                                                                <div class="featured__item">
 	                                                                    <div>
 	                                                                        <a href="detail?p_id=${list.p_id }">

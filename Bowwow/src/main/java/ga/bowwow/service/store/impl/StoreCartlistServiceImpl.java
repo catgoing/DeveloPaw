@@ -34,9 +34,9 @@ public class StoreCartlistServiceImpl implements StoreCartlistService {
 	}
 
 	@Override
-	public List<Cartlist> getCartList(int member_serial) {
+	public List<Cartlist> getCartList(Cartlist cartlist) {
 		System.out.println("impl-------------");
-		return storeDAO.getCartlist(member_serial);
+		return storeDAO.getCartlist(cartlist);
 		
 	}
 

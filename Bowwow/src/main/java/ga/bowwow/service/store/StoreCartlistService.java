@@ -6,5 +6,5 @@ public interface StoreCartlistService {
 	public void insertCartlist(Cartlist cartlist);
 	public void updateCartlist(Cartlist cartlist);
 	public void deleteCartlist(int cart_id);	
-	public List<Cartlist> getCartList(int member_serial);
+	public List<Cartlist> getCartList(Cartlist cartlist);
 }

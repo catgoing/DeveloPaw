@@ -4,7 +4,7 @@
   "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="StoreCartlist">
 
-<!-- 	<insert id="insertCartlist" parameterType="Cartlist">
+ 	<insert id="insertCartlist" parameterType="Cartlist">
 		INSERT INTO STORE_PRODUCTS (CART_ID, MEMBER_SERIAL, P_ID, AMOUNT)
 		VALUES (CART_SEQ.NEXTVAL, #{member_serial}, #{p_id}, #{amount})
 	</insert>
@@ -17,7 +17,7 @@
     <delete id="deleteCartlist" parameterType="int">
     	DELETE FROM STORE_CARTLIST
     	WHERE CART_ID = #{cart_id}
-    </delete> -->
+    </delete>
 </mapper>
 
 
