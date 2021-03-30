@@ -23,6 +23,7 @@ META-INF/
 .DS_Store
   
 *.class
+MultipartController.java
   
 # Package Files #
 *.jar
