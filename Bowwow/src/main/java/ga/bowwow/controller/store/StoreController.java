@@ -31,6 +31,14 @@ public class StoreController {
 	@Autowired
 	private StoreReviewService storeReviewService;
 	
+	@Autowired
+	private StoreCartlistService storeCartlistService;
+	
+	@Autowired
+	private StoreInquiryService storeInquiryService;
+	
+	
+	
 	
 	public StoreController() {
 		System.out.println(">> StoreController 실행");
@@ -41,7 +49,10 @@ public class StoreController {
 		return "storeMain";
 	}
 	
-
+	@RequestMapping(value = "/store/storeInquiry")
+	public String storeInquiry() {
+		return "storeInquiry";
+	}
 	
 	// 상품 상세 보기
 	@RequestMapping(value = "/store/detail")
@@ -80,11 +91,34 @@ public class StoreController {
 		
 	}
 	
+	// 장바구니에 추가
+	@RequestMapping(value = "/store/insertCartlist")
+	public void insertCartlist(Cartlist cartlist) {
+		System.out.println(">>> 장바구니에 추가 - insertCartlist()");
+		System.out.println("cartlist : " + cartlist);
+		
+		storeCartlistService.insertCartlist(cartlist);
+	}
 	
 	
+	// 문의 작성
+	@RequestMapping("/store/insertInquiry")
+	public void insertInquiry(Inquiry inquiry, HttpServletRequest request, HttpServletResponse response) throws IllegalStateException, IOException {
+		
+		System.out.println(">>> 문의 작성 - insertInquiry()");
+		System.out.println("inquiry : " + inquiry);
+		System.out.println(inquiry.getInquiry_no());		
+		// 메소드 호출
+		storeInquiryService.insertInquiry(inquiry);
+		
+		try {
+			response.getWriter().print("success");
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}		
 
-	
-	
+	}		
 	
 }
 

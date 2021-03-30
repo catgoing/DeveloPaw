@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="StoreOrder">
+
+	<!-- 주문 내역 작성 -->
+	<insert id="insertOrder" parameterType="Order">
+		INSERT INTO STORE_ORDER (ORDER_ID, P_ID, MEMBER_SERIAL, AMOUNT, PRICE, MEMO, ORDER_DATE, ORDER_STATUS) 
+		VALUES (ORDER_SEQ.NEXTVAL, #{p_id}, #{member_serial}, #{amount}, #{price}, #{memo}, SYSDATE, #{order_status})
+	</insert>
+	
+	<!-- 회원 주문 내역 전체 출력 -->
+	<select id="orderList" parameterType="int" resultType="Order">
+		SELECT * FROM STORE_ORDER
+		WHERE MEMBER_SERIAL = #{member_serial}
+	</select>
+	
+	<!-- 주문 내역 하나만 출력 -->	
+	<select id="orderDetail" parameterType="int" resultType="Order">
+		SELECT * FROM STORE_ORDER
+		WHERE ORDER_ID = #{order_id}
+	</select>
+</mapper>
+
+
+
+
+
+
+
+
+

@@ -2,12 +2,11 @@
 	pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
-<% request.setCharacterEncoding("utf-8"); %>
-
 <!DOCTYPE html>
-
 <html>
+
 <head>
+<title>개발바닥</title>
 <!-- HTML5 Shim and Respond.js IE10 support of HTML5 elements and media queries -->
 <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
 <!--[if lt IE 10]>
@@ -35,99 +34,48 @@
 	rel="stylesheet">
 
 <!-- Favicon icon -->
-<link rel="icon" href="/resources/images/favicon.ico"
+<link rel="icon" href="../resources/images/favicon.ico"
 	type="image/x-icon">
 <!-- Google font-->
 <link
 	href="https://fonts.googleapis.com/css?family=Open+Sans:400,600,700"
 	rel="stylesheet">
 <!-- waves.css -->
-<link rel="stylesheet" href="/resources/pages/waves/css/waves.min.css"
-	type="text/css" media="all">
+<link rel="stylesheet"
+	href="../	resources/pages/waves/css/waves.min.css" type="text/css"
+	media="all">
 <!-- Required Fremwork -->
 <link rel="stylesheet" type="text/css"
-	href="/resources/css/bootstrap/css/bootstrap.min.css">
+	href="../resources/css/bootstrap/css/bootstrap.min.css">
 <!-- waves.css -->
-<link rel="stylesheet" href="/resources/pages/waves/css/waves.min.css"
+<link rel="stylesheet" href="../resources/pages/waves/css/waves.min.css"
 	type="text/css" media="all">
 <!-- themify icon -->
 <link rel="stylesheet" type="text/css"
-	href="/resources/icon/themify-icons/themify-icons.css">
+	href="../resources/icon/themify-icons/themify-icons.css">
 <!-- font-awesome-n -->
 <link rel="stylesheet" type="text/css"
-	href="/resources/css/font-awesome-n.min.css">
+	href="../resources/css/font-awesome-n.min.css">
 <link rel="stylesheet" type="text/css"
-	href="/resources/css/font-awesome.min.css">
+	href="../resources/css/font-awesome.min.css">
 <!-- scrollbar.css -->
 <link rel="stylesheet" type="text/css"
-	href="/resources/css/jquery.mCustomScrollbar.css">
+	href="../resources/css/jquery.mCustomScrollbar.css">
 <!-- Style.css -->
-<link rel="stylesheet" type="text/css" href="/resources/css/style.css">
-<link rel="stylesheet" type="text/css" href="/resources/css/test.css">
-
-	<script type="text/javascript"
-		src="/resources/js/jquery/jquery.min.js "></script>
-
+<link rel="stylesheet" type="text/css" href="../resources/css/style.css">
+<link rel="stylesheet" type="text/css"
+	href="../resources/css/storeStyle.css">
+<link rel="stylesheet" type="text/css" href="../resources/css/test.css">
 <style>
 .featured__item__text {
 	width: 150px;
 }
 
-.detailProduct {
+img {
 	display: block;
 	margin: auto;
 }
 </style>
-
-<script type="text/javascript">
-
-		var sell_price;
-		var amount;
-		
-		$(function init () {
-			sell_price = document.getElementById('sell_price').value;
-			document.getElementById('sum').value = sell_price.replace(/\B(?=(\d{3})+(?!\d))/g, ",");
-			sell_price = document.form.sell_price.value;
-			amount = document.form.amount.value;
-			document.form.sum.value = sell_price;
-		});
-		
-		function add () {
-			hm = document.form.amount;
-			sum = document.form.sum;
-			hm.value ++ ;
-			
-			var temp = parseInt(hm.value) * sell_price
-		
-			document.getElementById('sum').value = temp;
-			document.getElementById('sum').value = document.getElementById('sum').value.replace(/\B(?=(\d{3})+(?!\d))/g, ",");
-		}
-		
-		function del () {
-			hm = document.form.amount;
-			sum = document.form.sum;
-				if (hm.value > 1) {
-					hm.value -- ;
-					var temp = parseInt(hm.value) * sell_price
-					
-					document.getElementById('sum').value = temp;
-					document.getElementById('sum').value = document.getElementById('sum').value.replace(/\B(?=(\d{3})+(?!\d))/g, ",");
-				}
-				
-		}
-		
-		function changeValue(){
-			hm = document.form.amount;
-			sum = document.form.sum;
-			
-			var temp = parseInt(hm.value) * sell_price
-		
-			document.getElementById('sum').value = temp;
-			document.getElementById('sum').value = document.getElementById('sum').value.replace(/\B(?=(\d{3})+(?!\d))/g, ",");
-		}
-		
-</script>
-
 </head>
 
 <body>
@@ -222,7 +170,7 @@
 								</div>
 							</li>
 							<li><a href="index.html"> 커뮤니티 </a></li>
-							<li><a href="storeMain"> 스토어 </a></li>
+							<li><a href="storeMain.html"> 스토어 </a></li>
 						</ul>
 						<ul class="nav-right">
 							<li class="form-group form-primary"><input type="text"
@@ -302,7 +250,7 @@
 									<li class="waves-effect waves-light">
 										<div class="media">
 											<img class="d-flex align-self-center img-radius"
-												src="resources/images/avatar-4.jpg"
+												src="../resources/images/avatar-4.jpg"
 												alt="Generic placeholder image">
 											<div class="media-body">
 												<h5 class="notification-user">Joseph William</h5>
@@ -315,7 +263,7 @@
 									<li class="waves-effect waves-light">
 										<div class="media">
 											<img class="d-flex align-self-center img-radius"
-												src="resources/images/avatar-3.jpg"
+												src="../resources/images/avatar-3.jpg"
 												alt="Generic placeholder image">
 											<div class="media-body">
 												<h5 class="notification-user">Sara Soudein</h5>
@@ -328,7 +276,7 @@
 								</ul></li>
 							<li class="user-profile header-notification"><a href="#!"
 								class="waves-effect waves-light"> <img
-									src="resources/images/avatar-4.jpg" class="img-radius"
+									src="../resources/images/avatar-4.jpg" class="img-radius"
 									alt="User-Profile-Image"> <i class="ti-angle-down"></i>
 							</a>
 								<ul class="show-notification profile-notification">
@@ -440,10 +388,10 @@
 							</ul>
 
 							<ul class="pcoded-item pcoded-left-item">
-								<li class=""><a href="storeMain"
+								<li class=""><a href="storeMain.html"
 									class="waves-effect waves-dark"> <span class="pcoded-micon"><i
-											class="ti-layers"></i><b>FC</b></span> <span class="pcoded-mtext">스토어</span>
-										<span class="pcoded-mcaret"></span>
+											class="ti-layers"></i><b>FC</b></span> <span class="pcoded-mtext">스토어
+											전체보기</span> <span class="pcoded-mcaret"></span>
 								</a></li>
 							</ul>
 
@@ -481,45 +429,33 @@
 										<span class="pcoded-mcaret"></span>
 								</a>
 									<ul class="pcoded-submenu">
-										<li class=""><a href="productList?p_type=dog"
-											class="waves-effect waves-dark"> <span
-												class="pcoded-micon"><i class="ti-angle-right"></i></span> <span
-												class="pcoded-mtext">상품 전체보기</span> <span
-												class="pcoded-mcaret"></span>
-										</a></li>
-										<li class=""><a
-											href="productList?p_type=dog&p_category=food"
+										<li class=""><a href="dogFood.jsp"
 											class="waves-effect waves-dark"> <span
 												class="pcoded-micon"><i class="ti-angle-right"></i></span> <span
 												class="pcoded-mtext">사료</span> <span class="pcoded-mcaret"></span>
 										</a></li>
-										<li class=""><a
-											href="productList?p_type=dog&p_category=snack"
+										<li class=""><a href="auth-normal-sign-in.html"
 											class="waves-effect waves-dark"> <span
 												class="pcoded-micon"><i class="ti-angle-right"></i></span> <span
 												class="pcoded-mtext">간식</span> <span class="pcoded-mcaret"></span>
 										</a></li>
-										<li class=""><a
-											href="productList?p_type=dog&p_category=care"
+										<li class=""><a href="auth-normal-sign-in.html"
 											class="waves-effect waves-dark"> <span
 												class="pcoded-micon"><i class="ti-angle-right"></i></span> <span
 												class="pcoded-mtext">케어</span> <span class="pcoded-mcaret"></span>
 										</a></li>
-										<li class=""><a
-											href="productList?p_type=dog&p_category=living"
+										<li class=""><a href="auth-sign-up.html"
 											class="waves-effect waves-dark"> <span
 												class="pcoded-micon"><i class="ti-angle-right"></i></span> <span
 												class="pcoded-mtext">리빙</span> <span class="pcoded-mcaret"></span>
 										</a></li>
-										<li class=""><a
-											href="productList?p_type=dog&p_category=clothes"
+										<li class=""><a href="dogClothes.jsp "
 											class="waves-effect waves-dark"> <span
 												class="pcoded-micon"><i
 													class="ti-layout-sidebar-left"></i><b>S</b></span> <span
 												class="pcoded-mtext">의류</span> <span class="pcoded-mcaret"></span>
 										</a></li>
-										<li class=""><a
-											href="productList?p_type=dog&p_category=toy"
+										<li class=""><a href="dogToy.jsp"
 											class="waves-effect waves-dark"> <span
 												class="pcoded-micon"><i class="ti-angle-right"></i></span> <span
 												class="pcoded-mtext">장난감</span> <span class="pcoded-mcaret"></span>
@@ -533,45 +469,33 @@
 										<span class="pcoded-mcaret"></span>
 								</a>
 									<ul class="pcoded-submenu">
-										<li class=""><a href="productList?p_type=cat"
-											class="waves-effect waves-dark"> <span
-												class="pcoded-micon"><i class="ti-angle-right"></i></span> <span
-												class="pcoded-mtext">상품 전체보기</span> <span
-												class="pcoded-mcaret"></span>
-										</a></li>
-										<li class=""><a
-											href="productList?p_type=cat&p_category=food"
+										<li class=""><a href="storeMain.html"
 											class="waves-effect waves-dark"> <span
 												class="pcoded-micon"><i class="ti-angle-right"></i></span> <span
 												class="pcoded-mtext">사료</span> <span class="pcoded-mcaret"></span>
 										</a></li>
-										<li class=""><a
-											href="productList?p_type=cat&p_category=snack"
+										<li class=""><a href="storeMain.html"
 											class="waves-effect waves-dark"> <span
 												class="pcoded-micon"><i class="ti-angle-right"></i></span> <span
 												class="pcoded-mtext">간식</span> <span class="pcoded-mcaret"></span>
 										</a></li>
-										<li class=""><a
-											href="productList?p_type=cat&p_category=care"
+										<li class=""><a href="auth-normal-sign-in.html"
 											class="waves-effect waves-dark"> <span
 												class="pcoded-micon"><i class="ti-angle-right"></i></span> <span
 												class="pcoded-mtext">케어</span> <span class="pcoded-mcaret"></span>
 										</a></li>
-										<li class=""><a
-											href="productList?p_type=cat&p_category=living"
+										<li class=""><a href="auth-sign-up.html"
 											class="waves-effect waves-dark"> <span
 												class="pcoded-micon"><i class="ti-angle-right"></i></span> <span
 												class="pcoded-mtext">리빙</span> <span class="pcoded-mcaret"></span>
 										</a></li>
-										<li class=""><a
-											href="productList?p_type=cat&p_category=clothes"
+										<li class=""><a href="sample-page.html"
 											class="waves-effect waves-dark"> <span
 												class="pcoded-micon"><i
 													class="ti-layout-sidebar-left"></i><b>S</b></span> <span
 												class="pcoded-mtext">의류</span> <span class="pcoded-mcaret"></span>
 										</a></li>
-										<li class=""><a
-											href="productList?p_type=cat&p_category=toy"
+										<li class=""><a href="auth-normal-sign-in.html"
 											class="waves-effect waves-dark"> <span
 												class="pcoded-micon"><i class="ti-angle-right"></i></span> <span
 												class="pcoded-mtext">장난감</span> <span class="pcoded-mcaret"></span>
@@ -586,373 +510,283 @@
 						<!-- Page-header end -->
 						<div class="pcoded-inner-content">
 							<!-- Main-body start -->
+
 							<!-- Breadcrumb Begin -->
 							<div class="breadcrumb-option">
 								<div class="container">
 									<div class="row">
 										<div class="col-lg-12">
 											<div class="breadcrumb__links">
-												<a href="storeMain"><i class="fa fa-home"></i> 스토어 메인 </a> <a
-													href="#"> 카테고리 </a> <span></span>
+												<a href="./index.html"><i class="fa fa-home"></i> 스토어 메인</a>
+												<span>주문 화면</span>
 											</div>
 										</div>
 									</div>
 								</div>
 							</div>
-
 							<!-- Breadcrumb End -->
 
-							<!-- Product Details Section Begin -->
-							<section class="product-details spad">
-								<div class="container" style="border: 2px solid white;">
-									<br>
-									<c:choose>
-										<c:when test="${p.p_type == 'dog'}">
-											<c:set var="imgDir" value="dogImg" />
-										</c:when>
-										<c:when test="${p.p_type == 'cat'}">
-											<c:set var="imgDir" value="catImg" />
-										</c:when>
-									</c:choose>
-									<div class="row">
-										<div class="col-lg-6">
-											<div class="product__details__pic">
-												<div class="product__details__slider__content">
-													<div class="product__details__pic__slider owl-carousel">
-														<img
-															src="https://projectbit.s3.us-east-2.amazonaws.com/${imgDir }/${p.s_image }"
-															alt="">
-													</div>
-												</div>
-											</div>
-										</div>
-											<div class="col-lg-6">
-												<div class="product__details__text">
-													<h4 style="color : #000">${p.p_name }</h4>
-													<div class="product__details__button">
-														<div class="product__details__widget">
-															<ul>
-																<li>
-																	<h4>판매금액: <fmt:formatNumber value="${p.price }" pattern="#,###" />원</h4>
-																</li>
-															</ul>
-														</div>
-														<div class="quantity">
-															<div class="pro-qty">
-															<form name="form" onsubmit="return false;" method="POST">
-																<h5> 상품 수량 :
-																	<input type="hidden" id="sell_price" value="${p.price }">
-																	<input type="button" class="store_btn2" value=" - " onclick="del()">
-																	<input type="text" class="store_input" autocomplete="off" min="1" name="amount" value="1" size="3" onchange="changeValue();">
-																	<input type="button" class="store_btn2" value=" + " onclick="add()">
-																</h5>
-															</form>
-															</div>
-															<br>
-														</div>
+							<!-- Checkout Section Begin -->
+							<div>
+								<c:forEach var="oList" items="${orderList }">
+									<table style="margin : 10px; border : 2px solid black;">
+										<tr>
+											
+											<th>주문번호</th>
+											<td><a href="storeOrderDetail?order_id=${oList.order_id }">${oList.order_id}</a></td>
+											
+										</tr>
+										<tr>
+											<th>상품번호</th>
+											<td>${oList.p_id}</td>
+										</tr>
+										<tr>
+											<th>회원번호</th>
+											<td>${oList.member_serial}</td>
+										</tr>
+										<tr>
+											<th>주문수량</th>
+											<td>${oList.amount}</td>
+										</tr>
+										<tr>
+											<th>주문가격</th>
+											<td>${oList.price}</td>
+										</tr>
+										<tr>
+											<th>메모</th>
+											<td>${oList.memo}</td>
+										</tr>
+										<tr>
+											<th>주문날짜</th>
+											<td>${oList.order_date}</td>
+										</tr>
+										<tr>
+											<th>주문수량</th>
+											<td>${oList.order_status}</td>
+										</tr>
+									</table>
+								</c:forEach>
+							</div>
+							<!-- Checkout Section End -->
 
-														<div class="product__details__widget">
-															<ul>
-																<li>
-																	<h4>총 상품금액: <input type="text" class="store_input2" size="10" id="sum" readonly>원</h4>
-																</li>
-															</ul>
-														</div>
-														<ul>
-															<li><a href="#"><span class="icon_heart_alt"></span></a></li>
-															<li><a href="#"><span class="icon_adjust-horiz"></span></a></li>
-														</ul>
-													</div>
-													<div class="btn_area">
-														<button class="store_btn" onclick="cartList()">장바구니</button>
-														<button class="store_btn" onclick="location.href='storeOrder?p_id=${p.p_id}'">주문하기</button>
-													</div>
-													<ul>
-														<li><a href="#"><span class="icon_heart_alt"></span></a></li>
-														<li><a href="#"><span class="icon_adjust-horiz"></span></a></li>
-													</ul>
-												</div>
-												</div>
-											</div>
-										<div class="col-lg-12">
-											<div class="product__details__tab">
-												<ul class="nav nav-tabs" role="tablist">
-													<li class="nav-item"><a class="nav-link active"
-														data-toggle="tab" href="#tabs-1" role="tab">상세 정보</a></li>
-													<li class="nav-item"><a class="nav-link"
-														data-toggle="tab" href="#tabs-2" role="tab">리뷰 남기기</a></li>
-													<li class="nav-item"><a class="nav-link"
-														data-toggle="tab" href="#tabs-3" role="tab">상품 후기 ( 2
-															)</a></li>
-												</ul>
-												<div class="tab-content">
-													<div class="tab-pane active" id="tabs-1" role="tabpanel" style="margin: 30px;">
-														<img class="detailProduct"
-															src="https://projectbit.s3.us-east-2.amazonaws.com/${imgDir }/${p.l_image }"
-															alt="">
-													</div>
-													<div class="tab-pane" id="tabs-2" role="tabpanel">
-														<h6>리뷰</h6>
-														<div class="tab-pane fade show active" id="review"
-															role="tabpanel" aria-labelledby="review-tab">
-															<div class="row">
-																<div class="col-lg-6">
 
-																	<div class="review_list">
-																		<div class="review_item">
-																			<div class="media">
-																				<div class="d-flex">
-																					<img src="img/product/single-product/review-2.png"
-																						alt="" />
-																				</div>
-																				<div class="media-body">
-																					<h4>Blake Ruiz</h4>
-																					<i class="fa fa-star"></i> <i class="fa fa-star"></i>
-																					<i class="fa fa-star"></i> <i class="fa fa-star"></i>
-																					<i class="fa fa-star"></i>
-																				</div>
-																			</div>
-																			<p>${rList.review_content}</p>
-																		</div>
-																		<div class="review_item">
-																			<div class="media">
-																				<div class="d-flex">
-																					<img src="img/product/single-product/review-3.png"
-																						alt="" />
-																				</div>
-																				<div class="media-body">
-																					<h4>Blake Ruiz</h4>
-																					<i class="fa fa-star"></i> <i class="fa fa-star"></i>
-																					<i class="fa fa-star"></i> <i class="fa fa-star"></i>
-																					<i class="fa fa-star"></i>
-																				</div>
-																			</div>
-																			<p>Lorem ipsum dolor sit amet, consectetur
-																				adipisicing elit, sed do eiusmod tempor incididunt
-																				ut labore et dolore magna aliqua. Ut enim ad minim
-																				veniam, quis nostrud exercitation ullamco laboris
-																				nisi ut aliquip ex ea commodo</p>
-																		</div>
-																	</div>
-																</div>
-																<div class="col-lg-6">
-																	<div class="review_box">
-																		<h4>리뷰 작성하기</h4>
-																		<form class="row contact_form"
-																			action="contact_process.php" method="post"
-																			id="contactForm">
-																			<div class="col-md-12">
-																				<div class="form-group">
-																					<input type="text" class="form-control" id="name"
-																						name="name" placeholder="Your Full name" />
-																				</div>
-																			</div>
-																			<div class="col-md-12">
-																				<div class="form-group">
-																					<input type="text" class="form-control" id="number"
-																						name="number" placeholder="후기 제목을 입력하세요" />
-																				</div>
-																			</div>
-																			<div class="col-md-12">
-																				<div class="form-group">
-																					<textarea class="form-control" name="message"
-																						id="message" rows="2" placeholder="후기 내용을 입력하세요"></textarea>
-																				</div>
-																			</div>
-																			<div class="col-md-12 text-right">
-																				<button type="submit" value="submit"
-																					class="btn submit_btn">작성하기</button>
-																			</div>
-																		</form>
-																	</div>
-																</div>
-															</div>
-														</div>
-													</div>
-													<div class="tab-pane" id="tabs-3" role="tabpanel">
-														<h6>상품 후기 ( 2 )</h6>
 
-														<table>
-															<tr>
-																<th>상품번호</th>
-																<td><input type="text" id="p_id" name="p_id"
-																	value="${p.p_id}"></td>
-															</tr>
-															<tr>
-																<th>회원번호</th>
-																<td><input type="text" id="member_serial"
-																	name="member_serial" value=999></td>
-															</tr>
-															<tr>
-																<th>리뷰 제목</th>
-																<td><input type="text" id="review_title"
-																	name="review_title"></td>
-															</tr>
-															<tr>
-																<th>리뷰 내용</th>
-																<td><input type="text" id="review_content"
-																	name="review_content"></td>
-															</tr>
-															<tr>
-																<th></th>
-																<td><button onclick="insertReview(${p.p_id})">작성</button></td>
-															</tr>
-														</table>
-
-														<c:forEach var="rList" items="${reviewList}">
-															<table id="rList_${rList.review_id}">
-																<tr>
-																	<th>리뷰번호</th>
-																	<td>${rList.review_id}</td>
-																</tr>
-																<tr>
-																	<th>상품번호</th>
-																	<td>${rList.p_id}</td>
-																</tr>
-																<tr>
-																	<th>회원번호</th>
-																	<td>${rList.member_serial}</td>
-																</tr>
-																<tr>
-																	<th>리뷰제목</th>
-																	<td>${rList.review_title}</td>
-																</tr>
-																<tr>
-																	<th>리뷰 내용</th>
-																	<td>${rList.review_content}</td>
-																</tr>
-																<tr>
-																	<th>리뷰 작성일</th>
-																	<td>${rList.review_regdate}</td>
-																</tr>
-																<tr>
-																	<th>리뷰 이미지</th>
-																	<td>${rList.review_image}</td>
-																</tr>
-																<tr>
-																	<th>
-																		<button onclick="deleteReview(${rList.review_id})">삭제</button>
-																	</th>
-																</tr>
-															</table>
-															<br>
-														</c:forEach>
-													</div>
-												</div>
-											</div>
-										</div>
-									</div>
-									<br> <br>
-								</section>
-								</div>
-							<!-- Product Details Section End -->
-							<div id="styleSelector"></div>
+							<br>
+							<br>
+							<!--           <div class="row">
+                <div class="col-lg-12 text-center">
+                    <div class="related__title">
+                        <h5>RELATED PRODUCTS</h5>
+                    </div>
+                </div>
+                <div class="col-lg-3 col-md-4 col-sm-6">
+                    <div class="product__item">
+                        <div class="product__item__pic set-bg" data-setbg="img/product/related/rp-1.jpg">
+                            <div class="label new">New</div>
+                            <ul class="product__hover">
+                                <li><a href="img/product/related/rp-1.jpg" class="image-popup"><span class="arrow_expand"></span></a></li>
+                                <li><a href="#"><span class="icon_heart_alt"></span></a></li>
+                                <li><a href="#"><span class="icon_bag_alt"></span></a></li>
+                            </ul>
+                        </div>
+                        <div class="product__item__text">
+                            <h6><a href="#">Buttons tweed blazer</a></h6>
+                            <div class="rating">
+                                <i class="fa fa-star"></i>
+                                <i class="fa fa-star"></i>
+                                <i class="fa fa-star"></i>
+                                <i class="fa fa-star"></i>
+                                <i class="fa fa-star"></i>
+                            </div>
+                            <div class="product__price">$ 59.0</div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-3 col-md-4 col-sm-6">
+                    <div class="product__item">
+                        <div class="product__item__pic set-bg" data-setbg="img/product/related/rp-2.jpg">
+                            <ul class="product__hover">
+                                <li><a href="img/product/related/rp-2.jpg" class="image-popup"><span class="arrow_expand"></span></a></li>
+                                <li><a href="#"><span class="icon_heart_alt"></span></a></li>
+                                <li><a href="#"><span class="icon_bag_alt"></span></a></li>
+                            </ul>
+                        </div>
+                        <div class="product__item__text">
+                            <h6><a href="#">Flowy striped skirt</a></h6>
+                            <div class="rating">
+                                <i class="fa fa-star"></i>
+                                <i class="fa fa-star"></i>
+                                <i class="fa fa-star"></i>
+                                <i class="fa fa-star"></i>
+                                <i class="fa fa-star"></i>
+                            </div>
+                            <div class="product__price">$ 49.0</div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-3 col-md-4 col-sm-6">
+                    <div class="product__item">
+                        <div class="product__item__pic set-bg" data-setbg="img/product/related/rp-3.jpg">
+                            <div class="label stockout">out of stock</div>
+                            <ul class="product__hover">
+                                <li><a href="img/product/related/rp-3.jpg" class="image-popup"><span class="arrow_expand"></span></a></li>
+                                <li><a href="#"><span class="icon_heart_alt"></span></a></li>
+                                <li><a href="#"><span class="icon_bag_alt"></span></a></li>
+                            </ul>
+                        </div>
+                        <div class="product__item__text">
+                            <h6><a href="#">Cotton T-Shirt</a></h6>
+                            <div class="rating">
+                                <i class="fa fa-star"></i>
+                                <i class="fa fa-star"></i>
+                                <i class="fa fa-star"></i>
+                                <i class="fa fa-star"></i>
+                                <i class="fa fa-star"></i>
+                            </div>
+                            <div class="product__price">$ 59.0</div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-3 col-md-4 col-sm-6">
+                    <div class="product__item">
+                        <div class="product__item__pic set-bg" data-setbg="img/product/related/rp-4.jpg">
+                            <ul class="product__hover">
+                                <li><a href="img/product/related/rp-4.jpg" class="image-popup"><span class="arrow_expand"></span></a></li>
+                                <li><a href="#"><span class="icon_heart_alt"></span></a></li>
+                                <li><a href="#"><span class="icon_bag_alt"></span></a></li>
+                            </ul>
+                        </div>
+                        <div class="product__item__text">
+                            <h6><a href="#">Slim striped pocket shirt</a></h6>
+                            <div class="rating">
+                                <i class="fa fa-star"></i>
+                                <i class="fa fa-star"></i>
+                                <i class="fa fa-star"></i>
+                                <i class="fa fa-star"></i>
+                                <i class="fa fa-star"></i>
+                            </div>
+                            <div class="product__price">$ 59.0</div>
+                        </div>
+                    </div>
+                </div>
+            </div> -->
 						</div>
+						<!-- Product Details Section End -->
+
+						<div id="styleSelector"></div>
 					</div>
 				</div>
 			</div>
 		</div>
-		<button class="scroll-top" id="js-button"
-			style="margin-bottom: 190px; margin-right: 30px; font: 'Jua'">
-			<i class="fa fa-chevron-up" aria-hidden="true">TOP</i>
-		</button>
-		<script type="text/javascript">
-                scrollTop('js-button', 500);
-                function scrollTop(elem,duration) {
-                    let target = document.getElementById(elem);
+	</div>
+	<button class="scroll-top" id="js-button"
+		style="margin-bottom: 190px; margin-right: 30px; font: 'Jua'">
+		<i class="fa fa-chevron-up" aria-hidden="true">TOP</i>
+	</button>
+	<script type="text/javascript">
+		scrollTop('js-button', 500);
+		function scrollTop(elem, duration) {
+			let target = document.getElementById(elem);
 
-                    target.addEventListener('click', function() {
-                        let currentY = window.pageYOffset;
-                        let step = duration/currentY > 1 ? 10 : 100;
-                        let timeStep = duration/currentY * step;
-                        let intervalID = setInterval(scrollUp, timeStep);
+			target.addEventListener('click', function() {
+				let currentY = window.pageYOffset;
+				let step = duration / currentY > 1 ? 10 : 100;
+				let timeStep = duration / currentY * step;
+				let intervalID = setInterval(scrollUp, timeStep);
 
-                        function scrollUp(){
-                            currentY = window.pageYOffset;
-                            if(currentY === 0) {
-                                clearInterval(intervalID);
-                            } else {
-                                scrollBy( 0, -step );
-                            }
-                        }
-                    });
-                }
-                function insertReview(p_id) {
-                	console.log('상품번호 : ' + p_id);
-                	var getMemValue = $('#member_serial').val();
-                	var getTitleValue = $('#review_title').val();
-                	var getContentValue = $('#review_content').val();
+				function scrollUp() {
+					currentY = window.pageYOffset;
+					if (currentY === 0) {
+						clearInterval(intervalID);
+					} else {
+						scrollBy(0, -step);
+					}
+				}
+			});
+		}
+	</script>
+	<!-- footer 푸터 시작부분-->
+	<div style="display: block;">
+		<footer class="footer navbar-wrapper">
+			<div class="footer-wrapper navbar-wrapper">
+				<div class="footer-box" style="height: 100px; text-align: center;">
+					푸터</div>
+			</div>
+		</footer>
+		<!-- footer 푸터 끝부분-->
+	</div>
 
-                	var data = {'p_id' : p_id, 'member_serial' : getMemValue, 'review_title' : getTitleValue, 'review_content' : getContentValue};
 
-                	$.ajax({
-                		url : '/store/insertReview',
-                		type: 'POST',
-                        data: data,
-                        success: function(data){
-							console.log(data)
-							 if(data) {
-								/* $('#tabs-3').append('<table>'+
-														'<tr><th>리뷰번호</th><td>${rList.review_id}</td></tr>'+
-													'</table>'); */
-							}
-                    	}
-                	});
-                }
 
-                function deleteReview(review_id) {
-                	console.log('리뷰아이디 : ' + review_id);
-                	var data = {"r_id": review_id};
-                	$.ajax({
-                        url: '/store/deleteReview',
-                        type: 'POST',
-                        data: data,
-                        success: function(data){
-							console.log('?? ' + data)
-							if(data == "success") {
-								$('#rList_' + review_id).remove();
-							}
-                    	}
-                	});
-                }
-                </script>
-		<!-- footer 푸터 시작부분-->
-		<div style="display: block;">
-			<footer class="footer navbar-wrapper">
-				<div class="footer-wrapper navbar-wrapper">
-					<div class="footer-box" style="height: 100px; text-align: center;">
-						푸터</div>
-				</div>
-			</footer>
-			<!-- footer 푸터 끝부분-->
-		</div>
-
+	<!-- Warning Section Starts -->
+	<!-- Older IE warning message -->
+	<!--[if lt IE 10]>
+<div class="ie-warning">
+    <h1>Warning!!</h1>
+    <p>You are using an outdated version of Internet Explorer, please upgrade <br/>to any of the following web browsers to access this website.</p>
+    <div class="iew-container">
+        <ul class="iew-download">
+            <li>
+                <a href="http://www.google.com/chrome/">
+                    <img src="../resources/images/browser/chrome.png" alt="Chrome">
+                    <div>Chrome</div>
+                </a>
+            </li>
+            <li>
+                <a href="https://www.mozilla.org/en-US/firefox/new/">
+                    <img src="../resources/images/browser/firefox.png" alt="Firefox">
+                    <div>Firefox</div>
+                </a>
+            </li>
+            <li>
+                <a href="http://www.opera.com">
+                    <img src="../resources/images/browser/opera.png" alt="Opera">
+                    <div>Opera</div>
+                </a>
+            </li>
+            <li>
+                <a href="https://www.apple.com/safari/">
+                    <img src="../resources/images/browser/safari.png" alt="Safari">
+                    <div>Safari</div>
+                </a>
+            </li>
+            <li>
+                <a href="http://windows.microsoft.com/en-us/internet-explorer/download-ie">
+                    <img src="../resources/images/browser/ie.png" alt="">
+                    <div>IE (9 & above)</div>
+                </a>
+            </li>
+        </ul>
+    </div>
+    <p>Sorry for the inconvenience!</p>
+</div>
+<![endif]-->
 	<!-- Warning Section Ends -->
 
 	<!-- Required Jquery -->
 	<script type="text/javascript"
-		src="/resources/js/jquery/jquery.min.js "></script>
+		src="../resources/js/jquery/jquery.min.js "></script>
 	<script type="text/javascript"
-		src="/resources/js/jquery-ui/jquery-ui.min.js "></script>
+		src="../resources/js/jquery-ui/jquery-ui.min.js "></script>
 	<script type="text/javascript"
-		src="/resources/js/popper.js/popper.min.js"></script>
+		src="../resources/js/popper.js/popper.min.js"></script>
 	<script type="text/javascript"
-		src="/resources/js/bootstrap/js/bootstrap.min.js "></script>
+		src="../resources/js/bootstrap/js/bootstrap.min.js "></script>
 	<!-- waves js -->
-	<script src="/resources/pages/waves/js/waves.min.js"></script>
+	<script src="../resources/pages/waves/js/waves.min.js"></script>
 	<!-- jquery slimscroll js -->
 	<script type="text/javascript"
-		src="/resources/js/jquery-slimscroll/jquery.slimscroll.js"></script>
+		src="../resources/js/jquery-slimscroll/jquery.slimscroll.js"></script>
 
 	<!-- slimscroll js -->
-	<script src="/resources/js/jquery.mCustomScrollbar.concat.min.js "></script>
+	<script src="../resources/js/jquery.mCustomScrollbar.concat.min.js "></script>
 
 	<!-- menu js -->
-	<script src="/resources/js/pcoded.min.js"></script>
-	<script src="/resources/js/vertical/vertical-layout.min.js "></script>
+	<script src="../resources/js/pcoded.min.js"></script>
+	<script src="../resources/js/vertical/vertical-layout.min.js "></script>
 
-	<script type="text/javascript" src="/resources/js/script.js "></script>
-	
+	<script type="text/javascript" src="../resources/js/script.js "></script>
 </body>
+
 
 </html>

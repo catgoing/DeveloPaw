@@ -25,5 +25,6 @@
 		<mapper resource="mappings/StoreCartlistMapper.xml" />
 		<mapper resource="mappings/StoreReviewMapper.xml" />
 		<mapper resource="mappings/StoreInquiryMapper.xml" />
+		<mapper resource="mappings/StoreOrderMapper.xml" />
 	</mappers>
 </configuration>

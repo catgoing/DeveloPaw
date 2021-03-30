@@ -1,6 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<% request.setCharacterEncoding("utf-8"); %>    
     
 <!DOCTYPE html>
 <html>
@@ -53,6 +53,19 @@
 	.border-none, .border-none td { border: none; }
 </style>
 <script>
+$(document).ready(function() {
+	//여기 아래 부분
+	$('#summernote').summernote({
+		  height: 300,                 // 에디터 높이
+		  minHeight: null,             // 최소 높이
+		  maxHeight: null,             // 최대 높이
+		  focus: true,                  // 에디터 로딩후 포커스를 맞출지 여부
+		  lang: "ko-KR",					// 한글 설정
+		  placeholder: '최대 2048자까지 쓸 수 있습니다'	//placeholder 설정
+          
+	});
+});
+
 function insertInquiry(p_id) {
 	var data = {'p_id' : p_id, 'member_serial' : member_serial, 'inq_title' : inq_title, 'inq_content' : inq_content};
 	
@@ -80,7 +93,7 @@ function insertInquiry(p_id) {
 	<h1>글등록</h1>
 	<hr>
 	
-	<form action="insertInquiry" method="post">
+	<form>
 	<table>
 		<tr>
 			<th width="70">상품번호</th>
@@ -126,63 +139,12 @@ function insertInquiry(p_id) {
 		</tr>
 		<tr>
 			<td colspan="2" class="center">
-				<input type="submit" value="작성하기">
-				<%-- <button onclick="insertInquiry(${p.p_id})">작성</button> --%>
+				<button onclick="insertInquiry(${p.p_id})">작성</button>
 			</td>
 		</tr>
 	</table>
 	</form>
-	<c:forEach var="iList" items="${inquiryList}">
-	<table>
-		<tr>
-			<th width="70">상품번호</th>
-			<td>
-				${iList.p_id}
-			</td>
-		</tr>
-		<tr>
-			<th>작성자</th>
-			<td>
-				${iList.member_serial}
-			</td>
-		</tr>
-		<tr>
-			<th>제목</th>
-			<td>
-				${iList.inq_title}
-			</td>
-		</tr>
-		<tr>
-			<th>내용</th>
-			<td>
-	  			${iList.inq_content}
-			</td>
-		</tr>
-		<tr>
-			<th>대분류</th>
-			<td>
-				${iList.inq_maincategory}
-			</td>
-		</tr>
-		<tr>
-			<th>중분류</th>
-			<td>
-				${iList.inq_subcategory}
-			</td>
-		</tr>
-		<tr>
-			<th>소분류</th>
-			<td>
-				${iList.inq_inquiry_type}
-			</td>
-		</tr>
-		<tr>
-			<td colspan="2" class="center">
-				<button onclick="deleteReview(${rList.review_id})">삭제</button>
-			</td>
-		</tr>
-	</table>	
-	</c:forEach>
+	
 </div>
 
     <script type="text/javascript" src="/resources/js/jquery/jquery.min.js "></script>

@@ -8,6 +8,7 @@ import org.springframework.stereotype.Repository;
 
 import ga.bowwow.service.store.Cartlist;
 import ga.bowwow.service.store.Inquiry;
+import ga.bowwow.service.store.Order;
 import ga.bowwow.service.store.Product;
 import ga.bowwow.service.store.Review;
 
@@ -34,7 +35,7 @@ public class StoreDAO {
 		System.out.println(review);
 		mybatis.insert("StoreReview.insertProductReview", review);
 	}
-	
+
 	public void deleteReview(int review_id) {
 		System.out.println("리뷰 삭제" + review_id);
 		mybatis.delete("StoreReview.deleteProductReview", review_id);
@@ -55,9 +56,9 @@ public class StoreDAO {
 		
 	}
 
-	public List<Cartlist> getCartlist(Cartlist cartlist) {
+	public List<Cartlist> getCartlist(int member_serial) {
 		System.out.println("장바구니 목록 출력");
-		return mybatis.selectList("StoreCartlist.cartlistList", cartlist);
+		return mybatis.selectList("StoreCartlist.cartlistList", member_serial);
 	}
 
 	public void deleteCartlist(int cart_id) {
@@ -70,15 +71,17 @@ public class StoreDAO {
 		mybatis.insert("StoreInquiry.insertInquiry", inquiry);
 	}
 
-	public void deleteInquiry(int inquiry_no) {
-		System.out.println("문의 삭제 : " + inquiry_no);
-		mybatis.delete("StoreInquiry.deleteInquiry", inquiry_no);
+	public void insertOrder(Order order) {
+		System.out.println("주문내역 추가 : " + order);
+		mybatis.insert("StoreOrder.insertOrder", order);
 	}
 
-	public List<Inquiry> getInquiryList(Inquiry inquiry) {
-		System.out.println("전체 문의 출력 : " + inquiry);
-		return mybatis.selectList("StoreInquiry.inquiryList", inquiry);
+	public List<Order> getOrderList(int member_serial) {
+		return mybatis.selectList("StoreOrder.orderList", member_serial);
 	}
 
-	
+	public Order getOrderDetail(int order_id) {
+		return mybatis.selectOne("StoreOrder.orderDetail", order_id);
+	}
+
 }

@@ -19,7 +19,7 @@ public class StoreReviewServiceImpl implements StoreReviewService {
 		System.out.println(review);
 		storeDAO.insertReview(review);
 	}
-	
+
 	@Override
 	public void deleteReview(int review_id) {
 		storeDAO.deleteReview(review_id);
@@ -35,7 +35,5 @@ public class StoreReviewServiceImpl implements StoreReviewService {
 	public Review getLastReview(int p_id) {
 		return storeDAO.getLastReview(p_id);
 	}
-
-	
 
 }

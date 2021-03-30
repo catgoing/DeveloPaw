@@ -556,40 +556,36 @@
                     here to enter your code.</h6>
                 </div>
             </div>
-            <form action="#" class="checkout__form">
+            <form action="insertOrder" method="post" class="checkout__form">
                 <div class="row">
                     <div class="col-lg-8">
                         <h5>주문 상세 정보</h5>
                         <div class="row">
                             <div class="col-lg-6 col-md-6 col-sm-6">
                                 <div class="checkout__form__input">
-                                    <p>성 <span>*</span></p>
-                                    <input type="text">
+                                    <p>상품번호 <span>*  (*)항목은 필수 입력 항목입니다.</span></p>
+                                    <input type="text" id="p_id" name="p_id">
                                 </div>
                             </div>
                             <div class="col-lg-6 col-md-6 col-sm-6">
                                 <div class="checkout__form__input">
-                                    <p>이름 <span>*</span></p>
-                                    <input type="text">
+                                    <p>회원번호 <span>*</span></p>
+                                    <input type="text" id="member_serial" name="member_serial">
                                 </div>
                             </div>
                             <div class="col-lg-12">
-                                <div class="checkout__form__input">
-                                    <p>국가 <span>*</span></p>
-                                    <input type="text">
-                                </div>
                                 <div class="checkout__form__input">
                                     <p>Address <span>*</span></p>
                                     <input type="text" placeholder="Street Address">
                                     <input type="text" placeholder="Apartment. suite, unite ect ( optinal )">
                                 </div>
                                 <div class="checkout__form__input">
-                                    <p>Town/City <span>*</span></p>
-                                    <input type="text">
+                                    <p>Town/City 수량 <span>*</span></p>
+                                    <input type="text" id="amount" name="amount">
                                 </div>
                                 <div class="checkout__form__input">
-                                    <p>Country/State <span>*</span></p>
-                                    <input type="text">
+                                    <p>Country/State 가격 <span>*</span></p>
+                                    <input type="text" id="price" name="price" value="${p.price }">
                                 </div>
                                 <div class="checkout__form__input">
                                     <p>우편번호 <span>*</span></p>
@@ -604,7 +600,7 @@
                             </div>
                             <div class="col-lg-6 col-md-6 col-sm-6">
                                 <div class="checkout__form__input">
-                                    <p>이메일 <span>*</span></p>
+                                    <p>이메일</p>
                                     <input type="text">
                                 </div>
                             </div>
@@ -630,15 +626,20 @@
                                         </label> -->
                                     </div>
                                     <div class="checkout__form__input">
-                                        <p>배송 메모 <span>*</span></p>
-                                        <input type="text"
+                                        <p>배송 메모</p>
+                                        <input type="text" id="memo" name="memo"
                                         placeholder="Note about your order, e.g, special noe for delivery">
+                                    </div>
+                                    <div class="checkout__form__input">
+                                        <p>배송 상태</p>
+                                        <input type="text" id="order_status" name="order_status"
+                                        placeholder="Note about your order, e.g, special noe for delivery" value="주문 완료">
                                     </div>
                                 </div>
                             </div>
                         </div>
                         <div class="col-lg-4">
-                            <div class="checkout__order">
+                            <div class="checkout__order" style="background-color : white;">
                                 <h5>총 주문 내역</h5>
                                 <div class="checkout__order__product">
                                     <ul>
@@ -678,6 +679,7 @@
                                     </label>
                                 </div>
                                 <button type="submit" class="site-btn">Place oder</button>
+                                <a href="storeOrderList?member_serial=999">주문내역</a>
                             </div>
                         </div>
                     </div>

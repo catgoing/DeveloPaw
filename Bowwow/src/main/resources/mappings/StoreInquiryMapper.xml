@@ -3,21 +3,12 @@
   PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
   "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="StoreInquiry">
-	<insert id="insertInquiry" parameterType="Inquiry">
+	<!-- <insert id="insertInquiry" parameterType="Inquiry">
 		INSERT INTO STORE_INQUIRY (INQUIRY_NO, P_ID, MEMBER_SERIAL, INQ_TITLE, INQ_CONTENT, INQ_IMAGE, INQ_REGDATE, 
 		INQ_MAINCATEGORY, INQ_SUBCATEGORY, INQ_INQUIRY_TYPE)
-		VALUES (INQUIRY_SEQ.NEXTVAL, #{p_id}, #{member_serial}, #{inq_title}, #{inq_content}, #{inq_image}, SYSDATE, 
-		#{inq_maincategory}, #{inq_subcategory}, #{inq_inquiry_type})
-	</insert>
-	
-	<delete id="deleteInquiry" parameterType="int">
-		DELETE FROM STORE_INQUIRY
-		WHERE INQUIRY_NO = #{inquiry_no}
-	</delete>
-	
-	<select id="inquiryList" parameterType="Inquiry" resultType="Inquiry">
-		SELECT * FROM STORE_INQUIRY
-	</select>
+		VALUES (INQUIRY_SEQ.NEXTVAL, ${p_id}, ${member_serial}, ${inq_title}, ${inq_content}, ${inq_image}, SYSDATE, 
+		${inq_maincategory}, ${inq_subcategory}, ${inq_inquiry_type})
+	</insert> -->
 </mapper>
 
 

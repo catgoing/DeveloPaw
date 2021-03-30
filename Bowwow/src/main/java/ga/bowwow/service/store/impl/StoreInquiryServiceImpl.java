@@ -26,8 +26,8 @@ public class StoreInquiryServiceImpl implements StoreInquiryService {
 	}
 
 	@Override
-	public void deleteInquiry(int inquiry_no) {
-		storeDAO.deleteInquiry(inquiry_no);
+	public void deleteInquiry(Inquiry inquiry) {
+
 	}
 
 	@Override
@@ -37,7 +37,7 @@ public class StoreInquiryServiceImpl implements StoreInquiryService {
 
 	@Override
 	public List<Inquiry> getInquiryList(Inquiry inquiry) {
-		return storeDAO.getInquiryList(inquiry);
+		return null;
 	}
 
 }
