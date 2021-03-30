@@ -115,10 +115,6 @@ function imageChangeCheck(){
 		console.log($(this).attr('src'));
 		
 		});
-	
-	/* var img1 = new Array();
-	img1 =  document.getElementsByTagName("img").src;
-	console.log(img1); */
 }
 
 
