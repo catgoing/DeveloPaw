@@ -83,8 +83,6 @@
 		var sell_price;
 		var amount;
 		
-
-		
 		$(function init () {
 			sell_price = document.getElementById('sell_price').value;
 			document.getElementById('sum').value = sell_price.replace(/\B(?=(\d{3})+(?!\d))/g, ",");
@@ -126,8 +124,8 @@
 			document.getElementById('sum').value = temp;
 			document.getElementById('sum').value = document.getElementById('sum').value.replace(/\B(?=(\d{3})+(?!\d))/g, ",");
 		}
+		
 </script>
-
 
 </head>
 
