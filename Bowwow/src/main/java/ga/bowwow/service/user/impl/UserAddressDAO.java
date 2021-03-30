@@ -2,24 +2,22 @@ package ga.bowwow.service.user.impl;
 
 import org.mybatis.spring.SqlSessionTemplate;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Repository;
 
-import ga.bowwow.service.user.AddrAccount;
-import ga.bowwow.service.user.UserAccount;
+import ga.bowwow.service.user.UserAddress;
 
 @Repository("AddrAccountDAO")
-public class AddrAccountDAO {
+public class UserAddressDAO {
 	@Autowired
 	private SqlSessionTemplate mybatis;
 	
-	public AddrAccountDAO() {
+	public UserAddressDAO() {
 		System.out.println(">> AddrAccountDAO() 객체생성");
 	}
-	public void insertAddrAccount(AddrAccount addrAccount) {
+	public void insertAddrAccount(UserAddress addrAccount) {
 		mybatis.insert("AddrAccount.insertTemporaryAddrAccount", addrAccount);
 	}
-	public AddrAccount searchAddrAccount(AddrAccount addrAccount) {
+	public UserAddress searchAddrAccount(UserAddress addrAccount) {
 		return mybatis.selectOne("AddrAccount.getAddrAccount", addrAccount);
 	}
 }

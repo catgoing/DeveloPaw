@@ -55,8 +55,4 @@ public class UserAccountServiceImpl implements UserGenericService<UserAccount> {
 	private boolean isUserValueExist(UserAccount userAccount) {
 		return userAccount.equals(searchUser(userAccount));
 	}
-	private UserAccount cleanUserAccount() {
-		return new UserAccount();
-	}
-	
 }

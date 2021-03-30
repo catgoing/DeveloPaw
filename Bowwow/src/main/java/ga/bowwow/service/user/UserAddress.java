@@ -9,7 +9,7 @@ import lombok.ToString;
 @Setter @Getter
 @NoArgsConstructor @AllArgsConstructor
 @ToString
-public class AddrAccount {
+public class UserAddress {
 	int memberSerial;
 	String address_id;
 	String Address;

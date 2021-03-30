@@ -549,6 +549,7 @@
                                                     <div class="col-lg-12">
                                                         <div class="section-title">
                                                             <h2>스토어 메인</h2>
+                                                             ${userDTO.id}
                                                         </div>
                                                         <br>
                                                     </div>

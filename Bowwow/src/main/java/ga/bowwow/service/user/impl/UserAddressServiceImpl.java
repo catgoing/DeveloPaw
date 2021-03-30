@@ -5,47 +5,47 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import ga.bowwow.service.user.AddrAccount;
+import ga.bowwow.service.user.UserAddress;
 import ga.bowwow.service.user.UserGenericService;
 
 //@Service : @Component 상속확장 어노테이션
 //		비즈니스 로직처리 서비스 영역에 사용
 @Service("AddrAccountService")
-public class AddrAccountServiceImpl implements UserGenericService<AddrAccount> {
+public class UserAddressServiceImpl implements UserGenericService<UserAddress> {
 	@Autowired
-	private AddrAccountDAO AddrAccountDAO;
+	private UserAddressDAO AddrAccountDAO;
 	
-	public AddrAccount searchUser(AddrAccount AddrAccount) {
+	public UserAddress searchUser(UserAddress AddrAccount) {
 		return AddrAccountDAO.searchAddrAccount(AddrAccount);
 	}
 	
-	public boolean addAddr(AddrAccount vo) {
+	public boolean addAddr(UserAddress vo) {
 		return this.addVo(vo);
 	}
 	
 	@Override
-	public boolean addVo(AddrAccount vo) {
+	public boolean addVo(UserAddress vo) {
 		AddrAccountDAO.insertAddrAccount(vo);
 		return isRegisterSuccess(vo);
 	}
 	@Override
-	public boolean updateVo(AddrAccount vo) {
+	public boolean updateVo(UserAddress vo) {
 		return false;
 	}
 	@Override
-	public boolean deleteVo(AddrAccount vo) {
+	public boolean deleteVo(UserAddress vo) {
 		return false;
 	}
 	@Override
-	public AddrAccount getVo(AddrAccount vo) {
+	public UserAddress getVo(UserAddress vo) {
 		return null;
 	}
 	@Override
-	public List<AddrAccount> getVoList(AddrAccount vo) {
+	public List<UserAddress> getVoList(UserAddress vo) {
 		return null;
 	}
 	@Override
-	public AddrAccount searchVo(AddrAccount vo) {
+	public UserAddress searchVo(UserAddress vo) {
 		return null;
 	}
 }

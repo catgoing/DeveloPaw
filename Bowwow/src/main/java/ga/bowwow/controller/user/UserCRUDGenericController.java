@@ -65,7 +65,6 @@ public abstract class UserCRUDGenericController<T, SN, S extends UserGenericServ
 		this.errorRoute = errorRoute;
 	}
 	
-	
 
 	//legacy
 				protected String add(T vo, String resolveRoute, String errorRoute) {
