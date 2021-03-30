@@ -2,6 +2,8 @@ package ga.bowwow.service.user;
 
 import java.sql.Date;
 
+import org.springframework.stereotype.Component;
+
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -11,6 +13,7 @@ import lombok.ToString;
 @Getter @Setter
 @NoArgsConstructor @AllArgsConstructor
 @ToString
+@Component
 public class UserDetail {
 	int memberSerial;
 	String imageSource;
@@ -19,6 +22,7 @@ public class UserDetail {
 	Date regDate;
 	Date birthday;
 	String gender;
+	
 	@Override
 	public int hashCode() {
 		final int prime = 31;
