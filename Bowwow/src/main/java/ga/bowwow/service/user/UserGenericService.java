@@ -19,8 +19,11 @@ public interface UserGenericService<T> {
 		return isUpdateSuccess(vo, true);
 	}
 	default boolean isVoValueExist(T vo) {
+		System.out.println("voEquals check");
 		System.out.println(vo);
 		System.out.println(searchVo(vo));
+		System.out.println("--------------");
+
 		return vo.equals(searchVo(vo));
 	}
 	abstract T searchVo(T vo);

@@ -18,13 +18,13 @@ public class UserDetailDAO {
 	}
 	public void insertUserAccount(UserDetail userDetail) {
 //		mybatis.insert("UserAccount.insertUserAccount", userAccount);
-		System.out.println(userDetail);
 		mybatis.insert("UserAccount.insertTemporaryUserDetail", userDetail);
 	}
 	public void updateUserAccount(UserDetail userDetail) {
 		mybatis.update("UserAccount.updateUserDetail", userDetail);
 	}
 	public void deleteUserAccount(UserDetail userDetail) {
+		System.out.println(userDetail);
 		mybatis.update("UserAccount.deleteUserDetail", userDetail);
 	}
 	public UserDetail getUserAccount(UserDetail userDetail) {

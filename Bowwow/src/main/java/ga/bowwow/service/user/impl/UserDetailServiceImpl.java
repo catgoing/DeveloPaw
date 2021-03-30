@@ -25,7 +25,7 @@ public class UserDetailServiceImpl implements UserGenericService<UserDetail> {
 	}
 	@Override
 	public boolean deleteVo(UserDetail vo) {
-		userDetailDAO.updateUserAccount(vo);
+		userDetailDAO.deleteUserAccount(vo);
 		return isResignSuccess(vo);
 	}
 	@Override
