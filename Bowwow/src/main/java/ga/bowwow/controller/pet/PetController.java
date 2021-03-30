@@ -36,6 +36,11 @@ public class PetController {
 		return "myPageMain";
 	}
 	
+	@RequestMapping(value = "/myInfo")
+	public String myInfo() {
+		return "/mypage/myInfo";
+	}
+	
 	@RequestMapping(value = "/getPetInfoList3")
 	public String getPetInfoList(Pet pet, Model model) {
 		System.out.println("....> 반려동물 리스트를 가져옵니다");

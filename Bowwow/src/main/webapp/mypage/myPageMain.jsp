@@ -311,7 +311,7 @@
 			     <ul class="pcoded-item pcoded-left-item">
 			         <li class="">
 			          <!-- 회원번호(memberSerial)을 이용해서 내 정보 출력 -->
-			             <a href="myInfo?member_serial=${user.memberSerial }" class="waves-effect waves-dark">
+			             <a href="/myInfo?member_serial=${user.memberSerial }" class="waves-effect waves-dark">
 			             <%-- <a href="getMyInfo?member_serial=${user.memberSerial }" class="waves-effect waves-dark"> --%>
 			                 <span class="pcoded-micon">
 			                     <!-- <i class="ti-id-badge"></i><b>A</b> -->
@@ -389,24 +389,23 @@
 							</div>
 							<div class="container">
 							  <div class="row">
+							  	<c:if test="${not empty petList }">
+                       			<c:forEach var="petList" items="${petList }">
 							    <div class="col-sm">
-							      반려동물1
-							      <div class="card" style="width: 200px;">
-									  <img src="..." class="card-img-top" alt="...">
-								  </div>
+							      	${petList.pet_name }
+							    	<div class="card" style="width: 200px;">
+										<img src="../resources/images/avatar-2.jpg" class="card-img-top" alt="...">
+									</div>
 							    </div>
-							    <div class="col-sm">
-							      반려동물2						    
-							      <div class="card" style="width: 200px;">
-									  <img src="..." class="card-img-top" alt="...">
-								  </div>
-							    </div>
-							    <div class="col-sm">
-							      반려동물3
-							      <div class="card" style="width: 200px;">
-									  <img src="..." class="card-img-top" alt="...">
-								  </div>
-								</div>
+							    </c:forEach>
+							    </c:if>
+							    <c:if test="${empty petList }">
+						    	<div class="col-md-6">
+                           			<div class="list-inner">
+                               	<h3>등록된 반려동물이 없습니다.</h3>
+                            	</div>
+                            </div>
+							    </c:if>
 							  </div>
 							</div>
 							<div class="mypage_main_content boardlist">

@@ -67,6 +67,9 @@
 </style>
 <script>
 
+(funcytion(name){
+	console.log('my name is '+ name);
+})('??')
  function goModify(form){
 	 var idCheck = form.id.value;
 	 var emailCheck = form.email.value;
@@ -541,7 +544,7 @@
 										
 										<div class="input-label">전화번호
 											<div class="input-wrap">
-												<input type="text" name="phone" value="${phone }">
+												<input type="text" name="phone" value="${user.phone }">
 											</div>
 											<p></p>
 										</div>
@@ -561,6 +564,7 @@
 										
 										<div class="input-label">생일
 											<div class="input-wrap">
+											<input type="text" name="birthday" value='${user.birthday }'>
 												<%-- <input type="text" name="birthday" value="${birthday }">
 												<input type="text" name="birthday" value="${birthday }">
 												<input type="text" name="birthday" value="${birthday }"> --%>
