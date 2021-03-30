@@ -6,7 +6,7 @@ import org.mybatis.spring.SqlSessionTemplate;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
-import ga.bowwow.service.store.Cartlist;
+import ga.bowwow.service.store.CartList;
 import ga.bowwow.service.store.Inquiry;
 import ga.bowwow.service.store.Product;
 import ga.bowwow.service.store.Review;
@@ -49,13 +49,13 @@ public class StoreDAO {
 		return mybatis.selectList("StoreReview.reviewList", p_id);
 	}
 
-	public void insertCartlist(Cartlist cartlist) {
+	public void insertCartlist(CartList cartlist) {
 		System.out.println("장바구니 추가");
 		mybatis.insert("StoreCartlist.insertCartlist", cartlist);
 
 	}
 
-	public List<Cartlist> getCartlist(int member_serial) {
+	public List<CartList> getCartlist(int member_serial) {
 		System.out.println("장바구니 목록 출력");
 		return mybatis.selectList("StoreCartlist.cartlistList", member_serial);
 	}
