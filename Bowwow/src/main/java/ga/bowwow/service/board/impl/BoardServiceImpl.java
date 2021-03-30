@@ -14,7 +14,6 @@ import ga.bowwow.service.board.BoardService;
 
 @Service("boardService")
 public class BoardServiceImpl implements BoardService{
-	@Autowired
 	private BoardDAO boardDAO;
 	
 	public BoardServiceImpl() {

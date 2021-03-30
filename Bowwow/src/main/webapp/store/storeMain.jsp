@@ -13,41 +13,44 @@
       <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
       <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
       <![endif]-->
-    <!-- Meta -->
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=0, minimal-ui">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<!-- Meta -->
+<meta charset="utf-8">
+<meta name="viewport"
+	content="width=device-width, initial-scale=1.0, user-scalable=0, minimal-ui">
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
 
-    <meta name="keywords" content="bootstrap, bootstrap admin template, admin theme, admin dashboard, dashboard template, admin template, responsive" />
-    <meta name="author" content="Codedthemes" />
-    <!--Jua 폰트 import-->
-    <link rel="preconnect" href="https://fonts.gstatic.com">
-    <link href="https://fonts.googleapis.com/css2?family=Jua&display=swap" rel="stylesheet">
+<meta name="keywords"
+	content="bootstrap, bootstrap admin template, admin theme, admin dashboard, dashboard template, admin template, responsive" />
+<meta name="author" content="Codedthemes" />
+<!--Jua 폰트 import-->
+<link rel="preconnect" href="https://fonts.gstatic.com">
+<link href="https://fonts.googleapis.com/css2?family=Jua&display=swap"
+	rel="stylesheet">
 
-    <!-- Dohyeon 폰트 import-->
-    <link rel="preconnect" href="https://fonts.gstatic.com">
-    <link href="https://fonts.googleapis.com/css2?family=Do+Hyeon&display=swap" rel="stylesheet">
+<!-- Dohyeon 폰트 import-->
+<link rel="preconnect" href="https://fonts.gstatic.com">
+<link href="https://fonts.googleapis.com/css2?family=Do+Hyeon&display=swap" rel="stylesheet">
 
     <!-- Favicon icon -->
-    <link rel="icon" href="/main/resources/images/favicon.ico" type="image/x-icon">
+    <link rel="icon" href="/resources/images/favicon.ico" type="image/x-icon">
     <!-- Google font-->
     <link href="https://fonts.googleapis.com/css?family=Open+Sans:400,600,700" rel="stylesheet">
     <!-- waves.css -->
-    <link rel="stylesheet" href="/main/resources/pages/waves/css/waves.min.css" type="text/css" media="all">
+    <link rel="stylesheet" href="/resources/pages/waves/css/waves.min.css" type="text/css" media="all">
     <!-- Required Fremwork -->
-    <link rel="stylesheet" type="text/css" href="/main/resources/css/bootstrap/css/bootstrap.min.css">
+    <link rel="stylesheet" type="text/css" href="/resources/css/bootstrap/css/bootstrap.min.css">
     <!-- waves.css -->
-    <link rel="stylesheet" href="/main/resources/pages/waves/css/waves.min.css" type="text/css" media="all">
+    <link rel="stylesheet" href="/resources/pages/waves/css/waves.min.css" type="text/css" media="all">
     <!-- themify icon -->
-    <link rel="stylesheet" type="text/css" href="/main/resources/icon/themify-icons/themify-icons.css">
+    <link rel="stylesheet" type="text/css" href="/resources/icon/themify-icons/themify-icons.css">
     <!-- font-awesome-n -->
-    <link rel="stylesheet" type="text/css" href="/main/resources/css/font-awesome-n.min.css">
-    <link rel="stylesheet" type="text/css" href="/main/resources/css/font-awesome.min.css">
+    <link rel="stylesheet" type="text/css" href="/resources/css/font-awesome-n.min.css">
+    <link rel="stylesheet" type="text/css" href="/resources/css/font-awesome.min.css">
     <!-- scrollbar.css -->
-    <link rel="stylesheet" type="text/css" href="/main/resources/css/jquery.mCustomScrollbar.css">
+    <link rel="stylesheet" type="text/css" href="/resources/css/jquery.mCustomScrollbar.css">
     <!-- Style.css -->
-    <link rel="stylesheet" type="text/css" href="/main/resources/css/style.css">
-    <link rel="stylesheet" type="text/css" href="/main/resources/css/test.css">
+    <link rel="stylesheet" type="text/css" href="/resources/css/style.css">
+    <link rel="stylesheet" type="text/css" href="/resources/css/test.css">
 
 <style>
   .featured__item__text { width: 150px; }
@@ -216,7 +219,7 @@
                                     </li>
                                     <li class="waves-effect waves-light">
                                         <div class="media">
-                                            <img class="d-flex align-self-center img-radius" src="../resources/images/avatar-4.jpg" alt="Generic placeholder image">
+                                            <img class="d-flex align-self-center img-radius" src="resources/images/avatar-4.jpg" alt="Generic placeholder image">
                                             <div class="media-body">
                                                 <h5 class="notification-user">Joseph William</h5>
                                                 <p class="notification-msg">Lorem ipsum dolor sit amet, consectetuer elit.</p>
@@ -226,7 +229,7 @@
                                     </li>
                                     <li class="waves-effect waves-light">
                                         <div class="media">
-                                            <img class="d-flex align-self-center img-radius" src="../resources/images/avatar-3.jpg" alt="Generic placeholder image">
+                                            <img class="d-flex align-self-center img-radius" src="resources/images/avatar-3.jpg" alt="Generic placeholder image">
                                             <div class="media-body">
                                                 <h5 class="notification-user">Sara Soudein</h5>
                                                 <p class="notification-msg">Lorem ipsum dolor sit amet, consectetuer elit.</p>
@@ -238,7 +241,7 @@
                             </li>
                             <li class="user-profile header-notification">
                                 <a href="#!" class="waves-effect waves-light">
-                                    <img src="../resources/images/avatar-4.jpg" class="img-radius" alt="User-Profile-Image">
+                                    <img src="resources/images/avatar-4.jpg" class="img-radius" alt="User-Profile-Image">
                                     <i class="ti-angle-down"></i>
                                 </a>
                                 <ul class="show-notification profile-notification">
@@ -548,7 +551,7 @@
                                                 <div class="row">
                                                     <div class="col-lg-12">
                                                         <div class="section-title">
-                                                            <h2>댕댕이 상품보기</h2>
+                                                            <h2>스토어 메인</h2>
                                                         </div>
                                                         <br>
                                                     </div>
@@ -677,23 +680,23 @@
     <!-- Warning Section Ends -->
 
     <!-- Required Jquery -->
-    <script type="text/javascript" src="/main/resources/js/jquery/jquery.min.js "></script>
-    <script type="text/javascript" src="/main/resources/js/jquery-ui/jquery-ui.min.js "></script>
-    <script type="text/javascript" src="/main/resources/js/popper.js/popper.min.js"></script>
-    <script type="text/javascript" src="/main/resources/js/bootstrap/js/bootstrap.min.js "></script>
+    <script type="text/javascript" src="/resources/js/jquery/jquery.min.js "></script>
+    <script type="text/javascript" src="/resources/js/jquery-ui/jquery-ui.min.js "></script>
+    <script type="text/javascript" src="/resources/js/popper.js/popper.min.js"></script>
+    <script type="text/javascript" src="/resources/js/bootstrap/js/bootstrap.min.js "></script>
     <!-- waves js -->
-    <script src="/main/resources/pages/waves/js/waves.min.js"></script>
+    <script src="/resources/pages/waves/js/waves.min.js"></script>
     <!-- jquery slimscroll js -->
-    <script type="text/javascript" src="/main/resources/js/jquery-slimscroll/jquery.slimscroll.js"></script>
+    <script type="text/javascript" src="/resources/js/jquery-slimscroll/jquery.slimscroll.js"></script>
 
     <!-- slimscroll js -->
-    <script src="/main/resources/js/jquery.mCustomScrollbar.concat.min.js "></script>
+    <script src="/resources/js/jquery.mCustomScrollbar.concat.min.js "></script>
 
     <!-- menu js -->
-    <script src="/main/resources/js/pcoded.min.js"></script>
-    <script src="/main/resources/js/vertical/vertical-layout.min.js "></script>
+    <script src="/resources/js/pcoded.min.js"></script>
+    <script src="/resources/js/vertical/vertical-layout.min.js "></script>
 
-    <script type="text/javascript" src="/main/resources/js/script.js "></script>
+    <script type="text/javascript" src="/resources/js/script.js "></script>
 </body>
 
 

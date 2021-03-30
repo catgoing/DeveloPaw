@@ -1,35 +1,15 @@
 package ga.bowwow.controller.board;
 
-import java.io.File;
 import java.io.IOException;
-import java.io.InputStream;
-import java.io.PrintWriter;
-import java.util.Calendar;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
-import java.util.Random;
-import java.util.UUID;
 
-import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpServletRequestWrapper;
-import javax.servlet.http.HttpServletResponse;
-
-import org.apache.commons.io.FileUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
-import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.ResponseBody;
-import org.springframework.web.multipart.MultipartFile;
-
-import com.amazonaws.AmazonClientException;
-import com.google.gson.JsonObject;
 
 import ga.bowwow.service.board.Board;
 import ga.bowwow.service.board.BoardService;
@@ -37,7 +17,7 @@ import ga.bowwow.service.board.BoardService;
 
 @Controller
 public class BoardController {
-	@Autowired //의존주입(DI) : 동일한 데이터 타입 객체
+	@Autowired
 	private BoardService boardService; //의존주입<-- BoardServiceImpl
 
 	public BoardController() {
@@ -45,33 +25,33 @@ public class BoardController {
 		System.out.println("> boardService : " + boardService); //null
 	}
 
-
+/*
 	@RequestMapping(value="/uploadSummernoteImageFile.do", produces = "application/json; charset=utf8")
 	@ResponseBody
 	public String uploadSummernoteImageFile(@RequestParam("file") MultipartFile multipartFile, HttpServletRequest request ) throws AmazonClientException, InterruptedException, IllegalStateException, IOException  {
 		JsonObject jsonObject = new JsonObject();
-		
+
         /*
 		 * String fileRoot = "C:\\summernote_image\\"; // 외부경로로 저장을 희망할때.
-		 */
-		
+
+
 		// 내부경로로 저장
 		/*
 		String contextRoot = new HttpServletRequestWrapper(request).getRealPath("/");
 		String fileRoot = contextRoot+"resources/upload/";
-		
+
 		String originalFileName = multipartFile.getOriginalFilename();	//오리지날 파일명
 		String extension = originalFileName.substring(originalFileName.lastIndexOf("."));	//파일 확장자
 		String savedFileName = UUID.randomUUID() + extension;	//저장될 파일 명
 
-		
-		File targetFile = new File(fileRoot + savedFileName);	
+
+		File targetFile = new File(fileRoot + savedFileName);
 		try {
 			InputStream fileStream = multipartFile.getInputStream();
 			FileUtils.copyInputStreamToFile(fileStream, targetFile);	//파일 저장
 			jsonObject.addProperty("url", "/main/resources/upload/"+savedFileName); // contextroot + resources + 저장할 내부 폴더명
 			jsonObject.addProperty("responseCode", "success");
-				
+
 		} catch (IOException e) {
 			FileUtils.deleteQuietly(targetFile);	//저장된 파일 삭제
 			jsonObject.addProperty("responseCode", "error");
@@ -79,33 +59,33 @@ public class BoardController {
 		}
 		String a = jsonObject.toString();
 		System.out.println("파일 주소: " + a);
-		*/
-		
-		
-		
-		
+
+
+
+
+
 		String fs_url = "https://projectbit.s3.us-east-2.amazonaws.com/diary/";
-		
+
 		String originalFileName = multipartFile.getOriginalFilename();	//오리지날 파일명
 		String extension = originalFileName.substring(originalFileName.lastIndexOf("."));	//파일 확장자
 		String savedFileName = UUID.randomUUID() + extension;	//저장될 파일 명
-		s3upload s2 = new s3upload();
+		MultipartController s2 = new MultipartController();
 	    File file = new File(request.getServletContext().getRealPath("/temp"));
 	    multipartFile.transferTo(file);
-		String s3 = s2.s3upload3(file, savedFileName,"diary");
-		
+		String s3 = s2.s3upload(file, savedFileName,"diary");
+
 		System.out.println(s3);
-		
+
 		jsonObject.addProperty("url", fs_url + savedFileName); // contextroot + resources + 저장할 내부 폴더명
 		jsonObject.addProperty("responseCode", "success");
-		
+
 		String a = jsonObject.toString();
-		
-		
+
+
 		return a;
 	}
-	
 
+*/
 
 
 	@RequestMapping("/list.do")
@@ -128,7 +108,7 @@ public class BoardController {
 		//		return "/godiary";
 		//		return "redirect:/tiles/godiary.do";
 		return "/community/diary_board";
-	}	
+	}
 	@RequestMapping("/community/list.do")
 	public String getTilesBoardList(Model model) {
 		System.out.println(">>> 게시글 전체 목록- String getBoardList()");
@@ -149,7 +129,7 @@ public class BoardController {
 		//		return "/godiary";
 		//		return "redirect:/tiles/godiary.do";
 		return "/godiary";
-	}	
+	}
 
 	//메소드에 선언된 @ModelAttribute : 리턴된 데이터를 View에 전달
 	//@ModelAttribute 선언된 메소드는 @RequestMapping 메소드보다 먼저 실행됨
@@ -175,7 +155,7 @@ public class BoardController {
 		model.addAttribute("board", board);
 
 		return "getBoard.jsp";
-	}	
+	}
 	 */
 
 
@@ -185,13 +165,13 @@ public class BoardController {
 	//		System.out.println(">>> 게시글 전체 목록- String getBoardList()");
 	//		System.out.println("> boardService : " + boardService);
 	//
-	//				
+	//
 	//		List<Board> boardList = boardService.getBoardList(1);
-	//		
+	//
 	//		model.addAttribute("boardList", boardList);
-	//		
+	//
 	//		return "getBoardList.jsp";
-	//	}	
+	//	}
 
 
 	@RequestMapping("/community/insertBoard.do")
@@ -211,11 +191,11 @@ public class BoardController {
 			uploadFile.transferTo(new File("c:/MyStudy/temp/" + fileName ));
 		}*/
 
-		
+
 //		boardService.insertBoard(vo);
 //		return "getBoardList.do";
 		return "list.do";
-	}	
+	}
 
 	/*
 	@RequestMapping("/updateBoard.do")
@@ -224,7 +204,7 @@ public class BoardController {
 		boardService.updateBoard(vo);
 
 		return "getBoardList.do";
-	}	
+	}
 
 	@RequestMapping("/deleteBoard.do")
 	public String deleteBoard(Board vo) {
@@ -232,7 +212,7 @@ public class BoardController {
 		boardService.deleteBoard(vo);
 		S
 		return "getBoardList.do";
-	}	
+	}
 
 	//Ajax 요청을 받고 JSON 배열 데이터 리턴
 	@RequestMapping("/ajaxGetBoardList.do")
@@ -246,5 +226,3 @@ public class BoardController {
 	 */
 
 }
-
-

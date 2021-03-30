@@ -2,9 +2,6 @@
     pageEncoding="UTF-8"%>
 <%@ taglib uri="http://tiles.apache.org/tags-tiles" prefix="tiles"%>
 
-<!DOCTYPE html>
-<html>
-
 <head>
     <title>개발바닥</title>
     <!-- HTML5 Shim and Respond.js IE10 support of HTML5 elements and media queries -->
@@ -52,15 +49,22 @@
   .form-group .input-content .input-label{
   	font-size : 20px;
   }
-  
   .myPageInfo-header {
   	text-align: center;
-  }  
+  }
   .myPageInfo-wrapper {
 	display: flex;
 	justify-content: center;
   }
-  
+
+  .myPageInfo-header {
+  	text-align: center;
+  }
+  .myPageInfo-wrapper {
+	display: flex;
+	justify-content: center;
+  }
+
   .input-content .input-wrap {
 	margin-bottom: 15px;
 	position: relative;
@@ -84,7 +88,7 @@
 .input-wrap>.radio-gender>#genderF, .input-wrap>.radio-gender>#genderM{
 	width: 15px;
 	height: 10px;
-	
+
 }
 .side-content {
 	position: relative;
@@ -96,7 +100,7 @@
     margin: 30px;
     border: 1px solid rgba(228, 228, 228, 0.5);
     border-radius: 10px;
- 
+
  }
  .side-content .my-area .side-profile-img{
 	/* float: left; */
@@ -140,13 +144,13 @@
 </style>
 </head>
 
-<body>    
+<body>
     <div id="pcoded" class="pcoded">
         <div class="pcoded-overlay-box"></div>
         <div class="pcoded-container navbar-wrapper">
 		<!-- 헤더 -->
 		<%@include file="/common/header.jsp" %>
-		
+
 		<div class="pcoded-main-container">
 			<div class="pcoded-wrapper">
 				<!-- 좌측 메뉴바 시작 -->
@@ -160,7 +164,7 @@
 						<!-- 이부분 form을 없애면 좌측메뉴 시작부분이 위쪽으로 조금 올라감 -->
 			         </form>
 			     </div>
-			  
+
 			     <ul class="pcoded-item pcoded-left-item">
 			         <li class="">
 			             <a href="myPageMain.do" class="waves-effect waves-dark">
@@ -170,7 +174,7 @@
 			             </a>
 			         </li>
 			     </ul>
-			
+
 			     <ul class="pcoded-item pcoded-left-item">
 			         <li class="">
 			          <!-- 회원번호(memberSerial)을 이용해서 내 정보 출력 -->
@@ -230,20 +234,20 @@
 			     </ul>
 			 </div>
 		</nav>
-		
+
 	<!-- 좌측 메뉴바 끝 -->
-				
+
 				<!-- Main-body start 본문 시작 -->
 					<div class="main-body">
 					<div class="page-wrapper">
-                                
+
 						<!-- Page-body start -->
 						<div class="page-body">
 						<div class="myPageInfo-header">
 							<h2> 뫄뫄님의 페이지</h2>
 						</div>
 						<div class="myPageInfo-wrapper">
-							
+
 							<!-- <section class="featured spad">
 								<div class="container">
 									<div class="row">
@@ -265,7 +269,7 @@
 											<p>닉네임</p>
 										</div>
 									</div>
-									
+
 									<div class="mainMypage-content">
 									<div class="block-title">
 										<h3>정보수정</h3>
@@ -273,8 +277,8 @@
 									</div>
 									<form>
 									<%-- <input type="text" value="${id }" readonly> --%>
-										
-										<div class="input-label">아이디 
+
+										<div class="input-label">아이디
 											<div class="input-wrap">
 												<input type="text" name="id" value="sunsetar" disabled>
 											</div>
@@ -282,56 +286,56 @@
                                             <div class="col-sm-10">
                                                 <input type="text" class="form-control form-control-round" placeholder=".form-control-round">
                                             </div>
-											<p></p>												
+											<p></p>
 										</div>
-										
+
 										<div class="input-label">비밀번호
 											<div class="input-wrap">
 												<input type="password" name="password" placeholder="비밀번호 입력">
 											</div>
 											<p>비밀번호는 이만~~~~~큼 입력해야합니다.</p>
 										</div>
-													
+
 										<div class="input-label">비밀번호 확인
 											<div class="input-wrap">
 												<input type="password" placeholder="비밀번호 재입력">
 											</div>
 											<p>비밀번호를 또 입력해야합니다 -- 비밀번호 입력 안하고 수정해도 수정됨?</p>
 										</div>
-													
+
 										<div class="input-label">이름
 											<div class="input-wrap">
 												<input type="text" name="name" value="${name }">
 											</div>
 											<p></p>
 										</div>
-													
+
 										<div class="input-label">닉네임
 											<div class="input-wrap">
 												<input type="text" name="nickname" value="${nickname }">
 											</div>
 											<p></p>
 										</div>
-													
+
 										<div class="input-label">이메일
 											<div class="input-wrap">
 												<input type="text" name="email" value="${email }">
 											</div>
 											<p></p>
 										</div>
-										
+
 										<div class="input-label">전화번호
 											<div class="input-wrap">
 												<input type="text" name="phone" value="${phone }">
 											</div>
 											<p></p>
 										</div>
-										
+
 										<div class="input-label">주소
 											<div></div>
 											<p></p>
 										</div>
-										
+
 										<div class="input-label">생일
 											<div class="input-wrap">
 												<%-- <input type="text" name="birthday" value="${birthday }">
@@ -340,7 +344,7 @@
 											</div>
 											<p></p>
 										</div>
-										
+
 										<div class="input-label">성별
 											<div class="input-wrap">
 												<span class="radio-gender">
@@ -354,39 +358,38 @@
 											</div>
 											<p>설정한 정보로 checked하기??</p>
 										</div>
-										
+
 										<div class="input-label">
 											<div class="input-wrap">
 												<div class="my-profile">
 													<label for="uploadImage" id="imageview">
 														<img src="" class="thumb">
 													</label>
-													<input type="file" id="uploadImage" accept="image/gif, image/jpeg, image/jpg, image/png" name="uploadImage" onchange="readURL(this);">		
+													<input type="file" id="uploadImage" accept="image/gif, image/jpeg, image/jpg, image/png" name="uploadImage" onchange="readURL(this);">
 												</div>
 											</div>
 											<p></p>
 										</div>
-										
+
 										<div class="action_btn">
-											<input type="button" value="정보수정test" onclick="javascript:goDetail();">							    
-										</div>																    
-	
+											<input type="button" value="정보수정test" onclick="javascript:goDetail();">
+										</div>
+
 									</form>
 									</div>
 									</div>
 								</div>
-										
 							</div>
 						</div>
 					</div>
 				</div>
 			</div>
-					
+
 			</div>
 		</div>
 	</div>
 </div>
-	
+
     <button class="scroll-top" id="js-button" style="margin-bottom: 190px; margin-right: 30px;">
         <i class="fa fa-chevron-up" aria-hidden="true">TOP</i>
     </button>
@@ -394,13 +397,13 @@
         scrollTop('js-button', 500);
         function scrollTop(elem,duration) {
             let target = document.getElementById(elem);
-        
+
             target.addEventListener('click', function() {
-                let currentY = window.pageYOffset; 
+                let currentY = window.pageYOffset;
                 let step = duration/currentY > 1 ? 10 : 100;
                 let timeStep = duration/currentY * step;
                 let intervalID = setInterval(scrollUp, timeStep);
-        
+
                 function scrollUp(){
                     currentY = window.pageYOffset;
                     if(currentY === 0) {
@@ -412,7 +415,7 @@
             });
         }
     </script>
-        
+
 	<!-- footer 푸터 시작부분-->
 	<%@include file="/common/footer.jsp" %>
 	<!-- footer 푸터 끝부분-->

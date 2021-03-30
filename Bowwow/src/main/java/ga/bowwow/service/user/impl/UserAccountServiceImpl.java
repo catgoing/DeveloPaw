@@ -4,31 +4,65 @@ import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-import org.springframework.web.servlet.ViewResolver;
 
 import ga.bowwow.service.user.UserAccount;
-import ga.bowwow.service.user.UserAccountService;
+import ga.bowwow.service.user.UserGenericService;
 
 //@Service : @Component 상속확장 어노테이션
 //		비즈니스 로직처리 서비스 영역에 사용
 @Service("UserAccountService")
-public class UserAccountServiceImpl implements UserAccountService {
-	@Autowired //타입이 일치하는 객체(인스턴스) 주입
-	//private UserAccountDAO UserAccountDAO;
-	//private UserAccountDAOSpring UserAccountDAO;
-//	ViewResolver vr = new ViewResolver;
-	private UserAccountDAO UserAccountDAO;
+public class UserAccountServiceImpl implements UserGenericService<UserAccount> {
+	@Autowired
+	private UserAccountDAO userAccountDAO;
 	
-	public UserAccountServiceImpl() {
-		System.out.println(">> UserServiceImpl() 객체생성");
+	public boolean loginAttemp(UserAccount userAccount) {
+		return isNotNull(userAccountDAO.verifyAccount(userAccount));
 	}
-
-	@Override
-	public void insertUserAccount(UserAccount userAccount) {
+	public UserAccount searchUser(UserAccount userAccount) {
+		return userAccountDAO.searchUserAccount(userAccount);
 	}
-
+	private boolean isNotNull(Object object) {
+		return (object != null) ? true : false;
+	}
+	
+	
 	@Override
-	public UserAccount getUserAccount(UserAccount userAccount) {
+	public boolean addUser(UserAccount userAccount) {
+		userAccountDAO.insertUserAccount(userAccount);
+		return isRegisterSuccess(userAccount);
+	}
+	@Override
+	public boolean updateUser(UserAccount userAccount) {
+		userAccountDAO.updateUserAccount(userAccount);
+		return isUserValueExist(userAccount);
+	}
+	@Override
+	public boolean deleteUser(UserAccount userAccount) {
+		userAccountDAO.deleteUserAccount(userAccount);
+		return isResignSuccess(userAccount);
+	}
+	@Override
+	public UserAccount getUser(UserAccount userAccount) {
+		return userAccountDAO.getUserAccount(userAccount);
+	}
+	@Override
+	public List<UserAccount> getUserList(UserAccount userAccount) {
 		return null;
+	}
+	
+	private boolean isUpdateSuccess(UserAccount userAccount, boolean expectBool) {
+		return isUserValueExist(userAccount) ? expectBool : !expectBool;
+	}
+	private boolean isResignSuccess(UserAccount userAccount) {
+		return isUpdateSuccess(userAccount, false);
+	}
+	private boolean isRegisterSuccess(UserAccount userAccount) {
+		return isUpdateSuccess(userAccount, true);
+	}
+	private boolean isUserValueExist(UserAccount userAccount) {
+		return userAccount.equals(searchUser(userAccount));
+	}
+	private UserAccount cleanUserAccount() {
+		return new UserAccount();
 	}
 }

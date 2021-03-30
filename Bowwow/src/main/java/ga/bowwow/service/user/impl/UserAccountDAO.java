@@ -1,9 +1,8 @@
 package ga.bowwow.service.user.impl;
 
-import java.util.List;
-
 import org.mybatis.spring.SqlSessionTemplate;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Repository;
 
 import ga.bowwow.service.user.UserAccount;
@@ -11,21 +10,29 @@ import ga.bowwow.service.user.UserAccount;
 @Repository("UserAccountDAO")
 public class UserAccountDAO {
 	@Autowired
+	@Qualifier("local")
 	private SqlSessionTemplate mybatis;
 	
 	public UserAccountDAO() {
 		System.out.println(">> UserAccountDAO() 객체생성");
 	}
-	
-	//글 입력
-	public void insertUserAccount(UserAccount vo) {
-		System.out.println("===> MyBatis로 insertUserAccount() 실행");
-		mybatis.insert("UserAccountDAO.insertUserAccount", vo);
+	public void insertUserAccount(UserAccount userAccount) {
+//		mybatis.insert("UserAccount.insertUserAccount", userAccount);
+		mybatis.insert("UserAccount.insertTemporaryUserAccount", userAccount);
 	}
-	
-	//글 수정
-	public void updateUserAccount(UserAccount vo) {
-		System.out.println("===> MyBatis로 updateUserAccount() 실행");
-		mybatis.update("UserAccountDAO.updateUserAccount", vo);
+	public void updateUserAccount(UserAccount userAccount) {
+		mybatis.update("UserAccount.updateUserAccount", userAccount);
+	}
+	public void deleteUserAccount(UserAccount userAccount) {
+		mybatis.update("UserAccount.deleteUserAccount", userAccount);
+	}
+	public UserAccount getUserAccount(UserAccount userAccount) {
+		return mybatis.selectOne("UserAccount.getUserAccount", userAccount);
+	}
+	public UserAccount searchUserAccount(UserAccount userAccount) {
+		return mybatis.selectOne("UserAccount.searchUserAccount", userAccount);
+	}
+	public UserAccount verifyAccount(UserAccount userAccount) {
+		return mybatis.selectOne("UserAccount.loginValidation", userAccount);
 	}
 }
