@@ -21,7 +21,7 @@ public class UserDetailController extends UserCRUDGenericController<UserDetail, 
 	}
 	
 	//TODO memberSerial의 동기화 작업이 필요함!
-	@RequestMapping(value="/signupDetail")
+	@RequestMapping(value="/signupDetail") //CRUD페이지
 	public String getDetailInfo(@ModelAttribute("userDetail") UserDetail userDetail) {
 		return "/auth.myDetail";
 	}
@@ -30,7 +30,6 @@ public class UserDetailController extends UserCRUDGenericController<UserDetail, 
 	private String simpleOkPageDistributor(boolean isOK) {
 		return (isOK) ? "/ok" : "failedRoute <- usually itself";
 	}
-
 	@Override
 	protected List<UserDetail> list(UserDetail vo) {
 		// TODO Auto-generated method stub

@@ -18,16 +18,6 @@ public abstract class UserCRUDGenericController<T, SN, S extends UserGenericServ
 	String resolveRoute;
 	String errorRoute;
 	
-	protected String add(T vo, String resolveRoute, String errorRoute) {
-		return router(service.addVo(vo), resolveRoute, errorRoute);
-	}
-	protected String update(T vo, String resolveRoute, String errorRoute) {
-		return router(service.updateVo(vo), resolveRoute, errorRoute);
-	}
-	protected String delete(T vo, String resolveRoute, String errorRoute) {
-		return router(service.deleteVo(vo), resolveRoute, errorRoute);
-	}
-	
 	@RequestMapping("/add")
 	protected String add(T vo)  {
 		try {
@@ -55,13 +45,12 @@ public abstract class UserCRUDGenericController<T, SN, S extends UserGenericServ
 	}
 	protected abstract List<T> list(T vo);
 	
-	private static String router(boolean source, String resolveRoute, String errorRoute) {
-		return source ? resolveRoute : errorRoute;
-	}
-
 	protected void setRoute(String resolveRoute, String errorRoute) {
 		this.setResolveRoute(resolveRoute);
 		this.setErrorRoute(errorRoute);
+	}
+	private static String router(boolean source, String resolveRoute, String errorRoute) {
+		return source ? resolveRoute : errorRoute;
 	}
 	public String getResolveRoute() {
 		return resolveRoute;
@@ -79,13 +68,13 @@ public abstract class UserCRUDGenericController<T, SN, S extends UserGenericServ
 	
 
 	//legacy
-//	@RequestMapping("/add") protected void add(T vo) {
-//		service.addUser(vo);
-//	}
-//	@RequestMapping("/update") protected void update(T vo) {
-//		service.updateUser(vo);
-//	}
-//	@RequestMapping("/delete") protected void delete(T vo) {
-//		service.deleteUser(vo);
-//	}
+				protected String add(T vo, String resolveRoute, String errorRoute) {
+					return router(service.addVo(vo), resolveRoute, errorRoute);
+				}
+				protected String update(T vo, String resolveRoute, String errorRoute) {
+					return router(service.updateVo(vo), resolveRoute, errorRoute);
+				}
+				protected String delete(T vo, String resolveRoute, String errorRoute) {
+					return router(service.deleteVo(vo), resolveRoute, errorRoute);
+				}
 }

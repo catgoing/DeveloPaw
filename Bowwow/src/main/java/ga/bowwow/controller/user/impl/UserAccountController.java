@@ -9,7 +9,6 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.SessionAttributes;
 
 import ga.bowwow.controller.user.UserCRUDGenericController;
-import ga.bowwow.service.user.AddrAccount;
 import ga.bowwow.service.user.UserAccount;
 import ga.bowwow.service.user.impl.UserAccountServiceImpl;
 
@@ -29,6 +28,10 @@ public class UserAccountController extends UserCRUDGenericController<UserAccount
 	//TODO =>DB에서 찾아올 때, 실패하길 원하는가, 성공하길 원하는가?가 클래스의 생성자 두번째일 수 있음.
 	//TODO =>트랜잭션이란, 결국에 2+개의 boolean을 and처리한 결과임.
 
+	@RequestMapping(value="/signupAccount") //CRUD페이지
+	public String getUserInfo(@ModelAttribute("userAccount") UserAccount userAccount) {
+		return "/auth.myInfo2";
+	}
 	@RequestMapping(value="/login")
 	public String getUserAccount(@ModelAttribute("userAccount") UserAccount userAccount, Model model) {
 		boolean result = super.service.loginAttemp(userAccount);
@@ -36,10 +39,6 @@ public class UserAccountController extends UserCRUDGenericController<UserAccount
 			model.addAttribute("userDTO", userAccount);
 		}
 		return result ? "/ok" : "/auth.login";
-	}
-	@RequestMapping(value="/signupAccount")
-	public String getUserInfo(@ModelAttribute("userAccount") UserAccount userAccount) {
-		return "/auth.myInfo2";
 	}
 	@RequestMapping(value="/signup")
 	public String confirmUserTerms() {

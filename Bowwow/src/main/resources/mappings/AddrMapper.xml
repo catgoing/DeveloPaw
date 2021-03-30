@@ -6,15 +6,6 @@
 
 	<insert id="insertTemporaryAddrAccount" parameterType="AddrAccount" >
 		INSERT INTO USER_ADDRESS (ADDRESS_ID, MEMBER_SERIAL, ADDRESS_FIRST, ADDRESS_SECOND, ZIP) 
-		VALUES ('1' ,999 , #{Address}, #{Zonecode}, #{detailAddress})
+		VALUES ( , #{memberSerial} , #{Address}, #{Zonecode}, #{detailAddress})
 	</insert>
 </mapper>
-
-
-
-
-
-
-
-
-
