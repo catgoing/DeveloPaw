@@ -67,5 +67,6 @@
 		객체 사용 -->
 	<mvc:default-servlet-handler />
 	<mvc:annotation-driven />
+	<mvc:default-servlet-handler />
 
 </beans>

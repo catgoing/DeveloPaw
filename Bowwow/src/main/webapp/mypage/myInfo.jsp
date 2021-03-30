@@ -2,6 +2,9 @@
     pageEncoding="UTF-8"%>
 <%@ taglib uri="http://tiles.apache.org/tags-tiles" prefix="tiles"%>
 
+<!DOCTYPE html>
+<html>
+
 <head>
     <title>개발바닥</title>
     <!-- HTML5 Shim and Respond.js IE10 support of HTML5 elements and media queries -->
@@ -379,6 +382,7 @@
 									</div>
 									</div>
 								</div>
+
 							</div>
 						</div>
 					</div>

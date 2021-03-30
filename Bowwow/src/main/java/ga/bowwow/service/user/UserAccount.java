@@ -19,7 +19,7 @@ public class UserAccount {
 	String status;
 	int point;
 	String coupons;
-	
+
 	@Override
 	public int hashCode() {
 		final int prime = 31;
@@ -49,7 +49,7 @@ public class UserAccount {
 			return false;
 		return true;
 	}
-	
+
 	//TODO 사안에 맞게 bypass 할 수 있을까?
 	public boolean valueEquals(Object obj) {
 		if (this == obj)

@@ -1,62 +1,67 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
-
 
 <!DOCTYPE html>
-
 <html>
+
 <head>
+    <title>개발바닥</title>
     <!-- HTML5 Shim and Respond.js IE10 support of HTML5 elements and media queries -->
     <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
     <!--[if lt IE 10]>
       <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
       <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
       <![endif]-->
-    <!-- Meta -->
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=0, minimal-ui">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<!-- Meta -->
+<meta charset="utf-8">
+<meta name="viewport"
+	content="width=device-width, initial-scale=1.0, user-scalable=0, minimal-ui">
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
 
-    <meta name="keywords" content="bootstrap, bootstrap admin template, admin theme, admin dashboard, dashboard template, admin template, responsive" />
-    <meta name="author" content="Codedthemes" />
-    <!--Jua 폰트 import-->
-    <link rel="preconnect" href="https://fonts.gstatic.com">
-    <link href="https://fonts.googleapis.com/css2?family=Jua&display=swap" rel="stylesheet">
+<meta name="keywords"
+	content="bootstrap, bootstrap admin template, admin theme, admin dashboard, dashboard template, admin template, responsive" />
+<meta name="author" content="Codedthemes" />
+<!--Jua 폰트 import-->
+<link rel="preconnect" href="https://fonts.gstatic.com">
+<link href="https://fonts.googleapis.com/css2?family=Jua&display=swap"
+	rel="stylesheet">
 
-    <!-- Dohyeon 폰트 import-->
-    <link rel="preconnect" href="https://fonts.gstatic.com">
-    <link href="https://fonts.googleapis.com/css2?family=Do+Hyeon&display=swap" rel="stylesheet">
+<!-- Dohyeon 폰트 import-->
+<link rel="preconnect" href="https://fonts.gstatic.com">
+<link href="https://fonts.googleapis.com/css2?family=Do+Hyeon&display=swap" rel="stylesheet">
 
     <!-- Favicon icon -->
-    <link rel="icon" href="/resources/images/favicon.ico" type="image/x-icon">
+    <link rel="icon" href="../resources/images/favicon.ico" type="image/x-icon">
     <!-- Google font-->
     <link href="https://fonts.googleapis.com/css?family=Open+Sans:400,600,700" rel="stylesheet">
     <!-- waves.css -->
-    <link rel="stylesheet" href="/resources/pages/waves/css/waves.min.css" type="text/css" media="all">
+    <link rel="stylesheet" href="../	resources/pages/waves/css/waves.min.css" type="text/css" media="all">
     <!-- Required Fremwork -->
-    <link rel="stylesheet" type="text/css" href="/resources/css/bootstrap/css/bootstrap.min.css">
+    <link rel="stylesheet" type="text/css" href="../resources/css/bootstrap/css/bootstrap.min.css">
     <!-- waves.css -->
-    <link rel="stylesheet" href="/resources/pages/waves/css/waves.min.css" type="text/css" media="all">
+    <link rel="stylesheet" href="../resources/pages/waves/css/waves.min.css" type="text/css" media="all">
     <!-- themify icon -->
-    <link rel="stylesheet" type="text/css" href="/resources/icon/themify-icons/themify-icons.css">
+    <link rel="stylesheet" type="text/css" href="../resources/icon/themify-icons/themify-icons.css">
     <!-- font-awesome-n -->
-    <link rel="stylesheet" type="text/css" href="/resources/css/font-awesome-n.min.css">
-    <link rel="stylesheet" type="text/css" href="/resources/css/font-awesome.min.css">
+    <link rel="stylesheet" type="text/css" href="../resources/css/font-awesome-n.min.css">
+    <link rel="stylesheet" type="text/css" href="../resources/css/font-awesome.min.css">
     <!-- scrollbar.css -->
-    <link rel="stylesheet" type="text/css" href="/resources/css/jquery.mCustomScrollbar.css">
+    <link rel="stylesheet" type="text/css" href="../resources/css/jquery.mCustomScrollbar.css">
     <!-- Style.css -->
-    <link rel="stylesheet" type="text/css" href="/resources/css/style.css">
-    <link rel="stylesheet" type="text/css" href="/resources/css/test.css">
-
+    <link rel="stylesheet" type="text/css" href="../resources/css/style.css">
+    <link rel="stylesheet" type="text/css" href="../resources/css/storeStyle.css">
+    <link rel="stylesheet" type="text/css" href="../resources/css/test.css">
 <style>
   .featured__item__text { width: 150px; }
+  
+  img { display:block; 
+    	margin:auto;}
 </style>
 </head>
 
 <body>
     <!-- Pre-loader start -->
-     <div class="theme-loader">
+    <div class="theme-loader">
         <div class="loader-track">
             <div class="preloader-wrapper">
                 <div class="spinner-layer spinner-blue">
@@ -141,10 +146,10 @@
                                 <div class="sidebar_toggle"><a href="javascript:void(0)"><i class="ti-menu"></i></a></div>
                             </li>
                             <li>
-                                <a href="storeInquiry"> 커뮤니티 </a>
+                                <a href="index.html"> 커뮤니티 </a>
                             </li>
                             <li>
-                                <a href="storeMain"> 스토어 </a>
+                                <a href="storeMain.html"> 스토어 </a>
                             </li>
                         </ul>
                         <ul class="nav-right">
@@ -238,7 +243,7 @@
                             </li>
                             <li class="user-profile header-notification">
                                 <a href="#!" class="waves-effect waves-light">
-                                    <img src="resources/images/avatar-4.jpg" class="img-radius" alt="User-Profile-Image">
+                                    <img src="../resources/images/avatar-4.jpg" class="img-radius" alt="User-Profile-Image">
                                     <i class="ti-angle-down"></i>
                                 </a>
                                 <ul class="show-notification profile-notification">
@@ -376,9 +381,9 @@
 
                             <ul class="pcoded-item pcoded-left-item">
                                 <li class="">
-                                    <a href="storeMain" class="waves-effect waves-dark">
+                                    <a href="storeMain.html" class="waves-effect waves-dark">
                                         <span class="pcoded-micon"><i class="ti-layers"></i><b>FC</b></span>
-                                        <span class="pcoded-mtext">스토어</span>
+                                        <span class="pcoded-mtext">스토어 전체보기</span>
                                         <span class="pcoded-mcaret"></span>
                                     </a>
                                 </li>
@@ -419,50 +424,43 @@
                                         <span class="pcoded-mcaret"></span>
                                     </a>
                                     <ul class="pcoded-submenu">
-                                    	<li class="">
-                                            <a href="productList?p_type=dog" class="waves-effect waves-dark">
-                                                <span class="pcoded-micon"><i class="ti-angle-right"></i></span>
-                                                <span class="pcoded-mtext">상품 전체보기</span>
-                                                <span class="pcoded-mcaret"></span>
-                                            </a>
-                                        </li>
                                         <li class="">
-                                            <a href="productList?p_type=dog&p_category=food" class="waves-effect waves-dark">
+                                            <a href="dogFood.jsp" class="waves-effect waves-dark">
                                                 <span class="pcoded-micon"><i class="ti-angle-right"></i></span>
                                                 <span class="pcoded-mtext">사료</span>
                                                 <span class="pcoded-mcaret"></span>
                                             </a>
                                         </li>
                                         <li class="">
-                                            <a href="productList?p_type=dog&p_category=snack" class="waves-effect waves-dark">
+                                            <a href="auth-normal-sign-in.html" class="waves-effect waves-dark">
                                                 <span class="pcoded-micon"><i class="ti-angle-right"></i></span>
                                                 <span class="pcoded-mtext">간식</span>
                                                 <span class="pcoded-mcaret"></span>
                                             </a>
                                         </li>
                                         <li class="">
-                                            <a href="productList?p_type=dog&p_category=care" class="waves-effect waves-dark">
+                                            <a href="auth-normal-sign-in.html" class="waves-effect waves-dark">
                                                 <span class="pcoded-micon"><i class="ti-angle-right"></i></span>
                                                 <span class="pcoded-mtext">케어</span>
                                                 <span class="pcoded-mcaret"></span>
                                             </a>
                                         </li>
                                         <li class="">
-                                            <a href="productList?p_type=dog&p_category=living" class="waves-effect waves-dark">
+                                            <a href="auth-sign-up.html" class="waves-effect waves-dark">
                                                 <span class="pcoded-micon"><i class="ti-angle-right"></i></span>
                                                 <span class="pcoded-mtext">리빙</span>
                                                 <span class="pcoded-mcaret"></span>
                                             </a>
                                         </li>
                                         <li class="">
-                                            <a href="productList?p_type=dog&p_category=clothes" class="waves-effect waves-dark">
+                                            <a href="dogClothes.jsp " class="waves-effect waves-dark">
                                                 <span class="pcoded-micon"><i class="ti-layout-sidebar-left"></i><b>S</b></span>
                                                 <span class="pcoded-mtext">의류</span>
                                                 <span class="pcoded-mcaret"></span>
                                             </a>
                                         </li>
                                         <li class="">
-                                            <a href="productList?p_type=dog&p_category=toy" class="waves-effect waves-dark">
+                                            <a href="dogToy.jsp" class="waves-effect waves-dark">
                                                 <span class="pcoded-micon"><i class="ti-angle-right"></i></span>
                                                 <span class="pcoded-mtext">장난감</span>
                                                 <span class="pcoded-mcaret"></span>
@@ -479,50 +477,43 @@
                                         <span class="pcoded-mcaret"></span>
                                     </a>
                                     <ul class="pcoded-submenu">
-                                    	<li class="">
-                                            <a href="productList?p_type=cat" class="waves-effect waves-dark">
-                                                <span class="pcoded-micon"><i class="ti-angle-right"></i></span>
-                                                <span class="pcoded-mtext">상품 전체보기</span>
-                                                <span class="pcoded-mcaret"></span>
-                                            </a>
-                                        </li>
                                         <li class="">
-                                            <a href="productList?p_type=cat&p_category=food" class="waves-effect waves-dark">
+                                            <a href="storeMain.html" class="waves-effect waves-dark">
                                                 <span class="pcoded-micon"><i class="ti-angle-right"></i></span>
                                                 <span class="pcoded-mtext">사료</span>
                                                 <span class="pcoded-mcaret"></span>
                                             </a>
                                         </li>
                                         <li class="">
-                                            <a href="productList?p_type=cat&p_category=snack" class="waves-effect waves-dark">
+                                            <a href="storeMain.html" class="waves-effect waves-dark">
                                                 <span class="pcoded-micon"><i class="ti-angle-right"></i></span>
                                                 <span class="pcoded-mtext">간식</span>
                                                 <span class="pcoded-mcaret"></span>
                                             </a>
                                         </li>
                                         <li class="">
-                                            <a href="productList?p_type=cat&p_category=care" class="waves-effect waves-dark">
+                                            <a href="auth-normal-sign-in.html" class="waves-effect waves-dark">
                                                 <span class="pcoded-micon"><i class="ti-angle-right"></i></span>
                                                 <span class="pcoded-mtext">케어</span>
                                                 <span class="pcoded-mcaret"></span>
                                             </a>
                                         </li>
                                         <li class="">
-                                            <a href="productList?p_type=cat&p_category=living" class="waves-effect waves-dark">
+                                            <a href="auth-sign-up.html" class="waves-effect waves-dark">
                                                 <span class="pcoded-micon"><i class="ti-angle-right"></i></span>
                                                 <span class="pcoded-mtext">리빙</span>
                                                 <span class="pcoded-mcaret"></span>
                                             </a>
                                         </li>
                                         <li class="">
-                                            <a href="productList?p_type=cat&p_category=clothes" class="waves-effect waves-dark">
+                                            <a href="sample-page.html" class="waves-effect waves-dark">
                                                 <span class="pcoded-micon"><i class="ti-layout-sidebar-left"></i><b>S</b></span>
                                                 <span class="pcoded-mtext">의류</span>
                                                 <span class="pcoded-mcaret"></span>
                                             </a>
                                         </li>
                                         <li class="">
-                                            <a href="productList?p_type=cat&p_category=toy" class="waves-effect waves-dark">
+                                            <a href="auth-normal-sign-in.html" class="waves-effect waves-dark">
                                                 <span class="pcoded-micon"><i class="ti-angle-right"></i></span>
                                                 <span class="pcoded-mtext">장난감</span>
                                                 <span class="pcoded-mcaret"></span>
@@ -539,52 +530,266 @@
                         <!-- Page-header end -->
                         <div class="pcoded-inner-content">
                             <!-- Main-body start -->
-                            <div class="main-body">
-                                <div class="page-wrapper">
-                                    <!-- Page-body start -->
-                                    <div class="page-body">
-                                        <section class="featured spad">
-                                            <div class="container">
-                                                <div class="row">
-                                                    <div class="col-lg-12">
-                                                        <div class="section-title">
-                                                            <h2>스토어 메인</h2>
-                                                        </div>
-                                                        <br>
-                                                    </div>
-                                                </div>
-                                                <div class="monthly-products">
-                                                    <ul>
-	                                                    <c:forEach var="list" items="${dogList }">
-	                                                        <li>
-	                                                            <div class="col-lg-3 col-md-4 col-sm-6 mix oranges fresh-meat">
-	                                                                <div class="featured__item">
-	                                                                    <div>
-	                                                                        <a href="productDetail.html">
-	                                                                         <img src="https://projectbit.s3.us-east-2.amazonaws.com/dogImg/CL001L.jpg">
-	                                                                        </a>
-	                                                                    </div>
-	                                                                        <div class="featured__item__pic set-bg" data-setbg="img/featured/feature-1.jpg">
-	                                                                            <a href="#"><i class="fa fa-shopping-cart"></i></a>
-	                                                                        </div>
-	                                                                        <br>
-	                                                                    <div class="featured__item__text"style="width: 200px;">
-	                                                                        <h6><a href="productDetail.html">나래 한복 케이프 모음집</a></h6>
-	                                                                        <h5>35,000원</h5>
-	                                                                    </div>
-	                                                                </div>
-	                                                            </div>
-	                                                        </li>
-	                                                    </c:forEach>
-                                                    </ul>
-                                                    </div>
-                                                </div>
-                                        </section>
-                                            </div>
+ 
+     <!-- Breadcrumb Begin -->
+    <div class="breadcrumb-option">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-12">
+                    <div class="breadcrumb__links">
+                        <a href="./index.html"><i class="fa fa-home"></i> 스토어 메인</a>
+                        <span>주문 화면</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- Breadcrumb End -->
 
-                                    </div>
-                                    <!-- Page-body end -->
+    <!-- Checkout Section Begin -->
+    <div>
+    <section class="checkout spad">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-12">
+                    <h6 class="coupon__link"><span class="icon_tag_alt"></span> <a href="#">Have a coupon?</a> Click
+                    here to enter your code.</h6>
+                </div>
+            </div>
+            <form action="#" class="checkout__form">
+                <div class="row">
+                    <div class="col-lg-8">
+                        <h5>주문 상세 정보</h5>
+                        <div class="row">
+                            <div class="col-lg-6 col-md-6 col-sm-6">
+                                <div class="checkout__form__input">
+                                    <p>성 <span>*</span></p>
+                                    <input type="text">
                                 </div>
+                            </div>
+                            <div class="col-lg-6 col-md-6 col-sm-6">
+                                <div class="checkout__form__input">
+                                    <p>이름 <span>*</span></p>
+                                    <input type="text">
+                                </div>
+                            </div>
+                            <div class="col-lg-12">
+                                <div class="checkout__form__input">
+                                    <p>국가 <span>*</span></p>
+                                    <input type="text">
+                                </div>
+                                <div class="checkout__form__input">
+                                    <p>Address <span>*</span></p>
+                                    <input type="text" placeholder="Street Address">
+                                    <input type="text" placeholder="Apartment. suite, unite ect ( optinal )">
+                                </div>
+                                <div class="checkout__form__input">
+                                    <p>Town/City <span>*</span></p>
+                                    <input type="text">
+                                </div>
+                                <div class="checkout__form__input">
+                                    <p>Country/State <span>*</span></p>
+                                    <input type="text">
+                                </div>
+                                <div class="checkout__form__input">
+                                    <p>우편번호 <span>*</span></p>
+                                    <input type="text">
+                                </div>
+                            </div>
+                            <div class="col-lg-6 col-md-6 col-sm-6">
+                                <div class="checkout__form__input">
+                                    <p>핸드폰 <span>*</span></p>
+                                    <input type="text">
+                                </div>
+                            </div>
+                            <div class="col-lg-6 col-md-6 col-sm-6">
+                                <div class="checkout__form__input">
+                                    <p>이메일 <span>*</span></p>
+                                    <input type="text">
+                                </div>
+                            </div>
+                            <div class="col-lg-12">
+                                <div class="checkout__form__checkbox">
+<!--                                     <label for="acc">
+                                        Create an acount?
+                                        <input type="checkbox" id="acc">
+                                        <span class="checkmark"></span>
+                                    </label>
+                                    <p>Create am acount by entering the information below. If you are a returing
+                                        customer login at the <br />top of the page</p> -->
+                                </div>
+                                <div class="checkout__form__input">
+<!--                                         <p>Account Password <span>*</span></p>
+                                        <input type="text"> -->
+                                </div>
+                                    <div class="checkout__form__checkbox">
+<!--                                         <label for="note">
+                                            Note about your order, e.g, special noe for delivery
+                                            <input type="checkbox" id="note">
+                                            <span class="checkmark"></span>
+                                        </label> -->
+                                    </div>
+                                    <div class="checkout__form__input">
+                                        <p>배송 메모 <span>*</span></p>
+                                        <input type="text"
+                                        placeholder="Note about your order, e.g, special noe for delivery">
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-lg-4">
+                            <div class="checkout__order">
+                                <h5>총 주문 내역</h5>
+                                <div class="checkout__order__product">
+                                    <ul>
+                                        <li>
+                                            <span class="top__text">상품명</span>
+                                            <span class="top__text__right">합계금액</span>
+                                        </li>
+                                        <li>01. Chain buck bag <span>$ 300.0</span></li>
+                                        <li>02. Zip-pockets pebbled<br /> tote briefcase <span>$ 170.0</span></li>
+                                        <li>03. Black jean <span>$ 170.0</span></li>
+                                        <li>04. Cotton shirt <span>$ 110.0</span></li>
+                                    </ul>
+                                </div>
+                                <div class="checkout__order__total">
+                                    <ul>
+                                        <li>Subtotal <span>$ 750.0</span></li>
+                                        <li>Total <span>$ 750.0</span></li>
+                                    </ul>
+                                </div>
+                                <div class="checkout__order__widget">
+                                    <label for="o-acc">
+                                        Create an acount?
+                                        <input type="checkbox" id="o-acc">
+                                        <span class="checkmark"></span>
+                                    </label>
+                                    <p>Create am acount by entering the information below. If you are a returing customer
+                                    login at the top of the page.</p>
+                                    <label for="check-payment">
+                                        Cheque payment
+                                        <input type="checkbox" id="check-payment">
+                                        <span class="checkmark"></span>
+                                    </label>
+                                    <label for="paypal">
+                                        PayPal
+                                        <input type="checkbox" id="paypal">
+                                        <span class="checkmark"></span>
+                                    </label>
+                                </div>
+                                <button type="submit" class="site-btn">Place oder</button>
+                            </div>
+                        </div>
+                    </div>
+                </form>
+            </div>
+        </section>
+        </div>
+        <!-- Checkout Section End -->
+ 
+ 
+ 
+            <br><br>
+  <!--           <div class="row">
+                <div class="col-lg-12 text-center">
+                    <div class="related__title">
+                        <h5>RELATED PRODUCTS</h5>
+                    </div>
+                </div>
+                <div class="col-lg-3 col-md-4 col-sm-6">
+                    <div class="product__item">
+                        <div class="product__item__pic set-bg" data-setbg="img/product/related/rp-1.jpg">
+                            <div class="label new">New</div>
+                            <ul class="product__hover">
+                                <li><a href="img/product/related/rp-1.jpg" class="image-popup"><span class="arrow_expand"></span></a></li>
+                                <li><a href="#"><span class="icon_heart_alt"></span></a></li>
+                                <li><a href="#"><span class="icon_bag_alt"></span></a></li>
+                            </ul>
+                        </div>
+                        <div class="product__item__text">
+                            <h6><a href="#">Buttons tweed blazer</a></h6>
+                            <div class="rating">
+                                <i class="fa fa-star"></i>
+                                <i class="fa fa-star"></i>
+                                <i class="fa fa-star"></i>
+                                <i class="fa fa-star"></i>
+                                <i class="fa fa-star"></i>
+                            </div>
+                            <div class="product__price">$ 59.0</div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-3 col-md-4 col-sm-6">
+                    <div class="product__item">
+                        <div class="product__item__pic set-bg" data-setbg="img/product/related/rp-2.jpg">
+                            <ul class="product__hover">
+                                <li><a href="img/product/related/rp-2.jpg" class="image-popup"><span class="arrow_expand"></span></a></li>
+                                <li><a href="#"><span class="icon_heart_alt"></span></a></li>
+                                <li><a href="#"><span class="icon_bag_alt"></span></a></li>
+                            </ul>
+                        </div>
+                        <div class="product__item__text">
+                            <h6><a href="#">Flowy striped skirt</a></h6>
+                            <div class="rating">
+                                <i class="fa fa-star"></i>
+                                <i class="fa fa-star"></i>
+                                <i class="fa fa-star"></i>
+                                <i class="fa fa-star"></i>
+                                <i class="fa fa-star"></i>
+                            </div>
+                            <div class="product__price">$ 49.0</div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-3 col-md-4 col-sm-6">
+                    <div class="product__item">
+                        <div class="product__item__pic set-bg" data-setbg="img/product/related/rp-3.jpg">
+                            <div class="label stockout">out of stock</div>
+                            <ul class="product__hover">
+                                <li><a href="img/product/related/rp-3.jpg" class="image-popup"><span class="arrow_expand"></span></a></li>
+                                <li><a href="#"><span class="icon_heart_alt"></span></a></li>
+                                <li><a href="#"><span class="icon_bag_alt"></span></a></li>
+                            </ul>
+                        </div>
+                        <div class="product__item__text">
+                            <h6><a href="#">Cotton T-Shirt</a></h6>
+                            <div class="rating">
+                                <i class="fa fa-star"></i>
+                                <i class="fa fa-star"></i>
+                                <i class="fa fa-star"></i>
+                                <i class="fa fa-star"></i>
+                                <i class="fa fa-star"></i>
+                            </div>
+                            <div class="product__price">$ 59.0</div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-3 col-md-4 col-sm-6">
+                    <div class="product__item">
+                        <div class="product__item__pic set-bg" data-setbg="img/product/related/rp-4.jpg">
+                            <ul class="product__hover">
+                                <li><a href="img/product/related/rp-4.jpg" class="image-popup"><span class="arrow_expand"></span></a></li>
+                                <li><a href="#"><span class="icon_heart_alt"></span></a></li>
+                                <li><a href="#"><span class="icon_bag_alt"></span></a></li>
+                            </ul>
+                        </div>
+                        <div class="product__item__text">
+                            <h6><a href="#">Slim striped pocket shirt</a></h6>
+                            <div class="rating">
+                                <i class="fa fa-star"></i>
+                                <i class="fa fa-star"></i>
+                                <i class="fa fa-star"></i>
+                                <i class="fa fa-star"></i>
+                                <i class="fa fa-star"></i>
+                            </div>
+                            <div class="product__price">$ 59.0</div>
+                        </div>
+                    </div>
+                </div>
+            </div> -->
+        </div>
+    <!-- Product Details Section End --> 
+                         
                                 <div id="styleSelector"> </div>
                             </div>
                         </div>
@@ -628,7 +833,6 @@
                 <!-- footer 푸터 끝부분-->
             </div>
 
-        </div>
 
 
     <!-- Warning Section Starts -->
@@ -677,23 +881,23 @@
     <!-- Warning Section Ends -->
 
     <!-- Required Jquery -->
-    <script type="text/javascript" src="/resources/js/jquery/jquery.min.js "></script>
-    <script type="text/javascript" src="/resources/js/jquery-ui/jquery-ui.min.js "></script>
-    <script type="text/javascript" src="/resources/js/popper.js/popper.min.js"></script>
-    <script type="text/javascript" src="/resources/js/bootstrap/js/bootstrap.min.js "></script>
+    <script type="text/javascript" src="../resources/js/jquery/jquery.min.js "></script>
+    <script type="text/javascript" src="../resources/js/jquery-ui/jquery-ui.min.js "></script>
+    <script type="text/javascript" src="../resources/js/popper.js/popper.min.js"></script>
+    <script type="text/javascript" src="../resources/js/bootstrap/js/bootstrap.min.js "></script>
     <!-- waves js -->
-    <script src="/resources/pages/waves/js/waves.min.js"></script>
+    <script src="../resources/pages/waves/js/waves.min.js"></script>
     <!-- jquery slimscroll js -->
-    <script type="text/javascript" src="/resources/js/jquery-slimscroll/jquery.slimscroll.js"></script>
+    <script type="text/javascript" src="../resources/js/jquery-slimscroll/jquery.slimscroll.js"></script>
 
     <!-- slimscroll js -->
-    <script src="/resources/js/jquery.mCustomScrollbar.concat.min.js "></script>
+    <script src="../resources/js/jquery.mCustomScrollbar.concat.min.js "></script>
 
     <!-- menu js -->
-    <script src="/resources/js/pcoded.min.js"></script>
-    <script src="/resources/js/vertical/vertical-layout.min.js "></script>
+    <script src="../resources/js/pcoded.min.js"></script>
+    <script src="../resources/js/vertical/vertical-layout.min.js "></script>
 
-    <script type="text/javascript" src="/resources/js/script.js "></script>
+    <script type="text/javascript" src="../resources/js/script.js "></script>
 </body>
 
 

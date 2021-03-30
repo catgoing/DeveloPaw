@@ -11,6 +11,7 @@ import ga.bowwow.service.pet.PetService;
 @Service("petService")
 public class PetServiceImpl implements PetService {
 	
+	@Autowired
 	private PetDAO petDAO;
 	
 	public PetServiceImpl() {
