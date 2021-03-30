@@ -53,5 +53,7 @@
 
 		 <definition name="/ok" template="/OK.jsp">
 		 </definition>
+		 <definition name="/ok2" template="/OK2.jsp">
+		 </definition>
 
 </tiles-definitions>

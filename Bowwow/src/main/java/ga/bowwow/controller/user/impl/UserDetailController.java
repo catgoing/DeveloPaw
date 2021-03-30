@@ -15,15 +15,25 @@ import ga.bowwow.service.user.impl.UserDetailServiceImpl;
 public class UserDetailController extends UserCRUDGenericController<UserDetail, Integer, UserDetailServiceImpl> {
 	
 	public UserDetailController() {
-		System.out.println("---->>> UserAccountController() 객체생성");
+		System.out.println("---->>> UserDetailController() 객체생성");
+		setRoute("/ok2", "auth.login");
+		System.out.println("detailRouted");
 	}
 	
+	//TODO memberSerial의 동기화 작업이 필요함!
+	@RequestMapping(value="/signupDetail")
+	public String getDetailInfo(@ModelAttribute("userDetail") UserDetail userDetail) {
+		return "/auth.myDetail";
+	}
+	
+	//TODO legacy화 할것
 	@RequestMapping(value="/modifyDetail")
 	public String modifyUserInDB(@ModelAttribute("userDetail") UserDetail userDetail) {
 		return super.update(userDetail, "/ok", "/auth.login");
 	}
 	@RequestMapping(value="/registDetail")
 	public String registUserToDB(@ModelAttribute("userDetail") UserDetail userDetail) {
+		System.out.println("isRegistRouted?");
 		return super.add(userDetail, "/ok" , "/auth.login");
 	}
 	@RequestMapping(value="/deleteDetail")

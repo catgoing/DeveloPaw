@@ -34,50 +34,39 @@
 									</div>
 									<form>
 										<div class="form-group form-primary">
-	                                        <input type="number" name="memberSeiral" class="form-control" value="${userAccount.id }">
+	                                        <input type="number" name="memberSeiral" class="form-control" value="">
 	                                        <span class="form-bar"></span>
 	                                        <label class="float-label">멤버 시리얼</label>
                                         </div>
 										<div class="form-group form-primary">
-	                                        <input type="text" name="id" class="form-control" value="${userAccount.id }">
-	                                        <span class="form-bar"></span>
-	                                        <label class="float-label">아이디</label>
-	                                 	</div>
-	                                    <div class="form-group form-primary">
-	                                        <input type="password" name="password" class="form-control">
-	                                        <span class="form-bar"></span>
-	                                        <label class="float-label">비밀번호</label>
-	                                    </div>
-	                                    <div class="form-group form-primary">
-	                                        <input type="password" name="passwordConfirm" class="form-control">
-	                                        <span class="form-bar"></span>
-	                                        <label class="float-label">비밀번호 확인</label>
-	                                    </div>
-	                                    
-										<div class="form-group form-primary">
-	                                        <input type="text" name="name" class="form-control">
-	                                        <span class="form-bar"></span>
-	                                        <label class="float-label">이름</label>
-	                                 	</div>
-	                                 	<div class="form-group form-primary">
-	                                        <input type="text" name="nickname" class="form-control">
+	                                        <input type="text" name="nickname" class="form-control" value="">
 	                                        <span class="form-bar"></span>
 	                                        <label class="float-label">닉네임</label>
 	                                 	</div>
-	                                 	<div class="form-group form-primary">
-	                                        <input type="text" name="email" class="form-control">
+	                                    <div class="form-group form-primary">
+	                                        <input type="text" name="realname" class="form-control">
 	                                        <span class="form-bar"></span>
-	                                        <label class="float-label">이메일</label>
-	                                 	</div>
-											<div class="form-group form-primary">
-	                                        <input type="text" name="phone" class="form-control">
+	                                        <label class="float-label">이름</label>
+	                                    </div>
+	                                    <div class="form-group form-primary">
+	                                        <input type="date" name="birthday" value="2019-09-22">
 	                                        <span class="form-bar"></span>
-	                                        <label class="float-label">전화번호</label>
+	                                        <label class="float-label">생일</label>
+	                                    </div>
+	                                    <div class="form-group form-primary">
+	                                        <input type="date" name="regDate" value="2019-09-22">
+	                                        <span class="form-bar"></span>
+	                                        <label class="float-label">가입일</label>
+	                                    </div>
+										<div class="form-group form-primary">
+	                                        <input type="text" name="gender" class="form-control">
+	                                        <span class="form-bar"></span>
+	                                        <label class="float-label">성별</label>
 	                                 	</div>
 	                                 	<div class="form-group form-primary">
 <!-- 	                                        <input type="text" name="nickname" class="form-control"> -->
 	                                        <span class="form-bar"></span>
-	                                        <label class="float-label">닉네임</label>
+	                                        <label class="float-label">프로필 사진</label>
 	                                 	</div>
 	
 										<div class="input-label">
@@ -93,26 +82,24 @@
 										</div>
 
 										<div class="action_btn">
-											<input type="submit" value="회원가입" formaction="/account/registUser">
+											<input type="submit" value="정보 입력" formaction="/detail/registDetail">
 										</div>
 										<div class="action_btn">
-											<input type="submit" value="더미회원가입"  formaction="/account/registerDummyUser">
+											<input type="submit" value="정보 수정"  formaction="/detail/modifyDetail">
 										</div>
 										<div class="action_btn">
-											<input type="submit" value="회원수정"  formaction="/account/modifyUser">
-										</div>
-										<div class="action_btn">
-											<input type="submit" value="회원삭제"  formaction="/account/deleteUser">
+											<input type="submit" value="정보 삭제"  formaction="/detail/deleteDetail">
 										</div>
 										
+										
 										<div class="action_btn">
-											<input type="submit" value="부모컨트롤러 회원가입" formaction="/account/add">
+											<input type="submit" value="부모컨트롤러 회원가입" formaction="/detail/add">
 										</div>
 										<div class="action_btn">
-											<input type="submit" value="부모컨트롤러 회원수정"  formaction="/account/update">
+											<input type="submit" value="부모컨트롤러 회원수정"  formaction="/detail/update">
 										</div>
 										<div class="action_btn">
-											<input type="submit" value="부모컨트롤러 회원삭제"  formaction="/account/delete">
+											<input type="submit" value="부모컨트롤러 회원삭제"  formaction="/detail/delete">
 										</div>
 									</form>
 									</div>

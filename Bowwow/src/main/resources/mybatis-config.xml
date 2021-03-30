@@ -16,6 +16,7 @@
 
   <mappers>
   	<mapper resource="mappings/UserMapper.xml"/>
+  	<mapper resource="mappings/UserDetailMapper.xml"/>
     <mapper resource="mappings/BoardMapper.xml"/>
     <mapper resource="mappings/PetMapper.xml"/>
     <mapper resource="mappings/StoreMapper.xml"/>

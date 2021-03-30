@@ -5,6 +5,7 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import ga.bowwow.controller.common.StaticUtil;
 import ga.bowwow.service.user.UserAccount;
 import ga.bowwow.service.user.UserGenericService;
 
@@ -16,53 +17,46 @@ public class UserAccountServiceImpl implements UserGenericService<UserAccount> {
 	private UserAccountDAO userAccountDAO;
 	
 	public boolean loginAttemp(UserAccount userAccount) {
-		return isNotNull(userAccountDAO.verifyAccount(userAccount));
+		return StaticUtil.isNotNull(userAccountDAO.verifyAccount(userAccount));
 	}
 	public UserAccount searchUser(UserAccount userAccount) {
 		return userAccountDAO.searchUserAccount(userAccount);
 	}
-	private boolean isNotNull(Object object) {
-		return (object != null) ? true : false;
-	}
 	
 	
 	@Override
-	public boolean addUser(UserAccount userAccount) {
-		userAccountDAO.insertUserAccount(userAccount);
-		return isRegisterSuccess(userAccount);
+	public boolean addVo(UserAccount vo) {
+		userAccountDAO.insertUserAccount(vo);
+		return isRegisterSuccess(vo);
 	}
 	@Override
-	public boolean updateUser(UserAccount userAccount) {
-		userAccountDAO.updateUserAccount(userAccount);
-		return isUserValueExist(userAccount);
+	public boolean updateVo(UserAccount vo) {
+		userAccountDAO.updateUserAccount(vo);
+		return isUserValueExist(vo);
 	}
 	@Override
-	public boolean deleteUser(UserAccount userAccount) {
-		userAccountDAO.deleteUserAccount(userAccount);
-		return isResignSuccess(userAccount);
+	public boolean deleteVo(UserAccount vo) {
+		userAccountDAO.deleteUserAccount(vo);
+		return isResignSuccess(vo);
 	}
 	@Override
-	public UserAccount getUser(UserAccount userAccount) {
-		return userAccountDAO.getUserAccount(userAccount);
+	public UserAccount getVo(UserAccount vo) {
+		return userAccountDAO.getUserAccount(vo);
 	}
 	@Override
-	public List<UserAccount> getUserList(UserAccount userAccount) {
+	public List<UserAccount> getVoList(UserAccount vo) {
 		return null;
 	}
+	@Override
+	public UserAccount searchVo(UserAccount vo) {
+		return userAccountDAO.searchUserAccount(vo);
+	}
 	
-	private boolean isUpdateSuccess(UserAccount userAccount, boolean expectBool) {
-		return isUserValueExist(userAccount) ? expectBool : !expectBool;
-	}
-	private boolean isResignSuccess(UserAccount userAccount) {
-		return isUpdateSuccess(userAccount, false);
-	}
-	private boolean isRegisterSuccess(UserAccount userAccount) {
-		return isUpdateSuccess(userAccount, true);
-	}
 	private boolean isUserValueExist(UserAccount userAccount) {
 		return userAccount.equals(searchUser(userAccount));
 	}
 	private UserAccount cleanUserAccount() {
 		return new UserAccount();
 	}
+	
 }

@@ -4,10 +4,9 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>OK</title>
+<title>OK2</title>
 </head>
 <body>
-<h1>OK</h1>
-${userDTO.id }
+<h1>OK2</h1>
 </body>
 </html>
