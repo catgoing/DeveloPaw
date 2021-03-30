@@ -25,19 +25,9 @@ public class StoreDAO {
 	    return mybatis.selectOne("Store.getProductDetail", p_id);
 	}
 
-	public Product getProductDetailDog(int p_id) {
-	    return mybatis.selectOne("Store.getProductDetail", p_id);
-	}
-
 	public List<Product> getProductList(Product product) {
 		return mybatis.selectList("Store.ProductList", product);
 	}
-
-
-
-//	public List<Product> getCatProductList(Product products) {
-//		return mybatis.selectList("Store.catProductList", products);
-//	}
 
 	public void insertReview(Review review) {
 		System.out.println("-----------------------");

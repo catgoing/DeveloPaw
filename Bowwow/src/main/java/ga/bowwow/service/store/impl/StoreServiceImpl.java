@@ -39,6 +39,4 @@ public class StoreServiceImpl implements StoreService {
 		return storeDAO.getProductList(product);
 	}
 
-	
-
 }

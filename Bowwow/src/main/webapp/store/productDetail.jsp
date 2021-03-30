@@ -64,6 +64,9 @@
 <link rel="stylesheet" type="text/css" href="/resources/css/style.css">
 <link rel="stylesheet" type="text/css" href="/resources/css/test.css">
 
+	<script type="text/javascript"
+		src="/resources/js/jquery/jquery.min.js "></script>
+
 <style>
 .featured__item__text {
 	width: 150px;
@@ -76,16 +79,49 @@
 </style>
 
 <script type="text/javascript">
-var bDistplay = true;
-function doDisplay() {
-	var con = document.getElementById("myDiv");
-	if(con.style.display == 'none') {
-		con.style.display = 'block';
-	} else {
-		con.style.display = 'none';
-	}
-}
+
+		var sell_price;
+		var amount;
+
+		$(function init () {
+			sell_price = document.getElementById('sell_price').value;
+			document.getElementById('sum').value = sell_price;
+			sell_price = document.form.sell_price.value;
+			amount = document.form.amount.value;
+			document.form.sum.value = sell_price;
+			change();
+		});
+
+		function add () {
+			hm = document.form.amount;
+			sum = document.form.sum;
+			hm.value ++ ;
+
+			document.getElementById('sum').value = parseInt(hm.value) * sell_price;
+		}
+
+		function del () {
+			hm = document.form.amount;
+			sum = document.form.sum;
+				if (hm.value > 1) {
+					hm.value -- ;
+					document.getElementById('sum').value = parseInt(hm.value) * sell_price;
+				}
+
+		}
+
+		function change () {
+			hm = document.form.amount;
+			sum = document.form.sum;
+
+				if (hm.value < 0) {
+					hm.value = 0;
+				}
+			sum.value = parseInt(hm.value) * sell_price;
+		}
 </script>
+
+
 </head>
 
 <body>
@@ -584,41 +620,55 @@ function doDisplay() {
 												</div>
 											</div>
 										</div>
-										<div class="col-lg-6">
-											<div class="product__details__text">
-												<h3 style="color: #000">${p.p_name }</h3>
-												<div class="product__details__button">
-													<div class="product__details__widget">
-														<ul>
-															<li>
-																<h4>판매금액: ${p.price }원</h4>
-															</li>
-														</ul>
-													</div>
-													<div class="quantity">
-														<span>상품 수량</span>
-														<div class="pro-qty">
-															<input type="text" name="amount" value="1">
+											<div class="col-lg-6">
+												<div class="product__details__text">
+													<h4 style="color : #000">${p.p_name }</h4>
+													<div class="product__details__button">
+														<div class="product__details__widget">
+															<ul>
+																<li>
+																	<h4>판매금액: <fmt:formatNumber value="${p.price }" pattern="#,###" />원</h4>
+																</li>
+															</ul>
+														</div>
+														<div class="quantity">
+															<div class="pro-qty">
+															<form name="form" method="POST">
+																<h5> 상품 수량 :
+																	<input type="hidden" id="sell_price" value="${p.price }">
+																	<input type="button" class="store_btn2" value=" - " onclick="del()">
+																	<input type="text" class="store_input" name="amount" value="1" size="3" onchange="change();">
+																	<input type="button" class="store_btn2" value=" + " onclick="add()">
+																</h5>
+															</form>
+															</div>
+															<br>
 														</div>
 														<br>
 													</div>
 
-													<div class="product__details__widget">
+														<div class="product__details__widget">
+															<ul>
+																<li>
+																	<h4>총 상품금액: <input type="text" class="store_input2" size="7" id="sum" readonly>원</h4>
+																</li>
+															</ul>
+														</div>
 														<ul>
 															<li>
 																<h4>총 주문금액: ${p.price }원</h4>
 															</li>
 														</ul>
 													</div>
+													<div class="btn_area">
+														<button class="store_btn" onclick="cartList()">장바구니에 담기</button>
+														<button class="store_btn" onclick="storeOrder()">주문하기</button>
+													</div>
 													<ul>
 														<li><a href="#"><span class="icon_heart_alt"></span></a></li>
 														<li><a href="#"><span class="icon_adjust-horiz"></span></a></li>
 													</ul>
 												</div>
-												<div class="btn_area">
-													<button class="store_btn" href="insertCartlist">장바구니에
-														담기</button>
-													<button class="store_btn" href="#">주문하기</button>
 												</div>
 												<ul>
 													<li><a href="#"><span class="icon_heart_alt"></span></a></li>
@@ -730,7 +780,7 @@ function doDisplay() {
 														</div>
 													</div>
 												</div>
-												
+
 												<div class="tab-pane" id="tabs-3" role="tabpanel">
 													<h6>상품 후기 ( 2 )</h6>
 
@@ -804,8 +854,11 @@ function doDisplay() {
 											</div>
 										</div>
 									</div>
+									<br> <br>
+								</section>
 								</div>
-								<br> <br>
+							<!-- Product Details Section End -->
+							<div id="styleSelector"></div>
 						</div>
 						</section>
 						<!-- Product Details Section End -->
@@ -840,7 +893,7 @@ function doDisplay() {
                         }
                     });
                 }
-                
+
                 function insertReview(p_id) {
                 	console.log('상품번호 : ' + p_id);
                 	//var getReviewId = $('#review_id').val();
@@ -851,7 +904,7 @@ function doDisplay() {
                 	//var getRegdate = $('#review_regdate').val();
                 	var getReviewImage = $('#review_image').val();
 
-                	var data = {'p_id' : getProductId, 'member_serial' : getMemValue, 'review_title' : getTitleValue, 
+                	var data = {'p_id' : getProductId, 'member_serial' : getMemValue, 'review_title' : getTitleValue,
                 				'review_content' : getContentValue,'review_image' : getReviewImage};
 
                 	$.ajax({
@@ -866,14 +919,14 @@ function doDisplay() {
 														'<tr><th>회원번호</th><td>'+member_serial+'</td></tr>'+
 														'<tr><th>리뷰제목</th><td>'+review_title+'</td></tr>'+
 														'<tr><th>리뷰내용</th><td>'+review_content+'</td></tr>'+
-														
+
 														'<tr><th>리뷰 이미지</th><td>'+review_image+'</td></tr>'+
 													'</table>'); */
 							}
                     	}
                 	});
                 }
-                
+
                 function updateReview(review_id) {
                 	console.log('리뷰아이디 : ' + review_id);
                 	var data = {"r_id": review_id};
@@ -889,14 +942,14 @@ function doDisplay() {
 								'<tr><th>회원번호</th><td>'+member_serial+'</td></tr>'+
 								'<tr><th>리뷰제목</th><td>'+review_title+'</td></tr>'+
 								'<tr><th>리뷰내용</th><td>'+review_content+'</td></tr>'+
-								
+
 								'<tr><th>리뷰 이미지</th><td>'+review_image+'</td></tr>'+
 							'</table>'); */
 							}
                     	}
                 	});
-                }				
-                
+                }
+
                 function deleteReview(review_id) {
                 	console.log('리뷰아이디 : ' + review_id);
                 	var data = {"r_id": review_id};
@@ -924,8 +977,6 @@ function doDisplay() {
 		<!-- footer 푸터 끝부분-->
 	</div>
 
-	</div>
-
 	<!-- Warning Section Ends -->
 
 	<!-- Required Jquery -->
@@ -951,7 +1002,7 @@ function doDisplay() {
 	<script src="/resources/js/vertical/vertical-layout.min.js "></script>
 
 	<script type="text/javascript" src="/resources/js/script.js "></script>
-</body>
 
+</body>
 
 </html>
