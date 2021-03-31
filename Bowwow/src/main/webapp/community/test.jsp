@@ -111,10 +111,27 @@ function imageChangeCheck(){
 		console.log(imgar[n]);
 	} */
 	
+	$("#thum_select").html("");
+	$(".imgs").html('');
+	var imgar = new Array();
+	
 	$("p").find('img').each(function(){
 		console.log($(this).attr('src'));
+		$("#thum_select").append('<div class="radio-container" style="text-align:center">');
+  		$("#thum_select").append('<input type="radio" style="text-align:center" class="thum" name="img1" value="'+ $(this).attr('src') + '"/>');
+
+  		$("#thum_select").append('<img style="width:200px" src="'+ $(this).attr('src') + '"/>');
+  		$("#thum_select").append('</div>');
+  		
+  		$(".imgs").append($(this).attr("src"));
+  		$(".imgs").append($(this).attr("src"));
+  		imgar.push($(this).attr("src"));
+  		console.log("imgar: " + imgar);
 		
 		});
+	$(".imgs").append('<input type="hidden" name="img_locas" value="' + imgar + '">');
+	//이미지 경로들 imgar 배열에 담기
+	//확인 버튼 누르면 hidden img_locas 값으로 boardVO에 전달
 }
 
 
@@ -158,19 +175,22 @@ function imageChangeCheck(){
 	
 
   	<textarea id="summernote" name="board_content" ></textarea>
-  	<input type="file" name="uploadImage">
   	
   	<div class="thum_select" id="thum_select" style="float:left;, padding: 500px;">
+  	
 
   		
   	</div>
-  	<br><br>
+  	<div class="imgs">
+  	
+  	</div>
+  	
+	<br><br>
 	<div style="text-align:center">
   	<input type="submit" value="전송">
 	</div>
   		
 	</form>
-	<input type="button" value="체크" onclick="imageChangeCheck()"/>
 
 </div>
 

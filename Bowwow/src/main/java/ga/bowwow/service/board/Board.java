@@ -40,6 +40,8 @@ public class Board {
 	private String animal_class; 	//동물분류
 	
 	private String keyword;
+	private String img_locas;
+	
 
 
 	
