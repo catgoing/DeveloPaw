@@ -23,20 +23,19 @@ public class UserAccountServiceImpl implements UserGenericService<UserAccount> {
 		return userAccountDAO.searchUserAccount(userAccount);
 	}
 	
-	
-	//TODO 컨트롤러의 check를 컨트롤러로 데려와서 추상service에게 돌려줘야함?
 	@Override
 	public boolean addVo(UserAccount vo) {
 		userAccountDAO.insertUserAccount(vo);
-		return isRegisterSuccess(vo);
+		return isRegistSuccess(vo);
 	}
 	@Override
 	public boolean updateVo(UserAccount vo) {
 		userAccountDAO.updateUserAccount(vo);
-		return isUserValueExist(vo);
+		return isModifySuccess(vo);
 	}
 	@Override
 	public boolean deleteVo(UserAccount vo) {
+		System.out.println("service");
 		userAccountDAO.deleteUserAccount(vo);
 		return isResignSuccess(vo);
 	}
@@ -53,7 +52,4 @@ public class UserAccountServiceImpl implements UserGenericService<UserAccount> {
 		return userAccountDAO.searchUserAccount(vo);
 	}
 	
-	private boolean isUserValueExist(UserAccount userAccount) {
-		return userAccount.equals(searchVo(userAccount));
-	}
 }

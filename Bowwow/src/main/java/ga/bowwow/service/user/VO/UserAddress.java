@@ -11,16 +11,18 @@ import lombok.ToString;
 @ToString
 public class UserAddress {
 	int memberSerial;
-	String addressId;
+	int addressId;
 	String address;
 	String addressDetail;
 	String zonecode;
 	@Override
+	
 	public int hashCode() {
 		final int prime = 31;
 		int result = 1;
 		result = prime * result + ((address == null) ? 0 : address.hashCode());
 		result = prime * result + ((addressDetail == null) ? 0 : addressDetail.hashCode());
+		result = prime * result + addressId;
 		result = prime * result + memberSerial;
 		result = prime * result + ((zonecode == null) ? 0 : zonecode.hashCode());
 		return result;

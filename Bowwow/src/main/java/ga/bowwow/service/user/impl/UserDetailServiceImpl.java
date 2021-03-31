@@ -16,7 +16,7 @@ public class UserDetailServiceImpl implements UserGenericService<UserDetail> {
 	@Override
 	public boolean addVo(UserDetail vo) {
 		userDetailDAO.insertUserAccount(vo);
-		return isRegisterSuccess(vo);
+		return isRegistSuccess(vo);
 	}
 	@Override
 	public boolean updateVo(UserDetail vo) {

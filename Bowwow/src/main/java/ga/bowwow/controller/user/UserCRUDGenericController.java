@@ -36,6 +36,7 @@ public abstract class UserCRUDGenericController<T, SN, S extends UserGenericServ
 	}
 	@RequestMapping("/delete")
 	protected String delete(T vo) {
+		System.out.println("controller");
 		return router(service.deleteVo(vo), resolveRoute, errorRoute);
 	}
 	

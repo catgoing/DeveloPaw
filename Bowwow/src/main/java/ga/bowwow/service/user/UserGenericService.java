@@ -11,18 +11,25 @@ public interface UserGenericService<T> {
 	
 	default boolean isUpdateSuccess(T vo, boolean expectBool) {
 		return isVoSerialExist(vo) ? expectBool : !expectBool;
-	};
-	default boolean isResignSuccess(T vo) {
-		return isUpdateSuccess(vo, false);
 	}
-	default boolean isRegisterSuccess(T vo) {
+	
+	default boolean isModifySuccess(T vo) {
 		return isUpdateSuccess(vo, true);
 	}
-	default boolean isVoValueExist(T vo) {
-		return vo.equals(searchVo(vo));
+	default boolean isResignSuccess(T vo) {
+		return isUpdateSuccess(vo, false);
 	}
 	default boolean isVoSerialExist(T vo) {
 		return vo.equals(getVo(vo));
 	}
+	
+
+	default boolean isRegistSuccess(T vo) {
+		return isVoValueExist(vo);
+	}
+	default boolean isVoValueExist(T vo) {
+		return vo.equals(searchVo(vo));
+	}
+	
 	abstract T searchVo(T vo);
 }

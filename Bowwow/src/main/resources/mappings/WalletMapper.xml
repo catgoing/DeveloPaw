@@ -8,4 +8,5 @@
 		INSERT INTO USER_WALLET (WALLET_ID, MEMBER_SERIAL, PAYMENT_TYPE, BANK_ACCOUT_NAME, BANK_ACCOUT_NO, CARD_ACCOUT_NAME, CARD_ACCOUT_NO) 
 		VALUES (USER_WALLET_ID_SEQ.NEXTVAL, 1 , #{paytype}, #{bankname}, #{bankno}, #{cardname}, #{cardno})
 	</insert>
+	
 </mapper>

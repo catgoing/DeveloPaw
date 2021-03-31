@@ -30,7 +30,8 @@
 	</select>
 	<select id="searchUserAddress" parameterType="UserAddress" resultType="UserAddress" >
 		SELECT * FROM USER_ADDRESS
-		WHERE ADDRESS = #{address}
+		WHERE MEMBER_SERIAL = #{memberSerial}
+		AND ADDRESS = #{address}
 		AND ADDRESS_DETAIL = #{addressDetail}
 		AND ZONECODE = #{zonecode}
 	</select>

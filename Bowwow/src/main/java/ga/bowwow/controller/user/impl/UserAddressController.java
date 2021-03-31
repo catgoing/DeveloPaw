@@ -19,7 +19,7 @@ public class UserAddressController extends UserCRUDGenericController<UserAddress
 		setRoute("/ok", "/auth.login");
 	}
 	@RequestMapping(value="/manageAddress") //CRUD페이지
-	public String getUserInfo(@ModelAttribute("userAccount") UserAccount userAccount) {
+	public String getAddressInfo(@ModelAttribute("userAccount") UserAccount userAccount) {
 		return "/auth.myAddress";
 	}
 	

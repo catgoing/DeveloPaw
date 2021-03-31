@@ -1,4 +1,4 @@
-package ga.bowwow.service.user;
+package ga.bowwow.service.user.VO;
 
 import lombok.AllArgsConstructor;
 import lombok.Getter;
@@ -12,11 +12,11 @@ import lombok.ToString;
 public class UserWallet {
 	int memberSerial;
 	String walletId;
-	String paytype;
-	String bankname;
-	String bankno;
-	String cardname;
-	String cardno;
+	String payType;
+	String bankName;
+	String bankNo;
+	String cardName;
+	String cardNo;
 	@Override
 	public int hashCode() {
 		final int prime = 31;
