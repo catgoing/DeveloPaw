@@ -2,6 +2,7 @@ package ga.bowwow.controller.board;
 
 import java.io.File;
 import java.io.IOException;
+import java.util.Arrays;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -33,6 +34,7 @@ import ga.bowwow.service.common.ImageVO;
 public class BoardController {
 	@Autowired //의존주입(DI) : 동일한 데이터 타입 객체
 	private BoardService boardService; //의존주입<-- BoardServiceImpl
+	private HttpServletRequest HttpServletRequest;
 //	 private CommentService commentService; 
 		
 
@@ -115,33 +117,62 @@ public class BoardController {
 		return "/community/search";
 	}
 
-
+	/*
+	 * @RequestMapping("/community/insertBoard") public String insertBoard(Board vo,
+	 * ImageVO ivo, MultipartFile multipartFile, Model model, HttpServletRequest
+	 * request) throws IllegalStateException, IOException, AmazonClientException,
+	 * InterruptedException { System.out.println(">>> 게시글 입력 - insertBoard()");
+	 * System.out.println("vo : " + vo); // System.out.println("ivo : " + ivo); //
+	 * MultipartController mc = new MultipartController(); //
+	 * mc.registerImage(multipartFile, model, request, "diary");
+	 * 
+	 * // new MultipartController().registerImage(multipartFile, model, request,
+	 * "diary");
+	 * 
+	 * // System.out.println("multi: " + multipartFile); //
+	 * System.out.println("model: " + model); // System.out.println("req : " +
+	 * request);
+	 * 
+	 * // new MultipartController().registerImage(multipartFile, model, request,
+	 * "diary");
+	 * 
+	 * // boardService.insertBoard(vo);
+	 * 
+	 * return "/community/list";
+	 * 
+	 * }
+	 */
+	
 	@RequestMapping("/community/insertBoard")
-	public String insertBoard(Board vo, ImageVO ivo, MultipartFile multipartFile, Model model, HttpServletRequest request) throws IllegalStateException, IOException, AmazonClientException, InterruptedException {
+	public String insertBoard(Board vo, HttpServletRequest request) throws AmazonClientException, IllegalStateException, IOException, InterruptedException {
 		System.out.println(">>> 게시글 입력 - insertBoard()");
 		System.out.println("vo : " + vo);
-//		System.out.println("ivo : " + ivo);
-//		  MultipartController mc = new MultipartController();
-//		  mc.registerImage(multipartFile, model, request, "diary");
 		
-//		new MultipartController().registerImage(multipartFile, model, request, "diary");
+		String[] imgs_loca = new String[10];
+		imgs_loca = vo.getImg_locas().split(",");
+		System.out.println(Arrays.toString(imgs_loca));
+		String foldername = "diary";
 		
-//		System.out.println("multi: " + multipartFile);
-//		System.out.println("model: " + model);
-//		System.out.println("req : " + request);
+		for (int i = 0; i < imgs_loca.length; i++) {
+		  MultipartController mc = new MultipartController();
+			mc.registerImage(imgs_loca[i], foldername, request);
+		}
 		
-//		new MultipartController().registerImage(multipartFile, model, request, "diary");
+		String original_loca = "src=\"/resources/upload";
+		String s3_loca = "src=\"https://projectbit.s3.us-east-2.amazonaws.com/" + foldername;
+		String reLoca = vo.getBoard_content().replace(original_loca, s3_loca);
+		vo.setBoard_content(reLoca);
+		
+		String original_thum_loca = "/resources/upload";
+		String thumReLoca = vo.getImg1().replace(original_thum_loca, "" + foldername);
+		vo.setImg1(thumReLoca);
+		
+		System.out.println("reLoca vo : " + vo);
+		
+		
+
 		
 //		boardService.insertBoard(vo);
-
-		return "/community/list";
-
-	}
-	
-	@RequestMapping("/community/registerImage")
-	public String registerImage(MultipartFile multipartFile, Model model, HttpServletRequest request) throws IllegalStateException, IOException, AmazonClientException, InterruptedException {
-
-		new MultipartController().registerImage(multipartFile, model, request, "diary");
 
 		return "/community/list";
 
