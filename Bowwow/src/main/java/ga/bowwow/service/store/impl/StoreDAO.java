@@ -6,7 +6,7 @@ import org.mybatis.spring.SqlSessionTemplate;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
-import ga.bowwow.service.store.Cartlist;
+import ga.bowwow.service.store.CartList;
 import ga.bowwow.service.store.Inquiry;
 import ga.bowwow.service.store.Product;
 import ga.bowwow.service.store.Review;
@@ -20,7 +20,8 @@ public class StoreDAO {
 	public StoreDAO() {
 		System.out.println(">> StoreDAO 객체 생성");
 	}
-
+	
+	// 상품 관련 dao
 	public Product getProductDetail(int p_id) {
 	    return mybatis.selectOne("Store.getProductDetail", p_id);
 	}
@@ -28,7 +29,19 @@ public class StoreDAO {
 	public List<Product> getProductList(Product product) {
 		return mybatis.selectList("Store.ProductList", product);
 	}
-
+	
+	
+	// 장바구니 관련 dao
+	public void addCart(CartList cartList) {
+		mybatis.insert("Cart.addCart", cartList);
+	}
+	
+	public List<CartList> getCartList(String id) {
+		return mybatis.selectList("Cart.getCartList", id);
+	}
+	
+	
+	// 리뷰 관련 dao
 	public void insertReview(Review review) {
 		System.out.println("-----------------------");
 		System.out.println(review);
@@ -48,22 +61,6 @@ public class StoreDAO {
 		System.out.println("확인용");
 		return mybatis.selectList("StoreReview.reviewList", p_id);
 	}
-
-	public void insertCartlist(Cartlist cartlist) {
-		System.out.println("장바구니 추가");
-		mybatis.insert("StoreCartlist.insertCartlist", cartlist);
-		
-	}
-
-	public List<Cartlist> getCartlist(int member_serial) {
-		System.out.println("장바구니 목록 출력");
-		return mybatis.selectList("StoreCartlist.cartlistList", member_serial);
-	}
-
-	public void deleteCartlist(int cart_id) {
-		System.out.println("장바구니 삭제 : " + cart_id );
-		mybatis.delete("StoreCartlist.deleteCartlist", cart_id);
-	}
 	
 	public void insertInquiry(Inquiry inquiry) {
 		System.out.println("문의 추가 : " + inquiry);
@@ -71,3 +68,31 @@ public class StoreDAO {
 	}
 
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

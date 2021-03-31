@@ -14,58 +14,42 @@
       <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
       <![endif]-->
 <!-- Meta -->
-<meta charset="utf-8">
-<meta name="viewport"
-	content="width=device-width, initial-scale=1.0, user-scalable=0, minimal-ui">
-<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=0, minimal-ui">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
 
-<meta name="keywords"
-	content="bootstrap, bootstrap admin template, admin theme, admin dashboard, dashboard template, admin template, responsive" />
-<meta name="author" content="Codedthemes" />
-<!--Jua 폰트 import-->
-<link rel="preconnect" href="https://fonts.gstatic.com">
-<link href="https://fonts.googleapis.com/css2?family=Jua&display=swap"
-	rel="stylesheet">
+    <meta name="keywords" content="bootstrap, bootstrap admin template, admin theme, admin dashboard, dashboard template, admin template, responsive" />
+    <meta name="author" content="Codedthemes" />
+    <!--Jua 폰트 import-->
+    <link rel="preconnect" href="https://fonts.gstatic.com">
+    <link href="https://fonts.googleapis.com/css2?family=Jua&display=swap" rel="stylesheet">
 
-<!-- Dohyeon 폰트 import-->
-<link rel="preconnect" href="https://fonts.gstatic.com">
-<link
-	href="https://fonts.googleapis.com/css2?family=Do+Hyeon&display=swap"
-	rel="stylesheet">
+    <!-- Dohyeon 폰트 import-->
+    <link rel="preconnect" href="https://fonts.gstatic.com">
+    <link href="https://fonts.googleapis.com/css2?family=Do+Hyeon&display=swap" rel="stylesheet">
 
-<!-- Favicon icon -->
-<link rel="icon" href="/resources/images/favicon.ico"
-	type="image/x-icon">
-<!-- Google font-->
-<link
-	href="https://fonts.googleapis.com/css?family=Open+Sans:400,600,700"
-	rel="stylesheet">
-<!-- waves.css -->
-<link rel="stylesheet" href="/resources/pages/waves/css/waves.min.css"
-	type="text/css" media="all">
-<!-- Required Fremwork -->
-<link rel="stylesheet" type="text/css"
-	href="/resources/css/bootstrap/css/bootstrap.min.css">
-<!-- waves.css -->
-<link rel="stylesheet" href="/resources/pages/waves/css/waves.min.css"
-	type="text/css" media="all">
-<!-- themify icon -->
-<link rel="stylesheet" type="text/css"
-	href="/resources/icon/themify-icons/themify-icons.css">
-<!-- font-awesome-n -->
-<link rel="stylesheet" type="text/css"
-	href="/resources/css/font-awesome-n.min.css">
-<link rel="stylesheet" type="text/css"
-	href="/resources/css/font-awesome.min.css">
-<!-- scrollbar.css -->
-<link rel="stylesheet" type="text/css"
-	href="/resources/css/jquery.mCustomScrollbar.css">
-<!-- Style.css -->
-<link rel="stylesheet" type="text/css" href="/resources/css/style.css">
-<link rel="stylesheet" type="text/css" href="/resources/css/test.css">
+    <!-- Favicon icon -->
+    <link rel="icon" href="/resources/images/favicon.ico" type="image/x-icon">
+    <!-- Google font-->
+    <link href="https://fonts.googleapis.com/css?family=Open+Sans:400,600,700" rel="stylesheet">
+    <!-- waves.css -->
+    <link rel="stylesheet" href="/resources/pages/waves/css/waves.min.css" type="text/css" media="all">
+    <!-- Required Fremwork -->
+    <link rel="stylesheet" type="text/css" href="/resources/css/bootstrap/css/bootstrap.min.css">
+    <!-- waves.css -->
+    <link rel="stylesheet" href="/resources/pages/waves/css/waves.min.css" type="text/css" media="all">
+    <!-- themify icon -->
+    <link rel="stylesheet" type="text/css" href="/resources/icon/themify-icons/themify-icons.css">
+    <!-- font-awesome-n -->
+    <link rel="stylesheet" type="text/css" href="/resources/css/font-awesome-n.min.css">
+    <link rel="stylesheet" type="text/css" href="/resources/css/font-awesome.min.css">
+    <!-- scrollbar.css -->
+    <link rel="stylesheet" type="text/css" href="/resources/css/jquery.mCustomScrollbar.css">
+    <!-- Style.css -->
+    <link rel="stylesheet" type="text/css" href="/resources/css/style.css">
+    <link rel="stylesheet" type="text/css" href="/resources/css/test.css">
 
-	<script type="text/javascript"
-		src="/resources/js/jquery/jquery.min.js "></script>
+	<script type="text/javascript" src="/resources/js/jquery/jquery.min.js "></script>
 
 <style>
 .featured__item__text {
@@ -85,19 +69,21 @@
 		
 		$(function init () {
 			sell_price = document.getElementById('sell_price').value;
-			document.getElementById('sum').value = sell_price;
+			document.getElementById('sum').value = sell_price.replace(/\B(?=(\d{3})+(?!\d))/g, ",");
 			sell_price = document.form.sell_price.value;
 			amount = document.form.amount.value;
 			document.form.sum.value = sell_price;
-			change();
 		});
 		
 		function add () {
 			hm = document.form.amount;
 			sum = document.form.sum;
 			hm.value ++ ;
+			
+			var temp = parseInt(hm.value) * sell_price
 		
-			document.getElementById('sum').value = parseInt(hm.value) * sell_price;
+			document.getElementById('sum').value = temp;
+			document.getElementById('sum').value = document.getElementById('sum').value.replace(/\B(?=(\d{3})+(?!\d))/g, ",");
 		}
 		
 		function del () {
@@ -105,22 +91,40 @@
 			sum = document.form.sum;
 				if (hm.value > 1) {
 					hm.value -- ;
-					document.getElementById('sum').value = parseInt(hm.value) * sell_price;
+					var temp = parseInt(hm.value) * sell_price
+					
+					document.getElementById('sum').value = temp;
+					document.getElementById('sum').value = document.getElementById('sum').value.replace(/\B(?=(\d{3})+(?!\d))/g, ",");
 				}
 				
 		}
 		
-		function change () {
+		function changeValue(){
 			hm = document.form.amount;
 			sum = document.form.sum;
+			
+			var temp = parseInt(hm.value) * sell_price
 		
-				if (hm.value < 0) {
-					hm.value = 0;
-				}
-			sum.value = parseInt(hm.value) * sell_price;
-		}  
+			document.getElementById('sum').value = temp;
+			document.getElementById('sum').value = document.getElementById('sum').value.replace(/\B(?=(\d{3})+(?!\d))/g, ",");
+		}
+			
+		function cartList(frm) {
+			var param = $("form[name=form]").serialize();
+			
+            $.ajax({
+               url : '/store/addCart',
+               type : 'post',
+               data : param,
+               success : function(){
+            	   alert("장바구니에 상품이 담겼습니다.");
+               }
+            })
+         
+		}
+		
+		
 </script>
-
 
 </head>
 
@@ -612,17 +616,18 @@
 										<div class="col-lg-6">
 											<div class="product__details__pic">
 												<div class="product__details__slider__content">
-													<div class="product__details__pic__slider owl-carousel">
-														<img
-															src="https://projectbit.s3.us-east-2.amazonaws.com/${imgDir }/${p.s_image }"
-															alt="">
+													<div class="details_pic">
+														<img src="https://projectbit.s3.us-east-2.amazonaws.com/${imgDir }/${p.s_image }" alt="" >
 													</div>
 												</div>
 											</div>
 										</div>
 											<div class="col-lg-6">
-												<div class="product__details__text">
+												<div class="details_text">
+												<form name="form" onsubmit="return false;" method="POST">
 													<h4 style="color : #000">${p.p_name }</h4>
+													<input type="hidden" name="p_id" value="${p.p_id }">
+													<input type="hidden" name="stock" value="${p.stock }">
 													<div class="product__details__button">
 														<div class="product__details__widget">
 															<ul>
@@ -633,14 +638,12 @@
 														</div>
 														<div class="quantity">
 															<div class="pro-qty">
-															<form name="form" method="POST">
 																<h5> 상품 수량 :
-																	<input type="hidden" id="sell_price" value="${p.price }">
+																	<input type="hidden" id="sell_price" name="price" value="${p.price }">
 																	<input type="button" class="store_btn2" value=" - " onclick="del()">
-																	<input type="text" class="store_input" name="amount" value="1" size="3" onchange="change();">
+																	<input type="text" class="store_input" autocomplete="off" min="1" name="amount" value="1" size="3" onchange="changeValue();">
 																	<input type="button" class="store_btn2" value=" + " onclick="add()">
 																</h5>
-															</form>
 															</div>
 															<br>
 														</div>
@@ -648,7 +651,7 @@
 														<div class="product__details__widget">
 															<ul>
 																<li>
-																	<h4>총 상품금액: <input type="text" class="store_input2" size="7" id="sum" readonly>원</h4>
+																	<h3>총 상품금액: <input type="text" class="store_input2" size="9" id="sum" readonly>원</h3>
 																</li>
 															</ul>
 														</div>
@@ -658,18 +661,19 @@
 														</ul>
 													</div>
 													<div class="btn_area">
-														<button class="store_btn" onclick="cartList()">장바구니에 담기</button>
-														<button class="store_btn" onclick="storeOrder()">주문하기</button>
+														<button class="store_btn" onclick="cartList(this.form)">장바구니</button>
+														<button class="store_btn" onclick="storeOrder()">바로구매</button>
 													</div>
 													<ul>
 														<li><a href="#"><span class="icon_heart_alt"></span></a></li>
 														<li><a href="#"><span class="icon_adjust-horiz"></span></a></li>
 													</ul>
+												</form>
 												</div>
 												</div>
 											</div>
 										<div class="col-lg-12">
-											<div class="product__details__tab">
+											<div class="product__details__tab" style="margin: 20px">
 												<ul class="nav nav-tabs" role="tablist">
 													<li class="nav-item"><a class="nav-link active"
 														data-toggle="tab" href="#tabs-1" role="tab">상세 정보</a></li>
@@ -680,7 +684,7 @@
 															)</a></li>
 												</ul>
 												<div class="tab-content">
-													<div class="tab-pane active" id="tabs-1" role="tabpanel">
+													<div class="tab-pane active" id="tabs-1" role="tabpanel" style="margin: 30px;">
 														<img class="detailProduct"
 															src="https://projectbit.s3.us-east-2.amazonaws.com/${imgDir }/${p.l_image }"
 															alt="">
@@ -826,7 +830,7 @@
 																<tr>
 																	<th>
 																		<button onclick="deleteReview(${rList.review_id})">삭제</button>
-																	</th>
+																</th>
 																</tr>
 															</table>
 															<br>

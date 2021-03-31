@@ -53,12 +53,14 @@ font-size: 16px; color : #fff; border-radius: 2px; line-height: 42px;}
 /* 상품 상세페이지 끝*/ 
 
    .store_btn{
+     margin-right: 5px;
      background:#ff6347;
      color:#fff;
      border:none;
      position:relative;
-     height:25px;
-     font-size:1.0em;
+     height:50px;
+     width:200px;
+     font-size:1.6em;
      padding:0 2em;
      cursor:pointer;
      transition:800ms ease all;
@@ -101,18 +103,38 @@ font-size: 16px; color : #fff; border-radius: 2px; line-height: 42px;}
    }
    
    .store_input {
-     border : 1px solid #faf3f4;
-     text-align : center;
+     border: 1px solid #faf3f4;
+     text-align: center;
    }
    
    .store_input2 {
-     border : 1px solid #faf3f4;
-     background-color : #faf3f4;
+     border: 1px solid #faf3f4;
+     background-color: #faf3f4;
      color: #ff6347;
      font-weight: bold;
-     text-align : center;
+     text-align: center;
    }
-   	
+   
+   .details_pic {
+   	 border: 5px solid #fff;
+   	 text-align: center;
+   }
+   
+   .details_pic img {
+   	 display: block; 
+   	 margin: 20px auto;
+   	 width: 400px; 
+   	 height: 400px;
+   }
+   
+   .details_text {
+     border: 5px solid #fff;
+   	 text-align: left;
+   }
+
+   .details_text h4 {
+     margin-top: 20px;
+   }   
 
 .scroll-top {
 	position: fixed;
