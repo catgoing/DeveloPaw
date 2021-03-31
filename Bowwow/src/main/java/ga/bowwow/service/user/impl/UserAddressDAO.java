@@ -15,7 +15,7 @@ public class UserAddressDAO {
 		System.out.println(">> AddrAccountDAO() 객체생성");
 	}
 	public void insertAddrAccount(UserAddress addrAccount) {
-		mybatis.insert("AddrAccount.insertTemporaryAddrAccount", addrAccount);
+		mybatis.insert("AddrAccount.insertTemporaryUserAddress", addrAccount);
 	}
 	public UserAddress searchAddrAccount(UserAddress addrAccount) {
 		return mybatis.selectOne("AddrAccount.getAddrAccount", addrAccount);
