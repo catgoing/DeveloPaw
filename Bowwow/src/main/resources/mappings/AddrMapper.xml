@@ -6,6 +6,6 @@
 
 	<insert id="insertTemporaryUserAddress" parameterType="UserAddress" >
 		INSERT INTO USER_ADDRESS (ADDRESS_ID, MEMBER_SERIAL, ADDRESS_FIRST, ADDRESS_SECOND, ZIP) 
-		VALUES ( , #{memberSerial} , #{Address}, #{Zonecode}, #{detailAddress})
+		VALUES (USER_ADDRESS_ID_SEQ.NEXTVAL, #{memberSerial} , #{address}, #{addressDetail}, #{zonecode})
 	</insert>
 </mapper>

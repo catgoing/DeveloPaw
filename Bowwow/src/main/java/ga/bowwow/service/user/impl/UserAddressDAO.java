@@ -6,18 +6,18 @@ import org.springframework.stereotype.Repository;
 
 import ga.bowwow.service.user.UserAddress;
 
-@Repository("AddrAccountDAO")
+@Repository("UserAddressDAO")
 public class UserAddressDAO {
 	@Autowired
 	private SqlSessionTemplate mybatis;
 	
 	public UserAddressDAO() {
-		System.out.println(">> AddrAccountDAO() 객체생성");
+		System.out.println(">> UserAddressDAO() 객체생성");
 	}
 	public void insertAddrAccount(UserAddress addrAccount) {
-		mybatis.insert("AddrAccount.insertTemporaryUserAddress", addrAccount);
+		mybatis.insert("UserAddress.insertTemporaryUserAddress", addrAccount);
 	}
 	public UserAddress searchAddrAccount(UserAddress addrAccount) {
-		return mybatis.selectOne("AddrAccount.getAddrAccount", addrAccount);
+		return mybatis.selectOne("UserAddress.getAddrAccount", addrAccount);
 	}
 }

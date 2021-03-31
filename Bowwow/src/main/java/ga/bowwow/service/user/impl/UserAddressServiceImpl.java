@@ -13,19 +13,15 @@ import ga.bowwow.service.user.UserGenericService;
 @Service("AddrAccountService")
 public class UserAddressServiceImpl implements UserGenericService<UserAddress> {
 	@Autowired
-	private UserAddressDAO AddrAccountDAO;
+	private UserAddressDAO userAddressDAO;
 	
 	public UserAddress searchUser(UserAddress AddrAccount) {
-		return AddrAccountDAO.searchAddrAccount(AddrAccount);
+		return userAddressDAO.searchAddrAccount(AddrAccount);
 	}
-	
-	public boolean addAddr(UserAddress vo) {
-		return this.addVo(vo);
-	}
-	
+		
 	@Override
 	public boolean addVo(UserAddress vo) {
-		AddrAccountDAO.insertAddrAccount(vo);
+		userAddressDAO.insertAddrAccount(vo);
 		return isRegisterSuccess(vo);
 	}
 	@Override

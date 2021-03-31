@@ -79,22 +79,27 @@
 									</div>
 									<input type="button" value="맵" onclick="execMap()"/><br>
 									<form>
+									<div class="form-group form-primary">
+	                                        <input type="text" id="memberSerial" name="memberSerial" class="form-control">
+	                                        <span class="form-bar"></span>
+	                                        <label class="float-label">멤버시리얼</label>
+	                                 	</div>
 										<div class="form-group form-primary">
-	                                        <input type="text" id="userAddress" name="Address" class="form-control" readonly>
+	                                        <input type="text" id="userAddress" name="address" class="form-control" readonly>
 	                                        <span class="form-bar"></span>
 	                                        <label class="float-label">주소입력</label>
 	                                 	</div>
 	                                 	<div class="form-group form-primary">
-	                                        <input type="text" id="userZonecode" name="Zonecode" class="form-control" readonly>
-	                                        <span class="form-bar"></span>
-	                                        <label class="float-label">우편번호</label>
-	                                 	</div>
-										<div class="form-group form-primary">
-	                                        <input type="text" name="detailAddress" class="form-control">
+	                                        <input type="text" name="addressDetail" class="form-control">
 	                                        <span class="form-bar"></span>
 	                                        <label class="float-label">상세주소</label>
 	                                 	</div>
-	
+	                                 	<div class="form-group form-primary">
+	                                        <input type="text" id="userZonecode" name="zonecode" class="form-control" readonly>
+	                                        <span class="form-bar"></span>
+	                                        <label class="float-label">우편번호</label>
+	                                 	</div>
+										
 										<div class="input-label">
 											<div class="input-wrap">
 												<div class="my-profile">
