@@ -14,6 +14,8 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.multipart.MultipartFile;
 
 import com.amazonaws.AmazonClientException;
@@ -23,6 +25,7 @@ import ga.bowwow.service.board.Board;
 import ga.bowwow.service.board.BoardService;
 import ga.bowwow.service.board.Comment;
 import ga.bowwow.service.board.CommentService;
+import ga.bowwow.service.board.Report;
 import ga.bowwow.service.common.ImageVO;
 
 
@@ -38,18 +41,18 @@ public class BoardController {
 		System.out.println("> boardService : " + boardService); //null
 	}
 
-	@RequestMapping("/community/list")
+	@RequestMapping("/community/diary_board")
 	public String getBoardList(Model model) {
 		System.out.println(">>> 게시글 전체 목록- String getBoardList()");
 		System.out.println("> boardService : " + boardService);
-
+		int board_idx = 1;
 		Map<String, Integer> map = new HashMap<String, Integer>();
-		map.put("board_idx", 1);
-		map.put("board_no", 72);
+		map.put("board_idx", board_idx);
 
 		List<Board> boardList = boardService.getBoardList(map);
 
 		model.addAttribute("boardList", boardList);
+		model.addAttribute("board_idx", board_idx);
 			
 		System.out.println("bowwow list : " + boardList);
 		System.out.println("board model : " + model);
@@ -59,21 +62,26 @@ public class BoardController {
 	}
 	
 	
-	@RequestMapping("/community/detail")
-	public String getBoard(Model model) {
+	@RequestMapping(value="/community/detail", method=RequestMethod.GET)
+	
+	public String getBoard(@RequestParam("board_idx") int board_idx,
+				@RequestParam("board_no") int board_no ,  Model model) {
 		
 		System.out.println(">>> 글상세 - String getBoard()");
-		
+		Board board = new Board();
 		Map<String, Integer> map = new HashMap<String, Integer>();
-		map.put("board_idx", 1);
-		map.put("board_no", 24);
-		
-		Board board = boardService.getBoard(map);
+	map.put("board_idx", board_idx);
+	map.put("board_no", board_no );
+		System.out.println(board);
+		board = boardService.getBoard(map);
 		List<Comment> commentList = boardService.getCommentList(map);
 		List<Comment> comment2List = boardService.getComment2List(map);
 		
 		System.out.println("commentList : " + commentList);
 		System.out.println("comment2List : " + comment2List);
+		
+		//TODO 임시 회원 시리얼을 실제 객체로 교체할 것
+		model.addAttribute("tempMemberSerial", "1");
 		
 		model.addAttribute("vo", board);
 		model.addAttribute("commentList", commentList);
@@ -151,6 +159,19 @@ public class BoardController {
 		return "/community/insert_complete";
 
 	}
+	
+	@RequestMapping("/report1")
+	public String insertReport(Report vo) throws IllegalStateException, IOException, AmazonClientException, InterruptedException {
+		System.out.println(">>> 댓글 입력 - insertreport");
+		System.out.println("vo : " + vo);
+		
+		
+		boardService.insertReport(vo);
+		
+		return "/report1";
+
+	}
+	
 	
 	@RequestMapping("/community/insertComment2")
 	public String insertComment2(Comment vo) throws IllegalStateException, IOException, AmazonClientException, InterruptedException {

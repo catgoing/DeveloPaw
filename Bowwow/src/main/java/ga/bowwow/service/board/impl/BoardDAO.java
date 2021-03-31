@@ -12,6 +12,7 @@ import org.springframework.stereotype.Repository;
 
 import ga.bowwow.service.board.Board;
 import ga.bowwow.service.board.Comment;
+import ga.bowwow.service.board.Report;
 
 
 @Repository("boardDAO")
@@ -84,6 +85,13 @@ public class BoardDAO {
 		System.out.println("map : " + map);
 		System.out.println("===> MyBatis로 search() 실행-vo");
 		return mybatis.selectList("BoardDAO.search",map);
+	}
+	
+	
+	public void insertReport(Report vo) {
+		System.out.println("===> MyBatis로 insertReport() 실행");
+		mybatis.insert("BoardDAO.report", vo);
+		System.out.println("boardao : " + vo);
 	}
 
 }

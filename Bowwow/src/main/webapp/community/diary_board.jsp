@@ -176,7 +176,7 @@
 
 														<c:forEach var="list" items="${ boardList}">
 															<li>
-																<div class="block-item default-item">
+																<div class="block-item default-item" onclick="location.href='/community/detail?board_idx=${board_idx }&board_no=${list.board_no}'">
 																	<div class="best-label">${list.board_no }</div>
 																	<div class="bookmark_btn click-btn">
 																		<div class="scrap" id="scrapBtn_311"
@@ -192,9 +192,8 @@
 																		</div>
 																	</div>
 																	<div class="text-area">
-																		<div class="item-title"
-																			onclick="location.href='/board/knowhow/311'">
-																			<h4>${list.board_title }</h4>
+																		<div class="item-title">
+																			<a href="/community/detail?board_idx=${board_idx }&board_no=${list.board_no}">${list.board_title }</a>
 																		</div>
 																		<p class="hashtag">
 																			<span>#마사지 </span><span>#강아지마사지 </span><span>#강아지테라피
@@ -216,8 +215,8 @@
 																<div class="bookmark_btn click-btn">
 																	<div class="scrap" id="scrapBtn_311"
 																		onclick="WitCommon.boardScrap('knowhow', '311')">
-																		<img id="scrapImg_311"
-																			src="/resources/images/dog.jpg" alt="">
+																		<img id="scrapImg_311" src="/resources/images/dog.jpg"
+																			alt="">
 																	</div>
 																</div>
 																<div class="img-area"
@@ -326,3 +325,4 @@
 
 
 
+																			

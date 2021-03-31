@@ -16,7 +16,7 @@ public interface BoardService {
 	List<Board> search(String string, String keyword);
 
 	List<Board> getBoardList(Map<String, Integer> map);
-	
+	void insertReport(Report vo);
 	void insertComment(Comment vo);
 	void updateComment(Comment vo);
 	void deleteComment(Comment vo);

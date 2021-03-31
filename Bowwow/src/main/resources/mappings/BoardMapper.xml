@@ -21,7 +21,7 @@
 	</select>
 	
 	<select id="getBoard" parameterType="Map" resultType="board">
-		SELECT BOARD_NO, BOARD_CONTENT
+		SELECT BOARD_NO, BOARD_CONTENT, BOARD_TITLE
 		FROM 
 		<choose>
 			<when test="board_idx == 1"> DIARY_BOARD </when>

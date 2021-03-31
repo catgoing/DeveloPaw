@@ -9,6 +9,7 @@ import org.springframework.stereotype.Service;
 import ga.bowwow.service.board.Board;
 import ga.bowwow.service.board.BoardService;
 import ga.bowwow.service.board.Comment;
+import ga.bowwow.service.board.Report;
 
 
 @Service("boardService")
@@ -105,6 +106,14 @@ public class BoardServiceImpl implements BoardService{
 	
 	public List<Board> search(String board, String keyword) {
 		return boardDAO.search(board, keyword);
+	}
+
+	@Override
+	public void insertReport(Report vo) {
+		System.out.println("report vo  :  " + vo);
+		boardDAO.insertReport(vo);
+		
+		
 	}
 	
 
