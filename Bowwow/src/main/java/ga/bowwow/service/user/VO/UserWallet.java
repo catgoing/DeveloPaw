@@ -21,40 +21,54 @@ public class UserWallet {
 	public int hashCode() {
 		final int prime = 31;
 		int result = 1;
-//		result = prime * result + ((address == null) ? 0 : address.hashCode());
-//		result = prime * result + ((addressDetail == null) ? 0 : addressDetail.hashCode());
-//		result = prime * result + memberSerial;
-//		result = prime * result + ((zonecode == null) ? 0 : zonecode.hashCode());
+		result = prime * result + ((bankName == null) ? 0 : bankName.hashCode());
+		result = prime * result + ((bankNo == null) ? 0 : bankNo.hashCode());
+		result = prime * result + ((cardName == null) ? 0 : cardName.hashCode());
+		result = prime * result + ((cardNo == null) ? 0 : cardNo.hashCode());
+		result = prime * result + memberSerial;
+		result = prime * result + ((payType == null) ? 0 : payType.hashCode());
 		return result;
 	}
 	@Override
 	public boolean equals(Object obj) {
-//		if (this == obj)
-//			return true;
-//		if (obj == null)
-//			return false;
-//		if (getClass() != obj.getClass())
-//			return false;
-//		UserWallet other = (UserWallet) obj;
-//		if (address == null) {
-//			if (other.address != null)
-//				return false;
-//		} else if (!address.equals(other.address))
-//			return false;
-//		if (addressDetail == null) {
-//			if (other.addressDetail != null)
-//				return false;
-//		} else if (!addressDetail.equals(other.addressDetail))
-//			return false;
-//		if (memberSerial != other.memberSerial)
-//			return false;
-//		if (zonecode == null) {
-//			if (other.zonecode != null)
-//				return false;
-//		} else if (!zonecode.equals(other.zonecode))
-//			return false;
+		if (this == obj)
+			return true;
+		if (obj == null)
+			return false;
+		if (getClass() != obj.getClass())
+			return false;
+		UserWallet other = (UserWallet) obj;
+		if (payType == null) {
+			if (other.payType != null)
+				return false;
+		} else if (!payType.equals(other.payType))
+			return false;
+		if (memberSerial != other.memberSerial)
+			return false;
+		if(payType.equals("bank")) {
+			if (bankName == null) {
+				if (other.bankName != null)
+					return false;
+			} else if (!bankName.equals(other.bankName))
+				return false;
+			if (bankNo == null) {
+				if (other.bankNo != null)
+					return false;
+			} else if (!bankNo.equals(other.bankNo))
+				return false;
+		}
+		if(payType.equals("card")) {
+			if (cardName == null) {
+				if (other.cardName != null)
+					return false;
+			} else if (!cardName.equals(other.cardName))
+				return false;
+			if (cardNo == null) {
+				if (other.cardNo != null)
+					return false;
+			} else if (!cardNo.equals(other.cardNo))
+				return false;
+		}
 		return true;
 	}
-	
-	
 }
