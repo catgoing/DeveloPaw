@@ -25,6 +25,11 @@ public class UserWalletController extends UserCRUDGenericController<UserWallet, 
 		System.out.println("test");
 		return "/auth.myWallet";
 	}
+	//legacy
+	@RequestMapping(value="/registWallet")
+	public String registAddrToDB(@ModelAttribute("walletAccount") UserWallet UserWallet) {
+		return super.add(UserWallet, "/ok" , "/auth.login");
+	}
 
 	@Override
 	protected List<UserWallet> list(UserWallet vo) {

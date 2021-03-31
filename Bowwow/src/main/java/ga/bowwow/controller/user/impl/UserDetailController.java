@@ -38,21 +38,21 @@ public class UserDetailController extends UserCRUDGenericController<UserDetail, 
 	
 	
 	//legacy
-//				@RequestMapping(value="/modifyDetail")
-//				public String modifyUserInDB(@ModelAttribute("userDetail") UserDetail userDetail) {
-//					return super.update(userDetail, "/ok", "/auth.login");
-//				}
-//				@RequestMapping(value="/registDetail")
-//				public String registUserToDB(@ModelAttribute("userDetail") UserDetail userDetail) {
-//					System.out.println("isRegistRouted?");
-//					return super.add(userDetail, "/ok" , "/auth.login");
-//				}
-//				@RequestMapping(value="/deleteDetail")
-//				public String deleteUserFromDB(@ModelAttribute("userDetail") UserDetail userDetail) {
-//					return super.delete(userDetail, "/ok", "/auth.login");
-//				}
-//				@RequestMapping(value="/getUser")
-//				public UserDetail getUserFromDB(@ModelAttribute("userDetail") UserDetail userDetail) {
-//					return super.get(userDetail);
-//				}
+				@RequestMapping(value="/modifyDetail")
+				public String modifyUserInDB(@ModelAttribute("userDetail") UserDetail userDetail) {
+					return super.update(userDetail, "/ok", "/auth.login");
+				}
+				@RequestMapping(value="/registDetail")
+				public String registUserToDB(@ModelAttribute("userDetail") UserDetail userDetail) {
+					System.out.println("isRegistRouted?");
+					return super.add(userDetail, "/ok" , "/auth.login");
+				}
+				@RequestMapping(value="/deleteDetail")
+				public String deleteUserFromDB(@ModelAttribute("userDetail") UserDetail userDetail) {
+					return super.delete(userDetail, "/ok", "/auth.login");
+				}
+				@RequestMapping(value="/getUser")
+				public UserDetail getUserFromDB(@ModelAttribute("userDetail") UserDetail userDetail) {
+					return super.get(userDetail);
+				}
 }

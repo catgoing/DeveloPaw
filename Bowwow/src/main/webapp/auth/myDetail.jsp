@@ -81,15 +81,15 @@
 											<p></p>
 										</div>
 
-<!-- 										<div class="action_btn"> -->
-<!-- 											<input type="submit" value="정보 입력" formaction="/detail/registDetail"> -->
-<!-- 										</div> -->
-<!-- 										<div class="action_btn"> -->
-<!-- 											<input type="submit" value="정보 수정"  formaction="/detail/modifyDetail"> -->
-<!-- 										</div> -->
-<!-- 										<div class="action_btn"> -->
-<!-- 											<input type="submit" value="정보 삭제"  formaction="/detail/deleteDetail"> -->
-<!-- 										</div> -->
+										<div class="action_btn">
+											<input type="submit" value="정보 입력" formaction="/detail/registDetail">
+										</div>
+										<div class="action_btn">
+											<input type="submit" value="정보 수정"  formaction="/detail/modifyDetail">
+										</div>
+										<div class="action_btn">
+											<input type="submit" value="정보 삭제"  formaction="/detail/deleteDetail">
+										</div>
 										
 										
 										<div class="action_btn">

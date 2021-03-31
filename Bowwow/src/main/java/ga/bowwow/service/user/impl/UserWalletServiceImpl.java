@@ -6,7 +6,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import ga.bowwow.service.user.UserGenericService;
-import ga.bowwow.service.user.VO.UserDetail;
 import ga.bowwow.service.user.VO.UserWallet;
 
 //@Service : @Component 상속확장 어노테이션
@@ -15,35 +14,44 @@ import ga.bowwow.service.user.VO.UserWallet;
 public class UserWalletServiceImpl implements UserGenericService<UserWallet> {
 	@Autowired
 	private UserWalletDAO userWalletDAO;
+	
+	public UserWallet searchUser(UserWallet UserWallet) {
+		return userWalletDAO.searchWalletAccount(UserWallet);
+	}
 		
 	@Override
 	public boolean addVo(UserWallet vo) {
-		System.out.println("dao" + vo);
-		userWalletDAO.insertUserWallet(vo);
+		userWalletDAO.insertWalletAccount(vo);
 		return isRegistSuccess(vo);
 	}
+
 	@Override
-	public boolean updateVo(UserWallet vo) { 
-		userWalletDAO.updateUserWallet(vo);
-		return isModifySuccess(vo);
+	public boolean updateVo(UserWallet vo) {
+		// TODO Auto-generated method stub
+		return false;
 	}
+
 	@Override
 	public boolean deleteVo(UserWallet vo) {
-		userWalletDAO.deleteUserWallet(vo);
-		return isResignSuccess(vo);
+		// TODO Auto-generated method stub
+		return false;
 	}
+
 	@Override
 	public UserWallet getVo(UserWallet vo) {
-		return userWalletDAO.getUserWallet(vo);
+		// TODO Auto-generated method stub
+		return null;
 	}
 
 	@Override
 	public List<UserWallet> getVoList(UserWallet vo) {
+		// TODO Auto-generated method stub
 		return null;
 	}
 
 	@Override
 	public UserWallet searchVo(UserWallet vo) {
-		return userWalletDAO.searchUserWallet(vo);
+		// TODO Auto-generated method stub
+		return null;
 	}
 }
