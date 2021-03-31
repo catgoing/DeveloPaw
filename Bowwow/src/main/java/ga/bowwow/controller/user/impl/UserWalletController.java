@@ -1,0 +1,39 @@
+package ga.bowwow.controller.user.impl;
+
+import java.util.List;
+
+import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.RequestMapping;
+
+import ga.bowwow.controller.user.UserCRUDGenericController;
+import ga.bowwow.service.user.UserAddress;
+import ga.bowwow.service.user.UserWallet;
+import ga.bowwow.service.user.UserAccount;
+import ga.bowwow.service.user.impl.UserAddressServiceImpl;
+import ga.bowwow.service.user.impl.UserWalletServiceImpl;
+
+@Controller
+@RequestMapping("/wallet")
+public class UserWalletController extends UserCRUDGenericController<UserWallet, Integer, UserWalletServiceImpl>{
+	public UserWalletController() {
+		System.out.println("---->>> walletAccountController() 객체생성");
+		setRoute("/ok", "/auth.login");
+	}
+	
+	@RequestMapping(value="/manageAddress") //CRUD페이지
+	public String getUserInfo(@ModelAttribute("userAccount") UserAccount userAccount) {
+		return "/auth.myInfo3";
+	}
+	//legacy
+	@RequestMapping(value="/registWallet")
+	public String registAddrToDB(@ModelAttribute("walletAccount") UserWallet UserWallet) {
+		return super.add(UserWallet, "/ok" , "/auth.login");
+	}
+
+	@Override
+	protected List<UserWallet> list(UserWallet vo) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+}

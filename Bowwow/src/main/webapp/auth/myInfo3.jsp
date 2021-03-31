@@ -13,6 +13,24 @@
 </head>
 <body>
 <script type="text/javascript">
+	function isSelect(value){
+		if(value == "bank"){
+			document.getElementById("cardn").style.display = "none";
+			document.getElementById("carda").style.display = "none";
+			document.getElementById("bankn").style.display = "block";
+			document.getElementById("banka").style.display = "block";
+		}else if(value == "card"){
+			document.getElementById("cardn").style.display = "block";
+			document.getElementById("carda").style.display = "block";
+			document.getElementById("bankn").style.display = "none";
+			document.getElementById("banka").style.display = "none";
+		}else{
+			document.getElementById("cardn").style.display = "none";
+			document.getElementById("carda").style.display = "none";
+			document.getElementById("bankn").style.display = "none";
+			document.getElementById("banka").style.display = "none";
+		}
+	}
 </script>
  <section class="login-block">
         <!-- Container-fluid starts -->
@@ -32,28 +50,37 @@
 						</div>
 						<div class="myPageInfo-wrapper">
 
-								<!-- 회원정보수정 부분 -->
 								<div class="form-group">
 									<div class="mainMypage-content">
 									<div class="block-title">
-										<h3>주소지입력</h3>
+										<h3>결제정보입력</h3>
 									</div>
-									<input type="button" value="맵" onclick="execMap()"/><br>
 									<form>
 										<div class="form-group form-primary">
-	                                        <input type="text" id="userAddress" name="Address" class="form-control" readonly>
-	                                        <span class="form-bar"></span>
-	                                        <label class="float-label">주소입력</label>
+	                                    <select id="userAddress" name="paytype" class="form-control" onChange="isSelect(this.value);">
+    										<option value="bank">무통장입금</option>
+										    <option value="card">카드결제</option>
+										</select>
 	                                 	</div>
-	                                 	<div class="form-group form-primary">
-	                                        <input type="text" id="userZonecode" name="Zonecode" class="form-control" readonly>
+	                                 	<div id = "banka" class="form-group form-primary">
+	                                        <input type="text" name="bankname" class="form-control">
 	                                        <span class="form-bar"></span>
-	                                        <label class="float-label">우편번호</label>
+	                                        <label class="float-label">입금할 은행</label>
 	                                 	</div>
-										<div class="form-group form-primary">
-	                                        <input type="text" name="detailAddress" class="form-control">
+										<div id = "bankn" class="form-group form-primary">
+	                                        <input type="text" name="bankno" class="form-control">
 	                                        <span class="form-bar"></span>
-	                                        <label class="float-label">상세주소</label>
+	                                        <label class="float-label">계좌번호</label>
+	                                 	</div>
+	                                 	<div id = "carda" style="display:none" class="form-group form-primary">
+	                                        <input type="text" name="cardname" class="form-control">
+	                                        <span class="form-bar"></span>
+	                                        <label class="float-label">카드사 입력</label>
+	                                 	</div>
+										<div id = "cardn" style="display:none"  class="form-group form-primary">
+	                                        <input type="text" name="cardno" class="form-control">
+	                                        <span class="form-bar"></span>
+	                                        <label class="float-label">카드번호</label>
 	                                 	</div>
 	
 										<div class="input-label">
@@ -69,7 +96,7 @@
 										</div>
 
 										<div class="action_btn">
-											<input type="submit" value="결제정보입력" formaction="/address/registAddr">
+											<input type="submit" value="결제정보입력" formaction="/wallet/registWallet">
 										</div>
 									</form>
 									</div>
@@ -81,7 +108,6 @@
 			</div>
 		</div>
 	</div>
-</div>
 </div>
 </section>
 </body>

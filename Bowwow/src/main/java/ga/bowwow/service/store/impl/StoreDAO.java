@@ -48,23 +48,6 @@ public class StoreDAO {
 		System.out.println("확인용");
 		return mybatis.selectList("StoreReview.reviewList", p_id);
 	}
-
-	public void insertCartlist(CartList cartlist) {
-		System.out.println("장바구니 추가");
-		mybatis.insert("StoreCartlist.insertCartlist", cartlist);
-
-	}
-
-	public List<CartList> getCartlist(int member_serial) {
-		System.out.println("장바구니 목록 출력");
-		return mybatis.selectList("StoreCartlist.cartlistList", member_serial);
-	}
-
-	public void deleteCartlist(int cart_id) {
-		System.out.println("장바구니 삭제 : " + cart_id );
-		mybatis.delete("StoreCartlist.deleteCartlist", cart_id);
-	}
-
 	public void insertInquiry(Inquiry inquiry) {
 		System.out.println("문의 추가 : " + inquiry);
 		mybatis.insert("StoreInquiry.insertInquiry", inquiry);

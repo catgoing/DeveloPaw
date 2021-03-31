@@ -12,6 +12,7 @@
 		<typeAlias type="ga.bowwow.service.user.UserAccount" alias="UserAccount"/>
 		<typeAlias type="ga.bowwow.service.user.UserDetail" alias="UserDetail"/>
 		<typeAlias type="ga.bowwow.service.user.UserAddress" alias="UserAddress"/>
+		<typeAlias type="ga.bowwow.service.user.UserWallet" alias="UserWallet"/>
 		<typeAlias type="ga.bowwow.service.board.Board" alias="Board"/>
 		<typeAlias type="ga.bowwow.service.pet.Pet" alias="pet"/>
 		<typeAlias type="ga.bowwow.service.store.Product" alias="Product"/>
@@ -24,6 +25,7 @@
 	<mappers>
     <mapper resource="mappings/UserMapper.xml"/>
   	<mapper resource="mappings/UserDetailMapper.xml"/>
+  	<mapper resource="mappings/WalletMapper.xml"/>
   	<mapper resource="mappings/AddrMapper.xml"/>
 		<mapper resource="mappings/BoardMapper.xml" />
 		<mapper resource="mappings/PetMapper.xml" />
