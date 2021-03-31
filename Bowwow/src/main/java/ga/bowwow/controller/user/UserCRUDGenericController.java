@@ -38,7 +38,6 @@ public abstract class UserCRUDGenericController<T, SN, S extends UserGenericServ
 	protected String delete(T vo) {
 		return router(service.deleteVo(vo), resolveRoute, errorRoute);
 	}
-
 	
 	
 	protected T get(T vo) {

@@ -6,8 +6,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import ga.bowwow.controller.common.StaticUtil;
-import ga.bowwow.service.user.UserAccount;
 import ga.bowwow.service.user.UserGenericService;
+import ga.bowwow.service.user.VO.UserAccount;
 
 //@Service : @Component 상속확장 어노테이션
 //		비즈니스 로직처리 서비스 영역에 사용
@@ -24,6 +24,7 @@ public class UserAccountServiceImpl implements UserGenericService<UserAccount> {
 	}
 	
 	
+	//TODO 컨트롤러의 check를 컨트롤러로 데려와서 추상service에게 돌려줘야함?
 	@Override
 	public boolean addVo(UserAccount vo) {
 		userAccountDAO.insertUserAccount(vo);
@@ -53,6 +54,6 @@ public class UserAccountServiceImpl implements UserGenericService<UserAccount> {
 	}
 	
 	private boolean isUserValueExist(UserAccount userAccount) {
-		return userAccount.equals(searchUser(userAccount));
+		return userAccount.equals(searchVo(userAccount));
 	}
 }

@@ -5,8 +5,8 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import ga.bowwow.service.user.UserDetail;
 import ga.bowwow.service.user.UserGenericService;
+import ga.bowwow.service.user.VO.UserDetail;
 
 @Service("UserDetailService")
 public class UserDetailServiceImpl implements UserGenericService<UserDetail> {

@@ -7,7 +7,7 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 import ga.bowwow.controller.user.UserCRUDGenericController;
-import ga.bowwow.service.user.UserDetail;
+import ga.bowwow.service.user.VO.UserDetail;
 import ga.bowwow.service.user.impl.UserDetailServiceImpl;
 
 @Controller

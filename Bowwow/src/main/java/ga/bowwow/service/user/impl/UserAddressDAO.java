@@ -4,7 +4,7 @@ import org.mybatis.spring.SqlSessionTemplate;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
-import ga.bowwow.service.user.UserAddress;
+import ga.bowwow.service.user.VO.UserAddress;
 
 @Repository("UserAddressDAO")
 public class UserAddressDAO {
@@ -14,10 +14,19 @@ public class UserAddressDAO {
 	public UserAddressDAO() {
 		System.out.println(">> UserAddressDAO() 객체생성");
 	}
-	public void insertAddrAccount(UserAddress addrAccount) {
-		mybatis.insert("UserAddress.insertTemporaryUserAddress", addrAccount);
+	public void insertUserAddress(UserAddress userAddress) {
+		mybatis.insert("UserAddress.insertTemporaryUserAddress", userAddress);
 	}
-	public UserAddress searchAddrAccount(UserAddress addrAccount) {
-		return mybatis.selectOne("UserAddress.getAddrAccount", addrAccount);
+	public void updateUserAddress(UserAddress userAddress) {
+		mybatis.insert("UserAddress.updateUserAddress", userAddress);
+	}
+	public UserAddress getUserAddress(UserAddress userAddress) {
+		return mybatis.selectOne("UserAddress.getUserAddress", userAddress);
+	}
+	public UserAddress searchUserAddress(UserAddress userAddress) {
+		return mybatis.selectOne("UserAddress.searchUserAddress", userAddress);
+	}
+	public void deleteUserAddress(UserAddress userAddress) {
+		mybatis.delete("UserAddress.deleteUserAddress", userAddress);
 	}
 }

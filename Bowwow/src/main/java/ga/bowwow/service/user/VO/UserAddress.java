@@ -1,4 +1,4 @@
-package ga.bowwow.service.user;
+package ga.bowwow.service.user.VO;
 
 import lombok.AllArgsConstructor;
 import lombok.Getter;

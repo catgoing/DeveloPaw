@@ -10,7 +10,7 @@ public interface UserGenericService<T> {
 	List<T> getVoList(T vo);
 	
 	default boolean isUpdateSuccess(T vo, boolean expectBool) {
-		return isVoValueExist(vo) ? expectBool : !expectBool;
+		return isVoSerialExist(vo) ? expectBool : !expectBool;
 	};
 	default boolean isResignSuccess(T vo) {
 		return isUpdateSuccess(vo, false);
@@ -19,12 +19,10 @@ public interface UserGenericService<T> {
 		return isUpdateSuccess(vo, true);
 	}
 	default boolean isVoValueExist(T vo) {
-		System.out.println("voEquals check");
-		System.out.println(vo);
-		System.out.println(searchVo(vo));
-		System.out.println("--------------");
-
 		return vo.equals(searchVo(vo));
+	}
+	default boolean isVoSerialExist(T vo) {
+		return vo.equals(getVo(vo));
 	}
 	abstract T searchVo(T vo);
 }

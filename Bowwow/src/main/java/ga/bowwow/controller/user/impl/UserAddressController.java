@@ -7,8 +7,8 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 import ga.bowwow.controller.user.UserCRUDGenericController;
-import ga.bowwow.service.user.UserAddress;
-import ga.bowwow.service.user.UserAccount;
+import ga.bowwow.service.user.VO.UserAccount;
+import ga.bowwow.service.user.VO.UserAddress;
 import ga.bowwow.service.user.impl.UserAddressServiceImpl;
 
 @Controller
@@ -18,20 +18,13 @@ public class UserAddressController extends UserCRUDGenericController<UserAddress
 		System.out.println("---->>> AddrAccountController() 객체생성");
 		setRoute("/ok", "/auth.login");
 	}
-	
 	@RequestMapping(value="/manageAddress") //CRUD페이지
 	public String getUserInfo(@ModelAttribute("userAccount") UserAccount userAccount) {
-		return "/auth.myInfo2";
+		return "/auth.myAddress";
 	}
 	
 	@Override
 	protected List<UserAddress> list(UserAddress vo) {
 		return null;
 	}
-	
-	//legacy
-				@RequestMapping(value="/registAddr")
-				public String registAddrToDB(@ModelAttribute("addrAccount") UserAddress addracount) {
-					return super.add(addracount, "/ok" , "/auth.login");
-				}
 }

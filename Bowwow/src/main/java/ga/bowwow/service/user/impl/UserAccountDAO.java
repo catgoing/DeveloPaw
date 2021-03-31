@@ -4,7 +4,7 @@ import org.mybatis.spring.SqlSessionTemplate;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
-import ga.bowwow.service.user.UserAccount;
+import ga.bowwow.service.user.VO.UserAccount;
 
 @Repository("UserAccountDAO")
 public class UserAccountDAO {

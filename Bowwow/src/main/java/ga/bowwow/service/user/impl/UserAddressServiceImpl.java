@@ -5,8 +5,8 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import ga.bowwow.service.user.UserAddress;
 import ga.bowwow.service.user.UserGenericService;
+import ga.bowwow.service.user.VO.UserAddress;
 
 //@Service : @Component 상속확장 어노테이션
 //		비즈니스 로직처리 서비스 영역에 사용
@@ -15,26 +15,29 @@ public class UserAddressServiceImpl implements UserGenericService<UserAddress> {
 	@Autowired
 	private UserAddressDAO userAddressDAO;
 	
-	public UserAddress searchUser(UserAddress AddrAccount) {
-		return userAddressDAO.searchAddrAccount(AddrAccount);
+	public UserAddress searchUser(UserAddress userAddress) {
+		return userAddressDAO.searchUserAddress(userAddress);
 	}
 		
 	@Override
 	public boolean addVo(UserAddress vo) {
-		userAddressDAO.insertAddrAccount(vo);
+		userAddressDAO.insertUserAddress(vo);
 		return isRegisterSuccess(vo);
 	}
 	@Override
 	public boolean updateVo(UserAddress vo) {
-		return false;
+		userAddressDAO.updateUserAddress(vo);
+		return isRegisterSuccess(vo);
 	}
 	@Override
 	public boolean deleteVo(UserAddress vo) {
-		return false;
+		System.out.println(vo);
+		userAddressDAO.deleteUserAddress(vo);
+		return !isVoSerialExist(vo);
 	}
 	@Override
 	public UserAddress getVo(UserAddress vo) {
-		return null;
+		return userAddressDAO.getUserAddress(vo);
 	}
 	@Override
 	public List<UserAddress> getVoList(UserAddress vo) {
@@ -42,6 +45,6 @@ public class UserAddressServiceImpl implements UserGenericService<UserAddress> {
 	}
 	@Override
 	public UserAddress searchVo(UserAddress vo) {
-		return null;
+		return userAddressDAO.searchUserAddress(vo);
 	}
 }
