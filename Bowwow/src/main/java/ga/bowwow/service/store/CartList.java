@@ -20,4 +20,5 @@ public class CartList {
 	private String p_name;			// 상품이름
 	private int price;				// 가격
 	private String s_image;			// 상품 이미지
+	private String p_type;			// 상품 타입
 }

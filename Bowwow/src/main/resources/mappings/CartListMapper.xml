@@ -10,7 +10,8 @@
 	</insert>
 	
 	<select id="getCartList" parameterType="String" resultType="CartList">
-		SELECT CARTID, P_ID, ID, C_AMOUNT, P.P_NAME, P.PRICE, P.S_IMAGE
+		SELECT C.CART_ID, C.P_ID, C.ID, C.AMOUNT, 
+			   P.P_NAME, P.PRICE, P.S_IMAGE, P.P_TYPE
 		  FROM STORE_CARTLIST C, STORE_PRODUCTS P
 		 WHERE C.P_ID = P.P_ID AND ID = #{id}
 	</select>
