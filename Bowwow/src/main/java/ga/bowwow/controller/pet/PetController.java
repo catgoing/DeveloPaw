@@ -13,6 +13,7 @@ import ga.bowwow.service.pet.PetService;
 @SessionAttributes("pet") //세션에 저장
 public class PetController {
 	
+	@Autowired
 	private PetService petService;
 	
 	public PetController() {

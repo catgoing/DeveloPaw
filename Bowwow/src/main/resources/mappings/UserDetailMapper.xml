@@ -1,0 +1,70 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="UserAccount">
+
+
+<!-- TODO Account와 join한 검색을 추가해야 함 -->
+<!-- TODO SearchDetail의 동적검색을 추가해야 함 -->
+<!-- TODO SearchDetail을 List형태로 돌려주는 것으로 변환해야 함 -->
+
+	<insert id="insertUserDetailAccount" parameterType="UserDetail">
+		INSERT INTO USER_DETAIL (MEMBER_SERIAL, NICKNAME, REG_DATE, REALNAME, BIRTHDAY, GENDER, IMAGE_SOURCE) 
+		VALUES (#{memberSerial}
+		,#{nickname}, #{regDate}, #{realname}, #{birthday}, #{gender}, #{imageSource})
+	</insert>
+	
+	<insert id="insertTemporaryUserDetail" parameterType="UserDetail" >
+		INSERT INTO USER_DETAIL (MEMBER_SERIAL, NICKNAME, REG_DATE, REALNAME, BIRTHDAY, GENDER) 
+		VALUES (#{memberSerial}
+		, #{nickname}, #{regDate}, #{realname}, #{birthday}, #{gender})
+	</insert>
+	
+	<delete id="deleteUserDetail" parameterType="UserDetail">
+		DELETE FROM USER_DETAIL WHERE MEMBER_SERIAL = #{memberSerial}
+	</delete>
+	
+	<update id="updateUserDetail" parameterType="UserDetail">
+		UPDATE USER_DETAIL
+		SET NICKNAME = #{nickname}
+		, REG_DATE = #{regDate}
+		, REALNAME = #{realname}
+		, BIRTHDAY = #{birthday}
+		, GENDER = #{gender}
+		WHERE MEMBER_SERIAL = #{memberSerial}
+	</update>
+	
+	
+	<select id="getUserDetail" parameterType="UserDetail" resultType="UserDetail">
+		SELECT * FROM USER_DETAIL WHERE MEMBER_SERIAL = #{memberSerial}
+	</select>
+	
+	<select id="searchUserDetail" parameterType="UserDetail" resultType="UserDetail">
+		SELECT * FROM USER_DETAIL WHERE MEMBER_SERIAL = #{memberSerial}
+	</select>
+	
+	<!-- 
+	<select id="getUserList" parameterType="User" resultType="User">
+		SELECT * FROM User 
+		WHERE 1=1
+		<if test="searchCondition == 'TITLE'">
+			AND TITLE LIKE '%'|| #{searchKeyword} ||'%'
+		</if> 
+		<if test="searchCondition == 'CONTENT'">
+			AND CONTENT LIKE '%'|| #{searchKeyword} ||'%'
+		</if>
+		ORDER BY SEQ DESC
+	</select>
+	
+	
+	<select id="getUserList_T" parameterType="User" resultType="User">
+		SELECT * FROM User WHERE TITLE LIKE '%'|| #{searchKeyword} ||'%'
+		ORDER BY SEQ DESC
+	</select>
+	<select id="getUserList_C" parameterType="User" resultType="User">
+		SELECT * FROM User WHERE CONTENT LIKE '%'|| #{searchKeyword} ||'%'
+		ORDER BY SEQ DESC
+	</select>
+	 -->
+</mapper>

@@ -2,7 +2,6 @@ package ga.bowwow.service.user.impl;
 
 import org.mybatis.spring.SqlSessionTemplate;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Repository;
 
 import ga.bowwow.service.user.UserAccount;
@@ -10,9 +9,8 @@ import ga.bowwow.service.user.UserAccount;
 @Repository("UserAccountDAO")
 public class UserAccountDAO {
 	@Autowired
-	@Qualifier("local")
 	private SqlSessionTemplate mybatis;
-	
+
 	public UserAccountDAO() {
 		System.out.println(">> UserAccountDAO() 객체생성");
 	}

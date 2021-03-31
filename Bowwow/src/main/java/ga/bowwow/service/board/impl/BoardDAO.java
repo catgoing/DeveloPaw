@@ -17,6 +17,7 @@ import ga.bowwow.service.board.Board;
 public class BoardDAO {
 	
 	
+	@Autowired
 	private SqlSessionTemplate mybatis;
 	
 	public BoardDAO() {

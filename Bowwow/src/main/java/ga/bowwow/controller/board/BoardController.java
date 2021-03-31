@@ -17,7 +17,7 @@ import ga.bowwow.service.board.BoardService;
 
 @Controller
 public class BoardController {
-	@Autowired
+	@Autowired //의존주입(DI) : 동일한 데이터 타입 객체
 	private BoardService boardService; //의존주입<-- BoardServiceImpl
 
 	public BoardController() {

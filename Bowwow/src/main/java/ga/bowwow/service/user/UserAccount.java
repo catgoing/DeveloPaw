@@ -1,7 +1,6 @@
 package ga.bowwow.service.user;
 
 import lombok.AllArgsConstructor;
-import lombok.EqualsAndHashCode;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
@@ -11,16 +10,16 @@ import lombok.ToString;
 @NoArgsConstructor @AllArgsConstructor
 @ToString
 public class UserAccount {
-	int memberSerial;
+	int member_Serial;
 	String id;
 	String email;
-	String citizenId;
+	String citizen_Id;
 	String phone;
 	String password;
 	String status;
 	int point;
 	String coupons;
-	
+
 	@Override
 	public int hashCode() {
 		final int prime = 31;
@@ -50,7 +49,7 @@ public class UserAccount {
 			return false;
 		return true;
 	}
-	
+
 	//TODO 사안에 맞게 bypass 할 수 있을까?
 	public boolean valueEquals(Object obj) {
 		if (this == obj)

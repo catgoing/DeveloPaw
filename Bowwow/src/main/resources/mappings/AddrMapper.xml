@@ -2,19 +2,10 @@
 <!DOCTYPE mapper
   PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
   "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
-<mapper namespace="AddrAccount">
+<mapper namespace="UserAddress">
 
-	<insert id="insertTemporaryAddrAccount" parameterType="AddrAccount" >
+	<insert id="insertTemporaryUserAddress" parameterType="UserAddress" >
 		INSERT INTO USER_ADDRESS (ADDRESS_ID, MEMBER_SERIAL, ADDRESS_FIRST, ADDRESS_SECOND, ZIP) 
-		VALUES ('1' ,999 , #{Address}, #{Zonecode}, #{detailAddress})
+		VALUES (USER_ADDRESS_ID_SEQ.NEXTVAL, #{memberSerial} , #{address}, #{addressDetail}, #{zonecode})
 	</insert>
 </mapper>
-
-
-
-
-
-
-
-
-

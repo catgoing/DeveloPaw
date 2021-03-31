@@ -34,6 +34,11 @@
 									</div>
 									<form>
 										<div class="form-group form-primary">
+	                                        <input type="number" name="memberSerial" class="form-control">
+	                                        <span class="form-bar"></span>
+	                                        <label class="float-label">멤버 시리얼</label>
+                                        </div>
+										<div class="form-group form-primary">
 	                                        <input type="text" name="id" class="form-control" value="${userAccount.id }">
 	                                        <span class="form-bar"></span>
 	                                        <label class="float-label">아이디</label>
@@ -98,6 +103,16 @@
 										</div>
 										<div class="action_btn">
 											<input type="submit" value="회원삭제"  formaction="/account/deleteUser">
+										</div>
+										
+										<div class="action_btn">
+											<input type="submit" value="부모컨트롤러 회원가입" formaction="/account/add">
+										</div>
+										<div class="action_btn">
+											<input type="submit" value="부모컨트롤러 회원수정"  formaction="/account/update">
+										</div>
+										<div class="action_btn">
+											<input type="submit" value="부모컨트롤러 회원삭제"  formaction="/account/delete">
 										</div>
 									</form>
 									</div>
