@@ -27,7 +27,6 @@ import ga.bowwow.service.board.BoardService;
 import ga.bowwow.service.board.Comment;
 import ga.bowwow.service.board.CommentService;
 import ga.bowwow.service.board.Report;
-import ga.bowwow.service.common.ImageVO;
 
 
 @Controller
