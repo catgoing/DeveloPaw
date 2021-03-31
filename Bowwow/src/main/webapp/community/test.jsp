@@ -39,12 +39,6 @@
 </style>
 <script>
 
-
-$(function() {
-	console.log("start");
-	imageChangeCheck();
-});
-
  $(function() {
 	$('#summernote').summernote({
 		 	placeholder: '최대 500자 작성 가능합니다.',
@@ -59,12 +53,10 @@ $(function() {
 	            	}	
             	},
             	
+            	//summernote 안의 데이터가 바뀔 때 img태그 체크
         	    onChange: function(contents, $editable) {
-        		      /* console.log('onChange:', contents, $editable); */
-        		      imageChangeCheck();
+        		      	imageChangeCheck();
         		    }
-	
-	
             }
 	
 	 });
@@ -88,13 +80,6 @@ function uploadSummernoteImageFile(file, el) {
 		processData : false,
 		success : function(data) {
 			$(el).summernote('editor.insertImage', data.url);
-			
-			/* imageChangeCheck(); */
-/* 			$("#thum_select").append('<div class="radio-container" style="text-align:center">');
-	  		$("#thum_select").append('<input type="radio" style="text-align:center" class="thum" name="img1" value="'+ data.url + '"/>');
-
-	  		$("#thum_select").append('<img style="width:200px" src="'+ data.url + '"/>');
-	  		$("#thum_select").append('</div>'); */
 		    
 		}, 
 	});
@@ -111,27 +96,33 @@ function imageChangeCheck(){
 		console.log(imgar[n]);
 	} */
 	
+	//이미지 추가되면 썸네일 영역 초기화
 	$("#thum_select").html("");
+	//이미지 추가되면 썸네일 영역 초기화
 	$(".imgs").html('');
 	var imgar = new Array();
 	
+	//summernote 안의 p태그 > img태그 모두 찾아 img태그 개수만큼 실행하는 메서드
 	$("p").find('img').each(function(){
-		console.log($(this).attr('src'));
+		console.log($(this).attr('src')); //이미지 경로 콘솔에 출력
+		
+		//썸네일 영역에 이미지 추가 및 radio로 선택하는 부분 구현
+		//radio 필요없으면 input type 변경하면 됨
 		$("#thum_select").append('<div class="radio-container" style="text-align:center">');
   		$("#thum_select").append('<input type="radio" style="text-align:center" class="thum" name="img1" value="'+ $(this).attr('src') + '"/>');
-
   		$("#thum_select").append('<img style="width:200px" src="'+ $(this).attr('src') + '"/>');
   		$("#thum_select").append('</div>');
   		
-  		$(".imgs").append($(this).attr("src"));
-  		$(".imgs").append($(this).attr("src"));
+  		//여러 개의 이미지 경로 각각 imgar 배열에 담는 부분
   		imgar.push($(this).attr("src"));
+  		
+  		//이미지 경로 담긴 최종 imgar 배열 콘솔에 출력
   		console.log("imgar: " + imgar);
 		
 		});
-	$(".imgs").append('<input type="hidden" name="img_locas" value="' + imgar + '">');
 	//이미지 경로들 imgar 배열에 담기
 	//확인 버튼 누르면 hidden img_locas 값으로 boardVO에 전달
+	$(".imgs").append('<input type="hidden" name="img_locas" value="' + imgar + '">');
 }
 
 
