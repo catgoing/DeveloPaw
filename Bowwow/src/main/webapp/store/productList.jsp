@@ -548,7 +548,7 @@
                                                 <div class="row">
                                                     <div class="col-lg-12">
                                                         <div class="section-title">
-                                                            <h2>상품보기</h2>
+                                                            <h3>스토어</h3>
                                                         </div>
                                                         <br>
                                                     </div>
@@ -570,8 +570,8 @@
 	                                                                        <br>
 	                                                                    <div class="featured__item__text"style="width: 200px;">
 	                                                                        <h6><a href="detail?p_id=${list.p_id }">${list.p_name }...</a></h6>
-	                                                                    </div>
 	                                                                        <h5><fmt:formatNumber value="${list.price }" pattern="#,###" />원</h5>
+	                                                                    </div>
 	                                                                </div>
 	                                                            </div>
 	                                                        </li>
