@@ -4,15 +4,15 @@
   "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="Cart">
 	
-	<insert id="insertCart" parameterType="CartList">
+	<insert id="addCart" parameterType="CartList">
 		INSERT INTO STORE_CARTLIST(CART_ID, ID, P_ID, AMOUNT)
-		VALUES (CART_SEQ.NEXTVAL, #{id} ,#{p_id}, #{amount})
+		VALUES (CART_SEQ.NEXTVAL, #{id} , #{p_id}, #{amount})
 	</insert>
 	
 	<select id="getCartList" parameterType="String" resultType="CartList">
-		SELECT CARTID, P_ID, ID, C_AMOUNT, P.P_NAME, P.PRICE
-		FROM STORE_CARTLIST C, STORE_PRODUCTS P
-		WHERE C.P_ID = P.P_ID AND ID = #{id}
+		SELECT CARTID, P_ID, ID, C_AMOUNT, P.P_NAME, P.PRICE, P.S_IMAGE
+		  FROM STORE_CARTLIST C, STORE_PRODUCTS P
+		 WHERE C.P_ID = P.P_ID AND ID = #{id}
 	</select>
 	
 </mapper>

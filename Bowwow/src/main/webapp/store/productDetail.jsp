@@ -109,9 +109,20 @@
 			document.getElementById('sum').value = document.getElementById('sum').value.replace(/\B(?=(\d{3})+(?!\d))/g, ",");
 		}
 			
-		function cartList() {
-			location.href="cartList";
+		function cartList(frm) {
+			var param = $("form[name=form]").serialize();
+			
+            $.ajax({
+               url : '/store/addCart',
+               type : 'post',
+               data : param,
+               success : function(){
+            	   alert("장바구니에 상품이 담겼습니다.");
+               }
+            })
+         
 		}
+		
 		
 </script>
 
@@ -613,7 +624,10 @@
 										</div>
 											<div class="col-lg-6">
 												<div class="details_text">
+												<form name="form" onsubmit="return false;" method="POST">
 													<h4 style="color : #000">${p.p_name }</h4>
+													<input type="hidden" name="p_id" value="${p.p_id }">
+													<input type="hidden" name="stock" value="${p.stock }">
 													<div class="product__details__button">
 														<div class="product__details__widget">
 															<ul>
@@ -624,14 +638,12 @@
 														</div>
 														<div class="quantity">
 															<div class="pro-qty">
-															<form name="form" onsubmit="return false;" method="POST">
 																<h5> 상품 수량 :
-																	<input type="hidden" id="sell_price" value="${p.price }">
+																	<input type="hidden" id="sell_price" name="price" value="${p.price }">
 																	<input type="button" class="store_btn2" value=" - " onclick="del()">
 																	<input type="text" class="store_input" autocomplete="off" min="1" name="amount" value="1" size="3" onchange="changeValue();">
 																	<input type="button" class="store_btn2" value=" + " onclick="add()">
 																</h5>
-															</form>
 															</div>
 															<br>
 														</div>
@@ -649,13 +661,14 @@
 														</ul>
 													</div>
 													<div class="btn_area">
-														<button class="store_btn" onclick="cartList()">장바구니</button>
-														<button class="store_btn" onclick="storeOrder()">주문하기</button>
+														<button class="store_btn" onclick="cartList(this.form)">장바구니</button>
+														<button class="store_btn" onclick="storeOrder()">바로구매</button>
 													</div>
 													<ul>
 														<li><a href="#"><span class="icon_heart_alt"></span></a></li>
 														<li><a href="#"><span class="icon_adjust-horiz"></span></a></li>
 													</ul>
+												</form>
 												</div>
 												</div>
 											</div>

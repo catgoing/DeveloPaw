@@ -510,7 +510,7 @@
 														</tr>
 													</thead>
 													<tbody>
-														<c:forEach var="cList" items="${cartList }">
+														<%-- <c:forEach var="cList" items="${cartList }"> --%>
 															<tr>
 																<td class="cart__product__item"><img
 																	src="img/shop-cart/cp-1.jpg" alt="">
@@ -526,7 +526,7 @@
 																<td class="cart__total">$ 300.0</td>
 																<td class="cart__close"><span class="icon_close"></span></td>
 															</tr>
-														</c:forEach>
+														<%-- </c:forEach> --%>
 													</tbody>
 												</table>
 											</div>
