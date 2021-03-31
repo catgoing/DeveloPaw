@@ -21,7 +21,7 @@ public abstract class UserCRUDGenericController<T, SN, S extends UserGenericServ
 	@RequestMapping("/add")
 	protected String add(T vo)  {
 		try {
-			System.out.println(vo);
+			System.out.println("controller : " + vo);
 			return router(service.addVo(vo), resolveRoute, errorRoute);
 		} catch (DataIntegrityViolationException e) {
 			e.printStackTrace();

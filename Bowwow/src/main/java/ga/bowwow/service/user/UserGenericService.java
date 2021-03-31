@@ -2,34 +2,39 @@ package ga.bowwow.service.user;
 
 import java.util.List;
 
-public interface UserGenericService<T> {
-	boolean addVo(T vo);
-	boolean updateVo(T vo);
-	boolean deleteVo(T vo);
-	T getVo(T vo);
-	List<T> getVoList(T vo);
+public abstract class UserGenericService<T> {
 	
-	default boolean isUpdateSuccess(T vo, boolean expectBool) {
+	
+	boolean addVo(T vo) {}
+	boolean updateVo(T vo) {}
+	boolean deleteVo(T vo) {}
+	T getVo(T vo) {}
+	List<T> getVoList(T vo) {}
+	
+	protected boolean isUpdateSuccess(T vo, boolean expectBool) {
 		return isVoSerialExist(vo) ? expectBool : !expectBool;
 	}
 	
-	default boolean isModifySuccess(T vo) {
+	protected boolean isModifySuccess(T vo) {
 		return isUpdateSuccess(vo, true);
 	}
-	default boolean isResignSuccess(T vo) {
+	protected boolean isResignSuccess(T vo) {
 		return isUpdateSuccess(vo, false);
 	}
-	default boolean isVoSerialExist(T vo) {
+	protected boolean isVoSerialExist(T vo) {
 		return vo.equals(getVo(vo));
 	}
 	
 
-	default boolean isRegistSuccess(T vo) {
+	protected boolean isRegistSuccess(T vo) {
 		return isVoValueExist(vo);
 	}
-	default boolean isVoValueExist(T vo) {
+	protected boolean isVoValueExist(T vo) {
+		System.out.println("compare");
+		System.out.println(vo);
+		System.out.println(searchVo(vo));
 		return vo.equals(searchVo(vo));
 	}
 	
-	abstract T searchVo(T vo);
+	protected abstract T searchVo(T vo);
 }

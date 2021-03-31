@@ -92,18 +92,18 @@
 											<p></p>
 										</div>
 
-										<div class="action_btn">
-											<input type="submit" value="회원가입" formaction="/account/registUser">
-										</div>
-										<div class="action_btn">
-											<input type="submit" value="더미회원가입"  formaction="/account/registerDummyUser">
-										</div>
-										<div class="action_btn">
-											<input type="submit" value="회원수정"  formaction="/account/modifyUser">
-										</div>
-										<div class="action_btn">
-											<input type="submit" value="회원삭제"  formaction="/account/deleteUser">
-										</div>
+<!-- 										<div class="action_btn"> -->
+<!-- 											<input type="submit" value="회원가입" formaction="/account/registUser"> -->
+<!-- 										</div> -->
+<!-- 										<div class="action_btn"> -->
+<!-- 											<input type="submit" value="더미회원가입"  formaction="/account/registerDummyUser"> -->
+<!-- 										</div> -->
+<!-- 										<div class="action_btn"> -->
+<!-- 											<input type="submit" value="회원수정"  formaction="/account/modifyUser"> -->
+<!-- 										</div> -->
+<!-- 										<div class="action_btn"> -->
+<!-- 											<input type="submit" value="회원삭제"  formaction="/account/deleteUser"> -->
+<!-- 										</div> -->
 										
 										<div class="action_btn">
 											<input type="submit" value="부모컨트롤러 회원가입" formaction="/account/add">

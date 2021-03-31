@@ -117,9 +117,9 @@
 											<p></p>
 										</div>
 
-										<div class="action_btn">
-											<input type="submit" value="주소입력" formaction="/address/registAddr">
-										</div>
+<!-- 										<div class="action_btn"> -->
+<!-- 											<input type="submit" value="주소입력" formaction="/address/registAddr"> -->
+<!-- 										</div> -->
 										<div class="action_btn">
 											<input type="submit" value="부모컨트롤러 주소입력" formaction="/address/add">
 										</div>
