@@ -183,6 +183,7 @@ public class BoardController {
 	map.put("board_no", board_no);
 	boardService.boardDelete(map);
 	return "redirect:/community/diary_board";
+	}
 
 
 
