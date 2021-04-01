@@ -35,7 +35,9 @@ public class BoardController {
 		System.out.println("---->>> BoardController() 객체생성");
 		System.out.println("> boardService : " + boardService); //null
 	}
-
+	
+	
+	//게시글 입력
 	@RequestMapping("/community/insertBoard")
 	public String insertBoard(Board vo, HttpServletRequest request, MultipartController mc) throws AmazonClientException, IllegalStateException, IOException, InterruptedException {
 		System.out.println(">>> 게시글 입력 - insertBoard()");
@@ -91,6 +93,7 @@ public class BoardController {
 	}
 	
 	
+	//펫 다이어리(list)
 	@RequestMapping("/community/diary_board")
 	public String getBoardList(Model model, HttpSession session) {
 		System.out.println(">>> 게시글 전체 목록- String getBoardList()");
@@ -114,6 +117,7 @@ public class BoardController {
 	}
 	
 	
+	//상세페이지
 	@RequestMapping(value="/community/detail", method=RequestMethod.GET)
 	public String getBoard(@RequestParam("board_idx") int board_idx,
 				@RequestParam("board_no") int board_no , Board vo, Model model) {
@@ -167,7 +171,7 @@ public class BoardController {
 	
 	//게시글 삭제
 	@RequestMapping(value="/community/boardDelete", method=RequestMethod.GET)
-	public String boardDelete(Comment comment, @RequestParam("board_no") int board_no ,
+	public String boardDelete(@RequestParam("board_no") int board_no ,
 						@RequestParam("board_idx") String board_idx, Model model) {
 	System.out.println(">>> 게시글 삭제 - boardDelete()");
 	System.out.println(board_no +  " / " +board_idx);
@@ -175,11 +179,8 @@ public class BoardController {
 	Map<String, Object> map = new HashMap<String, Object>();
 	map.put("board_idx", board_idx);
 	map.put("board_no", board_no);
-	
-	
-
-	boardService.insertComment(comment);
-	return "/community/detail_board";
+	boardService.boardDelete(map);
+	return "redirect:/community/diary_board";
 	}
 	
 

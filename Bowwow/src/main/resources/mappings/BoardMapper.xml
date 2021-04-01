@@ -158,6 +158,16 @@
 			OR  BOARD_TITLE LIKE '%'||#{keyword}||'%' 	
 	</select> 
 	
+	<delete id="boardDelete" parameterType="Map">
+		DELETE FROM 
+		<choose>
+			<when test="board_idx == 1"> DIARY_BOARD</when>
+			<when test="board_idx == 2"> INTRO_BOARD</when>
+		</choose>
+		WHERE BOARD_NO = #{board_no}
+	</delete>
+	
+	
 	
 <!-- 	
 
