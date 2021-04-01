@@ -73,7 +73,7 @@ public class BoardController {
 			String reLoca = vo.getBoard_content().replace(original_loca, s3_loca);
 			vo.setBoard_content(reLoca);
 			
-			//DB에 저장되는 데이터 내부서버경로 -> DB에 저장할 경로로 변경(폴더명/파일명), (썸네일)
+			//DB에 저장되는 데이터 내부서버경ert fixing로 -> DB에 저장할 경로로 변경(폴더명/파일명), (썸네일)
 			String original_thum_loca = "/resources/upload";
 			String thumReLoca = vo.getImg1().replace(original_thum_loca, "" + foldername);
 			vo.setImg1(thumReLoca);
