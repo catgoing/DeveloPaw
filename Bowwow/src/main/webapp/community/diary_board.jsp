@@ -25,37 +25,40 @@
 	rel="stylesheet">
 
 <!-- Favicon icon -->
-<link rel="icon" href="resources/images/favicon.ico"
+<link rel="icon" href="/resources/images/favicon.ico"
 	type="image/x-icon">
 <!-- Google font-->
 <link
 	href="https://fonts.googleapis.com/css?family=Open+Sans:400,600,700"
 	rel="stylesheet">
 <!-- waves.css -->
-<link rel="stylesheet" href="resources/pages/waves/css/waves.min.css"
+<link rel="stylesheet" href="/resources/pages/waves/css/waves.min.css"
 	type="text/css" media="all">
 <!-- Required Fremwork -->
 <link rel="stylesheet" type="text/css"
-	href="resources/css/bootstrap/css/bootstrap.min.css">
+	href="/resources/css/bootstrap/css/bootstrap.min.css">
 <!-- waves.css -->
-<link rel="stylesheet" href="resources/pages/waves/css/waves.min.css"
+<link rel="stylesheet" href="/resources/pages/waves/css/waves.min.css"
 	type="text/css" media="all">
 <!-- themify icon -->
 <link rel="stylesheet" type="text/css"
-	href="resources/icon/themify-icons/themify-icons.css">
+	href="/resources/icon/themify-icons/themify-icons.css">
 <!-- font-awesome-n -->
 <link rel="stylesheet" type="text/css"
-	href="resources/css/font-awesome-n.min.css">
+	href="/resources/css/font-awesome-n.min.css">
 <link rel="stylesheet" type="text/css"
-	href="resources/css/font-awesome.min.css">
+	href="/resources/css/font-awesome.min.css">
 <!-- scrollbar.css -->
 <link rel="stylesheet" type="text/css"
-	href="resources/css/jquery.mCustomScrollbar.css">
+	href="/resources/css/jquery.mCustomScrollbar.css">
 <!-- Style.css -->
 <!-- <link rel="stylesheet" type="text/css" href="/Bowwow/src/main/webapp/resources/css/style.css"> -->
 
-<link rel="stylesheet" type="text/css" href="/main/resources/css/style.css">
-<link rel="stylesheet" type="text/css" href="resources/css/test.css">
+<link rel="stylesheet" type="text/css" href="/resources/css/style.css">
+<!-- <link rel="stylesheet" type="text/css" href="/main/resources/css/style.css"> -->
+<!-- <link rel="stylesheet" type="text/css" href="../resources/css/style.css"> -->
+<!-- <link rel="stylesheet" type="text/css" href="/resources/css/style.css"> -->
+<link rel="stylesheet" type="text/css" href="/resources/css/test.css">
 
 <title>펫 다이어리</title>
 <style>
@@ -76,74 +79,7 @@
 				<div class="pcoded-wrapper">
 
 					<!-- sidebar 좌측메뉴바 -->
-					<nav class="pcoded-navbar">
-						<div class="sidebar_toggle">
-							<a href="#"><i class="icon-close icons"></i></a>
-						</div>
-						<div class="pcoded-inner-navbar main-menu">
-							<!-- 
-							<ul class="pcoded-item pcoded-left-item">
-								<li class="pcoded-hasmenu">
-									<a href="javascript:void(0)" class="waves-effect waves-dark">
-                                        <span class="pcoded-micon"><i class="ti-layout-grid2-alt"></i><b>BC</b></span>
-                                        <span class="pcoded-mtext">Basic</span>
-                                        <span class="pcoded-mcaret"></span>
-                                    </a>
-								</li>
-							</ul>
-							 -->
-
-							<ul class="pcoded-item pcoded-left-item">
-								<li class=""><a href="storeMain.html"
-									class="waves-effect waves-dark"> <span class="pcoded-micon"><i
-											class="ti-layers"></i><b>FC</b></span> <span class="pcoded-mtext">커뮤니티</span>
-										<span class="pcoded-mcaret"></span>
-								</a></li>
-							</ul>
-
-							<!-- <ul class="pcoded-item pcoded-left-item">
-                                <li class="">
-                                    <a href="bs-basic-table.html" class="waves-effect waves-dark">
-                                        <span class="pcoded-micon"><i class="ti-receipt"></i><b>B</b></span>
-                                        <span class="pcoded-mtext">Table</span>
-                                        <span class="pcoded-mcaret"></span>
-                                    </a>
-                                </li>
-                            </ul>
-
-                            <ul class="pcoded-item pcoded-left-item">
-                                <li class="">
-                                    <a href="chart-morris.html" class="waves-effect waves-dark">
-                                        <span class="pcoded-micon"><i class="ti-bar-chart-alt"></i><b>C</b></span>
-                                        <span class="pcoded-mtext">Charts</span>
-                                        <span class="pcoded-mcaret"></span>
-                                    </a>
-                                </li>
-                                <li class="">
-                                    <a href="map-google.html" class="waves-effect waves-dark">
-                                        <span class="pcoded-micon"><i class="ti-map-alt"></i><b>M</b></span>
-                                        <span class="pcoded-mtext">Maps</span>
-                                        <span class="pcoded-mcaret"></span>
-                                    </a>
-                                </li>
-                            </ul> -->
-							<ul class="pcoded-item pcoded-left-item">
-								<li class=""><a href="storeMain.html"
-									class="waves-effect waves-dark"> <span class="pcoded-micon"><i
-											class="ti-layers"></i><b>FC</b></span> <span class="pcoded-mtext">펫
-											다이어리</span> <span class="pcoded-mcaret"></span>
-								</a></li>
-							</ul>
-							<ul class="pcoded-item pcoded-left-item">
-								<li class=""><a href="storeMain.html"
-									class="waves-effect waves-dark"> <span class="pcoded-micon"><i
-											class="ti-layers"></i><b>FC</b></span> <span class="pcoded-mtext">펫
-											소개</span> <span class="pcoded-mcaret"></span>
-								</a></li>
-							</ul>
-
-						</div>
-					</nav>
+					<%@ include file="/common/communityMenuBar.jsp"%>
 					<!-- sidebar 좌측메뉴바 -->
 
 					<div class="pcoded-content">
@@ -173,13 +109,13 @@
 
 														<c:forEach var="list" items="${ boardList}">
 															<li>
-																<div class="block-item default-item">
+																<div class="block-item default-item" onclick="location.href='/community/detail?board_idx=${board_idx }&board_no=${list.board_no}'">
 																	<div class="best-label">${list.board_no }</div>
 																	<div class="bookmark_btn click-btn">
 																		<div class="scrap" id="scrapBtn_311"
 																			onclick="WitCommon.boardScrap('knowhow', '311')">
 																			<img id="scrapImg_311"
-																				src="../resources/images/dog.jpg" alt="">
+																				src="/resources/images/dog.jpg" alt="">
 																		</div>
 																	</div>
 																	<div class="img-area"
@@ -189,9 +125,8 @@
 																		</div>
 																	</div>
 																	<div class="text-area">
-																		<div class="item-title"
-																			onclick="location.href='/board/knowhow/311'">
-																			<h4>${list.board_title }</h4>
+																		<div class="item-title">
+																			<a href="/community/detail?board_idx=${board_idx }&board_no=${list.board_no}">${list.board_title }</a>
 																		</div>
 																		<p class="hashtag">
 																			<span>#마사지 </span><span>#강아지마사지 </span><span>#강아지테라피
@@ -213,8 +148,8 @@
 																<div class="bookmark_btn click-btn">
 																	<div class="scrap" id="scrapBtn_311"
 																		onclick="WitCommon.boardScrap('knowhow', '311')">
-																		<img id="scrapImg_311"
-																			src="../resources/images/dog.jpg" alt="">
+																		<img id="scrapImg_311" src="/resources/images/dog.jpg"
+																			alt="">
 																	</div>
 																</div>
 																<div class="img-area"
@@ -293,27 +228,27 @@
 
 	<!-- Required Jquery -->
 	<script type="text/javascript"
-		src="../resources/js/jquery/jquery.min.js "></script>
+		src="/resources/js/jquery/jquery.min.js "></script>
 	<script type="text/javascript"
-		src="../resources/js/jquery-ui/jquery-ui.min.js "></script>
+		src="/resources/js/jquery-ui/jquery-ui.min.js "></script>
 	<script type="text/javascript"
-		src="../resources/js/popper.js/popper.min.js"></script>
+		src="/resources/js/popper.js/popper.min.js"></script>
 	<script type="text/javascript"
-		src="../resources/js/bootstrap/js/bootstrap.min.js "></script>
+		src="/resources/js/bootstrap/js/bootstrap.min.js "></script>
 	<!-- waves js -->
-	<script src="../resources/pages/waves/js/waves.min.js"></script>
+	<script src="/resources/pages/waves/js/waves.min.js"></script>
 	<!-- jquery slimscroll js -->
 	<script type="text/javascript"
-		src="../resources/js/jquery-slimscroll/jquery.slimscroll.js"></script>
+		src="/resources/js/jquery-slimscroll/jquery.slimscroll.js"></script>
 
 	<!-- slimscroll js -->
-	<script src="../resources/js/jquery.mCustomScrollbar.concat.min.js "></script>
+	<script src="/resources/js/jquery.mCustomScrollbar.concat.min.js "></script>
 
 	<!-- menu js -->
-	<script src="../resources/js/pcoded.min.js"></script>
-	<script src="../resources/js/vertical/vertical-layout.min.js "></script>
+	<script src="/resources/js/pcoded.min.js"></script>
+	<script src="/resources/js/vertical/vertical-layout.min.js "></script>
 
-	<script type="text/javascript" src="../resources/js/script.js "></script>
+	<script type="text/javascript" src="/resources/js/script.js "></script>
 
 </body>
 </html>
@@ -323,3 +258,4 @@
 
 
 
+																			

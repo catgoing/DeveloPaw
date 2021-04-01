@@ -21,7 +21,7 @@ public abstract class UserCRUDGenericController<T, SN, S extends UserGenericServ
 	@RequestMapping("/add")
 	protected String add(T vo)  {
 		try {
-			System.out.println(vo);
+			System.out.println("controller : " + vo);
 			return router(service.addVo(vo), resolveRoute, errorRoute);
 		} catch (DataIntegrityViolationException e) {
 			e.printStackTrace();
@@ -36,9 +36,9 @@ public abstract class UserCRUDGenericController<T, SN, S extends UserGenericServ
 	}
 	@RequestMapping("/delete")
 	protected String delete(T vo) {
+		System.out.println("controller");
 		return router(service.deleteVo(vo), resolveRoute, errorRoute);
 	}
-
 	
 	
 	protected T get(T vo) {
@@ -46,7 +46,7 @@ public abstract class UserCRUDGenericController<T, SN, S extends UserGenericServ
 	}
 	protected abstract List<T> list(T vo);
 	
-	protected void setRoute(String resolveRoute, String errorRoute) {
+	protected void setDomainRoute(String resolveRoute, String errorRoute) {
 		this.setResolveRoute(resolveRoute);
 		this.setErrorRoute(errorRoute);
 	}

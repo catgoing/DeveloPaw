@@ -31,20 +31,34 @@
 		WHERE ID = #{id}
 	</update>
 
-
-
 	<select id="getUserAccount" parameterType="UserAccount" resultType="UserAccount">
-		SELECT * FROM USER_ACCOUNT WHERE MEMBER_SERIAL = #{memberSerial}
+		SELECT * FROM USER_ACCOUNT
+		WHERE MEMBER_SERIAL = #{memberSerial}
 	</select>
-
+	
 	<select id="searchUserAccount" parameterType="UserAccount" resultType="UserAccount">
-		SELECT * FROM USER_ACCOUNT WHERE ID = #{id}
+		SELECT * FROM USER_ACCOUNT
+		WHERE ID = #{id}
+		AND PASSWORD = #{password}
+		AND EMAIL = #{email}
+		AND PHONE = #{phone}
 	</select>
 
 	<select id="loginValidation" parameterType="UserAccount" resultType="UserAccount">
 		SELECT * FROM USER_ACCOUNT WHERE ID = #{id} AND PASSWORD = #{password}
 	</select>
-	<!--
+	
+	<select id="getUserList" resultType="UserAccount">
+		SELECT *
+		FROM USER_ACCOUNT ACT, USER_DETAIL DET
+		WHERE DET.MEMBER_SERIAL = ACT.MEMBER_SERIAL
+        ORDER BY ACT.MEMBER_SERIAL;
+	</select>
+	
+	<select id="searchUserList" resultType="UserAccount">
+	</select>
+	
+	<!-- 
 	<select id="getUserList" parameterType="User" resultType="User">
 		SELECT * FROM User
 		WHERE 1=1
@@ -56,8 +70,8 @@
 		</if>
 		ORDER BY SEQ DESC
 	</select>
-
-
+	-->
+<!--
 	<select id="getUserList_T" parameterType="User" resultType="User">
 		SELECT * FROM User WHERE TITLE LIKE '%'|| #{searchKeyword} ||'%'
 		ORDER BY SEQ DESC

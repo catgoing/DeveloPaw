@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="UserAddress">
+
+	<insert id="insertTemporaryUserAddress" parameterType="UserAddress" >
+		INSERT INTO USER_ADDRESS (ADDRESS_ID, MEMBER_SERIAL, ADDRESS, ADDRESS_DETAIL, ZONECODE) 
+		VALUES (USER_ADDRESS_ID_SEQ.NEXTVAL, #{memberSerial} , #{address}, #{addressDetail}, #{zonecode})
+	</insert>
+	
+	<delete id="deleteUserAddress" parameterType="UserAddress">
+		DELETE USER_ADDRESS
+		WHERE ADDRESS_ID = #{addressId}
+	</delete>
+	
+	<update id="updateUserAddress" parameterType="UserAddress">
+		UPDATE USER_ADDRESS 
+		SET ADDRESS_ID = #{addressId}
+		, MEMBER_SERIAL = #{memberSerial}
+		, ADDRESS = #{address}
+		, ADDRESS_DETAIL = #{addressDetail}
+		, ZONECODE = #{zonecode}
+		WHERE MEMBER_SERIAL = #{memberSerial}
+	</update>
+	
+	<select id="getUserAddress" parameterType="UserAddress" resultType="UserAddress" >
+		SELECT * FROM USER_ADDRESS
+		WHERE ADDRESS_ID = #{addressId}
+	</select>
+	<select id="searchUserAddress" parameterType="UserAddress" resultType="UserAddress" >
+		SELECT * FROM USER_ADDRESS
+		WHERE MEMBER_SERIAL = #{memberSerial}
+		AND ADDRESS = #{address}
+		AND ADDRESS_DETAIL = #{addressDetail}
+		AND ZONECODE = #{zonecode}
+	</select>
+</mapper>

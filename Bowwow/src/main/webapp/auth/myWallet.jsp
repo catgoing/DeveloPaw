@@ -56,29 +56,39 @@
 										<h3>결제정보입력</h3>
 									</div>
 									<form>
+										<div name="walletId" class="form-group form-primary">
+	                                        <input type="number" name="walletId" class="form-control">
+	                                        <span class="form-bar"></span>
+	                                        <label class="float-label">지갑 ID</label>
+	                                 	</div>
+	                                 	<div name="memberSerial" class="form-group form-primary">
+	                                        <input type="number" name="memberSerial" class="form-control">
+	                                        <span class="form-bar"></span>
+	                                        <label class="float-label">회원 serial</label>
+	                                 	</div>
 										<div class="form-group form-primary">
-	                                    <select id="userAddress" name="paytype" class="form-control" onChange="isSelect(this.value);">
+	                                    <select id="userAddress" name="payType" class="form-control" onChange="isSelect(this.value);">
     										<option value="bank">무통장입금</option>
 										    <option value="card">카드결제</option>
 										</select>
 	                                 	</div>
 	                                 	<div id = "banka" class="form-group form-primary">
-	                                        <input type="text" name="bankname" class="form-control">
+	                                        <input type="text" name="bankName" class="form-control">
 	                                        <span class="form-bar"></span>
 	                                        <label class="float-label">입금할 은행</label>
 	                                 	</div>
 										<div id = "bankn" class="form-group form-primary">
-	                                        <input type="text" name="bankno" class="form-control">
+	                                        <input type="text" name="bankNo" class="form-control">
 	                                        <span class="form-bar"></span>
 	                                        <label class="float-label">계좌번호</label>
 	                                 	</div>
 	                                 	<div id = "carda" style="display:none" class="form-group form-primary">
-	                                        <input type="text" name="cardname" class="form-control">
+	                                        <input type="text" name="cardName" class="form-control">
 	                                        <span class="form-bar"></span>
 	                                        <label class="float-label">카드사 입력</label>
 	                                 	</div>
 										<div id = "cardn" style="display:none"  class="form-group form-primary">
-	                                        <input type="text" name="cardno" class="form-control">
+	                                        <input type="text" name="cardNo" class="form-control">
 	                                        <span class="form-bar"></span>
 	                                        <label class="float-label">카드번호</label>
 	                                 	</div>
@@ -96,8 +106,18 @@
 										</div>
 
 										<div class="action_btn">
-											<input type="submit" value="결제정보입력" formaction="/wallet/registWallet">
+											<input type="submit" value="부모컨트롤러 결제정보입력" formaction="/wallet/add">
 										</div>
+										<div class="action_btn">
+											<input type="submit" value="부모컨트롤러 삭제" formaction="/wallet/delete">
+										</div>
+										<div class="action_btn">
+											<input type="submit" value="부모컨트롤러 수정" formaction="/wallet/update">
+										</div>
+										
+<!-- 										<div class="action_btn"> -->
+<!-- 											<input type="submit" value="결제정보입력" formaction="/wallet/registWallet"> -->
+<!-- 										</div> -->
 									</form>
 									</div>
 								</div>

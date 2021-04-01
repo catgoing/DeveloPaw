@@ -7,7 +7,7 @@
 	<title>Home</title>
 </head>
 <body>
-<script> window.location.href = 'http://localhost:8088/wallet/manageWallet';
+<script> window.location.href = 'http://localhost:8080/wallet/manageWallet';
 </script>
 <h1>
 	Hello world!

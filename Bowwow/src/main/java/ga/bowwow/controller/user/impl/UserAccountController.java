@@ -17,7 +17,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.SessionAttributes;
 
 import ga.bowwow.controller.user.UserCRUDGenericController;
-import ga.bowwow.service.user.UserAccount;
+import ga.bowwow.service.user.VO.UserAccount;
 import ga.bowwow.service.user.impl.UserAccountServiceImpl;
 
 @Controller
@@ -26,8 +26,7 @@ import ga.bowwow.service.user.impl.UserAccountServiceImpl;
 public class UserAccountController extends UserCRUDGenericController<UserAccount, Integer, UserAccountServiceImpl> {
 	public UserAccountController() {
 		System.out.println("---->>> UserAccountController() 객체생성");
-		setRoute("/ok", "/auth.login");
-		System.out.println("accountRouted");
+		setDomainRoute("/ok", "/auth.login");
 	}
 
 	//TODO 일관된 resolve/error 리턴 환경 만들 수 있는가?
@@ -38,7 +37,7 @@ public class UserAccountController extends UserCRUDGenericController<UserAccount
 
 	@RequestMapping(value="/signupAccount") //CRUD페이지
 	public String getUserInfo(@ModelAttribute("userAccount") UserAccount userAccount) {
-		return "/auth.myInfo";
+		return "/auth.myAccount";
 	}
 	@RequestMapping(value="/login")
 	public String getUserAccount(@ModelAttribute("userAccount") UserAccount userAccount, Model model, HttpServletRequest request, HttpServletResponse response) throws IOException{

@@ -7,7 +7,7 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 import ga.bowwow.controller.user.UserCRUDGenericController;
-import ga.bowwow.service.user.UserDetail;
+import ga.bowwow.service.user.VO.UserDetail;
 import ga.bowwow.service.user.impl.UserDetailServiceImpl;
 
 @Controller
@@ -16,8 +16,7 @@ public class UserDetailController extends UserCRUDGenericController<UserDetail, 
 	
 	public UserDetailController() {
 		System.out.println("---->>> UserDetailController() 객체생성");
-		setRoute("/ok2", "/auth.login");
-		System.out.println("detailRouted");
+		setDomainRoute("/ok2", "/auth.login");
 	}
 	
 	//TODO memberSerial의 동기화 작업이 필요함!
@@ -39,21 +38,21 @@ public class UserDetailController extends UserCRUDGenericController<UserDetail, 
 	
 	
 	//legacy
-				@RequestMapping(value="/modifyDetail")
-				public String modifyUserInDB(@ModelAttribute("userDetail") UserDetail userDetail) {
-					return super.update(userDetail, "/ok", "/auth.login");
-				}
-				@RequestMapping(value="/registDetail")
-				public String registUserToDB(@ModelAttribute("userDetail") UserDetail userDetail) {
-					System.out.println("isRegistRouted?");
-					return super.add(userDetail, "/ok" , "/auth.login");
-				}
-				@RequestMapping(value="/deleteDetail")
-				public String deleteUserFromDB(@ModelAttribute("userDetail") UserDetail userDetail) {
-					return super.delete(userDetail, "/ok", "/auth.login");
-				}
-				@RequestMapping(value="/getUser")
-				public UserDetail getUserFromDB(@ModelAttribute("userDetail") UserDetail userDetail) {
-					return super.get(userDetail);
-				}
+//				@RequestMapping(value="/modifyDetail")
+//				public String modifyUserInDB(@ModelAttribute("userDetail") UserDetail userDetail) {
+//					return super.update(userDetail, "/ok", "/auth.login");
+//				}
+//				@RequestMapping(value="/registDetail")
+//				public String registUserToDB(@ModelAttribute("userDetail") UserDetail userDetail) {
+//					System.out.println("isRegistRouted?");
+//					return super.add(userDetail, "/ok" , "/auth.login");
+//				}
+//				@RequestMapping(value="/deleteDetail")
+//				public String deleteUserFromDB(@ModelAttribute("userDetail") UserDetail userDetail) {
+//					return super.delete(userDetail, "/ok", "/auth.login");
+//				}
+//				@RequestMapping(value="/getUser")
+//				public UserDetail getUserFromDB(@ModelAttribute("userDetail") UserDetail userDetail) {
+//					return super.get(userDetail);
+//				}
 }
