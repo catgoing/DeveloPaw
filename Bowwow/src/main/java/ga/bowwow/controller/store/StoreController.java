@@ -1,22 +1,16 @@
 package ga.bowwow.controller.store;
 
-import java.io.IOException;
 import java.util.List;
 
 import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpServletResponse;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 
-import ga.bowwow.service.store.Cartlist;
-import ga.bowwow.service.store.Inquiry;
 import ga.bowwow.service.store.Product;
 import ga.bowwow.service.store.Review;
-import ga.bowwow.service.store.StoreCartlistService;
-import ga.bowwow.service.store.StoreInquiryService;
 import ga.bowwow.service.store.StoreReviewService;
 import ga.bowwow.service.store.StoreService;
 
@@ -28,14 +22,6 @@ public class StoreController {
 	
 	@Autowired
 	private StoreReviewService storeReviewService;
-	
-	@Autowired
-	private StoreCartlistService storeCartlistService;
-	
-	@Autowired
-	private StoreInquiryService storeInquiryService;
-	
-	
 	
 	
 	public StoreController() {
