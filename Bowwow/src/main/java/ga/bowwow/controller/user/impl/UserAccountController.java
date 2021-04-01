@@ -18,7 +18,7 @@ import ga.bowwow.service.user.impl.UserAccountServiceImpl;
 public class UserAccountController extends UserCRUDGenericController<UserAccount, Integer, UserAccountServiceImpl> {
 	public UserAccountController() {
 		System.out.println("---->>> UserAccountController() 객체생성");
-		setRoute("/ok", "/auth.login");
+		setDomainRoute("/ok", "/auth.login");
 	}
 
 	//TODO 일관된 resolve/error 리턴 환경 만들 수 있는가?

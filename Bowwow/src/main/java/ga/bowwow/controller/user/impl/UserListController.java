@@ -14,11 +14,11 @@ import ga.bowwow.service.user.impl.UserAccountServiceImpl;
 
 @Controller
 @SessionAttributes("userDTO")
-@RequestMapping("/account")
+@RequestMapping("/userList")
 public class UserListController extends UserCRUDGenericController<UserAccount, Integer, UserAccountServiceImpl> {
 	public UserListController() {
 		System.out.println("---->>> UserAccountController() 객체생성");
-		setRoute("/ok", "/auth.login");
+		setDomainRoute("/ok", "/auth.login");
 	}
 
 	//TODO 일관된 resolve/error 리턴 환경 만들 수 있는가?
@@ -27,9 +27,9 @@ public class UserListController extends UserCRUDGenericController<UserAccount, I
 	//TODO =>DB에서 찾아올 때, 실패하길 원하는가, 성공하길 원하는가?가 클래스의 생성자 두번째일 수 있음.
 	//TODO =>트랜잭션이란, 결국에 2+개의 boolean을 and처리한 결과임.
 
-	@RequestMapping(value="/signupAccount") //CRUD페이지
+	@RequestMapping(value="/manageList") //CRUD페이지
 	public String getUserInfo(@ModelAttribute("userAccount") UserAccount userAccount) {
-		return "/auth.myAccount";
+		return "/auth.userList";
 	}
 	@RequestMapping(value="/login")
 	public String getUserAccount(@ModelAttribute("userAccount") UserAccount userAccount, Model model) {
@@ -56,7 +56,6 @@ public class UserListController extends UserCRUDGenericController<UserAccount, I
 	public List<UserAccount> list(UserAccount vo) {
 		return null;
 	}
-
 
 
 	//legacy

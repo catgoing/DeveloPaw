@@ -46,7 +46,7 @@ public abstract class UserCRUDGenericController<T, SN, S extends UserGenericServ
 	}
 	protected abstract List<T> list(T vo);
 	
-	protected void setRoute(String resolveRoute, String errorRoute) {
+	protected void setDomainRoute(String resolveRoute, String errorRoute) {
 		this.setResolveRoute(resolveRoute);
 		this.setErrorRoute(errorRoute);
 	}

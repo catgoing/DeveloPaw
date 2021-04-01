@@ -16,7 +16,7 @@ public class UserDetailController extends UserCRUDGenericController<UserDetail, 
 	
 	public UserDetailController() {
 		System.out.println("---->>> UserDetailController() 객체생성");
-		setRoute("/ok2", "/auth.login");
+		setDomainRoute("/ok2", "/auth.login");
 	}
 	
 	//TODO memberSerial의 동기화 작업이 필요함!

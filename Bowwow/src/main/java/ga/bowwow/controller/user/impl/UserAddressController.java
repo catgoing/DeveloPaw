@@ -17,7 +17,7 @@ import ga.bowwow.service.user.impl.UserAddressServiceImpl;
 public class UserAddressController extends UserCRUDGenericController<UserAddress, Integer, UserAddressServiceImpl>{
 	public UserAddressController() {
 		System.out.println("---->>> AddrAccountController() 객체생성");
-		setRoute("/ok", "/auth.login");
+		setDomainRoute("/ok", "/auth.login");
 	}
 	@RequestMapping(value="/manageAddress") //CRUD페이지
 	public String getAddressInfo(@ModelAttribute("userAccount") UserAccount userAccount) {

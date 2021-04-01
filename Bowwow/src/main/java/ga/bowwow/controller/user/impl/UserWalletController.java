@@ -17,7 +17,7 @@ public class UserWalletController extends UserCRUDGenericController<UserWallet, 
 	
 	public UserWalletController() {
 		System.out.println("---->>> walletAccountController() 객체생성");
-		setRoute("/ok", "/auth.login");
+		setDomainRoute("/ok", "/auth.login");
 	}
 	
 	@RequestMapping(value="/manageWallet") //CRUD페이지
