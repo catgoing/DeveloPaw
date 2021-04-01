@@ -150,9 +150,38 @@
 		
    		alert("회원가입이 완료되었습니다");
         return true;
-    } 
+    }
  	</script>
+ 	<script>
+ 	<script type="text/javascript">
+
+    
+
+    function submit() {
+       var form = document.createElement("form");
+       form.setAttribute("charset", "UTF-8");
+       form.setAttribute("method", "Post");  //Post 방식
+       form.setAttribute("action", "/user/signup"); //요청 보낼 주소
+
+       var hiddenField = document.createElement("input");
+       hiddenField.setAttribute("type", "hidden");
+       hiddenField.setAttribute("name", "mName");
+       hiddenField.setAttribute("value", mName);
+       form.appendChild(hiddenField);
+
+       hiddenField = document.createElement("input");
+       hiddenField.setAttribute("type", "hidden");
+       hiddenField.setAttribute("name", "mEmail");
+       hiddenField.setAttribute("value", mEmail);
+       form.appendChild(hiddenField);
+
+       document.body.appendChild(form);
+       form.submit();
+    }
+
+ </script>
  </head>
+ <div class="pcoded-content">
  <section class="login-block">
         <!-- Container-fluid starts -->
         <div class="container-fluid">
@@ -268,6 +297,46 @@
 											<input type="submit" value="부모컨트롤러 회원삭제"  formaction="/account/delete">
 										</div>
 									</form>
+									
+									<script>
+		            var down = document.getElementById("GFG_DOWN");
+		            function GFG_Fun() {
+		                
+		                // Create a form synamically
+		                var form = document.createElement("form");
+		                form.setAttribute("method", "post");
+		                form.setAttribute("action", "submit.php");
+		  
+		                // Create an input element for emailID
+		                var ID = document.createElement("input");
+		                ID.setAttribute("type", "text");
+		                ID.setAttribute("name", "emailID");
+		                ID.setAttribute("placeholder", "E-Mail ID");
+		  
+		                // Create an input element for password
+		                var PWD = document.createElement("input");
+		                PWD.setAttribute("type", "password");
+		                PWD.setAttribute("name", "password");
+		                PWD.setAttribute("placeholder", "Password");
+		  
+		                // Create a submit button
+		                var s = document.createElement("input");
+		                s.setAttribute("type", "submit");
+		                s.setAttribute("value", "Submit");
+		  
+		                // Append the email_ID input to the form
+		                form.append(ID); 
+		                
+		                // Append the password to the form
+		                form.append(PWD); 
+		                
+		                // Append the button to the form
+		                form.append(s); 
+		  
+		                document.getElementsByTagName("body")[0]
+		               .appendChild(form);
+		            }
+		        </script>
 									</div>
 								</div>
 							</div>
@@ -280,4 +349,5 @@
 </div>
 </div>
 </section>
+</div>
 </html>

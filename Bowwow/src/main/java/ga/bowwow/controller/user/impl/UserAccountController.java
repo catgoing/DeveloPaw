@@ -1,15 +1,8 @@
 package ga.bowwow.controller.user.impl;
 
-import java.io.IOException;
-import java.io.PrintWriter;
 import java.util.List;
 
-import javax.servlet.ServletResponse;
-import javax.servlet.http.Cookie;
-import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpServletResponse;
-import javax.servlet.http.HttpServletResponseWrapper;
-
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.ModelAttribute;
@@ -23,10 +16,12 @@ import ga.bowwow.service.user.impl.UserAccountServiceImpl;
 @Controller
 @SessionAttributes("userDTO")
 @RequestMapping("/account")
-public class UserAccountController extends UserCRUDGenericController<UserAccount, Integer, UserAccountServiceImpl> {
-	public UserAccountController() {
+public class UserAccountController extends UserCRUDGenericController<UserAccount> {
+	
+	public UserAccountController(@Autowired UserAccountServiceImpl service) {
 		System.out.println("---->>> UserAccountController() 객체생성");
-		setDomainRoute("/ok", "/auth.login");
+		this.service = service;
+		this.setDomainRoute("/ok", "/auth.login");
 	}
 
 	//TODO 일관된 resolve/error 리턴 환경 만들 수 있는가?
@@ -40,24 +35,11 @@ public class UserAccountController extends UserCRUDGenericController<UserAccount
 		return "/auth.myAccount";
 	}
 	@RequestMapping(value="/login")
-	public String getUserAccount(@ModelAttribute("userAccount") UserAccount userAccount, Model model, HttpServletRequest request, HttpServletResponse response) throws IOException{
-		boolean result = super.service.loginAttemp(userAccount);
+	public String getUserAccount(@ModelAttribute("userAccount") UserAccount userAccount, Model model) {
+		boolean result = ((UserAccountServiceImpl)this.service).loginAttemp(userAccount);
 		if(result) {
 			model.addAttribute("userDTO", userAccount);
 		}
-		
-		if(result) {
-			String id = request.getParameter("id");
-			String checkbox = request.getParameter("userId");
-			Cookie cookie = new Cookie("userId", id);
-			if (checkbox != null) {
-				response.addCookie(cookie);
-			} else {
-				cookie.setMaxAge(0);
-				response.addCookie(cookie);
-			}
-		}
-		
 		return result ? "redirect:/store/storeMain" : "/auth.login";
 	}
 	@RequestMapping(value="/signup")
@@ -68,6 +50,10 @@ public class UserAccountController extends UserCRUDGenericController<UserAccount
 	public String confirmLogin() {
 		return "/ok2";
 	}
+	@RequestMapping(value="/getAccount")
+	public UserAccount getUserFromDB(@ModelAttribute("userAccount") UserAccount userAccount) {
+		return super.get(userAccount);
+	}
 
 	//TODO 해당domain의 기본형 resolve/error를 구현할 필요가 있음
 	private String simpleOkPageDistributor(boolean isOK) {
@@ -77,7 +63,6 @@ public class UserAccountController extends UserCRUDGenericController<UserAccount
 	public List<UserAccount> list(UserAccount vo) {
 		return null;
 	}
-
 
 
 	//legacy
@@ -92,9 +77,5 @@ public class UserAccountController extends UserCRUDGenericController<UserAccount
 				@RequestMapping(value="/deleteUser")
 				public String deleteUserFromDB(@ModelAttribute("userAccount") UserAccount userAccount) {
 					return super.delete(userAccount, "/ok", "/auth.login");
-				}
-				@RequestMapping(value="/getUser")
-				public UserAccount getUserFromDB(@ModelAttribute("userAccount") UserAccount userAccount) {
-					return super.get(userAccount);
 				}
 }

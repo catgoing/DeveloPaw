@@ -9,36 +9,15 @@ import ga.bowwow.service.user.UserGenericService;
 import ga.bowwow.service.user.VO.UserDetail;
 
 @Service("UserDetailService")
-public class UserDetailServiceImpl implements UserGenericService<UserDetail> {
-	@Autowired
-	UserDetailDAO userDetailDAO;
+public class UserDetailServiceImpl extends UserGenericService<UserDetail> {
 	
-	@Override
-	public boolean addVo(UserDetail vo) {
-		userDetailDAO.insertUserAccount(vo);
-		return isRegistSuccess(vo);
+	public UserDetailServiceImpl(@Autowired UserDetailDAO dao) {
+		this.dao = dao;
 	}
-	@Override
-	public boolean updateVo(UserDetail vo) {
-		userDetailDAO.updateUserAccount(vo);
-		return isVoValueExist(vo);
-	}
-	@Override
-	public boolean deleteVo(UserDetail vo) {
-		userDetailDAO.deleteUserAccount(vo);
-		return isResignSuccess(vo);
-	}
-	@Override
-	public UserDetail getVo(UserDetail vo) {
-		return userDetailDAO.getUserAccount(vo);
-	}
+
 	@Override
 	public List<UserDetail> getVoList(UserDetail vo) {
+		// TODO Auto-generated method stub
 		return null;
-	}
-	
-	@Override
-	public UserDetail searchVo(UserDetail vo) {
-		return userDetailDAO.searchUserAccount(vo);
 	}
 }

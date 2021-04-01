@@ -31,19 +31,19 @@ public abstract class UserGenericDAO<T> {
 		
 	}
 	
-	protected void insertUser(T t) {
+	public void insert(T t) {
 		mybatis.insert(insertQuery, t);
 	}
-	protected void updateUser(T t) {
+	public void update(T t) {
 		mybatis.update(updateQuery, t);
 	}
-	protected void deleteUser(T t) {
+	public void delete(T t) {
 		mybatis.update(deleteQuery, t);
 	}
-	protected T getUser(T t) {
+	public T get(T t) {
 		return mybatis.selectOne(getQuery, t);
 	}
-	protected T searchUser(T t) {
+	public T search(T t) {
 		return mybatis.selectOne(searchQuery, t);
 	}
 	

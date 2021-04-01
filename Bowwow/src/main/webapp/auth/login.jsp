@@ -1,5 +1,5 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"	pageEncoding="UTF-8"%>
-
+<div class="pcoded-content">
     <section class="login-block">
         <!-- Container-fluid starts -->
         <div class="container">
@@ -76,3 +76,4 @@
         </div>
         <!-- end of container-fluid -->
     </section>
+</div>

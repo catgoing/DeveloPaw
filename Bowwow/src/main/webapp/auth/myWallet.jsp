@@ -1,7 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-<!DOCTYPE html>
-<html>
+
 <head>
     <meta charset="utf-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
@@ -11,7 +10,6 @@
     <script src="//t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script>
     <script src="//dapi.kakao.com/v2/maps/sdk.js?appkey=d5c1b87a3ea48432cd965082eccebcd8"></script>
 </head>
-<body>
 <script type="text/javascript">
 	function isSelect(value){
 		if(value == "bank"){
@@ -32,6 +30,7 @@
 		}
 	}
 </script>
+<div class="pcoded-content">
  <section class="login-block">
         <!-- Container-fluid starts -->
         <div class="container-fluid">
@@ -130,5 +129,4 @@
 	</div>
 </div>
 </section>
-</body>
-</html>
+</div>

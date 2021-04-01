@@ -1,8 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 
-<div class="pcoded-main-container">
-	<div class="pcoded-wrapper">
 		<nav class="pcoded-navbar">
 			<div class="sidebar_toggle"><a href="#"><i class="icon-close icons"></i></a></div>
 				<div class="pcoded-inner-navbar main-menu">
@@ -23,7 +21,7 @@
 			
 			     <ul class="pcoded-item pcoded-left-item">
 			         <li class="">
-			             <a href="/account/userList" class="waves-effect waves-dark">
+			             <a href="/userList/manageList" class="waves-effect waves-dark">
 			                 <span class="pcoded-micon">
 			                 </span>
 			                 <span class="pcoded-mtext">관리자 회원관리 리스트</span>
@@ -72,5 +70,3 @@
                  </ul>
 			 </div>
 		</nav>
-	</div>
-</div>

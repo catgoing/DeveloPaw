@@ -2,6 +2,7 @@ package ga.bowwow.controller.user.impl;
 
 import java.util.List;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -12,10 +13,11 @@ import ga.bowwow.service.user.impl.UserDetailServiceImpl;
 
 @Controller
 @RequestMapping("/detail")
-public class UserDetailController extends UserCRUDGenericController<UserDetail, Integer, UserDetailServiceImpl> {
+public class UserDetailController extends UserCRUDGenericController<UserDetail> {
 	
-	public UserDetailController() {
+	public UserDetailController(@Autowired UserDetailServiceImpl service) {
 		System.out.println("---->>> UserDetailController() 객체생성");
+		this.service = service;
 		setDomainRoute("/ok2", "/auth.login");
 	}
 	

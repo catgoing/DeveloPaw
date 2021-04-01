@@ -3,19 +3,17 @@ package ga.bowwow.controller.user.impl;
 import java.util.List;
 
 import org.springframework.stereotype.Controller;
-import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.SessionAttributes;
 
 import ga.bowwow.controller.user.UserCRUDGenericController;
 import ga.bowwow.service.user.VO.UserAccount;
-import ga.bowwow.service.user.impl.UserAccountServiceImpl;
 
 @Controller
 @SessionAttributes("userDTO")
 @RequestMapping("/userList")
-public class UserListController extends UserCRUDGenericController<UserAccount, Integer, UserAccountServiceImpl> {
+public class UserListController extends UserCRUDGenericController<UserAccount> {
 	public UserListController() {
 		System.out.println("---->>> UserAccountController() 객체생성");
 		setDomainRoute("/ok", "/auth.login");
@@ -27,52 +25,13 @@ public class UserListController extends UserCRUDGenericController<UserAccount, I
 	//TODO =>DB에서 찾아올 때, 실패하길 원하는가, 성공하길 원하는가?가 클래스의 생성자 두번째일 수 있음.
 	//TODO =>트랜잭션이란, 결국에 2+개의 boolean을 and처리한 결과임.
 
+	
 	@RequestMapping(value="/manageList") //CRUD페이지
 	public String getUserInfo(@ModelAttribute("userAccount") UserAccount userAccount) {
 		return "/auth.userList";
-	}
-	@RequestMapping(value="/login")
-	public String getUserAccount(@ModelAttribute("userAccount") UserAccount userAccount, Model model) {
-		boolean result = super.service.loginAttemp(userAccount);
-		if(result) {
-			model.addAttribute("userDTO", userAccount);
-		}
-		return result ? "redirect:/store/storeMain" : "/auth.login";
-	}
-	@RequestMapping(value="/signup")
-	public String confirmUserTerms() {
-		return "/auth.terms";
-	}
-	@RequestMapping(value="/loginSuccess")
-	public String confirmLogin() {
-		return "/ok2";
-	}
-
-	//TODO 해당domain의 기본형 resolve/error를 구현할 필요가 있음
-	private String simpleOkPageDistributor(boolean isOK) {
-		return (isOK) ? "/ok" : "failedRoute <- usually itself";
 	}
 	@Override
 	public List<UserAccount> list(UserAccount vo) {
 		return null;
 	}
-
-
-	//legacy
-				@RequestMapping(value="/modifyUser")
-				public String modifyUserInDB(@ModelAttribute("userAccount") UserAccount userAccount) {
-					return super.update(userAccount, "/ok", "/auth.login");
-				}
-				@RequestMapping(value="/registUser")
-				public String registUserToDB(@ModelAttribute("userAccount") UserAccount userAccount) {
-					return super.add(userAccount, "/ok" , "/auth.login");
-				}
-				@RequestMapping(value="/deleteUser")
-				public String deleteUserFromDB(@ModelAttribute("userAccount") UserAccount userAccount) {
-					return super.delete(userAccount, "/ok", "/auth.login");
-				}
-				@RequestMapping(value="/getUser")
-				public UserAccount getUserFromDB(@ModelAttribute("userAccount") UserAccount userAccount) {
-					return super.get(userAccount);
-				}
 }

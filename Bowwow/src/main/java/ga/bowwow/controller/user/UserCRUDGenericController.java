@@ -11,9 +11,8 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import ga.bowwow.service.user.UserGenericService;
 
 @Controller
-public abstract class UserCRUDGenericController<T, SN, S extends UserGenericService<T>> {
-	@Autowired
-	protected S service;
+public abstract class UserCRUDGenericController<T> {
+	protected UserGenericService service;
 	
 	String resolveRoute;
 	String errorRoute;
@@ -23,7 +22,7 @@ public abstract class UserCRUDGenericController<T, SN, S extends UserGenericServ
 		try {
 			System.out.println("controller : " + vo);
 			return router(service.addVo(vo), resolveRoute, errorRoute);
-		} catch (DataIntegrityViolationException e) {
+		} catch (DataIntegrityViolationException  e) {
 			e.printStackTrace();
 		} catch (TooManyResultsException e) {
 			e.printStackTrace();
@@ -39,13 +38,13 @@ public abstract class UserCRUDGenericController<T, SN, S extends UserGenericServ
 		System.out.println("controller");
 		return router(service.deleteVo(vo), resolveRoute, errorRoute);
 	}
-	
-	
 	protected T get(T vo) {
 		return (T)service.getVo(vo);
 	}
+	
 	protected abstract List<T> list(T vo);
 	
+	//라우터 클래스를 따로 만들 수 있는가?
 	protected void setDomainRoute(String resolveRoute, String errorRoute) {
 		this.setResolveRoute(resolveRoute);
 		this.setErrorRoute(errorRoute);
