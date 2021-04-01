@@ -38,16 +38,17 @@
 	</insert>
 	
 	<select id="getBoardList" parameterType="Map" resultType="board" >
-		SELECT BOARD_NO, B.MEMBER_SERIAL, BOARD_TITLE, ID 
+		SELECT BOARD_NO, B.MEMBER_SERIAL, BOARD_TITLE, ID, IMG1
 		FROM 
 		<choose>
 			<when test="board_idx == 1"> DIARY_BOARD B, USER_ACCOUNT U WHERE B.MEMBER_SERIAL = U.MEMBER_SERIAL </when>
 			<when test="board_idx == 2"> INTRO_BOARD B, USER_ACCOUNT U WHERE B.MEMBER_SERIAL = U.MEMBER_SERIAL </when>
 		</choose>
+		ORDER BY BOARD_NO DESC
 	</select>
 	
 	<select id="getBoard" parameterType="Map" resultType="board">
-		SELECT BOARD_NO, BOARD_CONTENT, BOARD_TITLE
+		SELECT BOARD_NO, BOARD_CONTENT, BOARD_TITLE, ANIMAL_CLASS
 		FROM 
 		<choose>
 			<when test="board_idx == 1"> DIARY_BOARD </when>
@@ -61,9 +62,9 @@
 		<choose>
 			<when test="board_idx == 1"> 
 			DIARY_BOARD 
-			SET BOARD_TITLE = #{board_title}
-				, BOARD_CONTENT = #{board_content}
-				, ANIMAL_CLASS = #{animal_class}
+			SET BOARD_TITLE = '${vo.board_title}'
+				, BOARD_CONTENT = '${vo.board_content}'
+				, ANIMAL_CLASS = '${vo.animal_class}'
 			</when>
 			<when test="board_idx == 2"> 
 			INTRO_BOARD 
@@ -100,7 +101,7 @@
 				, BOARD_CONTENT = #{board_content}
 			</when>
 		</choose> 
-		WHERE BOARD_NO = #{board_no}
+		WHERE BOARD_NO = ${vo.board_no}
 	</update>
 	
 	

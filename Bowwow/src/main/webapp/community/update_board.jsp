@@ -238,20 +238,20 @@ th {
 												<h1>펫 일기장</h1>
 												<hr>
 
-												<form action="do-update/Board" method="post" enctype="multipart/form-data">
+												<form action="/community/do-update/board" method="post" enctype="multipart/form-data">
 													<div>
 														<c:set var="class1" value="${vo.animal_class }"/>
-														<c:if test="${class1 == 1 }">
+														<c:if test="${class1 eq '1' }">
 															<input type="radio" name="animal_class" value="1" checked="checked"> 강아지
 															<input type="radio" name="animal_class" value="2"> 고양이 
 															<input type="radio" name="animal_class" value="3"> 자유
 														</c:if>
-														<c:if test="${class1 == 2 }">
+														<c:if test="${class1 eq '2' }">
 															<input type="radio" name="animal_class" value="1">강아지 
 															<input type="radio" name="animal_class" value="2" checked="checked">고양이 
 															<input type="radio" name="animal_class" value="3">자유
 														</c:if>
-														<c:if test="${class1 == 3 }">
+														<c:if test="${class1 eq '3' }">
 															<input type="radio" name="animal_class" value="1">강아지 
 															<input type="radio" name="animal_class" value="2">고양이 
 															<input type="radio" name="animal_class" value="3" checked="checked">자유
@@ -274,7 +274,7 @@ th {
 													<div class="thum_select" id="thum_select" style="float: left; , padding: 500px;"></div>
 													<div class="imgs"></div>
 													<br> <br>
-													
+													<input type="hidden" name="board_no" value="${vo.board_no }">
 													<div style="text-align: center" class="enter_button">
 														<input type="submit" value="수정">
 													</div>

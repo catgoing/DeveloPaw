@@ -3,6 +3,8 @@ package ga.bowwow.service.board.impl;
 import java.util.List;
 import java.util.Map;
 
+import javax.servlet.http.HttpSession;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -33,8 +35,8 @@ public class BoardServiceImpl implements BoardService{
 	}
 
 	@Override
-	public void updateBoard(int board_idx, int board_no, Board vo) {
-		boardDAO.updateBoard(board_idx, board_no, vo);
+	public void updateBoard(Board vo, HttpSession session) {
+		boardDAO.updateBoard(vo, session);
 	}
 
 	@Override

@@ -96,8 +96,8 @@
 																	<div class="bookmark_btn click-btn">
 																		<div class="scrap" id="scrapBtn_311"
 																			onclick="WitCommon.boardScrap('knowhow', '311')">
-																			<img id="scrapImg_311"
-																				src="/resources/images/dog.jpg" alt="">
+																			<img style="width:200px" id="scrapImg_311"
+																				src='https://projectbit.s3.us-east-2.amazonaws.com/${list.img1 }' alt="썸네일이 없음">
 																		</div>
 																	</div>
 																	<div class="img-area"
