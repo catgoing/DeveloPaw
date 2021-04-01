@@ -28,11 +28,12 @@ public class StoreController {
 	@Autowired
 	private StoreReviewService storeReviewService;
 	
+	@Autowired
 	private StoreInquiryService storeInquiryService;
 	
 	
 	public StoreController() {
-		System.out.println(">> StoreController 실행");
+		System.out.println(">> StoreController() 실행");
 	}
 
 	@RequestMapping(value = "/store/storeMain")

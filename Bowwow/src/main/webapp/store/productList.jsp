@@ -548,7 +548,7 @@
                                                 <div class="row">
                                                     <div class="col-lg-12">
                                                         <div class="section-title">
-                                                            <h2>상품보기</h2>
+                                                            <h3>스토어</h3>
                                                         </div>
                                                         <br>
                                                     </div>

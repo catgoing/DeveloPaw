@@ -45,7 +45,57 @@
     <link rel="stylesheet" type="text/css" href="/resources/css/style.css">
     <link rel="stylesheet" type="text/css" href="/resources/css/storeStyle.css">
     <link rel="stylesheet" type="text/css" href="/resources/css/test.css">
-    
+	<script type="text/javascript" src="/resources/js/jquery/jquery.min.js "></script>
+	
+<script type="text/javascript">
+
+		var sell_price;
+		var amount;
+		
+		$(function init () {
+			sell_price = document.getElementById('sell_price').value;
+			document.getElementById('sum').value = sell_price.replace(/\B(?=(\d{3})+(?!\d))/g, ",");
+			sell_price = document.form.sell_price.value;
+			amount = document.form.amount.value;
+			document.form.sum.value = sell_price;
+		});
+		
+		function add () {
+			hm = document.form.amount;
+			sum = document.form.sum;
+			hm.value ++ ;
+			
+			var temp = parseInt(hm.value) * sell_price
+		
+			document.getElementById('sum').value = temp;
+			document.getElementById('sum').value = document.getElementById('sum').value.replace(/\B(?=(\d{3})+(?!\d))/g, ",");
+		}
+		
+		function del () {
+			hm = document.form.amount;
+			sum = document.form.sum;
+				if (hm.value > 1) {
+					hm.value -- ;
+					var temp = parseInt(hm.value) * sell_price
+					
+					document.getElementById('sum').value = temp;
+					document.getElementById('sum').value = document.getElementById('sum').value.replace(/\B(?=(\d{3})+(?!\d))/g, ",");
+				}
+				
+		}
+		
+		function changeValue(){
+			hm = document.form.amount;
+			sum = document.form.sum;
+			
+			var temp = parseInt(hm.value) * sell_price
+		
+			document.getElementById('sum').value = temp;
+			document.getElementById('sum').value = document.getElementById('sum').value.replace(/\B(?=(\d{3})+(?!\d))/g, ",");
+		}
+		
+</script>
+
 </head>
 
 <body>
@@ -494,6 +544,7 @@
                             <!-- Main-body start -->
 
     						<!-- Shop Cart Section Begin -->
+    						<form name="form" onsubmit="return false;" method="POST">
 							<section class="shop-cart spad">
 								<div class="container">
 									<div class="row">
@@ -510,34 +561,46 @@
 														</tr>
 													</thead>
 													<tbody>
-														<c:forEach var="cList" items="${cartList }">
+														<c:if test="${empty cart}">
 															<tr>
-																<td class="cart__product__item"><img
-																	src="img/shop-cart/cp-1.jpg" alt="">
+																<td colspan="4">장바구니에 상품이 없습니다.</td>
+															</tr>
+														</c:if>
+														<c:if test="${!empty cart}">
+														<c:forEach var="cart" items="${cart }">
+															<tr>
+																<td class="cart__product__item">
+																	<c:choose>
+																		<c:when test="${cart.p_type == 'dog'}">
+																			<c:set var="imgDir" value="dogImg" />
+																		</c:when>
+																		<c:when test="${cart.p_type == 'cat'}">
+																			<c:set var="imgDir" value="catImg" />
+																		</c:when>
+																	</c:choose>
+																	<img src="https://projectbit.s3.us-east-2.amazonaws.com/${imgDir }/${cart.s_image }" alt="">
 																	<div class="cart__product__item__title">
-																		<h6>Chain bucket bag</h6>
+																		<h6>${cart.p_name }</h6>
 																	</div></td>
-																<td class="cart__price">$ 150.0</td>
+																<td class="cart__price">${cart.price }</td>
 																<td class="cart__quantity">
 																	<div class="pro-qty">
-																		<input type="text" value="1">
+																		<input type="hidden" id="sell_price" name="price" value="${cart.price }">
+																		<input type="button" class="store_btn2" value=" + " onclick="add()">
+																		<input type="text" class="store_input" autocomplete="off" min="1" name="amount" value="${cart.amount }" size="3" onchange="changeValue();">
+																		<input type="button" class="store_btn2" value=" - " onclick="del()">
 																	</div>
 																</td>
-																<td class="cart__total">$ 300.0</td>
+																<td class="cart__total"><input type="text" class="store_input2" size="5" id="sum" readonly>원</td>
 																<td class="cart__close"><span class="icon_close"></span></td>
 															</tr>
 														</c:forEach>
+														</c:if>
 													</tbody>
 												</table>
 											</div>
 										</div>
 									</div>
-									<div class="row">
-										<div class="col-lg-6 col-md-6 col-sm-6">
-											<div class="cart__btn">
-												<a href="#">계속 둘러보기</a>
-											</div>
-										</div>
 										<div class="col-lg-6 col-md-6 col-sm-6">
 											<div class="cart__btn update__btn">
 												<a href="#"><span class="icon_loading"></span> 장바구니 수정</a>
@@ -550,15 +613,15 @@
 											<div class="cart__total__procced">
 												<h6>장바구니 합계</h6>
 												<ul>
-													<li>Subtotal <span>$ 750.0</span></li>
-													<li>총 결제 금액 <span>$ 750.0</span></li>
+													<li>총 결제 금액 : <span></span></li>
 												</ul>
 												<a href="#" class="primary-btn">주문 단계로 넘어가기</a>
 											</div>
 										</div>
 									</div>
-								</div>
 							</section>
+							</form>
+						</div>
 							<!-- Shop Cart Section End -->
 
 							<!-- Product Details Section End -->
@@ -610,7 +673,6 @@
     <!-- Warning Section Ends -->
 
     <!-- Required Jquery -->
-    <script type="text/javascript" src="/resources/js/jquery/jquery.min.js "></script>
     <script type="text/javascript" src="/resources/js/jquery-ui/jquery-ui.min.js "></script>
     <script type="text/javascript" src="/resources/js/popper.js/popper.min.js"></script>
     <script type="text/javascript" src="/resources/js/bootstrap/js/bootstrap.min.js "></script>

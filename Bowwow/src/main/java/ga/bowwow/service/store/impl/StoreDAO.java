@@ -20,7 +20,8 @@ public class StoreDAO {
 	public StoreDAO() {
 		System.out.println(">> StoreDAO 객체 생성");
 	}
-
+	
+	// 상품 관련 dao
 	public Product getProductDetail(int p_id) {
 	    return mybatis.selectOne("Store.getProductDetail", p_id);
 	}
@@ -28,7 +29,19 @@ public class StoreDAO {
 	public List<Product> getProductList(Product product) {
 		return mybatis.selectList("Store.ProductList", product);
 	}
-
+	
+	
+	// 장바구니 관련 dao
+	public void addCart(CartList cartList) {
+		mybatis.insert("Cart.addCart", cartList);
+	}
+	
+	public List<CartList> getCartList(String id) {
+		return mybatis.selectList("Cart.getCartList", id);
+	}
+	
+	
+	// 리뷰 관련 dao
 	public void insertReview(Review review) {
 		System.out.println("-----------------------");
 		System.out.println(review);
@@ -54,3 +67,31 @@ public class StoreDAO {
 	}
 
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
