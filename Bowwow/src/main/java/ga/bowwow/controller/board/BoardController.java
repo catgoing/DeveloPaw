@@ -249,6 +249,7 @@ public class BoardController {
 		System.out.println("reLoca vo : " + vo);
 		
 //		boardService.updateBoard(vo);
+		}
 		
 
 		return "/community/detail_board";
