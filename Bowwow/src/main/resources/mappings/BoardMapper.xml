@@ -4,12 +4,38 @@
   "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="BoardDAO">
 
-	<insert id="insertBoard" parameterType="board">
-		INSERT INTO KNOWHOW_BOARD (BOARD_NO, BOARD_TITLE, MEMBER_SERIAL, BOARD_CONTENT,REGDATE,HITS,ANIMAL_CLASS) 
-		VALUES (INTRO_BOARD_SEQ.NEXTVAL, #{board_title}, 999, #{board_content}, SYSDATE, 0, #{animal_class})
+	<insert id="insertBoard" parameterType="Map">
+		INSERT INTO 
+		<choose>
+			<when test="board_idx == 1"> 
+				DIARY_BOARD (BOARD_NO, BOARD_TITLE, MEMBER_SERIAL, BOARD_CONTENT, IMG1, REGDATE, HITS, ANIMAL_CLASS) 
+				VALUES (DIARY_BOARD_SEQ.NEXTVAL, #{board_title}, #{member_serial}, #{board_content}, #{img1}, SYSDATE, 0, #{animal_class})
+			</when>
+			<when test="board_idx == 2"> 
+				INTRO_BOARD (BOARD_NO, BOARD_TITLE, MEMBER_SERIAL, BOARD_CONTENT, IMG1, REGDATE, HITS, ANIMAL_CLASS) 
+				VALUES (INTRO_BOARD_SEQ.NEXTVAL, #{board_title}, #{member_serial}, #{board_content}, #{img1}, SYSDATE, 0, #{animal_class})
+			</when>
+			<when test="board_idx == 3"> 
+				KNOWHOW_BOARD (BOARD_NO, BOARD_TITLE, MEMBER_SERIAL, BOARD_CONTENT, IMG1, REGDATE, HITS, SUB_CLASS, ANIMAL_CLASS) 
+				VALUES (KNOWHOW_BOARD_SEQ.NEXTVAL, #{board_title}, #{member_serial}, #{board_content}, #{img1}, SYSDATE, 0, #{sub_class}, #{animal_class})
+			</when>
+			<when test="board_idx == 4"> 
+				MISSING_BOARD (BOARD_NO, BOARD_TITLE, MEMBER_SERIAL, BOARD_CONTENT, IMG1, REGDATE, HITS, ANIMAL_CLASS) 
+				VALUES (MISSING_BOARD_SEQ.NEXTVAL, #{board_title}, #{member_serial}, #{board_content}, #{img1}, SYSDATE, 0, #{animal_class})
+			</when>
+			<when test="board_idx == 5"> 
+				USED_TRANSACTION_BOARD (BOARD_NO, BOARD_TITLE, MEMBER_SERIAL, GOODS, AREA, PRICE, IS_SELLED, 
+										BOARD_CONTENT, IMG1, REGDATE, HITS, ANIMAL_CLASS) 
+				VALUES (USED_TRANSACTION_BOARD_SEQ.NEXTVAL, #{board_title}, #{member_serial}, #{goods}, #{area}, #{price}, #{is_selled}
+						, #{board_content}, #{img1}, SYSDATE, 0, #{animal_class})
+			</when>
+			<when test="board_idx == 6"> 
+				EVENT_BOARD (BOARD_NO, BOARD_TITLE, BOARD_CONTENT, REGDATE, IMG1, HITS) 
+				VALUES (EVENT_BOARD_SEQ.NEXTVAL, #{board_title}, #{board_content}, #{img1}, SYSDATE, 0)
+			</when>
+			
+		</choose>
 	</insert>
-	
-
 	
 	<select id="getBoardList" parameterType="Map" resultType="board" >
 		SELECT BOARD_NO, B.MEMBER_SERIAL, BOARD_TITLE, ID 
@@ -27,8 +53,55 @@
 			<when test="board_idx == 1"> DIARY_BOARD </when>
 			<when test="board_idx == 2"> INTRO_BOARD </when>
 		</choose>
-		WHERE BOARD_NO = #{board_no}
+		WHERE BOARD_NO = ${board_no}
 	</select>
+	
+	<update id="updateBoard" parameterType="Map">
+		UPDATE 
+		<choose>
+			<when test="board_idx == 1"> 
+			DIARY_BOARD 
+			SET BOARD_TITLE = #{board_title}
+				, BOARD_CONTENT = #{board_content}
+				, ANIMAL_CLASS = #{animal_class}
+			</when>
+			<when test="board_idx == 2"> 
+			INTRO_BOARD 
+			SET BOARD_TITLE = #{board_title}
+				, BOARD_CONTENT = #{board_content}
+				, ANIMAL_CLASS = #{animal_class}
+			</when>
+			<when test="board_idx == 3"> 
+			KNOWHOW_BOARD 
+			SET BOARD_TITLE = #{board_title}
+				, BOARD_CONTENT = #{board_content}
+				, ANIMAL_CLASS = #{animal_class}
+				, SUB_CLASS = #{sub_class}
+			</when>
+			<when test="board_idx == 4"> 
+			MISSING_BOARD 
+			SET BOARD_TITLE = #{board_title}
+				, BOARD_CONTENT = #{board_content}
+				, ANIMAL_CLASS = #{animal_class}
+			</when>
+			<when test="board_idx == 5"> 
+			USED_TRANSACTION_BOARD 
+			SET BOARD_TITLE = #{board_title}
+				, GOODS = #{goods}
+				, AREA = #{area}
+				, PRICE = #{price}
+				, IS_SELLED = #{is_selled}
+				, BOARD_CONTENT = #{board_content}
+				, ANIMAL_CLASS = #{animal_class}
+			</when>
+			<when test="board_idx == 6"> 
+			EVENT_BOARD 
+			SET BOARD_TITLE = #{board_title}
+				, BOARD_CONTENT = #{board_content}
+			</when>
+		</choose> 
+		WHERE BOARD_NO = #{board_no}
+	</update>
 	
 	
 	<insert id="insertComment" parameterType="comment">

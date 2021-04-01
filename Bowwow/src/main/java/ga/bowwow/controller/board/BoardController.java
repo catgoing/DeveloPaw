@@ -1,23 +1,19 @@
 package ga.bowwow.controller.board;
 
-import java.io.File;
 import java.io.IOException;
-import java.util.Arrays;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
-import java.util.UUID;
 
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.multipart.MultipartFile;
 
 import com.amazonaws.AmazonClientException;
 
@@ -25,9 +21,7 @@ import com.amazonaws.AmazonClientException;
 import ga.bowwow.service.board.Board;
 import ga.bowwow.service.board.BoardService;
 import ga.bowwow.service.board.Comment;
-import ga.bowwow.service.board.CommentService;
 import ga.bowwow.service.board.Report;
-import ga.bowwow.service.common.ImageVO;
 
 
 @Controller
@@ -35,7 +29,6 @@ public class BoardController {
 	@Autowired //의존주입(DI) : 동일한 데이터 타입 객체
 	private BoardService boardService; //의존주입<-- BoardServiceImpl
 	private HttpServletRequest HttpServletRequest;
-//	 private CommentService commentService; 
 		
 
 	public BoardController() {
@@ -43,8 +36,63 @@ public class BoardController {
 		System.out.println("> boardService : " + boardService); //null
 	}
 
+	@RequestMapping("/community/insertBoard")
+	public String insertBoard(Board vo, HttpServletRequest request, MultipartController mc) throws AmazonClientException, IllegalStateException, IOException, InterruptedException {
+		System.out.println(">>> 게시글 입력 - insertBoard()");
+		System.out.println("vo : " + vo);
+		System.out.println("img : ---" + vo.getImg_locas() + "---");
+		
+		
+		
+		if(vo.getImg_locas() == null || vo.getImg_locas().length() == 0) {
+			//이미지 첨부된 거 없으면 바로 db에 저장
+			boardService.insertBoard(vo);
+			
+		} else { //이미지가 있으면
+			//이미지 경로를 저장할 배열 생성
+			String[] imgs_loca = new String[10];
+			
+			//이미지 경로 , 단위로 잘라 배열에 저장
+			imgs_loca = vo.getImg_locas().split(",");
+			
+			//배열값 확인
+	//		System.out.println(Arrays.toString(imgs_loca));
+			
+			//폴더 이름 설정
+			String foldername = "diary";
+			
+			//이미지 배열 길이(이미지 개수) 만큼 MultipartController 객체 생성, S3에 업로드 
+			for (int i = 0; i < imgs_loca.length; i++) {
+	//			MultipartController mc = new MultipartController();
+				//업로드할 이미지 경로, 폴더이름, 리퀘스트 전달(MultipartController에서 contextroot 획득을 위함)
+				mc.registerImage(imgs_loca[i], foldername, request);
+			}
+			
+			//DB에 저장되는 데이터 내부서버경로 -> S3서버 경로로 변환 작업(본문 이미지)
+			//나중에 출력할 때에는 S3에 업로드 된 파일을 불러와야 하기 때문
+			String original_loca = "src=\"/resources/upload";
+			String s3_loca = "src=\"https://projectbit.s3.us-east-2.amazonaws.com/" + foldername;
+			String reLoca = vo.getBoard_content().replace(original_loca, s3_loca);
+			vo.setBoard_content(reLoca);
+			
+			//DB에 저장되는 데이터 내부서버경ert fixing로 -> DB에 저장할 경로로 변경(폴더명/파일명), (썸네일)
+			String original_thum_loca = "/resources/upload";
+			String thumReLoca = vo.getImg1().replace(original_thum_loca, "" + foldername);
+			vo.setImg1(thumReLoca);
+			
+			//경로 변환 후 최종 DB에 저장되는 VO값 콘솔에 출력
+			System.out.println("reLoca vo : " + vo);
+			
+			boardService.insertBoard(vo);
+		}
+		
+//		return "redirect:/community/board_idx";
+		return "redirect:/community/diary_board";
+	}
+	
+	
 	@RequestMapping("/community/diary_board")
-	public String getBoardList(Model model) {
+	public String getBoardList(Model model, HttpSession session) {
 		System.out.println(">>> 게시글 전체 목록- String getBoardList()");
 		System.out.println("> boardService : " + boardService);
 		int board_idx = 1;
@@ -53,6 +101,7 @@ public class BoardController {
 
 		List<Board> boardList = boardService.getBoardList(map);
 
+		session.setAttribute("board_idx", board_idx);
 		model.addAttribute("boardList", boardList);
 		model.addAttribute("board_idx", board_idx);
 			
@@ -68,26 +117,38 @@ public class BoardController {
 	@RequestMapping(value="/community/detail", method=RequestMethod.GET)
 	
 	public String getBoard(@RequestParam("board_idx") int board_idx,
-				@RequestParam("board_no") int board_no ,  Model model) {
+				@RequestParam("board_no") int board_no , Board vo, Model model) {
 		
 		System.out.println(">>> 글상세 - String getBoard()");
-		Board board = new Board();
 		Map<String, Integer> map = new HashMap<String, Integer>();
 		map.put("board_idx", board_idx);
 		map.put("board_no", board_no );
+<<<<<<< HEAD
 		System.out.println(board);
 		board = boardService.getBoard(map);
+=======
+		vo = boardService.getBoard(map);
+>>>>>>> 686ed15e12fa777360928e130e534376313c18a9
 		List<Comment> commentList = boardService.getCommentList(map);
 		List<Comment> comment2List = boardService.getComment2List(map);
 		
-		System.out.println("commentList : " + commentList);
-		System.out.println("comment2List : " + comment2List);
+		System.out.println("detail vo : " + vo);
+		
+		
+//		System.out.println("commentList : " + commentList);
+//		System.out.println("comment2List : " + comment2List);
 		
 		//TODO 임시 회원 시리얼을 실제 객체로 교체할 것
+<<<<<<< HEAD
 		model.addAttribute("tempMemberSerial", "997");
 		model.addAttribute("board_no", board_no);
 		model.addAttribute("board_idx", board_idx);
 		model.addAttribute("board", board);
+=======
+//		model.addAttribute("userDTO", 1);
+		
+		model.addAttribute("vo", vo);
+>>>>>>> 686ed15e12fa777360928e130e534376313c18a9
 		model.addAttribute("commentList", commentList);
 		model.addAttribute("comment2List", comment2List);
 
@@ -95,6 +156,7 @@ public class BoardController {
 
 	}
 	
+<<<<<<< HEAD
 	
 	//댓글 입력
 	@RequestMapping(value="/community/comment", method=RequestMethod.GET)
@@ -156,64 +218,75 @@ public class BoardController {
 		model.addAttribute("diarylist",diarylist);
 		model.addAttribute("introlist",introlist);
 		model.addAttribute("knowhowlist",knowhowlist);
+=======
+	@RequestMapping("/community/update/board")
+	public String updateBoard(Board vo, HttpServletRequest request, MultipartController mc, Model model) throws AmazonClientException, IllegalStateException, IOException, InterruptedException {
+		System.out.println(">>> 게시글 수정화면 - updateBoard()");
+>>>>>>> 686ed15e12fa777360928e130e534376313c18a9
 		
-	
-		return "/community/search";
+		int board_idx = vo.getBoard_idx();
+		int board_no = vo.getBoard_no();
+		
+		Map<String, Integer> map = new HashMap<String, Integer>();
+		map.put("board_idx", board_idx);
+		map.put("board_no", board_no);
+		
+		vo = boardService.getBoard(map);
+				
+		model.addAttribute("vo", vo);
+				
+		return "/community/update_board";
 	}
-
-	/*
-	 * @RequestMapping("/community/insertBoard") public String insertBoard(Board vo,
-	 * ImageVO ivo, MultipartFile multipartFile, Model model, HttpServletRequest
-	 * request) throws IllegalStateException, IOException, AmazonClientException,
-	 * InterruptedException { System.out.println(">>> 게시글 입력 - insertBoard()");
-	 * System.out.println("vo : " + vo); // System.out.println("ivo : " + ivo); //
-	 * MultipartController mc = new MultipartController(); //
-	 * mc.registerImage(multipartFile, model, request, "diary");
-	 * 
-	 * // new MultipartController().registerImage(multipartFile, model, request,
-	 * "diary");
-	 * 
-	 * // System.out.println("multi: " + multipartFile); //
-	 * System.out.println("model: " + model); // System.out.println("req : " +
-	 * request);
-	 * 
-	 * // new MultipartController().registerImage(multipartFile, model, request,
-	 * "diary");
-	 * 
-	 * // boardService.insertBoard(vo);
-	 * 
-	 * return "/community/list";
-	 * 
-	 * }
-	 */
 	
-	@RequestMapping("/community/insertBoard")
-	public String insertBoard(Board vo, HttpServletRequest request) throws AmazonClientException, IllegalStateException, IOException, InterruptedException {
-		System.out.println(">>> 게시글 입력 - insertBoard()");
+	
+	@RequestMapping("/community/do-update/board")
+	public String doUpdateBoard(Board vo, HttpServletRequest request, MultipartController mc) throws AmazonClientException, IllegalStateException, IOException, InterruptedException {
+		System.out.println(">>> 게시글 수정 - do-updateBoard()");
 		System.out.println("vo : " + vo);
 		
+		
+		if(vo.getImg_locas() == null || vo.getImg_locas().length() == 0) {
+			//이미지 첨부된 거 없으면 바로 db에 저장
+//			boardService.updateBoard(vo);
+			
+		} else {
+		//이미지 경로를 저장할 배열 생성
 		String[] imgs_loca = new String[10];
+		
+		//이미지 경로 , 단위로 잘라 배열에 저장
 		imgs_loca = vo.getImg_locas().split(",");
-		System.out.println(Arrays.toString(imgs_loca));
+		
+		//배열값 확인
+//		System.out.println(Arrays.toString(imgs_loca));
+		
+		//폴더 이름 설정
 		String foldername = "diary";
 		
+		//이미지 배열 길이(이미지 개수) 만큼 MultipartController 객체 생성, S3에 업로드 
 		for (int i = 0; i < imgs_loca.length; i++) {
-		  MultipartController mc = new MultipartController();
+//			MultipartController mc = new MultipartController();
+			//업로드할 이미지 경로, 폴더이름, 리퀘스트 전달(MultipartController에서 contextroot 획득을 위함)
 			mc.registerImage(imgs_loca[i], foldername, request);
 		}
 		
+		//DB에 저장되는 데이터 내부서버경로 -> S3서버 경로로 변환 작업(본문 이미지)
+		//나중에 출력할 때에는 S3에 업로드 된 파일을 불러와야 하기 때문
 		String original_loca = "src=\"/resources/upload";
 		String s3_loca = "src=\"https://projectbit.s3.us-east-2.amazonaws.com/" + foldername;
 		String reLoca = vo.getBoard_content().replace(original_loca, s3_loca);
 		vo.setBoard_content(reLoca);
 		
+		//DB에 저장되는 데이터 내부서버경로 -> DB에 저장할 경로로 변경(폴더명/파일명), (썸네일)
 		String original_thum_loca = "/resources/upload";
 		String thumReLoca = vo.getImg1().replace(original_thum_loca, "" + foldername);
 		vo.setImg1(thumReLoca);
 		
+		//경로 변환 후 최종 DB에 저장되는 VO값 콘솔에 출력
 		System.out.println("reLoca vo : " + vo);
 		
+//		boardService.updateBoard(vo);
 		
+<<<<<<< HEAD
 
 
 		
@@ -224,8 +297,37 @@ public class BoardController {
 
 		return "/community/list";
 
+=======
+		}
+		
+		return "/community/detail_board";
+>>>>>>> 686ed15e12fa777360928e130e534376313c18a9
 	}
 	
+
+	//메소드에 선언된 @ModelAttribute : 리턴된 데이터를 View에 전달
+	//@ModelAttribute 선언된 메소드는 @RequestMapping 메소드보다 먼저 실행됨
+	//뷰에 전달될 때 설정된 명칭(예: conditionMap)으로 전달
+	@RequestMapping("/community/search")
+	public String search(Board board, Model model) {
+		String keyword = board.getKeyword();
+		System.out.println(">> 통합검색 - String search()");
+		System.out.println(board);
+		System.out.println("search vo:"+board.getKeyword());
+		List<Board> diarylist =boardService.search("1", keyword);
+		List<Board> introlist =boardService.search("2", keyword);
+		List<Board> knowhowlist =boardService.search("3", keyword);
+		System.out.println("searchboard:" + diarylist);
+		System.out.println("searchboard:" + introlist);
+		System.out.println("searchboard:" + knowhowlist);
+		model.addAttribute("diarylist",diarylist);
+		model.addAttribute("introlist",introlist);
+		model.addAttribute("knowhowlist",knowhowlist);
+		
+	
+		return "/community/search";
+	}
+
 	
 	@RequestMapping("/community/insertComment")
 	public String insertComment(Comment vo) throws IllegalStateException, IOException, AmazonClientException, InterruptedException {

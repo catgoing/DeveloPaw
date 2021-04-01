@@ -5,8 +5,9 @@ import java.util.Map;
 
 public interface BoardService {
 	
+//	void insertBoard(int board_idx, int board_no, Board vo);
 	void insertBoard(Board vo);
-	void updateBoard(Board vo);
+	void updateBoard(int board_idx, int board_no, Board vo);
 	void deleteBoard(Board vo);
 	Board getBoard(Map<String, Integer> map);
 //	List<Board> getBoardList();
