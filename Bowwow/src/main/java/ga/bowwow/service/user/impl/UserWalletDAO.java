@@ -23,24 +23,4 @@ public class UserWalletDAO extends UserGenericDAO<UserAddress> {
 				, "UserWallet.searchUserWallet"
 				, "YETNOGETListQuery");
 	}
-	
-	//legacy
-				public void insertUserWallet(UserWallet userWallet) {
-					System.out.println("dao" + userWallet);
-					mybatis.insert("UserWallet.insertTemporaryUserWallet", userWallet);
-				}
-				public void deleteUserWallet(UserWallet userWallet) {
-					System.out.println("dao" + userWallet);
-					mybatis.insert("UserWallet.deleteUserWallet", userWallet);
-				}
-				public void updateUserWallet(UserWallet userWallet) {
-					System.out.println("dao" + userWallet);
-					mybatis.insert("UserWallet.updateUserWallet", userWallet);
-				}
-				public UserWallet getUserWallet(UserWallet userWallet) {
-					return mybatis.selectOne("UserWallet.getUserWallet", userWallet);
-				}
-				public UserWallet searchUserWallet(UserWallet userWallet) {
-					return mybatis.selectOne("UserWallet.searchUserWallet", userWallet);
-				}
 }

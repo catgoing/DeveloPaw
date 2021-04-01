@@ -22,25 +22,4 @@ public class UserDetailDAO extends UserGenericDAO<UserAddress> {
 				, "UserAccount.searchUserDetail"
 				, "YETNOGetListQuery");
 	}
-	
-	
-	
-	//legacy
-				public void insertUserAccount(UserDetail userDetail) {
-			//		mybatis.insert("UserAccount.insertUserAccount", userAccount);
-					mybatis.insert("UserAccount.insertTemporaryUserDetail", userDetail);
-				}
-				public void updateUserAccount(UserDetail userDetail) {
-					mybatis.update("UserAccount.updateUserDetail", userDetail);
-				}
-				public void deleteUserAccount(UserDetail userDetail) {
-					System.out.println(userDetail);
-					mybatis.update("UserAccount.deleteUserDetail", userDetail);
-				}
-				public UserDetail getUserAccount(UserDetail userDetail) {
-					return mybatis.selectOne("UserAccount.getUserDetail", userDetail);
-				}
-				public UserDetail searchUserAccount(UserDetail userDetail) {
-					return mybatis.selectOne("UserAccount.searchUserDetail", userDetail);
-				}
 }
