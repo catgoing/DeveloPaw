@@ -15,7 +15,9 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.util.ResizableByteArrayOutputStream;
+import org.springframework.web.bind.WebDataBinder;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.InitBinder;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
@@ -67,13 +69,8 @@ public class PetController {
 
 		pet.setMember_serial("1");
 		System.out.println("pet " + pet); //member_serial
-
+		
 		List<Pet> petList = petService.getPetInfoList(pet);
-		for(Pet p : petList) {
-			if(p.getImage_source_oriname()==null) {
-				p.setImage_source_oriname("https://projectbit.s3.us-east-2.amazonaws.com/petImg/6262857e-1887-46fc-b77c-9209935f8657.jpg");
-			}
-		}
 		
 		model.addAttribute("petList", petList);
 		System.out.println("pet리스트를 넘겨줄게요~");
@@ -101,19 +98,49 @@ public class PetController {
 		return petDetail;
 	}
 
-	//public String InsertPetInfo(Pet pet, HttpServletRequest request,  @RequestParam(value="image_source", required=false)MultipartFile file) {
-	@PostMapping(value="/insertPetInfo")
-				  //@RequestBody : 받은 거 json으로 바꿔줌
-	@ResponseBody //json으로 변환해서 보내줌!
-	//public int InsertPetInfo(@RequestBody Pet pet) {
-	public int InsertPetInfo(Pet pet, HttpServletRequest request, MultipartFile mf,MultipartController mc) throws AmazonClientException, IllegalStateException, IOException, InterruptedException {
+	@PostMapping(value="/ajaxInsertPetInfo")
+	@ResponseBody //json으로 변환해서 보내줌!-@RequestBody : 받은 거 json으로 바꿔줌
+	public int ajaxInsertPetInfo(Pet pet, HttpServletRequest request, MultipartController mc) throws AmazonClientException, IllegalStateException, IOException, InterruptedException {
 		System.out.println("> 반려동물 정보 입력");
+		System.out.println("pet~~:"+ pet);
+		int result = 0;
+		if(pet.getImage_source() != null) {
+			String foldername = "petImg";
+			MultipartFile pfile = pet.getImage_source(); //저장하려는 파일
+			File file = multipartToFile(pfile);
+			
+			String originalFileName = pfile.getOriginalFilename();
+			String extension = originalFileName.substring(originalFileName.lastIndexOf("."));
+			String savedFileName = UUID.randomUUID() + extension;
+			
+			System.out.println(file);
+			
+			String imgName = mc.s3upload(file, savedFileName, foldername);
+			System.out.println(imgName);
+			String fs_url = "https://projectbit.s3.us-east-2.amazonaws.com/";
+			
+			pet.setImage_source_oriname(fs_url + foldername + "/" + imgName);
+			System.out.println(fs_url + foldername + "/" + imgName);
+			
+			
+			result = petService.insertPetInfo(pet);			
+		} else if(pet.getImage_source() == null) {
+//			String nothing = "non-upload";
+//			pet.setImage_source(nothing);
+			result = petService.insertPetInfo(pet);
+		}
+		
+		return 1;
+	}
+
+	//ajax이용
+	@PostMapping("/ajaxUpdatePetInfo")
+	@ResponseBody
+	public int ajaxUpdatePetInfo(Pet pet, HttpServletRequest request, MultipartController mc) throws AmazonClientException, IllegalStateException, IOException, InterruptedException {
+		System.out.println("> 반려동물 정보 수정");
 		System.out.println("pet~~:"+ pet);
 		
 		String foldername = "petImg";
-		
-		//String contextRoot = new HttpServletRequestWrapper(request).getRealPath("/");
-		//String fileRoot = contextRoot+"resources/upload/";
 		
 		MultipartFile pfile = pet.getImage_source(); //저장하려는 파일
 		File file = multipartToFile(pfile);
@@ -131,18 +158,9 @@ public class PetController {
 		pet.setImage_source_oriname(fs_url + foldername + "/" + imgName);
 		System.out.println(fs_url + foldername + "/" + imgName);
 
-		int result = petService.insertPetInfo(pet);
+		int result = petService.updatePetInfo(pet);
 		
-		return 1;
-	}
-
-	//ajax이용
-	@PostMapping("/updatePetInfo")
-	public int ajaxUpdatePetInfo(Pet pet, Model model) {
-		System.out.println("> 반려동물 정보 수정");
-		System.out.println("pet :"+ pet);
-		
-		return petService.updatePetInfo(pet);
+		return result;
 	}
 
 	//ajax이용
@@ -162,5 +180,10 @@ public class PetController {
 		File file = new File(mFile.getOriginalFilename());
 		mFile.transferTo(file);
 		return file;
+	}
+	
+	@InitBinder
+	public void dataBind(WebDataBinder webDataBinder) {
+		webDataBinder.setBindEmptyMultipartFiles(false);
 	}
 }

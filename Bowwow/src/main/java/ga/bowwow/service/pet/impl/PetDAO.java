@@ -28,7 +28,7 @@ public class PetDAO {
 	public int updatePetInfo(Pet pet) {
 		System.out.println("--->> updatePetInfo() 실행");
 		
-		return mybatis.update("PetInfo.getPetInfo", pet);
+		return mybatis.update("PetInfo.updatePetInfo", pet);
 	}
 	//펫 정보 삭제
 	public int deletePetInfo(Pet pet) {

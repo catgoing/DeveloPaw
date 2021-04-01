@@ -20,9 +20,9 @@
 
 	<!-- 반려동물 정보수정 - 유형, 이름, 성별, 품종은 안바꿔도 되잖아!! -->
 	<update id="updatePetInfo" parameterType="pet">
-		UPDATE FORM USER_PETINFO
+		UPDATE USER_PETINFO
 		 SET
-			IMAGE_SOURCE = 'upload',
+			IMAGE_SOURCE = 're-upload',
 			PET_NAME = #{pet_name},
 			PET_GENDER = #{pet_gender},
 			PET_VARIETY = #{pet_variety},
@@ -30,11 +30,11 @@
 			PET_SIZE = #{pet_size},
 			TNR = #{tnr },
 			PET_WEIGHT = #{pet_weight},
-			PET_BIRTH = #{pet_birth},
+			PET_BIRTH = TO_DATE(#{pet_birth}, 'yyyy-MM-dd'),
 			NECK_LENGTH = #{neck_length},
 			BACK_LENGTH = #{back_length},
 			CHEST_LENGTH = #{chest_length},
-			PET_ETC = #{pet_etc}
+			PET_ETC = #{pet_etc},
 			IMAGE_SOURCE_ORINAME = #{image_source_oriname}
 		WHERE PET_SERIAL = #{pet_serial }
 	</update>

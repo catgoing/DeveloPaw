@@ -34,8 +34,7 @@
       <div class="modal-header">
         <h4 class="modal-title" id="myModalLabe2">반려동물 정보등록</h4>
       </div>
-   		<!-- <form class="pet-form" id="insertPetform" action="/InsertPetInfo" method="post" enctype="multipart/form-data"> -->
-   		<form class="pet-form" id="insertPetform" name="ppp" enctype="multipart/form-data">
+   		<form class="pet-form" id="insertPetform" enctype="multipart/form-data">
 	      <div class="modal-body">
 	       	<div class="form-group">
 		        <table class="table table-bordered">
@@ -82,7 +81,7 @@
 			        </tr>
 			        <tr>
 				        <td rowspan="3" colspan="2">
-				        <input type="file" name="image_source" accept="image/jpg, image/gif image/png, image/jpeg">
+				        <input type="file" name="image_source" accept="image/jpg, image/gif image/png, image/jpeg" onchange="setThumbnail(event)">
 			        	<div id="image_container"></div>
 				       
 				        </td>
@@ -125,7 +124,9 @@
 		<h4 class="modal-title" id="myModalLabel">반려동물 상세보기</h4>
 	</div>
     <form class="pet-form" id="pet-detail-form" name="pet-detail-form">
-		<div class="popup-inner img-pet" id="detail_petimg"><img src="" alt="이미지"></div>
+		<div class="popup-inner img-pet" id="detail_petimg">
+			<img src="" alt="이미지" id="detail_thumb" onerror= this.style.display='none'>
+		</div>
 		<div class="popup-inner text-pet">
 		<div class="form-group-detail">
 			<h2 id="detail_petname"></h2>
@@ -196,7 +197,7 @@
       <div class="modal-header">
 			<h4 class="modal-title" id="myModalLabel">반려동물 정보수정</h4>
 	  </div>
-      <form class="pet-form" name="updatePetInfo" id="updatePetInfo" action="/updatePetInfo" method="post" enctype="multipart/form-data">
+      <form class="pet-form" id="updatePetInfo" enctype="multipart/form-data">
       <div class="modal-body">
        	<div class="form-group">
 	        <table class="table table-bordered">
@@ -243,8 +244,9 @@
 		        </tr>
 		        <tr>
 			        <td rowspan="3" colspan="2">
-			        	<input type="file" accept="image/*" name="image_source" id="modi_petimage">
-		        		<img src="" id="modi_petimage_base" >
+			        	<input type="file" accept="image/jpg, image/gif image/png, image/jpeg" name="image_source" >
+		        		<div id="img_container">
+		        		</div>
 			        </td>
 					<td class="insert-title">목둘레</td>
 					<td><input type="number" name="neck_length" id="modi_neck"></td>
@@ -269,7 +271,7 @@
 		<input type="hidden" id="modi_animal_type" name="animal_type" value="">
 		<input type="hidden" id="modi_pet_serial" name="pet_serial" value="">
 		<input type="hidden" id="modi_member_serial" name="member_serial" value="">
-        <button type="submit" class="btn btn-primary" >반려동물 정보수정</button>
+        <button type="button" class="btn btn-primary" id="updatePetInfobtn">반려동물 정보수정</button>
         <button type="button" class="btn btn-secondary" data-dismiss="modal" onclick="clearInput()">Close</button>
       </div>
 	 </form>

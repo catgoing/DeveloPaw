@@ -71,14 +71,15 @@
 	text-align : center;
 	margin: 10px 0px 10px 0px;
 }
-
- 
-/*썸네일 이미지 출력영역 사이즈조정*/
+/*반려동물 리스트 썸네일 이미지 출력영역 사이즈조정*/
 .col-md-4 .list-inner .pet-img{
 	width : 300px;
 	height : 300px;
 }
-
+#detail_petimg, #detail_petimg #detail_thumb{
+	width : 300px;
+	height : 300px;
+}
 .action-button{
 	display : flex;
 	justify-content: center;
@@ -91,6 +92,7 @@ input[type="number"]::-webkit-inner-spin-button {
     -webkit-appearance: none;
     margin: 0;
 }
+.classname {max-width:100%;height:auto}
 
 </style>
 <script>
@@ -125,12 +127,12 @@ $().ready(function(){
 	});
 
 	$("#newPetInsert").on("click", function(){
-		console.log("인서트 실행");
+		console.log("입력 실행");
 
 		var datas = new FormData(document.getElementById('insertPetform'));
 		console.log(datas);
 		console.log($("#insertPetform input[type='file']").val());
-		$.ajax("/insertPetInfo", {
+		$.ajax("/ajaxInsertPetInfo", {
 			type : "post",
 			enctype: "multipart/form-data",
 		    data : datas,
@@ -149,13 +151,13 @@ $().ready(function(){
 		});
 	});
 	
-	$("#modiPetInfo").on("click", function(){
-		console.log("인서트 실행");
+	$("#updatePetInfobtn").on("click", function(){
+		console.log("수정 실행");
 
-		var datas = new FormData(document.getElementById('insertPetform'));
+		var datas = new FormData(document.getElementById('updatePetInfo'));
 		console.log(datas);
-		console.log($("#insertPetform input[type='file']").val());
-		$.ajax("/insertPetInfo", {
+		console.log($("#updatePetInfo input[type='file']").val());
+		$.ajax("/ajaxUpdatePetInfo", {
 			type : "post",
 			enctype: "multipart/form-data",
 		    data : datas,
@@ -166,7 +168,7 @@ $().ready(function(){
 			success : function(result){
 				console.log("result : " + result);
 				alert("yes");
-				$("#newPet").modal("hide");
+				$("#modiPetInfo").modal("hide");
 				location.href = "/getPetInfoList";
 			}, error : function(request,status,error){
 				alert("no");
@@ -176,37 +178,22 @@ $().ready(function(){
 	
 	
 });
-/*
-function test(frm){
-	console.log("test시작");
 
-	//var datas = new FormData(document.getElementById('insertPetform')[0]);
-	var datas = {
-		member_serial : $("#insertPetform #insert_member_serial").val()
-		, animal_type : $("#insertPetform #insert_animal_type").val()
-		, pet_name : $("#insertPetform #in_name").val()
-		, pet_gender : $("#insertPetform input[name='pet_gender']:selected").val()
-		, pet_variety : $("#insertPetform input[name='pet_variety']").val()
-		, pet_age : $("#insertPetform input[name='pet_age']").val()
-		, pet_size : $("#insertPetform input[name='pet_size']:selected").val()
-		, pet_weight : $("#insertPetform input[name='pet_weight']").val()
-		, tnr : $("#insertPetform input[name='tnr']").val()
-	}
-	alert(datas);
+function setThumbnail(event){
+	var reader = new FileReader(); 
+	
+	reader.onload = function(event) { 
+		var img = document.createElement("img"); 
+		img.setAttribute("src", event.target.result); 
+		document.querySelector("div#image_container").appendChild(img);
+		
+       // var dataurl = canvas.toDataURL("image/png");
+       // document.getElementById('image_container').src = dataurl;
 
-	$.ajax("/InsertPetInfo", {
-		type : "post",
-	    data: datas,
-		processData: false,
-		contentType: false,
-		dataType: "json",
-		success : function(result){
-			alert("yes");
-		}, error : function(request,status,error){
-			alert("no");
-		}
-	});
-} */
+	}; 
+	reader.readAsDataURL(event.target.files[0]); 
+}
+
 
 function getPetInfo(frm){
 	console.log("getPetInfo 시작");
@@ -250,7 +237,7 @@ function getPetInfo(frm){
 
 			$("#petDetail").modal('show'); //모달창 오픈
 
-			modi(petDetail);//정보수정창에 미리 정보전달
+			setModiInfo(petDetail);//정보수정창에 미리 정보전달
 
 		}, error : function(){
 			console.log("에러발생");
@@ -259,7 +246,7 @@ function getPetInfo(frm){
 }
 
 //정보수정창 값 입력해놓기(?)
-function modi(petDetail){
+function setModiInfo(petDetail){
 	$("#modi_petname").val(petDetail.pet_name);
 	$("#modi_gender").val(petDetail.pet_gender);
 	$("#modi_pet_serial").val(petDetail.pet_serial);
@@ -273,6 +260,7 @@ function modi(petDetail){
 	$("#modi_chest").val(petDetail.chest_length + " cm");
 	$("#modi_etc").val(petDetail.pet_etc);
 	$("#modi_animal_type").val(petDetail.animal_type);
+	$("#detail_thumb").prop("src", petDetail.image_source_oriname);
 
 	$("#modi_tnr").val(petDetail.tnr);				// hidden
 	$("#modi_member_serial").val("<c:out value='${user.memberSerial}'/>");	// hidden
