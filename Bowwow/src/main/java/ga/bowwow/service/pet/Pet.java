@@ -20,8 +20,8 @@ import lombok.ToString;
 @Component
 public class Pet {
 	
-	private String pet_serial;
-	private String member_serial;
+	private int pet_serial;
+	private int member_serial;
 	private String image_source_oriname;
 	private MultipartFile image_source;
 	private String animal_type;
