@@ -1,6 +1,9 @@
 package ga.bowwow.controller.store;
 
+import java.util.HashMap;
+import java.util.Iterator;
 import java.util.List;
+import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -24,13 +27,32 @@ public class CartListController {
 	// 장바구니 추가
 	@RequestMapping(value = "/store/addCart")
 	@ResponseBody
-	public void addCartList(CartList cartList) {
+	public Map addCartList(CartList cartList) {
+		Map<String, String> returnMap = new HashMap<String, String>();
 		System.out.println("cartlist : " + cartList);
 		
 		cartList.setId("test");
 		
-		cartListService.addCartList(cartList);
-		System.out.println("cartlist : " + cartList);
+		String id = cartList.getId();
+		List<CartList> check = cartListService.pIdCheck(id);
+		
+		Iterator iter = check.iterator();
+		while (iter.hasNext()) {
+			int prodNum = (int) iter.next();
+			if (cartList.getP_id() == prodNum) {
+				returnMap.put("result", "error");
+				return returnMap;
+				
+			} else {
+				returnMap.put("result", "empty");
+				return returnMap;
+			}
+		}
+		
+		return returnMap;
+		
+//		cartListService.addCartList(cartList);
+//		System.out.println("cartlist : " + cartList);
 	}
 	
 	// 장바구니 리스트 조회
