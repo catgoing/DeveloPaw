@@ -151,13 +151,13 @@ public class BoardController {
 	//댓글 입력
 	@RequestMapping(value="/community/comment", method=RequestMethod.GET)
 	public String reply(Comment comment, @RequestParam("board_no") int board_no ,
-						@RequestParam("accused_serial") String member_serial, Model model) {
+						 Model model) {
 	String comment_content = comment.getComment_content();
+	
 	System.out.println(">>> 댓글 - reply()");
 	System.out.println("댓글내용:" + comment_content);
 	comment.setComment_content(comment_content);
 	comment.setBoard_no(Integer.toString(board_no));
-	comment.setMember_serial(member_serial);
 	System.out.println(comment);
 	boardService.insertComment(comment);
 	

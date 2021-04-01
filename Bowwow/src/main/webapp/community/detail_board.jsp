@@ -144,7 +144,7 @@
 													<input type="submit" value="수정">
 													</form>
 													<hr>
-													댓글
+													
 
 													
 													<form>
@@ -179,7 +179,7 @@
 															
 															<button id =  comment name = "comment" value="${comvo.comment_no }	">삭제하기</button>
 
-															<button name = "comment" value="${comvo.comment_no },${tempMemberSerial}" onclikck="">신고</button>
+															<button name = "comment" value="${comvo.comment_no },${tempMemberSerial}" onclick="">신고</button>
 
 															<c:set var="com1" value="${comvo.comment_no }" />
 															<hr>
