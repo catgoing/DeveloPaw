@@ -43,6 +43,14 @@
 		AND EMAIL = #{email}
 		AND PHONE = #{phone}
 	</select>
+	
+	<select id="searchUserAccount" parameterType="UserAccount" resultType="UserAccount">
+		SELECT * FROM USER_ACCOUNT
+		WHERE ID = #{id}
+		AND PASSWORD = #{password}
+		AND EMAIL = #{email}
+		AND PHONE = #{phone}
+	</select>
 
 	<select id="loginValidation" parameterType="UserAccount" resultType="UserAccount">
 		SELECT * FROM USER_ACCOUNT WHERE ID = #{id} AND PASSWORD = #{password}

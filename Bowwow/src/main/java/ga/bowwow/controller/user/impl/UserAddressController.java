@@ -9,6 +9,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import ga.bowwow.controller.user.UserCRUDGenericController;
 import ga.bowwow.service.user.VO.UserAccount;
 import ga.bowwow.service.user.VO.UserAddress;
+import ga.bowwow.service.user.impl.UserAccountDAO;
 import ga.bowwow.service.user.impl.UserAddressServiceImpl;
 
 @Controller

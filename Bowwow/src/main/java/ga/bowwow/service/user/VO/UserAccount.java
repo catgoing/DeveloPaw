@@ -10,10 +10,10 @@ import lombok.ToString;
 @NoArgsConstructor @AllArgsConstructor
 @ToString
 public class UserAccount {
-	int member_Serial;
+	int memberSerial;
 	String id;
 	String email;
-	String citizen_Id;
+	String citizenId;
 	String phone;
 	String password;
 	String status;

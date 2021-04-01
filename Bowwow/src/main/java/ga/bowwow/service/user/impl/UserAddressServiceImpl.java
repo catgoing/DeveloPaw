@@ -12,7 +12,7 @@ import ga.bowwow.service.user.VO.UserAddress;
 //@Service : @Component 상속확장 어노테이션
 //		비즈니스 로직처리 서비스 영역에 사용
 @Service("userAddressService")
-public class UserAddressServiceImpl extends UserGenericService<UserAddress> {
+public class UserAddressServiceImpl implements UserGenericService<UserAddress> {
 	@Autowired
 	private UserAddressDAO userAddressDAO;
 	
