@@ -178,16 +178,39 @@
 														<span class="box int_id"> ${vo.board_content } </span>
 													</div>
 													
-													<hr>
-													댓글
+													<!-- 수정하기 -->
 													
-
-
+													<form>
+													<input type="hidden" name="board_no" value=${board_no }>
+													<input type="submit" value="수정하기">
+													</form>
+													
+													<!-- 삭제하기 -->
+													
+													<form action="boardDelete">
+													<input type="hidden" name="board_no" value=${board_no }>											
+													<input type="hidden" name="board_idx" value=${board_idx }>
+													<input type="submit" value="삭제하기">
+													</form>
+													<hr>
+													댓글달기								
+													<form action="/community/comment" method="GET">												
+														<div>
+															내용 : <textarea name="comment_content" id="comment_content" cols="30" rows="3"></textarea>
+														</div>
+														<input type="hidden" name="board_no" value=${board_no }>											
+														<input type="hidden" name="board_idx" value=${board_idx }>												
+														<input type="submit" value="등록">
+													</form>
 													<br>
 													<div class="comments_div">
 														<c:forEach var="comvo" items="${commentList }">
 															<h4>${comvo.comment_content } // ${comvo.nickname } // ${comvo.regdate }</h4>
 															<button id =  comment name = "comment" value="${comvo.comment_no },${tempMemberSerial}	">신고</button>
+															
+															<!-- 댓글 삭제하기 -->
+															
+															<button id =  comment name = "comment" value="${comvo.comment_no }	">삭제하기</button>
 															<c:set var="com1" value="${comvo.comment_no }" />
 															<hr>
 															
