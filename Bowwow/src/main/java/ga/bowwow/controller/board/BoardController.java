@@ -162,7 +162,7 @@ public class BoardController {
 	boardService.insertComment(comment);
 	
 	
-	return "/community/diary_board";
+	return "redirect:/community/detail";
 
 	}
 	
