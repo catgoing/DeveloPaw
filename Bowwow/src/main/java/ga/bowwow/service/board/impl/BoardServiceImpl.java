@@ -23,14 +23,18 @@ public class BoardServiceImpl implements BoardService{
 		System.out.println(">> BoardServiceImpl() 객체생성");
 	}
 	
+//	@Override
+//	public void insertBoard(int board_idx, int board_no, Board vo) {
+//		boardDAO.insertBoard(board_idx, board_no, vo);
+//	}
 	@Override
 	public void insertBoard(Board vo) {
 		boardDAO.insertBoard(vo);
 	}
 
 	@Override
-	public void updateBoard(Board vo) {
-		boardDAO.updateBoard(vo);
+	public void updateBoard(int board_idx, int board_no, Board vo) {
+		boardDAO.updateBoard(board_idx, board_no, vo);
 	}
 
 	@Override

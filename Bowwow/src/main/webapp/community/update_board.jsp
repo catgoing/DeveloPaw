@@ -54,7 +54,7 @@
 <link rel="stylesheet" type="text/css" href="/resources/css/style.css">
 <link rel="stylesheet" type="text/css" href="/resources/css/test.css">
 
-<title>글 작성</title>
+<title>글 수정</title>
 <link
 	href="http://netdna.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.css"
 	rel="stylesheet">
@@ -114,6 +114,8 @@ th {
 </style>
 <script>
 	$(function() {
+		$('#summernote').summernote('code', ${vo.board_content});
+		
 		$('#summernote').summernote({
 			placeholder : '최대 500자 작성 가능합니다.',
 			height : 300,
@@ -176,9 +178,7 @@ th {
 		var imgar = new Array();
 
 		//summernote 안의 p태그 > img태그 모두 찾아 img태그 개수만큼 실행하는 메서드
-		$("p")
-				.find('img')
-				.each(
+		$("p").find('img').each(
 						function() {
 							console.log($(this).attr('src')); //이미지 경로 콘솔에 출력
 
@@ -238,19 +238,33 @@ th {
 												<h1>펫 일기장</h1>
 												<hr>
 
-												<form action="insertBoard" method="post" enctype="multipart/form-data">
+												<form action="updateBoard" method="post" enctype="multipart/form-data">
 													<div>
-														<input type="radio" name="animal_class" value="1">
-														강아지 <input type="radio" name="animal_class" value="2">
-														고양이 <input type="radio" name="animal_class" value="3" checked="checked">
-														자유
+														<c:set var="class1" value="3"/>
+														<c:if test="${class1 == 1 }">
+															<input type="radio" name="animal_class" value="1" checked="checked"> 강아지
+															<input type="radio" name="animal_class" value="2"> 고양이 
+															<input type="radio" name="animal_class" value="3"> 자유
+														</c:if>
+														<c:if test="${class1 == 2 }">
+															<input type="radio" name="animal_class" value="1">강아지 
+															<input type="radio" name="animal_class" value="2" checked="checked">고양이 
+															<input type="radio" name="animal_class" value="3">자유
+														</c:if>
+														<c:if test="${class1 == 3 }">
+															<input type="radio" name="animal_class" value="1">강아지 
+															<input type="radio" name="animal_class" value="2">고양이 
+															<input type="radio" name="animal_class" value="3" checked="checked">자유
+														</c:if>
+
 													</div>
 													<br>
 
 													<table>
 														<tr>
 															<th width="40">제목</th>
-															<td><input type="text" name="board_title" size="30">
+															<td>
+															<input type="text" name="board_title" size="30" value="${vo.board_title }">
 															</td>
 														</tr>
 													</table>
@@ -261,11 +275,8 @@ th {
 													<div class="imgs"></div>
 													<br> <br>
 													
-													<input type="hidden" name="member_serial" value="994">
-													<input type="hidden" name="board_idx" value="1">
-													
 													<div style="text-align: center" class="enter_button">
-														<input type="submit" value="확인">
+														<input type="submit" value="수정">
 													</div>
 
 												</form>
