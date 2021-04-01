@@ -1,4 +1,25 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"	pageEncoding="UTF-8"%>
+
+<head>
+<script type="text/javascript">
+function checker() {
+  var id = document.getElementById("id").value;
+  var pwd = document.getElementById("password").value;
+
+  if(id.length == 0) {
+    alert("아이디가 입력되지 않았습니다.");
+    return false;
+  }
+  if(pwd.length == 0) {
+    alert("비밀번호가 입력되지 않았습니다.");
+    return false;
+  }
+
+  return true;
+}
+</script>
+</head>
+
 <div class="pcoded-content">
     <section class="login-block">
         <!-- Container-fluid starts -->
@@ -7,7 +28,7 @@
                 <div class="col-sm-12">
                     <!-- Authentication card start -->
 
-                        <form class="md-float-material form-material" action="/account/login">
+                        <form class="md-float-material form-material" action="/account/login" onsubmit = "return checker();">
                             <div class="text-center">
                                 <img src="./resources/images/logo.png" alt="logo.png">
                             </div>
@@ -27,12 +48,12 @@
 											}
 										}%>
                                     <div class="form-group form-primary">
-                                        <input type="text" name="id" class="form-control" value="<%=cookie%>">
+                                        <input type="text" name="id" id="id" class="form-control" value="<%=cookie%>">
                                         <span class="form-bar"></span>
                                         <label class="float-label">아이디</label>
                                     </div>
                                     <div class="form-group form-primary">
-                                        <input type="password" name="password" class="form-control">
+                                        <input type="password" name="password" id="password" class="form-control">
                                         <span class="form-bar"></span>
                                         <label class="float-label">비밀번호</label>
                                     </div>
@@ -76,4 +97,4 @@
         </div>
         <!-- end of container-fluid -->
     </section>
-</div>
+  </div>
