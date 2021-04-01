@@ -28,7 +28,7 @@ public interface BoardService {
 	void deleteComment2(Comment vo);
 	List<Comment> getComment2List(Map<String, Integer> map);
 	
-	
+	void board
 
 
 }

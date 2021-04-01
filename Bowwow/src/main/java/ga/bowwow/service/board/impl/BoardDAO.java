@@ -77,10 +77,10 @@ public class BoardDAO {
 //		return null;
 //	}	
 	
-	public void boardDelete(Map<String, Object> map) {
-		System.out.println("===> MyBatis로 getComment2List() 실행-vo");
-		return mybatis.boardDelete(map);
-	}
+//	public void boardDelete(Map<String, Object> map) {
+//		System.out.println("===> MyBatis로 getComment2List() 실행-vo");
+//		return mybatis.boardDelete(map);
+//	}
 	
 
 	public List<Board> search(String board, String keyword) {

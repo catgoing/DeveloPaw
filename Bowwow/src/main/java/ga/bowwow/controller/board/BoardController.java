@@ -58,6 +58,81 @@ public class BoardController {
 		System.out.println("board model : " + model);
 
 		return "/community/diary_board";
+		return "/community/diary_board";
+
+	}
+	
+	
+	@RequestMapping(value="/community/detail", method=RequestMethod.GET)
+	
+	public String getBoard(@RequestParam("board_idx") int board_idx,
+				@RequestParam("board_no") int board_no ,  Model model) {
+		
+		System.out.println(">>> 글상세 - String getBoard()");
+		Board board = new Board();
+		Map<String, Integer> map = new HashMap<String, Integer>();
+		map.put("board_idx", board_idx);
+		map.put("board_no", board_no );
+		System.out.println(board);
+		board = boardService.getBoard(map);
+		List<Comment> commentList = boardService.getCommentList(map);
+		List<Comment> comment2List = boardService.getComment2List(map);
+		
+		System.out.println("commentList : " + commentList);
+		System.out.println("comment2List : " + comment2List);
+		
+		//TODO 임시 회원 시리얼을 실제 객체로 교체할 것
+		model.addAttribute("tempMemberSerial", "997");
+		model.addAttribute("board_no", board_no);
+		model.addAttribute("board_idx", board_idx);
+		model.addAttribute("board", board);
+		model.addAttribute("commentList", commentList);
+		model.addAttribute("comment2List", comment2List);
+
+		return "/community/detail_board";
+
+	}
+	
+	
+	//댓글 입력
+	@RequestMapping(value="/community/comment", method=RequestMethod.GET)
+	public String reply(Comment comment, @RequestParam("board_no") int board_no ,
+						@RequestParam("accused_serial") String member_serial, Model model) {
+	String comment_content = comment.getComment_content();
+	System.out.println(">>> 댓글 - reply()");
+	System.out.println("댓글내용:" + comment_content);
+	comment.setComment_content(comment_content);
+	comment.setBoard_no(Integer.toString(board_no));
+	comment.setMember_serial(member_serial);
+	System.out.println(comment);
+	boardService.insertComment(comment);
+	
+	
+	
+	
+	/*
+	Map<String, Object> map = new HashMap<String, Object>();
+	map.put("member_serial", Integer.parseInt(member_serial));
+	map.put("comment_content", comment_content);
+	map.put("board_no", board_no);
+	
+	
+	
+	System.out.println(map);
+	List<Comment> commentList = boardService.getCommentList(map);
+	List<Comment> comment2List = boardService.getComment2List(map);
+	
+	System.out.println("commentList : " + commentList);
+	System.out.println("comment2List : " + comment2List);
+	
+	//TODO 임시 회원 시리얼을 실제 객체로 교체할 것
+	model.addAttribute("tempMemberSerial", "1");
+	model.addAttribute("board_no", board_no);
+	model.addAttribute("vo", comment);
+	model.addAttribute("commentList", commentList);
+	model.addAttribute("comment2List", comment2List);
+	*/
+		return "/community/diary_board";
 
 	}
 	
@@ -132,9 +207,64 @@ public class BoardController {
 	model.addAttribute("comment2List", comment2List);
 	*/
 
-	return "/community/detail_board";
+	}
+	
 
+	
+	
+	//게시글 삭제
+	@RequestMapping(value="/community/boardDelete", method=RequestMethod.GET)
+	public String boardDelete(Comment comment, @RequestParam("board_no") int board_no ,
+						@RequestParam("board_idx") String board_idx, Model model) {
+	System.out.println(">>> 게시글 삭제 - boardDelete()");
+	System.out.println(board_no +  " / " +board_idx);
+	
+	Map<String, Object> map = new HashMap<String, Object>();
+	map.put("board_idx", board_idx);
+	map.put("board_no", board_no);
 }
+	
+	
+	//게시글 삭제
+	@RequestMapping(value="/community/boardDelete", method=RequestMethod.GET)
+	public String boardDelete(Comment comment, @RequestParam("board_no") int board_no ,
+						@RequestParam("board_idx") String board_idx, Model model) {
+	System.out.println(">>> 게시글 삭제 - boardDelete()");
+	System.out.println(board_no +  " / " +board_idx);
+	
+	Map<String, Object> map = new HashMap<String, Object>();
+	map.put("board_idx", board_idx);
+	map.put("board_no", board_no);
+}
+	
+	
+	//게시글 삭제
+	@RequestMapping(value="/community/boardDelete", method=RequestMethod.GET)
+	public String boardDelete(Comment comment, @RequestParam("board_no") int board_no ,
+						@RequestParam("board_idx") String board_idx, Model model) {
+	System.out.println(">>> 게시글 삭제 - boardDelete()");
+	System.out.println(board_no +  " / " +board_idx);
+	
+	Map<String, Object> map = new HashMap<String, Object>();
+	map.put("board_idx", board_idx);
+	map.put("board_no", board_no);
+}
+	
+	
+	//게시글 삭제
+	@RequestMapping(value="/community/boardDelete", method=RequestMethod.GET)
+	public String boardDelete(Comment comment, @RequestParam("board_no") int board_no ,
+						@RequestParam("board_idx") String board_idx, Model model) {
+	System.out.println(">>> 게시글 삭제 - boardDelete()");
+	System.out.println(board_no +  " / " +board_idx);
+	
+	Map<String, Object> map = new HashMap<String, Object>();
+	map.put("board_idx", board_idx);
+	map.put("board_no", board_no);
+
+	}
+	
+	
 	
 	
 	//게시글 삭제
@@ -152,7 +282,28 @@ public class BoardController {
 	boardService.insertComment(comment);
 	return "/community/detail_board";
 	}
+	
+	
+	
+	boardService.boardDelete(map);
+	return "/community/detail_board";
+	}
+	
+	
+	
+	boardService.boardDelete(map);
+	return "/community/detail_board";
+	}
+	
+	
+	
+	boardService.boardDelete(map);
+	return "/community/detail_board";
+	}
 
+	
+	//통합검색
+	
 	//메소드에 선언된 @ModelAttribute : 리턴된 데이터를 View에 전달
 	//@ModelAttribute 선언된 메소드는 @RequestMapping 메소드보다 먼저 실행됨
 	//뷰에 전달될 때 설정된 명칭(예: conditionMap)으로 전달
@@ -239,6 +390,48 @@ public class BoardController {
 		System.out.println(">>> 댓글 입력 - insertComment()");
 		System.out.println("vo : " + vo);
 		
+		
+		boardService.insertComment2(vo);
+	}
+	
+	
+	@RequestMapping("/community/insertComment2")
+	public String insertComment2(Comment vo) throws IllegalStateException, IOException, AmazonClientException, InterruptedException {
+		System.out.println(">>> 댓글 입력 - insertComment()");
+		System.out.println("vo : " + vo);
+	}
+	
+	
+	@RequestMapping("/community/insertComment2")
+	public String insertComment2(Comment vo) throws IllegalStateException, IOException, AmazonClientException, InterruptedException {
+		System.out.println(">>> 댓글 입력 - insertComment()");
+		System.out.println("vo : " + vo);
+	}
+	
+	
+	@RequestMapping("/community/insertComment2")
+	public String insertComment2(Comment vo) throws IllegalStateException, IOException, AmazonClientException, InterruptedException {
+		System.out.println(">>> 댓글 입력 - insertComment()");
+		System.out.println("vo : " + vo);
+	}
+	
+	
+	@RequestMapping("/community/insertComment2")
+	public String insertComment2(Comment vo) throws IllegalStateException, IOException, AmazonClientException, InterruptedException {
+		System.out.println(">>> 댓글 입력 - insertComment()");
+		System.out.println("vo : " + vo);
+		
+		return "/community/insert_complete";
+		
+	}
+	
+		
+		boardService.insertComment2(vo);
+		
+		return "/community/insert_complete";
+		
+	}
+	
 		
 		boardService.insertComment2(vo);
 		
