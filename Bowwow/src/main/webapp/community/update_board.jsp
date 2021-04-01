@@ -238,7 +238,7 @@ th {
 												<h1>펫 일기장</h1>
 												<hr>
 
-												<form action="updateBoard" method="post" enctype="multipart/form-data">
+												<form action="do-update/Board" method="post" enctype="multipart/form-data">
 													<div>
 														<c:set var="class1" value="${vo.animal_class }"/>
 														<c:if test="${class1 == 1 }">
