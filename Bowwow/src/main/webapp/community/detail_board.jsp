@@ -136,17 +136,16 @@
 														</h3>
 														<span class="box int_id"> ${vo.board_content } </span>
 													</div>
-<<<<<<< HEAD
 													
 													<!-- 수정하기 -->
-=======
+
 													<input type="hidden" name="board_idx" value="${board_idx }">
 													<input type="hidden" name="board_no" value="${vo.board_no }">
 													<input type="submit" value="수정">
 													</form>
 													<hr>
 													댓글
->>>>>>> 686ed15e12fa777360928e130e534376313c18a9
+
 													
 													<form>
 													<input type="hidden" name="board_no" value=${board_no }>
@@ -174,15 +173,14 @@
 													<div class="comments_div">
 														<c:forEach var="comvo" items="${commentList }">
 															<h4>${comvo.comment_content } // ${comvo.nickname } // ${comvo.regdate }</h4>
-<<<<<<< HEAD
 															<button id =  comment name = "comment" value="${comvo.comment_no },${tempMemberSerial}	">신고</button>
 															
 															<!-- 댓글 삭제하기 -->
 															
 															<button id =  comment name = "comment" value="${comvo.comment_no }	">삭제하기</button>
-=======
+
 															<button name = "comment" value="${comvo.comment_no },${tempMemberSerial}" onclikck="">신고</button>
->>>>>>> 686ed15e12fa777360928e130e534376313c18a9
+
 															<c:set var="com1" value="${comvo.comment_no }" />
 															<hr>
 															
