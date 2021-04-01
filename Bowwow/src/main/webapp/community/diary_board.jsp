@@ -5,15 +5,12 @@
 	pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ taglib uri="http://tiles.apache.org/tags-tiles" prefix="tiles"%>
-
-
 <!DOCTYPE html>
 
 <html>
 <head>
 <meta charset="utf-8">
-<meta name="viewport"
-	content="width=device-width, initial-scale=1.0, user-scalable=0, minimal-ui">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=0, minimal-ui">
 <meta http-equiv="X-UA-Compatible" content="IE=edge" />
 
 <meta name="keywords"
@@ -21,43 +18,28 @@
 <meta name="author" content="Codedthemes" />
 <!--Jua 폰트 import-->
 <link rel="preconnect" href="https://fonts.gstatic.com">
-<link href="https://fonts.googleapis.com/css2?family=Jua&display=swap"
-	rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Jua&display=swap" rel="stylesheet">
 
 <!-- Favicon icon -->
-<link rel="icon" href="/resources/images/favicon.ico"
-	type="image/x-icon">
+<link rel="icon" href="/resources/images/favicon.ico" type="image/x-icon">
 <!-- Google font-->
-<link
-	href="https://fonts.googleapis.com/css?family=Open+Sans:400,600,700"
-	rel="stylesheet">
+<link href="https://fonts.googleapis.com/css?family=Open+Sans:400,600,700" rel="stylesheet">
 <!-- waves.css -->
-<link rel="stylesheet" href="/resources/pages/waves/css/waves.min.css"
-	type="text/css" media="all">
+<link rel="stylesheet" href="/resources/pages/waves/css/waves.min.css" type="text/css" media="all">
 <!-- Required Fremwork -->
-<link rel="stylesheet" type="text/css"
-	href="/resources/css/bootstrap/css/bootstrap.min.css">
+<link rel="stylesheet" type="text/css" href="/resources/css/bootstrap/css/bootstrap.min.css">
 <!-- waves.css -->
-<link rel="stylesheet" href="/resources/pages/waves/css/waves.min.css"
-	type="text/css" media="all">
+<link rel="stylesheet" href="/resources/pages/waves/css/waves.min.css" type="text/css" media="all">
 <!-- themify icon -->
-<link rel="stylesheet" type="text/css"
-	href="/resources/icon/themify-icons/themify-icons.css">
+<link rel="stylesheet" type="text/css" href="/resources/icon/themify-icons/themify-icons.css">
 <!-- font-awesome-n -->
-<link rel="stylesheet" type="text/css"
-	href="/resources/css/font-awesome-n.min.css">
-<link rel="stylesheet" type="text/css"
-	href="/resources/css/font-awesome.min.css">
+<link rel="stylesheet" type="text/css" href="/resources/css/font-awesome-n.min.css">
+<link rel="stylesheet" type="text/css" href="/resources/css/font-awesome.min.css">
 <!-- scrollbar.css -->
-<link rel="stylesheet" type="text/css"
-	href="/resources/css/jquery.mCustomScrollbar.css">
+<link rel="stylesheet" type="text/css" href="/resources/css/jquery.mCustomScrollbar.css">
 <!-- Style.css -->
-<!-- <link rel="stylesheet" type="text/css" href="/Bowwow/src/main/webapp/resources/css/style.css"> -->
-
+<!-- <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/resources/css/style.css"> -->
 <link rel="stylesheet" type="text/css" href="/resources/css/style.css">
-<!-- <link rel="stylesheet" type="text/css" href="/main/resources/css/style.css"> -->
-<!-- <link rel="stylesheet" type="text/css" href="../resources/css/style.css"> -->
-<!-- <link rel="stylesheet" type="text/css" href="/resources/css/style.css"> -->
 <link rel="stylesheet" type="text/css" href="/resources/css/test.css">
 
 <title>펫 다이어리</title>
@@ -114,8 +96,8 @@
 																	<div class="bookmark_btn click-btn">
 																		<div class="scrap" id="scrapBtn_311"
 																			onclick="WitCommon.boardScrap('knowhow', '311')">
-																			<img id="scrapImg_311"
-																				src="/resources/images/dog.jpg" alt="">
+																			<img style="width:200px" id="scrapImg_311"
+																				src='https://projectbit.s3.us-east-2.amazonaws.com/${list.img1 }' alt="썸네일이 없음ㅁ">
 																		</div>
 																	</div>
 																	<div class="img-area"

@@ -25,6 +25,7 @@ public class CommentDAO {
 	//댓글 입력
 	public void insertComment(Comment vo) {
 		System.out.println("===> MyBatis로 insertComment() 실행");
+		System.out.println(vo);
 		mybatis.insert("BoardDAO.insertComment", vo);
 	}
 	
@@ -82,6 +83,8 @@ public class CommentDAO {
 		
 		return mybatis.selectList("BoardDAO.getComment2List", map);
 	}
+	
+	
 
 
 }

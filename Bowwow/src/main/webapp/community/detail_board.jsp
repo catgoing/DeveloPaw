@@ -57,9 +57,6 @@
 <!-- <link rel="stylesheet" type="text/css" href="/Bowwow/src/main/webapp/resources/css/style.css"> -->
 
 <link rel="stylesheet" type="text/css" href="/resources/css/style.css">
-<!-- <link rel="stylesheet" type="text/css" href="/main/resources/css/style.css"> -->
-<!-- <link rel="stylesheet" type="text/css" href="../resources/css/style.css"> -->
-<!-- <link rel="stylesheet" type="text/css" href="/resources/css/style.css"> -->
 <link rel="stylesheet" type="text/css" href="/resources/css/test.css">
 
 <title>펫 다이어리</title>
@@ -78,12 +75,6 @@
                     $('.readonly').val("");
                 }
             });
-        });
-        
-        
-        $(document).on('click','#comment', function () {
-
-            alert("댓번호 : "+$(this).attr("value"));	
         });
     </script>
     
@@ -104,38 +95,7 @@
 				<div class="pcoded-wrapper">
 
 					<!-- sidebar 좌측메뉴바 -->
-					<nav class="pcoded-navbar">
-						<div class="sidebar_toggle">
-							<a href="#"><i class="icon-close icons"></i></a>
-						</div>
-						<div class="pcoded-inner-navbar main-menu">
-					
-
-							<ul class="pcoded-item pcoded-left-item">
-								<li class=""><a href="storeMain.html"
-									class="waves-effect waves-dark"> <span class="pcoded-micon"><i
-											class="ti-layers"></i><b>FC</b></span> <span class="pcoded-mtext">커뮤니티</span>
-										<span class="pcoded-mcaret"></span>
-								</a></li>
-							</ul>
-
-							<ul class="pcoded-item pcoded-left-item">
-								<li class=""><a href="storeMain.html"
-									class="waves-effect waves-dark"> <span class="pcoded-micon"><i
-											class="ti-layers"></i><b>FC</b></span> <span class="pcoded-mtext">펫
-											다이어리</span> <span class="pcoded-mcaret"></span>
-								</a></li>
-							</ul>
-							<ul class="pcoded-item pcoded-left-item">
-								<li class=""><a href="storeMain.html"
-									class="waves-effect waves-dark"> <span class="pcoded-micon"><i
-											class="ti-layers"></i><b>FC</b></span> <span class="pcoded-mtext">펫
-											소개</span> <span class="pcoded-mcaret"></span>
-								</a></li>
-							</ul>
-
-						</div>
-					</nav>
+					<%@ include file="/common/communityMenuBar.jsp"%>
 					<!-- sidebar 좌측메뉴바 -->
 
 					<div class="pcoded-content">
@@ -161,7 +121,7 @@
 													</div>
 												</div>
 												<div class="monthly-products">
-													<!-- 주문번호 -->
+													<form action="/community/update/board" method="post">
 													<div>
 														<h3 class="join_title">
 															<label for="id">제목</label>
@@ -169,8 +129,7 @@
 														<span class="box int_id"> ${vo.board_title } </span>
 													</div>
 													
-
-													<!-- NAME -->
+													
 													<div>
 														<h3 class="join_title">
 															<label for="id">내용</label>
@@ -178,16 +137,42 @@
 														<span class="box int_id"> ${vo.board_content } </span>
 													</div>
 													
+													<!-- 수정하기 -->
+													<input type="hidden" name="board_idx" value="${board_idx }">
+													<input type="hidden" name="board_no" value="${vo.board_no }">
+													<input type="submit" value="수정">
+													</form>
+					
+													<!-- 삭제하기 -->
+													<form action="boardDelete">
+													<input type="hidden" name="board_no" value=${board_no }>											
+													<input type="hidden" name="board_idx" value=${board_idx }>
+													<input type="submit" value="삭제하기">
+													</form>
 													<hr>
+													댓글달기								
+													<form action="/community/comment" method="GET">												
+														<div>
+															내용 : <textarea name="comment_content" id="comment_content" cols="30" rows="3"></textarea>
+														</div>
+														<input type="hidden" name="board_no" value=${board_no }>											
+														<input type="hidden" name="board_idx" value=${board_idx }>												
+														<input type="submit" value="등록">
+													</form>
 													댓글
-													
-
-
 													<br>
 													<div class="comments_div">
 														<c:forEach var="comvo" items="${commentList }">
 															<h4>${comvo.comment_content } // ${comvo.nickname } // ${comvo.regdate }</h4>
 															<button id =  comment name = "comment" value="${comvo.comment_no },${tempMemberSerial}	">신고</button>
+															
+															<!-- 댓글 삭제하기 -->
+															
+															<button id =  comment name = "comment" value="${comvo.comment_no }	">삭제하기</button>
+
+															<button name = "comment" value="${comvo.comment_no },${tempMemberSerial}" onclick="">신고</button>
+
+
 															<c:set var="com1" value="${comvo.comment_no }" />
 															<hr>
 															
@@ -228,7 +213,7 @@
 		
 		
 		<script type="text/javascript">
-			scrollTop('js-button', 500);
+			scrollTop('js-button', 100);
 			function scrollTop(elem, duration) {
 				let target = document.getElementById(elem);
 

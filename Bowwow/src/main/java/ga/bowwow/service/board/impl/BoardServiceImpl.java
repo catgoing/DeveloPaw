@@ -3,6 +3,8 @@ package ga.bowwow.service.board.impl;
 import java.util.List;
 import java.util.Map;
 
+import javax.servlet.http.HttpSession;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -23,14 +25,18 @@ public class BoardServiceImpl implements BoardService{
 		System.out.println(">> BoardServiceImpl() 객체생성");
 	}
 	
+//	@Override
+//	public void insertBoard(int board_idx, int board_no, Board vo) {
+//		boardDAO.insertBoard(board_idx, board_no, vo);
+//	}
 	@Override
 	public void insertBoard(Board vo) {
 		boardDAO.insertBoard(vo);
 	}
 
 	@Override
-	public void updateBoard(Board vo) {
-		boardDAO.updateBoard(vo);
+	public void updateBoard(Board vo, HttpSession session) {
+		boardDAO.updateBoard(vo, session);
 	}
 
 	@Override
@@ -114,6 +120,11 @@ public class BoardServiceImpl implements BoardService{
 		boardDAO.insertReport(vo);
 		
 		
+	}
+	
+	public void boardDelete(Map<String,Object> map) {
+		System.out.println("map: " + map);
+		boardDAO.boardDelete(map);
 	}
 	
 

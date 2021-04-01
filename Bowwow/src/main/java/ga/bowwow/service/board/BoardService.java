@@ -3,10 +3,13 @@ package ga.bowwow.service.board;
 import java.util.List;
 import java.util.Map;
 
+import javax.servlet.http.HttpSession;
+
 public interface BoardService {
 	
+//	void insertBoard(int board_idx, int board_no, Board vo);
 	void insertBoard(Board vo);
-	void updateBoard(Board vo);
+	void updateBoard(Board vo, HttpSession session);
 	void deleteBoard(Board vo);
 	Board getBoard(Map<String, Integer> map);
 //	List<Board> getBoardList();
@@ -27,8 +30,8 @@ public interface BoardService {
 	void updateComment2(Comment vo);
 	void deleteComment2(Comment vo);
 	List<Comment> getComment2List(Map<String, Integer> map);
-	
-	
+	void boardDelete(Map<String,Object>map);
+
 
 
 }

@@ -4,6 +4,8 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+import javax.servlet.http.HttpSession;
+
 import org.apache.commons.collections.map.HashedMap;
 import org.mybatis.spring.SqlSessionTemplate;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -29,14 +31,55 @@ public class BoardDAO {
 	//글 입력
 	public void insertBoard(Board vo) {
 		System.out.println("===> MyBatis로 insertBoard() 실행");
-//		mybatis.insert("BoardDAO.insertBoard", vo);
+		Map<String, Object> map = new HashMap<String, Object>();
+		map.put("board_idx", vo.getBoard_idx());
+//		map.put("board_idx", 1);
+//		map.put("board", vo);
+		
+		map.put("board_title", vo.getBoard_title());
+		map.put("member_serial", vo.getMember_serial());
+		map.put("board_content", vo.getBoard_content());
+		map.put("img1", vo.getImg1());
+		map.put("animal_class", vo.getAnimal_class());
+		map.put("goods", vo.getGoods());
+		map.put("area", vo.getArea());
+		map.put("price", vo.getPrice());
+		map.put("is_selled", vo.getIs_selled());
+		
+		mybatis.insert("BoardDAO.insertBoard", map);
 		System.out.println("boarddao : " + vo);
 	}
+//	//글 입력
+//	public void insertBoard(int board_idx, int board_no, Board vo) {
+//		System.out.println("===> MyBatis로 insertBoard() 실행");
+//		Map<String, Object> map = new HashMap<String, Object>();
+//		map.put("board_idx", board_idx);
+//		map.put("board_no", board_no);
+//		map.put("board", vo);
+//		
+////		map.put("board_title", vo.getBoard_title());
+////		map.put("member_serial", vo.getMember_serial());
+////		map.put("board_content", vo.getBoard_content());
+////		map.put("img1", vo.getImg1());
+////		map.put("animal_class", vo.getAnimal_class());
+////		map.put("goods", vo.getGoods());
+////		map.put("area", vo.getArea());
+////		map.put("price", vo.getPrice());
+////		map.put("is_selled", vo.getIs_selled());
+//		
+//		mybatis.insert("BoardDAO.insertBoard", map);
+//		System.out.println("boarddao : " + vo);
+//	}
 	
 	//글 수정
-	public void updateBoard(Board vo) {
+	public void updateBoard(Board vo, HttpSession session) {
 		System.out.println("===> MyBatis로 updateBoard() 실행");
-		mybatis.update("BoardDAO.updateBoard", vo);
+		Map<String, Object> map = new HashMap<String, Object>();
+//		int board_idx = Integer.parseInt(session.getAttribute("board_idx").toString());
+		int board_idx = (int) session.getAttribute("board_idx");
+		map.put("board_idx", board_idx);
+		map.put("vo", vo);
+		mybatis.update("BoardDAO.updateBoard", map);
 	}
 	
 	//글 삭제
@@ -76,6 +119,11 @@ public class BoardDAO {
 //		
 //		return null;
 //	}	
+	
+	public void boardDelete(Map<String, Object> map) {
+		System.out.println("===> MyBatis로 boardDelete 실행");
+		mybatis.delete("BoardDAO.boardDelete", map);
+	}
 	
 
 	public List<Board> search(String board, String keyword) {
