@@ -123,7 +123,7 @@
 			<when test="board_idx == 1"> DIARY_COMMENTS C, USER_DETAIL U WHERE C.MEMBER_SERIAL = U.MEMBER_SERIAL </when>
 			<when test="board_idx == 2"> INTRO_COMMENTS C, USER_DETAIL U WHERE C.MEMBER_SERIAL = U.MEMBER_SERIAL </when>
 		</choose>
-		AND BOARD_NO = #{board_no}
+		AND BOARD_NO = ${board_no}
 	</select>
 	
 	<select id="getComment2List" parameterType="Map" resultType="comment" >

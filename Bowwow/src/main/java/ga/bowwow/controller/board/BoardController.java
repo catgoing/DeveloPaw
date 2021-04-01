@@ -134,8 +134,8 @@ public class BoardController {
 
 		System.out.println("detail vo : " + vo);
 
-		//		System.out.println("commentList : " + commentList);
-		//		System.out.println("comment2List : " + comment2List);
+//		System.out.println("commentList : " + commentList);
+//		System.out.println("comment2List : " + comment2List);
 
 		//TODO 임시 회원 시리얼을 실제 객체로 교체할 것
 		model.addAttribute("board_no", board_no);
