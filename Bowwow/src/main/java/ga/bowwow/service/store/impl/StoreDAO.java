@@ -40,6 +40,10 @@ public class StoreDAO {
 		return mybatis.selectList("Cart.getCartList", id);
 	}
 	
+	public List<CartList> pidCheck(String id) {
+		return mybatis.selectList("Cart.pIdCheck", id);
+	}
+	
 	
 	// 리뷰 관련 dao
 	public void insertReview(Review review) {

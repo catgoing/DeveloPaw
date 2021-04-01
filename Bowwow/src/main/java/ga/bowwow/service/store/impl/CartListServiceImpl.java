@@ -23,7 +23,12 @@ public class CartListServiceImpl implements CartListService {
 	public List<CartList> getCartList(String id) {
 		return storeDAO.getCartList(id);
 	}
-	
+
+	@Override
+	public List<CartList> pIdCheck(String id) {
+		return storeDAO.pidCheck(id);
+	}
+		
 	
 	
 	
