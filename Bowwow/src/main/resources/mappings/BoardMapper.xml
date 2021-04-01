@@ -53,7 +53,7 @@
 			<when test="board_idx == 1"> DIARY_BOARD </when>
 			<when test="board_idx == 2"> INTRO_BOARD </when>
 		</choose>
-		WHERE BOARD_NO = #{board_no}
+		WHERE BOARD_NO = ${board_no}
 	</select>
 	
 	<update id="updateBoard" parameterType="Map">

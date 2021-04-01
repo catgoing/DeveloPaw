@@ -114,7 +114,7 @@ th {
 </style>
 <script>
 	$(function() {
-		$('#summernote').summernote('code', ${vo.board_content});
+		$('#summernote').summernote('code', '${vo.board_content}');
 		
 		$('#summernote').summernote({
 			placeholder : '최대 500자 작성 가능합니다.',

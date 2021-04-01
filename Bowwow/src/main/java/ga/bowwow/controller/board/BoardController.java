@@ -6,6 +6,7 @@ import java.util.List;
 import java.util.Map;
 
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -42,12 +43,13 @@ public class BoardController {
 		System.out.println("img : ---" + vo.getImg_locas() + "---");
 		
 		
-		//이미지 경로를 저장할 배열 생성
-		if(vo.getImg_locas() == null || vo.getImg_locas() == "") {
-			
+		
+		if(vo.getImg_locas() == null || vo.getImg_locas().length() == 0) {
+			//이미지 첨부된 거 없으면 바로 db에 저장
 			boardService.insertBoard(vo);
-		} else {
 			
+		} else { //이미지가 있으면
+			//이미지 경로를 저장할 배열 생성
 			String[] imgs_loca = new String[10];
 			
 			//이미지 경로 , 단위로 잘라 배열에 저장
@@ -84,12 +86,13 @@ public class BoardController {
 			boardService.insertBoard(vo);
 		}
 		
-		return "/community/diary_board";
+//		return "redirect:/community/board_idx";
+		return "redirect:/community/diary_board";
 	}
 	
 	
 	@RequestMapping("/community/diary_board")
-	public String getBoardList(Model model) {
+	public String getBoardList(Model model, HttpSession session) {
 		System.out.println(">>> 게시글 전체 목록- String getBoardList()");
 		System.out.println("> boardService : " + boardService);
 		int board_idx = 1;
@@ -98,6 +101,7 @@ public class BoardController {
 
 		List<Board> boardList = boardService.getBoardList(map);
 
+		session.setAttribute("board_idx", board_idx);
 		model.addAttribute("boardList", boardList);
 		model.addAttribute("board_idx", board_idx);
 			
@@ -112,25 +116,26 @@ public class BoardController {
 	@RequestMapping(value="/community/detail", method=RequestMethod.GET)
 	
 	public String getBoard(@RequestParam("board_idx") int board_idx,
-				@RequestParam("board_no") int board_no ,  Model model) {
+				@RequestParam("board_no") int board_no , Board vo, Model model) {
 		
 		System.out.println(">>> 글상세 - String getBoard()");
-		Board board = new Board();
 		Map<String, Integer> map = new HashMap<String, Integer>();
 		map.put("board_idx", board_idx);
 		map.put("board_no", board_no );
-		System.out.println(board);
-		board = boardService.getBoard(map);
+		vo = boardService.getBoard(map);
 		List<Comment> commentList = boardService.getCommentList(map);
 		List<Comment> comment2List = boardService.getComment2List(map);
 		
-		System.out.println("commentList : " + commentList);
-		System.out.println("comment2List : " + comment2List);
+		System.out.println("detail vo : " + vo);
+		
+		
+//		System.out.println("commentList : " + commentList);
+//		System.out.println("comment2List : " + comment2List);
 		
 		//TODO 임시 회원 시리얼을 실제 객체로 교체할 것
-		model.addAttribute("tempMemberSerial", "1");
+//		model.addAttribute("userDTO", 1);
 		
-		model.addAttribute("vo", board);
+		model.addAttribute("vo", vo);
 		model.addAttribute("commentList", commentList);
 		model.addAttribute("comment2List", comment2List);
 
@@ -138,14 +143,36 @@ public class BoardController {
 
 	}
 	
+	@RequestMapping("/community/update/board")
+	public String updateBoard(Board vo, HttpServletRequest request, MultipartController mc, Model model) throws AmazonClientException, IllegalStateException, IOException, InterruptedException {
+		System.out.println(">>> 게시글 수정화면 - updateBoard()");
+		
+		int board_idx = vo.getBoard_idx();
+		int board_no = vo.getBoard_no();
+		
+		Map<String, Integer> map = new HashMap<String, Integer>();
+		map.put("board_idx", board_idx);
+		map.put("board_no", board_no);
+		
+		vo = boardService.getBoard(map);
+				
+		model.addAttribute("vo", vo);
+				
+		return "/community/update_board";
+	}
 	
 	
-	@RequestMapping("/community/updateBoard")
-	public String updateBoard(Board vo, HttpServletRequest request, MultipartController mc) throws AmazonClientException, IllegalStateException, IOException, InterruptedException {
-		System.out.println(">>> 게시글 수정 - updateBoard()");
+	@RequestMapping("/community/do-update/board")
+	public String doUpdateBoard(Board vo, HttpServletRequest request, MultipartController mc) throws AmazonClientException, IllegalStateException, IOException, InterruptedException {
+		System.out.println(">>> 게시글 수정 - do-updateBoard()");
 		System.out.println("vo : " + vo);
 		
 		
+		if(vo.getImg_locas() == null || vo.getImg_locas().length() == 0) {
+			//이미지 첨부된 거 없으면 바로 db에 저장
+//			boardService.updateBoard(vo);
+			
+		} else {
 		//이미지 경로를 저장할 배열 생성
 		String[] imgs_loca = new String[10];
 		
@@ -181,6 +208,8 @@ public class BoardController {
 		System.out.println("reLoca vo : " + vo);
 		
 //		boardService.updateBoard(vo);
+		
+		}
 		
 		return "/community/detail_board";
 	}

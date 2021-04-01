@@ -16,8 +16,8 @@ import lombok.ToString;
 
 public class Board {
 	
-	private String board_no;		//게시글번호
-	private String board_idx;		//게시판 종류
+	private int board_no;		//게시글번호
+	private int board_idx;		//게시판 종류
 	private String board_title;		//게시글제목
 	private String member_serial;	//회원번호
 	private String id;				//회원번호

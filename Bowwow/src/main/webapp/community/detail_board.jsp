@@ -121,7 +121,7 @@
 													</div>
 												</div>
 												<div class="monthly-products">
-													<!-- 주문번호 -->
+													<form action="/community/update/board" method="post">
 													<div>
 														<h3 class="join_title">
 															<label for="id">제목</label>
@@ -129,16 +129,17 @@
 														<span class="box int_id"> ${vo.board_title } </span>
 													</div>
 													
-
-													<!-- NAME -->
+													
 													<div>
 														<h3 class="join_title">
 															<label for="id">내용</label>
 														</h3>
 														<span class="box int_id"> ${vo.board_content } </span>
 													</div>
-													<input type="button" onclick="location.href=/community/updateBoard">
-													
+													<input type="hidden" name="board_idx" value="${board_idx }">
+													<input type="hidden" name="board_no" value="${vo.board_no }">
+													<input type="submit" value="수정">
+													</form>
 													<hr>
 													댓글
 													

@@ -30,8 +30,8 @@ public class BoardDAO {
 	public void insertBoard(Board vo) {
 		System.out.println("===> MyBatis로 insertBoard() 실행");
 		Map<String, Object> map = new HashMap<String, Object>();
-		map.put("board_idx", Integer.parseInt(vo.getBoard_idx()));
-		map.put("board_idx", 1);
+		map.put("board_idx", vo.getBoard_idx());
+//		map.put("board_idx", 1);
 //		map.put("board", vo);
 		
 		map.put("board_title", vo.getBoard_title());
