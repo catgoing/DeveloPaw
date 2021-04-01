@@ -53,7 +53,7 @@
                                 </li>
                             </ul> -->
 		<ul class="pcoded-item pcoded-left-item">
-			<li class=""><a href="storeMain.html"
+			<li class=""><a href="/community/diary_board"
 				class="waves-effect waves-dark"> <span class="pcoded-micon"><i
 						class="ti-layers"></i><b>FC</b></span> <span class="pcoded-mtext">펫
 						다이어리</span> <span class="pcoded-mcaret"></span>
