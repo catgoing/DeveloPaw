@@ -26,9 +26,4 @@ public class UserWalletController extends UserCRUDGenericController<UserWallet>{
 		return "/auth.myWallet";
 	}
 
-	@Override
-	protected List<UserWallet> list(UserWallet vo) {
-		// TODO Auto-generated method stub
-		return null;
-	}
 }

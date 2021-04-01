@@ -7,7 +7,7 @@
 	<title>Home</title>
 </head>
 <body>
-<script> window.location.href = 'http://localhost:8080/account/signupAccount';
+<script> window.location.href = 'http://localhost:8080/account/getList';
 </script>
 <h1>
 	Hello world!

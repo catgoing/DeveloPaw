@@ -1,7 +1,5 @@
 package ga.bowwow.controller.user;
 
-import java.util.List;
-
 import org.apache.ibatis.exceptions.TooManyResultsException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.dao.DataIntegrityViolationException;
@@ -41,8 +39,6 @@ public abstract class UserCRUDGenericController<T> {
 	protected T get(T vo) {
 		return (T)service.getVo(vo);
 	}
-	
-	protected abstract List<T> list(T vo);
 	
 	//라우터 클래스를 따로 만들 수 있는가?
 	protected void setDomainRoute(String resolveRoute, String errorRoute) {

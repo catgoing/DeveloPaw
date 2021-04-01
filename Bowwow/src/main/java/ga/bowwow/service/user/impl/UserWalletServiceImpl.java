@@ -1,6 +1,7 @@
 package ga.bowwow.service.user.impl;
 
 import java.util.List;
+import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -19,7 +20,13 @@ public class UserWalletServiceImpl extends UserGenericService<UserWallet> {
 	}
 	
 	@Override
-	public List<UserWallet> getVoList(UserWallet vo) {
+	public List<UserWallet> getVoList() {
+		return null;
+	}
+
+	@Override
+	public List<UserWallet> getVoList(Map<String, String> map) {
+		// TODO Auto-generated method stub
 		return null;
 	}
 }

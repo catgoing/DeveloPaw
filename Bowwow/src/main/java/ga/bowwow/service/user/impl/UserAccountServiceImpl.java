@@ -1,6 +1,7 @@
 package ga.bowwow.service.user.impl;
 
 import java.util.List;
+import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -23,7 +24,12 @@ public class UserAccountServiceImpl extends UserGenericService<UserAccount> {
 	}
 	
 	@Override
-	public List<UserAccount> getVoList(UserAccount vo) {
+	public List<UserAccount> getVoList(Map<String, String> map) {
 		return null;
+	}
+
+	@Override
+	public List<UserAccount> getVoList() {
+		return ((UserAccountDAO)dao).getUserList();
 	}
 }

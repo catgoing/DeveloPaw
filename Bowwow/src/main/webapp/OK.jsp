@@ -8,6 +8,8 @@
 </head>
 <body>
 <h1>OK</h1>
-${userDTO.id }
+<script type='text/javascript'>
+	setTimeout("location.href='http://localhost:8080/account/getList'",500);
+</script>
 </body>
 </html>

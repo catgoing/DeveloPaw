@@ -50,9 +50,12 @@
 	
 	<select id="getUserList" resultType="UserAccount">
 		SELECT *
-		FROM USER_ACCOUNT ACT, USER_DETAIL DET
-		WHERE DET.MEMBER_SERIAL = ACT.MEMBER_SERIAL
-        ORDER BY ACT.MEMBER_SERIAL;
+		FROM USER_ACCOUNT
+		ORDER BY MEMBER_SERIAL
+<!-- 		SELECT * -->
+<!-- 		FROM USER_ACCOUNT ACT, USER_DETAIL DET -->
+<!-- 		WHERE DET.MEMBER_SERIAL = ACT.MEMBER_SERIAL -->
+<!--         ORDER BY ACT.MEMBER_SERIAL -->
 	</select>
 	
 	<select id="searchUserList" resultType="UserAccount">

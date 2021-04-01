@@ -7,7 +7,6 @@
 <div class="card">
     <div class="card-header">
         <h5>회원 목록</h5>
-        <span>use class <code>table-hover</code> inside table element</span>
         <div class="card-header-right">
             <ul class="list-unstyled card-option">
                 <li><i class="fa fa fa-wrench open-card-option"></i></li>
@@ -18,68 +17,34 @@
             </ul>
         </div>
     </div>
+	
     <div class="card-block table-border-style">
         <div class="table-responsive">
             <table class="table table-hover">
                 <thead>
                     <tr>
-                        <th>#</th>
-                        <th>First Name</th>
-                        <th>Last Name</th>
-                        <th>Username</th>
-                        <th>First Name</th>
-                        <th>Last Name</th>
-                        <th>Username</th>
-                        <th>First Name</th>
-                        <th>Last Name</th>
-                        <th>Username</th>
-                        <th>First Name</th>
-                        <th>Last Name</th>
+                        <th>회원 번호</th>
+                        <th>ID</th>
+                        <th>Email</th>
+                        <th>주민 번호</th>
+                        <th>휴대전화 번호</th>
+                        <th>회원 등급</th>
+                        <th>포인트</th>
                     </tr>
                 </thead>
+                
                 <tbody>
-                    <tr>
-                        <th scope="row">1</th>
-                        <td>Mark</td>
-                        <td>Otto</td>
-                        <td>@mdo</td>
-                        <td>Mark</td>
-                        <td>Otto</td>
-                        <td>@mdo</td>
-                        <td>Mark</td>
-                        <td>Otto</td>
-                        <td>@mdo</td>
-                        <td>Otto</td>
-                        <td>@mdo</td>
-                    </tr>
-                    <tr>
-                        <th scope="row">2</th>
-                        <td>Mark</td>
-                        <td>Otto</td>
-                        <td>@mdo</td>
-                        <td>Mark</td>
-                        <td>Otto</td>
-                        <td>@mdo</td>
-                        <td>Mark</td>
-                        <td>Otto</td>
-                        <td>@mdo</td>
-                        <td>Otto</td>
-                        <td>@mdo</td>
-                    </tr>
-                    <tr>
-                        <th scope="row">3</th>
-                        <td>Mark</td>
-                        <td>Otto</td>
-                        <td>@mdo</td>
-                        <td>Mark</td>
-                        <td>Otto</td>
-                        <td>@mdo</td>
-                        <td>Mark</td>
-                        <td>Otto</td>
-                        <td>@mdo</td>
-                        <td>Otto</td>
-                        <td>@mdo</td>
-                    </tr>
+                	<c:forEach var="userAccount" items="${userDtoList }" varStatus="i">
+                		<tr>
+							<td>${userAccount.memberSerial}</td>
+							<td>${userAccount.id}</td>
+							<td>${userAccount.email}</td>
+							<td>${userAccount.citizenId}</td>
+							<td>${userAccount.phone}</td>
+							<td>${userAccount.status}</td>
+							<td>${userAccount.point}</td>
+						</tr>
+					</c:forEach>
                 </tbody>
             </table>
         </div>

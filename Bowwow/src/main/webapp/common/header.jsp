@@ -157,7 +157,7 @@
 						<li class="waves-effect waves-light"><a
 							href="auth-normal-sign-in.html">나의 쇼핑 </a></li>
 						<li class="waves-effect waves-light"><a
-							href="auth-normal-sign-in.html">로그아웃 </a></li>
+							href="/account/logout">로그아웃 </a></li>
 					</ul></li>
 			</ul>
 		</div>

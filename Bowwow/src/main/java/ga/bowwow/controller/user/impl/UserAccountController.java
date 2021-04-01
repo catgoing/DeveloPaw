@@ -1,10 +1,13 @@
 package ga.bowwow.controller.user.impl;
 
-import java.util.List;
+import java.util.ArrayList;
+
+import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.SessionAttributes;
@@ -23,6 +26,15 @@ public class UserAccountController extends UserCRUDGenericController<UserAccount
 		this.service = service;
 		this.setDomainRoute("/ok", "/auth.login");
 	}
+	
+	@GetMapping("/getList")
+	protected String getList(@ModelAttribute ArrayList<UserAccount> userDtoList, Model model) {
+		System.out.println("getListController");
+		userDtoList = (ArrayList<UserAccount>) service.getVoList();
+		model.addAttribute("userDtoList", userDtoList);
+		System.out.println(userDtoList);
+		return "/auth.userList";
+	}
 
 	//TODO 일관된 resolve/error 리턴 환경 만들 수 있는가?
 	//TODO =>DI하는 식으로, 실패시 돌아가는 경로를 담은 리스트를 쓴다? -> 클래스가 될 수도 있음.
@@ -37,10 +49,13 @@ public class UserAccountController extends UserCRUDGenericController<UserAccount
 	@RequestMapping(value="/login")
 	public String getUserAccount(@ModelAttribute("userAccount") UserAccount userAccount, Model model) {
 		boolean result = ((UserAccountServiceImpl)this.service).loginAttemp(userAccount);
-		if(result) {
-			model.addAttribute("userDTO", userAccount);
-		}
+		if(result) model.addAttribute("userDTO", userAccount);
 		return result ? "redirect:/store/storeMain" : "/auth.login";
+	}
+	@RequestMapping(value="/logout")
+	public String getUserAccount(@Autowired HttpSession session) {
+		session.invalidate();
+		return "/store/storeMain";
 	}
 	@RequestMapping(value="/signup")
 	public String confirmUserTerms() {
@@ -59,11 +74,6 @@ public class UserAccountController extends UserCRUDGenericController<UserAccount
 	private String simpleOkPageDistributor(boolean isOK) {
 		return (isOK) ? "/ok" : "failedRoute <- usually itself";
 	}
-	@Override
-	public List<UserAccount> list(UserAccount vo) {
-		return null;
-	}
-
 
 	//legacy
 				@RequestMapping(value="/modifyUser")
@@ -78,4 +88,5 @@ public class UserAccountController extends UserCRUDGenericController<UserAccount
 				public String deleteUserFromDB(@ModelAttribute("userAccount") UserAccount userAccount) {
 					return super.delete(userAccount, "/ok", "/auth.login");
 				}
+			
 }

@@ -71,6 +71,8 @@
 										<div class="my-area">
 											<div class="side-profile-img">프로필사진영역</div>
 											<p>닉네임</p>
+											<p>number필드인 주소id, 멤버시리얼이 없으면 에러</p>
+											<p>삭제와 수정은 멤버시리얼만을 비교합니다</p>
 										</div>
 									</div>
 

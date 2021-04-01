@@ -24,9 +24,4 @@ public class UserAddressController extends UserCRUDGenericController<UserAddress
 	public String getAddressInfo(@ModelAttribute("userAccount") UserAccount userAccount) {
 		return "/auth.myAddress";
 	}
-	
-	@Override
-	protected List<UserAddress> list(UserAddress vo) {
-		return null;
-	}
 }

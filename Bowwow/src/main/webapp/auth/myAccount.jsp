@@ -216,11 +216,6 @@
 									</div>
 									<form onsubmit = "return fn_pw_check();">
 										<div class="form-group form-primary">
-	                                        <input type="number" name="memberSerial" class="form-control">
-	                                        <span class="form-bar"></span>
-	                                        <label class="float-label">멤버 시리얼</label>
-                                        </div>
-										<div class="form-group form-primary">
 	                                        <input type="text" name="id" id="id" class="form-control" value="${userAccount.id }">
 	                                        <span class="form-bar"></span>
 	                                        <label class="float-label">아이디</label>

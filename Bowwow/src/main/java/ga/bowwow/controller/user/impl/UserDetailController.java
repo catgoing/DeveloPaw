@@ -18,7 +18,7 @@ public class UserDetailController extends UserCRUDGenericController<UserDetail> 
 	public UserDetailController(@Autowired UserDetailServiceImpl service) {
 		System.out.println("---->>> UserDetailController() 객체생성");
 		this.service = service;
-		setDomainRoute("/ok2", "/auth.login");
+		setDomainRoute("/ok", "/auth.login");
 	}
 	
 	//TODO memberSerial의 동기화 작업이 필요함!
@@ -31,30 +31,4 @@ public class UserDetailController extends UserCRUDGenericController<UserDetail> 
 	private String simpleOkPageDistributor(boolean isOK) {
 		return (isOK) ? "/ok" : "failedRoute <- usually itself";
 	}
-	@Override
-	protected List<UserDetail> list(UserDetail vo) {
-		// TODO Auto-generated method stub
-		return null;
-	}
-
-	
-	
-	//legacy
-//				@RequestMapping(value="/modifyDetail")
-//				public String modifyUserInDB(@ModelAttribute("userDetail") UserDetail userDetail) {
-//					return super.update(userDetail, "/ok", "/auth.login");
-//				}
-//				@RequestMapping(value="/registDetail")
-//				public String registUserToDB(@ModelAttribute("userDetail") UserDetail userDetail) {
-//					System.out.println("isRegistRouted?");
-//					return super.add(userDetail, "/ok" , "/auth.login");
-//				}
-//				@RequestMapping(value="/deleteDetail")
-//				public String deleteUserFromDB(@ModelAttribute("userDetail") UserDetail userDetail) {
-//					return super.delete(userDetail, "/ok", "/auth.login");
-//				}
-//				@RequestMapping(value="/getUser")
-//				public UserDetail getUserFromDB(@ModelAttribute("userDetail") UserDetail userDetail) {
-//					return super.get(userDetail);
-//				}
 }

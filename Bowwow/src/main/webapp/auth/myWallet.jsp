@@ -53,6 +53,8 @@
 									<div class="mainMypage-content">
 									<div class="block-title">
 										<h3>결제정보입력</h3>
+										<p>number필드인 멤버시리얼이 없으면 에러</p>
+										<p>삭제와 수정은 멤버시리얼만을 비교합니다</p>
 									</div>
 									<form>
 										<div name="walletId" class="form-group form-primary">

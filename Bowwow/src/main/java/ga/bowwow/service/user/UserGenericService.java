@@ -1,6 +1,9 @@
 package ga.bowwow.service.user;
 
 import java.util.List;
+import java.util.Map;
+
+import ga.bowwow.service.user.VO.UserAccount;
 
 public abstract class UserGenericService<T> {
 	protected UserGenericDAO dao;
@@ -24,8 +27,8 @@ public abstract class UserGenericService<T> {
 	public T searchVo(T vo) {
 		return (T)dao.search(vo);
 	}
-	public abstract List<T> getVoList(T vo);
-	
+	public abstract List<T> getVoList();
+	public abstract List<T> getVoList(Map<String, String> map);
 	
 	protected boolean isUpdateSuccess(T vo, boolean expectBool) {
 		return isVoSerialExist(vo) ? expectBool : !expectBool;
@@ -50,4 +53,5 @@ public abstract class UserGenericService<T> {
 		System.out.println(searchVo(vo));
 		return vo.equals(searchVo(vo));
 	}
+	
 }

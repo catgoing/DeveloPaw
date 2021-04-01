@@ -30,7 +30,9 @@ function checker() {
 
                         <form class="md-float-material form-material" action="/account/login" onsubmit = "return checker();">
                             <div class="text-center">
-                                <img src="./resources/images/logo.png" alt="logo.png">
+                            	<div style="padding:30px;">
+                            	</div>
+                                <img src="/resources/images/logo.png" alt="logo.png">
                             </div>
                             <div class="auth-box card">
                                 <div class="card-block">
@@ -83,7 +85,7 @@ function checker() {
                                             <p class="text-inverse text-left"><a href="index.html"><b>메인화면으로 돌아가기</b></a></p>
                                         </div>
                                         <div class="col-md-2">
-                                            <img src="./resources/images/colored_logo.png" alt="colored_logo.png">
+                                            <img src="/resources/images/colored_logo.png" alt="colored_logo.png">
                                         </div>
                                     </div>
                                 </div>

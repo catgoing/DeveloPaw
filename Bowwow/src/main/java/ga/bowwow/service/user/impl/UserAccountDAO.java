@@ -1,5 +1,7 @@
 package ga.bowwow.service.user.impl;
 
+import java.util.List;
+
 import org.mybatis.spring.SqlSessionTemplate;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
@@ -19,11 +21,15 @@ public class UserAccountDAO extends UserGenericDAO<UserAccount> {
 				, "UserAccount.deleteUserAccount"
 				, "UserAccount.getUserAccount"
 				, "UserAccount.searchUserAccount"
-				, "YetNoGetListQuery");
+				, "UserAccount.getUserList");
 //		TODO REPLACE TEMPORARY INSERT mybatis.insert("UserAccount.insertUserAccount", userAccount);
 	}
 
 	public UserAccount verifyAccount(UserAccount userAccount) {
 		return mybatis.selectOne("UserAccount.loginValidation", userAccount);
+	}
+	
+	public List<UserAccount> getUserList() {
+		return mybatis.selectList("UserAccount.getUserList");
 	}
 }
