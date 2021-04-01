@@ -240,7 +240,7 @@ th {
 
 												<form action="updateBoard" method="post" enctype="multipart/form-data">
 													<div>
-														<c:set var="class1" value="3"/>
+														<c:set var="class1" value="${vo.animal_class }"/>
 														<c:if test="${class1 == 1 }">
 															<input type="radio" name="animal_class" value="1" checked="checked"> 강아지
 															<input type="radio" name="animal_class" value="2"> 고양이 
