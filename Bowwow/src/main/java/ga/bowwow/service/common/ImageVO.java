@@ -1,4 +1,4 @@
-//package ga.bowwow.service;
+//package ga.bowwow.service.common;
 //
 //import org.springframework.web.multipart.MultipartFile;
 //
@@ -36,7 +36,8 @@
 //
 //	@Override
 //	public String toString() {
-//		return "ImageVO [imageSource=" + imageSource + "]";
+////		return "ImageVO [imageSource=" + imageSource + "]" + uploadImage;
+//		return "ImageVO [uploadImage=" + uploadImage + "]";
 //	}
 //
 //	public MultipartFile getUploadFile() {

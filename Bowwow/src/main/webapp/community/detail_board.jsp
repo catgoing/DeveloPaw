@@ -51,6 +51,8 @@
 <!-- scrollbar.css -->
 <link rel="stylesheet" type="text/css"
 	href="/resources/css/jquery.mCustomScrollbar.css">
+	<script type="text/javascript"
+		src="/resources/js/jquery/jquery.min.js "></script>
 <!-- Style.css -->
 <!-- <link rel="stylesheet" type="text/css" href="/Bowwow/src/main/webapp/resources/css/style.css"> -->
 
@@ -63,7 +65,30 @@
 <title>펫 다이어리</title>
 <style>
 </style>
+<!-- 신고하기  -->
+	<script>
+        $(function (){
+        	$('.readonly').prop('readonly', true);
+            $('.report_class').click(function(){
+                var class_no = $('input[name="report_class"]:checked').val();
+                if(class_no == 5) {
+                    $('.readonly').prop('readonly', false);
+                } else {
+                    $('.readonly').prop('readonly', true);
+                    $('.readonly').val("");
+                }
+            });
+        });
+        
+        
+        $(document).on('click','#comment', function () {
+
+            alert("댓번호 : "+$(this).attr("value"));	
+        });
+    </script>
+    
 </head>
+	
 <body>
 
 	<div id="pcoded" class="pcoded">
@@ -79,7 +104,38 @@
 				<div class="pcoded-wrapper">
 
 					<!-- sidebar 좌측메뉴바 -->
-					<%@ include file="/common/communityMenuBar.jsp"%>
+					<nav class="pcoded-navbar">
+						<div class="sidebar_toggle">
+							<a href="#"><i class="icon-close icons"></i></a>
+						</div>
+						<div class="pcoded-inner-navbar main-menu">
+					
+
+							<ul class="pcoded-item pcoded-left-item">
+								<li class=""><a href="storeMain.html"
+									class="waves-effect waves-dark"> <span class="pcoded-micon"><i
+											class="ti-layers"></i><b>FC</b></span> <span class="pcoded-mtext">커뮤니티</span>
+										<span class="pcoded-mcaret"></span>
+								</a></li>
+							</ul>
+
+							<ul class="pcoded-item pcoded-left-item">
+								<li class=""><a href="storeMain.html"
+									class="waves-effect waves-dark"> <span class="pcoded-micon"><i
+											class="ti-layers"></i><b>FC</b></span> <span class="pcoded-mtext">펫
+											다이어리</span> <span class="pcoded-mcaret"></span>
+								</a></li>
+							</ul>
+							<ul class="pcoded-item pcoded-left-item">
+								<li class=""><a href="storeMain.html"
+									class="waves-effect waves-dark"> <span class="pcoded-micon"><i
+											class="ti-layers"></i><b>FC</b></span> <span class="pcoded-mtext">펫
+											소개</span> <span class="pcoded-mcaret"></span>
+								</a></li>
+							</ul>
+
+						</div>
+					</nav>
 					<!-- sidebar 좌측메뉴바 -->
 
 					<div class="pcoded-content">
@@ -105,78 +161,49 @@
 													</div>
 												</div>
 												<div class="monthly-products">
-													<ul>
+													<!-- 주문번호 -->
+													<div>
+														<h3 class="join_title">
+															<label for="id">제목</label>
+														</h3>
+														<span class="box int_id"> ${vo.board_title } </span>
+													</div>
+													
 
-														<c:forEach var="list" items="${ boardList}">
-															<li>
-																<div class="block-item default-item" onclick="location.href='/community/detail?board_idx=${board_idx }&board_no=${list.board_no}'">
-																	<div class="best-label">${list.board_no }</div>
-																	<div class="bookmark_btn click-btn">
-																		<div class="scrap" id="scrapBtn_311"
-																			onclick="WitCommon.boardScrap('knowhow', '311')">
-																			<img id="scrapImg_311"
-																				src="/resources/images/dog.jpg" alt="">
-																		</div>
+													<!-- NAME -->
+													<div>
+														<h3 class="join_title">
+															<label for="id">내용</label>
+														</h3>
+														<span class="box int_id"> ${vo.board_content } </span>
+													</div>
+													
+													<hr>
+													댓글
+													
+
+
+													<br>
+													<div class="comments_div">
+														<c:forEach var="comvo" items="${commentList }">
+															<h4>${comvo.comment_content } // ${comvo.nickname } // ${comvo.regdate }</h4>
+															<button id =  comment name = "comment" value="${comvo.comment_no },${tempMemberSerial}	">신고</button>
+															<c:set var="com1" value="${comvo.comment_no }" />
+															<hr>
+															
+															<c:forEach var="com2vo" items="${comment2List }">
+																<c:set var="com2" value="${com2vo.comment_no }" />
+																<c:if test="${com1 == com2}">
+																	<div >
+																	대댓글<br>
+																	${com2vo.comment_content } // ${com2vo.nickname } // ${com2vo.regdate }
 																	</div>
-																	<div class="img-area"
-																		onclick="location.href='/board/knowhow/311'">
-																		<div class="imgItem"
-																			style="background: url('https://web-wit.s3.ap-northeast-2.amazonaws.com/images/boardKnowhow/311/knowhow_1609169403_0.gif') center center no-repeat; background-size: cover;">
-																		</div>
-																	</div>
-																	<div class="text-area">
-																		<div class="item-title">
-																			<a href="/community/detail?board_idx=${board_idx }&board_no=${list.board_no}">${list.board_title }</a>
-																		</div>
-																		<p class="hashtag">
-																			<span>#마사지 </span><span>#강아지마사지 </span><span>#강아지테라피
-																			</span><span>#예민한강아지 </span><span>#강아지</span><span>#...</span>
-																		</p>
-																		<div class="item-items">
-																			<div class="profile"
-																				onclick="pagePopup.openGotoPopup()">
-																				<p>${list.id }</p>
-																			</div>
-																		</div>
-																	</div>
-																</div>
-															</li>
-														</c:forEach>
-														<li>
-															<div class="block-item default-item">
-																<div class="best-label">1</div>
-																<div class="bookmark_btn click-btn">
-																	<div class="scrap" id="scrapBtn_311"
-																		onclick="WitCommon.boardScrap('knowhow', '311')">
-																		<img id="scrapImg_311" src="/resources/images/dog.jpg"
-																			alt="">
-																	</div>
-																</div>
-																<div class="img-area"
-																	onclick="location.href='/board/knowhow/311'">
-																	<div class="imgItem"
-																		style="background: url('https://web-wit.s3.ap-northeast-2.amazonaws.com/images/boardKnowhow/311/knowhow_1609169403_0.gif') center center no-repeat; background-size: cover;">
-																	</div>
-																</div>
-																<div class="text-area">
-																	<div class="item-title"
-																		onclick="location.href='/board/knowhow/311'">
-																		<h4>제목</h4>
-																	</div>
-																	<p class="hashtag">
-																		<span>#마사지 </span><span>#강아지마사지 </span><span>#강아지테라피
-																		</span><span>#예민한강아지 </span><span>#강아지</span><span>#...</span>
-																	</p>
-																	<div class="item-items">
-																		<div class="profile"
-																			onclick="pagePopup.openGotoPopup()">
-																			<p>닉네임</p>
-																		</div>
-																	</div>
-																</div>
-															</div>
-														</li>
-													</ul>
+																<hr>
+																</c:if>
+															</c:forEach>
+														</c:forEach>			
+													</div>
+													<br>
 												</div>
 											</div>
 										</section>
@@ -197,6 +224,9 @@
 			style="margin-bottom: 190px; margin-right: 30px; font: 'Jua'">
 			<i class="fa fa-chevron-up" aria-hidden="true">TOP</i>
 		</button>
+		
+		
+		
 		<script type="text/javascript">
 			scrollTop('js-button', 500);
 			function scrollTop(elem, duration) {
@@ -223,8 +253,25 @@
 		<!-- footer 푸터 영역 -->
 		<%@ include file="/common/footer.jsp"%>
 		<!-- footer 푸터 영역 -->
+		
+		
 
 	</div>
+<!-- 
+	<form action="~~~" method="POST">
+           <div style="text-align: left; margin-left:50px;">
+           <input type="radio" class="report_class" name="report_class" value="1"> 저작권 침해 및 불법자료<br>
+           <input type="radio" class="report_class" name="report_class" value="2"> 도배성 게시글<br>
+           <input type="radio" class="report_class" name="report_class" value="3"> 허위사실<br>
+           <input type="radio" class="report_class" name="report_class" value="4"> 불법 광고<br>
+           <input type="radio" class="report_class" name="report_class" value="5"> 기타 <br>
+           <input type="textarea" class="readonly" name="content"> 
+           </div>
+           <br>
+           <input type="submit" value="확인" >
+       </form>
+	 -->
+	
 
 	<!-- Required Jquery -->
 	<script type="text/javascript"
@@ -249,6 +296,8 @@
 	<script src="/resources/js/vertical/vertical-layout.min.js "></script>
 
 	<script type="text/javascript" src="/resources/js/script.js "></script>
+	
+	
 
 </body>
 </html>
@@ -258,4 +307,3 @@
 
 
 
-																			

@@ -18,48 +18,49 @@ target/
 .idea
 classes/
 META-INF/
-  
+
 # OS Files #
 .DS_Store
-  
+
 *.class
+
 MultipartController.java
-  
+
 # Package Files #
 *.jar
 *.war
 *.ear
 *.db
-  
+
 ######################
 # Windows
 ######################
-  
+
 # Windows image file caches
-Thumbs.db 
-  
+Thumbs.db
+
 # Folder config file
 Desktop.ini
-  
+
 ######################
 # OSX
 ######################
-  
+
 .DS_Store
 .svn
-  
+
 # Thumbnails
 ._*
-  
+
 # Files that might appear on external disk
 .Spotlight-V100
 .Trashes
-  
-  
+
+
 ######################
 # Eclipse
 ######################
-  
+
 *.pydevproject
 .project
 .metadata
@@ -78,13 +79,13 @@ Bowwow/target/
 /src/main/resources/rebel.xml
 # External tool builders
 .externalToolBuilders/
-  
+
 # Locally stored "Eclipse launch configurations"
 *.launch
-  
+
 # CDT-specific
 .cproject
-  
+
 # PDT-specific
 .buildpath
 
