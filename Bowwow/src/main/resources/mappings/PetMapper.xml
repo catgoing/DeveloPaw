@@ -17,7 +17,7 @@
 		 #{tnr}, #{pet_weight}, TO_DATE(#{pet_birth}, 'yyyy-MM-dd'), #{neck_length}, #{back_length},
 		 #{chest_length}, #{pet_etc})
 	</insert>
-	
+
 	<!-- 반려동물 정보수정 - 유형, 이름, 성별, 품종은 안바꿔도 되잖아!! -->
 	<update id="updatePetInfo" parameterType="pet">
 		UPDATE FORM USER_PETINFO
@@ -35,18 +35,18 @@
 			BACK_LENGTH = #{back_length},
 			CHEST_LENGTH = #{chest_length},
 			PET_ETC = #{pet_etc}
-		WHERE PET_SERIAL = #{pet_serial }	
+		WHERE PET_SERIAL = #{pet_serial }
 	</update>
-	
+
 	<!-- 정보 삭제 -->
 	<delete id="deletePetInfo" parameterType="pet">
 		DELETE FROM USER_PETINFO
 		WHERE PET_SERIAL = #{pet_serial }
 	</delete>
-	
-	<!-- 조회 : petSerial로 검색 -->
+
+	<!-- 상세조회 : petSerial로 검색 -->
 	<select id="getPetInfo" parameterType="pet" resultType="pet">
-		SELECT 
+		SELECT
 			PET_SERIAL, MEMBER_SERIAL, IMAGE_SOURCE, ANIMAL_TYPE, PET_NAME,
 			PET_GENDER, PET_VARIETY, PET_AGE, PET_SIZE, TNR,
 			PET_WEIGHT, PET_BIRTH,
@@ -54,10 +54,10 @@
 		 FROM USER_PETINFO
 		WHERE PET_SERIAL = #{pet_serial }
 	</select>
-	
-	<!-- 조회 : String memberSerial로 pet검색 -->
+
+	<!-- 리스트조회 : String memberSerial로 pet검색 -->
 	<select id="getPetInfoList" parameterType="pet" resultType="pet">
-		SELECT 
+		SELECT
 			PET_SERIAL, MEMBER_SERIAL, IMAGE_SOURCE, ANIMAL_TYPE, PET_NAME,
 			PET_GENDER, PET_VARIETY, PET_AGE, PET_SIZE, TNR,
 			PET_WEIGHT, PET_BIRTH,
@@ -66,14 +66,5 @@
 		WHERE MEMBER_SERIAL = #{member_serial }
 		ORDER BY PET_SERIAL ASC
 	</select>
-	
+
 </mapper>
-
-
-
-
-
-
-
-
-

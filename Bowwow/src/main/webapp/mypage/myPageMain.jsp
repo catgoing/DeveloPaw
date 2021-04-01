@@ -2,7 +2,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
-<% 
+<%
 	//임시 로그인처리
 	String memberSerial = "1";
 	String id = "z";
@@ -24,7 +24,7 @@
       <![endif]-->
     <!-- Meta -->
     <script src="http://code.jquery.com/jquery-3.5.1.min.js"></script>
-   
+
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=0, minimal-ui">
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
@@ -128,10 +128,10 @@
 
 			<div class="pcoded-main-container">
 				<div class="pcoded-wrapper">
-				
+
 				<!-- 좌측 메뉴바 시작 -->
 				<%@include file="/common/myPageMenuBar.jsp" %>
-				
+
 			<div class="pcoded-content">
 				<div class="pcoded-inner-content">
 					<!-- Main-body start 본문 시작 -->
@@ -144,7 +144,7 @@
 						</div>
 
 						<div class="mypage_main_content">
-							
+
 							<div class="container mypage_main_content mypointlist">
 								<h3>누적적립금출력영역</h3>
 							</div>
@@ -153,15 +153,22 @@
 							<div class="container">
 							  	<h3>반려동물리스트</h3>
 							  <div class="row">
-							  <c:if test="${not empty petList }">
-                              <c:forEach var="petList" items="${petList }">
+							  	<c:if test="${not empty petList }">
+                       			<c:forEach var="petList" items="${petList }">
 							    <div class="col-sm">
-							      ${petList.pet_name }
-							      <div class="card" style="width: 200px;">
-									  <img src="../resources/images/avatar-2.jpg" class="card-img-top" alt="...">
-								  </div>
+							      	${petList.pet_name }
+							    	<div class="card" style="width: 200px;">
+										<img src="../resources/images/avatar-2.jpg" class="card-img-top" alt="...">
+									</div>
 							    </div>
 							    </c:forEach>
+							    </c:if>
+							    <c:if test="${empty petList }">
+						    	<div class="col-md-6">
+                           			<div class="list-inner">
+                               	<h3>등록된 반려동물이 없습니다.</h3>
+                            	</div>
+                            </div>
 							    </c:if>
 							  </div>
 							</div>
@@ -169,7 +176,7 @@
 							<hr>
 							<div class="container mypage_main_content boardlist">
 								<h3>게시글출력영역</h3>
-							</div>		
+							</div>
 						</div>
 					</div>
 					<!-- Page-body end -->
@@ -180,7 +187,7 @@
 			</div>
 		</div>
 	</div>
-	
+
     <button class="scroll-top" id="js-button" style="margin-bottom: 190px; margin-right: 30px;">
         <i class="fa fa-chevron-up" aria-hidden="true">TOP</i>
     </button>
@@ -188,13 +195,13 @@
         scrollTop('js-button', 500);
         function scrollTop(elem,duration) {
             let target = document.getElementById(elem);
-        
+
             target.addEventListener('click', function() {
-                let currentY = window.pageYOffset; 
+                let currentY = window.pageYOffset;
                 let step = duration/currentY > 1 ? 10 : 100;
                 let timeStep = duration/currentY * step;
                 let intervalID = setInterval(scrollUp, timeStep);
-        
+
                 function scrollUp(){
                     currentY = window.pageYOffset;
                     if(currentY === 0) {
@@ -206,7 +213,7 @@
             });
         }
         </script>
-        
+
 	<!-- footer 푸터 시작부분-->
 	<%@include file="/common/footer.jsp" %>
 	<!-- footer 푸터 끝부분-->

@@ -2,7 +2,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
-<% 
+<%
 	//임시 로그인처리
 	String memberSerial = "1";
 	String id = "z";
@@ -67,18 +67,21 @@
 </style>
 <script>
 
+(funcytion(name){
+	console.log('my name is '+ name);
+})('??')
  function goModify(form){
 	 var idCheck = form.id.value;
 	 var emailCheck = form.email.value;
 	 var phoneCheck = form.phone.value;
-	 
+
 	//아이디 검증=_=
    	if(/[ㄱ-ㅎ|ㅏ-ㅣ|가-힝]/.test(idCheck)){
    		console.log(idCheck);
    		alert("아이디 안에 한글은 포함될 수 없습니다.");
    	}
      //email 검증=_=
-	 if(!/^[0-9a-zA-Z]([-_.]?[0-9a-zA-Z])*@[0-9a-zA-Z]([-_.]?[0-9a-zA-Z])*.[a-zA-Z]{2,3}$/i.test(emailCheck)) { 
+	 if(!/^[0-9a-zA-Z]([-_.]?[0-9a-zA-Z])*@[0-9a-zA-Z]([-_.]?[0-9a-zA-Z])*.[a-zA-Z]{2,3}$/i.test(emailCheck)) {
 		console.log(emailCheck);
 		alert("이메일 형식을 지켜주세요.");
 	 }
@@ -89,9 +92,9 @@
 		console.log(phoneCheck);
 		alert("전화번호 형식을 지켜주세요.");
 	}
-   	 
+
  }
- 
+
  function sample4_execDaumPostcode() {
      new daum.Postcode({
          oncomplete: function(data) {
@@ -120,7 +123,7 @@
              document.getElementById('sample4_postcode').value = data.zonecode;
              document.getElementById("sample4_roadAddress").value = roadAddr;
              document.getElementById("sample4_jibunAddress").value = data.jibunAddress;
-             
+
              // 참고항목 문자열이 있을 경우 해당 필드에 넣는다.
              if(roadAddr !== ''){
                  document.getElementById("sample4_extraAddress").value = extraRoadAddr;
@@ -146,8 +149,8 @@
          }
      }).open();
  }
-  
-  
+
+
 </script>
 </head>
 
@@ -376,20 +379,20 @@
 <div class="pcoded-main-container">
 	<div class="pcoded-wrapper">
 		<%@include file="/common/myPageMenuBar.jsp" %>
-		
+
 <!-- 좌측 메뉴바 끝 -->
-				
+
 				<!-- Main-body start 본문 시작 -->
 					<div class="main-body">
 					<div class="page-wrapper">
-                                
+
 						<!-- Page-body start -->
 						<div class="page-body">
 						<div class="myPageInfo-header">
 							<h2> 뫄뫄님의 페이지</h2>
 						</div>
 						<div class="myPageInfo-wrapper">
-							
+
 							<!-- <section class="featured spad">
 								<div class="container">
 									<div class="row">
@@ -411,7 +414,7 @@
 											<p>닉네임</p>
 										</div>
 									</div>
-									
+
 									<div class="mainMypage-content">
 									<div class="block-title">
 										<h3>정보수정</h3>
@@ -419,56 +422,56 @@
 									</div>
 									<form>
 									<%-- <input type="text" value="${id }" readonly> --%>
-										
-										<div class="input-label">아이디 
+
+										<div class="input-label">아이디
 											<div class="input-wrap">
 												<input type="text" name="id" value="${user.id }" disabled>
 											</div>
-											<p></p>												
+											<p></p>
 										</div>
-										
+
 										<div class="input-label">비밀번호
 											<div class="input-wrap">
 												<input type="password" name="password" placeholder="비밀번호 입력">
 											</div>
 											<p>비밀번호는 이만~~~~~큼 입력해야합니다.</p>
 										</div>
-													
+
 										<div class="input-label">비밀번호 확인
 											<div class="input-wrap">
 												<input type="password" placeholder="비밀번호 재입력">
 											</div>
 											<p>비밀번호를 또 입력해야합니다 -- 비밀번호 입력 안하고 수정해도 수정됨?</p>
 										</div>
-													
+
 										<div class="input-label">이름
 											<div class="input-wrap">
 												<%-- <input type="text" name="name" value="${user.name }"> --%>
 											</div>
 											<p></p>
 										</div>
-													
+
 										<div class="input-label">닉네임
 											<div class="input-wrap">
 												<%-- <input type="text" name="nickname" value="${user.nickname }"> --%>
 											</div>
 											<p></p>
 										</div>
-													
+
 										<div class="input-label">이메일
 											<div class="input-wrap">
 												<%-- <input type="text" name="email" value="${user.email }"> --%>
 											</div>
 											<p></p>
 										</div>
-										
+
 										<div class="input-label">전화번호
 											<div class="input-wrap">
-												<<%-- input type="text" name="phone" value="${phone }"> --%>
+												<input type="text" name="phone" value="${user.phone }">
 											</div>
 											<p></p>
 										</div>
-										
+
 										<div class="input-label">주소
 											<div>
 												<input type="text" id="sample4_postcode" placeholder="우편번호">
@@ -481,17 +484,17 @@
 											</div>
 											<p></p>
 										</div>
-										
+
 										<div class="input-label">생일
 											<div class="input-wrap">
-												<%-- <input type="date" name="birthday" value="${bitrhday }"> --%>
+											<input type="text" name="birthday" value='${user.birthday }'>
 												<%-- <input type="text" name="birthday" value="${birthday }">
 												<input type="text" name="birthday" value="${birthday }">
 												<input type="text" name="birthday" value="${birthday }"> --%>
 											</div>
 											<p></p>
 										</div>
-										
+
 										<div class="input-label">성별
 											<div class="input-wrap">
 												<span class="radio-gender">
@@ -505,34 +508,34 @@
 											</div>
 											<p>설정한 정보로 checked하기??</p>
 										</div>
-										
+
 										<div class="input-label">
 											<div class="input-wrap">
 												<div class="my-profile">
 													<label for="uploadImage" id="imageview">
 														<img src="" class="thumb">
 													</label>
-													<input type="file" id="uploadImage" accept="image/gif, image/jpeg, image/jpg, image/png" name="uploadImage" onchange="readURL(this);">		
+													<input type="file" id="uploadImage" accept="image/gif, image/jpeg, image/jpg, image/png" name="uploadImage" onchange="readURL(this);">
 												</div>
 											</div>
 											<p></p>
 										</div>
-										
+
 										<div class="action_btn">
-											<input type="button" value="정보수정" onclick="javascript:goModify(this.form);">							    
-										</div>																    
-	
+											<input type="button" value="정보수정" onclick="javascript:goModify(this.form);">
+										</div>
+
 									</form>
 									</div>
 									</div>
 								</div>
-										
+
 							</div>
 						</div>
 					</div>
 				</div>
 			</div>
-					
+
 			</div>
 		</div>
 	</div>
