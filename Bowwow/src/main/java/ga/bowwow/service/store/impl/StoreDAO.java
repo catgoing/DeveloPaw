@@ -40,8 +40,9 @@ public class StoreDAO {
 		return mybatis.selectList("Cart.getCartList", id);
 	}
 	
-	public List<CartList> pidCheck(String id) {
-		return mybatis.selectList("Cart.pIdCheck", id);
+	public int pidCheck(CartList cartList) {
+		return mybatis.selectOne("Cart.cartCheck", cartList);
+		
 	}
 	
 	

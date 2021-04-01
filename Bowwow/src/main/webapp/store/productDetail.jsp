@@ -116,8 +116,27 @@
                url : '/store/addCart',
                type : 'post',
                data : param,
-               success : function(){
-            	   alert("장바구니에 상품이 담겼습니다.");
+               dataType : 'json',
+               success : function(data){
+            	   
+            	   if (data.result == "code") {
+            		  var chk = confirm(data.msg);
+            		  
+            		  if (chk) {
+            			  location.href="/store/cartList";
+            		  } else {
+            			  return;
+            		  }
+            	   	
+            	   } else if (data.result == "error") {
+            		  var chk = confirm(data.msg);
+            		  
+            		  if (chk) {
+            			  location.href="/store/cartList";
+            		  } else {
+            			  return;
+            		  }
+            	   }
                }
             });
          

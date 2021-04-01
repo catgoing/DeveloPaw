@@ -7,7 +7,7 @@
 		<setting name="jdbcTypeForNull" value="NULL" />
 	</settings>
 	<typeAliases>
-
+	
 		<typeAlias type="ga.bowwow.service.board.Board" alias="Board" />
 		<typeAlias type="ga.bowwow.service.pet.Pet" alias="pet" />
 		<typeAlias type="ga.bowwow.service.store.Product" alias="Product" />
@@ -15,7 +15,7 @@
 		<typeAlias type="ga.bowwow.service.store.CartList" alias="CartList" />
 		<typeAlias type="ga.bowwow.service.store.Order" alias="Order" />
 		<typeAlias type="ga.bowwow.service.store.Inquiry" alias="Inquiry" />
-
+		
 	</typeAliases>
 
 	<mappers>
