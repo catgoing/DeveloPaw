@@ -62,10 +62,8 @@
 <link rel="stylesheet" type="text/css"
 	href="../resources/css/jquery.mCustomScrollbar.css">
 <!-- Style.css -->
-<link rel="stylesheet" type="text/css" href="../resources/css/style.css">
-<link rel="stylesheet" type="text/css"
-	href="../resources/css/storeStyle.css">
-<link rel="stylesheet" type="text/css" href="../resources/css/test.css">
+<link rel="stylesheet" type="text/css" href="/resources/css/style.css">
+<link rel="stylesheet" type="text/css" href="/resources/css/test.css">
 <style>
 .featured__item__text {
 	width: 150px;
@@ -517,7 +515,7 @@ img {
 									<div class="row">
 										<div class="col-lg-12">
 											<div class="breadcrumb__links">
-												<a href="./index.html"><i class="fa fa-home"></i> 스토어 메인</a>
+												<a href="storeMain.html"><i class="fa fa-home"></i> 스토어 메인</a>
 												<span>주문 화면</span>
 											</div>
 										</div>
@@ -528,13 +526,13 @@ img {
 
 							<!-- Checkout Section Begin -->
 							<div>
+								<ul>
 								<c:forEach var="oList" items="${orderList }">
+								<li>
 									<table style="margin : 10px; border : 2px solid black;">
 										<tr>
-											
 											<th>주문번호</th>
 											<td><a href="storeOrderDetail?order_id=${oList.order_id }">${oList.order_id}</a></td>
-											
 										</tr>
 										<tr>
 											<th>상품번호</th>
@@ -561,7 +559,47 @@ img {
 											<td>${oList.order_date}</td>
 										</tr>
 										<tr>
+											<th>주문상태</th>
+											<td>${oList.order_status}</td>
+										</tr>
+									</table>
+								</li>
+								</c:forEach>
+								</ul>
+							</div>
+							<div>
+								<c:forEach var="oList" items="${orderList }">
+									<table style="margin : 10px; border : 2px solid black;">
+										<tr>
+											<th>주문번호</th>
+											<td><a href="storeOrderDetail?order_id=${oList.order_id }">${oList.order_id}</a></td>
+										</tr>
+										<tr>
+											<th>상품번호</th>
+											<td>${oList.p_id}</td>
+										</tr>
+										<tr>
+											<th>회원번호</th>
+											<td>${oList.member_serial}</td>
+										</tr>
+										<tr>
 											<th>주문수량</th>
+											<td>${oList.amount}</td>
+										</tr>
+										<tr>
+											<th>주문가격</th>
+											<td>${oList.price}</td>
+										</tr>
+										<tr>
+											<th>메모</th>
+											<td>${oList.memo}</td>
+										</tr>
+										<tr>
+											<th>주문날짜</th>
+											<td>${oList.order_date}</td>
+										</tr>
+										<tr>
+											<th>주문상태</th>
 											<td>${oList.order_status}</td>
 										</tr>
 									</table>

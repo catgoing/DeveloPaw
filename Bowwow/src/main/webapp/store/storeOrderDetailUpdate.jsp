@@ -2,12 +2,11 @@
 	pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
-
-
 <!DOCTYPE html>
-
 <html>
+
 <head>
+<title>개발바닥</title>
 <!-- HTML5 Shim and Respond.js IE10 support of HTML5 elements and media queries -->
 <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
 <!--[if lt IE 10]>
@@ -35,102 +34,48 @@
 	rel="stylesheet">
 
 <!-- Favicon icon -->
-<link rel="icon" href="/resources/images/favicon.ico"
+<link rel="icon" href="../resources/images/favicon.ico"
 	type="image/x-icon">
 <!-- Google font-->
 <link
 	href="https://fonts.googleapis.com/css?family=Open+Sans:400,600,700"
 	rel="stylesheet">
 <!-- waves.css -->
-<link rel="stylesheet" href="/resources/pages/waves/css/waves.min.css"
-	type="text/css" media="all">
+<link rel="stylesheet"
+	href="../	resources/pages/waves/css/waves.min.css" type="text/css"
+	media="all">
 <!-- Required Fremwork -->
 <link rel="stylesheet" type="text/css"
-	href="/resources/css/bootstrap/css/bootstrap.min.css">
+	href="../resources/css/bootstrap/css/bootstrap.min.css">
 <!-- waves.css -->
-<link rel="stylesheet" href="/resources/pages/waves/css/waves.min.css"
+<link rel="stylesheet" href="../resources/pages/waves/css/waves.min.css"
 	type="text/css" media="all">
 <!-- themify icon -->
 <link rel="stylesheet" type="text/css"
-	href="/resources/icon/themify-icons/themify-icons.css">
+	href="../resources/icon/themify-icons/themify-icons.css">
 <!-- font-awesome-n -->
 <link rel="stylesheet" type="text/css"
-	href="/resources/css/font-awesome-n.min.css">
+	href="../resources/css/font-awesome-n.min.css">
 <link rel="stylesheet" type="text/css"
-	href="/resources/css/font-awesome.min.css">
+	href="../resources/css/font-awesome.min.css">
 <!-- scrollbar.css -->
 <link rel="stylesheet" type="text/css"
-	href="/resources/css/jquery.mCustomScrollbar.css">
+	href="../resources/css/jquery.mCustomScrollbar.css">
 <!-- Style.css -->
-<link rel="stylesheet" type="text/css" href="/resources/css/style.css">
-<link rel="stylesheet" type="text/css" href="/resources/css/test.css">
-
-<script type="text/javascript" src="/resources/js/jquery/jquery.min.js "></script>
-
+<link rel="stylesheet" type="text/css" href="../resources/css/style.css">
+<link rel="stylesheet" type="text/css"
+	href="../resources/css/storeStyle.css">
+<link rel="stylesheet" type="text/css" href="../resources/css/test.css">
 <style>
-
-
 .featured__item__text {
 	width: 150px;
 }
 
-.detailProduct {
+img {
 	display: block;
 	margin: auto;
 }
-
 </style>
-
-<script type="text/javascript">
-
-		var sell_price;
-		var amount;
-		
-		$(function init () {
-			sell_price = document.getElementById('sell_price').value;
-			document.getElementById('sum').value = sell_price.replace(/\B(?=(\d{3})+(?!\d))/g, ",");
-			sell_price = document.form.sell_price.value;
-			amount = document.form.amount.value;
-			document.form.sum.value = sell_price;
-		});
-		
-		function add () {
-			hm = document.form.amount;
-			sum = document.form.sum;
-			hm.value ++ ;
-			
-			var temp = parseInt(hm.value) * sell_price
-		
-			document.getElementById('sum').value = temp;
-			document.getElementById('sum').value = document.getElementById('sum').value.replace(/\B(?=(\d{3})+(?!\d))/g, ",");
-		}
-		
-		function del () {
-			hm = document.form.amount;
-			sum = document.form.sum;
-				if (hm.value > 1) {
-					hm.value -- ;
-					var temp = parseInt(hm.value) * sell_price
-					
-					document.getElementById('sum').value = temp;
-					document.getElementById('sum').value = document.getElementById('sum').value.replace(/\B(?=(\d{3})+(?!\d))/g, ",");
-				}
-				
-		}
-		
-		function changeValue(){
-			hm = document.form.amount;
-			sum = document.form.sum;
-			
-			var temp = parseInt(hm.value) * sell_price
-		
-			document.getElementById('sum').value = temp;
-			document.getElementById('sum').value = document.getElementById('sum').value.replace(/\B(?=(\d{3})+(?!\d))/g, ",");
-		}
-		
-		
-</script>
-
 </head>
 
 <body>
@@ -225,7 +170,7 @@
 								</div>
 							</li>
 							<li><a href="index.html"> 커뮤니티 </a></li>
-							<li><a href="storeMain"> 스토어 </a></li>
+							<li><a href="storeMain.html"> 스토어 </a></li>
 						</ul>
 						<ul class="nav-right">
 							<li class="form-group form-primary"><input type="text"
@@ -305,7 +250,7 @@
 									<li class="waves-effect waves-light">
 										<div class="media">
 											<img class="d-flex align-self-center img-radius"
-												src="resources/images/avatar-4.jpg"
+												src="../resources/images/avatar-4.jpg"
 												alt="Generic placeholder image">
 											<div class="media-body">
 												<h5 class="notification-user">Joseph William</h5>
@@ -318,7 +263,7 @@
 									<li class="waves-effect waves-light">
 										<div class="media">
 											<img class="d-flex align-self-center img-radius"
-												src="resources/images/avatar-3.jpg"
+												src="../resources/images/avatar-3.jpg"
 												alt="Generic placeholder image">
 											<div class="media-body">
 												<h5 class="notification-user">Sara Soudein</h5>
@@ -331,7 +276,7 @@
 								</ul></li>
 							<li class="user-profile header-notification"><a href="#!"
 								class="waves-effect waves-light"> <img
-									src="resources/images/avatar-4.jpg" class="img-radius"
+									src="../resources/images/avatar-4.jpg" class="img-radius"
 									alt="User-Profile-Image"> <i class="ti-angle-down"></i>
 							</a>
 								<ul class="show-notification profile-notification">
@@ -443,10 +388,10 @@
 							</ul>
 
 							<ul class="pcoded-item pcoded-left-item">
-								<li class=""><a href="storeMain"
+								<li class=""><a href="storeMain.html"
 									class="waves-effect waves-dark"> <span class="pcoded-micon"><i
-											class="ti-layers"></i><b>FC</b></span> <span class="pcoded-mtext">스토어</span>
-										<span class="pcoded-mcaret"></span>
+											class="ti-layers"></i><b>FC</b></span> <span class="pcoded-mtext">스토어
+											전체보기</span> <span class="pcoded-mcaret"></span>
 								</a></li>
 							</ul>
 
@@ -484,45 +429,33 @@
 										<span class="pcoded-mcaret"></span>
 								</a>
 									<ul class="pcoded-submenu">
-										<li class=""><a href="productList?p_type=dog"
-											class="waves-effect waves-dark"> <span
-												class="pcoded-micon"><i class="ti-angle-right"></i></span> <span
-												class="pcoded-mtext">상품 전체보기</span> <span
-												class="pcoded-mcaret"></span>
-										</a></li>
-										<li class=""><a
-											href="productList?p_type=dog&p_category=food"
+										<li class=""><a href="dogFood.jsp"
 											class="waves-effect waves-dark"> <span
 												class="pcoded-micon"><i class="ti-angle-right"></i></span> <span
 												class="pcoded-mtext">사료</span> <span class="pcoded-mcaret"></span>
 										</a></li>
-										<li class=""><a
-											href="productList?p_type=dog&p_category=snack"
+										<li class=""><a href="auth-normal-sign-in.html"
 											class="waves-effect waves-dark"> <span
 												class="pcoded-micon"><i class="ti-angle-right"></i></span> <span
 												class="pcoded-mtext">간식</span> <span class="pcoded-mcaret"></span>
 										</a></li>
-										<li class=""><a
-											href="productList?p_type=dog&p_category=care"
+										<li class=""><a href="auth-normal-sign-in.html"
 											class="waves-effect waves-dark"> <span
 												class="pcoded-micon"><i class="ti-angle-right"></i></span> <span
 												class="pcoded-mtext">케어</span> <span class="pcoded-mcaret"></span>
 										</a></li>
-										<li class=""><a
-											href="productList?p_type=dog&p_category=living"
+										<li class=""><a href="auth-sign-up.html"
 											class="waves-effect waves-dark"> <span
 												class="pcoded-micon"><i class="ti-angle-right"></i></span> <span
 												class="pcoded-mtext">리빙</span> <span class="pcoded-mcaret"></span>
 										</a></li>
-										<li class=""><a
-											href="productList?p_type=dog&p_category=clothes"
+										<li class=""><a href="dogClothes.jsp "
 											class="waves-effect waves-dark"> <span
 												class="pcoded-micon"><i
 													class="ti-layout-sidebar-left"></i><b>S</b></span> <span
 												class="pcoded-mtext">의류</span> <span class="pcoded-mcaret"></span>
 										</a></li>
-										<li class=""><a
-											href="productList?p_type=dog&p_category=toy"
+										<li class=""><a href="dogToy.jsp"
 											class="waves-effect waves-dark"> <span
 												class="pcoded-micon"><i class="ti-angle-right"></i></span> <span
 												class="pcoded-mtext">장난감</span> <span class="pcoded-mcaret"></span>
@@ -536,45 +469,33 @@
 										<span class="pcoded-mcaret"></span>
 								</a>
 									<ul class="pcoded-submenu">
-										<li class=""><a href="productList?p_type=cat"
-											class="waves-effect waves-dark"> <span
-												class="pcoded-micon"><i class="ti-angle-right"></i></span> <span
-												class="pcoded-mtext">상품 전체보기</span> <span
-												class="pcoded-mcaret"></span>
-										</a></li>
-										<li class=""><a
-											href="productList?p_type=cat&p_category=food"
+										<li class=""><a href="storeMain.html"
 											class="waves-effect waves-dark"> <span
 												class="pcoded-micon"><i class="ti-angle-right"></i></span> <span
 												class="pcoded-mtext">사료</span> <span class="pcoded-mcaret"></span>
 										</a></li>
-										<li class=""><a
-											href="productList?p_type=cat&p_category=snack"
+										<li class=""><a href="storeMain.html"
 											class="waves-effect waves-dark"> <span
 												class="pcoded-micon"><i class="ti-angle-right"></i></span> <span
 												class="pcoded-mtext">간식</span> <span class="pcoded-mcaret"></span>
 										</a></li>
-										<li class=""><a
-											href="productList?p_type=cat&p_category=care"
+										<li class=""><a href="auth-normal-sign-in.html"
 											class="waves-effect waves-dark"> <span
 												class="pcoded-micon"><i class="ti-angle-right"></i></span> <span
 												class="pcoded-mtext">케어</span> <span class="pcoded-mcaret"></span>
 										</a></li>
-										<li class=""><a
-											href="productList?p_type=cat&p_category=living"
+										<li class=""><a href="auth-sign-up.html"
 											class="waves-effect waves-dark"> <span
 												class="pcoded-micon"><i class="ti-angle-right"></i></span> <span
 												class="pcoded-mtext">리빙</span> <span class="pcoded-mcaret"></span>
 										</a></li>
-										<li class=""><a
-											href="productList?p_type=cat&p_category=clothes"
+										<li class=""><a href="sample-page.html"
 											class="waves-effect waves-dark"> <span
 												class="pcoded-micon"><i
 													class="ti-layout-sidebar-left"></i><b>S</b></span> <span
 												class="pcoded-mtext">의류</span> <span class="pcoded-mcaret"></span>
 										</a></li>
-										<li class=""><a
-											href="productList?p_type=cat&p_category=toy"
+										<li class=""><a href="auth-normal-sign-in.html"
 											class="waves-effect waves-dark"> <span
 												class="pcoded-micon"><i class="ti-angle-right"></i></span> <span
 												class="pcoded-mtext">장난감</span> <span class="pcoded-mcaret"></span>
@@ -589,343 +510,316 @@
 						<!-- Page-header end -->
 						<div class="pcoded-inner-content">
 							<!-- Main-body start -->
+
 							<!-- Breadcrumb Begin -->
 							<div class="breadcrumb-option">
 								<div class="container">
 									<div class="row">
 										<div class="col-lg-12">
 											<div class="breadcrumb__links">
-												<a href="storeMain"><i class="fa fa-home"></i> 스토어 메인 </a> <a
-													href="#"> 카테고리 </a> <span></span>
+												<a href="./index.html"><i class="fa fa-home"></i> 스토어 메인</a>
+												<span>주문 화면</span>
 											</div>
 										</div>
 									</div>
 								</div>
 							</div>
-
+							<br>
 							<!-- Breadcrumb End -->
-
-							<!-- Product Details Section Begin -->
-							<section class="product-details spad">
-								<div class="container" style="border: 2px solid white;">
+							<!--================Order Details Area =================-->
+							<section class="order_details section_gap">
+								<div class="container" style="background-color: white;">
 									<br>
-									<c:choose>
-										<c:when test="${p.p_type == 'dog'}">
-											<c:set var="imgDir" value="dogImg" />
-										</c:when>
-										<c:when test="${p.p_type == 'cat'}">
-											<c:set var="imgDir" value="catImg" />
-										</c:when>
-									</c:choose>
-									<div class="row">
-										<div class="col-lg-6">
-											<div class="product__details__pic">
-												<div class="product__details__slider__content">
-													<div class="product__details__pic__slider owl-carousel">
-														<img
-															src="https://projectbit.s3.us-east-2.amazonaws.com/${imgDir }/${p.s_image }"
-															alt="">
-													</div>
-												</div>
+									<h3 class="title_confirmation">주문 상세 내역</h3>
+									<div class="row order_d_inner">
+										<div class="col-lg-4">
+											<div class="details_item">
+												<h4>Order Info</h4>
+												<ul class="list">
+													<li><a href="#"><span>Order number</span> :
+															${o.order_id}</a></li>
+													<li><a href="#"><span>Member Serial</span> :
+															${o.member_serial}</a></li>
+													<li><a href="#"><span>Total</span> : USD 2210</a></li>
+													<li><a href="#"><span>Payment method</span> :
+															Check payments</a></li>
+												</ul>
 											</div>
 										</div>
-										<div class="col-lg-6">
-											<div class="product__details__text">
-												<h4 style="color: #000">${p.p_name }</h4>
-												<div class="product__details__button">
-													<div class="product__details__widget">
-														<ul>
-															<li>
-																<h4>
-																	판매금액:
-																	<fmt:formatNumber value="${p.price }" pattern="#,###" />
-																	원
-																</h4>
-															</li>
-														</ul>
-													</div>
-													<div class="quantity">
-														<div class="pro-qty">
-															<form name="form" onsubmit="return false;" method="POST">
-																<h5>
-																	상품 수량 : <input type="hidden" id="sell_price"
-																		value="${p.price }"> <input type="button"
-																		class="store_btn2" value=" - " onclick="del()">
-																	<input type="text" class="store_input"
-																		autocomplete="off" min="1" name="amount" value="1"
-																		size="3" onchange="changeValue();"> <input
-																		type="button" class="store_btn2" value=" + "
-																		onclick="add()">
-																</h5>
-															</form>
-														</div>
-														<br>
-													</div>
-
-													<div class="product__details__widget">
-														<ul>
-															<li>
-																<h4>
-																	총 상품금액: <input type="text" class="store_input2"
-																		size="10" id="sum" readonly>원
-																</h4>
-															</li>
-														</ul>
-													</div>
-													<ul>
-														<li><a href="#"><span class="icon_heart_alt"></span></a></li>
-														<li><a href="#"><span class="icon_adjust-horiz"></span></a></li>
-													</ul>
-												</div>
-												<div class="btn_area">
-													<button class="store_btn" onclick="cartList()">장바구니</button>
-													<button class="store_btn"
-														onclick="location.href='storeOrder?p_id=${p.p_id}'">주문하기</button>
-												</div>
-												<ul>
-													<li><a href="#"><span class="icon_heart_alt"></span></a></li>
-													<li><a href="#"><span class="icon_adjust-horiz"></span></a></li>
+										<div class="col-lg-4">
+											<div class="details_item">
+												<h4>주문인 주소</h4>
+												<ul class="list">
+													<li><a href="#"><span>Street</span> : 56/8</a></li>
+													<li><a href="#"><span>City</span> : Los Angeles</a></li>
+													<li><a href="#"><span>Country</span> : United
+															States</a></li>
+												</ul>
+											</div>
+										</div>
+										<div class="col-lg-4">
+											<div class="details_item">
+												<h4>Shipping Address</h4>
+												<ul class="list">
+													<li><a href="#"><span>Street</span> : 56/8</a></li>
+													<li><a href="#"><span>City</span> : Los Angeles</a></li>
+													<li><a href="#"><span>Country</span> : United
+															States</a></li>
+													<li><a href="#"><span>Postcode </span> : 36952</a></li>
 												</ul>
 											</div>
 										</div>
 									</div>
-									<div class="col-lg-12">
-										<div class="product__details__tab" style="margin: 30px;">
-											<ul class="nav nav-tabs" role="tablist">
-												<li class="nav-item"><a class="nav-link active"
-													data-toggle="tab" href="#tabs-1" role="tab">상세 정보</a></li>
-												<li class="nav-item"><a class="nav-link"
-													data-toggle="tab" href="#tabs-2" role="tab">리뷰 남기기</a></li>
-											</ul>
-											<div class="tab-content">
-												<div class="tab-pane active" id="tabs-1" role="tabpanel"
-													style="margin: 30px;">
-													<img class="detailProduct"
-														src="https://projectbit.s3.us-east-2.amazonaws.com/${imgDir }/${p.l_image }"
-														alt="">
-												</div>
-												<div class="tab-pane" id="tabs-2" role="tabpanel"
-													style="margin: 30px;">
-													<h2>상품에 대한 후기를 자유롭게 남겨주세요!</h2>
-													<br>
-													<div class="tab-pane fade show active" id="review"
-														role="tabpanel" aria-labelledby="review-tab">
-														<div class="row">
-															<div class="col-lg-6">
-																<div class="review_list">
-																	<c:forEach var="rList" items="${reviewList}">
-																		<div id="rList_${rList.review_id}" class="review_box" style=" border : 1px solid lightgray; margin-bottom : 10px; padding: 10px;">
-																			<h4>작성된 리뷰</h4>
-																			<form class="row contact_form" id="contactForm" onsubmit="return false;">
-																				<div class="col-md-12">
-																					<div class="form-group">
-																						<input type="text"
-																							class="form-control"
-																							value="${rList.review_title }" readonly/>
-																					</div>
-																				</div>
-																				<div class="col-md-6">
-																					<div class="form-group">
-																						<input type="text"
-																							class="form-control" value=999 readonly/>
-																					</div>
-																				</div>
-																				<div class="col-md-6">
-																					<div class="form-group">
-																						<input type="text"
-																							class="form-control"
-																							value="${rList.review_regdate }" readonly/>
-																					</div>
-																				</div>
-																				<div class="col-md-12">
-																					<div class="form-group">
-																						<textarea class="form-control"
-																							style="resize: none;" rows="2" readonly>${rList.review_content }</textarea>
-																					</div>
-																					<button class="store_btn" onclick="deleteReview(${rList.review_id})" style="float: right;">삭제</button>
-																				</div>
-																			</form>
-																		</div>
-																	</c:forEach>
-																</div>
-															</div>
-															<div class="col-lg-6">
-																<div class="review_box">
-																	<h4>리뷰 작성하기</h4>
-																	<form class="row contact_form" id="contactForm">
-																		<div class="col-md-6">
-																			<div class="form-group">
-																				<span>상품 번호</span>
-																				<input type="text" class="form-control" id="p_id"
-																					name="p_id" value="${p.p_id}" />
-																			</div>
-																		</div>
-																		<div class="col-md-6">
-																			<div class="form-group">
-																				<span>작성자</span>
-																				<input type="text" class="form-control"
-																					id="member_serial" name="member_serial" value=999 />
-																			</div>
-																		</div>
-																		<div class="col-md-12">
-																			<div class="form-group">
-																				<span>후기 제목</span>
-																				<input type="text" class="form-control"
-																					id="review_title" name="review_title"
-																					placeholder="후기 제목을 입력하세요" />
-																			</div>
-																		</div>
-																		<div class="col-md-12">
-																			<div class="form-group">
-																				<span>후기 내용</span>
-																				<textarea class="form-control" style="resize: none;"
-																					name="review_content" id="review_content" rows="2"
-																					placeholder="후기 내용을 입력하세요"></textarea>
-																			</div>
-																		</div>
-																		<div class="col-md-12 text-right">
-																			<button onclick="insertReview(${p.p_id})"
-																				class="store_btn">작성</button>
-																		</div>
-																	</form>
-																</div>
-															</div>
-														</div>
-													</div>
-												</div>
-											</div>
+									<br>
+									<div class="order_details_table">
+										<h2>주문한 상품 목록</h2>
+										<div class="table-responsive">
+											<table class="table">
+												<thead>
+													<tr>
+														<th scope="col">상품명</th>
+														<th scope="col">상품 수량</th>
+														<th scope="col">결제 금액</th>
+														<th scope="col">삭제</th>
+													</tr>
+												</thead>
+												<tbody>
+													<tr>
+														<td>
+															<p>Pixelstore fresh Blackberry</p>
+														</td>
+														<td>
+															<h5>x 02</h5>
+														</td>
+														<td>
+															<p>$720.00</p>
+														</td>
+													</tr>
+													<tr>
+														<td>
+															<p>Pixelstore fresh Blackberry</p>
+														</td>
+														<td>
+															<h5>x 02</h5>
+														</td>
+														<td>
+															<p>$720.00</p>
+														</td>
+													</tr>
+													<tr>
+														<td>
+															<p>Pixelstore fresh Blackberry</p>
+														</td>
+														<td>
+															<h5>x 02</h5>
+														</td>
+														<td>
+															<p>$720.00</p>
+														</td>
+													</tr>
+													<tr>
+														<td>
+															<h4>Subtotal</h4>
+														</td>
+														<td>
+															<h5></h5>
+														</td>
+														<td>
+															<p>$2160.00</p>
+														</td>
+													</tr>
+													<tr>
+														<td>
+															<h4>배송비</h4>
+														</td>
+														<td>
+															<h5></h5>
+														</td>
+														<td>
+															<p>무료</p>
+														</td>
+													</tr>
+													<tr>
+														<td>
+															<h4>Total</h4>
+														</td>
+														<td>
+															<h5></h5>
+														</td>
+														<td>
+															<p>$2210.00</p>
+														</td>
+													</tr>
+												</tbody>
+											</table>
+											<button onclick="location.href='updateOrder?order_id=${oList.order_id}'"
+												class="site-btn" style="font-size: 1.5em; float: right;">주문내역 수정</button>
+											<button onclick="deleteOrder(${oList.order_id})'" class="site-btn" style="font-size: 1.5em; float: right;">주문내역 삭제</button>	
 										</div>
 									</div>
 								</div>
-								<br> <br>
 							</section>
+							<br>
+							<br>
+							<!--================End Order Details Area =================-->
+
+
+							<div id="styleSelector"></div>
 						</div>
-						<!-- Product Details Section End -->
-						<div id="styleSelector"></div>
 					</div>
 				</div>
 			</div>
 		</div>
-	</div>
-	<button class="scroll-top" id="js-button"
-		style="margin-bottom: 190px; margin-right: 30px; font: 'Jua'">
-		<i class="fa fa-chevron-up" aria-hidden="true">TOP</i>
-	</button>
-	<script type="text/javascript">
-                scrollTop('js-button', 500);
-                function scrollTop(elem,duration) {
-                    let target = document.getElementById(elem);
+		<button class="scroll-top" id="js-button"
+			style="margin-bottom: 190px; margin-right: 30px; font: 'Jua'">
+			<i class="fa fa-chevron-up" aria-hidden="true">TOP</i>
+		</button>
+		<script type="text/javascript">
+			scrollTop('js-button', 500);
+			function scrollTop(elem, duration) {
+				let target = document.getElementById(elem);
 
-                    target.addEventListener('click', function() {
-                        let currentY = window.pageYOffset;
-                        let step = duration/currentY > 1 ? 10 : 100;
-                        let timeStep = duration/currentY * step;
-                        let intervalID = setInterval(scrollUp, timeStep);
+				target.addEventListener('click', function() {
+					let currentY = window.pageYOffset;
+					let step = duration / currentY > 1 ? 10 : 100;
+					let timeStep = duration / currentY * step;
+					let intervalID = setInterval(scrollUp, timeStep);
 
-                        function scrollUp(){
-                            currentY = window.pageYOffset;
-                            if(currentY === 0) {
-                                clearInterval(intervalID);
-                            } else {
-                                scrollBy( 0, -step );
-                            }
-                        }
-                    });
-                }
-                function insertReview(p_id) {
-                	console.log('상품번호 : ' + p_id);
-                	var getMemValue = $('#member_serial').val();
-                	var getTitleValue = $('#review_title').val();
-                	var getContentValue = $('#review_content').val();
+					function scrollUp() {
+						currentY = window.pageYOffset;
+						if (currentY === 0) {
+							clearInterval(intervalID);
+						} else {
+							scrollBy(0, -step);
+						}
+					}
+				});
+			}
+			
+			function updateOrder(order_id) {
+            	console.log('주문번호 : ' + order_id);
+            	var getAmountValue = $('#amount').val();
+            	var getAddressFirstValue = $('#address_first').val();
+            	var getAddressSecondValue = $('#address_second').val();
+            	var getZipValue = $('#zip').val();
 
-                	var data = {'p_id' : p_id, 'member_serial' : getMemValue, 'review_title' : getTitleValue, 'review_content' : getContentValue};
-					
-                	$.ajax({
-                		url : '/store/insertReview',
-                		type: 'POST',
-                        data: data,
-                        success: function(data){
-							console.log(data)
-							 if(data) {
-								/* $('#rList_${rList.review_id}').append('<div id="rList_${rList.review_id}" class="review_box" style=" border : 1px solid lightgray; margin-bottom : 10px; padding: 10px;">'
-													+'<h4>작성된 리뷰</h4>'
-													+'<form class="row contact_form" id="contactForm" onsubmit="return false;">'
-													+'<div class="col-md-12">'+'<div class="form-group">'
-													+'<input type="text" class="form-control" value="${rList.review_title }" readonly/>'
-													+'</div>'+'</div>'+'<div class="col-md-6">'+'<div class="form-group">'								
-													+'<input type="text" class="form-control" value=999 readonly/>'									
-													+'</div>'+'</div>'+'<div class="col-md-6">'							
-													+'<div class="form-group">'								
-													+'<input type="text" class="form-control" value="${rList.review_regdate }" readonly/>'									
-													+'</div>' +'</div>'	+'<div class="col-md-12">'							
-													+'<div class="form-group">'								
-													+'<textarea class="form-control" style="resize: none;" rows="2" readonly>${rList.review_content }</textarea>'									
-													+'</div>'								
-													+'<button class="store_btn" onclick="deleteReview(${rList.review_id})" style="float: right;">삭제</button>'								
-													+'</div>'+'</form>'+'</div>'); */
-							}
-                    	}
-                	});
-                }
+            	var data = {'p_id' : p_id, 'amount' : getAmountValue, 'address_first' : getAddressFirstValue, 
+            				'address_second' : getAddressSecondValue, 'zip' : getZipValue};
 
-                function deleteReview(review_id) {
-                	console.log('리뷰아이디 : ' + review_id);
-                	var data = {"r_id": review_id};
-                	$.ajaxSettings.traditional = true;
+            	$.ajax({
+            		url : '/store/updateOrder',
+            		type: 'POST',
+                    data: data,
+                    success: function(data){
+						console.log(data)
+						 if(data) {
+							/* $('#tabs-3').append('<table>'+
+													'<tr><th>리뷰번호</th><td>${rList.review_id}</td></tr>'+
+												'</table>'); */
+						}
+                	}
+            	});
+            }
+			
+			function deleteOrder(order_id) {
+            	console.log('주문번호 : ' + order_id);
+            	var data = {"o_id": order_id};
+            	$.ajax({
+                    url: '/store/deleteOrder',
+                    type: 'POST',
+                    data: data,
+                    success: function(data){
+						console.log('?? ' + data)
+						if(data == "success") {
+							$('#oList_' + order_id).remove();
+						}
+                	}
+            	});
+            }			
+			
+		</script>
+		<!-- footer 푸터 시작부분-->
+		<div style="display: block;">
+			<footer class="footer navbar-wrapper">
+				<div class="footer-wrapper navbar-wrapper">
+					<div class="footer-box" style="height: 100px; text-align: center;">
+						푸터</div>
+				</div>
+			</footer>
+			<!-- footer 푸터 끝부분-->
+		</div>
 
-                	$.ajax({
-                        url: '/store/deleteReview',
-                        type: 'POST',
-                        data: data,
-                        success: function(data){
-							console.log('?? ' + data)
-							if(data == "success") {
-								$('#rList_' + review_id).remove();
-							}
-                    	}
-                	});
-                }
-                
-                
-                
-                </script>
-	<!-- footer 푸터 시작부분-->
-	<div style="display: block;">
-		<footer class="footer navbar-wrapper">
-			<div class="footer-wrapper navbar-wrapper">
-				<div class="footer-box" style="height: 100px; text-align: center;">
-					푸터</div>
-			</div>
-		</footer>
-		<!-- footer 푸터 끝부분-->
-	</div>
 
-	<!-- Warning Section Ends -->
 
-	<!-- Required Jquery -->
-	<script type="text/javascript"
-		src="/resources/js/jquery/jquery.min.js "></script>
-	<script type="text/javascript"
-		src="/resources/js/jquery-ui/jquery-ui.min.js "></script>
-	<script type="text/javascript"
-		src="/resources/js/popper.js/popper.min.js"></script>
-	<script type="text/javascript"
-		src="/resources/js/bootstrap/js/bootstrap.min.js "></script>
-	<!-- waves js -->
-	<script src="/resources/pages/waves/js/waves.min.js"></script>
-	<!-- jquery slimscroll js -->
-	<script type="text/javascript"
-		src="/resources/js/jquery-slimscroll/jquery.slimscroll.js"></script>
+		<!-- Warning Section Starts -->
+		<!-- Older IE warning message -->
+		<!--[if lt IE 10]>
+<div class="ie-warning">
+    <h1>Warning!!</h1>
+    <p>You are using an outdated version of Internet Explorer, please upgrade <br/>to any of the following web browsers to access this website.</p>
+    <div class="iew-container">
+        <ul class="iew-download">
+            <li>
+                <a href="http://www.google.com/chrome/">
+                    <img src="../resources/images/browser/chrome.png" alt="Chrome">
+                    <div>Chrome</div>
+                </a>
+            </li>
+            <li>
+                <a href="https://www.mozilla.org/en-US/firefox/new/">
+                    <img src="../resources/images/browser/firefox.png" alt="Firefox">
+                    <div>Firefox</div>
+                </a>
+            </li>
+            <li>
+                <a href="http://www.opera.com">
+                    <img src="../resources/images/browser/opera.png" alt="Opera">
+                    <div>Opera</div>
+                </a>
+            </li>
+            <li>
+                <a href="https://www.apple.com/safari/">
+                    <img src="../resources/images/browser/safari.png" alt="Safari">
+                    <div>Safari</div>
+                </a>
+            </li>
+            <li>
+                <a href="http://windows.microsoft.com/en-us/internet-explorer/download-ie">
+                    <img src="../resources/images/browser/ie.png" alt="">
+                    <div>IE (9 & above)</div>
+                </a>
+            </li>
+        </ul>
+    </div>
+    <p>Sorry for the inconvenience!</p>
+</div>
+<![endif]-->
+		<!-- Warning Section Ends -->
 
-	<!-- slimscroll js -->
-	<script src="/resources/js/jquery.mCustomScrollbar.concat.min.js "></script>
+		<!-- Required Jquery -->
+		<script type="text/javascript"
+			src="../resources/js/jquery/jquery.min.js "></script>
+		<script type="text/javascript"
+			src="../resources/js/jquery-ui/jquery-ui.min.js "></script>
+		<script type="text/javascript"
+			src="../resources/js/popper.js/popper.min.js"></script>
+		<script type="text/javascript"
+			src="../resources/js/bootstrap/js/bootstrap.min.js "></script>
+		<!-- waves js -->
+		<script src="../resources/pages/waves/js/waves.min.js"></script>
+		<!-- jquery slimscroll js -->
+		<script type="text/javascript"
+			src="../resources/js/jquery-slimscroll/jquery.slimscroll.js"></script>
 
-	<!-- menu js -->
-	<script src="/resources/js/pcoded.min.js"></script>
-	<script src="/resources/js/vertical/vertical-layout.min.js "></script>
+		<!-- slimscroll js -->
+		<script src="../resources/js/jquery.mCustomScrollbar.concat.min.js "></script>
 
-	<script type="text/javascript" src="/resources/js/script.js "></script>
+		<!-- menu js -->
+		<script src="../resources/js/pcoded.min.js"></script>
+		<script src="../resources/js/vertical/vertical-layout.min.js "></script>
 
+		<script type="text/javascript" src="../resources/js/script.js "></script>
 </body>
+
 
 </html>

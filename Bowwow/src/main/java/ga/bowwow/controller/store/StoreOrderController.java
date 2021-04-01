@@ -4,16 +4,14 @@ import java.io.IOException;
 import java.util.List;
 
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 
-import ga.bowwow.service.board.Board;
 import ga.bowwow.service.store.Order;
-import ga.bowwow.service.store.Product;
-import ga.bowwow.service.store.Review;
 import ga.bowwow.service.store.StoreOrderService;
 
 @Controller
@@ -31,16 +29,39 @@ public class StoreOrderController {
 		return "storeOrder";
 	}
 
+	// 주문내역 작성
 	@RequestMapping(value = "/store/insertOrder")
-	public String insertOrder(Order order) throws IllegalStateException, IOException {
+	public String insertOrder(Order order, HttpServletRequest request) throws IllegalStateException, IOException {
 		System.out.println(">>> 주문내역 작성 - insertOrder()");
+		request.setCharacterEncoding("utf-8");
 		System.out.println("order : " + order);
-
+		
 		storeOrderService.insertOrder(order);
+
+		return "redirect:/store/storeOrderList?member_serial=999";
+	}
+	
+	@RequestMapping(value = "/store/updateOrder")
+	public String updateOrder(Order order, HttpServletRequest request) throws IllegalStateException, IOException {
+		System.out.println(">>> 주문내역 수정 - updateOrder()");
+		System.out.println("order : " + order);
+		
+		storeOrderService.updateOrder(order);
 
 		return "storeOrderList";
 	}
 
+	@RequestMapping(value = "/store/deleteOrder")
+	public String deleteOrder(int order_id, HttpServletRequest request) throws IllegalStateException, IOException {
+		System.out.println(">>> 주문내역 삭제 - deleteOrder()");
+		System.out.println(request.getParameter("o_id"));
+		int o_id = Integer.parseInt(request.getParameter("o_id"));
+		storeOrderService.deleteOrder(o_id);
+		
+		return "redirect:/store/storeOrderList?member_serial=999";
+		
+	}
+	
 	// 주문내역 전체 출력
 	@RequestMapping(value = "/store/storeOrderList")
 	public String getOrderList(int member_serial, Model model, HttpServletRequest request) {

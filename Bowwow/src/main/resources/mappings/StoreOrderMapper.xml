@@ -6,9 +6,25 @@
 
 	<!-- 주문 내역 작성 -->
 	<insert id="insertOrder" parameterType="Order">
-		INSERT INTO STORE_ORDER (ORDER_ID, P_ID, MEMBER_SERIAL, AMOUNT, PRICE, MEMO, ORDER_DATE, ORDER_STATUS) 
-		VALUES (ORDER_SEQ.NEXTVAL, #{p_id}, #{member_serial}, #{amount}, #{price}, #{memo}, SYSDATE, #{order_status})
+		INSERT INTO STORE_ORDER (ORDER_ID, P_ID, MEMBER_SERIAL, AMOUNT, PRICE, MEMO, 
+								 ORDER_DATE, ORDER_STATUS, ADDRESS_FIRST, ADDRESS_SECOND, ZIP) 
+		VALUES (ORDER_SEQ.NEXTVAL, #{p_id}, #{member_serial}, #{amount}, #{price}, #{memo}, SYSDATE, 
+				#{order_status}, #{address_first}, #{address_second}, #{zip})
 	</insert>
+	
+	<!-- 주문 내역 수정 -->
+	<update id="updateOrder" parameterType="Order">
+		UPDATE STORE_ORDER 
+		SET AMOUNT = #{AMOUNT}, MEMO = #{MEMO}, 
+			ADDRESS_FIRST = #{address_first}, ADDRESS_SECOND = #{address_second}, ZIP = #{zip} 
+		WHERE ORDER_ID = #{ORDER_ID}
+	</update>
+	
+	<!-- 주문 내역 삭제 -->
+	<delete id="deleteOrder" parameterType="int">
+		DELETE FROM STORE_ORDER
+		WHERE ORDER_ID = #{order_id}
+	</delete>
 	
 	<!-- 회원 주문 내역 전체 출력 -->
 	<select id="orderList" parameterType="int" resultType="Order">

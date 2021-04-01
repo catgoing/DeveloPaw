@@ -1,7 +1,6 @@
 package ga.bowwow.controller.store;
 
 import java.io.IOException;
-import java.util.HashMap;
 import java.util.List;
 
 import javax.servlet.http.HttpServletRequest;
@@ -18,7 +17,6 @@ import ga.bowwow.service.store.Product;
 import ga.bowwow.service.store.Review;
 import ga.bowwow.service.store.StoreCartlistService;
 import ga.bowwow.service.store.StoreInquiryService;
-import ga.bowwow.service.store.StoreOrderService;
 import ga.bowwow.service.store.StoreReviewService;
 import ga.bowwow.service.store.StoreService;
 
@@ -57,9 +55,9 @@ public class StoreController {
 	// 상품 상세 보기
 	@RequestMapping(value = "/store/detail")
 	public String getProductDetailDog(Model model, HttpServletRequest request) {
-		
+		System.out.println("p_id : " + request.getParameter("p_id"));
 		int p_id = Integer.parseInt(request.getParameter("p_id"));
-		System.out.println("p_id : " + p_id);
+		
 
 		Product p = storeService.getProductDetail(p_id);
 		model.addAttribute("p", p);
@@ -90,35 +88,7 @@ public class StoreController {
 		return "productList";
 		
 	}
-	
-	// 장바구니에 추가
-	@RequestMapping(value = "/store/insertCartlist")
-	public void insertCartlist(Cartlist cartlist) {
-		System.out.println(">>> 장바구니에 추가 - insertCartlist()");
-		System.out.println("cartlist : " + cartlist);
-		
-		storeCartlistService.insertCartlist(cartlist);
-	}
-	
-	
-	// 문의 작성
-	@RequestMapping("/store/insertInquiry")
-	public void insertInquiry(Inquiry inquiry, HttpServletRequest request, HttpServletResponse response) throws IllegalStateException, IOException {
-		
-		System.out.println(">>> 문의 작성 - insertInquiry()");
-		System.out.println("inquiry : " + inquiry);
-		System.out.println(inquiry.getInquiry_no());		
-		// 메소드 호출
-		storeInquiryService.insertInquiry(inquiry);
-		
-		try {
-			response.getWriter().print("success");
-		} catch (IOException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}		
 
-	}		
 	
 }
 

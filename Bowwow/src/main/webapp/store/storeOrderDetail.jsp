@@ -77,7 +77,20 @@ img {
 }
 </style>
 </head>
+<script>
+function updateOrder(frm) {
+	if ("${o.order_status} != 주문완료") {
+		alert("배송 단계로 넘어간 주문입니다. 고객센터에 문의하세요.");
+		frm.preventDefault();
+		return;	
+	}
+	else{
+		frm.preventDefault();
+	    return;
+	}
+}
 
+</script>
 <body>
 	<!-- Pre-loader start -->
 	<div class="theme-loader">
@@ -524,246 +537,200 @@ img {
 									</div>
 								</div>
 							</div>
+							<br>
 							<!-- Breadcrumb End -->
-<!--================Order Details Area =================-->
-	<section class="order_details section_gap">
-		<div class="container">
-			<h3 class="title_confirmation">주문 상세 내역</h3>
-			<div class="row order_d_inner">
-				<div class="col-lg-4">
-					<div class="details_item">
-						<h4>Order Info</h4>
-						<ul class="list">
-							<li><a href="#"><span>Order number</span> : ${o.order_id}</a></li>
-							<li><a href="#"><span>Member Serial</span> : ${o.member_serial}</a></li>
-							<li><a href="#"><span>Total</span> : USD 2210</a></li>
-							<li><a href="#"><span>Payment method</span> : Check payments</a></li>
-						</ul>
+							<!--================Order Details Area =================-->
+							<section class="order_details section_gap">
+								<div class="container" style="background-color: white;">
+									<br>
+									<h3 class="title_confirmation">주문 상세 내역</h3>
+									<div class="row order_d_inner">
+										<div class="col-lg-4">
+											<div class="details_item">
+												<h4>Order Info</h4>
+												<ul class="list">
+													<li><a href="#"><span>Order number</span> :
+															${o.order_id}</a></li>
+													<li><a href="#"><span>Member Serial</span> :
+															${o.member_serial}</a></li>
+													<li><a href="#"><span>Total</span> : USD 2210</a></li>
+													<li><a href="#"><span>Payment method</span> :
+															Check payments</a></li>
+												</ul>
+											</div>
+										</div>
+										<div class="col-lg-4">
+											<div class="details_item">
+												<h4>주문인 주소</h4>
+												<ul class="list">
+													<li><a href="#"><span>Street</span> : 56/8</a></li>
+													<li><a href="#"><span>City</span> : Los Angeles</a></li>
+													<li><a href="#"><span>Country</span> : United
+															States</a></li>
+												</ul>
+											</div>
+										</div>
+									</div>
+									<br>
+									<div class="order_details_table">
+										<h2>주문한 상품 목록</h2>
+										<div class="table-responsive">
+											<table class="table">
+												<thead>
+													<tr>
+														<th scope="col">상품명</th>
+														<th scope="col">상품 수량</th>
+														<th scope="col">결제 금액</th>
+													</tr>
+												</thead>
+												<tbody>
+													<tr>
+														<td>
+															<p>Pixelstore fresh Blackberry</p>
+														</td>
+														<td>
+															<h5>x 02</h5>
+														</td>
+														<td>
+															<p>$720.00</p>
+														</td>
+													</tr>
+													<tr>
+														<td>
+															<p>Pixelstore fresh Blackberry</p>
+														</td>
+														<td>
+															<h5>x 02</h5>
+														</td>
+														<td>
+															<p>$720.00</p>
+														</td>
+													</tr>
+													<tr>
+														<td>
+															<p>Pixelstore fresh Blackberry</p>
+														</td>
+														<td>
+															<h5>x 02</h5>
+														</td>
+														<td>
+															<p>$720.00</p>
+														</td>
+													</tr>
+													<tr>
+														<td>
+															<h4>Subtotal</h4>
+														</td>
+														<td>
+															<h5></h5>
+														</td>
+														<td>
+															<p>$2160.00</p>
+														</td>
+													</tr>
+													<tr>
+														<td>
+															<h4>배송비</h4>
+														</td>
+														<td>
+															<h5></h5>
+														</td>
+														<td>
+															<p>무료</p>
+														</td>
+													</tr>
+													<tr>
+														<td>
+															<h4>Total</h4>
+														</td>
+														<td>
+															<h5></h5>
+														</td>
+														<td>
+															<p>$2210.00</p>
+														</td>
+													</tr>
+												</tbody>
+											</table>
+											<button onclick="location.href='storeOrderDetailUpdate?order_id=${oList.order_id}'" class="site-btn" style="font-size: 1.5em; float: right;">주문내역 수정</button>
+											<button onclick="location.href='deleteOrder(${oList.order_id})'" class="site-btn" style="font-size: 1.5em; float: right;">주문 취소하기</button>	
+										</div>
+									</div>
+								</div>
+							</section>
+							<br>
+							<br>
+							<!--================End Order Details Area =================-->
+
+
+							<div id="styleSelector"></div>
+						</div>
 					</div>
-				</div>
-				<div class="col-lg-4">
-					<div class="details_item">
-						<h4>Billing Address</h4>
-						<ul class="list">
-							<li><a href="#"><span>Street</span> : 56/8</a></li>
-							<li><a href="#"><span>City</span> : Los Angeles</a></li>
-							<li><a href="#"><span>Country</span> : United States</a></li>
-							<li><a href="#"><span>Postcode </span> : 36952</a></li>
-						</ul>
-					</div>
-				</div>
-				<div class="col-lg-4">
-					<div class="details_item">
-						<h4>Shipping Address</h4>
-						<ul class="list">
-							<li><a href="#"><span>Street</span> : 56/8</a></li>
-							<li><a href="#"><span>City</span> : Los Angeles</a></li>
-							<li><a href="#"><span>Country</span> : United States</a></li>
-							<li><a href="#"><span>Postcode </span> : 36952</a></li>
-						</ul>
-					</div>
-				</div>
-			</div>
-			<div class="order_details_table">
-				<h2>Order Details</h2>
-				<div class="table-responsive">
-					<table class="table">
-						<thead>
-							<tr>
-								<th scope="col">Product</th>
-								<th scope="col">Quantity</th>
-								<th scope="col">Total</th>
-							</tr>
-						</thead>
-						<tbody>
-							<tr>
-								<td>
-									<p>Pixelstore fresh Blackberry</p>
-								</td>
-								<td>
-									<h5>x 02</h5>
-								</td>
-								<td>
-									<p>$720.00</p>
-								</td>
-							</tr>
-							<tr>
-								<td>
-									<p>Pixelstore fresh Blackberry</p>
-								</td>
-								<td>
-									<h5>x 02</h5>
-								</td>
-								<td>
-									<p>$720.00</p>
-								</td>
-							</tr>
-							<tr>
-								<td>
-									<p>Pixelstore fresh Blackberry</p>
-								</td>
-								<td>
-									<h5>x 02</h5>
-								</td>
-								<td>
-									<p>$720.00</p>
-								</td>
-							</tr>
-							<tr>
-								<td>
-									<h4>Subtotal</h4>
-								</td>
-								<td>
-									<h5></h5>
-								</td>
-								<td>
-									<p>$2160.00</p>
-								</td>
-							</tr>
-							<tr>
-								<td>
-									<h4>Shipping</h4>
-								</td>
-								<td>
-									<h5></h5>
-								</td>
-								<td>
-									<p>Flat rate: $50.00</p>
-								</td>
-							</tr>
-							<tr>
-								<td>
-									<h4>Total</h4>
-								</td>
-								<td>
-									<h5></h5>
-								</td>
-								<td>
-									<p>$2210.00</p>
-								</td>
-							</tr>
-						</tbody>
-					</table>
 				</div>
 			</div>
 		</div>
-	</section>
-	<!--================End Order Details Area =================-->
-							
+		<button class="scroll-top" id="js-button"
+			style="margin-bottom: 190px; margin-right: 30px; font: 'Jua'">
+			<i class="fa fa-chevron-up" aria-hidden="true">TOP</i>
+		</button>
+		
+		<script type="text/javascript">
+			scrollTop('js-button', 500);
+			function scrollTop(elem, duration) {
+				let target = document.getElementById(elem);
 
-						<div id="styleSelector"></div>
-					</div>
-				</div>
-			</div>
-		</div>
-	</div>
-	<button class="scroll-top" id="js-button"
-		style="margin-bottom: 190px; margin-right: 30px; font: 'Jua'">
-		<i class="fa fa-chevron-up" aria-hidden="true">TOP</i>
-	</button>
-	<script type="text/javascript">
-		scrollTop('js-button', 500);
-		function scrollTop(elem, duration) {
-			let target = document.getElementById(elem);
+				target.addEventListener('click', function() {
+					let currentY = window.pageYOffset;
+					let step = duration / currentY > 1 ? 10 : 100;
+					let timeStep = duration / currentY * step;
+					let intervalID = setInterval(scrollUp, timeStep);
 
-			target.addEventListener('click', function() {
-				let currentY = window.pageYOffset;
-				let step = duration / currentY > 1 ? 10 : 100;
-				let timeStep = duration / currentY * step;
-				let intervalID = setInterval(scrollUp, timeStep);
-
-				function scrollUp() {
-					currentY = window.pageYOffset;
-					if (currentY === 0) {
-						clearInterval(intervalID);
-					} else {
-						scrollBy(0, -step);
+					function scrollUp() {
+						currentY = window.pageYOffset;
+						if (currentY === 0) {
+							clearInterval(intervalID);
+						} else {
+							scrollBy(0, -step);
+						}
 					}
-				}
-			});
-		}
-	</script>
-	<!-- footer 푸터 시작부분-->
-	<div style="display: block;">
-		<footer class="footer navbar-wrapper">
-			<div class="footer-wrapper navbar-wrapper">
-				<div class="footer-box" style="height: 100px; text-align: center;">
-					푸터</div>
-			</div>
-		</footer>
-		<!-- footer 푸터 끝부분-->
-	</div>
+				});
+			}
+			
+		</script>
+		<!-- footer 푸터 시작부분-->
+		<div style="display: block;">
+			<footer class="footer navbar-wrapper">
+				<div class="footer-wrapper navbar-wrapper">
+					<div class="footer-box" style="height: 100px; text-align: center;">
+						푸터</div>
+				</div>
+			</footer>
+			<!-- footer 푸터 끝부분-->
+		</div>
+		
+		<!-- Required Jquery -->
+		<script type="text/javascript"
+			src="../resources/js/jquery/jquery.min.js "></script>
+		<script type="text/javascript"
+			src="../resources/js/jquery-ui/jquery-ui.min.js "></script>
+		<script type="text/javascript"
+			src="../resources/js/popper.js/popper.min.js"></script>
+		<script type="text/javascript"
+			src="../resources/js/bootstrap/js/bootstrap.min.js "></script>
+		<!-- waves js -->
+		<script src="../resources/pages/waves/js/waves.min.js"></script>
+		<!-- jquery slimscroll js -->
+		<script type="text/javascript"
+			src="../resources/js/jquery-slimscroll/jquery.slimscroll.js"></script>
 
+		<!-- slimscroll js -->
+		<script src="../resources/js/jquery.mCustomScrollbar.concat.min.js "></script>
 
+		<!-- menu js -->
+		<script src="../resources/js/pcoded.min.js"></script>
+		<script src="../resources/js/vertical/vertical-layout.min.js "></script>
 
-	<!-- Warning Section Starts -->
-	<!-- Older IE warning message -->
-	<!--[if lt IE 10]>
-<div class="ie-warning">
-    <h1>Warning!!</h1>
-    <p>You are using an outdated version of Internet Explorer, please upgrade <br/>to any of the following web browsers to access this website.</p>
-    <div class="iew-container">
-        <ul class="iew-download">
-            <li>
-                <a href="http://www.google.com/chrome/">
-                    <img src="../resources/images/browser/chrome.png" alt="Chrome">
-                    <div>Chrome</div>
-                </a>
-            </li>
-            <li>
-                <a href="https://www.mozilla.org/en-US/firefox/new/">
-                    <img src="../resources/images/browser/firefox.png" alt="Firefox">
-                    <div>Firefox</div>
-                </a>
-            </li>
-            <li>
-                <a href="http://www.opera.com">
-                    <img src="../resources/images/browser/opera.png" alt="Opera">
-                    <div>Opera</div>
-                </a>
-            </li>
-            <li>
-                <a href="https://www.apple.com/safari/">
-                    <img src="../resources/images/browser/safari.png" alt="Safari">
-                    <div>Safari</div>
-                </a>
-            </li>
-            <li>
-                <a href="http://windows.microsoft.com/en-us/internet-explorer/download-ie">
-                    <img src="../resources/images/browser/ie.png" alt="">
-                    <div>IE (9 & above)</div>
-                </a>
-            </li>
-        </ul>
-    </div>
-    <p>Sorry for the inconvenience!</p>
-</div>
-<![endif]-->
-	<!-- Warning Section Ends -->
-
-	<!-- Required Jquery -->
-	<script type="text/javascript"
-		src="../resources/js/jquery/jquery.min.js "></script>
-	<script type="text/javascript"
-		src="../resources/js/jquery-ui/jquery-ui.min.js "></script>
-	<script type="text/javascript"
-		src="../resources/js/popper.js/popper.min.js"></script>
-	<script type="text/javascript"
-		src="../resources/js/bootstrap/js/bootstrap.min.js "></script>
-	<!-- waves js -->
-	<script src="../resources/pages/waves/js/waves.min.js"></script>
-	<!-- jquery slimscroll js -->
-	<script type="text/javascript"
-		src="../resources/js/jquery-slimscroll/jquery.slimscroll.js"></script>
-
-	<!-- slimscroll js -->
-	<script src="../resources/js/jquery.mCustomScrollbar.concat.min.js "></script>
-
-	<!-- menu js -->
-	<script src="../resources/js/pcoded.min.js"></script>
-	<script src="../resources/js/vertical/vertical-layout.min.js "></script>
-
-	<script type="text/javascript" src="../resources/js/script.js "></script>
+		<script type="text/javascript" src="../resources/js/script.js "></script>
 </body>
 
 

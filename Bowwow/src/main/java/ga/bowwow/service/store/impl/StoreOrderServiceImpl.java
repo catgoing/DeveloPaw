@@ -19,8 +19,12 @@ public class StoreOrderServiceImpl implements StoreOrderService {
 
 	@Override
 	public void updateOrder(Order order) {
-		// TODO Auto-generated method stub
-
+		storeDAO.updateOrder(order);
+	}
+	
+	@Override
+	public void deleteOrder(int order_id) {
+		storeDAO.deleteOrder(order_id);
 	}
 
 	@Override
@@ -32,5 +36,6 @@ public class StoreOrderServiceImpl implements StoreOrderService {
 	public Order getOrderDetail(int order_id) {
 		return storeDAO.getOrderDetail(order_id);
 	}
+
 
 }
