@@ -375,84 +375,7 @@
 			<!-- 좌측 메뉴바 시작 -->
 <div class="pcoded-main-container">
 	<div class="pcoded-wrapper">
-		<nav class="pcoded-navbar">
-			<div class="sidebar_toggle"><a href="#"><i class="icon-close icons"></i></a></div>
-				<div class="pcoded-inner-navbar main-menu">
-			    <div class="p-15 p-b-0">
-			         <form class="form-material">
-						<!-- 이부분 form을 없애면 좌측메뉴 시작부분이 위쪽으로 조금 올라감 -->
-			         </form>
-			     </div>
-			  
-			     <ul class="pcoded-item pcoded-left-item">
-			         <li class="">
-			             <a href="myPageMain" class="waves-effect waves-dark">
-			                 <span class="pcoded-micon"><i class="ti-layers"></i><b>FC</b></span>
-			                 <span class="pcoded-mtext">마이 홈</span>
-			                 <span class="pcoded-mcaret"></span>
-			             </a>
-			         </li>
-			     </ul>
-			
-			     <ul class="pcoded-item pcoded-left-item">
-			         <li class="">
-			          <!-- 회원번호(memberSerial)을 이용해서 내 정보 출력 -->
-			             <a href="myInfo" class="waves-effect waves-dark">
-			             <%-- <a href="myInfo.do?memberSerial=${memberSerial }" class="waves-effect waves-dark"> --%>
-			                 <span class="pcoded-micon">
-			                     <!-- <i class="ti-id-badge"></i><b>A</b> -->
-			                 </span>
-			                 <span class="pcoded-mtext">프로필</span>
-			                 <span class="pcoded-mcaret"></span>
-			             </a>
-			         </li>
-			     </ul>
-			     <ul class="pcoded-item pcoded-left-item">
-			         <li class="">
-			             <a href="myPetInfoList3" class="waves-effect waves-dark">
-			                 <span class="pcoded-micon">
-			                     <!-- <i class="ti-id-badge"></i><b>A</b> -->
-			                 </span>
-			                 <span class="pcoded-mtext">반려동물</span>
-			                 <span class="pcoded-mcaret"></span>
-			             </a>
-			         </li>
-			     </ul>
-			     <ul class="pcoded-item pcoded-left-item">
-			         <li class="">
-			             <a href="myPostList" class="waves-effect waves-dark">
-			                 <span class="pcoded-micon">
-			                     <!-- <i class="ti-id-badge"></i><b>A</b> -->
-			                 </span>
-			                 <span class="pcoded-mtext">게시글</span>
-			                 <span class="pcoded-mcaret"></span>
-			             </a>
-			         </li>
-			     </ul>
-			     <ul class="pcoded-item pcoded-left-item">
-			         <li class="">
-			             <a href="myPoint" class="waves-effect waves-dark">
-			                 <span class="pcoded-micon">
-			                     <!-- <i class="ti-id-badge"></i><b>A</b> -->
-			                 </span>
-			                 <span class="pcoded-mtext">적립금(?)</span>
-			                 <span class="pcoded-mcaret"></span>
-			             </a>
-			         </li>
-			     </ul>
-			     <ul class="pcoded-item pcoded-left-item">
-			         <li class="">
-			             <a href="myInquiry2" class="waves-effect waves-dark">
-			                 <span class="pcoded-micon">
-			                     <!-- <i class="ti-id-badge"></i><b>A</b> -->
-			                 </span>
-			                 <span class="pcoded-mtext">1:1문의</span>
-			                 <span class="pcoded-mcaret"></span>
-			             </a>
-			         </li>
-			     </ul>
-			 </div>
-		</nav>
+		<%@include file="/common/myPageMenuBar.jsp" %>
 		
 <!-- 좌측 메뉴바 끝 -->
 				
@@ -520,28 +443,28 @@
 													
 										<div class="input-label">이름
 											<div class="input-wrap">
-												<input type="text" name="name" value="${user.name }">
+												<%-- <input type="text" name="name" value="${user.name }"> --%>
 											</div>
 											<p></p>
 										</div>
 													
 										<div class="input-label">닉네임
 											<div class="input-wrap">
-												<input type="text" name="nickname" value="${user.nickname }">
+												<%-- <input type="text" name="nickname" value="${user.nickname }"> --%>
 											</div>
 											<p></p>
 										</div>
 													
 										<div class="input-label">이메일
 											<div class="input-wrap">
-												<input type="text" name="email" value="${user.email }">
+												<%-- <input type="text" name="email" value="${user.email }"> --%>
 											</div>
 											<p></p>
 										</div>
 										
 										<div class="input-label">전화번호
 											<div class="input-wrap">
-												<input type="text" name="phone" value="${phone }">
+												<<%-- input type="text" name="phone" value="${phone }"> --%>
 											</div>
 											<p></p>
 										</div>
@@ -561,6 +484,7 @@
 										
 										<div class="input-label">생일
 											<div class="input-wrap">
+												<%-- <input type="date" name="birthday" value="${bitrhday }"> --%>
 												<%-- <input type="text" name="birthday" value="${birthday }">
 												<input type="text" name="birthday" value="${birthday }">
 												<input type="text" name="birthday" value="${birthday }"> --%>
@@ -612,32 +536,6 @@
 			</div>
 		</div>
 	</div>
-	
-    <button class="scroll-top" id="js-button" style="margin-bottom: 190px; margin-right: 30px;">
-        <i class="fa fa-chevron-up" aria-hidden="true">TOP</i>
-    </button>
-    <script type="text/javascript">
-        scrollTop('js-button', 500);
-        function scrollTop(elem,duration) {
-            let target = document.getElementById(elem);
-        
-            target.addEventListener('click', function() {
-                let currentY = window.pageYOffset; 
-                let step = duration/currentY > 1 ? 10 : 100;
-                let timeStep = duration/currentY * step;
-                let intervalID = setInterval(scrollUp, timeStep);
-        
-                function scrollUp(){
-                    currentY = window.pageYOffset;
-                    if(currentY === 0) {
-                        clearInterval(intervalID);
-                    } else {
-                        scrollBy( 0, -step );
-                    }
-                }
-            });
-        }
-    </script>
 
 	<!-- footer 푸터 시작부분-->
 	<%@include file="/common/footer.jsp" %>
