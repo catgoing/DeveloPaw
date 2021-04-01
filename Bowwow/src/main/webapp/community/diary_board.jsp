@@ -180,7 +180,7 @@
 			<i class="fa fa-chevron-up" aria-hidden="true">TOP</i>
 		</button>
 		<script type="text/javascript">
-			scrollTop('js-button', 500);
+			scrollTop('js-button', 100);
 			function scrollTop(elem, duration) {
 				let target = document.getElementById(elem);
 
