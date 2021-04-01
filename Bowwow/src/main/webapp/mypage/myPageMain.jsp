@@ -1,7 +1,16 @@
+<%@page import="ga.bowwow.service.user.UserAccount"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-<%@ taglib uri="http://tiles.apache.org/tags-tiles" prefix="tiles"%>
-
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<%
+	//임시 로그인처리
+	String memberSerial = "1";
+	String id = "z";
+	UserAccount user= new UserAccount();
+	user.setId(id);
+	user.setMemberSerial(memberSerial);
+	session.setAttribute("user", user);
+%>
 <!DOCTYPE html>
 <html>
 
@@ -51,103 +60,77 @@
     <link rel="stylesheet" type="text/css" href="../resources/css/style.css">
     <link rel="stylesheet" type="text/css" href="../resources/css/test.css">
 <style>
-  .featured__item__text { width: 150px; }
+  .myPageInfo-header{ text-align : center;}
+  .container h3 { text-align: center;}
 </style>
 </head>
 
 <body>
+	<!-- Pre-loader start -->
+	<div class="theme-loader">
+		<div class="loader-track">
+			<div class="preloader-wrapper">
+				<div class="spinner-layer spinner-blue">
+					<div class="circle-clipper left">
+						<div class="circle"></div>
+					</div>
+					<div class="gap-patch">
+						<div class="circle"></div>
+					</div>
+					<div class="circle-clipper right">
+						<div class="circle"></div>
+					</div>
+				</div>
+				<div class="spinner-layer spinner-red">
+					<div class="circle-clipper left">
+						<div class="circle"></div>
+					</div>
+					<div class="gap-patch">
+						<div class="circle"></div>
+					</div>
+					<div class="circle-clipper right">
+						<div class="circle"></div>
+					</div>
+				</div>
 
-    <div id="pcoded" class="pcoded">
-        <div class="pcoded-overlay-box"></div>
-        <div class="pcoded-main-container navbar-wrapper">
-        <!-- 헤더 -->
-		<%@include file="/common/header.jsp" %>
+				<div class="spinner-layer spinner-yellow">
+					<div class="circle-clipper left">
+						<div class="circle"></div>
+					</div>
+					<div class="gap-patch">
+						<div class="circle"></div>
+					</div>
+					<div class="circle-clipper right">
+						<div class="circle"></div>
+					</div>
+				</div>
 
-		<div class="pcoded-main-container">
-			<div class="pcoded-wrapper">
-			<!-- 좌측 메뉴바 시작 -->
-<div class="pcoded-main-container">
-	<div class="pcoded-wrapper">
-		<nav class="pcoded-navbar">
-			<div class="sidebar_toggle"><a href="#"><i class="icon-close icons"></i></a></div>
-				<div class="pcoded-inner-navbar main-menu">
-			    <div class="p-15 p-b-0">
-			         <form class="form-material">
-						<!-- 이부분 form을 없애면 좌측메뉴 시작부분이 위쪽으로 조금 올라감 -->
-			         </form>
-			     </div>
+				<div class="spinner-layer spinner-green">
+					<div class="circle-clipper left">
+						<div class="circle"></div>
+					</div>
+					<div class="gap-patch">
+						<div class="circle"></div>
+					</div>
+					<div class="circle-clipper right">
+						<div class="circle"></div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+	<!-- Pre-loader end -->
+	<div id="pcoded" class="pcoded">
+		<div class="pcoded-overlay-box"></div>
+		<div class="pcoded-container navbar-wrapper">
+			<!-- header -->
+			<%@include file="/common/header.jsp" %>
 
-			     <ul class="pcoded-item pcoded-left-item">
-			         <li class="">
-			             <a href="myPageMain.do" class="waves-effect waves-dark">
-			                 <span class="pcoded-micon"><i class="ti-layers"></i><b>FC</b></span>
-			                 <span class="pcoded-mtext">마이 홈</span>
-			                 <span class="pcoded-mcaret"></span>
-			             </a>
-			         </li>
-			     </ul>
+			<div class="pcoded-main-container">
+				<div class="pcoded-wrapper">
 
-			     <ul class="pcoded-item pcoded-left-item">
-			         <li class="">
-			          <!-- 회원번호(memberSerial)을 이용해서 내 정보 출력 -->
-			             <a href="myInfo.do" class="waves-effect waves-dark">
-			             <%-- <a href="myInfo.do?memberSerial=${memberSerial }" class="waves-effect waves-dark"> --%>
-			                 <span class="pcoded-micon">
-			                     <!-- <i class="ti-id-badge"></i><b>A</b> -->
-			                 </span>
-			                 <span class="pcoded-mtext">프로필</span>
-			                 <span class="pcoded-mcaret"></span>
-			             </a>
-			         </li>
-			     </ul>
-			     <ul class="pcoded-item pcoded-left-item">
-			         <li class="">
-			             <a href="myPetInfoList.do" class="waves-effect waves-dark">
-			                 <span class="pcoded-micon">
-			                     <!-- <i class="ti-id-badge"></i><b>A</b> -->
-			                 </span>
-			                 <span class="pcoded-mtext">반려동물</span>
-			                 <span class="pcoded-mcaret"></span>
-			             </a>
-			         </li>
-			     </ul>
-			     <ul class="pcoded-item pcoded-left-item">
-			         <li class="">
-			             <a href="myPostList.do" class="waves-effect waves-dark">
-			                 <span class="pcoded-micon">
-			                     <!-- <i class="ti-id-badge"></i><b>A</b> -->
-			                 </span>
-			                 <span class="pcoded-mtext">게시글</span>
-			                 <span class="pcoded-mcaret"></span>
-			             </a>
-			         </li>
-			     </ul>
-			     <ul class="pcoded-item pcoded-left-item">
-			         <li class="">
-			             <a href="myPoint.do" class="waves-effect waves-dark">
-			                 <span class="pcoded-micon">
-			                     <!-- <i class="ti-id-badge"></i><b>A</b> -->
-			                 </span>
-			                 <span class="pcoded-mtext">적립금(?)</span>
-			                 <span class="pcoded-mcaret"></span>
-			             </a>
-			         </li>
-			     </ul>
-			     <ul class="pcoded-item pcoded-left-item">
-			         <li class="">
-			             <a href="myInquiry.do" class="waves-effect waves-dark">
-			                 <span class="pcoded-micon">
-			                     <!-- <i class="ti-id-badge"></i><b>A</b> -->
-			                 </span>
-			                 <span class="pcoded-mtext">1:1문의</span>
-			                 <span class="pcoded-mcaret"></span>
-			             </a>
-			         </li>
-			     </ul>
-			 </div>
-		</nav>
-
-	<!-- 좌측 메뉴바 끝 -->
+				<!-- 좌측 메뉴바 시작 -->
+				<%@include file="/common/myPageMenuBar.jsp" %>
 
 			<div class="pcoded-content">
 				<div class="pcoded-inner-content">
@@ -157,37 +140,41 @@
 					<!-- Page-body start -->
 						<div class="page-body">
 						<div class="myPageInfo-header">
-							<h2> 뫄뫄님의 페이지</h2>
+							<h2> ${user.memberSerial} 님의 페이지</h2>
 						</div>
 
 						<div class="mypage_main_content">
 
-							<div class="mypage_main_content mypointlist">
+							<div class="container mypage_main_content mypointlist">
 								<h3>누적적립금출력영역</h3>
 							</div>
+							<br>
+							<hr>
 							<div class="container">
-							<h3>반려동물</h3>
+							  	<h3>반려동물리스트</h3>
 							  <div class="row">
+							  	<c:if test="${not empty petList }">
+                       			<c:forEach var="petList" items="${petList }">
 							    <div class="col-sm">
-							      <div class="card" style="width: 8rem;">
-									  <img src="..." class="card-img-top" alt="...">
-								  </div>
+							      	${petList.pet_name }
+							    	<div class="card" style="width: 200px;">
+										<img src="../resources/images/avatar-2.jpg" class="card-img-top" alt="...">
+									</div>
 							    </div>
-							    <div class="col-sm">
-							      반려동물2
-							      <div class="card" style="width: 8rem;">
-									  <img src="..." class="card-img-top" alt="...">
-								  </div>
-							    </div>
-							    <div class="col-sm">
-							      반려동물3
-							      <div class="card" style="width: 8rem;">
-									  <img src="..." class="card-img-top" alt="...">
-								  </div>
-								</div>
+							    </c:forEach>
+							    </c:if>
+							    <c:if test="${empty petList }">
+						    	<div class="col-md-6">
+                           			<div class="list-inner">
+                               	<h3>등록된 반려동물이 없습니다.</h3>
+                            	</div>
+                            </div>
+							    </c:if>
 							  </div>
 							</div>
-							<div class="mypage_main_content boardlist">
+							<br>
+							<hr>
+							<div class="container mypage_main_content boardlist">
 								<h3>게시글출력영역</h3>
 							</div>
 						</div>

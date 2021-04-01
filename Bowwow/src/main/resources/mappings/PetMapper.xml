@@ -7,60 +7,65 @@
 	<!-- 반려동물 정보 등록 -->
 	<insert id="insertPetInfo" parameterType="pet">
 		INSERT INTO USER_PETINFO (
-			PET_SERIAL,MEMBER_SERIAL,IMAGE_SOURCE,ANIMAL_TYPE,PET_NAME,
-			PET_GENDER,PET_VARIETY,PET_AGE,PET_SIZE,TNR,
-			PET_WEIGHT,PET_BIRTH,NECK_LENGTH,BACK_LENGTH,CHEST_LENGTH)
+			PET_SERIAL, MEMBER_SERIAL, IMAGE_SOURCE, ANIMAL_TYPE,
+			PET_NAME, PET_GENDER, PET_VARIETY, PET_AGE, PET_SIZE,
+			TNR, PET_WEIGHT, PET_BIRTH, NECK_LENGTH, BACK_LENGTH,
+			CHEST_LENGTH, PET_ETC, IMAGE_SOURCE_ORINAME)
 		VALUES (
-		 PET_SEQ.NEXTVAL, #{MEMBER_SERIAL}, #{IMAGE_SOURCE}, #{ANIMAL_TYPE}, #{PET_NAME},
-		 #{PET_GENDER}, #{PET_VARIETY}, #{PET_AGE}, #{PET_SIZE}, #{TNR},
-		 #{PET_WEIGHT},  #{PET_BIRTH}, #{NECK_LENGTH}, #{BACK_LENGTH}, #{CHEST_LENGTH})
+		 PET_SEQ.NEXTVAL , #{member_serial}, 'upload', #{animal_type},
+		 #{pet_name}, #{pet_gender}, #{pet_variety}, #{pet_age}, #{pet_size},
+		 #{tnr}, #{pet_weight}, TO_DATE(#{pet_birth}, 'yyyy-MM-dd'), #{neck_length}, #{back_length},
+		 #{chest_length}, #{pet_etc}, #{image_source_oriname})
 	</insert>
-	
+
 	<!-- 반려동물 정보수정 - 유형, 이름, 성별, 품종은 안바꿔도 되잖아!! -->
 	<update id="updatePetInfo" parameterType="pet">
-		UPDATE FORM USER_PETINFO
+		UPDATE USER_PETINFO
 		 SET
-			IMAGE_SOURCE = #{imageSource},
-			PET_NAME = #{petName},
-			PET_GENDER = #{petGender},
-			PET_VARIETY = #{petVariety},
-			PET_AGE = #{petAge},
-			PET_SIZE = #{petSize},
+			IMAGE_SOURCE = 're-upload',
+			PET_NAME = #{pet_name},
+			PET_GENDER = #{pet_gender},
+			PET_VARIETY = #{pet_variety},
+			PET_AGE = #{pet_age},
+			PET_SIZE = #{pet_size},
 			TNR = #{tnr },
-			PET_WEIGHT = #{petWeight},
-			PET_BIRTH = #{petBirth},
-			NECK_LENGTH = #{neckLength},
-			BACK_LENGTH = #{backLength},
-			CHEST_LENGTH = #{chestLength},
-			PET_ETC = #{petEtc}
+			PET_WEIGHT = #{pet_weight},
+			PET_BIRTH = TO_DATE(#{pet_birth}, 'yyyy-MM-dd'),
+			NECK_LENGTH = #{neck_length},
+			BACK_LENGTH = #{back_length},
+			CHEST_LENGTH = #{chest_length},
+			PET_ETC = #{pet_etc},
+			IMAGE_SOURCE_ORINAME = #{image_source_oriname}
+		WHERE PET_SERIAL = #{pet_serial }
 	</update>
-	
+
 	<!-- 정보 삭제 -->
 	<delete id="deletePetInfo" parameterType="pet">
 		DELETE FROM USER_PETINFO
-		WHERE PET_SERIAL = #{petSerial }
+		WHERE PET_SERIAL = #{pet_serial }
 	</delete>
-	
-	<!-- 조회 : petSerial로 검색 -->
+
+	<!-- 상세조회 : petSerial로 검색 -->
 	<select id="getPetInfo" parameterType="pet" resultType="pet">
-		SELECT * FROM USER_PETINFO
-		WHERE PET_SERIAL = #{petSerial }
+		SELECT
+			PET_SERIAL, MEMBER_SERIAL, IMAGE_SOURCE, ANIMAL_TYPE, PET_NAME,
+			PET_GENDER, PET_VARIETY, PET_AGE, PET_SIZE, TNR,
+			PET_WEIGHT, PET_BIRTH,
+			NECK_LENGTH, BACK_LENGTH, CHEST_LENGTH, PET_ETC, IMAGE_SOURCE_ORINAME
+		 FROM USER_PETINFO
+		WHERE PET_SERIAL = #{pet_serial }
 	</select>
-	
-	<!-- 조회 : String memberSerial로 pet검색 -->
+
+	<!-- 리스트조회 : String memberSerial로 pet검색 -->
 	<select id="getPetInfoList" parameterType="pet" resultType="pet">
-		SELECT * FROM USER_PETINFO
-		WHERE MEMBER_SERIAL = #{memberSerial }
+		SELECT
+			PET_SERIAL, MEMBER_SERIAL, IMAGE_SOURCE, ANIMAL_TYPE, PET_NAME,
+			PET_GENDER, PET_VARIETY, PET_AGE, PET_SIZE, TNR,
+			PET_WEIGHT, PET_BIRTH,
+			NECK_LENGTH, BACK_LENGTH, CHEST_LENGTH, PET_ETC, IMAGE_SOURCE_ORINAME
+		 FROM USER_PETINFO
+		WHERE MEMBER_SERIAL = #{member_serial }
+		ORDER BY PET_SERIAL ASC
 	</select>
-	
-	
+
 </mapper>
-
-
-
-
-
-
-
-
-
