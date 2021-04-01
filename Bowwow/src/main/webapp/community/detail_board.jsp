@@ -142,18 +142,8 @@
 													<input type="hidden" name="board_no" value="${vo.board_no }">
 													<input type="submit" value="수정">
 													</form>
-													<hr>
-
-													댓글
-
-													
-													<form>
-													<input type="hidden" name="board_no" value=${board_no }>
-													<input type="submit" value="수정하기">
-													</form>
-													
+					
 													<!-- 삭제하기 -->
-													
 													<form action="boardDelete">
 													<input type="hidden" name="board_no" value=${board_no }>											
 													<input type="hidden" name="board_idx" value=${board_idx }>
@@ -169,6 +159,7 @@
 														<input type="hidden" name="board_idx" value=${board_idx }>												
 														<input type="submit" value="등록">
 													</form>
+													댓글
 													<br>
 													<div class="comments_div">
 														<c:forEach var="comvo" items="${commentList }">
