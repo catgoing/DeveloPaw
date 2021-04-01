@@ -10,12 +10,12 @@
 			PET_SERIAL, MEMBER_SERIAL, IMAGE_SOURCE, ANIMAL_TYPE,
 			PET_NAME, PET_GENDER, PET_VARIETY, PET_AGE, PET_SIZE,
 			TNR, PET_WEIGHT, PET_BIRTH, NECK_LENGTH, BACK_LENGTH,
-			CHEST_LENGTH, PET_ETC)
+			CHEST_LENGTH, PET_ETC, IMAGE_SOURCE_ORINAME)
 		VALUES (
 		 PET_SEQ.NEXTVAL , #{member_serial}, 'upload', #{animal_type},
 		 #{pet_name}, #{pet_gender}, #{pet_variety}, #{pet_age}, #{pet_size},
 		 #{tnr}, #{pet_weight}, TO_DATE(#{pet_birth}, 'yyyy-MM-dd'), #{neck_length}, #{back_length},
-		 #{chest_length}, #{pet_etc})
+		 #{chest_length}, #{pet_etc}, #{image_source_oriname})
 	</insert>
 
 	<!-- 반려동물 정보수정 - 유형, 이름, 성별, 품종은 안바꿔도 되잖아!! -->
@@ -35,6 +35,7 @@
 			BACK_LENGTH = #{back_length},
 			CHEST_LENGTH = #{chest_length},
 			PET_ETC = #{pet_etc}
+			IMAGE_SOURCE_ORINAME = #{image_source_oriname}
 		WHERE PET_SERIAL = #{pet_serial }
 	</update>
 
@@ -50,7 +51,7 @@
 			PET_SERIAL, MEMBER_SERIAL, IMAGE_SOURCE, ANIMAL_TYPE, PET_NAME,
 			PET_GENDER, PET_VARIETY, PET_AGE, PET_SIZE, TNR,
 			PET_WEIGHT, PET_BIRTH,
-			NECK_LENGTH, BACK_LENGTH, CHEST_LENGTH, PET_ETC
+			NECK_LENGTH, BACK_LENGTH, CHEST_LENGTH, PET_ETC, IMAGE_SOURCE_ORINAME
 		 FROM USER_PETINFO
 		WHERE PET_SERIAL = #{pet_serial }
 	</select>
@@ -61,7 +62,7 @@
 			PET_SERIAL, MEMBER_SERIAL, IMAGE_SOURCE, ANIMAL_TYPE, PET_NAME,
 			PET_GENDER, PET_VARIETY, PET_AGE, PET_SIZE, TNR,
 			PET_WEIGHT, PET_BIRTH,
-			NECK_LENGTH, BACK_LENGTH, CHEST_LENGTH, PET_ETC
+			NECK_LENGTH, BACK_LENGTH, CHEST_LENGTH, PET_ETC, IMAGE_SOURCE_ORINAME
 		 FROM USER_PETINFO
 		WHERE MEMBER_SERIAL = #{member_serial }
 		ORDER BY PET_SERIAL ASC

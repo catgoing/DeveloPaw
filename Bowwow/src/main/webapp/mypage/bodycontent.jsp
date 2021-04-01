@@ -83,9 +83,7 @@
 			        <tr>
 				        <td rowspan="3" colspan="2">
 				        <input type="file" name="image_source" accept="image/jpg, image/gif image/png, image/jpeg">
-				        <div id="image_container">
-				        	<img src="" alt="https://projectbit.s3.us-east-2.amazonaws.com/petImg/6262857e-1887-46fc-b77c-9209935f8657.jpg">
-				        </div>
+			        	<div id="image_container"></div>
 				       
 				        </td>
 						<td class="insert-title">목둘레</td>

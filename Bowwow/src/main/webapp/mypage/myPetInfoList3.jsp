@@ -69,8 +69,16 @@
 /* 반려동물 정보 출력영역 설정*/
 .col-md-4 .list-inner{
 	text-align : center;
-	margin: 10px 0px 0px 0px;
+	margin: 10px 0px 10px 0px;
 }
+
+ 
+/*썸네일 이미지 출력영역 사이즈조정*/
+.col-md-4 .list-inner .pet-img{
+	width : 300px;
+	height : 300px;
+}
+
 .action-button{
 	display : flex;
 	justify-content: center;
@@ -103,7 +111,9 @@ $().ready(function(){
 				async : "false",
 				dataType : "text",
 				success : function(result){
+					$("#petDetail").modal("hide");
 					alert("삭제완료");
+					location.href = "/getPetInfoList";
 				}, error : function(request,status,error){
 					alert("삭제실패");
 					location.replace = "/getPetInfoList";
@@ -117,33 +127,19 @@ $().ready(function(){
 	$("#newPetInsert").on("click", function(){
 		console.log("인서트 실행");
 
-		//var datas = $("#insertPetform").serialize();
-		//console.log("입력 데이터: " + datas);
-
-		//var param = $("form[name=ppp]").serialize();
-		//console.log(param)
-
-		var dats = new FormData(document.getElementById('insertPetform'));
-		console.log(dats)
-
-		/* $()
-		console.log($("#insertPetform #insert_member_serial").val());
-		console.log($("#insertPetform #insert_animal_type").val());
-		console.log($("#insertPetform #in_name").val());
-		 */
-
-		//var datas = {
+		var datas = new FormData(document.getElementById('insertPetform'));
+		console.log(datas);
+		console.log($("#insertPetform input[type='file']").val());
 		$.ajax("/insertPetInfo", {
 			type : "post",
 			enctype: "multipart/form-data",
-		    /* data: datas, */
-		    data : dats,
+		    data : datas,
 			processData: false,
 			contentType: false,
 			cache: false,
 			dataType: "json",
 			success : function(result){
-				console.log(result);
+				console.log("result : " + result);
 				alert("yes");
 				$("#newPet").modal("hide");
 				location.href = "/getPetInfoList";
@@ -152,6 +148,33 @@ $().ready(function(){
 			}
 		});
 	});
+	
+	$("#modiPetInfo").on("click", function(){
+		console.log("인서트 실행");
+
+		var datas = new FormData(document.getElementById('insertPetform'));
+		console.log(datas);
+		console.log($("#insertPetform input[type='file']").val());
+		$.ajax("/insertPetInfo", {
+			type : "post",
+			enctype: "multipart/form-data",
+		    data : datas,
+			processData: false,
+			contentType: false,
+			cache: false,
+			dataType: "json",
+			success : function(result){
+				console.log("result : " + result);
+				alert("yes");
+				$("#newPet").modal("hide");
+				location.href = "/getPetInfoList";
+			}, error : function(request,status,error){
+				alert("no");
+			}
+		});
+	});
+	
+	
 });
 /*
 function test(frm){
@@ -343,14 +366,16 @@ function clearInput(){
 									</div>
                                         <div class="row">
                                         <c:if test="${not empty petList }">
-                                        <c:forEach var="petList" items="${petList }">
+                                        <c:forEach var="pet" items="${petList }">
 	                                        <div class="col-md-4">
 		                                        <div class="list-inner">
-			                                        <div class="pet-img"><img src="${petList.image_source }" alt="이미지" class="img-circle img-thumbnail"></div>
-			                                        <div class="pet-name">${petList.pet_name }</div>
+			                                        <div class="pet-img">
+			                                        	<img src="${pet.image_source_oriname }" alt="이미지" class="img-circle img-thumbnail">
+			                                        </div>
+			                                        <div class="pet-name">${pet.pet_name }</div>
 			                                        <div class="pet-detail">
 			                                        <form name="thisform">
-				                                        <input type="hidden" name="thispetserial" value="${petList.pet_serial }">
+				                                        <input type="hidden" name="thispetserial" value="${pet.pet_serial }">
 				                                        <%-- <input type="hidden" name="thismemberserial" id="thismem" value="${user.memberSerial }"> --%>
 				                                        <input type="button" value="상세보기" data-toggle="modal" role="button" onclick="getPetInfo(this.form)">
 			                                        </form>
@@ -385,12 +410,12 @@ function clearInput(){
                     </div>
                 </div>
             </div>
-         </div>
-	</div>
-
    	<!-- footer 푸터 시작부분-->
 	<%@include file="/common/footer.jsp" %>
 	<!-- footer 푸터 끝부분-->
+         </div>
+	</div>
+
 
     <!-- Required Jquery -->
     <script type="text/javascript" src="/resources/js/jquery/jquery.min.js "></script>

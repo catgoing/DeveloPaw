@@ -22,6 +22,7 @@ public class Pet {
 	
 	private String pet_serial;
 	private String member_serial;
+	private String image_source_oriname;
 	private MultipartFile image_source;
 	private String animal_type;
 	private String pet_name;

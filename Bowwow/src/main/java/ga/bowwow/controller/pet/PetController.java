@@ -1,31 +1,31 @@
 package ga.bowwow.controller.pet;
 
-import java.io.UnsupportedEncodingException;
-import java.net.URLDecoder;
+import java.io.File;
+import java.io.IOException;
+import java.io.InputStream;
 import java.util.List;
-import java.util.Map;
+import java.util.UUID;
 
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletRequestWrapper;
 import javax.servlet.http.HttpSession;
 
+import org.apache.commons.io.FileUtils;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.HttpRequest;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.util.ResizableByteArrayOutputStream;
 import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.SessionAttributes;
 import org.springframework.web.multipart.MultipartFile;
 
+import com.amazonaws.AmazonClientException;
 import com.google.gson.Gson;
 
-import freemarker.template.utility.StringUtil;
+import ga.bowwow.controller.common.MultipartController;
 import ga.bowwow.service.pet.Pet;
 import ga.bowwow.service.pet.PetService;
 import ga.bowwow.service.user.UserAccount;
@@ -69,7 +69,12 @@ public class PetController {
 		System.out.println("pet " + pet); //member_serial
 
 		List<Pet> petList = petService.getPetInfoList(pet);
-
+		for(Pet p : petList) {
+			if(p.getImage_source_oriname()==null) {
+				p.setImage_source_oriname("https://projectbit.s3.us-east-2.amazonaws.com/petImg/6262857e-1887-46fc-b77c-9209935f8657.jpg");
+			}
+		}
+		
 		model.addAttribute("petList", petList);
 		System.out.println("pet리스트를 넘겨줄게요~");
 
@@ -101,53 +106,35 @@ public class PetController {
 				  //@RequestBody : 받은 거 json으로 바꿔줌
 	@ResponseBody //json으로 변환해서 보내줌!
 	//public int InsertPetInfo(@RequestBody Pet pet) {
-	public int InsertPetInfo(Pet pet) {
+	public int InsertPetInfo(Pet pet, HttpServletRequest request, MultipartFile mf,MultipartController mc) throws AmazonClientException, IllegalStateException, IOException, InterruptedException {
 		System.out.println("> 반려동물 정보 입력");
+		System.out.println("pet~~:"+ pet);
+		
+		String foldername = "petImg";
+		
+		//String contextRoot = new HttpServletRequestWrapper(request).getRealPath("/");
+		//String fileRoot = contextRoot+"resources/upload/";
+		
+		MultipartFile pfile = pet.getImage_source(); //저장하려는 파일
+		File file = multipartToFile(pfile);
+		
+		String originalFileName = pfile.getOriginalFilename();
+		String extension = originalFileName.substring(originalFileName.lastIndexOf("."));
+		String savedFileName = UUID.randomUUID() + extension;
+
+		System.out.println(file);
+		
+		String imgName = mc.s3upload(file, savedFileName, foldername);
+		System.out.println(imgName);
+		String fs_url = "https://projectbit.s3.us-east-2.amazonaws.com/";
+		
+		pet.setImage_source_oriname(fs_url + foldername + "/" + imgName);
+		System.out.println(fs_url + foldername + "/" + imgName);
 
 		int result = petService.insertPetInfo(pet);
-		System.out.println("pet~~:"+ pet);
-
-
+		
 		return 1;
 	}
-
-//	@PostMapping(value="/insertPetInfo")
-//	public String InsertPetInfo(HttpServletRequest request) {
-//		System.out.println("> 반려동물 정보 입력");
-//
-//		//pet.setMember_serial(member_serial); 이거 사용할 것
-//		//pet.setMember_serial("1"); //테스트용 serial입력
-//
-//		Pet pet = new Pet();
-//		pet.setMember_serial(request.getParameter("member_serial"));
-//		pet.setAnimal_type(request.getParameter("animal_type"));
-//		pet.setPet_name(request.getParameter("pet_name"));
-//		pet.setPet_gender(request.getParameter("pet_gender"));
-//		pet.setPet_variety(request.getParameter("pet_variety"));
-//		pet.setPet_age(Integer.parseInt(request.getParameter("pet_age")));
-//		pet.setPet_weight(Integer.parseInt(request.getParameter("pet_weight")));
-//		pet.setPet_size(request.getParameter("pet_size"));
-//
-//		Date pet_birth = null;
-//		if(request.getParameter("pet_birth") == null || request.getParameter("pet_birth").equals("")) {
-//			pet_birth = null;
-//		} else {
-//			pet_birth = Date.valueOf(request.getParameter("pet_birth"));
-//		}
-//		pet.setPet_birth(pet_birth);
-//
-//		pet.setNeck_length(Integer.parseInt(request.getParameter("neck_length")));
-//		pet.setBack_length(Integer.parseInt(request.getParameter("back_length")));
-//		pet.setChest_length(Integer.parseInt(request.getParameter("chest_length")));
-//		pet.setTnr(request.getParameter("tnr"));
-//		pet.setPet_etc(request.getParameter("pet_etc"));
-//
-//		System.out.println("pet~~:"+ pet);
-//
-//		//int result = petService.insertPetInfo(pet);
-//
-//		return "redirect:/getPetInfoList";
-//	}
 
 	//ajax이용
 	@PostMapping("/updatePetInfo")
@@ -169,5 +156,11 @@ public class PetController {
 		System.out.println(result);
 
 		return result;
+	}
+
+	public File multipartToFile(MultipartFile mFile) throws IllegalStateException, IOException {
+		File file = new File(mFile.getOriginalFilename());
+		mFile.transferTo(file);
+		return file;
 	}
 }
