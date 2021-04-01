@@ -17,7 +17,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 
 import com.amazonaws.AmazonClientException;
 
-
+import ga.bowwow.controller.common.MultipartController;
 import ga.bowwow.service.board.Board;
 import ga.bowwow.service.board.BoardService;
 import ga.bowwow.service.board.Comment;
@@ -115,7 +115,6 @@ public class BoardController {
 	
 	
 	@RequestMapping(value="/community/detail", method=RequestMethod.GET)
-	
 	public String getBoard(@RequestParam("board_idx") int board_idx,
 				@RequestParam("board_no") int board_no , Board vo, Model model) {
 		
@@ -123,32 +122,20 @@ public class BoardController {
 		Map<String, Integer> map = new HashMap<String, Integer>();
 		map.put("board_idx", board_idx);
 		map.put("board_no", board_no );
-<<<<<<< HEAD
-		System.out.println(board);
-		board = boardService.getBoard(map);
-=======
 		vo = boardService.getBoard(map);
->>>>>>> 686ed15e12fa777360928e130e534376313c18a9
+
 		List<Comment> commentList = boardService.getCommentList(map);
 		List<Comment> comment2List = boardService.getComment2List(map);
 		
 		System.out.println("detail vo : " + vo);
 		
-		
 //		System.out.println("commentList : " + commentList);
 //		System.out.println("comment2List : " + comment2List);
 		
 		//TODO 임시 회원 시리얼을 실제 객체로 교체할 것
-<<<<<<< HEAD
-		model.addAttribute("tempMemberSerial", "997");
 		model.addAttribute("board_no", board_no);
-		model.addAttribute("board_idx", board_idx);
-		model.addAttribute("board", board);
-=======
-//		model.addAttribute("userDTO", 1);
 		
 		model.addAttribute("vo", vo);
->>>>>>> 686ed15e12fa777360928e130e534376313c18a9
 		model.addAttribute("commentList", commentList);
 		model.addAttribute("comment2List", comment2List);
 
@@ -156,7 +143,6 @@ public class BoardController {
 
 	}
 	
-<<<<<<< HEAD
 	
 	//댓글 입력
 	@RequestMapping(value="/community/comment", method=RequestMethod.GET)
@@ -197,32 +183,10 @@ public class BoardController {
 	}
 	
 
-	
-	//통합검색
-	
-	//메소드에 선언된 @ModelAttribute : 리턴된 데이터를 View에 전달
-	//@ModelAttribute 선언된 메소드는 @RequestMapping 메소드보다 먼저 실행됨
-	//뷰에 전달될 때 설정된 명칭(예: conditionMap)으로 전달
-	@RequestMapping("/community/search")
-	public String search(Board board ,Model model) {
-		String keyword = board.getKeyword();
-		System.out.println(">> 통합검색 - String search()");
-		System.out.println(board);
-		System.out.println("search vo:"+board.getKeyword());
-		List<Board> diarylist =boardService.search("1", keyword);
-		List<Board> introlist =boardService.search("2", keyword);
-		List<Board> knowhowlist =boardService.search("3", keyword);
-		System.out.println("searchboard:" + diarylist);
-		System.out.println("searchboard:" + introlist);
-		System.out.println("searchboard:" + knowhowlist);
-		model.addAttribute("diarylist",diarylist);
-		model.addAttribute("introlist",introlist);
-		model.addAttribute("knowhowlist",knowhowlist);
-=======
+
 	@RequestMapping("/community/update/board")
 	public String updateBoard(Board vo, HttpServletRequest request, MultipartController mc, Model model) throws AmazonClientException, IllegalStateException, IOException, InterruptedException {
 		System.out.println(">>> 게시글 수정화면 - updateBoard()");
->>>>>>> 686ed15e12fa777360928e130e534376313c18a9
 		
 		int board_idx = vo.getBoard_idx();
 		int board_no = vo.getBoard_no();
@@ -286,22 +250,9 @@ public class BoardController {
 		
 //		boardService.updateBoard(vo);
 		
-<<<<<<< HEAD
 
-
-		
-//		boardService.insertBoard(vo);
-
-		//new MultipartController().registerImage(multipartFile, model, request, "diary");
-
-
-		return "/community/list";
-
-=======
-		}
-		
 		return "/community/detail_board";
->>>>>>> 686ed15e12fa777360928e130e534376313c18a9
+		
 	}
 	
 
