@@ -18,8 +18,16 @@
                                             <h3 class="text-center">개발바닥</h3>
                                         </div>
                                     </div>
+                                    <%String cookie = "";
+									Cookie[] cookies = request.getCookies(); //쿠키생성
+									if(cookies !=null&& cookies.length > 0)
+										for (int i = 0; i < cookies.length; i++){
+											if (cookies[i].getName().equals("userId")) { // 내가 원하는 쿠키명 찾아서 값 저장
+												cookie = cookies[i].getValue();
+											}
+										}%>
                                     <div class="form-group form-primary">
-                                        <input type="text" name="id" class="form-control" value="${userAccount.id }">
+                                        <input type="text" name="id" class="form-control" value="<%=cookie%>">
                                         <span class="form-bar"></span>
                                         <label class="float-label">아이디</label>
                                     </div>
@@ -30,9 +38,9 @@
                                     </div>
                                     <div class="row m-t-25 text-left">
                                         <div class="col-12">
-                                            <div class="checkbox-fade fade-in-primary d-">
+                                            <div class="fade-in-primary d-">
                                                 <label>
-                                                    <input type="checkbox" value="">
+                                                    <input type="checkbox" id="checkbox" name="userId">
                                                     <span class="cr"><i class="cr-icon icofont icofont-ui-check txt-primary"></i></span>
                                                     <span class="text-inverse">아이디 저장</span>
                                                 </label>
