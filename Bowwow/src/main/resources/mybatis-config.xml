@@ -7,16 +7,13 @@
 		<setting name="jdbcTypeForNull" value="NULL" />
 		<setting name="mapUnderscoreToCamelCase" value="true"/>
 	</settings>
-	<typeAliases>
 
-		<typeAlias type="ga.bowwow.service.board.Board" alias="board" />
-		<typeAlias type="ga.bowwow.service.board.Comment" alias="comment" />
-		<typeAlias type="ga.bowwow.service.pet.Pet" alias="pet" />
-		<typeAlias type="ga.bowwow.service.store.Products" alias="Product" />
+	<typeAliases>
 		<typeAlias type="ga.bowwow.service.user.VO.UserAccount" alias="UserAccount"/>
 		<typeAlias type="ga.bowwow.service.user.VO.UserDetail" alias="UserDetail"/>
 		<typeAlias type="ga.bowwow.service.user.VO.UserAddress" alias="UserAddress"/>
 		<typeAlias type="ga.bowwow.service.user.VO.UserWallet" alias="UserWallet"/>
+		<typeAlias type="ga.bowwow.service.board.Board" alias="Board"/>
 		<typeAlias type="ga.bowwow.service.pet.Pet" alias="pet"/>
 		<typeAlias type="ga.bowwow.service.store.Product" alias="Product"/>
 		<typeAlias type="ga.bowwow.service.store.Review" alias="Review" />

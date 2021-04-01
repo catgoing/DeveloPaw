@@ -5,8 +5,8 @@
 <mapper namespace="BoardDAO">
 
 	<insert id="insertBoard" parameterType="board">
-		INSERT INTO KNOWHOW_BOARD (BOARD_NO, BOARD_TITLE, MEMBER_SERIAL, BOARD_CONTENT,REGDATE,HITS,ANIMAL_CLASS) 
-		VALUES (INTRO_BOARD_SEQ.NEXTVAL, #{board_title}, 999, #{board_content}, SYSDATE, 0, #{animal_class})
+		INSERT INTO DIARY_BOARD (BOARD_NO, BOARD_TITLE, MEMBER_SERIAL, BOARD_CONTENT,REGDATE,HITS,ANIMAL_CLASS) 
+		VALUES (DIARY_BOARD_SEQ.NEXTVAL, #{board_title}, 999, #{board_content}, SYSDATE, 0, #{animal_class})
 	</insert>
 	
 
@@ -19,73 +19,6 @@
 			<when test="board_idx == 2"> INTRO_BOARD B, USER_ACCOUNT U WHERE B.MEMBER_SERIAL = U.MEMBER_SERIAL </when>
 		</choose>
 	</select>
-	
-	<select id="getBoard" parameterType="Map" resultType="board">
-		SELECT BOARD_NO, BOARD_CONTENT, BOARD_TITLE
-		FROM 
-		<choose>
-			<when test="board_idx == 1"> DIARY_BOARD </when>
-			<when test="board_idx == 2"> INTRO_BOARD </when>
-		</choose>
-		WHERE BOARD_NO = #{board_no}
-	</select>
-	
-	
-	<insert id="insertComment" parameterType="comment">
-		INSERT INTO DIARY_COMMENTS (COMMENT_NO, MEMBER_SERIAL, BOARD_NO, COMMENT_CONTENT, REGDATE) 
-		VALUES (DIARY_COMMENTS_SEQ.NEXTVAL, #{member_serial}, #{board_no}, #{comment_content}, SYSDATE)
-	</insert>
-	
-	<insert id="insertComment2" parameterType="comment">
-		INSERT INTO DIARY_COMMENTS2 (COMMENT_NO2, MEMBER_SERIAL, COMMENT_NO, COMMENT_CONTENT2, REGDATE) 
-		VALUES (DIARY_COMMENTS2_SEQ.NEXTVAL, #{member_serial}, #{comment_no}, #{comment_content}, SYSDATE)
-	</insert>
-	
-	
-	<select id="getCommentList" parameterType="Map" resultType="comment" >
-		SELECT COMMENT_NO, BOARD_NO, COMMENT_CONTENT, REGDATE, NICKNAME
-		FROM 
-		<choose>
-			<when test="board_idx == 1"> DIARY_COMMENTS C, USER_DETAIL U WHERE C.MEMBER_SERIAL = U.MEMBER_SERIAL </when>
-			<when test="board_idx == 2"> INTRO_COMMENTS C, USER_DETAIL U WHERE C.MEMBER_SERIAL = U.MEMBER_SERIAL </when>
-		</choose>
-		AND BOARD_NO = #{board_no}
-	</select>
-	
-	<select id="getComment2List" parameterType="Map" resultType="comment" >
-		SELECT COMMENT_NO2, C2.COMMENT_NO, C2.COMMENT_CONTENT2 AS COMMENT_CONTENT, C2.REGDATE, NICKNAME
-		FROM 
-		<choose>
-			<when test="board_idx == 1"> 
-			DIARY_COMMENTS2 C2, DIARY_COMMENTS C, USER_DETAIL U 
-			</when>
-			<when test="board_idx == 2"> 
-			INTRO_COMMENTS2 C2, INTRO_COMMENTS C, USER_DETAIL U 
-			</when>
-		</choose>
-		WHERE C2.COMMENT_NO = C.COMMENT_NO
-		AND C2.MEMBER_SERIAL = U.MEMBER_SERIAL
-	</select>
-	
-	 <select id="search" parameterType="Map" resultType="board">
-		SELECT *
-		FROM 
-		<choose>
-			<when test='board.equals("1")'> 
-			DIARY_BOARD
-			</when>
-			<when test='board.equals("2")'> 
-			INTRO_BOARD 
-			</when>
-			<when test='board.equals("3")'> 
-			KNOWHOW_BOARD
-			</when>
-		</choose>
-			WHERE BOARD_CONTENT LIKE '%'||#{keyword}||'%'
-			OR  BOARD_TITLE LIKE '%'||#{keyword}||'%' 	
-	</select> 
-	
-	
 <!-- 	
 
 	<select id="getBoardList" parameterType="string" resultType="board" >

@@ -1,23 +1,21 @@
 package ga.bowwow.service.board.impl;
 
+import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Service;
 
 import ga.bowwow.service.board.Board;
 import ga.bowwow.service.board.BoardService;
-import ga.bowwow.service.board.Comment;
-import ga.bowwow.service.board.Report;
 
 
 @Service("boardService")
 public class BoardServiceImpl implements BoardService{
 	@Autowired
 	private BoardDAO boardDAO;
-	@Autowired
-	private CommentDAO commentDAO;
 	
 	public BoardServiceImpl() {
 		System.out.println(">> BoardServiceImpl() 객체생성");
@@ -39,82 +37,21 @@ public class BoardServiceImpl implements BoardService{
 	}
 
 	@Override
-	public Board getBoard(Map<String, Integer> map) {
-		return boardDAO.getBoard(map);
+	public Board getBoard(String board_no) {
+		return boardDAO.getBoard(board_no);
 	}
 
 //	@Override
 //	public List<Board> getBoardList() {
 //		return boardDAO.getBoardList();
 //	}
-	
-	@Override
-	public List<Board> getBoardList(Map<String, Integer> map) {
-		return boardDAO.getBoardList(map);
-	}
-
-	
-
-	//댓글부분
-	
-	@Override
-	public void insertComment(Comment vo) {
-		System.out.println("service: " + vo);
-		commentDAO.insertComment(vo);
-		
-	}
 
 	@Override
-	public void updateComment(Comment vo) {
-		commentDAO.updateComment(vo);
-	}
+	public List<Board> getBoardList(int idx) {
+//		Map<Integer, String> map = new HashMap<Integer, String>();
+//		map.put(idx, board_name);
 
-	@Override
-	public void deleteComment(Comment vo) {
-		commentDAO.deleteComment(vo);
+		return boardDAO.getBoardList(idx);
 	}
-	
-
-	@Override
-	public List<Comment> getCommentList(Map<String, Integer> map) {
-		return boardDAO.getCommentList(map);
-	}
-	
-	
-	//대댓글 부분
-	
-	@Override
-	public void insertComment2(Comment vo) {
-		commentDAO.insertComment2(vo);
-	}
-
-	@Override
-	public void updateComment2(Comment vo) {
-		commentDAO.updateComment2(vo);
-	}
-
-	@Override
-	public void deleteComment2(Comment vo) {
-		commentDAO.deleteComment2(vo);
-	}
-
-
-	@Override
-	public List<Comment> getComment2List(Map<String, Integer> map) {
-		return boardDAO.getComment2List(map);
-	}
-	
-	public List<Board> search(String board, String keyword) {
-		return boardDAO.search(board, keyword);
-	}
-
-	@Override
-	public void insertReport(Report vo) {
-		System.out.println("report vo  :  " + vo);
-		boardDAO.insertReport(vo);
-		
-		
-	}
-	
 
 }
