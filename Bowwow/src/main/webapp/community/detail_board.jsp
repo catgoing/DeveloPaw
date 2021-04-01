@@ -138,13 +138,13 @@
 													</div>
 													
 													<!-- 수정하기 -->
-
 													<input type="hidden" name="board_idx" value="${board_idx }">
 													<input type="hidden" name="board_no" value="${vo.board_no }">
 													<input type="submit" value="수정">
 													</form>
 													<hr>
-													
+
+													댓글
 
 													
 													<form>
@@ -180,6 +180,7 @@
 															<button id =  comment name = "comment" value="${comvo.comment_no }	">삭제하기</button>
 
 															<button name = "comment" value="${comvo.comment_no },${tempMemberSerial}" onclick="">신고</button>
+
 
 															<c:set var="com1" value="${comvo.comment_no }" />
 															<hr>
