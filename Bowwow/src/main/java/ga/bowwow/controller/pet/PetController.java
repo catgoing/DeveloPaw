@@ -49,7 +49,7 @@ public class PetController {
 		return member_serial = user.getMemberSerial();
 	}
 
-	@RequestMapping(value = "/mypage/")
+	@RequestMapping(value = "/mypage/myPageMain")
 	public String myPageMain() {
 		return "myPageMain";
 	}
