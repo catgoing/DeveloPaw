@@ -1,0 +1,82 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01//EN" "http://www.w3.org/TR/html4/strict.dtd">
+<html lang="en">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+    <title>Test</title>
+    <style type="text/css">
+      html {font:81.25%/1.5 Verdana,sans-serif}
+      input[type="text"] {margin:2px 0}
+      .row {overflow:hidden}
+      .row div {float:left; width:12em; margin-right:0.5em}
+      .row div.btn {width:auto; margin:1.5em 0 0}
+      .row label {display:block}
+    </style>
+  </head>
+  <body>
+    <form action="#">
+      <fieldset id="Spouse">
+        <legend>Spouse</legend>
+        <div class="row">
+          <div><label for="fn1">First name</label> <input type="text" name="fn1" id="fn1"></div>
+          <div><label for="ln1">Last name</label> <input type="text" name="ln1" id="ln1"></div>
+          <div><label for="a1">Age</label> <input type="text" name="a1" id="a1"></div>
+        </div>
+      </fieldset>
+      <div>
+        <input type="submit" value="Submit">
+      </div>
+    </form>
+    <script type="text/javascript">
+      (function () {
+         var Spouse = {
+             count:    1,
+             init:     function () {
+                           var fs = document.getElementById("Spouse");
+                           var div = fs.appendChild(this.make("div", {id: "here"}));
+                           var btn = div.appendChild(this.make("input", {type: "button", value: "Add Spouse"}));
+                           btn.onclick = (function (_self) {
+                               return function () {
+                                   _self.add();
+                                   return false;
+                               };
+                           })(this);
+                       },
+             add:      function () {
+                           ++this.count;
+                           var here = document.getElementById("here");
+                           var row = here.parentNode.insertBefore(this.make("div", {className: "row", id: "row" + this.count}), here);
+                           this.addField(row, "First Name ", "fn");
+                           this.addField(row, "Last Name ",  "ln");
+                           this.addField(row, "Age ",        "a");
+                           var div = row.appendChild(this.make("div", {className: "btn"}));
+                           var btn = div.appendChild(this.make("input", {type: "button", value: "Remove", _id: "row" + this.count}));
+                           btn.onclick = this.remove;
+                       },
+             addField: function (parent, label, prefix) {
+                           var div = parent.appendChild(this.make("div"));
+                           div.appendChild(this.make("label", {htmlFor: prefix + this.count}, label));
+                           div.appendChild(this.make("input", {type: "text", name: prefix + this.count, id: prefix + this.count}));
+                       },
+             remove:   function () {
+                           var row = document.getElementById(this._id);
+                           row.parentNode.removeChild(row);
+                           return false;
+                       },
+             make:     function (type, attrs, content) {
+                           var element = document.createElement(type);
+                           if (attrs !== undefined) {
+                               for (var a in attrs) {
+                                   element[a] = attrs[a];
+                               }
+                           }
+                           if (content !== undefined) {
+                               element.appendChild(document.createTextNode(content));
+                           }
+                           return element;
+                       }
+         };
+         Spouse.init();
+       })();
+    </script>
+  </body>
+</html>
