@@ -2,155 +2,156 @@
     pageEncoding="UTF-8"%>
  <html>
  <head>
+ 	<script src="/auth/auth.js"> </script>
  	<script type="text/javascript">
  	var pw_passed = true;
-    function fn_pw_check() {
-        var pw = document.getElementById("pw").value;
-        var pw2 = document.getElementById("pwC").value;
-        var id = document.getElementById("id").value;
-        var name = document.getElementById("name").value;
-        //var year = document.getElementById("bYear").value;
-        //var month = document.getElementById("bMonth").value;
-        //var day = document.getElementById("bDay").value; //생년월일
-        var phone = document.getElementById("phone").value;
-        //var location = document.getElementById("optLocation").value;
-        var email = document.getElementById("email").value;
-        //var inText = document.getElementById("txtIn").value;
-        //var profileimg = document.getElementById("txtimg").value;
+//     function fn_pw_check() {
+//         var pw = document.getElementById("pw").value;
+//         var pw2 = document.getElementById("pwC").value;
+//         var id = document.getElementById("id").value;
+//         var name = document.getElementById("name").value;
+//         //var year = document.getElementById("bYear").value;
+//         //var month = document.getElementById("bMonth").value;
+//         //var day = document.getElementById("bDay").value; //생년월일
+//         var phone = document.getElementById("phone").value;
+//         //var location = document.getElementById("optLocation").value;
+//         var email = document.getElementById("email").value;
+//         //var inText = document.getElementById("txtIn").value;
+//         //var profileimg = document.getElementById("txtimg").value;
         
-        pw_passed = true;
+//         pw_passed = true;
         
-        //var today = new Date();
-        //var yearNow = today.getFullYear();
+//         //var today = new Date();
+//         //var yearNow = today.getFullYear();
 		
-        var pattern1 = /[0-9]/;
-        var pattern2 = /[a-zA-Z]/;
-        var pattern3 = /[~!@\#$%<>^&*]/;
-        var pattern4 = /^01(?:0|1|[6-9])(?:\d{3}|\d{4})\d{4}$/;
-        var pattern5 = /^[0-9a-zA-Z]([-_\.]?[0-9a-zA-Z])*@[0-9a-zA-Z]([-_\.]?[0-9a-zA-Z])*\.[a-zA-Z]{2,3}$/i;
+//         var pattern1 = /[0-9]/;
+//         var pattern2 = /[a-zA-Z]/;
+//         var pattern3 = /[~!@\#$%<>^&*]/;
+//         var pattern4 = /^01(?:0|1|[6-9])(?:\d{3}|\d{4})\d{4}$/;
+//         var pattern5 = /^[0-9a-zA-Z]([-_\.]?[0-9a-zA-Z])*@[0-9a-zA-Z]([-_\.]?[0-9a-zA-Z])*\.[a-zA-Z]{2,3}$/i;
         
-        var pw_msg = "";
-        if(id.length == 0) {
-               alert("아이디를 입력해주세요");
-               return false;
-         } else {
-         }
-        if(pw.length == 0) {
-               alert("비밀번호를 입력해주세요");
-               return false;
-         } else {
-                if(pw != pw2) {
-                      alert("비밀번호가 일치하지 않습니다.");
-                      return false;
-                 }
-         }
-        if(name.length == 0){
-        	alert("이름을 입력해주세요.");
-        	return false;
-        }
-        //if(year.length == 0 || month.length == 0 || day.length == 0){
-        //	alert("생년월일을 모두 기입해주세요.");
-        //	return false;
-        //}
-        if(phone.length == 0){
-        	alert("전화번호를 입력해주세요.");
-        	return false;
-        }
-        //if(location.length == 0){
-        //	alert("주소를 입력해주세요.");
-        //	return false;
-        //}
-        if(email.length == 0){
-        	alert("이메일을 입력해주세요.");
-        	return false;
-        }
-        if(!pattern1.test(pw)||!pattern2.test(pw)||!pattern3.test(pw)||pw.length<8||pw.length>50){
-            alert("비밀번호엔 영문과 숫자, 특수문자를 모두 입력해야 합니다.");
-            return false;
-        }          
-        if(pw.indexOf(id) > -1) {
-            alert("비밀번호에 ID를 포함할 수 없습니다.");
-            return false;
-        }
+//         var pw_msg = "";
+//         if(id.length == 0) {
+//                alert("아이디를 입력해주세요");
+//                return false;
+//          } else {
+//          }
+//         if(pw.length == 0) {
+//                alert("비밀번호를 입력해주세요");
+//                return false;
+//          } else {
+//                 if(pw != pw2) {
+//                       alert("비밀번호가 일치하지 않습니다.");
+//                       return false;
+//                  }
+//          }
+//         if(name.length == 0){
+//         	alert("이름을 입력해주세요.");
+//         	return false;
+//         }
+//         //if(year.length == 0 || month.length == 0 || day.length == 0){
+//         //	alert("생년월일을 모두 기입해주세요.");
+//         //	return false;
+//         //}
+//         if(phone.length == 0){
+//         	alert("전화번호를 입력해주세요.");
+//         	return false;
+//         }
+//         //if(location.length == 0){
+//         //	alert("주소를 입력해주세요.");
+//         //	return false;
+//         //}
+//         if(email.length == 0){
+//         	alert("이메일을 입력해주세요.");
+//         	return false;
+//         }
+//         if(!pattern1.test(pw)||!pattern2.test(pw)||!pattern3.test(pw)||pw.length<8||pw.length>50){
+//             alert("비밀번호엔 영문과 숫자, 특수문자를 모두 입력해야 합니다.");
+//             return false;
+//         }          
+//         if(pw.indexOf(id) > -1) {
+//             alert("비밀번호에 ID를 포함할 수 없습니다.");
+//             return false;
+//         }
         
-        var SamePass_0 = 0;
-        var SamePass_1 = 0;
-        var SamePass_2 = 0;
+//         var SamePass_0 = 0;
+//         var SamePass_1 = 0;
+//         var SamePass_2 = 0;
 
-        for(var i=0; i < pw.length; i++) {
-             var chr_pass_0;
-             var chr_pass_1;
-             var chr_pass_2;
+//         for(var i=0; i < pw.length; i++) {
+//              var chr_pass_0;
+//              var chr_pass_1;
+//              var chr_pass_2;
 
-             if(i >= 2) {
-                 chr_pass_0 = pw.charCodeAt(i-2);
-                 chr_pass_1 = pw.charCodeAt(i-1);
-                 chr_pass_2 = pw.charCodeAt(i);
+//              if(i >= 2) {
+//                  chr_pass_0 = pw.charCodeAt(i-2);
+//                  chr_pass_1 = pw.charCodeAt(i-1);
+//                  chr_pass_2 = pw.charCodeAt(i);
 
-                 if((chr_pass_0 == chr_pass_1) && (chr_pass_1 == chr_pass_2)) {
-                    SamePass_0++;
-                  } 
-                  else {
-                   SamePass_0 = 0;
-                   }
-                 if(chr_pass_0 - chr_pass_1 == 1 && chr_pass_1 - chr_pass_2 == 1) {
-                     SamePass_1++;
-                  }
-                  else {
-                   SamePass_1 = 0;
-                  }
-                 if(chr_pass_0 - chr_pass_1 == -1 && chr_pass_1 - chr_pass_2 == -1) {
-                     SamePass_2++;
-                  }
-                  else {
-                   SamePass_2 = 0;
-                  }  
-             }     
-            if(SamePass_0 > 0) {
-               alert("동일문자를 3자 이상 연속 입력할 수 없습니다.");
-               pw_passed=false;
-             }
-            if(SamePass_1 > 0 || SamePass_2 > 0 ) {
-               alert("영문, 숫자는 3자 이상 연속 입력할 수 없습니다.");
-               pw_passed=false;
-             } 
-             if(!pw_passed) {             
-                  return false;
-                  break;
-            }
-        }
-		//if (year.length+month.length+day.length <=8) {
-        //	if(1900 > year || year > yearNow){
-        //		alert("정확한 년도를 입력해 주세요.");
-        //		return false;
-        //	}else if(month < 1 || month > 12){
-        //		alert("정확한 월수를 입력해 주세요.");
-        //		return false;
-        //	}else if(day < 1 || day > 31){
-        //		alert("정확한 일수를 입력해 주세요.");
-        //		return false;
-        //	}
-        //}else{
-        //	alert("생년월일을 정확히 기입해주세요. YYYY/MM/DD");
-        //	return false;
-        //}
+//                  if((chr_pass_0 == chr_pass_1) && (chr_pass_1 == chr_pass_2)) {
+//                     SamePass_0++;
+//                   } 
+//                   else {
+//                    SamePass_0 = 0;
+//                    }
+//                  if(chr_pass_0 - chr_pass_1 == 1 && chr_pass_1 - chr_pass_2 == 1) {
+//                      SamePass_1++;
+//                   }
+//                   else {
+//                    SamePass_1 = 0;
+//                   }
+//                  if(chr_pass_0 - chr_pass_1 == -1 && chr_pass_1 - chr_pass_2 == -1) {
+//                      SamePass_2++;
+//                   }
+//                   else {
+//                    SamePass_2 = 0;
+//                   }  
+//              }     
+//             if(SamePass_0 > 0) {
+//                alert("동일문자를 3자 이상 연속 입력할 수 없습니다.");
+//                pw_passed=false;
+//              }
+//             if(SamePass_1 > 0 || SamePass_2 > 0 ) {
+//                alert("영문, 숫자는 3자 이상 연속 입력할 수 없습니다.");
+//                pw_passed=false;
+//              } 
+//              if(!pw_passed) {             
+//                   return false;
+//                   break;
+//             }
+//         }
+// 		//if (year.length+month.length+day.length <=8) {
+//         //	if(1900 > year || year > yearNow){
+//         //		alert("정확한 년도를 입력해 주세요.");
+//         //		return false;
+//         //	}else if(month < 1 || month > 12){
+//         //		alert("정확한 월수를 입력해 주세요.");
+//         //		return false;
+//         //	}else if(day < 1 || day > 31){
+//         //		alert("정확한 일수를 입력해 주세요.");
+//         //		return false;
+//         //	}
+//         //}else{
+//         //	alert("생년월일을 정확히 기입해주세요. YYYY/MM/DD");
+//         //	return false;
+//         //}
 
-		if(!pattern4.test(phone)){
-			alert("정확한 전화번호를 입력해주세요. -제거");
-			return false;
-		}
-		if(!pattern5.test(email)){
-			alert("정확한 이메일을 입력해주세요.");
-			return false;
-		}
-		//if(!(result == inText)){
-		//	alert("틀린 인증번호입니다.");
-		//	return false;
-		//}
+// 		if(!pattern4.test(phone)){
+// 			alert("정확한 전화번호를 입력해주세요. -제거");
+// 			return false;
+// 		}
+// 		if(!pattern5.test(email)){
+// 			alert("정확한 이메일을 입력해주세요.");
+// 			return false;
+// 		}
+// 		//if(!(result == inText)){
+// 		//	alert("틀린 인증번호입니다.");
+// 		//	return false;
+// 		//}
 		
-   		alert("회원가입이 완료되었습니다");
-        return true;
-    }
+//    		alert("회원가입이 완료되었습니다");
+//         return true;
+//     }
  	</script>
  	<script>
  	<script type="text/javascript">
@@ -291,47 +292,126 @@
 										<div class="action_btn">
 											<input type="submit" value="부모컨트롤러 회원삭제"  formaction="/account/delete">
 										</div>
+										<div class="action_btn">
+											<button id="expend_address" onclick="fn();">button</button>
+										</div>
 									</form>
+									<form>
+										<div class="action_btn">
+											<input type="submit" value="부모컨트롤러 주소입력" formaction="/address/add">
+										</div>
+										<div class="action_btn">
+											<input type="submit" value="부모컨트롤러 주소삭제" formaction="/address/delete">
+										</div>
+										<fieldset id="Address">
+									        <legend>Address</legend>
+									        <div class="row">
+									          <div><label for="addressId1">주소ID</label> <input type="number" name="addressId1" id="addressId1"></div>
+									          <div><label for="memberSerial1">멤버시리얼</label> <input type="number" name="memberSerial1" id="memberSerial1"></div>
+									          <div><label for="userAddress1">주소입력</label> <input type="text" name="userAddress1" id="userAddress1"></div>
+									          <div><label for="addressDetail1">상세주소</label> <input type="text" name="addressDetail1" id="addressDetail1"></div>
+									          <div><label for="zonecode1">우편번호</label> <input type="text" name="zonecode1" id="zonecode1"></div>
+									        </div>
+									        </fieldset>
+									      <div>
+									        <input type="submit" value="Submit">
+									      </div>
+									</form>
+
+    <script type="text/javascript">
+      (function () {
+         var Address = {
+             count:    1,
+             init:     function () {
+                           var fs = document.getElementById("Address");
+                           var div = fs.appendChild(this.make("div", {id: "here"}));
+                           var btn = div.appendChild(this.make("input", {type: "button", value: "주소 추가"}));
+                           btn.onclick = (function (_self) {
+                               return function () {
+                                   _self.add();
+                                   return false;
+                               };
+                           })(this);
+                       },
+             add:      function () {
+                           ++this.count;
+                           var here = document.getElementById("here");
+                           var row = here.parentNode.insertBefore(this.make("div", {className: "row", id: "row" + this.count}), here);
+                           this.addField(row, "주소ID", "addressId");
+                           this.addField(row, "멤버시리얼", "memberSerial");
+                           this.addField(row, "주소입력", "userAddress");
+                           this.addField(row, "상세주소", "addressDetail");
+                           this.addField(row, "우편번호", "zonecode");
+                           var div = row.appendChild(this.make("div", {className: "btn"}));
+                           var btn = div.appendChild(this.make("input", {type: "button", value: "주소 삭제", _id: "row" + this.count}));
+                           btn.onclick = this.remove;
+                       },
+             addField: function (parent, label, prefix) {
+                           var div = parent.appendChild(this.make("div"));
+                           div.appendChild(this.make("label", {htmlFor: prefix + this.count}, label));
+                           div.appendChild(this.make("input", {type: "text", name: prefix + this.count, id: prefix + this.count}));
+                       },
+             remove:   function () {
+                           var row = document.getElementById(this._id);
+                           row.parentNode.removeChild(row);
+                           return false; 
+                       },
+             make:     function (type, attrs, content) {
+                           var element = document.createElement(type);
+                           if (attrs !== undefined) {
+                               for (var a in attrs) {
+                                   element[a] = attrs[a];
+                               }
+                           }
+                           if (content !== undefined) {
+                               element.appendChild(document.createTextNode(content));
+                           }
+                           return element;
+                       }
+         };
+         Address.init();
+       })();
+   	</script>
 									
 									<script>
-		            var down = document.getElementById("GFG_DOWN");
-		            function GFG_Fun() {
-		                
-		                // Create a form synamically
-		                var form = document.createElement("form");
-		                form.setAttribute("method", "post");
-		                form.setAttribute("action", "submit.php");
-		  
-		                // Create an input element for emailID
-		                var ID = document.createElement("input");
-		                ID.setAttribute("type", "text");
-		                ID.setAttribute("name", "emailID");
-		                ID.setAttribute("placeholder", "E-Mail ID");
-		  
-		                // Create an input element for password
-		                var PWD = document.createElement("input");
-		                PWD.setAttribute("type", "password");
-		                PWD.setAttribute("name", "password");
-		                PWD.setAttribute("placeholder", "Password");
-		  
-		                // Create a submit button
-		                var s = document.createElement("input");
-		                s.setAttribute("type", "submit");
-		                s.setAttribute("value", "Submit");
-		  
-		                // Append the email_ID input to the form
-		                form.append(ID); 
-		                
-		                // Append the password to the form
-		                form.append(PWD); 
-		                
-		                // Append the button to the form
-		                form.append(s); 
-		  
-		                document.getElementsByTagName("body")[0]
-		               .appendChild(form);
-		            }
-		        </script>
+								            var down = document.getElementById("GFG_DOWN");
+								            function GFG_Fun() {
+								                
+								                // Create a form synamically
+								                var form = document.createElement("form");
+								                form.setAttribute("method", "post");
+								                form.setAttribute("action", "submit.php");
+								  
+								                // Create an input element for emailID
+								                var ID = document.createElement("input");
+								                ID.setAttribute("type", "text");
+								                ID.setAttribute("name", "emailID");
+								                ID.setAttribute("placeholder", "E-Mail ID");
+								  
+								                // Create an input element for password
+								                var PWD = document.createElement("input");
+								                PWD.setAttribute("type", "password");
+								                PWD.setAttribute("name", "password");
+								                PWD.setAttribute("placeholder", "Password");
+								  
+								                // Create a submit button
+								                var s = document.createElement("input");
+								                s.setAttribute("type", "submit");
+								                s.setAttribute("value", "Submit");
+								  
+								                // Append the email_ID input to the form
+								                form.append(ID); 
+								                
+								                // Append the password to the form
+								                form.append(PWD); 
+								                
+								                // Append the button to the form
+								                form.append(s); 
+								  
+								                document.getElementsByTagName("body")[0]
+								               .appendChild(form);
+								            }
+								        </script>
 									</div>
 								</div>
 							</div>

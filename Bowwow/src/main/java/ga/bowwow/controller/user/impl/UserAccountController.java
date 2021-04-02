@@ -1,6 +1,7 @@
 package ga.bowwow.controller.user.impl;
 
 import java.util.ArrayList;
+import java.util.List;
 
 import javax.servlet.http.HttpSession;
 
@@ -27,9 +28,10 @@ public class UserAccountController extends UserCRUDGenericController<UserAccount
 		this.setDomainRoute("/ok", "/auth.login");
 	}
 	
+	
 	@GetMapping("/getList")
 	protected String getList(@ModelAttribute ArrayList<UserAccount> userDtoList, Model model) {
-		System.out.println("getListController");
+		System.out.println("GETLIST RESOLVING TEST");
 		userDtoList = (ArrayList<UserAccount>) service.getVoList();
 		model.addAttribute("userDtoList", userDtoList);
 		System.out.println(userDtoList);
@@ -43,13 +45,17 @@ public class UserAccountController extends UserCRUDGenericController<UserAccount
 	//TODO =>트랜잭션이란, 결국에 2+개의 boolean을 and처리한 결과임.
 
 	@RequestMapping(value="/signupAccount") //CRUD페이지
-	public String getUserInfo(@ModelAttribute("userAccount") UserAccount userAccount) {
+	public String getUserInfo(@ModelAttribute("userAccount") UserAccount userAccount, List<UserAccount> listUserAddress) {
 		return "/auth.myAccount";
 	}
 	@RequestMapping(value="/login")
 	public String getUserAccount(@ModelAttribute("userAccount") UserAccount userAccount, Model model) {
 		boolean result = ((UserAccountServiceImpl)this.service).loginAttemp(userAccount);
+		System.out.println("loginController TEST");
+		System.out.println(userAccount);
+		System.out.println(model);
 		if(result) model.addAttribute("userDTO", userAccount);
+		System.out.println(result);
 		return result ? "redirect:/store/storeMain" : "/auth.login";
 	}
 	@RequestMapping(value="/logout")

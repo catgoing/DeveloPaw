@@ -82,7 +82,7 @@ function checker() {
                                     <div class="row">
                                         <div class="col-md-10">
                                             <p></p>
-                                            <p class="text-inverse text-left"><a href="index.html"><b>메인화면으로 돌아가기</b></a></p>
+                                            <p class="text-inverse text-left"><a href="/account/login"><b>메인화면으로 돌아가기</b></a></p>
                                         </div>
                                         <div class="col-md-2">
                                             <img src="/resources/images/colored_logo.png" alt="colored_logo.png">

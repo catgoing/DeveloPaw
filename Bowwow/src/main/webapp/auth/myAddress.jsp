@@ -80,7 +80,7 @@
 									<div class="block-title">
 										<h3>주소지입력</h3>
 									</div>
-									<input type="button" value="맵" onclick="execMap()"/><br>
+<!-- 									<input type="button" value="맵" onclick="execMap()"/><br> -->
 									<form>
 										<div class="form-group form-primary">
 	                                        <input type="number" id="addressId" name="addressId" class="form-control">

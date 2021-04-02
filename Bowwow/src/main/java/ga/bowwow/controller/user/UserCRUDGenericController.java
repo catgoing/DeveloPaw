@@ -20,7 +20,8 @@ public abstract class UserCRUDGenericController<T> {
 		try {
 			System.out.println("controller : " + vo);
 			return router(service.addVo(vo), resolveRoute, errorRoute);
-		} catch (DataIntegrityViolationException  e) {
+		} catch (DataIntegrityViolationException  e) { // 이게 안 잡힘?
+			System.out.println("Caught Integerity Exception Test");
 			e.printStackTrace();
 		} catch (TooManyResultsException e) {
 			e.printStackTrace();
