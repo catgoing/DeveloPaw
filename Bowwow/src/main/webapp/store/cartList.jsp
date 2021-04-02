@@ -43,59 +43,10 @@
     <link rel="stylesheet" type="text/css" href="/resources/css/jquery.mCustomScrollbar.css">
     <!-- Style.css -->
     <link rel="stylesheet" type="text/css" href="/resources/css/style.css">
-    <link rel="stylesheet" type="text/css" href="/resources/css/storeStyle.css">
+    <link rel="stylesheet" type="text/css" href="/resources/css/cartStyle.css">
     <link rel="stylesheet" type="text/css" href="/resources/css/test.css">
 	<script type="text/javascript" src="/resources/js/jquery/jquery.min.js "></script>
 	
-<script type="text/javascript">
-
-		var sell_price;
-		var amount;
-		
-		$(function init () {
-			sell_price = document.getElementById('sell_price').value;
-			document.getElementById('sum').value = sell_price.replace(/\B(?=(\d{3})+(?!\d))/g, ",");
-			sell_price = document.form.sell_price.value;
-			amount = document.form.amount.value;
-			document.form.sum.value = sell_price;
-		});
-		
-		function add () {
-			hm = document.form.amount;
-			sum = document.form.sum;
-			hm.value ++ ;
-			
-			var temp = parseInt(hm.value) * sell_price
-		
-			document.getElementById('sum').value = temp;
-			document.getElementById('sum').value = document.getElementById('sum').value.replace(/\B(?=(\d{3})+(?!\d))/g, ",");
-		}
-		
-		function del () {
-			hm = document.form.amount;
-			sum = document.form.sum;
-				if (hm.value > 1) {
-					hm.value -- ;
-					var temp = parseInt(hm.value) * sell_price
-					
-					document.getElementById('sum').value = temp;
-					document.getElementById('sum').value = document.getElementById('sum').value.replace(/\B(?=(\d{3})+(?!\d))/g, ",");
-				}
-				
-		}
-		
-		function changeValue(){
-			hm = document.form.amount;
-			sum = document.form.sum;
-			
-			var temp = parseInt(hm.value) * sell_price
-		
-			document.getElementById('sum').value = temp;
-			document.getElementById('sum').value = document.getElementById('sum').value.replace(/\B(?=(\d{3})+(?!\d))/g, ",");
-		}
-		
-</script>
-
 </head>
 
 <body>
@@ -190,7 +141,7 @@
 								</div>
 							</li>
 							<li><a href="index.html"> 커뮤니티 </a></li>
-							<li><a href="storeMain.html"> 스토어 </a></li>
+							<li><a href="storeMain"> 스토어 </a></li>
 						</ul>
 						<ul class="nav-right">
 							<li class="form-group form-primary"><input type="text"
@@ -331,11 +282,12 @@
 
 								<div class="main-menu-content">
 									<ul>
-										<li class="more-details"><a href="user-profile.html"><i
-												class="ti-user"></i>View Profile</a> <a href="#!"><i
-												class="ti-settings"></i>Settings</a> <a
-											href="auth-normal-sign-in.html"><i
-												class="ti-layout-sidebar-left"></i>Logout</a></li>
+										<li class="more-details"><a href="user-profile.html">
+												<i class="ti-user"></i>View Profile
+										</a> <a href="#!"> <i class="ti-settings"></i>Settings
+										</a> <a href="auth-normal-sign-in.html"> <i
+												class="ti-layout-sidebar-left"></i>Logout
+										</a></li>
 									</ul>
 								</div>
 							</div>
@@ -406,15 +358,13 @@
 									</ul>
 								</li>
 							</ul>
-
 							<ul class="pcoded-item pcoded-left-item">
-								<li class=""><a href="storeMain.html"
+								<li class=""><a href="storeMain"
 									class="waves-effect waves-dark"> <span class="pcoded-micon"><i
-											class="ti-layers"></i><b>FC</b></span> <span class="pcoded-mtext">스토어
-											전체보기</span> <span class="pcoded-mcaret"></span>
+											class="ti-layers"></i><b>FC</b></span> <span class="pcoded-mtext">스토어</span>
+										<span class="pcoded-mcaret"></span>
 								</a></li>
 							</ul>
-
 							<ul class="pcoded-item pcoded-left-item">
 								<li class="pcoded-hasmenu "><a href="javascript:void(0)"
 									class="waves-effect waves-dark"> <span class="pcoded-micon"><i
@@ -422,33 +372,45 @@
 										<span class="pcoded-mcaret"></span>
 								</a>
 									<ul class="pcoded-submenu">
-										<li class=""><a href="dogFood.jsp"
+										<li class=""><a href="productList?p_type=dog"
+											class="waves-effect waves-dark"> <span
+												class="pcoded-micon"><i class="ti-angle-right"></i></span> <span
+												class="pcoded-mtext">상품 전체보기</span> <span
+												class="pcoded-mcaret"></span>
+										</a></li>
+										<li class=""><a
+											href="productList?p_type=dog&p_category=food"
 											class="waves-effect waves-dark"> <span
 												class="pcoded-micon"><i class="ti-angle-right"></i></span> <span
 												class="pcoded-mtext">사료</span> <span class="pcoded-mcaret"></span>
 										</a></li>
-										<li class=""><a href="auth-normal-sign-in.html"
+										<li class=""><a
+											href="productList?p_type=dog&p_category=snack"
 											class="waves-effect waves-dark"> <span
 												class="pcoded-micon"><i class="ti-angle-right"></i></span> <span
 												class="pcoded-mtext">간식</span> <span class="pcoded-mcaret"></span>
 										</a></li>
-										<li class=""><a href="auth-normal-sign-in.html"
+										<li class=""><a
+											href="productList?p_type=dog&p_category=care"
 											class="waves-effect waves-dark"> <span
 												class="pcoded-micon"><i class="ti-angle-right"></i></span> <span
 												class="pcoded-mtext">케어</span> <span class="pcoded-mcaret"></span>
 										</a></li>
-										<li class=""><a href="auth-sign-up.html"
+										<li class=""><a
+											href="productList?p_type=dog&p_category=living"
 											class="waves-effect waves-dark"> <span
 												class="pcoded-micon"><i class="ti-angle-right"></i></span> <span
 												class="pcoded-mtext">리빙</span> <span class="pcoded-mcaret"></span>
 										</a></li>
-										<li class=""><a href="dogClothes.jsp "
+										<li class=""><a
+											href="productList?p_type=dog&p_category=clothes"
 											class="waves-effect waves-dark"> <span
 												class="pcoded-micon"><i
 													class="ti-layout-sidebar-left"></i><b>S</b></span> <span
 												class="pcoded-mtext">의류</span> <span class="pcoded-mcaret"></span>
 										</a></li>
-										<li class=""><a href="dogToy.jsp"
+										<li class=""><a
+											href="productList?p_type=dog&p_category=toy"
 											class="waves-effect waves-dark"> <span
 												class="pcoded-micon"><i class="ti-angle-right"></i></span> <span
 												class="pcoded-mtext">장난감</span> <span class="pcoded-mcaret"></span>
@@ -462,33 +424,45 @@
 										<span class="pcoded-mcaret"></span>
 								</a>
 									<ul class="pcoded-submenu">
-										<li class=""><a href="storeMain.html"
+										<li class=""><a href="productList?p_type=cat"
+											class="waves-effect waves-dark"> <span
+												class="pcoded-micon"><i class="ti-angle-right"></i></span> <span
+												class="pcoded-mtext">상품 전체보기</span> <span
+												class="pcoded-mcaret"></span>
+										</a></li>
+										<li class=""><a
+											href="productList?p_type=cat&p_category=food"
 											class="waves-effect waves-dark"> <span
 												class="pcoded-micon"><i class="ti-angle-right"></i></span> <span
 												class="pcoded-mtext">사료</span> <span class="pcoded-mcaret"></span>
 										</a></li>
-										<li class=""><a href="storeMain.html"
+										<li class=""><a
+											href="productList?p_type=cat&p_category=snack"
 											class="waves-effect waves-dark"> <span
 												class="pcoded-micon"><i class="ti-angle-right"></i></span> <span
 												class="pcoded-mtext">간식</span> <span class="pcoded-mcaret"></span>
 										</a></li>
-										<li class=""><a href="auth-normal-sign-in.html"
+										<li class=""><a
+											href="productList?p_type=cat&p_category=care"
 											class="waves-effect waves-dark"> <span
 												class="pcoded-micon"><i class="ti-angle-right"></i></span> <span
 												class="pcoded-mtext">케어</span> <span class="pcoded-mcaret"></span>
 										</a></li>
-										<li class=""><a href="auth-sign-up.html"
+										<li class=""><a
+											href="productList?p_type=cat&p_category=living"
 											class="waves-effect waves-dark"> <span
 												class="pcoded-micon"><i class="ti-angle-right"></i></span> <span
 												class="pcoded-mtext">리빙</span> <span class="pcoded-mcaret"></span>
 										</a></li>
-										<li class=""><a href="sample-page.html"
+										<li class=""><a
+											href="productList?p_type=cat&p_category=clothes"
 											class="waves-effect waves-dark"> <span
 												class="pcoded-micon"><i
 													class="ti-layout-sidebar-left"></i><b>S</b></span> <span
 												class="pcoded-mtext">의류</span> <span class="pcoded-mcaret"></span>
 										</a></li>
-										<li class=""><a href="auth-normal-sign-in.html"
+										<li class=""><a
+											href="productList?p_type=cat&p_category=toy"
 											class="waves-effect waves-dark"> <span
 												class="pcoded-micon"><i class="ti-angle-right"></i></span> <span
 												class="pcoded-mtext">장난감</span> <span class="pcoded-mcaret"></span>
@@ -500,93 +474,114 @@
 					<div class="pcoded-content">
 						<!-- Page-header start -->
 
+
 						<!-- Page-header end -->
 						<div class="pcoded-inner-content">
 							<!-- Main-body start -->
 
-							<!-- Shop Cart Section Begin -->
-							<form name="form" onsubmit="return false;" method="POST">
-								<section class="shop-cart spad">
-									<div class="container">
-										<div class="row">
-											<div class="col-lg-12">
-												<div class="shop__cart__table">
-													<table>
-														<thead>
-															<tr>
-																<th>상품명</th>
-																<th>가격</th>
-																<th>수량</th>
-																<th>총 결제 금액</th>
-																<th></th>
+							<!-- Shopping Cart Section Begin -->
+							<section class="shopping-cart spad">
+								<div class="container">
+									<div class="row">
+										<div class="col-lg-12">
+											<div class="cart-table" style="background-color: white;">
+												<table>
+													<thead>
+														<tr>
+															<th>번호
+															<th></th>
+															<th class="p-name" colspan="2">상품명</th>
+															<th>판매가</th>
+															<th>수량</th>
+															<th>주문금액</th>
+															<th>주문관리</th>
+														</tr>
+													</thead>
+													<tbody>
+														<c:if test="${empty cart}">
+															<tr class="gift-division">
+																<td colspan="6"></td>
 															</tr>
-														</thead>
-														<tbody>
-															<c:if test="${empty cart}">
-																<tr>
-																	<td colspan="4">장바구니에 상품이 없습니다.</td>
-																</tr>
-															</c:if>
-															<c:if test="${!empty cart}">
-																<c:forEach var="cart" items="${cart }">
-																	<tr>
-																		<td class="cart__product__item"><c:choose>
-																				<c:when test="${cart.p_type == 'dog'}">
-																					<c:set var="imgDir" value="dogImg" />
-																				</c:when>
-																				<c:when test="${cart.p_type == 'cat'}">
-																					<c:set var="imgDir" value="catImg" />
-																				</c:when>
-																			</c:choose> <img
-																			src="https://projectbit.s3.us-east-2.amazonaws.com/${imgDir }/${cart.s_image }" alt="">
-																			<div class="cart__product__item__title">
-																				<h6>${cart.p_name }</h6>
-																			</div></td>
-																		<td class="cart__price">${cart.price }</td>
-																		<td class="cart__quantity">
-																			<div class="pro-qty">
-																				<input type="hidden" id="sell_price" name="price" value="${cart.price }"> 
-																				<input type="button" class="store_btn2" value=" + " onclick="add()"> 
-																				<input type="text" class="store_input" autocomplete="off" min="1" name="amount" value="${cart.amount }" size="3" onchange="changeValue();"> 
-																				<input type="button" class="store_btn2" value=" - " onclick="del()">
+															<tr>
+																<td colspan="2">장바구니에 상품이 없습니다.</td>
+															</tr>
+														</c:if>
+														<c:if test="${!empty cart}">
+															<c:forEach var="cart" items="${cart }">
+																<c:choose>
+																	<c:when test="${cart.p_type == 'dog'}">
+																		<c:set var="imgDir" value="dogImg" />
+																	</c:when>
+																	<c:when test="${cart.p_type == 'cat'}">
+																		<c:set var="imgDir" value="catImg" />
+																	</c:when>
+																</c:choose>
+																<tr style="border-bottom:1px solid #ddd;">
+																	<td></td>
+																	<td class="cart-pic first-row"><a
+																		href="detail?p_id=${cart.p_id }"> <img
+																			src="https://projectbit.s3.us-east-2.amazonaws.com/${imgDir }/${cart.s_image }"
+																			alt="">
+																	</a></td>
+																	<td class="cart-title first-row" colspan="2">
+																		<p>
+																			<a href="detail?p_id=${cart.p_id }">${cart.p_name }</a>
+																		</p>
+																	</td>
+																	<td class="p-price first-row">${cart.price }원</td>
+																	<td class="qua-col first-row">
+																		<div class="quantity">
+																			<div class="">
+																				<input type="button" class="store_btn2" value=" - " onclick=>
+																				<input type="text" value="${cart.amount }" size="3">
+																				<input type="button" class="store_btn2" value=" + " onclick=>
 																			</div>
-																		</td>
-																		<td class="cart__total"><input type="text"
-																			class="store_input2" size="5" id="sum" readonly>원</td>
-																		<td class="cart__close"><span class="icon_close"></span></td>
-																	</tr>
-																</c:forEach>
-															</c:if>
-														</tbody>
-													</table>
+																		</div>
+																	</td>
+																	<td class="total-price first-row">$60.00</td>
+																	<td class="close-td first-row"><i class="ti-close"></i></td>
+																</tr>
+																<br>
+															</c:forEach>
+														</c:if>
+													</tbody>
+												</table>
+											</div>
+											<div class="row">
+												<div class="col-lg-4">
+													<div class="cart-buttons">
+														<a href="#" class="primary-btn continue-shop">계속 쇼핑하기</a>
+														<a href="#" class="primary-btn up-cart">선택 삭제</a>
+													</div>
+													<div class="discount-coupon">
+														<h6>적립금 사용</h6>
+														<form action="#" class="coupon-form">
+															<input type="text" placeholder="사용 가능 포인트 : ${p.p}원">
+															<button type="submit" class="site-btn coupon-btn">사용</button>
+														</form>
+													</div>
+												</div>
+												<div class="col-lg-4 offset-lg-4">
+													<div class="proceed-checkout"
+														style="background-color: white;">
+														<ul>
+															<li class="subtotal">상품 금액 <span>$240.00</span></li>
+															<li class="subtotal">할인 금액 <span>$240.00</span></li>
+															<li class="cart-total">최종 결제 금액 <span>$240.00</span></li>
+														</ul>
+														<a href="#" class="proceed-btn">주문하기</a>
+													</div>
 												</div>
 											</div>
 										</div>
-										<div class="col-lg-6 col-md-6 col-sm-6">
-											<div class="cart__btn update__btn">
-												<a href="#"><span class="icon_loading"></span> 장바구니 수정</a>
-											</div>
-										</div>
 									</div>
-									<div class="row">
-										<div class="col-lg-6"></div>
-										<div class="col-lg-4 offset-lg-2">
-											<div class="cart__total__procced">
-												<h6>장바구니 합계</h6>
-												<ul>
-													<li>총 결제 금액 : <span></span></li>
-												</ul>
-												<a href="#" class="primary-btn">주문 단계로 넘어가기</a>
-											</div>
-										</div>
-									</div>
-								</section>
-							</form>
-						</div>
-						<!-- Shop Cart Section End -->
+								</div>
+							</section>
+							<!-- Shopping Cart Section End -->
 
-						<!-- Product Details Section End -->
-						<div id="styleSelector"></div>
+							<!-- Product Details Section End -->
+							<div id="styleSelector"></div>
+						</div>
 					</div>
 				</div>
 			</div>
