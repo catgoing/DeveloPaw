@@ -2,9 +2,6 @@
 	pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
-<%
-	request.setCharacterEncoding("utf-8");
-%>
 <!DOCTYPE html>
 <html>
 
@@ -66,7 +63,6 @@
 	href="../resources/css/jquery.mCustomScrollbar.css">
 <!-- Style.css -->
 <link rel="stylesheet" type="text/css" href="/resources/css/style.css">
-<link rel="stylesheet" type="text/css" href="/resources/css/storeStyle.css">
 <link rel="stylesheet" type="text/css" href="/resources/css/test.css">
 <style>
 .featured__item__text {
@@ -77,8 +73,6 @@ img {
 	display: block;
 	margin: auto;
 }
-
-
 </style>
 </head>
 
@@ -521,7 +515,7 @@ img {
 									<div class="row">
 										<div class="col-lg-12">
 											<div class="breadcrumb__links">
-												<a href="./index.html"><i class="fa fa-home"></i> 스토어 메인</a>
+												<a href="storeMain.html"><i class="fa fa-home"></i> 스토어 메인</a>
 												<span>주문 화면</span>
 											</div>
 										</div>
@@ -531,146 +525,194 @@ img {
 							<!-- Breadcrumb End -->
 
 							<!-- Checkout Section Begin -->
-							<section class="checkout spad">
-								<div class="container" style="background-color: white;">
-									<form action="insertOrder" method="post" class="checkout__form"
-										accept-charset="UTF-8">
-										<div class="row">
-											<div class="col-lg-8">
-												<div class="checkout__order"
-													style="background-color: white;">
-													<h5>주문 상세 정보</h5>
-													<div class="row">
-														<div class="col-lg-6 col-md-6 col-sm-6">
-															<div class="checkout__form__input">
-																<p>
-																	상품번호 <span>* (*)항목은 필수 입력 항목입니다.</span>
-																</p>
-																<input type="text" id="p_id" name="p_id"
-																	value="${p.p_id}">
-															</div>
-														</div>
-														<div class="col-lg-6 col-md-6 col-sm-6">
-															<div class="checkout__form__input">
-																<p>
-																	회원번호 <span>*</span>
-																</p>
-																<input type="text" id="member_serial"
-																	name="member_serial" value=999>
-															</div>
-														</div>
-														<div class="col-lg-12">
-															<div class="checkout__form__input">
-																<p>
-																	주소 <span>*</span>
-																</p>
-																<input type="text" name="address_first" placeholder="Street Address">
-																<input type="text" name="address_second"
-																	placeholder="동,호수 등 상세 주소를 입력하세요">
-															</div>
-															<div class="checkout__form__input">
-																<p>
-																	우편번호 <span>*</span>
-																</p>
-																<input type="text" id="zip" name="zip" >
-															</div>
-															<div class="checkout__form__input">
-																<p>
-																	수량 <span>*</span>
-																</p>
-																<input type="text" id="amount" name="amount"
-																	value="${p.amount }">
-															</div>
-															<div class="checkout__form__input">
-																<p>
-																	가격 <span>*</span>
-																</p>
-																<input type="text" id="price" name="price"
-																	value="${p.price }">
-															</div>
-														</div>
-														<div class="col-lg-6 col-md-6 col-sm-6">
-															<div class="checkout__form__input">
-																<p>
-																	핸드폰 <span>*</span>
-																</p>
-																<input type="text">
-															</div>
-														</div>
-														<div class="col-lg-6 col-md-6 col-sm-6">
-															<div class="checkout__form__input">
-																<p>이메일</p>
-																<input type="text">
-															</div>
-														</div>
-														<div class="col-lg-12">
-															<div class="checkout__form__checkbox"></div>
-															<div class="checkout__form__input"></div>
-															<div class="checkout__form__checkbox"></div>
-															<div class="checkout__form__input">
-																<p>배송 메모</p>
-																<input type="text" id="memo" name="memo"
-																	placeholder="ex) 부재시 경비실에 맡겨주세요.">
-															</div>
-															<div class="checkout__form__input">
-																<input type="hidden" id="order_status"
-																	name="order_status" value="주문 완료">
-															</div>
-														</div>
-													</div>
-												</div>
-											</div>
-											<div class="col-lg-4">
-												<div class="checkout__order"
-													style="background-color: white;">
-													<h5>총 주문 내역</h5>
-													<div class="checkout__order__product">
-														<ul>
-															<li><span class="top__text">상품명</span> <span
-																class="top__text__right">합계금액</span></li>
-															<li>01. Chain buck bag <span>$ 300.0</span></li>
-															<li>02. Zip-pockets pebbled<br /> tote briefcase <span>$
-																	170.0</span></li>
-															<li>03. Black jean <span>$ 170.0</span></li>
-															<li>04. Cotton shirt <span>$ 110.0</span></li>
-														</ul>
-													</div>
-													<div class="checkout__order__total">
-														<ul>
-															<li>배송비 <span>무료</span></li>
-															<li>총 결제금액 <span>$ 750.0</span></li>
-														</ul>
-													</div>
-													<div class="checkout__order__widget">
-														<label for="o-acc"> Create an acount? <input
-															type="checkbox" id="o-acc"> <span
-															class="checkmark"></span>
-														</label>
-														<p>Create am acount by entering the information below.
-															If you are a returing customer login at the top of the
-															page.</p>
-														<label for="check-payment"> Cheque payment <input
-															type="checkbox" id="check-payment"> <span
-															class="checkmark"></span>
-														</label> <label for="paypal"> PayPal <input
-															type="checkbox" id="paypal"> <span
-															class="checkmark"></span>
-														</label>
-													</div>
-													<button type="submit" onclick="location.href='storeOrderList?member_serial=999'" class="site-btn"
-														style="font-size: 1.5em;">결제하기</button>
-												</div>
-											</div>
-										</div>
-									</form>
-								</div>
-							</section>
+							<div>
+								<ul>
+								<c:forEach var="oList" items="${orderList }">
+								<li>
+									<table style="margin : 10px; border : 2px solid black;">
+										<tr>
+											<th>주문번호</th>
+											<td><a href="storeOrderDetail?order_id=${oList.order_id }">${oList.order_id}</a></td>
+										</tr>
+										<tr>
+											<th>상품번호</th>
+											<td>${oList.p_id}</td>
+										</tr>
+										<tr>
+											<th>회원번호</th>
+											<td>${oList.member_serial}</td>
+										</tr>
+										<tr>
+											<th>주문수량</th>
+											<td>${oList.amount}</td>
+										</tr>
+										<tr>
+											<th>주문가격</th>
+											<td>${oList.price}</td>
+										</tr>
+										<tr>
+											<th>메모</th>
+											<td>${oList.memo}</td>
+										</tr>
+										<tr>
+											<th>주문날짜</th>
+											<td>${oList.order_date}</td>
+										</tr>
+										<tr>
+											<th>주문상태</th>
+											<td>${oList.order_status}</td>
+										</tr>
+									</table>
+								</li>
+								</c:forEach>
+								</ul>
+							</div>
+							<div>
+								<c:forEach var="oList" items="${orderList }">
+									<table style="margin : 10px; border : 2px solid black;">
+										<tr>
+											<th>주문번호</th>
+											<td><a href="storeOrderDetail?order_id=${oList.order_id }">${oList.order_id}</a></td>
+										</tr>
+										<tr>
+											<th>상품번호</th>
+											<td>${oList.p_id}</td>
+										</tr>
+										<tr>
+											<th>회원번호</th>
+											<td>${oList.member_serial}</td>
+										</tr>
+										<tr>
+											<th>주문수량</th>
+											<td>${oList.amount}</td>
+										</tr>
+										<tr>
+											<th>주문가격</th>
+											<td>${oList.price}</td>
+										</tr>
+										<tr>
+											<th>메모</th>
+											<td>${oList.memo}</td>
+										</tr>
+										<tr>
+											<th>주문날짜</th>
+											<td>${oList.order_date}</td>
+										</tr>
+										<tr>
+											<th>주문상태</th>
+											<td>${oList.order_status}</td>
+										</tr>
+									</table>
+								</c:forEach>
+							</div>
 							<!-- Checkout Section End -->
-							<br> <br>
+
+
+
+							<br>
+							<br>
+							<!--           <div class="row">
+                <div class="col-lg-12 text-center">
+                    <div class="related__title">
+                        <h5>RELATED PRODUCTS</h5>
+                    </div>
+                </div>
+                <div class="col-lg-3 col-md-4 col-sm-6">
+                    <div class="product__item">
+                        <div class="product__item__pic set-bg" data-setbg="img/product/related/rp-1.jpg">
+                            <div class="label new">New</div>
+                            <ul class="product__hover">
+                                <li><a href="img/product/related/rp-1.jpg" class="image-popup"><span class="arrow_expand"></span></a></li>
+                                <li><a href="#"><span class="icon_heart_alt"></span></a></li>
+                                <li><a href="#"><span class="icon_bag_alt"></span></a></li>
+                            </ul>
+                        </div>
+                        <div class="product__item__text">
+                            <h6><a href="#">Buttons tweed blazer</a></h6>
+                            <div class="rating">
+                                <i class="fa fa-star"></i>
+                                <i class="fa fa-star"></i>
+                                <i class="fa fa-star"></i>
+                                <i class="fa fa-star"></i>
+                                <i class="fa fa-star"></i>
+                            </div>
+                            <div class="product__price">$ 59.0</div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-3 col-md-4 col-sm-6">
+                    <div class="product__item">
+                        <div class="product__item__pic set-bg" data-setbg="img/product/related/rp-2.jpg">
+                            <ul class="product__hover">
+                                <li><a href="img/product/related/rp-2.jpg" class="image-popup"><span class="arrow_expand"></span></a></li>
+                                <li><a href="#"><span class="icon_heart_alt"></span></a></li>
+                                <li><a href="#"><span class="icon_bag_alt"></span></a></li>
+                            </ul>
+                        </div>
+                        <div class="product__item__text">
+                            <h6><a href="#">Flowy striped skirt</a></h6>
+                            <div class="rating">
+                                <i class="fa fa-star"></i>
+                                <i class="fa fa-star"></i>
+                                <i class="fa fa-star"></i>
+                                <i class="fa fa-star"></i>
+                                <i class="fa fa-star"></i>
+                            </div>
+                            <div class="product__price">$ 49.0</div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-3 col-md-4 col-sm-6">
+                    <div class="product__item">
+                        <div class="product__item__pic set-bg" data-setbg="img/product/related/rp-3.jpg">
+                            <div class="label stockout">out of stock</div>
+                            <ul class="product__hover">
+                                <li><a href="img/product/related/rp-3.jpg" class="image-popup"><span class="arrow_expand"></span></a></li>
+                                <li><a href="#"><span class="icon_heart_alt"></span></a></li>
+                                <li><a href="#"><span class="icon_bag_alt"></span></a></li>
+                            </ul>
+                        </div>
+                        <div class="product__item__text">
+                            <h6><a href="#">Cotton T-Shirt</a></h6>
+                            <div class="rating">
+                                <i class="fa fa-star"></i>
+                                <i class="fa fa-star"></i>
+                                <i class="fa fa-star"></i>
+                                <i class="fa fa-star"></i>
+                                <i class="fa fa-star"></i>
+                            </div>
+                            <div class="product__price">$ 59.0</div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-3 col-md-4 col-sm-6">
+                    <div class="product__item">
+                        <div class="product__item__pic set-bg" data-setbg="img/product/related/rp-4.jpg">
+                            <ul class="product__hover">
+                                <li><a href="img/product/related/rp-4.jpg" class="image-popup"><span class="arrow_expand"></span></a></li>
+                                <li><a href="#"><span class="icon_heart_alt"></span></a></li>
+                                <li><a href="#"><span class="icon_bag_alt"></span></a></li>
+                            </ul>
+                        </div>
+                        <div class="product__item__text">
+                            <h6><a href="#">Slim striped pocket shirt</a></h6>
+                            <div class="rating">
+                                <i class="fa fa-star"></i>
+                                <i class="fa fa-star"></i>
+                                <i class="fa fa-star"></i>
+                                <i class="fa fa-star"></i>
+                                <i class="fa fa-star"></i>
+                            </div>
+                            <div class="product__price">$ 59.0</div>
+                        </div>
+                    </div>
+                </div>
+            </div> -->
 						</div>
 						<!-- Product Details Section End -->
+
+						<div id="styleSelector"></div>
 					</div>
-					<div id="styleSelector"></div>
 				</div>
 			</div>
 		</div>
