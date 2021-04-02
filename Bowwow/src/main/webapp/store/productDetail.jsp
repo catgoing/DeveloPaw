@@ -137,6 +137,11 @@
          
 		}
 		
+		function storeOrder(frm) {
+			frm.action="/store/storeOrder";
+			frm.submit();
+		}
+		
 		
 </script>
 
@@ -683,7 +688,7 @@
 													</div>
 													<div class="btn_area">
 														<button class="store_btn" onclick="cartList(this.form)">장바구니</button>
-														<button class="store_btn" onclick="storeOrder()">바로구매</button>
+														<button class="store_btn" onclick="storeOrder(this.form)">바로구매</button>
 													</div>
 													<ul>
 														<li><a href="#"><span class="icon_heart_alt"></span></a></li>
