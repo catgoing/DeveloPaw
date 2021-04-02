@@ -15,7 +15,7 @@
 
 		<ul class="pcoded-item pcoded-left-item">
 			<li class="">
-			<a href="/mypage/"
+			<a href="/mypage/myPageMain"
 				class="waves-effect waves-dark"> <span class="pcoded-micon"><i
 						class="ti-layers"></i><b>FC</b></span> <span class="pcoded-mtext">마이
 						홈</span> <span class="pcoded-mcaret"></span>
@@ -42,7 +42,7 @@
 		</ul>
 		<ul class="pcoded-item pcoded-left-item">
 			<li class="">
-			<a href="/mypage/myPostList.jsp"
+			<a href="/mypage/myPostList"
 				class="waves-effect waves-dark"> <span class="pcoded-micon">
 						<!-- <i class="ti-id-badge"></i><b>A</b> -->
 				</span> <span class="pcoded-mtext">게시글</span> <span class="pcoded-mcaret"></span>
@@ -50,7 +50,7 @@
 		</ul>
 		<ul class="pcoded-item pcoded-left-item">
 			<li class="">
-			<a href="/mypage/myPoint.jsp"
+			<a href="/mypage/myPoint"
 				class="waves-effect waves-dark"> <span class="pcoded-micon">
 						<!-- <i class="ti-id-badge"></i><b>A</b> -->
 				</span> <span class="pcoded-mtext">적립금(?)</span> <span
@@ -59,7 +59,7 @@
 		</ul>
 		<ul class="pcoded-item pcoded-left-item">
 			<li class="">
-			<a href="/mypage/myInquiry2.jsp"
+			<a href="/mypage/myInquiry2"
 				class="waves-effect waves-dark"> <span class="pcoded-micon">
 						<!-- <i class="ti-id-badge"></i><b>A</b> -->
 				</span> <span class="pcoded-mtext">1:1문의</span> <span class="pcoded-mcaret"></span>

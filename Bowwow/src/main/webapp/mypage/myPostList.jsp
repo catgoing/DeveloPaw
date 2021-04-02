@@ -4,7 +4,7 @@
     <% request.setCharacterEncoding("UTF-8"); %>
 <%@ taglib uri="http://tiles.apache.org/tags-tiles" prefix="tiles"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
-<%
+<%-- <%
 	//임시 로그인처리
 	int memberSerial = 1;
 	String id = "z";
@@ -12,7 +12,7 @@
 	user.setId(id);
 	user.setMemberSerial(memberSerial);
 	session.setAttribute("user", user);
-%>
+%> --%>
 
 <!DOCTYPE html>
 

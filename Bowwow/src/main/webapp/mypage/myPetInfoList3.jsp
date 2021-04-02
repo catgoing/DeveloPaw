@@ -4,7 +4,7 @@
     <% request.setCharacterEncoding("UTF-8"); %>
 <%@ taglib uri="http://tiles.apache.org/tags-tiles" prefix="tiles"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
-<%
+<%-- <%
 	//임시 로그인처리
 	int memberSerial = 1;
 	String id = "z";
@@ -12,7 +12,7 @@
 	user.setId(id);
 	user.setMemberSerial(memberSerial);
 	session.setAttribute("user", user);
-%>
+%> --%>
 <!DOCTYPE html>
 <html>
 
@@ -266,23 +266,6 @@ function setModiInfo(petDetail){
 	$("#modi_member_serial").val("<c:out value='${user.memberSerial}'/>");	// hidden
 	$("#modi_pet_serial").val(petDetail.pet_serial);	// hidden
 }
-
-/* function insertInfoModiModal(datas){
-	$("#modi-petname").val(datas.pet_name);
-	$("#modi_gender").val(datas.pet_gender);
-	$("#modi_pet_serial").val(datas.pet_serial);
-	$("#modi_variety").val(datas.pet_variety);
-	$("#modi_birth").val(datas.pet_birth);
-	$("#modi_age").val(datas.pet_age);
-	$("#modi_size").val(datas.pet_size);
-	$("#modi_weight").val(datas.pet_weight + " kg");
-	$("#modi_neck").val(datas.neck_length + " cm");
-	$("#modi_back").val(datas.back_length + " cm");
-	$("#modi_chest").val(datas.chest_length + " cm");
-	$("#modi_tnr").val(datas.tnr);
-	$("#modi_etc").val(datas.pet_etc);
-	//$("#modi_petimage_base").attr("src", datas.pet_etc);
-} */
 
  function transferType(){
 	 console.log("test");
