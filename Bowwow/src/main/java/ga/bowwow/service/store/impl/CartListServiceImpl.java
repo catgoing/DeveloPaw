@@ -25,11 +25,10 @@ public class CartListServiceImpl implements CartListService {
 	}
 
 	@Override
-	public List<CartList> pIdCheck(String id) {
-		return storeDAO.pidCheck(id);
+	public int cartCheck(CartList cartList) {
+		return storeDAO.pidCheck(cartList);
 	}
-		
-	
+
 	
 	
 
