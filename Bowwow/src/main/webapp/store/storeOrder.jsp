@@ -70,6 +70,18 @@
 <link rel="stylesheet" type="text/css" href="/resources/css/test.css">
 
 <script type="text/javascript">
+if ($("input:checkbox[name='chk_1']").is(":checked") == true && $("input:checkbox[name='chk_2']").is(":checked") == true){
+	} return true;
+	else{
+	 alert("동의 버튼을 눌러주셔야 결제가 진행됩니다.");
+	 checkout.chk_1.focus();
+	 checkout.chk_2.focus();
+	 return false;
+	}
+
+
+
+
 
 function order_check(){
 	if(document.getElementById('address_first').value == ""){
@@ -625,15 +637,14 @@ img {
 														</ul>
 													</div>
 													<div class="checkout__order__widget">
-														<label for="o-acc"> 개인정보 제3자 공유 동의(필수)<input
-															type="checkbox" id="o-acc"> <span
-															class="checkmark"></span>
+														<label for="o-acc"> 개인정보 제3자 공유 동의(필수)<input type="checkbox" name="chk_1" id="o-acc"> 
+														<span class="checkmark"></span>
 														</label>
 														<p>Bowwow는 귀하께서 Bowwow 입점업체 판매자로부터 상품 및 서비스를 구매하고자 할 경우, 정보통신망 이용촉진 및 정보보호 등에 관한 법률 제 24조의 2(개인정보 공유동의 등)에 따라 귀하의 동의를 받아 귀하의 개인정보를 판매자에게 공유합니다. 
 														"개인정보 제3자 공유 동의"를 체크하시면 개인정보 공유에 대해 동의한 것으로 간주합니다. 본 개인정보 공유에 동의하지 않으시는 경우, 동의를 거부할 수 있으며, 이 경우 거래가 제한됩니다.</p>
-														<label for="check-payment"> 위 상품 정보 및 거래 조건을 확인하였으며, 구매 진행에 동의합니다.(필수) <input
-															type="checkbox" id="check-payment"> <span
-															class="checkmark"></span>
+														<label for="check-payment"> 위 상품 정보 및 거래 조건을 확인하였으며, 구매 진행에 동의합니다.(필수) 
+														<input type="checkbox" name="chk_2" id="check-payment"> 
+														<span class="checkmark"></span>
 														</label> 
 													</div>
 													<button type="submit" class="site-btn"
@@ -649,7 +660,6 @@ img {
 						</div>
 						<!-- Product Details Section End -->
 					</div>
-					<div id="styleSelector"></div>
 				</div>
 			</div>
 		</div>

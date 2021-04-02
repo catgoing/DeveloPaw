@@ -580,13 +580,11 @@ img {
 															<c:forEach var="oList" items="${orderList }">
 																<tbody>
 																	<tr>
-																		<td class="cart-pic first-row"><img
-																			src="img/cart-page/product-1.jpg" alt=""><a href="storeOrderDetail?order_id=${oList.order_id }">${oList.order_id}</a></td>
+																		<td class="cart-pic first-row"><a href="storeOrderDetail?order_id=${oList.order_id }">${oList.order_id}</a></td>
 																		<td class="cart-title first-row">${oList.p_id }</td>
 																		<td class="p-price first-row">${oList.order_date}</td>
 																		<td class="total-price first-row">$60.00</td>
-																		<td class="close-td first-row"><i
-																			class="ti-close"></i></td>
+																		<td class="close-td first-row"><i class="ti-close"></i></td>
 																	</tr>
 																</tbody>
 															</c:forEach>
@@ -598,16 +596,10 @@ img {
 									</div>
 								</section>
 								<!-- Shopping Cart Section End -->
-
 								<!-- Checkout Section End -->
-
-
-
 								<br> <br>
-
 							</div>
 							<!-- Product Details Section End -->
-
 							<div id="styleSelector"></div>
 						</div>
 					</div>
