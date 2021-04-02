@@ -66,7 +66,6 @@ public class StoreDAO {
 		System.out.println("상품에 작성된 후기 목록 출력");
 		return mybatis.selectList("StoreReview.reviewList", p_id);
 	}
-<<<<<<< HEAD
 
 	// 상품 주문 dao
 	public void insertOrder(Order order) {
@@ -92,11 +91,6 @@ public class StoreDAO {
 	public Order getOrderDetail(int order_id) {
 		System.out.println("주문 상세 내역 : " + order_id);
 		return mybatis.selectOne("StoreOrder.orderDetail", order_id);
-=======
-	public void insertInquiry(Inquiry inquiry) {
-		System.out.println("문의 추가 : " + inquiry);
-		mybatis.insert("StoreInquiry.insertInquiry", inquiry);
->>>>>>> origin/TotalMergeBeforePresentation
 	}
 
 }
