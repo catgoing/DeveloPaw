@@ -127,5 +127,10 @@ public class BoardServiceImpl implements BoardService{
 		boardDAO.boardDelete(map);
 	}
 	
+	public void commentDelete(Map<String,Object> map) {
+		System.out.println("map: " + map);
+		boardDAO.commentDelete(map);
+	}
+	
 
 }

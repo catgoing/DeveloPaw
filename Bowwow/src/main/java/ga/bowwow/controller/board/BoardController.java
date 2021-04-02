@@ -101,9 +101,10 @@ public class BoardController {
 		int board_idx = 1;
 		Map<String, Integer> map = new HashMap<String, Integer>();
 		map.put("board_idx", board_idx);
-
+		System.out.println("diary_board map : " + map);
 		List<Board> boardList = boardService.getBoardList(map);
-
+		
+		System.out.println("diary_board boardList input(map) : " + board_idx);
 		session.setAttribute("board_idx", board_idx);
 		model.addAttribute("boardList", boardList);
 		model.addAttribute("board_idx", board_idx);
@@ -122,24 +123,26 @@ public class BoardController {
 	@RequestMapping(value="/community/detail", method=RequestMethod.GET)
 	public String getBoard(@RequestParam("board_idx") int board_idx,
 			@RequestParam("board_no") int board_no , Board vo, Model model) {
-
+		
+		System.out.println("board_idx : "  + board_idx);
 		System.out.println(">>> 글상세 - String getBoard()");
 		Map<String, Integer> map = new HashMap<String, Integer>();
+		System.out.println("board_idx" + board_idx);
 		map.put("board_idx", board_idx);
 		map.put("board_no", board_no );
 		vo = boardService.getBoard(map);
 
 		List<Comment> commentList = boardService.getCommentList(map);
 		List<Comment> comment2List = boardService.getComment2List(map);
-
+		
 		System.out.println("detail vo : " + vo);
 
 		System.out.println("commentList : " + commentList);
-//		System.out.println("comment2List : " + comment2List);
+		System.out.println("comment2List : " + comment2List);
 
 		//TODO 임시 회원 시리얼을 실제 객체로 교체할 것
 		model.addAttribute("board_no", board_no);
-
+		model.addAttribute("board_idx",board_idx);
 		model.addAttribute("vo", vo);
 		model.addAttribute("commentList", commentList);
 		model.addAttribute("comment2List", comment2List);
@@ -172,19 +175,39 @@ public class BoardController {
 
 
 
-	//게시글 삭제
-	@RequestMapping(value="/community/boardDelete", method=RequestMethod.GET)
-	public String boardDelete(@RequestParam("board_no") int board_no ,
-						@RequestParam("board_idx") String board_idx, Model model) {
-	System.out.println(">>> 게시글 삭제 - boardDelete()");
-	System.out.println(board_no +  " / " +board_idx);
+		//게시글 삭제
+		@RequestMapping(value="/community/boardDelete", method=RequestMethod.GET)
+		public String boardDelete(@RequestParam("board_no") int board_no ,
+							@RequestParam("board_idx") String board_idx, Model model) {
+		System.out.println(">>> 게시글 삭제 - boardDelete()");
+		System.out.println(board_no +  " / " +board_idx);
+		
+		Map<String, Object> map = new HashMap<String, Object>();
+		map.put("board_idx", board_idx);
+		map.put("board_no", board_no);
+		boardService.boardDelete(map);
+		return "redirect:/community/diary_board";
+		}
 	
-	Map<String, Object> map = new HashMap<String, Object>();
-	map.put("board_idx", board_idx);
-	map.put("board_no", board_no);
-	boardService.boardDelete(map);
-	return "redirect:/community/diary_board";
-	}
+	//댓글 삭제
+		@RequestMapping(value="/community/commentDelete", method=RequestMethod.GET)
+		public String commentDelete(@RequestParam("comment_no") String comment_no, @RequestParam("board_no") int board_no ,
+							@RequestParam("board_idx") String board_idx, Model model) {
+		Comment comment=new Comment();
+		comment.setComment_no(comment_no);
+		comment.setBoard_no(Integer.toString(board_no));
+		System.out.println("-------------comment-----------" + comment); 
+		System.out.println(">>> 댓글삭제 - commentDelete()");
+		System.out.println(board_no +  " / " +board_idx);
+		
+		Map<String, Object> map = new HashMap<String, Object>();
+		map.put("board_idx", board_idx);
+		map.put("comment", comment);
+		boardService.commentDelete(map);
+		return "redirect:/community/detail?board_idx=" + board_idx + "&board_no=" + board_no;
+		}
+	
+	
 
 
 

@@ -156,7 +156,7 @@
 															내용 : <textarea name="comment_content" id="comment_content" cols="30" rows="3"></textarea>
 														</div>
 														<input type="hidden" name="board_no" value=${board_no }>											
-														<input type="hidden" name="board_idx" value=${board_idx }>												
+														<input type="hidden" name="board_idx" value=${board_idx }>	
 														<input type="submit" value="등록">
 													</form>
 													댓글
@@ -167,8 +167,13 @@
 															<button id =  comment name = "comment" value="${comvo.comment_no },${tempMemberSerial}	">신고</button>
 															
 															<!-- 댓글 삭제하기 -->
+															<form action="commentDelete">
+																<input type="hidden" name="board_no" value=${board_no }>		
+																<input type="hidden" name="board_idx" value=${board_idx }>									
+																<input type="hidden" name="comment_no" value=${comvo.comment_no }>
+																<input type="submit" value="삭제하기">
+															</form>
 															
-															<button id =  comment name = "comment" value="${comvo.comment_no }	">삭제하기</button>
 
 															<button name = "comment" value="${comvo.comment_no },${tempMemberSerial}" onclick="">신고</button>
 

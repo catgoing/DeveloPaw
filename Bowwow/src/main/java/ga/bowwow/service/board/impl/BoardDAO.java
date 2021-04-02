@@ -142,4 +142,11 @@ public class BoardDAO {
 		System.out.println("boardao : " + vo);
 	}
 
+	public void commentDelete(Map<String, Object> map) {
+		System.out.println("===> MyBatis로 commentDelete 실행");
+		System.out.println("commentDelete map :"+map );
+		mybatis.update("BoardDAO.commentDelete", map);
+		
+	}
+
 }
