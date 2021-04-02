@@ -169,6 +169,7 @@
 		WHERE BOARD_NO = #{board_no}
 	</delete>
 	
+
 	<update id="commentDelete" parameterType="Map">
 		UPDATE 
 		<choose>
@@ -216,6 +217,47 @@
 		</choose> 
 		WHERE COMMENT_NO = ${comment.comment_no}
 	</update>
+
+	<select id="getReportList" parameterType="Map" resultType="report" >
+		<choose>
+			<when test="report_idx == 1">
+				SELECT 	REPORT_NO, BOARD_CLASS, BOARD_NO, REPORT_CLASS, CONTENT, RESULT, REPORTER_SERIAL, 
+						ACCUSED_SERIAL, REPORT_DATE, HANDLED_DATE
+				FROM  	BOARD_REPORT
+		</when>
+			<when test="report_idx == 2"> 
+				SELECT 	REPORT_NO, BOARD_CLASS, COMMENTS_NO, REPORT_CLASS, CONTENT, RESULT, REPORTER_SERIAL, 
+						ACCUSED_SERIAL, REPORT_DATE, HANDLED_DATE
+				FROM 	COMMENTS_REPORT 
+			</when>
+			<when test="report_idx == 3"> 
+				SELECT 	REPORT_NO, BOARD_CLASS, COMMENTS_NO, REPORT_CLASS, CONTENT, RESULT, REPORTER_SERIAL, 
+						ACCUSED_SERIAL, REPORT_DATE, HANDLED_DATE
+				FROM 	COMMENTS_REPORT
+			</when>
+		</choose>
+	</select>
+
+		
+	<select id="getReport" parameterType="Map" resultType="report" >
+		SELECT *
+		FROM 
+		<choose>
+			<when test="report_idx == 1"> BOARD_REPORT</when>
+			<when test="report_idx == 2"> COMMENTS_REPORT</when>
+		</choose>
+	</select>
+	
+	<select id="updateReport" parameterType="Map" resultType="report" >
+		SELECT *
+		FROM 
+		<choose>
+			<when test="report_idx == 1"> BOARD_REPORT</when>
+			<when test="report_idx == 2"> COMMENTS_REPORT</when>
+		</choose>
+		WHERE REPORT_NO = ${report_no}
+	</select>
+
 	
 	
 	

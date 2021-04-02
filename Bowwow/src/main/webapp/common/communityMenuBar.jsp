@@ -101,6 +101,20 @@
 						</span> <span class="pcoded-mcaret"></span>
 			</a></li>
 		</ul>
+		<ul class="pcoded-item pcoded-left-item">
+			<li class=""><a href="/community/reportList?idx=1"
+				class="waves-effect waves-dark"> <span class="pcoded-micon"><i
+						class="ti-layers"></i><b>FC</b></span> <span class="pcoded-mtext">게시물 신고내역
+						</span> <span class="pcoded-mcaret"></span>
+			</a></li>
+		</ul>
+		<ul class="pcoded-item pcoded-left-item">
+			<li class=""><a href="/community/reportList?idx=2"
+				class="waves-effect waves-dark"> <span class="pcoded-micon"><i
+						class="ti-layers"></i><b>FC</b></span> <span class="pcoded-mtext">댓글 신고내역
+						</span> <span class="pcoded-mcaret"></span>
+			</a></li>
+		</ul>
 		
 		
 
