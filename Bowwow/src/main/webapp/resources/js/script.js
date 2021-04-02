@@ -228,6 +228,6 @@ function toggleFullScreen() {
     }
 }
 
-$("body").append('<div class="fixed-button active"><a href="/community/write_board" class="btn btn-md btn-primary"> 글쓰기</a> </div>');var $window=$(window),nav=$(".fixed-button");
+$("body").append('<div class="fixed-button active"><a href="/community/write_board.jsp" class="btn btn-md btn-primary"> 글쓰기</a> </div>');var $window=$(window),nav=$(".fixed-button");
 
 
