@@ -4,15 +4,7 @@
     <% request.setCharacterEncoding("UTF-8"); %>
 <%@ taglib uri="http://tiles.apache.org/tags-tiles" prefix="tiles"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
-<%-- <%
-	//임시 로그인처리
-	int memberSerial = 1;
-	String id = "z";
-	UserAccount user= new UserAccount();
-	user.setId(id);
-	user.setMemberSerial(memberSerial);
-	session.setAttribute("user", user);
-%> --%>
+
 <!DOCTYPE html>
 <html>
 
@@ -304,12 +296,7 @@ $().ready(function(){
 														</select>
 							    					</div>
 							    					<textarea class="form-control" name="inquiry_content" rows="5" placeholder="질문을 입력하세요!"></textarea>
-								  					<div class="upload-file">
-												    	<div class="upload-file-content">
-													    	<input type="file" class="form-control" id="contactUsImage" name="image_source" accept="image/*">
-												    	</div>
-												    </div>
-							    				</div>
+								  					</div>
 							    				<input type="hidden" name="member_serial" value="${user.memberSerial }">
                                            </form>
                                            </div>

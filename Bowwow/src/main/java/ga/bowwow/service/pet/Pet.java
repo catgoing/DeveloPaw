@@ -38,6 +38,6 @@ public class Pet {
 	private int back_length;
 	private int chest_length;
 	
-	//@DateTimeFormat(pattern="yyyy-MM-dd")
+	//@DateTimeFormat(pattern="yyyy-MM-dd") - Date타입일 때
 	private String pet_birth;
 }
