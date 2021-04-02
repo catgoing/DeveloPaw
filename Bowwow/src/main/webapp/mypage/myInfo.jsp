@@ -4,7 +4,7 @@
     <% request.setCharacterEncoding("UTF-8"); %>
 <%@ taglib uri="http://tiles.apache.org/tags-tiles" prefix="tiles"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
-<%
+<%-- <%
 	//임시 로그인처리
 	int memberSerial = 1;
 	String id = "z";
@@ -12,7 +12,7 @@
 	user.setId(id);
 	user.setMemberSerial(memberSerial);
 	session.setAttribute("user", user);
-%>
+%> --%>
 <!DOCTYPE html>
 <html>
 
@@ -391,7 +391,7 @@
 						<!-- Page-body start -->
 						<div class="page-body">
 						<div class="myPageInfo-header">
-							<h2> 뫄뫄님의 페이지</h2>
+							<h2> ${user.id }님의 페이지</h2>
 						</div>
 						<div class="myPageInfo-wrapper">
 
@@ -448,6 +448,7 @@
 
 										<div class="input-label">이름
 											<div class="input-wrap">
+												<input type="text" name="name">
 												<%-- <input type="text" name="name" value="${user.name }"> --%>
 											</div>
 											<p></p>
@@ -455,6 +456,7 @@
 
 										<div class="input-label">닉네임
 											<div class="input-wrap">
+												<input type="text" name="nickname">
 												<%-- <input type="text" name="nickname" value="${user.nickname }"> --%>
 											</div>
 											<p></p>
@@ -469,7 +471,8 @@
 
 										<div class="input-label">전화번호
 											<div class="input-wrap">
-												<input type="text" name="phone" value="${user.phone }">
+												<input type="text" name="phone">
+												<%-- <input type="text" name="phone" value="${user.phone }"> --%>
 											</div>
 											<p></p>
 										</div>
@@ -489,7 +492,8 @@
 
 										<div class="input-label">생일
 											<div class="input-wrap">
-											<input type="text" name="birthday" value='${user.birthday }'>
+											<input type="text" name="birthday">
+											<%-- <input type="text" name="birthday" value='${user.birthday }'> --%>
 												<%-- <input type="text" name="birthday" value="${birthday }">
 												<input type="text" name="birthday" value="${birthday }">
 												<input type="text" name="birthday" value="${birthday }"> --%>
