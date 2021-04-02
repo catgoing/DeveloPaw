@@ -107,7 +107,8 @@
 	
 	<insert id="insertComment" parameterType="comment">
 		INSERT INTO DIARY_COMMENTS (COMMENT_NO, MEMBER_SERIAL, BOARD_NO, COMMENT_CONTENT, REGDATE) 
-		VALUES (DIARY_COMMENTS_SEQ.NEXTVAL, #{member_serial}, #{board_no}, #{comment_content}, SYSDATE)
+		VALUES (DIARY_COMMENTS_SEQ.NEXTVAL, 994, #{board_no}, #{comment_content}, SYSDATE)
+<!-- 		VALUES (DIARY_COMMENTS_SEQ.NEXTVAL, #{member_serial}, #{board_no}, #{comment_content}, SYSDATE) -->
 	</insert>
 	
 	<insert id="insertComment2" parameterType="comment">
@@ -123,7 +124,7 @@
 			<when test="board_idx == 1"> DIARY_COMMENTS C, USER_DETAIL U WHERE C.MEMBER_SERIAL = U.MEMBER_SERIAL </when>
 			<when test="board_idx == 2"> INTRO_COMMENTS C, USER_DETAIL U WHERE C.MEMBER_SERIAL = U.MEMBER_SERIAL </when>
 		</choose>
-		AND BOARD_NO = #{board_no}
+		AND BOARD_NO = ${board_no}
 	</select>
 	
 	<select id="getComment2List" parameterType="Map" resultType="comment" >

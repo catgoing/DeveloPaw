@@ -134,8 +134,8 @@ public class BoardController {
 
 		System.out.println("detail vo : " + vo);
 
-		//		System.out.println("commentList : " + commentList);
-		//		System.out.println("comment2List : " + comment2List);
+		System.out.println("commentList : " + commentList);
+//		System.out.println("comment2List : " + comment2List);
 
 		//TODO 임시 회원 시리얼을 실제 객체로 교체할 것
 		model.addAttribute("board_no", board_no);
@@ -152,7 +152,7 @@ public class BoardController {
 	//댓글 입력
 	@RequestMapping(value="/community/comment", method=RequestMethod.GET)
 	public String reply(Comment comment, @RequestParam("board_no") int board_no ,
-						 Model model) {
+						 Model model, HttpSession session) {
 	String comment_content = comment.getComment_content();
 	
 	System.out.println(">>> 댓글 - reply()");
@@ -162,8 +162,9 @@ public class BoardController {
 	System.out.println(comment);
 	boardService.insertComment(comment);
 	
-	
-	return "redirect:/community/detail";
+
+	return "redirect:/community/detail?board_idx=" + session.getAttribute("board_idx") + "&board_no=" + board_no;
+
 
 
 	}

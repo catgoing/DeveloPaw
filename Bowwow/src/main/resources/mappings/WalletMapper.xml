@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="UserWallet">
+
+	<insert id="insertTemporaryUserWallet" parameterType="UserWallet" >
+		INSERT INTO USER_WALLET (WALLET_ID, MEMBER_SERIAL, PAY_TYPE, BANK_NAME, BANK_NO, CARD_NAME, CARD_NO) 
+		VALUES (USER_WALLET_ID_SEQ.NEXTVAL, 1 , #{payType}, #{bankName}, #{bankNo}, #{cardName}, #{cardNo})
+	</insert>
+	
+	<delete id="deleteUserWallet" parameterType="UserWallet">
+		DELETE USER_WALLET
+		WHERE WALLET_ID = #{walletId}
+	</delete>
+	
+	<update id="updateUserWallet" parameterType="UserWallet">
+		UPDATE USER_WALLET
+		SET PAY_TYPE = #{payType}
+		, BANK_NAME = #{bankName}
+		, BANK_NO = #{bankNo}
+		, CARD_NAME = #{cardName}
+		, CARD_NO = #{cardNo}
+		WHERE WALLET_ID = #{walletId}
+	</update>
+	
+	<select id="getUserWallet" parameterType="UserWallet" resultType="UserWallet">
+		SELECT * FROM USER_WALLET
+		WHERE WALLET_ID = #{walletId}
+	</select>
+	
+	<select id="searchUserWallet" parameterType="UserWallet" resultType="UserWallet">
+		SELECT * FROM USER_WALLET
+		WHERE MEMBER_SERIAL = #{memberSerial}
+		<choose>
+			<when test="bankName != null">
+				AND BANK_NAME = #{bankName}
+				AND BANK_NO = #{bankNo}
+			</when>
+			<when test="cardName != null">
+			
+				AND CARD_NAME = #{cardName}
+				AND CARD_NO = #{cardNo}
+			</when>
+		</choose>
+	</select>
+	
+</mapper>
