@@ -28,6 +28,8 @@ import ga.bowwow.service.board.Report;
 public class BoardController {
 	@Autowired //의존주입(DI) : 동일한 데이터 타입 객체
 	private BoardService boardService; //의존주입<-- BoardServiceImpl
+	@Autowired 
+	private HttpSession session;
 	private HttpServletRequest HttpServletRequest;
 
 
@@ -95,7 +97,8 @@ public class BoardController {
 	
 	//펫 다이어리(list)
 	@RequestMapping("/community/diary_board")
-	public String getBoardList(Model model, HttpSession session) {
+	public String getBoardList(Model model) {
+		
 		System.out.println(">>> 게시글 전체 목록- String getBoardList()");
 		System.out.println("> boardService : " + boardService);
 		int board_idx = 1;
@@ -112,7 +115,6 @@ public class BoardController {
 		System.out.println("board model : " + model);
 
 		return "/community/diary_board";
-
 
 	}
 
@@ -151,20 +153,19 @@ public class BoardController {
 
 	//댓글 입력
 	@RequestMapping(value="/community/comment", method=RequestMethod.GET)
-	public String reply(Comment comment, @RequestParam("board_no") int board_no ,
-						 Model model, HttpSession session) {
-	String comment_content = comment.getComment_content();
+	public String reply(Comment comment, @RequestParam("board_no") int board_no, Model model) {
+		
+		String comment_content = comment.getComment_content();
+		System.out.println(">>> 댓글 - reply()");
+		System.out.println("댓글내용:" + comment_content);
+		
+		comment.setComment_content(comment_content);
+		comment.setBoard_no(Integer.toString(board_no));
+		System.out.println(comment);
+		
+		boardService.insertComment(comment);
 	
-	System.out.println(">>> 댓글 - reply()");
-	System.out.println("댓글내용:" + comment_content);
-	comment.setComment_content(comment_content);
-	comment.setBoard_no(Integer.toString(board_no));
-	System.out.println(comment);
-	boardService.insertComment(comment);
-	
-	
-	return "redirect:/community/detail?board_idx=" + session.getAttribute("board_idx") + "&board_no=" + board_no;
-
+		return "redirect:/community/detail?board_idx=" + session.getAttribute("board_idx") + "&board_no=" + board_no;
 
 	}
 
@@ -175,22 +176,23 @@ public class BoardController {
 	@RequestMapping(value="/community/boardDelete", method=RequestMethod.GET)
 	public String boardDelete(@RequestParam("board_no") int board_no ,
 						@RequestParam("board_idx") String board_idx, Model model) {
-	System.out.println(">>> 게시글 삭제 - boardDelete()");
-	System.out.println(board_no +  " / " +board_idx);
-	
-	Map<String, Object> map = new HashMap<String, Object>();
-	map.put("board_idx", board_idx);
-	map.put("board_no", board_no);
-	boardService.boardDelete(map);
-	return "redirect:/community/diary_board";
+		
+		System.out.println(">>> 게시글 삭제 - boardDelete()");
+		System.out.println(board_no +  " / " +board_idx);
+		
+		Map<String, Object> map = new HashMap<String, Object>();
+		map.put("board_idx", board_idx);
+		map.put("board_no", board_no);
+		boardService.boardDelete(map);
+		return "redirect:/community/diary_board";
 	}
 
 
 
 
 	@RequestMapping("/community/update/board")
-	public String updateBoard(Board vo, HttpServletRequest request, MultipartController mc, Model model, 
-								HttpSession session) throws AmazonClientException, IllegalStateException, IOException, InterruptedException {
+	public String updateBoard(Board vo, HttpServletRequest request, MultipartController mc, Model model) 
+							throws AmazonClientException, IllegalStateException, IOException, InterruptedException {
 		System.out.println(">>> 게시글 수정화면 - updateBoard()");
 
 		int board_idx = (int) session.getAttribute("board_idx");
@@ -209,7 +211,8 @@ public class BoardController {
 
 
 	@RequestMapping("/community/do-update/board")
-	public String doUpdateBoard(Board vo, HttpServletRequest request, MultipartController mc, HttpSession session) throws AmazonClientException, IllegalStateException, IOException, InterruptedException {
+	public String doUpdateBoard(Board vo, HttpServletRequest request, MultipartController mc) 
+						throws AmazonClientException, IllegalStateException, IOException, InterruptedException {
 		System.out.println(">>> 게시글 수정 - do-updateBoard()");
 		System.out.println("vo : " + vo);
 
@@ -298,18 +301,6 @@ public class BoardController {
 
 	}
 
-	@RequestMapping("/report1")
-	public String insertReport(Report vo) throws IllegalStateException, IOException, AmazonClientException, InterruptedException {
-		System.out.println(">>> 댓글 입력 - insertreport");
-		System.out.println("vo : " + vo);
-
-
-		boardService.insertReport(vo);
-
-		return "/report1";
-
-	}
-
 
 	@RequestMapping("/community/insertComment2")
 	public String insertComment2(Comment vo) throws IllegalStateException, IOException, AmazonClientException, InterruptedException {
@@ -319,6 +310,35 @@ public class BoardController {
 
 		boardService.insertComment2(vo);
 		return null;
+	}
+	
+	
+	@RequestMapping("/community/reportList")
+	public String getReportList(@RequestParam("report_idx") String idx, Model model) {
+		
+		System.out.println(">>> 신고 전체 목록- String getBoardReportList()");
+//		System.out.println("> boardService : " + boardService);
+		System.out.println(idx);
+		session.setAttribute("report_idx", idx);
+		String r_idx = session.getAttribute("report_idx").toString();
+		int report_idx = Integer.parseInt(r_idx);
+		
+		Map<String, Integer> map = new HashMap<String, Integer>();
+		map.put("report_idx", report_idx);
+
+		List<Report> reportList = boardService.getReportList(report_idx);
+
+		model.addAttribute("reportList", reportList);
+
+		System.out.println("report list : " + reportList);
+
+//		if(report_idx == 1) {
+//			return "/community/" + "reportList";
+//			
+//		} else return "/community/" + "comment_report";
+
+		
+		return "/community/" + "reportList";
 	}
 
 

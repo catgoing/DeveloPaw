@@ -81,84 +81,64 @@
 												<div class="row">
 													<div class="col-lg-12">
 														<div class="section-title">
-															<h2>펫 다이어리</h2>
+															<h2>신고 게시판</h2>
 														</div>
 														<br>
 													</div>
 												</div>
 												<div class="monthly-products">
-													<ul>
+													
+																<table>
+		<thead>
+			<tr class="title" style="border-top:none;">
+			<c:set var="idx" value="${report_idx }"/>
+				<th class="r_no">신고번호</th>
+				<th class="r_class">신고분류</th>
+				<th class="r_class">게시판 종류</th>
+				<c:if test="${idx == 1 }">
+				<th class="b_title">글 제목</th>
+				</c:if>
+				<c:if test="${idx == 2 }">
+				<th class="c_content">댓글 내용</th>
+				</c:if>
+				<th class="r_date">신고일</th>
+				<th class="r_date">처리일</th>
+				<th class="r_result">처리결과</th>
+			</tr>
+		</thead>
+		<tbody>
+			<c:forEach var="list" items="${ reportList}">
+			
+				<tr class="list" onclick="location.href = '/savanna/controller?type=memDetail&id=${vo.id }'">
+					<td style="width: 70px; text-align: center;">${list.report_no }</td>
+					<td style="width: 70px; text-align: center;">${list.report_class }</td>
+					<td style="width: 80px;">${list.board_class }</td>
+					<c:if test="${idx == 1 }">
+					<td style="width: 300px;">${list.report_content }</td>
+					</c:if>
+					<c:if test="${idx == 2 }">
+					<td style="width: 300px;">${list.report_content }</td>
+					</c:if>
+					<td style="width: 80px;">${list.report_date}</td>
+					<c:set var="h_date" value="${list.handled_date }"/>
+					<c:if test="${null eq h_date }">
+					<td style="width: 80px;">-</td>
+					</c:if>
+					<c:if test="${null ne h_date }">
+					<td style="width: 80px;">${list.handled_date }</td>
+					</c:if>
+					<td style="width: 80px;">${list.result }</td>
+				</tr>
+	
+		</c:forEach>
+		</tbody>
+		<tfoot>
+		</tfoot>
+		</table>
 
-														<c:forEach var="list" items="${ boardList}">
-															<li>
-																<div class="block-item default-item" onclick="location.href='/community/detail?board_idx=${board_idx }&board_no=${list.board_no}'">
-																	<div class="best-label">${list.board_no }</div>
-																	<div class="bookmark_btn click-btn">
-																		<div class="scrap" id="scrapBtn_311"
-																			onclick="WitCommon.boardScrap('knowhow', '311')">
-																			<img style="width:200px" id="scrapImg_311"
-																				src='https://projectbit.s3.us-east-2.amazonaws.com/${list.img1 }' alt="썸네일이 없음ㅁ">
-																		</div>
-																	</div>
-																	<div class="img-area"
-																		onclick="location.href='/board/knowhow/311'">
-																		<div class="imgItem"
-																			style="background: url('https://web-wit.s3.ap-northeast-2.amazonaws.com/images/boardKnowhow/311/knowhow_1609169403_0.gif') center center no-repeat; background-size: cover;">
-																		</div>
-																	</div>
-																	<div class="text-area">
-																		<div class="item-title">
-																			<a href="/community/detail?board_idx=${board_idx }&board_no=${list.board_no}">${list.board_title }</a>
-																		</div>
-																		<p class="hashtag">
-																			<span>#마사지 </span><span>#강아지마사지 </span><span>#강아지테라피
-																			</span><span>#예민한강아지 </span><span>#강아지</span><span>#...</span>
-																		</p>
-																		<div class="item-items">
-																			<div class="profile"
-																				onclick="pagePopup.openGotoPopup()">
-																				<p>${list.id }</p>
-																			</div>
-																		</div>
-																	</div>
-																</div>
-															</li>
-														</c:forEach>
-														<li>
-															<div class="block-item default-item">
-																<div class="best-label">1</div>
-																<div class="bookmark_btn click-btn">
-																	<div class="scrap" id="scrapBtn_311"
-																		onclick="WitCommon.boardScrap('knowhow', '311')">
-																		<img id="scrapImg_311" src="/resources/images/dog.jpg"
-																			alt="">
-																	</div>
-																</div>
-																<div class="img-area"
-																	onclick="location.href='/board/knowhow/311'">
-																	<div class="imgItem"
-																		style="background: url('https://web-wit.s3.ap-northeast-2.amazonaws.com/images/boardKnowhow/311/knowhow_1609169403_0.gif') center center no-repeat; background-size: cover;">
-																	</div>
-																</div>
-																<div class="text-area">
-																	<div class="item-title"
-																		onclick="location.href='/board/knowhow/311'">
-																		<h4>제목</h4>
-																	</div>
-																	<p class="hashtag">
-																		<span>#마사지 </span><span>#강아지마사지 </span><span>#강아지테라피
-																		</span><span>#예민한강아지 </span><span>#강아지</span><span>#...</span>
-																	</p>
-																	<div class="item-items">
-																		<div class="profile"
-																			onclick="pagePopup.openGotoPopup()">
-																			<p>닉네임</p>
-																		</div>
-																	</div>
-																</div>
-															</div>
-														</li>
-													</ul>
+													
+											
+			
 												</div>
 											</div>
 										</section>
@@ -179,9 +159,6 @@
 			style="margin-bottom: 190px; margin-right: 30px; font: 'Jua'">
 			<i class="fa fa-chevron-up" aria-hidden="true">TOP</i>
 		</button>
-		
-		<div class="fixed-button active"><a href="/community/write_board.jsp" class="btn btn-md btn-primary"> 글쓰기</a> </div>
-		
 		<script type="text/javascript">
 			scrollTop('js-button', 100);
 			function scrollTop(elem, duration) {

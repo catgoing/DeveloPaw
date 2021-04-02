@@ -19,7 +19,6 @@ public interface BoardService {
 	List<Board> search(String string, String keyword);
 
 	List<Board> getBoardList(Map<String, Integer> map);
-	void insertReport(Report vo);
 	void insertComment(Comment vo);
 	void updateComment(Comment vo);
 	void deleteComment(Comment vo);
@@ -32,6 +31,10 @@ public interface BoardService {
 	List<Comment> getComment2List(Map<String, Integer> map);
 	void boardDelete(Map<String,Object>map);
 
-
+	void updateBoardReport(Report vo);
+	void updateCommentReport(Report vo);
+	List<Report> getReportList(int report_idx);
+	Report getReport(int report_idx, int report_no);
+	
 
 }
