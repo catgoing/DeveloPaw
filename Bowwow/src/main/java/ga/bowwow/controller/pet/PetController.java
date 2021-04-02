@@ -6,7 +6,6 @@ import java.util.List;
 import java.util.UUID;
 
 import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -26,7 +25,6 @@ import com.google.gson.Gson;
 import ga.bowwow.controller.common.MultipartController;
 import ga.bowwow.service.pet.Pet;
 import ga.bowwow.service.pet.PetService;
-import ga.bowwow.service.user.VO.UserAccount;
 
 @Controller
 @SessionAttributes("petList") //pet이라는 model을 세션에 저장
@@ -36,18 +34,19 @@ public class PetController {
 	@Autowired
 	private PetService petService;
 
-	private static int member_serial;
+	//private static int member_serial;
 
 	public PetController() {
 		System.out.println(">>PetController() 객체 생성");
 	}
 
-	public int idGetTest(HttpServletRequest request) {
-		HttpSession session = request.getSession();
-		UserAccount user = (UserAccount)session.getAttribute("userDTO");
-
-		return member_serial = user.getMemberSerial();
-	}
+	/*
+	 * public int idGetTest(HttpServletRequest request) { HttpSession session =
+	 * request.getSession(); UserAccount user =
+	 * (UserAccount)session.getAttribute("userDTO");
+	 * 
+	 * return member_serial = user.getMemberSerial(); }
+	 */
 
 	@RequestMapping(value = "/mypage/myPageMain")
 	public String myPageMain() {
@@ -63,7 +62,7 @@ public class PetController {
 	public String getPetInfoList(Pet pet, Model model, HttpServletRequest request) {
 		System.out.println("....> 반려동물 리스트를 가져옵니다!!");
 
-		pet.setMember_serial(member_serial);
+		//pet.setMember_serial(member_serial);
 		System.out.println("pet " + pet); //member_serial
 		
 		List<Pet> petList = petService.getPetInfoList(pet);
@@ -83,7 +82,7 @@ public class PetController {
 	public String ajaxGetPetInfo(Pet pet) {
 		System.out.println("ajax 반려동물정보를 가져옵니다");
 		
-		pet.setMember_serial(member_serial);
+		//pet.setMember_serial(member_serial);
 		
 		Pet petData = petService.getPetInfo(pet);
 		System.out.println("petData : " + petData.toString());
@@ -101,7 +100,7 @@ public class PetController {
 	public int ajaxInsertPetInfo(Pet pet, HttpServletRequest request, MultipartController mc) throws AmazonClientException, IllegalStateException, IOException, InterruptedException {
 		System.out.println("> 반려동물 정보 입력");
 		System.out.println("pet~~:"+ pet);
-		pet.setMember_serial(member_serial);
+		//pet.setMember_serial(member_serial);
 		
 		int result = 0;
 		if(pet.getImage_source() != null) {
@@ -139,7 +138,7 @@ public class PetController {
 	public int ajaxUpdatePetInfo(Pet pet, HttpServletRequest request, MultipartController mc) throws AmazonClientException, IllegalStateException, IOException, InterruptedException {
 		System.out.println("> 반려동물 정보 수정");
 		System.out.println("pet~~:"+ pet);
-		pet.setMember_serial(member_serial);
+		//pet.setMember_serial(member_serial);
 		
 		String foldername = "petImg";
 		
@@ -170,7 +169,7 @@ public class PetController {
 	public int ajaxDeletePetInfo(Pet pet) {
 		System.out.println("ajax 반려동물 정보 삭제 실행!!");
 		System.out.println("pet :"+pet);
-		pet.setMember_serial(member_serial);
+		//pet.setMember_serial(member_serial);
 		
 		int result = petService.deletePetInfo(pet);
 		System.out.println(result);
