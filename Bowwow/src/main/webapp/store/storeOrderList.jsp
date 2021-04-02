@@ -63,6 +63,8 @@
 	href="../resources/css/jquery.mCustomScrollbar.css">
 <!-- Style.css -->
 <link rel="stylesheet" type="text/css" href="/resources/css/style.css">
+<link rel="stylesheet" type="text/css"
+	href="/resources/css/cartStyle.css">
 <link rel="stylesheet" type="text/css" href="/resources/css/test.css">
 <style>
 .featured__item__text {
@@ -509,256 +511,151 @@ img {
 						<div class="pcoded-inner-content">
 							<!-- Main-body start -->
 
-							<!-- Breadcrumb Begin -->
-							<div class="breadcrumb-option">
-								<div class="container">
-									<div class="row">
-										<div class="col-lg-12">
-											<div class="breadcrumb__links">
-												<a href="storeMain.html"><i class="fa fa-home"></i> 스토어 메인</a>
-												<span>주문 화면</span>
+
+							<!-- Checkout Section Begin -->
+							<%-- <div>
+								<ul>
+									<c:forEach var="oList" items="${orderList }">
+										<li>
+											<table style="margin: 10px; border: 2px solid black;">
+												<tr>
+													<th>주문번호</th>
+													<td><a
+														href="storeOrderDetail?order_id=${oList.order_id }">${oList.order_id}</a></td>
+												</tr>
+												<tr>
+													<th>상품번호</th>
+													<td>${oList.p_id}</td>
+												</tr>
+												<tr>
+													<th>회원번호</th>
+													<td>${oList.member_serial}</td>
+												</tr>
+												<tr>
+													<th>주문수량</th>
+													<td>${oList.amount}</td>
+												</tr>
+												<tr>
+													<th>주문가격</th>
+													<td>${oList.price}</td>
+												</tr>
+												<tr>
+													<th>메모</th>
+													<td>${oList.memo}</td>
+												</tr>
+												<tr>
+													<th>주문날짜</th>
+													<td>${oList.order_date}</td>
+												</tr>
+												<tr>
+													<th>주문상태</th>
+													<td>${oList.order_status}</td>
+												</tr>
+											</table>
+										</li>
+									</c:forEach>
+								</ul>
+							</div> --%>
+							<div>
+								<!-- Shopping Cart Section Begin -->
+								<section class="shopping-cart spad">
+									<div class="container">
+										<div class="row">
+											<div class="col-lg-12">
+												<div class="cart-table" style="background-color: white;">
+													<table>
+														<thead>
+															<tr>
+																<th>주문번호</th>
+																<th class="p-name">상품번호</th>
+																<th>주문일자</th>
+																<th>주문금액</th>
+																<th>주문관리</th>
+															</tr>
+														</thead>
+														<c:if test="${empty orderList}">
+															<h3>주문 내역이 존재하지 않습니다.</h3>
+														</c:if>
+														<c:if test="${not empty orderList}">
+															<c:forEach var="oList" items="${orderList }">
+																<tbody>
+																	<tr>
+																		<td class="cart-pic first-row"><img
+																			src="img/cart-page/product-1.jpg" alt=""><a href="storeOrderDetail?order_id=${oList.order_id }">${oList.order_id}</a></td>
+																		<td class="cart-title first-row">${oList.p_id }</td>
+																		<td class="p-price first-row">${oList.order_date}</td>
+																		<td class="total-price first-row">$60.00</td>
+																		<td class="close-td first-row"><i
+																			class="ti-close"></i></td>
+																	</tr>
+																</tbody>
+															</c:forEach>
+														</c:if>
+													</table>
+												</div>
 											</div>
 										</div>
 									</div>
-								</div>
+								</section>
+								<!-- Shopping Cart Section End -->
+
+								<!-- Checkout Section End -->
+
+
+
+								<br> <br>
+
 							</div>
-							<!-- Breadcrumb End -->
+							<!-- Product Details Section End -->
 
-							<!-- Checkout Section Begin -->
-							<div>
-								<ul>
-								<c:forEach var="oList" items="${orderList }">
-								<li>
-									<table style="margin : 10px; border : 2px solid black;">
-										<tr>
-											<th>주문번호</th>
-											<td><a href="storeOrderDetail?order_id=${oList.order_id }">${oList.order_id}</a></td>
-										</tr>
-										<tr>
-											<th>상품번호</th>
-											<td>${oList.p_id}</td>
-										</tr>
-										<tr>
-											<th>회원번호</th>
-											<td>${oList.member_serial}</td>
-										</tr>
-										<tr>
-											<th>주문수량</th>
-											<td>${oList.amount}</td>
-										</tr>
-										<tr>
-											<th>주문가격</th>
-											<td>${oList.price}</td>
-										</tr>
-										<tr>
-											<th>메모</th>
-											<td>${oList.memo}</td>
-										</tr>
-										<tr>
-											<th>주문날짜</th>
-											<td>${oList.order_date}</td>
-										</tr>
-										<tr>
-											<th>주문상태</th>
-											<td>${oList.order_status}</td>
-										</tr>
-									</table>
-								</li>
-								</c:forEach>
-								</ul>
-							</div>
-							<div>
-								<c:forEach var="oList" items="${orderList }">
-									<table style="margin : 10px; border : 2px solid black;">
-										<tr>
-											<th>주문번호</th>
-											<td><a href="storeOrderDetail?order_id=${oList.order_id }">${oList.order_id}</a></td>
-										</tr>
-										<tr>
-											<th>상품번호</th>
-											<td>${oList.p_id}</td>
-										</tr>
-										<tr>
-											<th>회원번호</th>
-											<td>${oList.member_serial}</td>
-										</tr>
-										<tr>
-											<th>주문수량</th>
-											<td>${oList.amount}</td>
-										</tr>
-										<tr>
-											<th>주문가격</th>
-											<td>${oList.price}</td>
-										</tr>
-										<tr>
-											<th>메모</th>
-											<td>${oList.memo}</td>
-										</tr>
-										<tr>
-											<th>주문날짜</th>
-											<td>${oList.order_date}</td>
-										</tr>
-										<tr>
-											<th>주문상태</th>
-											<td>${oList.order_status}</td>
-										</tr>
-									</table>
-								</c:forEach>
-							</div>
-							<!-- Checkout Section End -->
-
-
-
-							<br>
-							<br>
-							<!--           <div class="row">
-                <div class="col-lg-12 text-center">
-                    <div class="related__title">
-                        <h5>RELATED PRODUCTS</h5>
-                    </div>
-                </div>
-                <div class="col-lg-3 col-md-4 col-sm-6">
-                    <div class="product__item">
-                        <div class="product__item__pic set-bg" data-setbg="img/product/related/rp-1.jpg">
-                            <div class="label new">New</div>
-                            <ul class="product__hover">
-                                <li><a href="img/product/related/rp-1.jpg" class="image-popup"><span class="arrow_expand"></span></a></li>
-                                <li><a href="#"><span class="icon_heart_alt"></span></a></li>
-                                <li><a href="#"><span class="icon_bag_alt"></span></a></li>
-                            </ul>
-                        </div>
-                        <div class="product__item__text">
-                            <h6><a href="#">Buttons tweed blazer</a></h6>
-                            <div class="rating">
-                                <i class="fa fa-star"></i>
-                                <i class="fa fa-star"></i>
-                                <i class="fa fa-star"></i>
-                                <i class="fa fa-star"></i>
-                                <i class="fa fa-star"></i>
-                            </div>
-                            <div class="product__price">$ 59.0</div>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-lg-3 col-md-4 col-sm-6">
-                    <div class="product__item">
-                        <div class="product__item__pic set-bg" data-setbg="img/product/related/rp-2.jpg">
-                            <ul class="product__hover">
-                                <li><a href="img/product/related/rp-2.jpg" class="image-popup"><span class="arrow_expand"></span></a></li>
-                                <li><a href="#"><span class="icon_heart_alt"></span></a></li>
-                                <li><a href="#"><span class="icon_bag_alt"></span></a></li>
-                            </ul>
-                        </div>
-                        <div class="product__item__text">
-                            <h6><a href="#">Flowy striped skirt</a></h6>
-                            <div class="rating">
-                                <i class="fa fa-star"></i>
-                                <i class="fa fa-star"></i>
-                                <i class="fa fa-star"></i>
-                                <i class="fa fa-star"></i>
-                                <i class="fa fa-star"></i>
-                            </div>
-                            <div class="product__price">$ 49.0</div>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-lg-3 col-md-4 col-sm-6">
-                    <div class="product__item">
-                        <div class="product__item__pic set-bg" data-setbg="img/product/related/rp-3.jpg">
-                            <div class="label stockout">out of stock</div>
-                            <ul class="product__hover">
-                                <li><a href="img/product/related/rp-3.jpg" class="image-popup"><span class="arrow_expand"></span></a></li>
-                                <li><a href="#"><span class="icon_heart_alt"></span></a></li>
-                                <li><a href="#"><span class="icon_bag_alt"></span></a></li>
-                            </ul>
-                        </div>
-                        <div class="product__item__text">
-                            <h6><a href="#">Cotton T-Shirt</a></h6>
-                            <div class="rating">
-                                <i class="fa fa-star"></i>
-                                <i class="fa fa-star"></i>
-                                <i class="fa fa-star"></i>
-                                <i class="fa fa-star"></i>
-                                <i class="fa fa-star"></i>
-                            </div>
-                            <div class="product__price">$ 59.0</div>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-lg-3 col-md-4 col-sm-6">
-                    <div class="product__item">
-                        <div class="product__item__pic set-bg" data-setbg="img/product/related/rp-4.jpg">
-                            <ul class="product__hover">
-                                <li><a href="img/product/related/rp-4.jpg" class="image-popup"><span class="arrow_expand"></span></a></li>
-                                <li><a href="#"><span class="icon_heart_alt"></span></a></li>
-                                <li><a href="#"><span class="icon_bag_alt"></span></a></li>
-                            </ul>
-                        </div>
-                        <div class="product__item__text">
-                            <h6><a href="#">Slim striped pocket shirt</a></h6>
-                            <div class="rating">
-                                <i class="fa fa-star"></i>
-                                <i class="fa fa-star"></i>
-                                <i class="fa fa-star"></i>
-                                <i class="fa fa-star"></i>
-                                <i class="fa fa-star"></i>
-                            </div>
-                            <div class="product__price">$ 59.0</div>
-                        </div>
-                    </div>
-                </div>
-            </div> -->
+							<div id="styleSelector"></div>
 						</div>
-						<!-- Product Details Section End -->
-
-						<div id="styleSelector"></div>
 					</div>
 				</div>
 			</div>
 		</div>
-	</div>
-	<button class="scroll-top" id="js-button"
-		style="margin-bottom: 190px; margin-right: 30px; font: 'Jua'">
-		<i class="fa fa-chevron-up" aria-hidden="true">TOP</i>
-	</button>
-	<script type="text/javascript">
-		scrollTop('js-button', 500);
-		function scrollTop(elem, duration) {
-			let target = document.getElementById(elem);
+		<button class="scroll-top" id="js-button"
+			style="margin-bottom: 190px; margin-right: 30px; font: 'Jua'">
+			<i class="fa fa-chevron-up" aria-hidden="true">TOP</i>
+		</button>
+		<script type="text/javascript">
+			scrollTop('js-button', 500);
+			function scrollTop(elem, duration) {
+				let target = document.getElementById(elem);
 
-			target.addEventListener('click', function() {
-				let currentY = window.pageYOffset;
-				let step = duration / currentY > 1 ? 10 : 100;
-				let timeStep = duration / currentY * step;
-				let intervalID = setInterval(scrollUp, timeStep);
+				target.addEventListener('click', function() {
+					let currentY = window.pageYOffset;
+					let step = duration / currentY > 1 ? 10 : 100;
+					let timeStep = duration / currentY * step;
+					let intervalID = setInterval(scrollUp, timeStep);
 
-				function scrollUp() {
-					currentY = window.pageYOffset;
-					if (currentY === 0) {
-						clearInterval(intervalID);
-					} else {
-						scrollBy(0, -step);
+					function scrollUp() {
+						currentY = window.pageYOffset;
+						if (currentY === 0) {
+							clearInterval(intervalID);
+						} else {
+							scrollBy(0, -step);
+						}
 					}
-				}
-			});
-		}
-	</script>
-	<!-- footer 푸터 시작부분-->
-	<div style="display: block;">
-		<footer class="footer navbar-wrapper">
-			<div class="footer-wrapper navbar-wrapper">
-				<div class="footer-box" style="height: 100px; text-align: center;">
-					푸터</div>
-			</div>
-		</footer>
-		<!-- footer 푸터 끝부분-->
-	</div>
+				});
+			}
+		</script>
+		<!-- footer 푸터 시작부분-->
+		<div style="display: block;">
+			<footer class="footer navbar-wrapper">
+				<div class="footer-wrapper navbar-wrapper">
+					<div class="footer-box" style="height: 100px; text-align: center;">
+						푸터</div>
+				</div>
+			</footer>
+			<!-- footer 푸터 끝부분-->
+		</div>
 
 
 
-	<!-- Warning Section Starts -->
-	<!-- Older IE warning message -->
-	<!--[if lt IE 10]>
+		<!-- Warning Section Starts -->
+		<!-- Older IE warning message -->
+		<!--[if lt IE 10]>
 <div class="ie-warning">
     <h1>Warning!!</h1>
     <p>You are using an outdated version of Internet Explorer, please upgrade <br/>to any of the following web browsers to access this website.</p>
@@ -799,31 +696,31 @@ img {
     <p>Sorry for the inconvenience!</p>
 </div>
 <![endif]-->
-	<!-- Warning Section Ends -->
+		<!-- Warning Section Ends -->
 
-	<!-- Required Jquery -->
-	<script type="text/javascript"
-		src="../resources/js/jquery/jquery.min.js "></script>
-	<script type="text/javascript"
-		src="../resources/js/jquery-ui/jquery-ui.min.js "></script>
-	<script type="text/javascript"
-		src="../resources/js/popper.js/popper.min.js"></script>
-	<script type="text/javascript"
-		src="../resources/js/bootstrap/js/bootstrap.min.js "></script>
-	<!-- waves js -->
-	<script src="../resources/pages/waves/js/waves.min.js"></script>
-	<!-- jquery slimscroll js -->
-	<script type="text/javascript"
-		src="../resources/js/jquery-slimscroll/jquery.slimscroll.js"></script>
+		<!-- Required Jquery -->
+		<script type="text/javascript"
+			src="../resources/js/jquery/jquery.min.js "></script>
+		<script type="text/javascript"
+			src="../resources/js/jquery-ui/jquery-ui.min.js "></script>
+		<script type="text/javascript"
+			src="../resources/js/popper.js/popper.min.js"></script>
+		<script type="text/javascript"
+			src="../resources/js/bootstrap/js/bootstrap.min.js "></script>
+		<!-- waves js -->
+		<script src="../resources/pages/waves/js/waves.min.js"></script>
+		<!-- jquery slimscroll js -->
+		<script type="text/javascript"
+			src="../resources/js/jquery-slimscroll/jquery.slimscroll.js"></script>
 
-	<!-- slimscroll js -->
-	<script src="../resources/js/jquery.mCustomScrollbar.concat.min.js "></script>
+		<!-- slimscroll js -->
+		<script src="../resources/js/jquery.mCustomScrollbar.concat.min.js "></script>
 
-	<!-- menu js -->
-	<script src="../resources/js/pcoded.min.js"></script>
-	<script src="../resources/js/vertical/vertical-layout.min.js "></script>
+		<!-- menu js -->
+		<script src="../resources/js/pcoded.min.js"></script>
+		<script src="../resources/js/vertical/vertical-layout.min.js "></script>
 
-	<script type="text/javascript" src="../resources/js/script.js "></script>
+		<script type="text/javascript" src="../resources/js/script.js "></script>
 </body>
 
 

@@ -603,21 +603,7 @@
 						<!-- Page-header end -->
 						<div class="pcoded-inner-content">
 							<!-- Main-body start -->
-							<!-- Breadcrumb Begin -->
-							<div class="breadcrumb-option">
-								<div class="container">
-									<div class="row">
-										<div class="col-lg-12">
-											<div class="breadcrumb__links">
-												<a href="storeMain"><i class="fa fa-home"></i> 스토어 메인 </a> <a
-													href="#"> 카테고리 </a> <span></span>
-											</div>
-										</div>
-									</div>
-								</div>
-							</div>
-
-							<!-- Breadcrumb End -->
+							
 
 							<!-- Product Details Section Begin -->
 							<section class="product-details spad">
@@ -722,37 +708,42 @@
 														<div class="row">
 															<div class="col-lg-6">
 																<div class="review_list">
-																	<c:forEach var="rList" items="${reviewList}">
-																		<div id="rList_${rList.review_id}" class="review_box"
-																			style="border: 1px solid lightgray; margin-bottom: 10px; padding: 10px;">
-																			<h4>작성된 리뷰</h4>
-																			<form class="row contact_form" id="contactForm"
-																				onsubmit="return false;">
-																				<div class="col-md-12">
-																					<div class="form-group">
-																						<input type="text" class="form-control" value="${rList.review_title }" readonly />
+																	<c:if test="${empty reviewList}">
+																		<h4>작성된 후기가 없습니다.</h4>
+																	</c:if>
+																	<c:if test="${not empty reviewList}">
+																		<c:forEach var="rList" items="${reviewList}">
+																			<div id="rList_${rList.review_id}" class="review_box"
+																				style="border: 1px solid lightgray; margin-bottom: 10px; padding: 10px;">
+																				<h4>작성된 리뷰</h4>
+																				<form class="row contact_form" id="contactForm"
+																					onsubmit="return false;">
+																					<div class="col-md-12">
+																						<div class="form-group">
+																							<input type="text" class="form-control" value="${rList.review_title }" readonly />
+																						</div>
 																					</div>
-																				</div>
-																				<div class="col-md-6">
-																					<div class="form-group">
-																						<input type="text" class="form-control" value=999 readonly />
+																					<div class="col-md-6">
+																						<div class="form-group">
+																							<input type="text" class="form-control" value=999 readonly />
+																						</div>
 																					</div>
-																				</div>
-																				<div class="col-md-6">
-																					<div class="form-group">
-																						<input type="text" class="form-control" value="${rList.review_regdate }" readonly />
+																					<div class="col-md-6">
+																						<div class="form-group">
+																							<input type="text" class="form-control" value="${rList.review_regdate }" readonly />
+																						</div>
 																					</div>
-																				</div>
-																				<div class="col-md-12">
-																					<div class="form-group">
-																						<textarea class="form-control"
-																							style="resize: none;" rows="2" readonly>${rList.review_content }</textarea>
+																					<div class="col-md-12">
+																						<div class="form-group">
+																							<textarea class="form-control"
+																								style="resize: none;" rows="2" readonly>${rList.review_content }</textarea>
+																						</div>
+																						<button class="store_btn" onclick="deleteReview(${rList.review_id})" style="float: right;">삭제</button>
 																					</div>
-																					<button class="store_btn" onclick="deleteReview(${rList.review_id})" style="float: right;">삭제</button>
-																				</div>
-																			</form>
-																		</div>
-																	</c:forEach>
+																				</form>
+																			</div>
+																		</c:forEach>
+																	</c:if>
 																</div>
 															</div>
 															<div class="col-lg-6">
@@ -906,7 +897,7 @@
 	<script src="/resources/js/pcoded.min.js"></script>
 	<script src="/resources/js/vertical/vertical-layout.min.js "></script>
 
-	<script type="text/javascript" src="/resources/js/script.js "></script>
+	<script type="text/javascript" src="/resources/js/script2.js "></script>
 
 </body>
 

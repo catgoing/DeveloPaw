@@ -69,7 +69,7 @@
 </style>
 <script>
 
-(funcytion(name){
+(function(name){
 	console.log('my name is '+ name);
 })('??')
  function goModify(form){
