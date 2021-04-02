@@ -224,7 +224,7 @@
 								</div>
 							</div>
 						</div>
-						<a href="storeMain.html"
+						<a href="storeMain"
 							style="text-align: center; font-weight: bold; font-size: 30px; margin-top: 7px;">BOW-WOW</a>
 
 						<a class="mobile-options waves-effect waves-light"> <i
@@ -455,7 +455,6 @@
 									</ul>
 								</li>
 							</ul>
-
 							<ul class="pcoded-item pcoded-left-item">
 								<li class=""><a href="storeMain"
 									class="waves-effect waves-dark"> <span class="pcoded-micon"><i
@@ -463,34 +462,6 @@
 										<span class="pcoded-mcaret"></span>
 								</a></li>
 							</ul>
-
-							<!-- <ul class="pcoded-item pcoded-left-item">
-                                <li class="">
-                                    <a href="bs-basic-table.html" class="waves-effect waves-dark">
-                                        <span class="pcoded-micon"><i class="ti-receipt"></i><b>B</b></span>
-                                        <span class="pcoded-mtext">Table</span>
-                                        <span class="pcoded-mcaret"></span>
-                                    </a>
-                                </li>
-                            </ul>
-
-                            <ul class="pcoded-item pcoded-left-item">
-                                <li class="">
-                                    <a href="chart-morris.html" class="waves-effect waves-dark">
-                                        <span class="pcoded-micon"><i class="ti-bar-chart-alt"></i><b>C</b></span>
-                                        <span class="pcoded-mtext">Charts</span>
-                                        <span class="pcoded-mcaret"></span>
-                                    </a>
-                                </li>
-                                <li class="">
-                                    <a href="map-google.html" class="waves-effect waves-dark">
-                                        <span class="pcoded-micon"><i class="ti-map-alt"></i><b>M</b></span>
-                                        <span class="pcoded-mtext">Maps</span>
-                                        <span class="pcoded-mcaret"></span>
-                                    </a>
-                                </li>
-                            </ul> -->
-
 							<ul class="pcoded-item pcoded-left-item">
 								<li class="pcoded-hasmenu "><a href="javascript:void(0)"
 									class="waves-effect waves-dark"> <span class="pcoded-micon"><i
@@ -649,10 +620,10 @@
 														<div class="quantity">
 															<div class="pro-qty">
 																<h5>
-																	상품 수량 : <input type="hidden" id="sell_price" name="price" value="${p.price }"> 
-																		<input type="button" class="store_btn2" value=" - " onclick="del()"> 
-																		<input type="text" class="store_input" autocomplete="off" min="1" name="amount" value="1" size="3" onchange="changeValue();"> 
-																		<input type="button" class="store_btn2" value=" + " onclick="add()">
+															상품 수량 : <input type="hidden" id="sell_price" name="price" value="${p.price }"> 
+																	<input type="button" class="store_btn2" value=" - " onclick="del()"> 
+																	<input type="text" class="store_input" autocomplete="off" min="1" name="amount" value="1" size="3" onchange="changeValue();"> 
+																	<input type="button" class="store_btn2" value=" + " onclick="add()">
 																</h5>
 															</div>
 															<br>
@@ -661,8 +632,7 @@
 															<ul>
 																<li>
 																	<h3>
-																		총 상품금액: <input type="text" class="store_input2"
-																			size="9" id="sum" readonly>원
+																		총 상품금액: <input type="text" class="store_input2" size="9" id="sum" readonly>원
 																	</h3>
 																</li>
 															</ul>

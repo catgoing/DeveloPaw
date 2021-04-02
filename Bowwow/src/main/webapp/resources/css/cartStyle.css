@@ -99,7 +99,7 @@ a:hover,
 a:focus {
 	text-decoration: none;
 	outline: none;
-	color: #fff;
+	color: #ff6347;
 }
 
 ul,
@@ -2680,6 +2680,8 @@ ol {
 
 .cart-table table tr td.cart-title {
 	text-align: left;
+	width: 62px;
+	height: 57px;
 }
 
 .cart-table table tr td.cart-title h5 {
@@ -2754,6 +2756,17 @@ ol {
 
 .cart-table table tr td.close-td i {
 	cursor: pointer;
+}
+
+.cart-pic a img {
+	width: 93px;
+    height : 100px;
+    max-width: 100%;
+    height: auto;
+}
+
+.cart-title a {
+	font-size: 1.0em;
 }
 
 .cart-buttons {
@@ -4169,6 +4182,11 @@ ol {
 	.cart-table {
 		overflow: auto;
 	}
+
+	.cart-table tbody {
+		border-bottom: 1px solid #000;
+	}
+
 	.cart-table table tr th {
 		font-size: 12px;
 	}
