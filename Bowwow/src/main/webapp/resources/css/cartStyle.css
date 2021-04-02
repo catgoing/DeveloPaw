@@ -2694,7 +2694,7 @@ ol {
 
 .cart-table table tr td.p-price,
 .cart-table table tr td.total-price {
-	color: #e7ab3c;
+	color: #000;
 	font-size: 16px;
 	font-weight: 700;
 }
