@@ -1,5 +1,7 @@
 package ga.bowwow.service.user.VO;
 
+import java.util.List;
+
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -15,8 +17,9 @@ public class UserAddress {
 	String address;
 	String addressDetail;
 	String zonecode;
-	@Override
+	List<UserAddress> list;
 	
+	@Override
 	public int hashCode() {
 		final int prime = 31;
 		int result = 1;

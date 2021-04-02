@@ -2,7 +2,15 @@
     pageEncoding="UTF-8"%>
  <html>
  <head>
+	<script src="//developers.kakao.com/sdk/js/kakao.min.js"></script>
+    <script src="//t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script>
+    <script src="//dapi.kakao.com/v2/maps/sdk.js?appkey=d5c1b87a3ea48432cd965082eccebcd8"></script>
  	<script src="/auth/auth.js"> </script>
+ 	 <!-- Required Jquery -->
+    <script type="text/javascript" src="../resources/js/jquery/jquery.min.js "></script>
+    <script type="text/javascript" src="../resources/js/jquery-ui/jquery-ui.min.js "></script>
+    <script type="text/javascript" src="../resources/js/popper.js/popper.min.js"></script>
+    <script type="text/javascript" src="../resources/js/bootstrap/js/bootstrap.min.js "></script>
  	<script type="text/javascript">
  	var pw_passed = true;
 //     function fn_pw_check() {
@@ -215,7 +223,8 @@
 									<div class="block-title">
 										<h3>회원가입</h3>
 									</div>
-									<form onsubmit = "return fn_pw_check();">
+<!-- 									<form onsubmit = "return fn_pw_check();"> -->
+									<form onsubmit = "return true;">
 										<div class="form-group form-primary">
 	                                        <input type="text" name="id" id="id" class="form-control" value="${userAccount.id }">
 	                                        <span class="form-bar"></span>
@@ -296,26 +305,26 @@
 											<button id="expend_address" onclick="fn();">button</button>
 										</div>
 									</form>
-									<form>
+									<form id="address_form" name="address_form" action="/address/addAddressList" method="post">
 										<div class="action_btn">
-											<input type="submit" value="부모컨트롤러 주소입력" formaction="/address/add">
+											<input type="submit" value="부모컨트롤러 주소입력" formaction="/address/addAddressList">
+										</div>
+										<div class="action_btn">
+											<input type="button" value="테스트버튼" onclick="test();">
 										</div>
 										<div class="action_btn">
 											<input type="submit" value="부모컨트롤러 주소삭제" formaction="/address/delete">
 										</div>
 										<fieldset id="Address">
 									        <legend>Address</legend>
-									        <div class="row">
-									          <div><label for="addressId1">주소ID</label> <input type="number" name="addressId1" id="addressId1"></div>
-									          <div><label for="memberSerial1">멤버시리얼</label> <input type="number" name="memberSerial1" id="memberSerial1"></div>
-									          <div><label for="userAddress1">주소입력</label> <input type="text" name="userAddress1" id="userAddress1"></div>
-									          <div><label for="addressDetail1">상세주소</label> <input type="text" name="addressDetail1" id="addressDetail1"></div>
-									          <div><label for="zonecode1">우편번호</label> <input type="text" name="zonecode1" id="zonecode1"></div>
+									        <div id="row" class="row">
+									          <div><label for="addressId_1">주소ID</label> <input type="number" name="addressId_1" id="addressId_1"></div>
+									          <div><label for="memberSerial_1">멤버시리얼</label> <input type="number" name="memberSerial_1" id="memberSerial_1"></div>
+									          <div><label for="userAddress_1">주소입력</label> <input type="text" name="address_1" id="userAddress_1"></div>
+									          <div><label for="addressDetail_1">상세주소</label> <input type="text" name="addressDetail_1" id="addressDetail_1"></div>
+									          <div><label for="zonecode_1">우편번호</label> <input type="text" name="zonecode_1" id="userZonecode_1"></div>
 									        </div>
 									        </fieldset>
-									      <div>
-									        <input type="submit" value="Submit">
-									      </div>
 									</form>
 
     <script type="text/javascript">
@@ -324,6 +333,9 @@
              count:    1,
              init:     function () {
                            var fs = document.getElementById("Address");
+                           var row = document.getElementById("row");
+                           var mapBtn = row.appendChild(this.make("input",  {id: "1", type: "button", value: "맵"}));
+                           mapBtn.onclick = this.registMapExecutor;
                            var div = fs.appendChild(this.make("div", {id: "here"}));
                            var btn = div.appendChild(this.make("input", {type: "button", value: "주소 추가"}));
                            btn.onclick = (function (_self) {
@@ -333,23 +345,58 @@
                                };
                            })(this);
                        },
+			 registMapExecutor : function() {
+				 console.log(this)
+				 var count = this.id;
+				    new daum.Postcode({
+				        oncomplete: function(data) {
+				            var fullAddr = '';
+				            var extraAddr = '';
+				            var zoneCode = '';
+				            
+				            if (data.userSelectedType === 'R') { // 사용자가 도로명 주소를 선택했을 경우
+				                fullAddr = data.roadAddress;
+				                zoneCode = data.zonecode;
+				            } else {
+				                fullAddr = data.roadAddress;
+				                zoneCode = data.zonecode;
+				            }
+				            if(data.userSelectedType === 'R'){
+				                if(data.bname !== ''){
+				                    extraAddr += data.bname;
+				                }
+				                if(data.buildingName !== ''){
+				                    extraAddr += (extraAddr !== '' ? ', ' + data.buildingName : data.buildingName);
+				                }
+				                fullAddr += (extraAddr !== '' ? ' ('+ extraAddr +')' : '');
+				            }
+				            
+				            
+				            
+				            document.getElementById("userAddress" + count).value = fullAddr;
+				            document.getElementById("userZonecode" + count).value = zoneCode;
+				        }
+				    }).open();
+			 			},
              add:      function () {
                            ++this.count;
                            var here = document.getElementById("here");
                            var row = here.parentNode.insertBefore(this.make("div", {className: "row", id: "row" + this.count}), here);
                            this.addField(row, "주소ID", "addressId");
                            this.addField(row, "멤버시리얼", "memberSerial");
-                           this.addField(row, "주소입력", "userAddress");
+                           this.addField(row, "주소입력", "address");
                            this.addField(row, "상세주소", "addressDetail");
                            this.addField(row, "우편번호", "zonecode");
                            var div = row.appendChild(this.make("div", {className: "btn"}));
                            var btn = div.appendChild(this.make("input", {type: "button", value: "주소 삭제", _id: "row" + this.count}));
                            btn.onclick = this.remove;
+                           var execMapBtn = div.appendChild(this.make("input", {type: "button", value: "맵", id: this.count}));
+                           execMapBtn.onclick = this.registMapExecutor;
                        },
              addField: function (parent, label, prefix) {
                            var div = parent.appendChild(this.make("div"));
                            div.appendChild(this.make("label", {htmlFor: prefix + this.count}, label));
-                           div.appendChild(this.make("input", {type: "text", name: prefix + this.count, id: prefix + this.count}));
+                           div.appendChild(this.make("input", {type: "text", name: prefix + "_" + this.count, id: prefix + "_" + this.count}));
                        },
              remove:   function () {
                            var row = document.getElementById(this._id);
@@ -371,6 +418,36 @@
          };
          Address.init();
        })();
+      
+
+      function test() {
+      	var form = document.address_form;
+      	const data = [];
+      	var datas = new FormData(form);
+      	//datas.forEach(d=> console.log(d))
+      	//console.log('datas', datas)
+      	
+      	for (var formData of datas.entries()) {
+      	  	var _key = formData[0].split("_")[0];
+      	  	var _index = formData[0].split("_")[1];
+      	  	var _value = formData[1];
+//       	  	console.log(_key, _index, _value);
+      	  	
+      	  	if(!data[_index-1]) data.push({});
+      	  	data[_index-1][_key] = _value;
+      		console.log(data);
+      	}
+      	
+//       	console.log(datas.values())
+      	 $.ajax("/address/addAddressList", {
+                  type: "POST",
+                  data: JSON.stringify(data),
+                  contentType:"application/json; charset=UTF-8",
+                  success: function() {
+                	  alert('success');
+                  }
+         });
+      };
    	</script>
 									
 									<script>
@@ -425,4 +502,7 @@
 </div>
 </section>
 </div>
+
+    
 </html>
+
