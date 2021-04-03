@@ -557,11 +557,10 @@
                                                     <ul>
 	                                                    <c:forEach var="list" items="${pList }">
 	                                                        <li>
-	                                                            <div class="col-lg-3 col-md-4 col-sm-6 mix oranges fresh-meat">
+	                                                            <div class="col-lg-3 col-md-4 col-sm-6 mix oranges fresh-meat" style="margin : 5px; margin-bottom : 10px;">
 	                                                                <div class="featured__item">
 	                                                                    <div>
-	                                                                    ${imgDir} / ${list.s_image }
-	                                                                        <a href="detail?p_id=${list.p_id }">
+	                                                                         <a href="detail?p_id=${list.p_id }">
 	                                                                         <img src="https://projectbit.s3.us-east-2.amazonaws.com/${imgDir }/${list.s_image }" alt="">
 	                                                                        </a>
 	                                                                    </div>
