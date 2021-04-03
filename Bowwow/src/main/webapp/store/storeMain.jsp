@@ -606,7 +606,7 @@
                   </div>
                </div>
 		
-	<%@include file="../common/storeFooter.jspf"%>
+	<%@include file="/common/storeFoot.jsp"%>
 	<!-- Required Jquery -->
 	<script type="text/javascript"
 		src="/resources/js/jquery/jquery.min.js "></script>

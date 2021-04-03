@@ -68,17 +68,33 @@
 <link rel="stylesheet" type="text/css" href="/resources/css/style.css">
 <link rel="stylesheet" type="text/css" href="/resources/css/storeStyle.css">
 <link rel="stylesheet" type="text/css" href="/resources/css/test.css">
+<style>
 
+.cart-product-title{
+	width: 33%;
+}
+.cart-product-value{
+	width: 33%;
+}
+
+.font-red{
+color: red !important;
+}
+
+</style>
 <script type="text/javascript">
-if ($("input:checkbox[name='chk_1']").is(":checked") == true && $("input:checkbox[name='chk_2']").is(":checked") == true){
-	} return true;
-	else{
-	 alert("동의 버튼을 눌러주셔야 결제가 진행됩니다.");
-	 checkout.chk_1.focus();
-	 checkout.chk_2.focus();
-	 return false;
-	}
 
+function chkSum(){
+	if ($("input:checkbox[name='chk_1']").is(":checked") == true && $("input:checkbox[name='chk_2']").is(":checked") == true){
+		return true; 
+	} 
+	else{
+		 alert("동의 버튼을 눌러주셔야 결제가 진행됩니다.");
+		 checkout.chk_1.focus();
+		 checkout.chk_2.focus();
+		 return false;
+		} 
+}
 
 
 
@@ -436,6 +452,34 @@ img {
 											전체보기</span> <span class="pcoded-mcaret"></span>
 								</a></li>
 							</ul>
+
+							<!-- <ul class="pcoded-item pcoded-left-item">
+                                <li class="">
+                                    <a href="bs-basic-table.html" class="waves-effect waves-dark">
+                                        <span class="pcoded-micon"><i class="ti-receipt"></i><b>B</b></span>
+                                        <span class="pcoded-mtext">Table</span>
+                                        <span class="pcoded-mcaret"></span>
+                                    </a>
+                                </li>
+                            </ul>
+
+                            <ul class="pcoded-item pcoded-left-item">
+                                <li class="">
+                                    <a href="chart-morris.html" class="waves-effect waves-dark">
+                                        <span class="pcoded-micon"><i class="ti-bar-chart-alt"></i><b>C</b></span>
+                                        <span class="pcoded-mtext">Charts</span>
+                                        <span class="pcoded-mcaret"></span>
+                                    </a>
+                                </li>
+                                <li class="">
+                                    <a href="map-google.html" class="waves-effect waves-dark">
+                                        <span class="pcoded-micon"><i class="ti-map-alt"></i><b>M</b></span>
+                                        <span class="pcoded-mtext">Maps</span>
+                                        <span class="pcoded-mcaret"></span>
+                                    </a>
+                                </li>
+                            </ul> -->
+
 							<ul class="pcoded-item pcoded-left-item">
 								<li class="pcoded-hasmenu "><a href="javascript:void(0)"
 									class="waves-effect waves-dark"> <span class="pcoded-micon"><i
@@ -518,6 +562,7 @@ img {
 							</ul>
 						</div>
 					</nav>
+					
 					<div class="pcoded-content">
 						<!-- Page-header start -->
 
@@ -528,7 +573,7 @@ img {
 							<!-- Checkout Section Begin -->
 							<section class="checkout spad">
 								<div class="container" style="background-color: white;">
-									<form onsubmit = "return order_check()" action="insertOrder" method="post" name="checkout" class="checkout__form"
+									<form action="/store/insertOrder" onsubmit="return chkSum();" method="POST" name="checkout" class="checkout__form"
 										accept-charset="UTF-8">
 										<div class="row">
 											<div class="col-lg-8">
@@ -542,7 +587,7 @@ img {
 																	상품번호 <span>* (*)항목은 필수 입력 항목입니다.</span>
 																</p>
 																<input type="text" id="p_id" name="p_id"
-																	value="${p.p_id}">
+																	value="">
 															</div>
 														</div>
 														<div class="col-lg-6 col-md-6 col-sm-6">
@@ -571,17 +616,17 @@ img {
 															</div>
 															<div class="checkout__form__input">
 																<p>
-																	수량 <span>*</span>
+																	수량 <span >*</span>
 																</p>
-																<input type="text" id="amount" name="amount"
-																	value="${p.amount }">
+																<input type="text" id="pCount" name="amount"
+																	value="">
 															</div>
 															<div class="checkout__form__input">
 																<p>
 																	가격 <span>*</span>
 																</p>
-																<input type="text" id="price" name="price"
-																	value="${p.price }">
+																<input type="text" id="pSum" name="price"
+																	value="">
 															</div>
 														</div>
 														<div class="col-lg-6 col-md-6 col-sm-6">
@@ -621,13 +666,19 @@ img {
 													<h5>총 주문 내역</h5>
 													<div class="checkout__order__product">
 														<ul>
-															<li><span class="top__text">상품명</span> <span
-																class="top__text__right">합계금액</span></li>
-															<li>01. Chain buck bag <span>$ 300.0</span></li>
-															<li>02. Zip-pockets pebbled<br /> tote briefcase <span>$
-																	170.0</span></li>
-															<li>03. Black jean <span>$ 170.0</span></li>
-															<li>04. Cotton shirt <span>$ 110.0</span></li>
+															<li>
+																<div class="top__text cart-product-title">상품명</div>
+																<div class="top__text cart-product-title">수량</div>
+																<div class="top__text cart-product-title">합계금액</div>
+																
+															</li>
+															<li>
+																<div class="top__text cart-product-value font-red" id="pName">t</div>
+																<div class="top__text cart-product-value font-red" ></div>
+																<div class="top__text cart-product-value" id="pSum2"></div>
+																
+															</li>
+															<!-- <li>01. Chain buck bag <span id="pSum"></span></li> -->
 														</ul>
 													</div>
 													<div class="checkout__order__total">
@@ -664,42 +715,8 @@ img {
 			</div>
 		</div>
 	</div>
-	<button class="scroll-top" id="js-button"
-		style="margin-bottom: 190px; margin-right: 30px; font: 'Jua'">
-		<i class="fa fa-chevron-up" aria-hidden="true">TOP</i>
-	</button>
-	<script type="text/javascript">
-		scrollTop('js-button', 500);
-		function scrollTop(elem, duration) {
-			let target = document.getElementById(elem);
-
-			target.addEventListener('click', function() {
-				let currentY = window.pageYOffset;
-				let step = duration / currentY > 1 ? 10 : 100;
-				let timeStep = duration / currentY * step;
-				let intervalID = setInterval(scrollUp, timeStep);
-
-				function scrollUp() {
-					currentY = window.pageYOffset;
-					if (currentY === 0) {
-						clearInterval(intervalID);
-					} else {
-						scrollBy(0, -step);
-					}
-				}
-			});
-		}
-	</script>
-	<!-- footer 푸터 시작부분-->
-	<div style="display: block;">
-		<footer class="footer navbar-wrapper">
-			<div class="footer-wrapper navbar-wrapper">
-				<div class="footer-box" style="height: 100px; text-align: center;">
-					푸터</div>
-			</div>
-		</footer>
-		<!-- footer 푸터 끝부분-->
-	</div>
+	
+	<%@include file="/common/storeFoot.jsp" %>
 
 	<!-- Required Jquery -->
 	<script type="text/javascript"
@@ -724,6 +741,37 @@ img {
 	<script src="../resources/js/vertical/vertical-layout.min.js "></script>
 
 	<script type="text/javascript" src="/resources/js/script2.js "></script>
+	<script type="text/javascript">
+		
+		function getParameterByName(name) {
+		    name = name.replace(/[\[]/, "\\[").replace(/[\]]/, "\\]");
+		    var regex = new RegExp("[\\?&]" + name + "=([^&#]*)"),
+		        results = regex.exec(location.search);
+		    return results === null ? "" : decodeURIComponent(results[1].replace(/\+/g, " "));
+		}
+		
+		$(document).ready(function(){
+			// url의 parameter값을 변수로 선언
+			var pId = getParameterByName('p_id');
+			var pCount = getParameterByName('p_count');
+			var pSum = getParameterByName('sum');
+			
+			// id가 p_id인 input태그 안에 value를 pId로 set하는 태그
+			$('#p_id').val(pId);
+			$('#pSum').val(pSum);
+			$('#pCount').val(pCount);
+			
+			// id가 pSum인 value가 없는 태그 안에 값을 set하는 태그
+			$('#pSum2').append(pSum);
+			
+			
+			console.log(pId);
+			console.log(pCount);
+			console.log(pSum);
+			
+			
+		});
+	</script>
 </body>
 
 

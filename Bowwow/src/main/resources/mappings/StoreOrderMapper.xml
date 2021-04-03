@@ -30,6 +30,7 @@
 	<select id="orderList" parameterType="int" resultType="Order">
 		SELECT * FROM STORE_ORDER
 		WHERE MEMBER_SERIAL = #{member_serial}
+		ORDER BY ORDER_ID DESC
 	</select>
 	
 	<!-- 주문 내역 하나만 출력 -->	

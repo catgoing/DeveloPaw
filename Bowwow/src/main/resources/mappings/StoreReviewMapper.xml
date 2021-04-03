@@ -22,6 +22,7 @@
 	<select id="reviewList" parameterType="int" resultType="Review">
 		SELECT * FROM STORE_REVIEW
 		WHERE P_ID = #{p_id}
+		ORDER BY REVIEW_ID DESC
 	</select>
 	
 	<!-- 리뷰 삭제 -->

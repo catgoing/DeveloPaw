@@ -1,7 +1,9 @@
 package ga.bowwow.controller.store;
 
 import java.io.IOException;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -10,9 +12,12 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.ResponseBody;
 
 import ga.bowwow.service.store.Order;
 import ga.bowwow.service.store.StoreOrderService;
+import ga.bowwow.service.user.VO.UserAccount;
 
 @Controller
 public class StoreOrderController {
@@ -30,16 +35,21 @@ public class StoreOrderController {
 	}
 
 	// 주문내역 작성
-	@RequestMapping(value = "/store/insertOrder")
-	public String insertOrder(Order order, HttpServletRequest request) throws IllegalStateException, IOException {
-		System.out.println(">>> 주문내역 작성 - insertOrder()");
-		request.setCharacterEncoding("utf-8");
-		System.out.println("order : " + order);
-		
-		storeOrderService.insertOrder(order);
 
-		return "redirect:/store/storeOrderList?member_serial=999";
-	}
+		
+	// 주문내역 작성
+	  
+	 
+	  @RequestMapping(value = "/store/insertOrder", method=RequestMethod.POST)
+	  // default로 get방식 요청, post 선언을 해줘야 함
+	  public String insertOrder(HttpServletRequest request) throws IllegalStateException, IOException { 
+		 
+		  System.out.println(">>> 주문내역 작성 - insertOrder()");
+	  request.setCharacterEncoding("utf-8"); 
+	  
+	  return "redirect:/store/storeOrderList?member_serial=999"; 
+	  }
+	 
 	
 	@RequestMapping(value = "/store/updateOrder")
 	public String updateOrder(Order order, HttpServletRequest request) throws IllegalStateException, IOException {
