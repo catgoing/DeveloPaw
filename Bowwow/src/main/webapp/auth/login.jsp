@@ -29,8 +29,6 @@ function checker() {
 
                     <form class="md-float-material form-material" action="/account/login" onsubmit = "return checker();">
                         <div class="text-center">
-                        	<div style="padding:30px;">
-                        	</div>
                             <img src="/resources/images/logo.png" alt="logo.png">
                         </div>
                         <div class="auth-box card">
@@ -40,14 +38,16 @@ function checker() {
                                         <h3 class="text-center">개발바닥</h3>
                                     </div>
                                 </div>
-                                <%String cookie = "";
-					Cookie[] cookies = request.getCookies(); //쿠키생성
-					if(cookies !=null&& cookies.length > 0)
-						for (int i = 0; i < cookies.length; i++){
-							if (cookies[i].getName().equals("userId")) { // 내가 원하는 쿠키명 찾아서 값 저장
-								cookie = cookies[i].getValue();
-							}
-						}%>
+                                <%
+                                String cookie = "";
+								Cookie[] cookies = request.getCookies(); //쿠키생성
+								if(cookies !=null&& cookies.length > 0)
+									for (int i = 0; i < cookies.length; i++){
+										if (cookies[i].getName().equals("userId")) { // 내가 원하는 쿠키명 찾아서 값 저장
+											cookie = cookies[i].getValue();
+										}
+									}
+								%>
                                 <div class="form-group form-primary">
                                     <input type="text" name="id" id="id" class="form-control" value="<%=cookie%>">
                                     <span class="form-bar"></span>

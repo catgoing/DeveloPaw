@@ -1,19 +1,25 @@
 package ga.bowwow.controller.user.impl;
 
 import java.util.ArrayList;
+import java.util.List;
 
 import javax.servlet.http.HttpSession;
 
+import org.apache.ibatis.exceptions.TooManyResultsException;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.dao.DataIntegrityViolationException;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.SessionAttributes;
 
 import ga.bowwow.controller.user.UserCRUDGenericController;
 import ga.bowwow.service.user.VO.UserAccount;
+import ga.bowwow.service.user.VO.UserAddress;
 import ga.bowwow.service.user.impl.UserAccountServiceImpl;
 
 @Controller
@@ -27,22 +33,25 @@ public class UserAccountController extends UserCRUDGenericController<UserAccount
 		this.setDomainRoute("/ok", "/auth.login");
 	}
 //	
-//	@RequestMapping("/addAcountAddressList")
-//	protected String add(UserAccount vo, List<UserAddress> userAddressList)  {
-//		try {
-//			System.out.println("controller : " + vo);
-//			System.out.println(userAddressList);
-////			return router(service.addVo(vo), resolveRoute, errorRoute);
-//			return "/auth.myAccount";
-//		} catch (DataIntegrityViolationException  e) { // 이게 안 잡힘?
-//			System.out.println("Caught Integerity Exception Test");
-//			e.printStackTrace();
-//		} catch (TooManyResultsException e) {
-//			e.printStackTrace();
-//		}
-//		return "/ok";
-//	}
+	@PostMapping(value= "/addAccountWithAddressList",
+			produces = "application/text; charset=UTF-8")
+	protected String add(UserAccount vo, @RequestBody List<UserAddress> userAddressList)  {
+		System.out.println("addresslist controller test2");
+		try {
+			System.out.println("controller : " + vo);
+			System.out.println(userAddressList);
+//			return router(service.addVo(vo), resolveRoute, errorRoute);
+			return "/auth.myAccount";
+		} catch (DataIntegrityViolationException  e) { // 이게 안 잡힘?
+			System.out.println("Caught Integerity Exception Test");
+			e.printStackTrace();
+		} catch (TooManyResultsException e) {
+			e.printStackTrace();
+		}
+		return "/ok";
+	}
 	
+	@SuppressWarnings("unchecked")
 	@GetMapping("/getList")
 	protected String getList(@ModelAttribute ArrayList<UserAccount> userDtoList, Model model) {
 		System.out.println("GETLIST RESOLVING TEST");
@@ -95,6 +104,8 @@ public class UserAccountController extends UserCRUDGenericController<UserAccount
 		return (isOK) ? "/ok" : "failedRoute <- usually itself";
 	}
 
+	
+	
 	//legacy
 				@RequestMapping(value="/modifyUser")
 				public String modifyUserInDB(@ModelAttribute("userAccount") UserAccount userAccount) {

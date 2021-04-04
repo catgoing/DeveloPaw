@@ -54,7 +54,7 @@
     			}
     	}
     	var result = validation[type](value);
-    	console.log(type, value, result)
+    	console.log(type, value, result);
 		return result;
     }
 	
@@ -206,7 +206,7 @@
 											<input type="submit" value="부모컨트롤러 주소입력" formaction="/address/addAddressList">
 										</div>
 										<div class="action_btn">
-											<input type="button" value="테스트버튼" onclick="test();">
+											<input type="button" value="주소입력" onclick="dynamicAjaxSubmit();">
 										</div>
 										<div class="action_btn">
 											<input type="submit" value="부모컨트롤러 주소삭제" formaction="/address/delete">
@@ -242,37 +242,35 @@
                            })(this);
                        },
 			 registMapExecutor : function() {
-				 console.log(this)
-				 var count = this.id;
-				    new daum.Postcode({
-				        oncomplete: function(data) {
-				            var fullAddr = '';
-				            var extraAddr = '';
-				            var zoneCode = '';
-				            
-				            if (data.userSelectedType === 'R') { // 사용자가 도로명 주소를 선택했을 경우
-				                fullAddr = data.roadAddress;
-				                zoneCode = data.zonecode;
-				            } else {
-				                fullAddr = data.roadAddress;
-				                zoneCode = data.zonecode;
-				            }
-				            if(data.userSelectedType === 'R'){
-				                if(data.bname !== ''){
-				                    extraAddr += data.bname;
-				                }
-				                if(data.buildingName !== ''){
-				                    extraAddr += (extraAddr !== '' ? ', ' + data.buildingName : data.buildingName);
-				                }
-				                fullAddr += (extraAddr !== '' ? ' ('+ extraAddr +')' : '');
-				            }
-				            
-				            
-				            
-				            document.getElementById("address" + "_" + count).value = fullAddr;
-				            document.getElementById("zonecode" + "_" + count).value = zoneCode;
-				        }
-				    }).open();
+									 console.log(this);
+									 var count = this.id;
+									    new daum.Postcode({
+									        oncomplete: function(data) {
+									            var fullAddr = '';
+									            var extraAddr = '';
+									            var zoneCode = '';
+									            
+									            if (data.userSelectedType === 'R') { // 사용자가 도로명 주소를 선택했을 경우
+									                fullAddr = data.roadAddress;
+									                zoneCode = data.zonecode;
+									            } else {
+									                fullAddr = data.roadAddress;
+									                zoneCode = data.zonecode;
+									            }
+									            if(data.userSelectedType === 'R'){
+									                if(data.bname !== ''){
+									                    extraAddr += data.bname;
+									                }
+									                if(data.buildingName !== ''){
+									                    extraAddr += (extraAddr !== '' ? ', ' + data.buildingName : data.buildingName);
+									                }
+									                fullAddr += (extraAddr !== '' ? ' ('+ extraAddr +')' : '');
+									            }
+									            
+									            document.getElementById("address" + "_" + count).value = fullAddr;
+									            document.getElementById("zonecode" + "_" + count).value = zoneCode;
+									        }
+									    }).open();
 			 			},
              add:      function () {
                            ++this.count;
@@ -316,7 +314,7 @@
        })();
       
 
-      function test() {
+      function dynamicAjaxSubmit() {
       	var form = document.address_form;
       	const data = [];
       	var datas = new FormData(form);
@@ -347,43 +345,43 @@
    	</script>
 									
 									<script>
-								            var down = document.getElementById("GFG_DOWN");
-								            function GFG_Fun() {
+// 								            var down = document.getElementById("GFG_DOWN");
+// 								            function GFG_Fun() {
 								                
-								                // Create a form synamically
-								                var form = document.createElement("form");
-								                form.setAttribute("method", "post");
-								                form.setAttribute("action", "submit.php");
+// 								                // Create a form synamically
+// 								                var form = document.createElement("form");
+// 								                form.setAttribute("method", "post");
+// 								                form.setAttribute("action", "submit.php");
 								  
-								                // Create an input element for emailID
-								                var ID = document.createElement("input");
-								                ID.setAttribute("type", "text");
-								                ID.setAttribute("name", "emailID");
-								                ID.setAttribute("placeholder", "E-Mail ID");
+// 								                // Create an input element for emailID
+// 								                var ID = document.createElement("input");
+// 								                ID.setAttribute("type", "text");
+// 								                ID.setAttribute("name", "emailID");
+// 								                ID.setAttribute("placeholder", "E-Mail ID");
 								  
-								                // Create an input element for password
-								                var PWD = document.createElement("input");
-								                PWD.setAttribute("type", "password");
-								                PWD.setAttribute("name", "password");
-								                PWD.setAttribute("placeholder", "Password");
+// 								                // Create an input element for password
+// 								                var PWD = document.createElement("input");
+// 								                PWD.setAttribute("type", "password");
+// 								                PWD.setAttribute("name", "password");
+// 								                PWD.setAttribute("placeholder", "Password");
 								  
-								                // Create a submit button
-								                var s = document.createElement("input");
-								                s.setAttribute("type", "submit");
-								                s.setAttribute("value", "Submit");
+// 								                // Create a submit button
+// 								                var s = document.createElement("input");
+// 								                s.setAttribute("type", "submit");
+// 								                s.setAttribute("value", "Submit");
 								  
-								                // Append the email_ID input to the form
-								                form.append(ID); 
+// 								                // Append the email_ID input to the form
+// 								                form.append(ID); 
 								                
-								                // Append the password to the form
-								                form.append(PWD); 
+// 								                // Append the password to the form
+// 								                form.append(PWD); 
 								                
-								                // Append the button to the form
-								                form.append(s); 
+// 								                // Append the button to the form
+// 								                form.append(s); 
 								  
-								                document.getElementsByTagName("body")[0]
-								               .appendChild(form);
-								            }
+// 								                document.getElementsByTagName("body")[0]
+// 								               .appendChild(form);
+// 								            }
 								        </script>
 									</div>
 								</div>

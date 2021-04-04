@@ -17,6 +17,7 @@ import ga.bowwow.service.user.VO.UserAddress;
 import ga.bowwow.service.user.impl.UserAddressServiceImpl;
 
 @Controller
+@RequestMapping("/address")
 public class UserAddressController extends UserCRUDGenericController<UserAddress>{
 	public UserAddressController(@Autowired UserAddressServiceImpl service) {
 		System.out.println("---->>> AddrAccountController() 객체생성");
@@ -32,7 +33,7 @@ public class UserAddressController extends UserCRUDGenericController<UserAddress
 //	    return gson.toJson(set);
 //	}
 //	{memerSerial: 1, ... , userAddress: [], userWallet: []}
-	@PostMapping(value= "/address/addAddressList",
+	@PostMapping(value= "/addAddressList",
 			produces = "application/text; charset=UTF-8")
 	public String add(@RequestBody ArrayList<UserAddress> address)  {
 		System.out.println("addresslist controller test2");

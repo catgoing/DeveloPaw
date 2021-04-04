@@ -29,6 +29,12 @@
                         <th>휴대전화 번호</th>
                         <th>회원 등급</th>
                         <th>포인트</th>
+                        <th>닉네임:DETAIL</th>
+                        <th>이름:DETAIL</th>
+                        <th>가입일:DETAIL</th>
+                        <th>생일:DETAIL</th>
+                        <th>성별:DETAIL</th>
+                        <th>프로필이미지:DETAIL</th>
                     </tr>
                 </thead>
                 
@@ -42,6 +48,12 @@
 							<td>${userAccount.phone}</td>
 							<td>${userAccount.status}</td>
 							<td>${userAccount.point}</td>
+							<td>${userAccount.nickname}</td>
+							<td>${userAccount.realname};</td>
+							<td>${userAccount.regDate};</td>
+							<td>${userAccount.birthday};</td>
+							<td>${userAccount.gender};</td>
+							<td>${userAccount.imageSource};</td>
 						</tr>
 					</c:forEach>
                 </tbody>

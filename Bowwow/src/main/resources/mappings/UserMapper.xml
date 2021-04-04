@@ -58,6 +58,13 @@
 <!--         ORDER BY ACT.MEMBER_SERIAL -->
 	</select>
 	
+	<select id="getUserDtoList" resultType="UserDTO">
+		SELECT *
+		FROM USER_ACCOUNT ACT, USER_DETAIL DET
+		WHERE DET.MEMBER_SERIAL(+) = ACT.MEMBER_SERIAL
+        ORDER BY ACT.MEMBER_SERIAL
+	</select>
+	
 	<select id="searchUserList" resultType="UserAccount">
 	</select>
 	

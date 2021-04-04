@@ -114,15 +114,21 @@
             
 		<!-- 헤더 -->
 		<tiles:insertAttribute name="header" />
-		<!-- 좌측메뉴바 -->
-		<tiles:insertAttribute name="menubar"/>
+		
+            <div class="pcoded-main-container">
+                <div class="pcoded-wrapper">
+					<!-- 좌측메뉴바 -->
+					<tiles:insertAttribute name="menubar"/>
+				
 			 
-			<div class="pcoded-content">
-				<div class="pcoded-inner-content">
-					
-					<!-- Main-body start 본문 시작 -->
-					<tiles:insertAttribute name="body" />
-					
+					<div class="pcoded-content">
+						<div class="pcoded-inner-content">
+							
+							<!-- Main-body start 본문 시작 -->
+							<tiles:insertAttribute name="body" />
+							
+						</div>
+					</div>
 				</div>
 			</div>
 		</div>
