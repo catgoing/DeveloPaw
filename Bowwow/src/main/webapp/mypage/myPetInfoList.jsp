@@ -63,7 +63,7 @@
 	margin: 10px 0px 10px 0px;
 }
 /*반려동물 리스트 썸네일 이미지 출력영역 사이즈조정*/
-.col-md-4 .list-inner .pet-img{
+.col-md-4 .list-inner .pet-img .img-circle{
 	width : 300px;
 	height : 300px;
 }
@@ -89,6 +89,13 @@ input[type="number"]::-webkit-inner-spin-button {
 }
 tr td textarea{
 	width : 100%;
+}
+#preview_container {
+	width : 100px;
+	htight : 100px;
+	background-repeat: no-repeat;
+	background-position: center;
+	background-size: cover;
 }
 </style>
 <script>
@@ -124,10 +131,31 @@ $().ready(function(){
 
 	$("#newPetInsert").on("click", function(){
 		console.log("입력 실행");
-
+		
+		var fileInput = document.querySelector("#attachImg")
+		var data = new FormData();
 		var datas = new FormData(document.getElementById('insertPetform'));
-		console.log(datas);
+		console.log(fileInput.files[0]);
+		console.log(data);
+		
+		/* data.append('animal_type', $('#insertPetform input[name=animal_type]').text());
+        data.append('pet_gender', $('#insertPetform select[name=pet_gender] option:selected').text());
+        data.append('tnr', $('#insertPetform select[name=tnr] option:selected').text());
+        data.append('pet_name', $('#insertPetform input[name=pet_name]').val());
+        data.append('neck_length', $('#insertPetform input[name=neck_length]').val());
+        data.append('back_length', $('#insertPetform input[name=back_length]').val());
+        data.append('chest_length', $('#insertPetform input[name=chest_length]').val());
+        data.append('pet_weight', $('#insertPetform input[name=pet_weight]').val());
+        data.append('pet_size', $('#insertPetform select[name=pet_size] option:selected').text());
+        data.append('pet_variety', $('#insertPetform input[name=pet_variety]').val());
+        data.append('pet_birth', $('#insertPetform input[name=pet_birth]').val());
+        data.append('pet_etc', $('#insertPetform input[name=pet_etc]').val());
+        data.append('image_source',$('#insertPetform input[name=image_source]')[0].files[0]);
+        data.append('image_source_oriname', $('#insertPetform input[name=image_source_oriname]').val());
+        data.append('member_serial', $('#insertPetform input[name=member_serial]').val()); */
+
 		console.log($("#insertPetform input[type='file']").val());
+
 		$.ajax("/ajaxInsertPetInfo", {
 			type : "post",
 			enctype: "multipart/form-data",
@@ -143,6 +171,7 @@ $().ready(function(){
 				location.href = "/getPetInfoList";
 			}, error : function(request,status,error){
 				alert("no");
+				$("#newPet").modal("hide");
 			}
 		});
 	});
@@ -171,18 +200,29 @@ $().ready(function(){
 			}
 		});
 	});
+	
+/* 	 $("#attachImg").change(function(){
+         alert(this.value); 
+         if($.contains("#preview_container", "img")){
+	         $("#preview_container").removeChild(img);        	 
+         }
+         setThumbnail(this);
+     }); */
 });
 
-function setThumbnail(event){
+/* function setThumbnail(event){
 	var reader = new FileReader(); 
+	var img = document.createElement("img"); 
+	var $originimg = document.getElementById('img');
 	
 	reader.onload = function(event) { 
-		var img = document.createElement("img"); 
-		img.setAttribute("src", event.target.result); 
-		document.querySelector("div#image_container").appendChild(img);
+		img.setAttribute("src", event.target.result);
+		var thumb = document.querySelector("div #preview_container");
+		thumb.css("background-image", 'url('+ event.target.result +')');
+		
 	}; 
-	reader.readAsDataURL(event.target.files[0]); 
-}
+	reader.readAsDataURL(event.target.file); 
+} */
 
 
 function getPetInfo(frm){
@@ -266,16 +306,16 @@ function setModiInfo(petDetail){
 		 alert("선택해ㅡㅡ");
 	 } else {
 		 $("#newPet #insert_animal_type").val(type);
-		 $("#newPet #insert_member_serial").val("<c:out value='${user.memberSerial}'/>");
+		 //$("#newPet #insert_member_serial").val(1);
 		 console.log($("#newPet #insert_animal_type").val());
-		 console.log($("#newPet #insert_member_serial").val());
+		 //console.log($("#newPet #insert_member_serial").val());
 		 $("#newPet").modal('show');
 	 }
  }
 
  function inputMemberSerial(){
 	// 유저번호
-	 var mSerial = "<c:out value='${user.memberSerial}'/>";
+	 var mSerial = 1;
 	 console.log(mSerial);
 
 	 $("#insertPetInfo #insert_member_serial").val(mSerial);

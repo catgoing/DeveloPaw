@@ -266,12 +266,14 @@ $().ready(function(){
 	    <div class="page-wrapper">
 		        <!-- Page-body start -->
 					<div class="page-body">
+				     	<c:if test="${user == null }">
+				     	
+				     	</c:if>
 						<div class="my-inquiry">
 							<div class="question-write">
 								<div class="question-title">
 							    	<h2>고객문의</h2>
 						     	</div>
-						     	
 						     	<div class="card-block accordion-block">
                                    <div id="accordion" role="tablist" aria-multiselectable="true">
                                        <div class="accordion-panel">
@@ -324,11 +326,11 @@ $().ready(function(){
 									<c:forEach var="inquiry" items="${inquiryList }">
 									<tr>
 										<td>
-											<a href="myInquiryDetail.jsp?seq=${inquiry.seq }">
-												${inquiry.title }</a>
+											<a href="myInquiryDetail.jsp?seq=${inquiry.inquiry_serial }">
+												${inquiry.inquiry_title }</a>
 										</td>
-										<td>${inquiry.writer }</td>
-										<td>${inquiry.regdate }</td>
+										<td>${inquiry.nickname }</td>
+										<td>${inquiry.inquiry_writedate }</td>
 									</tr>
 									</c:forEach>
 								</c:if>
@@ -357,47 +359,14 @@ $().ready(function(){
 	            <div id="styleSelector"> </div>
 	        </div>
 	      </div>
-	      
-	<button class="scroll-top" id="js-button" style="margin-bottom: 190px; margin-right: 30px;">
-        <i class="fa fa-chevron-up" aria-hidden="true">TOP</i>
-    </button>
-    <script type="text/javascript">
-        scrollTop('js-button', 500);
-        function scrollTop(elem,duration) {
-            let target = document.getElementById(elem);
-        
-            target.addEventListener('click', function() {
-                let currentY = window.pageYOffset; 
-                let step = duration/currentY > 1 ? 10 : 100;
-                let timeStep = duration/currentY * step;
-                let intervalID = setInterval(scrollUp, timeStep);
-        
-                function scrollUp(){
-                    currentY = window.pageYOffset;
-                    if(currentY === 0) {
-                        clearInterval(intervalID);
-                    } else {
-                        scrollBy( 0, -step );
-                    }
-                }
-            });
-        }
-        </script>
-        
-	<!-- footer 푸터 시작부분-->
-            <div style="display: block;">
-                <footer class="footer navbar-wrapper">
-                    <div class="footer-wrapper navbar-wrapper">
-                        <div class="footer-box" style="height: 100px; text-align: center;">
-                            푸터
-                        </div>
-                    </div>
-                </footer>
-                <!-- footer 푸터 끝부분-->
-          </div>
-        </div>
+	</div>
       </div>
-    </div></div></div>
+    </div>
+	<!-- footer 푸터 시작부분-->
+	<%@include file="/common/footer.jsp" %>
+	<!-- footer 푸터 끝부분-->
+    </div>
+    </div>
 	<!-- Required Jquery -->
     <script type="text/javascript" src="../resources/js/jquery/jquery.min.js "></script>
     <script type="text/javascript" src="../resources/js/jquery-ui/jquery-ui.min.js "></script>
