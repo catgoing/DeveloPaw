@@ -124,7 +124,7 @@
 												<div class="block-title">
 													<h3>회원가입</h3>
 												</div>
-												<form id="account_form"">
+												<form id="account_form" name="account_form" >
 <!-- 												<form id="account_form" onsubmit="return fn_pw_check();"> -->
 													<div class="form-group form-primary">
 														<input type="text" name="id" id="id" class="form-control" value=""> <span class="form-bar"></span> <label
@@ -151,6 +151,10 @@
 													<div class="form-group form-primary">
 														<input type="text" name="email" id="email" class="form-control"> <span class="form-bar"></span>
 														<label class="float-label">이메일</label>
+													</div>
+													<div class="form-group form-primary">
+														<input type="text" name="citizenId" id="citizenId" class="form-control"> <span class="form-bar"></span>
+														<label class="float-label">주민번호</label>
 													</div>
 													<div class="form-group form-primary">
 														<input type="text" name="phone" id="phone" class="form-control"> <span class="form-bar"></span>
@@ -301,45 +305,65 @@
          Address.init();
        })();
       
-      
+     </script>
+     <script>
+     	function getMultiForm(_form) {
+     		var form = _form;
+          	const data = [];
+          	var datas = new FormData(form);
+          	
+          	for (var formData of datas.entries()) {
+          	  	var _key = formData[0].split("_")[0];
+          	  	var _index = formData[0].split("_")[1];
+          	  	var _value = formData[1];
+//           	  	console.log(_key, _index, _value);
+          	  	
+          	  	if(!data[_index-1]) data.push({});
+          	  	data[_index-1][_key] = _value;
+//           		console.log(data);
+          	}
+          	return data;
+     	}
+     	
+     	function getSingleForm(_form) {
+     		var form = _form;
+          	const data = {};
+          	var datas = new FormData(form);
 
+          	for (var formData of datas.entries()) {
+          	  	var _key = formData[0];
+          	  	var _value = formData[1];
+          	  	console.log(_key, _value);
+
+          	  	data[_key] = _value;
+          		console.log(data);
+          	}
+          	return data;
+     	}
+     </script>
+	<script>
+	
+// 		TODO: 하나의 요청/컨트롤러로 합쳐야함
       function dynamicAjaxSubmit() {
-      	var form = document.address_form;
-      	const data = [];
-      	var datas = new FormData(form);
-      	//datas.forEach(d=> console.log(d))
-      	//console.log('datas', datas)
-      	
-      	for (var formData of datas.entries()) {
-      	  	var _key = formData[0].split("_")[0];
-      	  	var _index = formData[0].split("_")[1];
-      	  	var _value = formData[1];
-//       	  	console.log(_key, _index, _value);
-      	  	
-      	  	if(!data[_index-1]) data.push({});
-      	  	data[_index-1][_key] = _value;
-//       		console.log(data);
-      	}
-      	
-//       	console.log(datas.values())
+    	 const addressData = getMultiForm(document.address_form);
+
       	 $.ajax("/address/addAddressList", {
-                  type: "POST",
-                  data: JSON.stringify(data),
-                  contentType:"application/json; charset=UTF-8",
-                  success: function() {
-                	  alert('success');
-                  }
+	           type: "POST",
+	           data: JSON.stringify(addressData),
+	           contentType:"application/json; charset=UTF-8",
+	           success: function() {
+	         	  alert('success');
+	           }
          });
-      	$.ajax("/address/addAddressList", {
+   	  	const accountData = getSingleForm(document.account_form);
+      	$.ajax("/account/addJson", {
             type: "POST",
-            data: JSON.stringify(data),
+            data: JSON.stringify(accountData),
             contentType:"application/json; charset=UTF-8",
             success: function() {
           	  alert('success');
             }
   		 });
-         var account_from = document.acount_form;
-         account_form.submit();
       };
    	</script>
 
