@@ -3,7 +3,6 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 
 <!-- Hover table card start -->
-<div class="pcoded-content">
 <div class="card">
     <div class="card-header">
         <h5>회원 목록</h5>
@@ -51,4 +50,3 @@
     </div>
 </div>
 <!-- Hover table card end -->
-</div>

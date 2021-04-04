@@ -45,7 +45,6 @@
  	    }).open();
  	}
 </script>
- <div class="pcoded-content">
  <section class="login-block">
         <!-- Container-fluid starts -->
         <div class="container-fluid">
@@ -80,7 +79,6 @@
 									<div class="block-title">
 										<h3>주소지입력</h3>
 									</div>
-<!-- 									<input type="button" value="맵" onclick="execMap()"/><br> -->
 									<form>
 										<div class="form-group form-primary">
 	                                        <input type="number" id="addressId" name="addressId" class="form-control">
@@ -142,4 +140,3 @@
 </div>
 </div>
 </section>
-</div>

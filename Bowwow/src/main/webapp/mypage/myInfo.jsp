@@ -71,7 +71,7 @@
 
 (funcytion(name){
 	console.log('my name is '+ name);
-})('??')
+})('??');
  function goModify(form){
 	 var idCheck = form.id.value;
 	 var emailCheck = form.email.value;

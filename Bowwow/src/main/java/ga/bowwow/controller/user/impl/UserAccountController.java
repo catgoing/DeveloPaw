@@ -1,12 +1,13 @@
 package ga.bowwow.controller.user.impl;
 
-import java.util.List;
+import java.util.ArrayList;
 
 import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.SessionAttributes;
@@ -42,14 +43,14 @@ public class UserAccountController extends UserCRUDGenericController<UserAccount
 //		return "/ok";
 //	}
 	
-//	@GetMapping("/getList")
-//	protected String getList(@ModelAttribute ArrayList<UserAccount> userDtoList, Model model) {
-//		System.out.println("GETLIST RESOLVING TEST");
-//		userDtoList = (ArrayList<UserAccount>) service.getVoList();
-//		model.addAttribute("userDtoList", userDtoList);
-//		System.out.println(userDtoList);
-//		return "/auth.userList";
-//	}
+	@GetMapping("/getList")
+	protected String getList(@ModelAttribute ArrayList<UserAccount> userDtoList, Model model) {
+		System.out.println("GETLIST RESOLVING TEST");
+		userDtoList = (ArrayList<UserAccount>) service.getVoList();
+		model.addAttribute("userDtoList", userDtoList);
+		System.out.println(userDtoList);
+		return "/auth.userList";
+	}
 
 	//TODO 일관된 resolve/error 리턴 환경 만들 수 있는가?
 	//TODO =>DI하는 식으로, 실패시 돌아가는 경로를 담은 리스트를 쓴다? -> 클래스가 될 수도 있음.
@@ -78,7 +79,7 @@ public class UserAccountController extends UserCRUDGenericController<UserAccount
 	}
 	@RequestMapping(value="/signup")
 	public String confirmUserTerms() {
-		return "/auth.terms";
+		return "/auth.myTerms";
 	}
 	@RequestMapping(value="/loginSuccess")
 	public String confirmLogin() {

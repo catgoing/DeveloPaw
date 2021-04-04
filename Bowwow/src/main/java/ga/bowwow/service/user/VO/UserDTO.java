@@ -1,6 +1,7 @@
 package ga.bowwow.service.user.VO;
 
 import java.sql.Date;
+import java.util.ArrayList;
 
 import lombok.AllArgsConstructor;
 import lombok.Getter;
@@ -27,6 +28,8 @@ public class UserDTO {
 	Date regDate;
 	Date birthday;
 	String gender;
+	ArrayList<UserAddress> userAddress;
+	ArrayList<UserWallet> userWallet;
 	
 	@Override
 	public int hashCode() {
