@@ -32,7 +32,8 @@ public class UserAccountController extends UserCRUDGenericController<UserAccount
 		this.service = service;
 		this.setDomainRoute("/ok", "/auth.login");
 	}
-//	
+	
+	
 	@PostMapping(value= "/addAccountWithAddressList",
 			produces = "application/text; charset=UTF-8")
 	protected String add(UserAccount vo, @RequestBody List<UserAddress> userAddressList)  {
@@ -42,7 +43,7 @@ public class UserAccountController extends UserCRUDGenericController<UserAccount
 			System.out.println(userAddressList);
 //			return router(service.addVo(vo), resolveRoute, errorRoute);
 			return "/auth.myAccount";
-		} catch (DataIntegrityViolationException  e) { // 이게 안 잡힘?
+		} catch (DataIntegrityViolationException  e) {
 			System.out.println("Caught Integerity Exception Test");
 			e.printStackTrace();
 		} catch (TooManyResultsException e) {
@@ -51,15 +52,7 @@ public class UserAccountController extends UserCRUDGenericController<UserAccount
 		return "/ok";
 	}
 	
-	@SuppressWarnings("unchecked")
-	@GetMapping("/getList")
-	protected String getList(@ModelAttribute ArrayList<UserAccount> userDtoList, Model model) {
-		System.out.println("GETLIST RESOLVING TEST");
-		userDtoList = (ArrayList<UserAccount>) service.getVoList();
-		model.addAttribute("userDtoList", userDtoList);
-		System.out.println(userDtoList);
-		return "/auth.userList";
-	}
+	//legacy
 
 	//TODO 일관된 resolve/error 리턴 환경 만들 수 있는가?
 	//TODO =>DI하는 식으로, 실패시 돌아가는 경로를 담은 리스트를 쓴다? -> 클래스가 될 수도 있음.
@@ -98,15 +91,20 @@ public class UserAccountController extends UserCRUDGenericController<UserAccount
 	public UserAccount getUserFromDB(@ModelAttribute("userAccount") UserAccount userAccount) {
 		return super.get(userAccount);
 	}
-
-	//TODO 해당domain의 기본형 resolve/error를 구현할 필요가 있음
-	private String simpleOkPageDistributor(boolean isOK) {
-		return (isOK) ? "/ok" : "failedRoute <- usually itself";
-	}
-
 	
 	
 	//legacy
+	
+//				@SuppressWarnings("unchecked")
+//				@GetMapping("/getList")
+//				protected String getList(@ModelAttribute ArrayList<UserAccount> userDtoList, Model model) {
+//					System.out.println("GETLIST RESOLVING TEST");
+//					userDtoList = (ArrayList<UserAccount>) service.getVoList();
+//					model.addAttribute("userDtoList", userDtoList);
+//					System.out.println(userDtoList);
+//					return "/auth.userList";
+//				}
+	
 				@RequestMapping(value="/modifyUser")
 				public String modifyUserInDB(@ModelAttribute("userAccount") UserAccount userAccount) {
 					return super.update(userAccount, "/ok", "/auth.login");
