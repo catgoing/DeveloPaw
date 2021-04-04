@@ -78,7 +78,7 @@ img {
 </style>
 </head>
 <script>
-function updateOrder(frm) {
+/* function updateOrder(frm) {
 	if ("${o.order_status} != 주문완료") {
 		alert("배송 단계로 넘어간 주문입니다. 고객센터에 문의하세요.");
 		frm.preventDefault();
@@ -86,8 +86,13 @@ function updateOrder(frm) {
 	}
 	else{
 		frm.preventDefault();
-	    return;
+	    frm.submit();
 	}
+}
+ */
+function deleteOrder(frm) {
+	frm.action="/store/deleteOrder";
+	frm.submit();
 }
 
 </script>
@@ -524,23 +529,10 @@ function updateOrder(frm) {
 						<div class="pcoded-inner-content">
 							<!-- Main-body start -->
 
-							<!-- Breadcrumb Begin -->
-							<div class="breadcrumb-option">
-								<div class="container">
-									<div class="row">
-										<div class="col-lg-12">
-											<div class="breadcrumb__links">
-												<a href="./index.html"><i class="fa fa-home"></i> 스토어 메인</a>
-												<span>주문 화면</span>
-											</div>
-										</div>
-									</div>
-								</div>
-							</div>
-							<br>
-							<!-- Breadcrumb End -->
+							
 							<!--================Order Details Area =================-->
 							<section class="order_details section_gap">
+								<form method="POST">
 								<div class="container" style="background-color: white;">
 									<br>
 									<h3 class="title_confirmation">주문 상세 내역</h3>
@@ -549,13 +541,10 @@ function updateOrder(frm) {
 											<div class="details_item">
 												<h4>Order Info</h4>
 												<ul class="list">
-													<li><a href="#"><span>Order number</span> :
-															${o.order_id}</a></li>
-													<li><a href="#"><span>Member Serial</span> :
-															${o.member_serial}</a></li>
+													<li><a href="#"><span>주문번호</span> : ${o.order_id}</a></li>
+													<li><a href="#"><span>Member Serial</span> : ${o.member_serial}</a></li>
 													<li><a href="#"><span>Total</span> : USD 2210</a></li>
-													<li><a href="#"><span>Payment method</span> :
-															Check payments</a></li>
+													<li><a href="#"><span>Payment method</span> : Check payments</a></li>
 												</ul>
 											</div>
 										</div>
@@ -652,11 +641,13 @@ function updateOrder(frm) {
 													</tr>
 												</tbody>
 											</table>
-											<button onclick="location.href='storeOrderDetailUpdate?order_id=${oList.order_id}'" class="site-btn" style="font-size: 1.5em; float: right;">주문내역 수정</button>
-											<button onclick="location.href='deleteOrder(${oList.order_id})'" class="site-btn" style="font-size: 1.5em; float: right;">주문 취소하기</button>	
+											<button onclick="location.href='storeOrderDetailUpdate.jsp'" class="site-btn" style="font-size: 1.5em; float: right;">주문내역 수정</button>
+											<button onclick="deleteOrder" style="font-size: 1.5em; float: right;" >주문 취소</button>
+											<input type="hidden" name="order_id" value="${oList.order_id} }">
 										</div>
 									</div>
 								</div>
+								</form>
 							</section>
 							<br>
 							<br>
@@ -730,7 +721,7 @@ function updateOrder(frm) {
 		<script src="../resources/js/pcoded.min.js"></script>
 		<script src="../resources/js/vertical/vertical-layout.min.js "></script>
 
-		<script type="text/javascript" src="../resources/js/script.js "></script>
+		<script type="text/javascript" src="../resources/js/script2.js "></script>
 </body>
 
 

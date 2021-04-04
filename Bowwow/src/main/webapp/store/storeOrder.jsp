@@ -69,6 +69,60 @@
 <link rel="stylesheet" type="text/css" href="/resources/css/storeStyle.css">
 <link rel="stylesheet" type="text/css" href="/resources/css/test.css">
 <style>
+
+.cart-product-title{
+	width: 33%;
+}
+.cart-product-value{
+	width: 33%;
+}
+
+.font-red{
+color: red !important;
+}
+
+</style>
+<script type="text/javascript">
+
+function chkSum(){
+	if ($("input:checkbox[name='chk_1']").is(":checked") == true && $("input:checkbox[name='chk_2']").is(":checked") == true){
+		return true; 
+	} 
+	else{
+		 alert("동의 버튼을 눌러주셔야 결제가 진행됩니다.");
+		 checkout.chk_1.focus();
+		 checkout.chk_2.focus();
+		 return false;
+		} 
+}
+
+
+
+
+function order_check(){
+	if(document.getElementById('address_first').value == ""){
+		alert("주소를 입력해 주세요.");
+		checkout.address_first.focus();
+		return false;
+	} else if(document.getElementById('address_second').value == ""){
+		alert("주소를 입력해주세요");
+		checkout.address_second.focus();
+		return false;
+	} else if(document.getElementById('zip').value == ""){
+		alert("우편번호를 입력해주세요");
+		checkout.zip.focus();
+		return false;
+	} else if(document.getElementById('phone').value == ""){
+		alert("핸드폰 번호를 입력해주세요");
+		checkout.phone.focus();
+		return false;
+	}
+	
+	else return true;
+	
+	}
+</script>
+<style>
 .featured__item__text {
 	width: 150px;
 }
@@ -508,6 +562,7 @@ img {
 							</ul>
 						</div>
 					</nav>
+					
 					<div class="pcoded-content">
 						<!-- Page-header start -->
 
@@ -515,25 +570,10 @@ img {
 						<div class="pcoded-inner-content">
 							<!-- Main-body start -->
 
-							<!-- Breadcrumb Begin -->
-							<div class="breadcrumb-option">
-								<div class="container">
-									<div class="row">
-										<div class="col-lg-12">
-											<div class="breadcrumb__links">
-												<a href="./index.html"><i class="fa fa-home"></i> 스토어 메인</a>
-												<span>주문 화면</span>
-											</div>
-										</div>
-									</div>
-								</div>
-							</div>
-							<!-- Breadcrumb End -->
-
 							<!-- Checkout Section Begin -->
 							<section class="checkout spad">
 								<div class="container" style="background-color: white;">
-									<form action="insertOrder" method="post" class="checkout__form"
+									<form action="/store/insertOrder" onsubmit="return chkSum();" method="POST" name="checkout" class="checkout__form"
 										accept-charset="UTF-8">
 										<div class="row">
 											<div class="col-lg-8">
@@ -547,7 +587,7 @@ img {
 																	상품번호 <span>* (*)항목은 필수 입력 항목입니다.</span>
 																</p>
 																<input type="text" id="p_id" name="p_id"
-																	value="${p.p_id}">
+																	value="">
 															</div>
 														</div>
 														<div class="col-lg-6 col-md-6 col-sm-6">
@@ -576,17 +616,17 @@ img {
 															</div>
 															<div class="checkout__form__input">
 																<p>
-																	수량 <span>*</span>
+																	수량 <span >*</span>
 																</p>
-																<input type="text" id="amount" name="amount"
-																	value="${p.amount }">
+																<input type="text" id="pCount" name="amount"
+																	value="">
 															</div>
 															<div class="checkout__form__input">
 																<p>
 																	가격 <span>*</span>
 																</p>
-																<input type="text" id="price" name="price"
-																	value="${p.price }">
+																<input type="text" id="pSum" name="price"
+																	value="">
 															</div>
 														</div>
 														<div class="col-lg-6 col-md-6 col-sm-6">
@@ -594,7 +634,7 @@ img {
 																<p>
 																	핸드폰 <span>*</span>
 																</p>
-																<input type="text">
+																<input type="text" name="phone">
 															</div>
 														</div>
 														<div class="col-lg-6 col-md-6 col-sm-6">
@@ -626,13 +666,19 @@ img {
 													<h5>총 주문 내역</h5>
 													<div class="checkout__order__product">
 														<ul>
-															<li><span class="top__text">상품명</span> <span
-																class="top__text__right">합계금액</span></li>
-															<li>01. Chain buck bag <span>$ 300.0</span></li>
-															<li>02. Zip-pockets pebbled<br /> tote briefcase <span>$
-																	170.0</span></li>
-															<li>03. Black jean <span>$ 170.0</span></li>
-															<li>04. Cotton shirt <span>$ 110.0</span></li>
+															<li>
+																<div class="top__text cart-product-title">상품명</div>
+																<div class="top__text cart-product-title">수량</div>
+																<div class="top__text cart-product-title">합계금액</div>
+																
+															</li>
+															<li>
+																<div class="top__text cart-product-value font-red" id="pName">t</div>
+																<div class="top__text cart-product-value font-red" ></div>
+																<div class="top__text cart-product-value" id="pSum2"></div>
+																
+															</li>
+															<!-- <li>01. Chain buck bag <span id="pSum"></span></li> -->
 														</ul>
 													</div>
 													<div class="checkout__order__total">
@@ -642,22 +688,17 @@ img {
 														</ul>
 													</div>
 													<div class="checkout__order__widget">
-														<label for="o-acc"> Create an acount? <input
-															type="checkbox" id="o-acc"> <span
-															class="checkmark"></span>
+														<label for="o-acc"> 개인정보 제3자 공유 동의(필수)<input type="checkbox" name="chk_1" id="o-acc"> 
+														<span class="checkmark"></span>
 														</label>
-														<p>Create am acount by entering the information below.
-															If you are a returing customer login at the top of the
-															page.</p>
-														<label for="check-payment"> Cheque payment <input
-															type="checkbox" id="check-payment"> <span
-															class="checkmark"></span>
-														</label> <label for="paypal"> PayPal <input
-															type="checkbox" id="paypal"> <span
-															class="checkmark"></span>
-														</label>
+														<p>Bowwow는 귀하께서 Bowwow 입점업체 판매자로부터 상품 및 서비스를 구매하고자 할 경우, 정보통신망 이용촉진 및 정보보호 등에 관한 법률 제 24조의 2(개인정보 공유동의 등)에 따라 귀하의 동의를 받아 귀하의 개인정보를 판매자에게 공유합니다. 
+														"개인정보 제3자 공유 동의"를 체크하시면 개인정보 공유에 대해 동의한 것으로 간주합니다. 본 개인정보 공유에 동의하지 않으시는 경우, 동의를 거부할 수 있으며, 이 경우 거래가 제한됩니다.</p>
+														<label for="check-payment"> 위 상품 정보 및 거래 조건을 확인하였으며, 구매 진행에 동의합니다.(필수) 
+														<input type="checkbox" name="chk_2" id="check-payment"> 
+														<span class="checkmark"></span>
+														</label> 
 													</div>
-													<button type="submit" onclick="location.href='storeOrderList?member_serial=999'" class="site-btn"
+													<button type="submit" class="site-btn"
 														style="font-size: 1.5em;">결제하기</button>
 												</div>
 											</div>
@@ -670,94 +711,12 @@ img {
 						</div>
 						<!-- Product Details Section End -->
 					</div>
-					<div id="styleSelector"></div>
 				</div>
 			</div>
 		</div>
 	</div>
-	<button class="scroll-top" id="js-button"
-		style="margin-bottom: 190px; margin-right: 30px; font: 'Jua'">
-		<i class="fa fa-chevron-up" aria-hidden="true">TOP</i>
-	</button>
-	<script type="text/javascript">
-		scrollTop('js-button', 500);
-		function scrollTop(elem, duration) {
-			let target = document.getElementById(elem);
-
-			target.addEventListener('click', function() {
-				let currentY = window.pageYOffset;
-				let step = duration / currentY > 1 ? 10 : 100;
-				let timeStep = duration / currentY * step;
-				let intervalID = setInterval(scrollUp, timeStep);
-
-				function scrollUp() {
-					currentY = window.pageYOffset;
-					if (currentY === 0) {
-						clearInterval(intervalID);
-					} else {
-						scrollBy(0, -step);
-					}
-				}
-			});
-		}
-	</script>
-	<!-- footer 푸터 시작부분-->
-	<div style="display: block;">
-		<footer class="footer navbar-wrapper">
-			<div class="footer-wrapper navbar-wrapper">
-				<div class="footer-box" style="height: 100px; text-align: center;">
-					푸터</div>
-			</div>
-		</footer>
-		<!-- footer 푸터 끝부분-->
-	</div>
-
-
-
-	<!-- Warning Section Starts -->
-	<!-- Older IE warning message -->
-	<!--[if lt IE 10]>
-<div class="ie-warning">
-    <h1>Warning!!</h1>
-    <p>You are using an outdated version of Internet Explorer, please upgrade <br/>to any of the following web browsers to access this website.</p>
-    <div class="iew-container">
-        <ul class="iew-download">
-            <li>
-                <a href="http://www.google.com/chrome/">
-                    <img src="../resources/images/browser/chrome.png" alt="Chrome">
-                    <div>Chrome</div>
-                </a>
-            </li>
-            <li>
-                <a href="https://www.mozilla.org/en-US/firefox/new/">
-                    <img src="../resources/images/browser/firefox.png" alt="Firefox">
-                    <div>Firefox</div>
-                </a>
-            </li>
-            <li>
-                <a href="http://www.opera.com">
-                    <img src="../resources/images/browser/opera.png" alt="Opera">
-                    <div>Opera</div>
-                </a>
-            </li>
-            <li>
-                <a href="https://www.apple.com/safari/">
-                    <img src="../resources/images/browser/safari.png" alt="Safari">
-                    <div>Safari</div>
-                </a>
-            </li>
-            <li>
-                <a href="http://windows.microsoft.com/en-us/internet-explorer/download-ie">
-                    <img src="../resources/images/browser/ie.png" alt="">
-                    <div>IE (9 & above)</div>
-                </a>
-            </li>
-        </ul>
-    </div>
-    <p>Sorry for the inconvenience!</p>
-</div>
-<![endif]-->
-	<!-- Warning Section Ends -->
+	
+	<%@include file="/common/storeFoot.jsp" %>
 
 	<!-- Required Jquery -->
 	<script type="text/javascript"
@@ -781,7 +740,38 @@ img {
 	<script src="../resources/js/pcoded.min.js"></script>
 	<script src="../resources/js/vertical/vertical-layout.min.js "></script>
 
-	<script type="text/javascript" src="../resources/js/script.js "></script>
+	<script type="text/javascript" src="/resources/js/script2.js "></script>
+	<script type="text/javascript">
+		
+		function getParameterByName(name) {
+		    name = name.replace(/[\[]/, "\\[").replace(/[\]]/, "\\]");
+		    var regex = new RegExp("[\\?&]" + name + "=([^&#]*)"),
+		        results = regex.exec(location.search);
+		    return results === null ? "" : decodeURIComponent(results[1].replace(/\+/g, " "));
+		}
+		
+		$(document).ready(function(){
+			// url의 parameter값을 변수로 선언
+			var pId = getParameterByName('p_id');
+			var pCount = getParameterByName('p_count');
+			var pSum = getParameterByName('sum');
+			
+			// id가 p_id인 input태그 안에 value를 pId로 set하는 태그
+			$('#p_id').val(pId);
+			$('#pSum').val(pSum);
+			$('#pCount').val(pCount);
+			
+			// id가 pSum인 value가 없는 태그 안에 값을 set하는 태그
+			$('#pSum2').append(pSum);
+			
+			
+			console.log(pId);
+			console.log(pCount);
+			console.log(pSum);
+			
+			
+		});
+	</script>
 </body>
 
 

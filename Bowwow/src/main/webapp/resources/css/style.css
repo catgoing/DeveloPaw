@@ -127,19 +127,20 @@ font-size: 16px; color : #fff; border-radius: 2px; line-height: 42px;}
    }
    
    .details_pic {
-   	 border: 5px solid #fff;
+   	 border: 1px solid #fff;
    	 text-align: center;
    }
    
    .details_pic img {
    	 display: block; 
    	 margin: 20px auto;
-   	 width: 400px; 
-   	 height: 400px;
+   	 width: 350px;
+     height : 350px;
+     max-width: 100%;
+     height: auto;
    }
    
    .details_text {
-     border: 5px solid #fff;
    	 text-align: left;
    }
 

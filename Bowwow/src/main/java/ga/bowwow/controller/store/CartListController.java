@@ -30,7 +30,7 @@ public class CartListController {
 		
 		Map<String, String> result = new HashMap<String, String>();
 
-		cartList.setId("test1");
+		cartList.setId("test2");
 		int count = cartListService.cartCheck(cartList);
 		
 		if (count == 0) {
@@ -49,7 +49,7 @@ public class CartListController {
 	@RequestMapping(value = "/store/cartList")
 	public String getCartList(CartList cartList, Model model) {
 		
-		String id = "test1";
+		String id = "test2";
 		
 		List<CartList> cart = cartListService.getCartList(id);
 		model.addAttribute("cart", cart);
