@@ -47,6 +47,66 @@
     <link rel="stylesheet" type="text/css" href="/resources/css/cartStyle.css">
     <link rel="stylesheet" type="text/css" href="/resources/css/test.css">
 	<script type="text/javascript" src="/resources/js/jquery/jquery.min.js "></script>
+	<script type="text/javascript" src="/resources/js/ajax.js"></script>
+	
+<script type="text/javascript">
+	
+	$(function() {
+		var sell_price = $("input:hidden[name='price']");
+		var amount = $("input:text[name='amount']");
+		var prodSum = $("input:text[name='sum']");
+		var sum;
+		
+		for (var i=0; i<sell_price.length; i++) {
+			sum = sell_price.eq(i).val() * amount.eq(i).val();
+			prodSum.eq(i).val(sum);
+		}
+		
+	});
+	
+	function add() {
+		
+	}
+	
+	
+	
+	function delCart(pId, userId) {
+		
+		var chk = confirm("상품을 삭제하시겠습니까?");
+		
+		if (chk) {
+			var tUrl = '/store/deleteCart';
+			var result;
+			var param = {
+					p_id : pId, 
+					id : userId
+			}
+		
+			result = callAjax(tUrl, 'post', param, 'data');
+			
+			if (result.code == '0000') {
+				alert(result.msg);
+				location.reload();
+			} else {
+				alert(result.msg);
+			}
+		}
+	}
+	
+/* 	$(function() {
+		var price = $("td:nth-child(6)").text();
+		$("td:nth-child(1)").on("click", function() {
+			alert(price);
+		});
+		
+		 var pId = $("input:checkbox[name='p_id']");
+		
+		for (var i=0; i < pId.length; i++) {
+			alert(pId.eq(i).val());
+		 }
+	}); end of function */
+
+</script>
 	
 </head>
 
@@ -78,7 +138,7 @@
 												<table>
 													<thead>
 														<tr>
-															<th>번호
+															<th><a onclick="multiTotalPrice();">check</a></th>
 															<th></th>
 															<th class="p-name" colspan="2">상품명</th>
 															<th>판매가</th>
@@ -97,6 +157,7 @@
 															</tr>
 														</c:if>
 														<c:if test="${!empty cart}">
+														<form id="listForm" >
 															<c:forEach var="cart" items="${cart }">
 																<c:choose>
 																	<c:when test="${cart.p_type == 'dog'}">
@@ -107,7 +168,7 @@
 																	</c:when>
 																</c:choose>
 																<tr style="border-bottom: 1px solid #ddd;">
-																	<td></td>
+																	<td><input id="check" type="checkbox" name="p_id" value="${cart.p_id }"></td>
 																	<td class="cart-pic first-row"><a
 																		href="detail?p_id=${cart.p_id }"> <img
 																			src="https://projectbit.s3.us-east-2.amazonaws.com/${imgDir }/${cart.s_image }"
@@ -118,25 +179,35 @@
 																			<a href="detail?p_id=${cart.p_id }">${cart.p_name }</a>
 																		</p>
 																	</td>
-																	<td class="p-price first-row"><fmt:formatNumber
-																			value="${cart.price }" pattern="#,###" />원</td>
+																	<td class="p-price first-row">
+																		<input type="hidden" name="price" value="${cart.price}">
+																		<fmt:formatNumber value="${cart.price }" pattern="#,###" />원</td>
 																	<td class="qua-col first-row">
 																		<div class="quantity">
-																			<div class="">
-																				<input type="button" class="store_btn2" value=" - " onclick=> 
-																					<input type="text" value="${cart.amount }" size="3"> 
-																					<input type="button" class="store_btn2" value=" + " onclick=>
+																			<div class="cartList_amount">
+																				<input type="button" class="store_btn2" value=" - " onclick="add()"> 
+																				<input type="text" name="amount" value="${cart.amount }" size="3" readonly> 
+																				<input type="button" class="store_btn2" value=" + " onclick=>
 																			</div>
 																		</div>
 																	</td>
-																	<td class="total-price first-row">$60.00</td>
-																	<td class="close-td first-row"><i class="ti-close"></i></td>
+																	<td class="total-price first-row">
+																		<input type="text" class="store_input3" size="9" name="sum" readonly>원
+																	</td>
+																	<td class="close-td first-row">
+																		<a onclick="delCart('${cart.p_id}', '${cart.id }')"><i class="ti-close"></i></a>
+																	</td>
 																</tr>
 															</c:forEach>
+														</form>
 														</c:if>
 													</tbody>
 												</table>
 											</div>
+											<form name="cartform" method="POST">
+												<input type="hidden" name="p_id" value="">
+												<input type="hidden" name="id" value="">
+											</form>
 											<div class="row">
 												<div class="col-lg-4">
 													<div class="cart-buttons">

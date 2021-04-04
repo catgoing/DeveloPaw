@@ -45,8 +45,9 @@
     <link rel="stylesheet" type="text/css" href="/resources/css/style.css">
     <link rel="stylesheet" type="text/css" href="/resources/css/test.css">
 
-	<script type="text/javascript" src="/resources/js/jquery/jquery.min.js "></script>
-
+	<script type="text/javascript" src="/resources/js/jquery/jquery.min.js"></script>
+	<script type="text/javascript" src="/resources/js/ajax.js"></script>
+	
 <style>
 .featured__item__text {
 	width: 150px;
@@ -65,21 +66,23 @@
 		
 		$(function init () {
 			sell_price = document.getElementById('sell_price').value;
-			document.getElementById('sum').value = sell_price.replace(/\B(?=(\d{3})+(?!\d))/g, ",");
+			document.getElementById('sum').value = sell_price
 			sell_price = document.form.sell_price.value;
 			amount = document.form.amount.value;
-			document.form.sum.value = sell_price;
+			document.form.sum.value = sell_price.replace(/\B(?=(\d{3})+(?!\d))/g, ",");
 		});
 		
 		function add () {
 			hm = document.form.amount;
 			sum = document.form.sum;
+			
 			hm.value ++ ;
 			
 			var temp = parseInt(hm.value) * sell_price
 		
 			document.getElementById('sum').value = temp;
 			document.getElementById('sum').value = document.getElementById('sum').value.replace(/\B(?=(\d{3})+(?!\d))/g, ",");
+			
 		}
 		
 		function del () {
@@ -104,37 +107,40 @@
 			document.getElementById('sum').value = temp;
 			document.getElementById('sum').value = document.getElementById('sum').value.replace(/\B(?=(\d{3})+(?!\d))/g, ",");
 		}
+		
+		// 숫자만 들어오도록 체크
+		function onlyNumber(e) {
+			var reg = /[^0-9]{1,100}$/g;
+			var value = $(e).val();	// $(e) : 선택자, jQuery에서 매개변수로 받은 Object를 지칭함
 			
+			if (reg.test(value)) { // 숫자만 들어오도록 test()로 체크
+				$(e).val(value.replace(reg, ""));
+				return false;
+			}
+		}
+		
 		function cartList(frm) {
 			var param = $("form[name=form]").serialize();
+			var tUrl = '/store/addCart';
+			var result;
 			
-            $.ajax({
-               url : '/store/addCart',
-               type : 'post',
-               data : param,
-               dataType : 'json',
-               success : function(data){
-            	   
-            	   if (data.result == "code") {
-            		  var chk = confirm(data.msg);
-            		  
-            		  if (chk) {
-              			  location.href="/store/cartList";
-              		  } else {
-              			  return;
-              		  }
-            	   	
-            	   } else if (data.result == "error") {
-            		  var chk = confirm(data.msg);
-            		  
-            		  if (chk) {
-              			  location.href="/store/cartList";
-              		  } else {
-              			  return;
-              		  }
-            	   }
-               }
-            });
+			result = callAjax(tUrl, 'post', param, 'data');
+		
+	       	   	if (result.code == "0000") {
+	       		  	var chk = confirm(result.msg);
+	       		  
+	       		  	if (chk) {
+	         			location.href="/store/cartList";
+	       	   		}
+	       		  	
+				} else {
+	       		  	var chk = confirm(result.msg);
+       		  
+	       		 	if (chk) {
+	         			location.href="/store/cartList";
+	         		} 
+       	    	}
+         		
 		}
 		
 		function insertReview(p_id) {
@@ -239,9 +245,7 @@
 															<ul>
 																<li>
 																	<h4>
-																		판매금액:
-																		<fmt:formatNumber value="${p.price }" pattern="#,###" />
-																		원
+																		판매금액: <fmt:formatNumber value="${p.price }" pattern="#,###" /> 원
 																	</h4>
 																</li>
 															</ul>
@@ -249,15 +253,11 @@
 														<div class="quantity">
 															<div class="pro-qty">
 																<h5>
-																	상품 수량 : <input type="hidden" id="sell_price"
-																		name="price" value="${p.price }"> <input
-																		type="button" class="store_btn2" value=" - "
-																		onclick="del()"> <input type="text"
-																		class="store_input" autocomplete="off" min="1"
-																		name="amount" value="1" size="3"
-																		onchange="changeValue();"> <input
-																		type="button" class="store_btn2" value=" + "
-																		onclick="add()">
+																	상품 수량 : <input type="hidden" id="sell_price" name="price" value="${p.price }"> 
+																			 <input type="button" class="store_btn2" value=" - " onclick="del();"> 
+																			 <input type="text" class="store_input" onkeyup="onlyNumber(this);" maxlength="2" autocomplete="off" 
+																			 	min="1" name="amount" value="1" size="3" onchange="changeValue();"> 
+																			 <input type="button" id="addBtn" class="store_btn2" value=" + " onclick="add();">
 																</h5>
 															</div>
 															<br>
@@ -410,7 +410,6 @@
 	</div>
 
 	<%@include file="/common/storeFoot.jsp" %>
-	<!-- Warning Section Ends -->
 
 	<!-- Required Jquery -->
 	<script type="text/javascript" src="/resources/js/jquery/jquery.min.js "></script>

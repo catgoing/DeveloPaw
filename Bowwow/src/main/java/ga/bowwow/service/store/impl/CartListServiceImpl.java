@@ -26,7 +26,12 @@ public class CartListServiceImpl implements CartListService {
 
 	@Override
 	public int cartCheck(CartList cartList) {
-		return storeDAO.pidCheck(cartList);
+		return storeDAO.cartCheck(cartList);
+	}
+
+	@Override
+	public int deleteCart(CartList cartList) {
+		return storeDAO.deleteCart(cartList);
 	}
 
 	
