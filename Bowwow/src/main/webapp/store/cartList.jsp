@@ -59,16 +59,10 @@
 		
 		for (var i=0; i<sell_price.length; i++) {
 			sum = sell_price.eq(i).val() * amount.eq(i).val();
-			prodSum.eq(i).val(sum);
+			prodSum.eq(i).val(sum.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ","));
 		}
 		
 	});
-	
-	function add() {
-		
-	}
-	
-	
 	
 	function delCart(pId, userId) {
 		
