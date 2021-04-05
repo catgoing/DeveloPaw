@@ -4,15 +4,7 @@
     <% request.setCharacterEncoding("UTF-8"); %>
 <%@ taglib uri="http://tiles.apache.org/tags-tiles" prefix="tiles"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
-<%
-	//임시 로그인처리
-	int memberSerial = 1;
-	String id = "z";
-	UserAccount user= new UserAccount();
-	user.setId(id);
-	user.setMemberSerial(memberSerial);
-	session.setAttribute("user", user);
-%>
+
 <!DOCTYPE html>
 <html>
 
@@ -110,32 +102,6 @@
 		</div>
 	</div>
 	
-    <button class="scroll-top" id="js-button" style="margin-bottom: 190px; margin-right: 30px;">
-        <i class="fa fa-chevron-up" aria-hidden="true">TOP</i>
-    </button>
-    <script type="text/javascript">
-        scrollTop('js-button', 500);
-        function scrollTop(elem,duration) {
-            let target = document.getElementById(elem);
-        
-            target.addEventListener('click', function() {
-                let currentY = window.pageYOffset; 
-                let step = duration/currentY > 1 ? 10 : 100;
-                let timeStep = duration/currentY * step;
-                let intervalID = setInterval(scrollUp, timeStep);
-        
-                function scrollUp(){
-                    currentY = window.pageYOffset;
-                    if(currentY === 0) {
-                        clearInterval(intervalID);
-                    } else {
-                        scrollBy( 0, -step );
-                    }
-                }
-            });
-        }
-    </script>
-        
 	<!-- footer 푸터 시작부분-->
 	<%-- <tiles:insertAttribute name="footer" /> --%>
 	<%@include file="/common/footer.jsp" %>

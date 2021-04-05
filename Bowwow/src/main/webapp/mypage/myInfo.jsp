@@ -63,30 +63,93 @@
     <link rel="stylesheet" type="text/css" href="/resources/css/style.css">
     <link rel="stylesheet" type="text/css" href="/resources/css/test.css">
 	<!-- 개별css -->
-    <link rel="stylesheet" type="text/css" href="/resources/css/myinfo.css">
+    <!-- <link rel="stylesheet" type="text/css" href="/resources/css/myinfo.css"> -->
 <style>
+  .myPageInfo-header {
+  	text-align: center;
+  }
+  .myPageInfo-wrapper {
+	display: flex;
+	justify-content: center;
+  }
 
+ .side-content {
+	position: relative;
+	display: inline-block;
+	float: left;
+ }
+ .side-content .my-area {
+    border-radius: 70px;
+    margin: 30px;
+    border: 1px solid rgba(228, 228, 228, 0.5);
+    border-radius: 10px;
+
+ }
+ .side-content .my-area .side-profile-img{
+	/* float: left; */
+    background-size: cover;
+    width: 140px;
+    height: 140px;
+    border-radius: 70px;
+    margin: 0 auto 10px;
+}
+
+  .side-content .my-area p{
+    text-align: center;
+    font-size: 20px;
+    font-weight: 700;
+    line-height: 29px;
+}
+
+ .mainMypage-content {
+ 	display: inline-block;
+    width: calc( 100% - 280px);
+    margin-bottom: 50px;
+    float : right;
+}
+ .block-title a{
+    line-height: 28px;
+    color: #b0b0b0;
+    font-size: 10px;
+    font-weight: 300;
+    border: 0;
+    background: none;
+    float: right;
+    margin-right: 50px;
+ }
+.block-title h3{
+	font-size: 1.5em;
+}
+.form-control #noborderline {
+	background-color : f3f3f3;
+	border: none;
+}
 </style>
 <script>
 
-(function(name){
-	console.log('my name is '+ name);
-})('??');
+$(function(){
+	//email검증
+	$("input[name=email]").on("keyup", function(event){
+		if(!(event.keyCode >=37 && event.keyCode<=40)){
+			var inputVal = $(this).val(); //input name="email"에 입력한 value값
+			$(this).val(inputVal.replace(/[^a-z0-9@_.-]/gi,''));//한글과 @_.-를 제외한 특수문자입력금지
+		}
+	});
+
+	
+	//아이디는 변경금지라서 필요없어짐ㅋㅋ
+	/* $("input[name=id]").on("keyup", function(event){
+		if(!(event.keyCode >=37 && event.keyCode<=40)){
+			var inputVal = $(this).val();
+			$(this).val(inputVal.replace(/[^a-z0-9_-]/gi,''));
+		}
+	}); */
+
+});
+
  function goModify(form){
 	 var idCheck = form.id.value;
-	 var emailCheck = form.email.value;
-	 var phoneCheck = form.phone.value;
 
-	//아이디 검증=_=
-   	if(/[ㄱ-ㅎ|ㅏ-ㅣ|가-힝]/.test(idCheck)){
-   		console.log(idCheck);
-   		alert("아이디 안에 한글은 포함될 수 없습니다.");
-   	}
-     //email 검증=_=
-	 if(!/^[0-9a-zA-Z]([-_.]?[0-9a-zA-Z])*@[0-9a-zA-Z]([-_.]?[0-9a-zA-Z])*.[a-zA-Z]{2,3}$/i.test(emailCheck)) {
-		console.log(emailCheck);
-		alert("이메일 형식을 지켜주세요.");
-	 }
 	//휴대폰번호 검증=_=
    	 var cellPhoneRule = /^\d{3}-\d{3,4}-\d{4}$/;
 	if(!/01[01689]-[1-9]{1}[0-9]{2,3}-[0-9]{4}$/.test(phoneCheck) ||
@@ -96,6 +159,7 @@
 	}
 
  }
+
 
  function sample4_execDaumPostcode() {
      new daum.Postcode({
@@ -211,179 +275,21 @@
 		</div>
 	</div>
 	<!-- Pre-loader end -->
-	<div id="pcoded" class="pcoded">
-		<div class="pcoded-overlay-box"></div>
-		<div class="pcoded-container navbar-wrapper">
-			<nav class="navbar header-navbar pcoded-header">
-				<div class="navbar-wrapper" style="color: red;">
-					<div class="navbar-logo">
-						<a class="mobile-menu waves-effect waves-light"
-							id="mobile-collapse" href="#!"> <i class="ti-menu"></i>
-						</a>
-						<div class="mobile-search waves-effect waves-light">
-							<div class="header-search">
-								<div class="main-search morphsearch-search">
-									<div class="input-group">
-										<span class="input-group-prepend search-close"><i
-											class="ti-close input-group-text"></i></span> <input type="text"
-											class="form-control" placeholder="Enter Keyword"> <span
-											class="input-group-append search-btn"><i
-											class="ti-search input-group-text"></i></span>
-									</div>
-								</div>
-							</div>
-						</div>
-						<a href="storeMain.html"
-							style="text-align: center; font-weight: bold; font-size: 30px; margin-top: 7px;">BOW-WOW</a>
+<div id="pcoded" class="pcoded">
+	<div class="pcoded-overlay-box"></div>
+	<div class="pcoded-container navbar-wrapper">
+		<!-- header -->
+		<%@include file="/common/header.jsp" %>
 
-						<a class="mobile-options waves-effect waves-light"> <i class="ti-more"></i>
-						</a>
-					</div>
-					<div class="navbar-container container-fluid">
-						<ul class="nav-left">
-							<li>
-								<div class="sidebar_toggle">
-									<a href="javascript:void(0)"><i class="ti-menu"></i></a>
-								</div>
-							</li>
-							<li><a href="index.html"> 커뮤니티 </a></li>
-							<li><a href="storeMain.do"> 스토어 </a></li>
-						</ul>
-						<ul class="nav-right">
-							<li class="form-group form-primary"><input type="text"
-								name="footer-email" style="margin-top: 12px; width: 250px;"
-								class="form-control" placeholder="검색창"> <span
-								class="form-bar"></span></li>
-							<li class="header-notification"><a href="#!"
-								class="waves-effect waves-light"> <i class="ti-bell"></i> <span
-									class="badge bg-c-red"></span>
-							</a>
-								<ul class="show-notification">
-									<li>
-										<h6>Notifications</h6> <label class="label label-danger">New</label>
-									</li>
-									<li class="waves-effect waves-light">
-										<div class="media">
-											<img class="d-flex align-self-center img-radius"
-												src="../resources/images/avatar-2.jpg"
-												alt="Generic placeholder image">
-											<div class="media-body">
-												<h5 class="notification-user">John Doe</h5>
-												<p class="notification-msg">Lorem ipsum dolor sit amet,
-													consectetuer elit.</p>
-												<span class="notification-time">30 minutes ago</span>
-											</div>
-										</div>
-									</li>
-									<li class="waves-effect waves-light">
-										<div class="media">
-											<img class="d-flex align-self-center img-radius"
-												src="../resources/images/avatar-4.jpg"
-												alt="Generic placeholder image">
-											<div class="media-body">
-												<h5 class="notification-user">Joseph William</h5>
-												<p class="notification-msg">Lorem ipsum dolor sit amet,
-													consectetuer elit.</p>
-												<span class="notification-time">30 minutes ago</span>
-											</div>
-										</div>
-									</li>
-									<li class="waves-effect waves-light">
-										<div class="media">
-											<img class="d-flex align-self-center img-radius"
-												src="../resources/images/avatar-3.jpg"
-												alt="Generic placeholder image">
-											<div class="media-body">
-												<h5 class="notification-user">Sara Soudein</h5>
-												<p class="notification-msg">Lorem ipsum dolor sit amet,
-													consectetuer elit.</p>
-												<span class="notification-time">30 minutes ago</span>
-											</div>
-										</div>
-									</li>
-								</ul></li>
-							<li class="header-notification"><a href="#!"
-								class="waves-effect waves-light"> <i
-									class="fa fa-shopping-cart" aria-hidden="true"></i> <span
-									class="badge bg-c-red"></span>
-							</a>
-								<ul class="show-notification">
-									<li>
-										<h6>Notifications</h6> <label class="label label-danger">New</label>
-									</li>
-									<li class="waves-effect waves-light">
-										<div class="media">
-											<img class="d-flex align-self-center img-radius"
-												src="../resources/images/avatar-2.jpg"
-												alt="Generic placeholder image">
-											<div class="media-body">
-												<h5 class="notification-user">John Doe</h5>
-												<p class="notification-msg">Lorem ipsum dolor sit amet,
-													consectetuer elit.</p>
-												<span class="notification-time">30 minutes ago</span>
-											</div>
-										</div>
-									</li>
-									<li class="waves-effect waves-light">
-										<div class="media">
-											<img class="d-flex align-self-center img-radius"
-												src="../resources/images/avatar-4.jpg"
-												alt="Generic placeholder image">
-											<div class="media-body">
-												<h5 class="notification-user">Joseph William</h5>
-												<p class="notification-msg">Lorem ipsum dolor sit amet,
-													consectetuer elit.</p>
-												<span class="notification-time">30 minutes ago</span>
-											</div>
-										</div>
-									</li>
-									<li class="waves-effect waves-light">
-										<div class="media">
-											<img class="d-flex align-self-center img-radius"
-												src="../resources/images/avatar-3.jpg"
-												alt="Generic placeholder image">
-											<div class="media-body">
-												<h5 class="notification-user">Sara Soudein</h5>
-												<p class="notification-msg">Lorem ipsum dolor sit amet,
-													consectetuer elit.</p>
-												<span class="notification-time">30 minutes ago</span>
-											</div>
-										</div>
-									</li>
-								</ul></li>
-							<li class="user-profile header-notification"><a href="#!"
-								class="waves-effect waves-light"> <img
-									src="../resources/images/avatar-4.jpg" class="img-radius"
-									alt="User-Profile-Image"> <i class="ti-angle-down"></i>
-							</a>
-								<ul class="show-notification profile-notification">
-									<li class="waves-effect waves-light"><a href="#!">마이홈
-									</a></li>
-									<li class="waves-effect waves-light"><a
-										href="user-profile.html">프로필 </a></li>
-									<li class="waves-effect waves-light"><a
-										href="email-inbox.html">반려동물 </a></li>
-									<li class="waves-effect waves-light"><a
-										href="auth-lock-screen.html">게시글</a></li>
-									<li class="waves-effect waves-light"><a
-										href="auth-normal-sign-in.html">포인트 내역 </a></li>
-									<li class="waves-effect waves-light"><a
-										href="auth-normal-sign-in.html">나의 쇼핑 </a></li>
-									<li class="waves-effect waves-light"><a
-										href="auth-normal-sign-in.html">로그아웃 </a></li>
-								</ul></li>
-						</ul>
-					</div>
-				</div>
-			</nav>
+		<div class="pcoded-main-container">
+			<div class="pcoded-wrapper">
 
 			<!-- 좌측 메뉴바 시작 -->
-<div class="pcoded-main-container">
-	<div class="pcoded-wrapper">
-		<%@include file="/common/myPageMenuBar.jsp" %>
+			<%@include file="/common/myPageMenuBar.jsp" %>
 
-<!-- 좌측 메뉴바 끝 -->
-
+			<!-- 본문 시작 -->
+			 <div class="pcoded-content">
+                       <div class="pcoded-inner-content">
 				<!-- Main-body start 본문 시작 -->
 					<div class="main-body">
 					<div class="page-wrapper">
@@ -395,25 +301,15 @@
 						</div>
 						<div class="myPageInfo-wrapper">
 
-							<!-- <section class="featured spad">
-								<div class="container">
-									<div class="row">
-										<div class="col-lg-12">
-											<div class="section-title">
-												<h2>(section-title)뫄뫄님의 페이지</h2>
-											</div>
-											<br>
- 										</div>
-									</div>
-								</div>
-							</section> -->
 								<!-- 회원정보수정 부분 -->
 								<div class="form-group">
 									<div class="input-content">
 									<div class="side-content">
 										<div class="my-area">
-											<div class="side-profile-img">프로필사진영역</div>
-											<p>닉네임</p>
+											<div class="side-profile-img">
+												<img src="${user.image_source }" alt="이미지없음~">
+											</div>
+											<p>닉네임${user.nickname }</p>
 										</div>
 									</div>
 
@@ -422,126 +318,101 @@
 										<h3>정보수정</h3>
 										<a href="withdrawl">회원탈퇴</a>
 									</div>
-									<form>
-									<%-- <input type="text" value="${id }" readonly> --%>
-
-										<div class="input-label">아이디
-											<div class="input-wrap">
-												<input type="text" name="id" value="${user.id }" disabled>
-											</div>
-											<p></p>
-										</div>
-
-										<div class="input-label">비밀번호
-											<div class="input-wrap">
-												<input type="password" name="password" placeholder="비밀번호 입력">
-											</div>
-											<p>비밀번호는 이만~~~~~큼 입력해야합니다.</p>
-										</div>
-
-										<div class="input-label">비밀번호 확인
-											<div class="input-wrap">
-												<input type="password" placeholder="비밀번호 재입력">
-											</div>
-											<p>비밀번호를 또 입력해야합니다 -- 비밀번호 입력 안하고 수정해도 수정됨?</p>
-										</div>
-
-										<div class="input-label">이름
-											<div class="input-wrap">
-												<input type="text" name="name">
-												<%-- <input type="text" name="name" value="${user.name }"> --%>
-											</div>
-											<p></p>
-										</div>
-
-										<div class="input-label">닉네임
-											<div class="input-wrap">
-												<input type="text" name="nickname">
-												<%-- <input type="text" name="nickname" value="${user.nickname }"> --%>
-											</div>
-											<p></p>
-										</div>
-
-										<div class="input-label">이메일
-											<div class="input-wrap">
-												<%-- <input type="text" name="email" value="${user.email }"> --%>
-											</div>
-											<p></p>
-										</div>
-
-										<div class="input-label">전화번호
-											<div class="input-wrap">
-												<input type="text" name="phone">
-												<%-- <input type="text" name="phone" value="${user.phone }"> --%>
-											</div>
-											<p></p>
-										</div>
-
-										<div class="input-label">주소
-											<div>
-												<input type="text" id="sample4_postcode" placeholder="우편번호">
-												<input type="button" onclick="sample4_execDaumPostcode()" value="우편번호 찾기"><br>
-												<input type="text" id="sample4_roadAddress" placeholder="도로명주소">
-												<input type="text" id="sample4_jibunAddress" placeholder="지번주소">
-												<span id="guide" style="color:#999;display:none"></span>
-												<input type="text" id="sample4_detailAddress" placeholder="상세주소">
-												<input type="text" id="sample4_extraAddress" placeholder="참고항목">
-											</div>
-											<p></p>
-										</div>
-
-										<div class="input-label">생일
-											<div class="input-wrap">
-											<input type="text" name="birthday">
-											<%-- <input type="text" name="birthday" value='${user.birthday }'> --%>
-												<%-- <input type="text" name="birthday" value="${birthday }">
-												<input type="text" name="birthday" value="${birthday }">
-												<input type="text" name="birthday" value="${birthday }"> --%>
-											</div>
-											<p></p>
-										</div>
-
-										<div class="input-label">성별
-											<div class="input-wrap">
-												<span class="radio-gender">
-													<input type="radio" name="gender" value="female" id="genderF">
-													<label for="genderF">여자</label>
-												</span>
-												<span class="radio-gender">
-       												<input type="radio" name="gender" value="male" id="genderM">
-       												<label for="genderM">남자</label>
-												</span>
-											</div>
-											<p>설정한 정보로 checked하기??</p>
-										</div>
-
-										<div class="input-label">
-											<div class="input-wrap">
-												<div class="my-profile">
-													<label for="uploadImage" id="imageview">
-														<img src="" class="thumb">
-													</label>
-													<input type="file" id="uploadImage" accept="image/gif, image/jpeg, image/jpg, image/png" name="uploadImage" onchange="readURL(this);">
-												</div>
-											</div>
-											<p></p>
-										</div>
-
-										<div class="action_btn">
-											<input type="button" value="정보수정" onclick="javascript:goModify(this.form);">
-										</div>
-
-									</form>
+									<form class="form-myinfo">
+  <div class="form-group">
+    <label for="inputId" class="col-sm-4 control-label">아이디(변경불가)</label>
+    <div class="col-sm-8">
+		<input type="text" class="form-control" id="noborderline" value="아이디 ${user.id }" disabled>
+    </div>
+  </div>
+  <div class="form-group">
+    <label for="inputPassword" class="col-sm-4 control-label">기존 비밀번호</label>
+    <div class="col-sm-8 passinput">
+      <input type="password" class="form-control password" name="password" id="password" placeholder="Password">
+    </div>
+  </div>
+  <div class="form-group">
+    <label for="inputPassword2" class="col-sm-4 control-label">새 비밀번호</label>
+    <div class="col-sm-8 passinput2">
+      <input type="password" class="form-control password" name="newPassword" id="password2" placeholder="Password 재입력">
+    </div>
+  </div>
+  <div class="form-group">
+    <label for="inputPassword3" class="col-sm-4 control-label">이름(변경불가)</label>
+    <div class="col-sm-8">
+   		<input type="text" class="form-control" id="noborderline" value="이름 ${user.realname }" disabled>
+    </div>
+  </div>
+  <div class="form-group">
+    <label for="inputNickname" class="col-sm-4 control-label">닉네임</label>
+    <div class="col-sm-8">
+      <input type="text" class="form-control" name="nickname" id="inputNickname" placeholder="닉네임" value="닉네임${uesr.nickname}">
+    </div>
+  </div>
+  <div class="form-group">
+    <label for="inputGender" class="col-sm-4 control-label">성별</label>
+    <div class="col-sm-8">
+      <label class="radio-inline">
+        <input type="radio" name="gender" id="gender_f" value="female"> 여자
+      </label>
+      <label class="radio-inline">
+        <input type="radio" name="gender" id="gender_m" value="male"> 남자
+      </label>
+    </div>
+  </div>
+  <div class="form-group">
+    <label for="inputEmail" class="col-sm-4 control-label">이메일</label>
+    <div class="col-sm-8">
+      <input type="email" class="form-control" name="email" id="inputEmail" placeholder="hong@example.com">
+    </div>
+  </div>
+  <div class="form-group">
+    <label for="inputAddress" class="col-sm-4 control-label">주소</label>
+    <div class="col-sm-8">
+     <div>
+		<input type="text" id="sample4_postcode" placeholder="우편번호">
+		<input type="button" onclick="sample4_execDaumPostcode()" value="우편번호 찾기"><br>
+		<input type="text" id="sample4_roadAddress" placeholder="도로명주소">
+		<input type="text" id="sample4_jibunAddress" placeholder="지번주소">
+		<span id="guide" style="color:#999;display:none"></span>
+		<input type="text" id="sample4_detailAddress" placeholder="상세주소">
+		<input type="text" id="sample4_extraAddress" placeholder="참고항목">
+	</div>
+    </div>
+  </div>
+  <div class="form-group">
+    <label for="inputPhone" class="col-sm-4 control-label">전화번호</label>
+    <div class="col-sm-8">
+	  <select>
+		<option>010</option>
+		<option>011</option>
+		<option>017</option>
+		<option>018</option>
+		<option>019</option>
+		</select>
+      <input type="text" class="form-control" name="phone" id="inputPhone" placeholder="123-4567 혹은 1234-5678 형식으로 입력">
+    </div>
+  </div>
+     <div class="form-group">
+    <label for="inputBirth" class="col-sm-4 control-label">생일</label>
+    <div class="col-sm-8">
+      <input type="date" class="form-control" name="birthday" id="inputBirthday" >
+    </div>
+  </div>
+  <div class="form-group">
+    <div class="col-sm-offset-2 col-sm-8">
+      <button type="submit" class="btn btn-default">정보수정!</button>
+    </div>
+  </div>
+</form>
 									</div>
 									</div>
+		  						  </div>
 								</div>
-
 							</div>
 						</div>
 					</div>
 				</div>
-			</div>
-
 			</div>
 		</div>
 	</div>
@@ -549,7 +420,8 @@
 	<!-- footer 푸터 시작부분-->
 	<%@include file="/common/footer.jsp" %>
 	<!-- footer 푸터 끝부분-->
-
+	</div>
+</div>
     <!-- Required Jquery -->
     <script type="text/javascript" src="/resources/js/jquery/jquery.min.js "></script>
     <script type="text/javascript" src="/resources/js/jquery-ui/jquery-ui.min.js "></script>
