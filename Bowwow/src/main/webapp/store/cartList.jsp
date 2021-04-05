@@ -64,6 +64,7 @@
 		
 	});
 	
+	
 	function delCart(pId, userId) {
 		
 		var chk = confirm("상품을 삭제하시겠습니까?");
@@ -72,7 +73,7 @@
 			var tUrl = '/store/deleteCart';
 			var result;
 			var param = {
-					p_id : pId, 
+					pIdArr : pId, 
 					id : userId
 			}
 		
@@ -85,20 +86,67 @@
 				alert(result.msg);
 			}
 		}
-	}
+	} //end of delCart(pId, userId);
 	
-/* 	$(function() {
-		var price = $("td:nth-child(6)").text();
-		$("td:nth-child(1)").on("click", function() {
-			alert(price);
-		});
-		
-		 var pId = $("input:checkbox[name='p_id']");
-		
-		for (var i=0; i < pId.length; i++) {
-			alert(pId.eq(i).val());
-		 }
-	}); end of function */
+	// 체크된 상품만 총액 계산
+ 	function itemCheck() {
+ 		var sum = 0;
+ 		var count = $("input:checkbox[name='p_id']");
+ 		var price = $("input:text[name='sum']");
+ 		var totalPrice = $("input:text[name='totalPrice']");
+ 		
+		for (var i=0; i < count.length; i++ ) {
+			
+			if (count.eq(i).is(":checked") == true ) {
+				console.log(count.is(":checked"));
+				console.log(price.eq(i).val());
+				
+				sum += parseInt(numberRemoveCommas(price.eq(i).val()));
+		     }
+		}
+		  console.log(sum);
+		  totalPrice.val(numberAddCommas(sum));
+ 	}
+ 	
+ 	// 체크된 상품 삭제
+ 	function delCheck() {
+ 		
+ 		var pIdArr = [];
+ 		var count = $("input:checkbox[name='p_id']");
+ 		var userId = $("input[name='id']").val();
+ 			
+ 		if ($("input[name='p_id']:checked").length == 0) {
+ 				alert("선택된 상품이 없습니다.");
+ 				return;
+ 			}
+ 		
+ 		for (var i=0; i < count.length; i++ ) {
+ 			if (count.eq(i).is(":checked") == true) {
+ 				pIdArr.push(count.eq(i).val());
+ 				
+ 			}
+ 		}
+ 			delCart(pIdArr, userId);
+ 			
+ 		
+ 		
+ 	}
+ 	
+ 	
+ 	// 콤마 빼기
+	function numberRemoveCommas(x) {
+	    return parseInt(x.replace(/,/g,""));
+	 }
+	
+ 	// 콤마 넣기
+	function numberAddCommas(x) {
+	   
+	   if(x == 0) {
+	      return 0;
+	   } else {
+	      return x.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
+	   }
+	}
 
 </script>
 	
@@ -153,6 +201,7 @@
 														<c:if test="${!empty cart}">
 														<form id="listForm" >
 															<c:forEach var="cart" items="${cart }">
+																<input type="hidden" name="id" value="${cart.id }">
 																<c:choose>
 																	<c:when test="${cart.p_type == 'dog'}">
 																		<c:set var="imgDir" value="dogImg" />
@@ -162,7 +211,7 @@
 																	</c:when>
 																</c:choose>
 																<tr style="border-bottom: 1px solid #ddd;">
-																	<td><input id="check" type="checkbox" name="p_id" value="${cart.p_id }"></td>
+																	<td><input type="checkbox" name="p_id" value="${cart.p_id }" onclick="itemCheck()"></td>
 																	<td class="cart-pic first-row"><a
 																		href="detail?p_id=${cart.p_id }"> <img
 																			src="https://projectbit.s3.us-east-2.amazonaws.com/${imgDir }/${cart.s_image }"
@@ -198,15 +247,11 @@
 													</tbody>
 												</table>
 											</div>
-											<form name="cartform" method="POST">
-												<input type="hidden" name="p_id" value="">
-												<input type="hidden" name="id" value="">
-											</form>
 											<div class="row">
 												<div class="col-lg-4">
 													<div class="cart-buttons">
 														<a href="#" class="primary-btn continue-shop">계속 쇼핑하기</a>
-														<a href="#" class="primary-btn up-cart">선택 삭제</a>
+														<a onclick="delCheck()" class="primary-btn up-cart">선택 삭제</a>
 													</div>
 													<div class="discount-coupon">
 														<h6>적립금 사용</h6>
@@ -220,9 +265,13 @@
 													<div class="proceed-checkout"
 														style="background-color: white;">
 														<ul>
-															<li class="subtotal">상품 금액 <span>$240.00</span></li>
-															<li class="subtotal">할인 금액 <span>$240.00</span></li>
-															<li class="cart-total">최종 결제 금액 <span>$240.00</span></li>
+															<li class="subtotal">선택  상품  금액
+																<input type="text" class="store_input4" name="totalPrice" value="0" readonly>원
+															</li>
+															<li class="subtotal">상품 할인 금액 <span>$240.00</span></li>
+															<li class="cart-total">최종 결제 금액 
+																<input type="text" class="store_input4" name="totalPrice" value="0" readonly>원
+															</li>
 														</ul>
 														<a href="#" class="proceed-btn">주문하기</a>
 													</div>

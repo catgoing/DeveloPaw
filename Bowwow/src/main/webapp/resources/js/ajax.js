@@ -21,6 +21,7 @@ function callAjax(tUrl, ctype, param, returnType) {
 		            type : ctype,
 		            data : param,
 		            dataType : 'json',
+		            traditional : true,
 		            async : false,
 		            success : function(data){
 		         	 	returnData = data;

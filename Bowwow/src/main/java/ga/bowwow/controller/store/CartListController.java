@@ -65,9 +65,10 @@ public class CartListController {
 		Map<String, Object> resultMap = new HashMap<String, Object>(); 
 		
 		System.out.println("cartList :" + cartList);
+		System.out.println("pIdArr :" + cartList.getPIdArr());
 		int result = cartListService.deleteCart(cartList);
 		
-		if (result == 1) {
+		if (result >= 1) {
 			resultMap.put("msg", "장바구니에서 삭제되었습니다.");
 			resultMap.put("code", "0000");
 		} else {

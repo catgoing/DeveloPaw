@@ -135,6 +135,15 @@ font-size: 16px; color : #fff; border-radius: 2px; line-height: 42px;}
      
    }
    
+   .store_input4 {
+     border: 1px solid #f3f3f3;
+     background-color: #f3f3f3;
+     color: #000;
+     font-weight: bold;
+     text-align: right;
+     
+   }
+   
    .cartList_amount input {
 	  text-align: center;
 	}
