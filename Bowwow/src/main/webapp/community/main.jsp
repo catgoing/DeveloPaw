@@ -10,7 +10,8 @@
 <html>
 <head>
 <meta charset="utf-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=0, minimal-ui">
+<meta name="viewport"
+	content="width=device-width, initial-scale=1.0, user-scalable=0, minimal-ui">
 <meta http-equiv="X-UA-Compatible" content="IE=edge" />
 
 <meta name="keywords"
@@ -18,25 +19,36 @@
 <meta name="author" content="Codedthemes" />
 <!--Jua 폰트 import-->
 <link rel="preconnect" href="https://fonts.gstatic.com">
-<link href="https://fonts.googleapis.com/css2?family=Jua&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Jua&display=swap"
+	rel="stylesheet">
 
 <!-- Favicon icon -->
-<link rel="icon" href="/resources/images/favicon.ico" type="image/x-icon">
+<link rel="icon" href="/resources/images/favicon.ico"
+	type="image/x-icon">
 <!-- Google font-->
-<link href="https://fonts.googleapis.com/css?family=Open+Sans:400,600,700" rel="stylesheet">
+<link
+	href="https://fonts.googleapis.com/css?family=Open+Sans:400,600,700"
+	rel="stylesheet">
 <!-- waves.css -->
-<link rel="stylesheet" href="/resources/pages/waves/css/waves.min.css" type="text/css" media="all">
+<link rel="stylesheet" href="/resources/pages/waves/css/waves.min.css"
+	type="text/css" media="all">
 <!-- Required Fremwork -->
-<link rel="stylesheet" type="text/css" href="/resources/css/bootstrap/css/bootstrap.min.css">
+<link rel="stylesheet" type="text/css"
+	href="/resources/css/bootstrap/css/bootstrap.min.css">
 <!-- waves.css -->
-<link rel="stylesheet" href="/resources/pages/waves/css/waves.min.css" type="text/css" media="all">
+<link rel="stylesheet" href="/resources/pages/waves/css/waves.min.css"
+	type="text/css" media="all">
 <!-- themify icon -->
-<link rel="stylesheet" type="text/css" href="/resources/icon/themify-icons/themify-icons.css">
+<link rel="stylesheet" type="text/css"
+	href="/resources/icon/themify-icons/themify-icons.css">
 <!-- font-awesome-n -->
-<link rel="stylesheet" type="text/css" href="/resources/css/font-awesome-n.min.css">
-<link rel="stylesheet" type="text/css" href="/resources/css/font-awesome.min.css">
+<link rel="stylesheet" type="text/css"
+	href="/resources/css/font-awesome-n.min.css">
+<link rel="stylesheet" type="text/css"
+	href="/resources/css/font-awesome.min.css">
 <!-- scrollbar.css -->
-<link rel="stylesheet" type="text/css" href="/resources/css/jquery.mCustomScrollbar.css">
+<link rel="stylesheet" type="text/css"
+	href="/resources/css/jquery.mCustomScrollbar.css">
 <!-- Style.css -->
 <!-- <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/resources/css/style.css"> -->
 <link rel="stylesheet" type="text/css" href="/resources/css/style.css">
@@ -45,38 +57,6 @@
 <title>펫 다이어리</title>
 <style>
 </style>
-<script>
-$(document).ready(function () {
-    $("button").click(function () {
-        //ajax 쓰는 법
-        $.ajax({
-            //속성을 설정할 수 있다
-            url:"NewFile.jsp", //데이터를  넘겨줄 링크 설정
-            type:"GET", // get or post 방식
-            data:"t1=" + $("#data").val()+"&t2=Ajax", //넘겨줄 데이터
-            
-            //위에 과정이 성공했을 것을 생각하여 작성 
-             //ajax를 통해서 연결 성공하면 출력
-             //데이터가 전달되고 나서 다시 돌아왔을 때의 검사하는 것
-             //생략하면 안됨 적어줘야 한다.
-              success: function (data, status, xhr) {
-                   
-                    alert("통신 성공!");
-                    $("#demo").html(data);
-                },
-                error: function (xhr, status, error) {
-                    alert("통신 실패!");
-                },
-                complete: function (xhr, status) {
-                    alert("통신 종료");
-                }
-        });
-        
-    });
-    
-});
-
-</script>
 </head>
 <body>
 
@@ -120,18 +100,18 @@ $(document).ready(function () {
 												</div>
 												<div class="monthly-products">
 													<ul>
-													
-														
-														
+
 														<c:forEach var="list" items="${ boardList}">
 															<li>
-																<div class="block-item default-item" onclick="location.href='/community/detail?board_idx=${board_idx }&board_no=${list.board_no}'">
+																<div class="block-item default-item"
+																	onclick="location.href='/community/detail?board_idx=${board_idx }&board_no=${list.board_no}'">
 																	<div class="best-label">${list.board_no }</div>
 																	<div class="bookmark_btn click-btn">
 																		<div class="scrap" id="scrapBtn_311"
 																			onclick="WitCommon.boardScrap('knowhow', '311')">
-																			<img style="width:200px" id="scrapImg_311"
-																				src='https://projectbit.s3.us-east-2.amazonaws.com/${list.img1 }' alt="썸네일이 없음ㅁ">
+																			<img style="width: 200px" id="scrapImg_311"
+																				src='https://projectbit.s3.us-east-2.amazonaws.com/${list.img1 }'
+																				alt="썸네일이 없음ㅁ">
 																		</div>
 																	</div>
 																	<div class="img-area"
@@ -142,7 +122,8 @@ $(document).ready(function () {
 																	</div>
 																	<div class="text-area">
 																		<div class="item-title">
-																			<a href="/community/detail?board_idx=${board_idx }&board_no=${list.board_no}">${list.board_title }</a>
+																			<a
+																				href="/community/detail?board_idx=${board_idx }&board_no=${list.board_no}">${list.board_title }</a>
 																		</div>
 																		<p class="hashtag">
 																			<span>#마사지 </span><span>#강아지마사지 </span><span>#강아지테라피
@@ -209,35 +190,60 @@ $(document).ready(function () {
 				</div>
 			</div>
 		</div>
-		<button class="scroll-top" id="js-button"
-			style="margin-bottom: 190px; margin-right: 30px; font: 'Jua'">
-			<i class="fa fa-chevron-up" aria-hidden="true">TOP</i>
-		</button>
-		
-		<div class="fixed-button active"><a href="/community/write_board.jsp" class="btn btn-md btn-primary"> 글쓰기</a> </div>
-		
-		<script type="text/javascript">
-			scrollTop('js-button', 100);
-			function scrollTop(elem, duration) {
-				let target = document.getElementById(elem);
+           <button class="scroll-top" id="js-button" style="margin-bottom: 190px; margin-right: 30px; font: 'Jua'">
+                <i class="fa fa-chevron-up" aria-hidden="true">TOP</i>
+            </button>
+            <script type="text/javascript">
+                scrollTop('js-button', 500);
+                function scrollTop(elem,duration) {
+                    let target = document.getElementById(elem);
 
-				target.addEventListener('click', function() {
-					let currentY = window.pageYOffset;
-					let step = duration / currentY > 1 ? 10 : 100;
-					let timeStep = duration / currentY * step;
-					let intervalID = setInterval(scrollUp, timeStep);
+                    target.addEventListener('click', function() {
+                        let currentY = window.pageYOffset;
+                        let step = duration/currentY > 1 ? 10 : 100;
+                        let timeStep = duration/currentY * step;
+                        let intervalID = setInterval(scrollUp, timeStep);
 
-					function scrollUp() {
-						currentY = window.pageYOffset;
-						if (currentY === 0) {
-							clearInterval(intervalID);
-						} else {
-							scrollBy(0, -step);
-						}
-					}
-				});
-			}
-		</script>
+                        function scrollUp(){
+                            currentY = window.pageYOffset;
+                            if(currentY === 0) {
+                                clearInterval(intervalID);
+                            } else {
+                                scrollBy( 0, -step );
+                            }
+                        }
+                    });
+                }
+                </script>
+
+<!-- 		<div class="fixed-button active">
+			<a href="javascript:void(0)" class="btn btn-md btn-primary pcoded-item pcoded-left-item pcoded-hasmenu"> 
+			<span class="pcoded-mtext">글쓰기</span></a>
+			<ul class="pcoded-submenu">
+				<li class=""><a href="productList?p_type=dog"
+					class="waves-effect waves-dark"> <span class="pcoded-micon"><i
+							class="ti-angle-right"></i></span> <span class="pcoded-mtext">상품
+							전체보기</span> <span class="pcoded-mcaret"></span>
+				</a></li>
+				<li class=""><a href="productList?p_type=dog&p_category=food"
+					class="waves-effect waves-dark"> <span class="pcoded-micon"><i
+							class="ti-angle-right"></i></span> <span class="pcoded-mtext">사료</span>
+						<span class="pcoded-mcaret"></span>
+				</a></li>
+				<li class=""><a href="productList?p_type=dog&p_category=snack"
+					class="waves-effect waves-dark"> <span class="pcoded-micon"><i
+							class="ti-angle-right"></i></span> <span class="pcoded-mtext">간식</span>
+						<span class="pcoded-mcaret"></span>
+				</a></li>
+				<li class=""><a href="productList?p_type=dog&p_category=care"
+					class="waves-effect waves-dark"> <span class="pcoded-micon"><i
+							class="ti-angle-right"></i></span> <span class="pcoded-mtext">케어</span>
+						<span class="pcoded-mcaret"></span>
+				</a></li>
+			</ul>
+		</div> -->
+
+
 
 		<!-- footer 푸터 영역 -->
 		<%@ include file="/common/footer.jsp"%>
@@ -277,4 +283,3 @@ $(document).ready(function () {
 
 
 
-																			

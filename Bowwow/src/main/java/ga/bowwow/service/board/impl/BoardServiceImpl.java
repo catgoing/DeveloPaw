@@ -20,6 +20,8 @@ public class BoardServiceImpl implements BoardService{
 	private BoardDAO boardDAO;
 	@Autowired
 	private CommentDAO commentDAO;
+	@Autowired
+	private ReportDAO reportDAO;
 	
 	public BoardServiceImpl() {
 		System.out.println(">> BoardServiceImpl() 객체생성");
@@ -114,17 +116,36 @@ public class BoardServiceImpl implements BoardService{
 		return boardDAO.search(board, keyword);
 	}
 
-	@Override
-	public void insertReport(Report vo) {
-		System.out.println("report vo  :  " + vo);
-		boardDAO.insertReport(vo);
-		
-		
-	}
 	
 	public void boardDelete(Map<String,Object> map) {
 		System.out.println("map: " + map);
 		boardDAO.boardDelete(map);
+	}
+
+
+	@Override
+	public void updateBoardReport(Report vo) {
+		// TODO Auto-generated method stub
+		
+	}
+
+
+	@Override
+	public void updateCommentReport(Report vo) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public List<Report> getReportList(int report_idx) {
+		
+		return reportDAO.getReportList(report_idx);
+	}
+
+
+	@Override
+	public Report getReport(int report_idx, int report_no) {
+		return reportDAO.getReport(report_idx, report_no);
 	}
 	
 	public void commentDelete(Map<String,Object> map) {
