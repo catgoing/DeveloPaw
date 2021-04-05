@@ -130,7 +130,7 @@
 														<input type="text" name="id" id="id" class="form-control form-control" value=""> <span class="form-bar"></span> <label
 															class="float-label">아이디</label>
 														<div class="action_btn">
-															<button type="button" class="btn btn-primary" onclick="idDuplicationCheck();">중복 확인</button>
+															<button type="button" class="btn btn-primary" onclick="checkIdDuplication();">중복 확인</button>
 														</div>
 													</div>
 													<div class="form-group form-primary">
@@ -206,37 +206,37 @@
 														</div>
 													</fieldset>
 													<div class="btn">
-														<input type="button" value="주소 입력" class="btn btn-primary" onclick="dynamicAjaxSubmit();">
+														<input type="button" value="회원 가입" class="btn btn-primary" onclick="dynamicAjaxSubmit();">
 													</div>
 												</form>
 												<form id="wallet_form" name="wallet_form" action="/wallet/addWalletList" method="post">
 													
-													<fieldset id="Address">
+													<fieldset id="Wallet">
 														<div id="row">
-															<div class="form-group form-primary">
-																<input type="number" name="addressId_1" id="addressId_1" class="form-control form-control">
-																<span class="form-bar"></span> <label for="addressId_1" class="float-label">주소ID</label>
-															</div>
-															<div class="form-group form-primary">
-																<input type="number" name="memberSerial_1" id="memberSerial_1" class="form-control form-control">
-																<span class="form-bar"></span> <label for="memberSerial_1" class="float-label">멤버시리얼 </label>
-															</div>
-															<div class="form-group form-primary">
-																<input type="text" name="address_1" id="address_1" class="form-control form-control">
-																<span class="form-bar"></span> <label for="userAddress_1" class="float-label">주소</label>
-															</div>
-															<div class="form-group form-primary">
-																<input type="text" name="addressDetail_1" id="addressDetail_1" class="form-control form-control">
-																<span class="form-bar"></span> <label for="addressDetail_1" class="float-label">상세주소</label> 
-															</div>
-															<div class="form-group form-primary">
-																<input type="text" name="zonecode_1" id="zonecode_1" class="form-control form-control">
-																<span class="form-bar"></span> <label for="zonecode_1" class="float-label">우편번호</label> 
-															</div>
+<!-- 															<div class="form-group form-primary"> -->
+<!-- 																<input type="number" name="addressId_1" id="addressId_1" class="form-control form-control"> -->
+<!-- 																<span class="form-bar"></span> <label for="addressId_1" class="float-label">주소ID</label> -->
+<!-- 															</div> -->
+<!-- 															<div class="form-group form-primary"> -->
+<!-- 																<input type="number" name="memberSerial_1" id="memberSerial_1" class="form-control form-control"> -->
+<!-- 																<span class="form-bar"></span> <label for="memberSerial_1" class="float-label">멤버시리얼 </label> -->
+<!-- 															</div> -->
+<!-- 															<div class="form-group form-primary"> -->
+<!-- 																<input type="text" name="address_1" id="address_1" class="form-control form-control"> -->
+<!-- 																<span class="form-bar"></span> <label for="userAddress_1" class="float-label">주소</label> -->
+<!-- 															</div> -->
+<!-- 															<div class="form-group form-primary"> -->
+<!-- 																<input type="text" name="addressDetail_1" id="addressDetail_1" class="form-control form-control"> -->
+<!-- 																<span class="form-bar"></span> <label for="addressDetail_1" class="float-label">상세주소</label>  -->
+<!-- 															</div> -->
+<!-- 															<div class="form-group form-primary"> -->
+<!-- 																<input type="text" name="zonecode_1" id="zonecode_1" class="form-control form-control"> -->
+<!-- 																<span class="form-bar"></span> <label for="zonecode_1" class="float-label">우편번호</label>  -->
+<!-- 															</div> -->
 														</div>
 													</fieldset>
 													<div class="btn">
-														<input type="button" value="주소 입력" class="btn btn-primary" onclick="dynamicAjaxSubmit();">
+<!-- 														<input type="button" value="지불 정보 입력" class="btn btn-primary" onclick="dynamicAjaxSubmit();"> -->
 													</div>
 												</form>
 												
@@ -419,27 +419,53 @@
           	for (var formData of datas.entries()) {
           	  	var _key = formData[0];
           	  	var _value = formData[1];
-          	  	console.log(_key, _value);
+//           	  	console.log(_key, _value);
 
           	  	data[_key] = _value;
-          		console.log(data);
+//           		console.log(data);
           	}
           	return data;
      	}
+     	
      </script>
      <script>
-// 	function checkIdDuplication() {
-// 		const idData = getSingleForm(document.account_form); 
+     
+    function isSelectedKey(_keyActual, _keyExpected) {
+    	return _keyActual === _keyExpected;
+    }
+    function getSelectedFieldForm(_form, _SelectedField) {
+  		var form = _form;
+  		var fields = _SelectedField;
+       	const data = {};
+       	var datas = new FormData(form);
+
+       	for (var formData of datas.entries()) {
+       	  	var _key = formData[0];
+       	 	for(var formField of fields) {
+//        	 		console.log(isSelectedKey(_key, formField));
+       	 		if(isSelectedKey(_key, formField)) {
+// 	       			console.log(_key, formField);
+		       	  	var _value = formData[1];
+		       	  	data[_key] = _value;
+       	 		}
+        	}
+       	}
+//        	return data;
+		return data; 
+  	}
+	function checkIdDuplication() {
+		const idData = getSelectedFieldForm(document.account_form, ["id"]);
+     	console.log(idData);
 		
-// 		$.ajax("/account/checkIdDuplication", {
-// 	        type: "POST",
-// 	        data: JSON.stringify(idData),
-// 	        contentType:"application/json; charset=UTF-8",
-// 	        success: function() {
-// 	      	  alert('success');
-// 	        }
-// 	 	 });
-// 	}
+		$.ajax("/account/checkIdDuplication", {
+	        type: "GET",
+	        data: JSON.stringify(idData),
+	        contentType:"application/json; charset=UTF-8",
+	        success: function() {
+	      	  alert('success');
+	        }
+	 	 });
+	}
 	</script>
 	<script>
 	

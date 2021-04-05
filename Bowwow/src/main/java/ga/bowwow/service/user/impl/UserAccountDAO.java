@@ -30,7 +30,7 @@ public class UserAccountDAO extends UserGenericDAO<UserAccount> {
 	}
 	
 	public UserAccount verifyId(UserAccount userAccount) {
-		return mybatis.selectOne("UserAccount.IdValidation", userAccount);
+		return mybatis.selectOne("UserAccount.checkIdValidation", userAccount);
 	}
 	
 	public List<UserAccount> getUserList() {

@@ -33,7 +33,6 @@ public class UserAccountController extends UserCRUDGenericController<UserAccount
 		this.setDomainRoute("/ok", "/auth.login");
 	}
 	
-	
 	@PostMapping(value= "/addAccountWithAddressList",
 			produces = "application/text; charset=UTF-8")
 	protected String add(UserAccount vo, @RequestBody List<UserAddress> userAddressList)  {
