@@ -158,6 +158,12 @@ public class BoardServiceImpl implements BoardService{
 		boardDAO.commentDelete2(map);
 	}
 
+	@Override
+	public void insertReport(Report vo) {
+		// TODO Auto-generated method stub
+		
+	}
+
 
 
 	

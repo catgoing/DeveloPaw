@@ -477,9 +477,13 @@ public class BoardController {
 	public String insertComment2(Comment vo) throws IllegalStateException, IOException, AmazonClientException, InterruptedException {
 		System.out.println(">>> 댓글 입력 - insertComment()");
 		System.out.println("vo : " + vo);
+		
+		Map<String, Object> map = new HashMap<String, Object>();
+		map.put("board_idx", 1);
+		map.put("board_no", 1);
 
 
-		boardService.insertComment2(vo);
+		boardService.insertComment2(map);
 		return null;
 	}
 	

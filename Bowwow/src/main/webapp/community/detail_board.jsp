@@ -64,6 +64,8 @@
 </style>
 <!-- 신고하기  -->
 	<script>
+	
+
         $(function (){
         	$('.readonly').prop('readonly', true);
             $('.report_class').click(function(){
@@ -135,31 +137,27 @@
 													<form action="/community/update/board" method="post">
 													<div>
 														<h3 class="join_title">
-															<label for="id">제목</label>
+															<label for="id" style="color:black;">${vo.board_title }</label>
 														</h3>
-														<span class="box int_id"> ${vo.board_title } </span>
 													</div>
 													
+													<!-- 여기에 회원정보(사진, 닉네임 등) 출력 -->
 													
 													<div>
 														<h3 class="join_title">
 															<label for="id">내용</label>
 														</h3>
-														<span class="box int_id"> ${vo.board_content } </span>
+														<span class="box int_id" style="color:black; text-align:center;"> ${vo.board_content } </span>
 													</div>
 													
 													<!-- 수정하기 -->
 													<input type="hidden" name="board_idx" value="${board_idx }">
 													<input type="hidden" name="board_no" value="${vo.board_no }">
 													<input type="submit" value="수정">
+													<input type="submit" value="삭제 " formaction="/community/delete/board">
 													</form>
-					
-													<!-- 삭제하기 -->
-													<form action="boardDelete">
-													<input type="hidden" name="board_no" value=${board_no }>											
-													<input type="hidden" name="board_idx" value=${board_idx }>
-													<input type="submit" value="삭제하기">
-													</form>
+				
+
 													<hr>
 													댓글달기								
 													<form action="/community/comment" method="GET">												
@@ -224,7 +222,7 @@
 																		<input type="hidden" name="board_no" value=${board_no }>		
 																		<input type="hidden" name="board_idx" value=${board_idx }>									
 																		<input type="hidden" name="comment_no" value=${com2vo.comment_no }>
-																		<input type="submit" value="삭제하기">
+																		<input type="submit" value="삭제하기" >
 																	</form>
 																	</div>
 																<hr>
