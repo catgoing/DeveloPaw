@@ -64,7 +64,7 @@
 		
 	});
 	
-	
+	// 장바구니 상품 삭제
 	function delCart(pId, userId) {
 		
 		var chk = confirm("상품을 삭제하시겠습니까?");
@@ -87,6 +87,18 @@
 			}
 		}
 	} //end of delCart(pId, userId);
+	
+	// 장바구니 상품 전체 체크
+	function chkAll() {
+		if ($("#checkAll").is(':checked')) {
+			$("input:checkbox[name='p_id']").prop("checked", true);
+			itemCheck();
+			
+		} else {
+			$("input:checkbox[name='p_id']").prop("checked", false);
+			itemCheck();
+		}
+	}
 	
 	// 체크된 상품만 총액 계산
  	function itemCheck() {
@@ -132,7 +144,6 @@
  		
  	}
  	
- 	
  	// 콤마 빼기
 	function numberRemoveCommas(x) {
 	    return parseInt(x.replace(/,/g,""));
@@ -147,6 +158,10 @@
 	      return x.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
 	   }
 	}
+ 	
+ 	function hsBack() {
+ 		history.back();
+ 	}
 
 </script>
 	
@@ -180,7 +195,9 @@
 												<table>
 													<thead>
 														<tr>
-															<th><a onclick="multiTotalPrice();">check</a></th>
+															<th>
+																<input type="checkbox" id="checkAll" onclick="chkAll();">
+															</th>
 															<th></th>
 															<th class="p-name" colspan="2">상품명</th>
 															<th>판매가</th>
@@ -250,8 +267,8 @@
 											<div class="row">
 												<div class="col-lg-4">
 													<div class="cart-buttons">
-														<a href="#" class="primary-btn continue-shop">계속 쇼핑하기</a>
-														<a onclick="delCheck()" class="primary-btn up-cart">선택 삭제</a>
+														<a onclick="hsBack()" class="primary-btn continue-shop" style="cursor:pointer; color: #000;">계속 쇼핑하기</a>
+														<a onclick="delCheck()" class="primary-btn up-cart" style="cursor:pointer;">선택 삭제</a>
 													</div>
 													<div class="discount-coupon">
 														<h6>적립금 사용</h6>
