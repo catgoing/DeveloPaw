@@ -23,8 +23,7 @@ public class Pet {
 	private int pet_serial;
 	private int member_serial;
 	private String image_source_oriname;
-	//private MultipartFile image_source;
-	private String image_source;
+	private MultipartFile image_source;
 	private String animal_type;
 	private String pet_name;
 	private String pet_gender;
@@ -39,6 +38,6 @@ public class Pet {
 	private int back_length;
 	private int chest_length;
 	
-	//@DateTimeFormat(pattern="yyyy-MM-dd") - Date타입일 때
+	//@DateTimeFormat(pattern="yyyy-MM-dd")
 	private String pet_birth;
 }

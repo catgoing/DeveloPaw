@@ -4,7 +4,15 @@
     <% request.setCharacterEncoding("UTF-8"); %>
 <%@ taglib uri="http://tiles.apache.org/tags-tiles" prefix="tiles"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
-
+<%-- <%
+	//임시 로그인처리
+	int memberSerial = 1;
+	String id = "z";
+	UserAccount user= new UserAccount();
+	user.setId(id);
+	user.setMemberSerial(memberSerial);
+	session.setAttribute("user", user);
+%> --%>
 <!DOCTYPE html>
 <html>
 
@@ -266,14 +274,12 @@ $().ready(function(){
 	    <div class="page-wrapper">
 		        <!-- Page-body start -->
 					<div class="page-body">
-				     	<c:if test="${user == null }">
-				     	
-				     	</c:if>
 						<div class="my-inquiry">
 							<div class="question-write">
 								<div class="question-title">
 							    	<h2>고객문의</h2>
 						     	</div>
+						     	
 						     	<div class="card-block accordion-block">
                                    <div id="accordion" role="tablist" aria-multiselectable="true">
                                        <div class="accordion-panel">
@@ -298,7 +304,12 @@ $().ready(function(){
 														</select>
 							    					</div>
 							    					<textarea class="form-control" name="inquiry_content" rows="5" placeholder="질문을 입력하세요!"></textarea>
-								  					</div>
+								  					<div class="upload-file">
+												    	<div class="upload-file-content">
+													    	<input type="file" class="form-control" id="contactUsImage" name="image_source" accept="image/*">
+												    	</div>
+												    </div>
+							    				</div>
 							    				<input type="hidden" name="member_serial" value="${user.memberSerial }">
                                            </form>
                                            </div>
@@ -326,11 +337,11 @@ $().ready(function(){
 									<c:forEach var="inquiry" items="${inquiryList }">
 									<tr>
 										<td>
-											<a href="myInquiryDetail.jsp?seq=${inquiry.inquiry_serial }">
-												${inquiry.inquiry_title }</a>
+											<a href="myInquiryDetail.jsp?seq=${inquiry.seq }">
+												${inquiry.title }</a>
 										</td>
-										<td>${inquiry.nickname }</td>
-										<td>${inquiry.inquiry_writedate }</td>
+										<td>${inquiry.writer }</td>
+										<td>${inquiry.regdate }</td>
 									</tr>
 									</c:forEach>
 								</c:if>
@@ -359,14 +370,47 @@ $().ready(function(){
 	            <div id="styleSelector"> </div>
 	        </div>
 	      </div>
-	</div>
-      </div>
-    </div>
+	      
+	<button class="scroll-top" id="js-button" style="margin-bottom: 190px; margin-right: 30px;">
+        <i class="fa fa-chevron-up" aria-hidden="true">TOP</i>
+    </button>
+    <script type="text/javascript">
+        scrollTop('js-button', 500);
+        function scrollTop(elem,duration) {
+            let target = document.getElementById(elem);
+        
+            target.addEventListener('click', function() {
+                let currentY = window.pageYOffset; 
+                let step = duration/currentY > 1 ? 10 : 100;
+                let timeStep = duration/currentY * step;
+                let intervalID = setInterval(scrollUp, timeStep);
+        
+                function scrollUp(){
+                    currentY = window.pageYOffset;
+                    if(currentY === 0) {
+                        clearInterval(intervalID);
+                    } else {
+                        scrollBy( 0, -step );
+                    }
+                }
+            });
+        }
+        </script>
+        
 	<!-- footer 푸터 시작부분-->
-	<%@include file="/common/footer.jsp" %>
-	<!-- footer 푸터 끝부분-->
-    </div>
-    </div>
+            <div style="display: block;">
+                <footer class="footer navbar-wrapper">
+                    <div class="footer-wrapper navbar-wrapper">
+                        <div class="footer-box" style="height: 100px; text-align: center;">
+                            푸터
+                        </div>
+                    </div>
+                </footer>
+                <!-- footer 푸터 끝부분-->
+          </div>
+        </div>
+      </div>
+    </div></div></div>
 	<!-- Required Jquery -->
     <script type="text/javascript" src="../resources/js/jquery/jquery.min.js "></script>
     <script type="text/javascript" src="../resources/js/jquery-ui/jquery-ui.min.js "></script>
