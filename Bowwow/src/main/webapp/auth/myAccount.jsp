@@ -192,15 +192,15 @@
 																<span class="form-bar"></span> <label for="memberSerial_1" class="float-label">멤버시리얼 </label>
 															</div>
 															<div class="form-group form-primary">
-																<input type="text" name="address_1" id="address_1" class="form-control form-control">
-																<span class="form-bar"></span> <label for="userAddress_1" class="float-label">주소</label>
+																<input type="text" name="address_1" id="address_1" class="form-control form-control" readonly >
+																<span class="form-bar"></span> <label for="userAddress_1" class="float-label" >주소</label>
 															</div>
 															<div class="form-group form-primary">
 																<input type="text" name="addressDetail_1" id="addressDetail_1" class="form-control form-control">
 																<span class="form-bar"></span> <label for="addressDetail_1" class="float-label">상세주소</label> 
 															</div>
 															<div class="form-group form-primary">
-																<input type="text" name="zonecode_1" id="zonecode_1" class="form-control form-control">
+																<input type="text" name="zonecode_1" id="zonecode_1" class="form-control form-control" readonly >
 																<span class="form-bar"></span> <label for="zonecode_1" class="float-label">우편번호</label> 
 															</div>
 														</div>
@@ -450,7 +450,6 @@
        	 		}
         	}
        	}
-//        	return data;
 		return data; 
   	}
 	function checkIdDuplication() {
@@ -458,17 +457,21 @@
      	console.log(idData);
 		
 		$.ajax("/account/checkIdDuplication", {
-	        type: "GET",
+	        type: "POST",
 	        data: JSON.stringify(idData),
 	        contentType:"application/json; charset=UTF-8",
 	        success: function() {
-	      	  alert('success');
+	      	  alert('가입 가능한 아이디입니다.');
+	      	  //TODO readOnly 필드의 개방!!!! 
 	        }
-	 	 });
+	 	 }).fail(function(data, textStatus, xhr) {
+	      	  alert('이미 등록된 아이디입니다.');
+
+              console.log("fail error", data.status);
+         });
 	}
 	</script>
 	<script>
-	
 // 		TODO: 하나의 요청/컨트롤러로 합쳐야함
       function dynamicAjaxSubmit() {
     	 const addressData = getMultiForm(document.address_form);

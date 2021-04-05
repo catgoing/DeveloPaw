@@ -48,7 +48,7 @@
 		SELECT * FROM USER_ACCOUNT WHERE ID = #{id} AND PASSWORD = #{password}
 	</select>
 	
-	<select id="checkIdValication" parameterType="UserAccount" resultType="UserAccount">
+	<select id="checkIdValidation" parameterType="UserAccount" resultType="UserAccount">
 		SELECT * FROM USER_ACCOUNT WHERE ID = #{id}
 	</select>
 	

@@ -40,4 +40,5 @@
 		<constructor-arg ref="sqlSessionFactory" />
 		<qualifier value="local" />
 	</bean>
+
 </beans>

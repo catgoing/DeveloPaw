@@ -3,6 +3,7 @@ package ga.bowwow.service.user.impl;
 import java.util.List;
 import java.util.Map;
 
+import org.apache.ibatis.exceptions.TooManyResultsException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -14,7 +15,6 @@ import ga.bowwow.service.user.VO.UserAccount;
 //		비즈니스 로직처리 서비스 영역에 사용
 @Service("UserAccountService")
 public class UserAccountServiceImpl extends UserGenericService<UserAccount> {
-	
 	public UserAccountServiceImpl(@Autowired UserAccountDAO dao) {
 		this.dao = dao;
 	}
@@ -24,7 +24,11 @@ public class UserAccountServiceImpl extends UserGenericService<UserAccount> {
 	}
 	
 	public boolean checkIdDuplication(UserAccount userAccount) {
-		return !StaticUtil.isNotNull(((UserAccountDAO)dao).verifyId(userAccount));
+		//should be null;
+		System.out.println("checkIdDuplication Vo: " + userAccount);
+		System.out.println("checkIdDuplication : " + ((UserAccountDAO)dao).verifyId(userAccount));
+		System.out.println("checkIdDuplication return : " + StaticUtil.isListNotNull(((UserAccountDAO)dao).verifyId(userAccount)));
+		return !StaticUtil.isListNotNull(((UserAccountDAO)dao).verifyId(userAccount));
 	}
 	
 	@Override
