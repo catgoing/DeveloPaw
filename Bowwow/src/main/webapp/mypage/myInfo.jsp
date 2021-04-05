@@ -124,6 +124,20 @@
 	background-color : f3f3f3;
 	border: none;
 }
+.passinput { 
+	position: relative; 
+} 
+.passinput .eyes { 
+	position: absolute; 
+	top: 0; 
+	bottom: 0; 
+	right: 20px; 
+	margin: auto 2px; 
+	height: 30px; 
+	font-size: 20px; 
+	cursor: pointer; 
+}
+
 </style>
 <script>
 
@@ -135,8 +149,6 @@ $(function(){
 			$(this).val(inputVal.replace(/[^a-z0-9@_.-]/gi,''));//한글과 @_.-를 제외한 특수문자입력금지
 		}
 	});
-	
-	
 	//아이디는 변경금지라서 필요없어짐ㅋㅋ
 	/* $("input[name=id]").on("keyup", function(event){
 		if(!(event.keyCode >=37 && event.keyCode<=40)){
@@ -160,6 +172,22 @@ $(function(){
 	
  }
 
+ $(function(){
+	$('.eyes').on('click', function(){
+		$('.passinput').addClass('active');
+		
+		if($('.passinput').hasClass('active') == true){
+			$('.passinput').removeClass('active');
+			$(this).find('.fa-eye').attr('class',"fa fa-eye-slash fa-lg").parents('.passinput').find('#password').attr('type',"text");
+			//$(this).find('.fa-eye').attr('class',"fa fa-eye-slash fa-lg").parents('.passinput').find("#password2").attr('type',"text");
+		} else {
+			$('.passinput').addClass('active');
+			$(this).find('.fa-eye').attr('class',"fa fa-eye fa-lg").parents('.passinput').find('#password').prop('type','password');
+			//$(this).find('.fa-eye').attr('class',"fa fa-eye fa-lg").parents('.passinput').find("#password2").attr('type','password');
+		}
+	});
+});
+ 
  
  function sample4_execDaumPostcode() {
      new daum.Postcode({
@@ -326,15 +354,21 @@ $(function(){
     </div>
   </div>
   <div class="form-group">
-    <label for="inputPassword" class="col-sm-4 control-label">기존 비밀번호</label>
+    <label for="inputPassword" class="col-sm-4 control-label">Password</label>
     <div class="col-sm-8 passinput">
       <input type="password" class="form-control password" name="password" id="password" placeholder="Password">
+      <div class="eyes"> 
+      	<i class="fa fa-eye fa-lg"></i>
+      </div>
     </div>
   </div>
   <div class="form-group">
-    <label for="inputPassword2" class="col-sm-4 control-label">새 비밀번호</label>
+    <label for="inputPassword2" class="col-sm-4 control-label">Password 확인</label>
     <div class="col-sm-8 passinput2">
-      <input type="password" class="form-control password" name="newPassword" id="password2" placeholder="Password 재입력">
+      <input type="password" class="form-control password" id="password2" placeholder="Password 재입력">
+      <div class="eyes2"> 
+      	<i class="fa fa-eye fa-lg"></i>
+      </div>
     </div>
   </div>
   <div class="form-group">

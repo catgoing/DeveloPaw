@@ -81,8 +81,8 @@
 			        </tr>
 			        <tr>
 				        <td rowspan="3" colspan="2">
-				        <input type="file" id="attachImg" name="file" accept="image/jpg, image/gif image/png, image/jpeg">
-			        	<div id="preview_container"></div>
+				        <input type="file" name="image_source" accept="image/jpg, image/gif image/png, image/jpeg" onchange="setThumbnail(event)">
+			        	<div id="image_container"></div>
 				       
 				        </td>
 						<td class="insert-title">목둘레</td>
@@ -102,10 +102,8 @@
 			        </tr>
 		         </tbody>
 	            </table>
-		          <input type="hidden" id="insert_animal_type" name="animal_type" value="dog">
-		          <input type="hidden" id="insert_member_serial" name="member_serial" value="1">
-		          <input type="hidden" id="insert_iso" name="image_source_oriname" value="">
-<%-- 		          <input type="hidden" id="insert_member_serial" name="member_serial" value="<c:out value='${user.memberSerial}'/>"> --%>
+		          <input type="hidden" id="insert_animal_type" name="animal_type" value="">
+		          <input type="hidden" id="insert_member_serial" name="member_serial" value="<c:out value='${user.memberSerial}'/>">
 	          </div>
 	      	</div>
 	      <div class="modal-footer">
