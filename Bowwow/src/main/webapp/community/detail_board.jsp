@@ -76,6 +76,17 @@
                 }
             });
         });
+        
+        
+        
+		$(function(){
+			$(".comment2Click").click(function(){
+				var idx = $(".comment2Click").index(this); //클릭한 댓글위치찾기
+				$(".comment2Box").eq(idx).css("display","block");
+			})
+		})
+
+    
     </script>
     
 </head>
@@ -174,9 +185,30 @@
 																<input type="submit" value="삭제하기">
 															</form>
 															
-
-															<button name = "comment" value="${comvo.comment_no },${tempMemberSerial}" onclick="">신고</button>
-
+															<div class="comment2Click">
+																<button id =  comment2_insert name = "comment2_insert" >대댓글 등록</button>											
+															</div>
+															<div class="comment2Box" style="display:none; boarder-bottom:2px dotted silver;">													
+																<form action="/community/comment2" method="GET">												
+																	<div>
+																		내용 : <textarea name="comment_content" id="comment_content" cols="30" rows="3"></textarea>
+																	</div>
+																	<input type="hidden" name="comment_no" value=${comvo.comment_no }>											
+																	<input type="hidden" name="board_idx" value=${board_idx }>	
+																	<input type="hidden" name="board_no" value=${board_no }>
+																	<input type="submit" value="등록">
+																</form>
+															</div>
+															
+													<%--	<script>
+															$(function(){
+																$("#comment2_insert").click(function(){
+																	var idx = $("#comment2_insert").index(this); //클릭한 댓글위치찾기
+																	$(".comment2Box").eq(idx).css("display","block");
+																})
+															})
+														</script> --%>
+															
 
 															<c:set var="com1" value="${comvo.comment_no }" />
 															<hr>
@@ -187,6 +219,13 @@
 																	<div >
 																	대댓글<br>
 																	${com2vo.comment_content } // ${com2vo.nickname } // ${com2vo.regdate }
+																<!-- 대댓글 삭제하기 -->
+																	<form action="commentDelete2">
+																		<input type="hidden" name="board_no" value=${board_no }>		
+																		<input type="hidden" name="board_idx" value=${board_idx }>									
+																		<input type="hidden" name="comment_no" value=${com2vo.comment_no }>
+																		<input type="submit" value="삭제하기">
+																	</form>
 																	</div>
 																<hr>
 																</c:if>

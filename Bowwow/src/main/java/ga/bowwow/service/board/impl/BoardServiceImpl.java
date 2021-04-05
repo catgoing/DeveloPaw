@@ -64,9 +64,9 @@ public class BoardServiceImpl implements BoardService{
 	//댓글부분
 	
 	@Override
-	public void insertComment(Comment vo) {
-		System.out.println("service: " + vo);
-		commentDAO.insertComment(vo);
+	public void insertComment(Map<String, Object> map) {
+		System.out.println("inserComment: " + map);
+		commentDAO.insertComment(map);
 		
 	}
 
@@ -90,8 +90,8 @@ public class BoardServiceImpl implements BoardService{
 	//대댓글 부분
 	
 	@Override
-	public void insertComment2(Comment vo) {
-		commentDAO.insertComment2(vo);
+	public void insertComment2(Map<String, Object> map) {
+		commentDAO.insertComment2(map);
 	}
 
 	@Override
@@ -131,6 +131,15 @@ public class BoardServiceImpl implements BoardService{
 		System.out.println("map: " + map);
 		boardDAO.commentDelete(map);
 	}
+	
+	public void commentDelete2(Map<String,Object> map) {
+		System.out.println("map: " + map);
+		boardDAO.commentDelete2(map);
+	}
+
+
+
+	
 	
 
 }

@@ -43,6 +43,7 @@
 		<choose>
 			<when test="board_idx == 1"> DIARY_BOARD B, USER_ACCOUNT U WHERE B.MEMBER_SERIAL = U.MEMBER_SERIAL </when>
 			<when test="board_idx == 2"> INTRO_BOARD B, USER_ACCOUNT U WHERE B.MEMBER_SERIAL = U.MEMBER_SERIAL </when>
+			<when test="board_idx == 3"> KNOWHOW_BOARD B, USER_ACCOUNT U WHERE B.MEMBER_SERIAL = U.MEMBER_SERIAL </when>
 		</choose>
 		ORDER BY BOARD_NO DESC
 	</select>
@@ -53,6 +54,7 @@
 		<choose>
 			<when test="board_idx == 1"> DIARY_BOARD </when>
 			<when test="board_idx == 2"> INTRO_BOARD </when>
+			<when test="board_idx == 3"> KNOWHOW_BOARD</when>
 		</choose>
 		WHERE BOARD_NO = ${board_no}
 	</select>
@@ -105,16 +107,50 @@
 	</update>
 	
 	
-	<insert id="insertComment" parameterType="comment">
-		INSERT INTO DIARY_COMMENTS (COMMENT_NO, MEMBER_SERIAL, BOARD_NO, COMMENT_CONTENT, REGDATE) 
-		VALUES (DIARY_COMMENTS_SEQ.NEXTVAL, 994, #{board_no}, #{comment_content}, SYSDATE)
-<!-- 		VALUES (DIARY_COMMENTS_SEQ.NEXTVAL, #{member_serial}, #{board_no}, #{comment_content}, SYSDATE) -->
+	<insert id="insertComment" parameterType="Map">
+		INSERT INTO 
+		<choose>
+			<when test="board_idx == 1"> 
+				DIARY_COMMENTS (COMMENT_NO, MEMBER_SERIAL, BOARD_NO, COMMENT_CONTENT, REGDATE) 
+				VALUES (DIARY_COMMENTS_SEQ.NEXTVAL, 994, #{comment.board_no}, #{comment.comment_content}, SYSDATE)
+		<!-- 		VALUES (DIARY_COMMENTS_SEQ.NEXTVAL, #{member_serial}, #{board_no}, #{comment_content}, SYSDATE) -->
+			</when>
+			<when test="board_idx == 2"> 
+				INTRO_COMMENTS (COMMENT_NO, MEMBER_SERIAL, BOARD_NO, COMMENT_CONTENT, REGDATE) 
+				VALUES (DIARY_COMMENTS_SEQ.NEXTVAL, 994, #{comment.board_no}, #{comment.comment_content}, SYSDATE)
+		<!-- 		VALUES (DIARY_COMMENTS_SEQ.NEXTVAL, #{member_serial}, #{board_no}, #{comment_content}, SYSDATE) -->
+			</when>
+			<when test="board_idx == 3"> 
+				KNOWHOW_COMMENTS (COMMENT_NO, MEMBER_SERIAL, BOARD_NO, COMMENT_CONTENT, REGDATE) 
+				VALUES (DIARY_COMMENTS_SEQ.NEXTVAL, 994, #{comment.board_no}, #{comment.comment_content}, SYSDATE)
+		<!-- 		VALUES (DIARY_COMMENTS_SEQ.NEXTVAL, #{member_serial}, #{board_no}, #{comment_content}, SYSDATE) -->
+			</when>
+		</choose>
+		
 	</insert>
 	
-	<insert id="insertComment2" parameterType="comment">
-		INSERT INTO DIARY_COMMENTS2 (COMMENT_NO2, MEMBER_SERIAL, COMMENT_NO, COMMENT_CONTENT2, REGDATE) 
-		VALUES (DIARY_COMMENTS2_SEQ.NEXTVAL, #{member_serial}, #{comment_no}, #{comment_content}, SYSDATE)
+	<insert id="insertComment2" parameterType="Map">
+	INSERT INTO 
+	<choose>
+		<when test="board_idx == 1"> 
+			DIARY_COMMENTS2 (COMMENT_NO2, MEMBER_SERIAL, COMMENT_NO, COMMENT_CONTENT2, REGDATE) 
+			VALUES (DIARY_COMMENTS2_SEQ.NEXTVAL, 994, #{comment.comment_no}, #{comment.comment_content}, SYSDATE)
+		</when>
+		<when test="board_idx == 2"> 
+			INTRO_COMMENTS2 (COMMENT_NO2, MEMBER_SERIAL, COMMENT_NO, COMMENT_CONTENT2, REGDATE) 
+			VALUES (INTRO_COMMENTS2_SEQ.NEXTVAL, 994, #{comment.comment_no}, #{comment.comment_content}, SYSDATE)
+		</when>
+		<when test="board_idx == 3"> 
+			KNOWHOW_COMMENTS2 (COMMENT_NO2, MEMBER_SERIAL, COMMENT_NO, COMMENT_CONTENT2, REGDATE) 
+			VALUES (KNOWHOW_COMMENTS2_SEQ.NEXTVAL, 994, #{comment.comment_no}, #{comment.comment_content}, SYSDATE)
+		</when>
+		
+		
+		
+		</choose>
 	</insert>
+		
+		
 	
 	
 	<select id="getCommentList" parameterType="Map" resultType="comment" >
@@ -123,6 +159,7 @@
 		<choose>
 			<when test="board_idx == 1"> DIARY_COMMENTS C, USER_DETAIL U WHERE C.MEMBER_SERIAL = U.MEMBER_SERIAL </when>
 			<when test="board_idx == 2"> INTRO_COMMENTS C, USER_DETAIL U WHERE C.MEMBER_SERIAL = U.MEMBER_SERIAL </when>
+			<when test="board_idx == 3"> KNOWHOW_COMMENTS C, USER_DETAIL U WHERE C.MEMBER_SERIAL = U.MEMBER_SERIAL </when>
 		</choose>
 		AND BOARD_NO = ${board_no}
 	</select>
@@ -136,6 +173,9 @@
 			</when>
 			<when test="board_idx == 2"> 
 			INTRO_COMMENTS2 C2, INTRO_COMMENTS C, USER_DETAIL U 
+			</when>
+			<when test="board_idx == 3"> 
+			INTRO_COMMENTS2 C2, KNOWHOW_COMMENTS C, USER_DETAIL U 
 			</when>
 		</choose>
 		WHERE C2.COMMENT_NO = C.COMMENT_NO
@@ -165,9 +205,12 @@
 		<choose>
 			<when test="board_idx == 1"> DIARY_BOARD</when>
 			<when test="board_idx == 2"> INTRO_BOARD</when>
+			<when test="board_idx == 3"> KNOWHOW_BOARD</when>
 		</choose>
-		WHERE BOARD_NO = #{board_no}
+		WHERE BOARD_NO=#{board_no}
 	</delete>
+	
+	
 	
 	<update id="commentDelete" parameterType="Map">
 		UPDATE 
@@ -183,14 +226,13 @@
 			SET MEMBER_SERIAL = NULL
 			, COMMENT_CONTENT = NULL
 			</when>
-			<!--
+			
 			<when test="board_idx == 3"> 
-			KNOWHOW_BOARD 
-			SET BOARD_TITLE = #{board_title}
-				, BOARD_CONTENT = #{board_content}
-				, ANIMAL_CLASS = #{animal_class}
-				, SUB_CLASS = #{sub_class}
+			KNOWHOW_COMMENTS 
+			SET MEMBER_SERIAL = NULL
+			, COMMENT_CONTENT = NULL
 			</when>
+			<!--
 			<when test="board_idx == 4"> 
 			MISSING_BOARD 
 			SET BOARD_TITLE = #{board_title}
@@ -216,6 +258,56 @@
 		</choose> 
 		WHERE COMMENT_NO = ${comment.comment_no}
 	</update>
+	
+		<update id="commentDelete2" parameterType="Map">
+		UPDATE 
+		<choose>
+			<when test="board_idx == 1"> 
+			DIARY_COMMENTS2 
+			SET MEMBER_SERIAL = NULL
+			, COMMENT_CONTENT2 = NULL
+		 
+			</when>
+			<when test="board_idx == 2"> 
+			INTRO_COMMENTS2 
+			SET MEMBER_SERIAL = NULL
+			, COMMENT_CONTENT2 = NULL
+			</when>
+			
+			<when test="board_idx == 3"> 
+			KNOWHOW_COMMENTS2 
+			SET MEMBER_SERIAL = NULL
+			, COMMENT_CONTENT2 = NULL
+			</when>
+			<!--
+			<when test="board_idx == 4"> 
+			MISSING_BOARD 
+			SET BOARD_TITLE = #{board_title}
+				, BOARD_CONTENT = #{board_content}
+				, ANIMAL_CLASS = #{animal_class}
+			</when>
+			<when test="board_idx == 5"> 
+			USED_TRANSACTION_BOARD 
+			SET BOARD_TITLE = #{board_title}
+				, GOODS = #{goods}
+				, AREA = #{area}
+				, PRICE = #{price}
+				, IS_SELLED = #{is_selled}
+				, BOARD_CONTENT = #{board_content}
+				, ANIMAL_CLASS = #{animal_class}
+			</when>
+			<when test="board_idx == 6"> 
+			EVENT_BOARD 
+			SET BOARD_TITLE = #{board_title}
+				, BOARD_CONTENT = #{board_content}
+			</when>
+			 -->
+		</choose> 
+		WHERE COMMENT_NO = ${comment.comment_no}
+	</update>
+	
+	
+	
 	
 	
 	

@@ -90,6 +90,7 @@ public class BoardDAO {
 	
 	//게시글 1개 조회
 	public Board getBoard(Map<String, Integer> map) {
+		System.out.println("상세페이지 : " + map);
 		System.out.println("===> MyBatis로 getBoard() 실행");
 		return mybatis.selectOne("BoardDAO.getBoard", map);
 	}
@@ -122,6 +123,7 @@ public class BoardDAO {
 	
 	public void boardDelete(Map<String, Object> map) {
 		System.out.println("===> MyBatis로 boardDelete 실행");
+		System.out.println("꺄르륵" + map);
 		mybatis.delete("BoardDAO.boardDelete", map);
 	}
 	
@@ -146,6 +148,13 @@ public class BoardDAO {
 		System.out.println("===> MyBatis로 commentDelete 실행");
 		System.out.println("commentDelete map :"+map );
 		mybatis.update("BoardDAO.commentDelete", map);
+		
+	}
+	
+	public void commentDelete2(Map<String, Object> map) {
+		System.out.println("===> MyBatis로 commentDelete 실행");
+		System.out.println("commentDelete map :"+map );
+		mybatis.update("BoardDAO.commentDelete2", map);
 		
 	}
 
