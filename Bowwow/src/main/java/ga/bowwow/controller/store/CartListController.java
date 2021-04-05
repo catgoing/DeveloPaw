@@ -1,7 +1,6 @@
 package ga.bowwow.controller.store;
 
 import java.util.HashMap;
-import java.util.Iterator;
 import java.util.List;
 import java.util.Map;
 
@@ -27,39 +26,30 @@ public class CartListController {
 	// 장바구니 추가
 	@RequestMapping(value = "/store/addCart")
 	@ResponseBody
-	public Map addCartList(CartList cartList) {
-		Map<String, String> returnMap = new HashMap<String, String>();
-		System.out.println("cartlist : " + cartList);
+	public Map<String, String> addCartList(CartList cartList) {
 		
-		cartList.setId("test");
+		Map<String, String> result = new HashMap<String, String>();
+
+		cartList.setId("test2");
+		int count = cartListService.cartCheck(cartList);
 		
-		String id = cartList.getId();
-		List<CartList> check = cartListService.pIdCheck(id);
-		
-		Iterator iter = check.iterator();
-		while (iter.hasNext()) {
-			int prodNum = (int) iter.next();
-			if (cartList.getP_id() == prodNum) {
-				returnMap.put("result", "error");
-				return returnMap;
-				
-			} else {
-				returnMap.put("result", "empty");
-				return returnMap;
-			}
+		if (count == 0) {
+			cartListService.addCartList(cartList);
+			result.put("result", "code");
+			result.put("msg", "장바구니에 상품이 추가되었습니다, 장바구니로 이동하시겠습니까?");
+		} else {
+			result.put("result", "error");
+			result.put("msg", "이미 동일한 상품이 장바구니에 있습니다, 장바구니로 이동하시겠습니까?");
 		}
 		
-		return returnMap;
-		
-//		cartListService.addCartList(cartList);
-//		System.out.println("cartlist : " + cartList);
+		return result;
 	}
 	
 	// 장바구니 리스트 조회
 	@RequestMapping(value = "/store/cartList")
 	public String getCartList(CartList cartList, Model model) {
 		
-		String id = "test";
+		String id = "test2";
 		
 		List<CartList> cart = cartListService.getCartList(id);
 		model.addAttribute("cart", cart);

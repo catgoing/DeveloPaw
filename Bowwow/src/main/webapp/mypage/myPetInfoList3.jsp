@@ -4,11 +4,7 @@
     <% request.setCharacterEncoding("UTF-8"); %>
 <%@ taglib uri="http://tiles.apache.org/tags-tiles" prefix="tiles"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
-<<<<<<< HEAD:Bowwow/src/main/webapp/mypage/myPetInfoList3.jsp
  <%
-=======
-<%
->>>>>>> origin/areum:Bowwow/src/main/webapp/mypage/myPetInfoList.jsp
 	//임시 로그인처리
 	int memberSerial = 1;
 	String id = "z";
@@ -96,22 +92,8 @@ input[type="number"]::-webkit-inner-spin-button {
     -webkit-appearance: none;
     margin: 0;
 }
-<<<<<<< HEAD:Bowwow/src/main/webapp/mypage/myPetInfoList3.jsp
 .classname {max-width:100%;height:auto}
 
-=======
-.classname { 
-	max-width:100%;
-	height:auto 
-}
-tr td textarea{
-	width : 100%;
-}
-#thumb_container{
-	width : 200px;
-	height : 200px;
-}
->>>>>>> origin/areum:Bowwow/src/main/webapp/mypage/myPetInfoList.jsp
 </style>
 <script>
 
@@ -150,10 +132,6 @@ $().ready(function(){
 		var datas = new FormData(document.getElementById('insertPetform'));
 		console.log(datas);
 		console.log($("#insertPetform input[type='file']").val());
-<<<<<<< HEAD:Bowwow/src/main/webapp/mypage/myPetInfoList3.jsp
-=======
-		
->>>>>>> origin/areum:Bowwow/src/main/webapp/mypage/myPetInfoList.jsp
 		$.ajax("/ajaxInsertPetInfo", {
 			type : "post",
 			enctype: "multipart/form-data",
@@ -191,7 +169,7 @@ $().ready(function(){
 				console.log("result : " + result);
 				alert("yes");
 				$("#modiPetInfo").modal("hide");
-				location.href = "/getPetInfoList?member_serial=${user.memberSerial}";
+				location.href = "/getPetInfoList";
 			}, error : function(request,status,error){
 				alert("no");
 			}
@@ -199,19 +177,6 @@ $().ready(function(){
 	});
 	
 	
-<<<<<<< HEAD:Bowwow/src/main/webapp/mypage/myPetInfoList3.jsp
-=======
-	var imgFile = $('#inputimage').val();
-	var fileForm = /(.*?)\.(jpg|jpeg|png|gif|bmp)$/;
-	
-	if(imgFile != "" && imageFile != null) {
-		if(!imgFile.match(fileForm)) {
-	    	alert("이미지 파일만 업로드 가능");
-	        return;
-	    }
-	}
-	
->>>>>>> origin/areum:Bowwow/src/main/webapp/mypage/myPetInfoList.jsp
 });
 
 function setThumbnail(event){
@@ -221,7 +186,6 @@ function setThumbnail(event){
 		var img = document.createElement("img"); 
 		img.setAttribute("src", event.target.result); 
 		document.querySelector("div#image_container").appendChild(img);
-<<<<<<< HEAD:Bowwow/src/main/webapp/mypage/myPetInfoList3.jsp
 		
        // var dataurl = canvas.toDataURL("image/png");
        // document.getElementById('image_container').src = dataurl;
@@ -229,11 +193,6 @@ function setThumbnail(event){
 	}; 
 	reader.readAsDataURL(event.target.files[0]); 
 }
-=======
-	}; 
-	reader.readAsDataURL(event.target.files[0]); 
-} */
->>>>>>> origin/areum:Bowwow/src/main/webapp/mypage/myPetInfoList.jsp
 
 
 function getPetInfo(frm){
@@ -271,13 +230,7 @@ function getPetInfo(frm){
 			$("#detail_back").html(petDetail.back_length + " cm");
 			$("#detail_chest").html(petDetail.chest_length + " cm");
 			$("#detail_etc").html(petDetail.pet_etc);
-<<<<<<< HEAD:Bowwow/src/main/webapp/mypage/myPetInfoList3.jsp
 
-=======
-			$("#thumb_container").prop("src", petDetail.image_source);
-			
-			$("#detail_orifile_name").val(petDetail.image_source);			 // hidden
->>>>>>> origin/areum:Bowwow/src/main/webapp/mypage/myPetInfoList.jsp
 			$("#detail_tnr").val(petDetail.tnr);									 // hidden
 			$("#detail_member_serial").val("<c:out value='${user.memberSerial}'/>"); // hidden
 			$("#detail_pet_serial").val(petDetail.pet_serial);					     // hidden
@@ -307,20 +260,12 @@ function setModiInfo(petDetail){
 	$("#modi_chest").val(petDetail.chest_length + " cm");
 	$("#modi_etc").val(petDetail.pet_etc);
 	$("#modi_animal_type").val(petDetail.animal_type);
-<<<<<<< HEAD:Bowwow/src/main/webapp/mypage/myPetInfoList3.jsp
 	$("#detail_thumb").prop("src", petDetail.image_source_oriname);
 
-=======
-	//$("#thumb_container").prop("src", petDetail.image_source);
-	$("#modi_image").val(petDetail.image_source);
-	
->>>>>>> origin/areum:Bowwow/src/main/webapp/mypage/myPetInfoList.jsp
 	$("#modi_tnr").val(petDetail.tnr);				// hidden
 	$("#modi_member_serial").val("<c:out value='${user.memberSerial}'/>");	// hidden
 	$("#modi_pet_serial").val(petDetail.pet_serial);	// hidden
 }
-
-
 
  function transferType(){
 	 console.log("test");
@@ -337,12 +282,7 @@ function setModiInfo(petDetail){
  }
 
  function inputMemberSerial(){
-<<<<<<< HEAD:Bowwow/src/main/webapp/mypage/myPetInfoList3.jsp
 	 var mSerial = ${user.memberSerial };
-=======
-	// 유저번호
-	 var mSerial = "<c:out value='${user.memberSerial}'/>";
->>>>>>> origin/areum:Bowwow/src/main/webapp/mypage/myPetInfoList.jsp
 	 console.log(mSerial);
 
 	 $("#insertPetInfo #insert_member_serial").val(mSerial);

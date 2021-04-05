@@ -4,7 +4,6 @@
   "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="inquiry">
 
-<<<<<<< HEAD
 	<!-- <insert id="inquiryUser" parameterType="board">
 		INSERT INTO INQUIRY_USER (INQUIRY_SERIAL,MEMBER_SERIAL,NICKNAME,INQUIRY_TITLE,INQUIRY_CONTENT,
 				INQUIRY_WRITEDATE,IMAGE_SOURCE,INQUITY_TYPE) 
@@ -12,48 +11,6 @@
 				SYSDATE, #{imageSource}, #{inquiryType})
 	</insert> -->
 
-=======
-	<!-- 이용자 -->
-	<!-- 문의입력 -->
-	<insert id="userInquiryWrite" parameterType="userinquiry">
-		INSERT INTO INQUIRY_USER (INQUIRY_SERIAL,MEMBER_SERIAL,NICKNAME,INQUIRY_TITLE,INQUIRY_CONTENT,
-				INQUIRY_WRITEDATE,INQUITY_TYPE) 
-		VALUES (INQ_PERSONAL_SEQ.NEXTVAL, #{member_serial}, #{nickname}, #{inquiry_title},#{inquiry_content},
-				SYSDATE,#{inquiry_type})
-	</insert>
-	
-	<!-- 본인 문의조회 -->
-	<select id="userInquirySelect" parameterType="userinquiry" resultType="userinquiry">
-		SELECT * FROM INQUIRY_USER
-		WHERE MEMBER_SERIAL = #{member_serial}
-		<!-- <choose>
-			<when test='inquiry_type.equals("contactUs")'>AND INQUIRY_TYPE = 'contactUs'</when>
-			<when test='inquiry_type.equals("buy")'>AND INQUIRY_TYPE = 'buy'</when>
-			<when test='inquiry_type.equals("delivery")'>AND INQUIRY_TYPE = 'delivery'</when>
-			<when test='inquiry_type.equals("etc")'>AND INQUIRY_TYPE = 'etc'</when>
-		</choose> -->
-		ORDER BY INQUIRY_WRITEDATE DESC
-	</select>
-	<!-- 수정삭제불가ㅋㅋ -->
-	
-	<!-- 관리자 -->
-	<!-- 관리자 답변조회-->
-	<insert id="adminInquiryWrite" parameterType="admininquiry">
-		SELECT * FROM INQUIRY_ADMIN
-		WHERE INQUIRY_SERIAL = #{inquiry_serial}
-	</insert>
-	
-	<!-- 답변여부조회 -->
-	<select id="countAnswer" parameterType="admininquiry">
-		SELECT count(*)
-		FROM INQUIRY_ADMIN
-		WHERE INQUIRY_SERIAL = #{inquiry_serial}
-	</select>
-	
-	
-	
-	
->>>>>>> origin/areum
 </mapper>
 
 

@@ -59,11 +59,7 @@
 		</ul>
 		<ul class="pcoded-item pcoded-left-item">
 			<li class="">
-<<<<<<< HEAD
 			<a href="/mypage/myInquiry2"
-=======
-			<a href="/getUserInquiryList?member_serial=${user.memberSerial }"
->>>>>>> origin/areum
 				class="waves-effect waves-dark"> <span class="pcoded-micon">
 						<!-- <i class="ti-id-badge"></i><b>A</b> -->
 				</span> <span class="pcoded-mtext">1:1문의</span> <span class="pcoded-mcaret"></span>

@@ -65,109 +65,13 @@
 	<!-- 개별css -->
     <link rel="stylesheet" type="text/css" href="/resources/css/myinfo.css">
 <style>
-<<<<<<< HEAD
-=======
-  .myPageInfo-header {
-  	text-align: center;
-  }  
-  .myPageInfo-wrapper {
-	display: flex;
-	justify-content: center;
-  }
-  
- .side-content {
-	position: relative;
-	display: inline-block;
-	float: left;
- }
- .side-content .my-area {
-    border-radius: 70px;
-    margin: 30px;
-    border: 1px solid rgba(228, 228, 228, 0.5);
-    border-radius: 10px;
- 
- }
- .side-content .my-area .side-profile-img{
-	/* float: left; */
-    background-size: cover;
-    width: 140px;
-    height: 140px;
-    border-radius: 70px;
-    margin: 0 auto 10px;
-}
-
-  .side-content .my-area p{
-    text-align: center;
-    font-size: 20px;
-    font-weight: 700;
-    line-height: 29px;
-}
-
- .mainMypage-content {
- 	display: inline-block;
-    width: calc( 100% - 280px);
-    margin-bottom: 50px;
-    float : right;
-}
- .block-title a{
-    line-height: 28px;
-    color: #b0b0b0;
-    font-size: 10px;
-    font-weight: 300;
-    border: 0;
-    background: none;
-    float: right;
-    margin-right: 50px;
- }
-.block-title h3{
-	font-size: 1.5em;
-}
-.form-control #noborderline {
-	background-color : f3f3f3;
-	border: none;
-}
-.passinput { 
-	position: relative; 
-} 
-.passinput .eyes { 
-	position: absolute; 
-	top: 0; 
-	bottom: 0; 
-	right: 20px; 
-	margin: auto 2px; 
-	height: 30px; 
-	font-size: 20px; 
-	cursor: pointer; 
-}
->>>>>>> origin/areum
 
 </style>
 <script>
 
-<<<<<<< HEAD
 (function(name){
 	console.log('my name is '+ name);
 })('??');
-=======
-$(function(){
-	//email검증
-	$("input[name=email]").on("keyup", function(event){
-		if(!(event.keyCode >=37 && event.keyCode<=40)){
-			var inputVal = $(this).val(); //input name="email"에 입력한 value값 
-			$(this).val(inputVal.replace(/[^a-z0-9@_.-]/gi,''));//한글과 @_.-를 제외한 특수문자입력금지
-		}
-	});
-	//아이디는 변경금지라서 필요없어짐ㅋㅋ
-	/* $("input[name=id]").on("keyup", function(event){
-		if(!(event.keyCode >=37 && event.keyCode<=40)){
-			var inputVal = $(this).val(); 
-			$(this).val(inputVal.replace(/[^a-z0-9_-]/gi,'')); 
-		}
-	}); */
-	
-});
-
->>>>>>> origin/areum
  function goModify(form){
 	 var idCheck = form.id.value;
 	 var emailCheck = form.email.value;
@@ -193,26 +97,6 @@ $(function(){
 
  }
 
-<<<<<<< HEAD
-=======
- $(function(){
-	$('.eyes').on('click', function(){
-		$('.passinput').addClass('active');
-		
-		if($('.passinput').hasClass('active') == true){
-			$('.passinput').removeClass('active');
-			$(this).find('.fa-eye').attr('class',"fa fa-eye-slash fa-lg").parents('.passinput').find('#password').attr('type',"text");
-			//$(this).find('.fa-eye').attr('class',"fa fa-eye-slash fa-lg").parents('.passinput').find("#password2").attr('type',"text");
-		} else {
-			$('.passinput').addClass('active');
-			$(this).find('.fa-eye').attr('class',"fa fa-eye fa-lg").parents('.passinput').find('#password').prop('type','password');
-			//$(this).find('.fa-eye').attr('class',"fa fa-eye fa-lg").parents('.passinput').find("#password2").attr('type','password');
-		}
-	});
-});
- 
- 
->>>>>>> origin/areum
  function sample4_execDaumPostcode() {
      new daum.Postcode({
          oncomplete: function(data) {
@@ -538,7 +422,6 @@ $(function(){
 										<h3>정보수정</h3>
 										<a href="withdrawl">회원탈퇴</a>
 									</div>
-<<<<<<< HEAD
 									<form>
 									<%-- <input type="text" value="${id }" readonly> --%>
 
@@ -649,101 +532,6 @@ $(function(){
 										</div>
 
 									</form>
-=======
-									<form class="form-myinfo">
-  <div class="form-group">
-    <label for="inputId" class="col-sm-4 control-label">아이디(변경불가)</label>
-    <div class="col-sm-8">
-		<input type="text" class="form-control" id="noborderline" value="아이디 ${user.id }" disabled>
-    </div>
-  </div>
-  <div class="form-group">
-    <label for="inputPassword" class="col-sm-4 control-label">Password</label>
-    <div class="col-sm-8 passinput">
-      <input type="password" class="form-control password" name="password" id="password" placeholder="Password">
-      <div class="eyes"> 
-      	<i class="fa fa-eye fa-lg"></i>
-      </div>
-    </div>
-  </div>
-  <div class="form-group">
-    <label for="inputPassword2" class="col-sm-4 control-label">Password 확인</label>
-    <div class="col-sm-8 passinput2">
-      <input type="password" class="form-control password" id="password2" placeholder="Password 재입력">
-      <div class="eyes2"> 
-      	<i class="fa fa-eye fa-lg"></i>
-      </div>
-    </div>
-  </div>
-  <div class="form-group">
-    <label for="inputPassword3" class="col-sm-4 control-label">이름(변경불가)</label>
-    <div class="col-sm-8">
-   		<input type="text" class="form-control" id="noborderline" value="이름 ${user.realname }" disabled>
-    </div>
-  </div>
-  <div class="form-group">
-    <label for="inputNickname" class="col-sm-4 control-label">닉네임</label>
-    <div class="col-sm-8">
-      <input type="text" class="form-control" name="nickname" id="inputNickname" placeholder="닉네임" value="닉네임${uesr.nickname}">
-    </div>
-  </div>
-  <div class="form-group">
-    <label for="inputGender" class="col-sm-4 control-label">성별</label>
-    <div class="col-sm-8">
-      <label class="radio-inline">
-        <input type="radio" name="gender" id="gender_f" value="female"> 여자
-      </label>
-      <label class="radio-inline">
-        <input type="radio" name="gender" id="gender_m" value="male"> 남자
-      </label>
-    </div>
-  </div>
-  <div class="form-group">
-    <label for="inputEmail" class="col-sm-4 control-label">이메일</label>
-    <div class="col-sm-8">
-      <input type="email" class="form-control" name="email" id="inputEmail" placeholder="hong@example.com">
-    </div>
-  </div>
-  <div class="form-group">
-    <label for="inputAddress" class="col-sm-4 control-label">주소</label>
-    <div class="col-sm-8">
-     <div>
-		<input type="text" id="sample4_postcode" placeholder="우편번호">
-		<input type="button" onclick="sample4_execDaumPostcode()" value="우편번호 찾기"><br>
-		<input type="text" id="sample4_roadAddress" placeholder="도로명주소">
-		<input type="text" id="sample4_jibunAddress" placeholder="지번주소">
-		<span id="guide" style="color:#999;display:none"></span>
-		<input type="text" id="sample4_detailAddress" placeholder="상세주소">
-		<input type="text" id="sample4_extraAddress" placeholder="참고항목">
-	</div>
-    </div>
-  </div>
-  <div class="form-group">
-    <label for="inputPhone" class="col-sm-4 control-label">전화번호</label>
-    <div class="col-sm-8">
-	  <select>
-		<option>010</option>
-		<option>011</option>
-		<option>017</option>
-		<option>018</option>
-		<option>019</option>
-		</select>
-      <input type="text" class="form-control" name="phone" id="inputPhone" placeholder="123-4567 혹은 1234-5678 형식으로 입력">
-    </div>
-  </div>
-     <div class="form-group">
-    <label for="inputBirth" class="col-sm-4 control-label">생일</label>
-    <div class="col-sm-8">
-      <input type="date" class="form-control" name="birthday" id="inputBirthday" >
-    </div>
-  </div>
-  <div class="form-group">
-    <div class="col-sm-offset-2 col-sm-8">
-      <button type="submit" class="btn btn-default">정보수정!</button>
-    </div>
-  </div>
-</form>
->>>>>>> origin/areum
 									</div>
 									</div>
 								</div>

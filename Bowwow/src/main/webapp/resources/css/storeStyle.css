@@ -101,7 +101,7 @@ ul, ol {
 
 
 .section-title {
-	margin-bottom: 45px;
+	margin-bottom: 60px;
 }
 
 .section-title h4 {
@@ -878,9 +878,9 @@ transparent;
 /*---------------------
   Footer
 -----------------------*/
-.footer {
+/* .footer {
 	padding-top: 55px;
-}
+} */
 
 .footer__about {
 	margin-bottom: 30px;

@@ -81,13 +81,8 @@
 			        </tr>
 			        <tr>
 				        <td rowspan="3" colspan="2">
-<<<<<<< HEAD:Bowwow/src/main/webapp/mypage/bodycontent.jsp
 				        <input type="file" name="image_source" accept="image/jpg, image/gif image/png, image/jpeg" onchange="setThumbnail(event)">
 			        	<div id="image_container"></div>
-=======
-				        <input type="file" id="inputimage" name="file" accept="image/jpg, image/gif image/png, image/jpeg image/bmp" onchange="setThumbnail(event)">
-			        	<div id="thumb_container"></div>
->>>>>>> origin/areum:Bowwow/src/main/webapp/mypage/petcontent.jsp
 				       
 				        </td>
 						<td class="insert-title">목둘레</td>
@@ -108,11 +103,7 @@
 		         </tbody>
 	            </table>
 		          <input type="hidden" id="insert_animal_type" name="animal_type" value="">
-<<<<<<< HEAD:Bowwow/src/main/webapp/mypage/bodycontent.jsp
 		          <input type="hidden" id="insert_member_serial" name="member_serial" value="">
-=======
-		          <input type="hidden" id="insert_member_serial" name="member_serial" value="<c:out value='${user.memberSerial}'/>">
->>>>>>> origin/areum:Bowwow/src/main/webapp/mypage/petcontent.jsp
 	          </div>
 	      	</div>
 	      <div class="modal-footer">
@@ -134,11 +125,7 @@
 	</div>
     <form class="pet-form" id="pet-detail-form" name="pet-detail-form">
 		<div class="popup-inner img-pet" id="detail_petimg">
-<<<<<<< HEAD:Bowwow/src/main/webapp/mypage/bodycontent.jsp
 			<img src="" alt="이미지" id="detail_thumb" onerror= this.style.display='none'>
-=======
-			<img src="" id="thumb_container">
->>>>>>> origin/areum:Bowwow/src/main/webapp/mypage/petcontent.jsp
 		</div>
 		<div class="popup-inner text-pet">
 		<div class="form-group-detail">
@@ -257,13 +244,8 @@
 		        </tr>
 		        <tr>
 			        <td rowspan="3" colspan="2">
-<<<<<<< HEAD:Bowwow/src/main/webapp/mypage/bodycontent.jsp
 			        	<input type="file" accept="image/jpg, image/gif image/png, image/jpeg" name="image_source" >
 		        		<div id="img_container">
-=======
-			        	<input type="file" id="inputimage" accept="image/jpg, image/gif image/png, image/jpeg image/bmp" name="file" >
-		        		<div id="thumb_container">
->>>>>>> origin/areum:Bowwow/src/main/webapp/mypage/petcontent.jsp
 		        		</div>
 			        </td>
 					<td class="insert-title">목둘레</td>
