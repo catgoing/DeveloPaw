@@ -88,12 +88,14 @@
     font-size: 13px;
     line-height: 1.4;
 }
+
+/* 
 @media only screen and (max-width: 500px) {
 	.reason_one>ul>li { padding:10px 5px; }
 	.reason_one>ul>li {padding:5px;}
 	.reason_one.input_form>ul>li { padding:5px; }
 	.reason_one>ul>li.th {width:20%;}
-}
+} */
 </style>
 </head>
 

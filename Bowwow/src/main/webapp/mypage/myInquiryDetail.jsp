@@ -93,13 +93,13 @@
 						<table>
 							<tr>
 								<th>제목</th>
-								<td>제목!<%-- ${userInquiryDetail.inquiry_title } --%></td>
+								<td>${uiqDetail.inquiry_title }</td>
 								<th>작성일</th>
-								<td>작성일!<%-- ${userInquiryDetail.inquiry_writedate } --%></td>
+								<td>${uiqDetail.inquiry_writedate }</td>
 							</tr>
 							<tr>							
 								<th>내용</th>
-								<td colspan="3">문의내용<%-- ${userInquiryDetail.inquiry_content } --%></td>
+								<td colspan="3">${uiqDetail.inquiry_content }</td>
 							</tr>				
 						</table>
 						
@@ -109,11 +109,11 @@
 						<table>
 							<tr>
 								<th>관리자 답변</th>
-								<td>d</td>
+								<td>${inquiryAnswer.inquiry_re_content}</td>
 							</tr>
 							<tr>
 								<th>등록일</th>
-								<td>d</td>
+								<td>${inquiryAnswer.inquiry_re_date}</td>
 							</tr>
 						</table>
 						</c:if>

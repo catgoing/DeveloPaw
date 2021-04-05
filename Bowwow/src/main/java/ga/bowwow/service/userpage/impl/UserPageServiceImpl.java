@@ -18,8 +18,8 @@ public class UserPageServiceImpl implements UserInquiryService{
 	
 	@Override
 	public int insertUserInquiry(UserInquiry userInquiry) {
-		uiqDAO.insertUserInquiry(userInquiry);
-		return 0;
+		
+		return uiqDAO.insertUserInquiry(userInquiry);
 	}
 
 	@Override
@@ -38,6 +38,11 @@ public class UserPageServiceImpl implements UserInquiryService{
 	public List<UserInquiry> getUserInquiryList(UserInquiry userInquiry) {
 		List<UserInquiry> list = uiqDAO.getUserInquiryList(userInquiry);
 		return list;
+	}
+
+	@Override
+	public int checkAnswer(int uiqSerial) {
+		return uiqDAO.checkAnswer(uiqSerial);
 	}
 	
 }

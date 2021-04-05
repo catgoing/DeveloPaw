@@ -7,4 +7,5 @@ public interface UserInquiryService {
 	int updateUserInquiry(UserInquiry userInquiry);
 	UserInquiry getUserInquiry(UserInquiry userInquiry);
 	List<UserInquiry> getUserInquiryList(UserInquiry userInquiry);
+	int checkAnswer(int uiqSerial);
 }

@@ -323,6 +323,7 @@ $(document).ready(function(){
 										<th width="200">제목</th>
 										<th width="150">작성자</th>
 										<th width="150">작성일</th>
+										<th width="150">답변유무</th>
 									</tr>
 								<c:if test="${empty userinquiryList }">
 									<tr>
@@ -334,11 +335,12 @@ $(document).ready(function(){
 									<tr>
 										<td>${inquiry.inquiry_type }</td>
 										<td>
-											<a href="myInquiryDetail.jsp?seq=${inquiry.inquiry_serial }">
+											<a href="/myInquiryDetail?inquiry_serial=${inquiry.inquiry_serial }">
 												${inquiry.inquiry_title }</a>
 										</td>
 										<td>${inquiry.nickname }</td>
 										<td>${inquiry.inquiry_writedate }</td>
+										<td>${inquiry.have_answer }</td>
 									</tr>
 									</c:forEach>
 								</c:if>
