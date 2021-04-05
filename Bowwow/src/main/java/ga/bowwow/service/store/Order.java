@@ -20,7 +20,4 @@ public class Order {
 	private String memo;			// 배송 관련 메모
 	private String order_date;		// 주문 날짜
 	private String order_status;	// 주문 진행 상황
-	private String address_first;	// 기본 주소
-	private String address_second;	// 상세 주소
-	private String zip;				// 우편번호
 }
