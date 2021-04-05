@@ -45,6 +45,13 @@
                                  </a>
                              </li>
                              <li class="">
+                                 <a href="/account/signup" class="waves-effect waves-dark">
+                                     <span class="pcoded-micon"><i class="ti-angle-right"></i></span>
+                                     <span class="pcoded-mtext">약관</span>
+                                     <span class="pcoded-mcaret"></span>
+                                 </a>
+                             </li>
+                             <li class="">
                                  <a href="/detail/signupDetail" class="waves-effect waves-dark">
                                      <span class="pcoded-micon"><i class="ti-angle-right"></i></span>
                                      <span class="pcoded-mtext">개인정보</span>

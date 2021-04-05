@@ -35,19 +35,19 @@
     <!-- waves.css -->
     <link rel="stylesheet" href="../resources/pages/waves/css/waves.min.css" type="text/css" media="all">
     <!-- Required Fremwork -->
-    <link rel="stylesheet" type="text/css" href="../resources/css/bootstrap/css/bootstrap.min.css">
+    <link rel="stylesheet" type="text/css" href="/resources/css/bootstrap/css/bootstrap.min.css">
     <!-- waves.css -->
-    <link rel="stylesheet" href="../resources/pages/waves/css/waves.min.css" type="text/css" media="all">
+    <link rel="stylesheet" href="/resources/pages/waves/css/waves.min.css" type="text/css" media="all">
     <!-- themify icon -->
-    <link rel="stylesheet" type="text/css" href="../resources/icon/themify-icons/themify-icons.css">
+    <link rel="stylesheet" type="text/css" href="/resources/icon/themify-icons/themify-icons.css">
     <!-- font-awesome-n -->
-    <link rel="stylesheet" type="text/css" href="../resources/css/font-awesome-n.min.css">
-    <link rel="stylesheet" type="text/css" href="../resources/css/font-awesome.min.css">
+    <link rel="stylesheet" type="text/css" href="/resources/css/font-awesome-n.min.css">
+    <link rel="stylesheet" type="text/css" href="/resources/css/font-awesome.min.css">
     <!-- scrollbar.css -->
-    <link rel="stylesheet" type="text/css" href="../resources/css/jquery.mCustomScrollbar.css">
+    <link rel="stylesheet" type="text/css" href="/resources/css/jquery.mCustomScrollbar.css">
     <!-- Style.css -->
-    <link rel="stylesheet" type="text/css" href="../resources/css/style.css">
-    <link rel="stylesheet" type="text/css" href="../resources/css/test.css">
+    <link rel="stylesheet" type="text/css" href="/resources/css/style.css">
+    <link rel="stylesheet" type="text/css" href="/resources/css/test.css">
 <style>
   .featured__item__text { width: 150px; }
 </style>

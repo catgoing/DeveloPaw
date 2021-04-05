@@ -12,8 +12,8 @@ import ga.bowwow.service.user.UserGenericService;
 public abstract class UserCRUDGenericController<T> {
 	protected UserGenericService service;
 	
-	String resolveRoute;
-	String errorRoute;
+	protected String resolveRoute;
+	protected String errorRoute;
 	
 	@RequestMapping("/add")
 	protected String add(T vo)  {
@@ -46,7 +46,7 @@ public abstract class UserCRUDGenericController<T> {
 		this.setResolveRoute(resolveRoute);
 		this.setErrorRoute(errorRoute);
 	}
-	private static String router(boolean source, String resolveRoute, String errorRoute) {
+	public static String router(boolean source, String resolveRoute, String errorRoute) {
 		return source ? resolveRoute : errorRoute;
 	}
 	public String getResolveRoute() {

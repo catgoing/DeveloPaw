@@ -56,8 +56,7 @@ public class UserAccountController extends UserCRUDGenericController<UserAccount
 		System.out.println("addresslist controller test2");
 		try {
 			System.out.println("controller : " + vo);
-//			return router(service.addVo(vo), resolveRoute, errorRoute);
-			return "/auth.myAccount";
+			return router(service.addVo(vo), resolveRoute, errorRoute);
 		} catch (DataIntegrityViolationException  e) {
 			System.out.println("Caught Integerity Exception Test");
 			e.printStackTrace();

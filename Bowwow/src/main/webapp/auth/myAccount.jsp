@@ -96,7 +96,7 @@
 	<!-- Container-fluid starts -->
 	<div class="container-fluid">
 		<div class="row">
-			<div class="col-sm-12">
+			<div class="col-12">
 
 				<div class="auth-box card">
 					<div class="card-block card-block-big">
@@ -127,41 +127,41 @@
 												<form id="account_form" name="account_form" >
 <!-- 												<form id="account_form" onsubmit="return fn_pw_check();"> -->
 													<div class="form-group form-primary">
-														<input type="text" name="id" id="id" class="form-control" value=""> <span class="form-bar"></span> <label
+														<input type="text" name="id" id="id" class="form-control form-control" value=""> <span class="form-bar"></span> <label
 															class="float-label">아이디</label>
 														<div class="action_btn">
 															<button type="button" class="btn btn-primary" onclick="idDuplicationCheck();">중복 확인</button>
 														</div>
 													</div>
 													<div class="form-group form-primary">
-														<input type="password" name="password" id="pw" value="77g7g7g7g7g" class="form-control">
+														<input type="password" name="password" id="pw" value="77g7g7g7g7g" class="form-control form-control">
 															<span class="form-bar"></span>
 															<label class="float-label">비밀번호</label>
 													</div>
 													<div class="form-group form-primary">
-														<input type="password" name="passwordConfirm" id="pwC" class="form-control"> <span class="form-bar"></span>
+														<input type="password" name="passwordConfirm" id="pwC" class="form-control form-control"> <span class="form-bar"></span>
 														<label class="float-label">비밀번호 확인</label>
 													</div>
 
 													<div class="form-group form-primary">
-														<input type="text" name="name" id="name" class="form-control"> <span class="form-bar"></span>
+														<input type="text" name="name" id="name" class="form-control form-control"> <span class="form-bar"></span>
 														<label class="float-label">이름</label>
 													</div>
 													
 													<div class="form-group form-primary">
-														<input type="text" name="email" id="email" class="form-control"> <span class="form-bar"></span>
+														<input type="text" name="email" id="email" class="form-control form-control"> <span class="form-bar"></span>
 														<label class="float-label">이메일</label>
 													</div>
 													<div class="form-group form-primary">
-														<input type="text" name="citizenId" id="citizenId" class="form-control"> <span class="form-bar"></span>
+														<input type="text" name="citizenId" id="citizenId" class="form-control form-control"> <span class="form-bar"></span>
 														<label class="float-label">주민번호</label>
 													</div>
 													<div class="form-group form-primary">
-														<input type="text" name="phone" id="phone" class="form-control"> <span class="form-bar"></span>
+														<input type="text" name="phone" id="phone" class="form-control form-control"> <span class="form-bar"></span>
 														<label class="float-label">전화번호</label>
 													</div>
 													<div class="form-group form-primary">
-														<input type="text" name="nickname" id="nickname" class="form-control"> <span class="form-bar"></span>
+														<input type="text" name="nickname" id="nickname" class="form-control form-control"> <span class="form-bar"></span>
 														<label class="float-label">DETAIL닉네임</label>
 													</div>
 													
@@ -178,194 +178,45 @@
 														<p></p>
 													</div>
 													<div id="msgBox"></div>
-													<div class="action_btn">
-														<button type="submit" class="btn btn-primary" onclick="/account/add">회원가입</button>
-													</div>
 												</form>
 												<form id="address_form" name="address_form" action="/address/addAddressList" method="post">
-													<div class="action_btn">
-														<input type="button" value="주소입력" class="btn btn-primary" 	onclick="dynamicAjaxSubmit();">
-													</div>
+													
 													<fieldset id="Address">
-														<div id="row" class="row">
+														<div id="row">
 															<div class="form-group form-primary">
-																<input type="number" name="addressId_1" id="addressId_1" class="form-control">
+																<input type="number" name="addressId_1" id="addressId_1" class="form-control form-control">
 																<span class="form-bar"></span> <label for="addressId_1" class="float-label">주소ID</label>
 															</div>
-															<div>
-																<input type="number" name="memberSerial_1" id="memberSerial_1" class="form-control">
+															<div class="form-group form-primary">
+																<input type="number" name="memberSerial_1" id="memberSerial_1" class="form-control form-control">
 																<span class="form-bar"></span> <label for="memberSerial_1" class="float-label">멤버시리얼 </label>
 															</div>
-															<div>
-																<input type="text" name="address_1" id="address_1" class="form-control">
-																<span class="form-bar"></span> <label for="userAddress_1" class="float-label">주소입력</label>
+															<div class="form-group form-primary">
+																<input type="text" name="address_1" id="address_1" class="form-control form-control">
+																<span class="form-bar"></span> <label for="userAddress_1" class="float-label">주소</label>
 															</div>
-															<div>
-																<input type="text" name="addressDetail_1" id="addressDetail_1" class="form-control">
+															<div class="form-group form-primary">
+																<input type="text" name="addressDetail_1" id="addressDetail_1" class="form-control form-control">
 																<span class="form-bar"></span> <label for="addressDetail_1" class="float-label">상세주소</label> 
 															</div>
-															<div>
-																<input type="text" name="zonecode_1" id="zonecode_1" class="form-control">
+															<div class="form-group form-primary">
+																<input type="text" name="zonecode_1" id="zonecode_1" class="form-control form-control">
 																<span class="form-bar"></span> <label for="zonecode_1" class="float-label">우편번호</label> 
 															</div>
 														</div>
 													</fieldset>
+													<div class="btn">
+														<input type="button" value="주소 입력" class="btn btn-primary" 	onclick="dynamicAjaxSubmit();">
+													</div>
 												</form>
+												<form>
+													<fieldset id="imageSource">
+													
+													</fieldset>
+												</form>
+												
 
-												<script type="text/javascript">
-      (function () {
-         var Address = {
-             count:    1,
-             init:     function () {
-                           var fs = document.getElementById("Address");
-                           var row = document.getElementById("row");
-                           var mapBtn = row.appendChild(this.make("input",  {id: "1", type: "button", value: "맵"}));
-                           mapBtn.onclick = this.registMapExecutor;
-                           var div = fs.appendChild(this.make("div", {id: "here"}));
-                           var btn = div.appendChild(this.make("input", {type: "button", value: "주소 추가"}));
-                           btn.onclick = (function (_self) {
-                               return function () {
-                                   _self.add();
-                                   return false;
-                               };
-                           })(this);
-                       },
-			 registMapExecutor : function() {
-									 console.log(this);
-									 var count = this.id;
-									    new daum.Postcode({
-									        oncomplete: function(data) {
-									            var fullAddr = '';
-									            var extraAddr = '';
-									            var zoneCode = '';
-									            
-									            if (data.userSelectedType === 'R') { // 사용자가 도로명 주소를 선택했을 경우
-									                fullAddr = data.roadAddress;
-									                zoneCode = data.zonecode;
-									            } else {
-									                fullAddr = data.roadAddress;
-									                zoneCode = data.zonecode;
-									            }
-									            if(data.userSelectedType === 'R'){
-									                if(data.bname !== ''){
-									                    extraAddr += data.bname;
-									                }
-									                if(data.buildingName !== ''){
-									                    extraAddr += (extraAddr !== '' ? ', ' + data.buildingName : data.buildingName);
-									                }
-									                fullAddr += (extraAddr !== '' ? ' ('+ extraAddr +')' : '');
-									            }
-									            
-									            document.getElementById("address" + "_" + count).value = fullAddr;
-									            document.getElementById("zonecode" + "_" + count).value = zoneCode;
-									        }
-									    }).open();
-			 			},
-			 			
-             add:      function () {
-                           ++this.count;
-                           var here = document.getElementById("here");
-                           var row = here.parentNode.insertBefore(this.make("div", {className: "row", id: "row" + this.count}), here);
-                           this.addField(row, "주소ID", "addressId");
-                           this.addField(row, "멤버시리얼", "memberSerial");
-                           this.addField(row, "주소입력", "address");
-                           this.addField(row, "상세주소", "addressDetail");
-                           this.addField(row, "우편번호", "zonecode");
-                           var div = row.appendChild(this.make("div", {className: "btn"}));
-                           var btn = div.appendChild(this.make("input", {type: "button", value: "주소 삭제", _id: "row" + this.count}));
-                           btn.onclick = this.remove;
-                           var execMapBtn = div.appendChild(this.make("input", {type: "button", value: "주소 찾기", id: this.count}));
-                           execMapBtn.onclick = this.registMapExecutor;
-                       },
-             addField: function (parent, label, prefix) {
-                           var div = parent.appendChild(this.make("div", {className: "form-group form-primary"}));
-                           div.appendChild(this.make("div"))
-                           div.appendChild(this.make("input", {type: "text", name: prefix + "_" + this.count, id: prefix + "_" + this.count, className:"form-control"}));
-                           div.appendChild(this.make("label", {htmlFor: prefix + this.count, className: "float-label"}, label));
-                    		
-                       },
-             remove:   function () {
-                           var row = document.getElementById(this._id);
-                           row.parentNode.removeChild(row);
-                           return false; 
-                       },
-             make:     function (type, attrs, content) {
-                           var element = document.createElement(type);
-                           if (attrs !== undefined) {
-                               for (var a in attrs) {
-                                   element[a] = attrs[a];
-                               }
-                           }
-                           if (content !== undefined) {
-                               element.appendChild(document.createTextNode(content));
-                           }
-                           return element;
-                       }
-         };
-         Address.init();
-       })();
-      
-     </script>
-     <script>
-     	function getMultiForm(_form) {
-     		var form = _form;
-          	const data = [];
-          	var datas = new FormData(form);
-          	
-          	for (var formData of datas.entries()) {
-          	  	var _key = formData[0].split("_")[0];
-          	  	var _index = formData[0].split("_")[1];
-          	  	var _value = formData[1];
-//           	  	console.log(_key, _index, _value);
-          	  	
-          	  	if(!data[_index-1]) data.push({});
-          	  	data[_index-1][_key] = _value;
-//           		console.log(data);
-          	}
-          	return data;
-     	}
-     	
-     	function getSingleForm(_form) {
-     		var form = _form;
-          	const data = {};
-          	var datas = new FormData(form);
-
-          	for (var formData of datas.entries()) {
-          	  	var _key = formData[0];
-          	  	var _value = formData[1];
-          	  	console.log(_key, _value);
-
-          	  	data[_key] = _value;
-          		console.log(data);
-          	}
-          	return data;
-     	}
-     </script>
-	<script>
-	
-// 		TODO: 하나의 요청/컨트롤러로 합쳐야함
-      function dynamicAjaxSubmit() {
-    	 const addressData = getMultiForm(document.address_form);
-
-      	 $.ajax("/address/addAddressList", {
-	           type: "POST",
-	           data: JSON.stringify(addressData),
-	           contentType:"application/json; charset=UTF-8",
-	           success: function() {
-	         	  alert('success');
-	           }
-         });
-   	  	const accountData = getSingleForm(document.account_form);
-      	$.ajax("/account/addJson", {
-            type: "POST",
-            data: JSON.stringify(accountData),
-            contentType:"application/json; charset=UTF-8",
-            success: function() {
-          	  alert('success');
-            }
-  		 });
-      };
-   	</script>
+												
 
 												<script>
 // 								            var down = document.getElementById("GFG_DOWN");
@@ -417,8 +268,179 @@
 			</div>
 		</div>
 	</div>
+	
 </section>
+<script type="text/javascript">
+      (function () {
+         var Address = {
+             count:    1,
+             init:     function () {
+                           var fs = document.getElementById("Address");
+                           var row = document.getElementById("row");
+                           var btnDiv = row.appendChild(this.make("div", {className: "btn"}));
+                           var mapBtn = btnDiv.appendChild(this.make("input",  {id: "1", type: "button", value: "주소 찾기", className: "btn btn-primary"}));
+                           mapBtn.onclick = this.registMapExecutor;
+                           var div = fs.appendChild(this.make("div", {id: "here"}));
+                           var btnDiv = div.appendChild(this.make("div", {className: "btn"}));
+                           var btn = btnDiv.appendChild(this.make("input", {type: "button", value: "주소 추가", className: "btn btn-primary"}));
+                           btn.onclick = (function (_self) {
+                               return function () {
+                                   _self.add();
+                                   return false;
+                               };
+                           })(this);
+                       },
+			 registMapExecutor : function() {
+									 console.log(this);
+									 var count = this.id;
+									    new daum.Postcode({
+									        oncomplete: function(data) {
+									            var fullAddr = '';
+									            var extraAddr = '';
+									            var zoneCode = '';
+									            
+									            if (data.userSelectedType === 'R') { // 사용자가 도로명 주소를 선택했을 경우
+									                fullAddr = data.roadAddress;
+									                zoneCode = data.zonecode;
+									            } else {
+									                fullAddr = data.roadAddress;
+									                zoneCode = data.zonecode;
+									            }
+									            if(data.userSelectedType === 'R'){
+									                if(data.bname !== ''){
+									                    extraAddr += data.bname;
+									                }
+									                if(data.buildingName !== ''){
+									                    extraAddr += (extraAddr !== '' ? ', ' + data.buildingName : data.buildingName);
+									                }
+									                fullAddr += (extraAddr !== '' ? ' ('+ extraAddr +')' : '');
+									            }
+									            
+									            document.getElementById("address" + "_" + count).value = fullAddr;
+									            document.getElementById("zonecode" + "_" + count).value = zoneCode;
+									        }
+									    }).open();
+			 			},
+			 			
+             add:      function () {
+                           ++this.count;
+                           var here = document.getElementById("here");
+                           var row = here.parentNode.insertBefore(this.make("div", {id: "row" + this.count}), here);
+                           this.addField(row, "주소ID", "addressId");
+                           this.addField(row, "멤버시리얼", "memberSerial");
+                           this.addField(row, "주소", "address");
+                           this.addField(row, "상세주소", "addressDetail");
+                           this.addField(row, "우편번호", "zonecode");
+                           var div = row.appendChild(this.make("div", {className: "btn"}));
+                           var execMapBtn = div.appendChild(this.make("input", {type: "button", value: "주소 찾기", id: this.count, className: "btn btn-primary"}));
+                           execMapBtn.onclick = this.registMapExecutor;
+                           var btn = div.appendChild(this.make("input", {type: "button", value: "주소 삭제", _id: "row" + this.count, className: "btn btn-primary"}));
+                           btn.onclick = this.remove;
+                       },
+             addField: function (parent, label, prefix) {
+                           var div = parent.appendChild(this.make("div", {className: "form-group form-primary"}));
+                           div.appendChild(this.make("div"))
+                           div.appendChild(this.make("input", {type: "text", name: prefix + "_" + this.count, id: prefix + "_" + this.count, className:"form-control form-control"}));
+                           div.appendChild(this.make("label", {htmlFor: prefix + this.count, className: "float-label"}, label));
+                    		
+                       },
+             remove:   function () {
+                           var row = document.getElementById(this._id);
+                           row.parentNode.removeChild(row);
+                           return false; 
+                       },
+             make:     function (type, attrs, content) {
+                           var element = document.createElement(type);
+                           if (attrs !== undefined) {
+                               for (var a in attrs) {
+                                   element[a] = attrs[a];
+                               }
+                           }
+                           if (content !== undefined) {
+                               element.appendChild(document.createTextNode(content));
+                           }
+                           return element;
+                       }
+         };
+         Address.init();
+       })();
+      
+     </script>
+     
+     <script>
+     	function getMultiForm(_form) {
+     		var form = _form;
+          	const data = [];
+          	var datas = new FormData(form);
+          	
+          	for (var formData of datas.entries()) {
+          	  	var _key = formData[0].split("_")[0];
+          	  	var _index = formData[0].split("_")[1];
+          	  	var _value = formData[1];
+//           	  	console.log(_key, _index, _value);
+          	  	
+          	  	if(!data[_index-1]) data.push({});
+          	  	data[_index-1][_key] = _value;
+//           		console.log(data);
+          	}
+          	return data;
+     	}
+     	
+     	function getSingleForm(_form) {
+     		var form = _form;
+          	const data = {};
+          	var datas = new FormData(form);
 
+          	for (var formData of datas.entries()) {
+          	  	var _key = formData[0];
+          	  	var _value = formData[1];
+          	  	console.log(_key, _value);
+
+          	  	data[_key] = _value;
+          		console.log(data);
+          	}
+          	return data;
+     	}
+     </script>
+     <script>
+// 	function checkIdDuplication() {
+// 		const idData = getSingleForm(document.account_form); 
+		
+// 		$.ajax("/account/checkIdDuplication", {
+// 	        type: "POST",
+// 	        data: JSON.stringify(idData),
+// 	        contentType:"application/json; charset=UTF-8",
+// 	        success: function() {
+// 	      	  alert('success');
+// 	        }
+// 	 	 });
+// 	}
+	</script>
+	<script>
+	
+// 		TODO: 하나의 요청/컨트롤러로 합쳐야함
+      function dynamicAjaxSubmit() {
+    	 const addressData = getMultiForm(document.address_form);
+
+      	 $.ajax("/address/addAddressList", {
+	           type: "POST",
+	           data: JSON.stringify(addressData),
+	           contentType:"application/json; charset=UTF-8",
+	           success: function() {
+	         	  alert('success');
+	           }
+         });
+   	  	const accountData = getSingleForm(document.account_form);
+      	$.ajax("/account/addJson", {
+            type: "POST",
+            data: JSON.stringify(accountData),
+            contentType:"application/json; charset=UTF-8",
+            success: function() {
+          	  alert('success');
+            }
+  		 });
+      };
+   	</script>
 
 </html>
 

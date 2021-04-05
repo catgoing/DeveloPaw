@@ -37,8 +37,6 @@
                     fullAddr += (extraAddr !== '' ? ' ('+ extraAddr +')' : '');
                 }
                 
-                
-                
                 document.getElementById("userAddress").value = fullAddr;
                 document.getElementById("userZonecode").value = zoneCode;
  	        }
