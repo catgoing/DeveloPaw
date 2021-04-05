@@ -34,7 +34,7 @@
 		</ul>
 		<ul class="pcoded-item pcoded-left-item">
 			<li class="">
-			<a href="/getPetInfoList?member_serial=${user.memberSerial }"
+			<a href="/getPetInfoList"
 				class="waves-effect waves-dark"> <span class="pcoded-micon">
 						<!-- <i class="ti-id-badge"></i><b>A</b> -->
 				</span> <span class="pcoded-mtext">반려동물</span> <span class="pcoded-mcaret"></span>

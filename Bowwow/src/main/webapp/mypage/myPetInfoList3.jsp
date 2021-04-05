@@ -4,6 +4,7 @@
     <% request.setCharacterEncoding("UTF-8"); %>
 <%@ taglib uri="http://tiles.apache.org/tags-tiles" prefix="tiles"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<<<<<<< HEAD:Bowwow/src/main/webapp/mypage/myPetInfoList3.jsp
  <%
 	//임시 로그인처리
 	int memberSerial = 1;
@@ -13,6 +14,9 @@
 	user.setMemberSerial(memberSerial);
 	session.setAttribute("user", user);
 %>
+=======
+
+>>>>>>> parent of d5ef625 (문의 추가, 반려동물crud수정(file)):Bowwow/src/main/webapp/mypage/myPetInfoList.jsp
 <!DOCTYPE html>
 <html>
 
@@ -92,8 +96,18 @@ input[type="number"]::-webkit-inner-spin-button {
     -webkit-appearance: none;
     margin: 0;
 }
+<<<<<<< HEAD:Bowwow/src/main/webapp/mypage/myPetInfoList3.jsp
 .classname {max-width:100%;height:auto}
 
+=======
+.classname { 
+	max-width:100%;
+	height:auto 
+}
+tr td textarea{
+	width : 100%;
+}
+>>>>>>> parent of d5ef625 (문의 추가, 반려동물crud수정(file)):Bowwow/src/main/webapp/mypage/myPetInfoList.jsp
 </style>
 <script>
 
@@ -175,8 +189,11 @@ $().ready(function(){
 			}
 		});
 	});
+<<<<<<< HEAD:Bowwow/src/main/webapp/mypage/myPetInfoList3.jsp
 	
 	
+=======
+>>>>>>> parent of d5ef625 (문의 추가, 반려동물crud수정(file)):Bowwow/src/main/webapp/mypage/myPetInfoList.jsp
 });
 
 function setThumbnail(event){
@@ -231,6 +248,10 @@ function getPetInfo(frm){
 			$("#detail_chest").html(petDetail.chest_length + " cm");
 			$("#detail_etc").html(petDetail.pet_etc);
 
+<<<<<<< HEAD:Bowwow/src/main/webapp/mypage/myPetInfoList3.jsp
+=======
+			$("#detail_orifile_name").val(petDetail.image_source_oriname);			 // hidden
+>>>>>>> parent of d5ef625 (문의 추가, 반려동물crud수정(file)):Bowwow/src/main/webapp/mypage/myPetInfoList.jsp
 			$("#detail_tnr").val(petDetail.tnr);									 // hidden
 			$("#detail_member_serial").val("<c:out value='${user.memberSerial}'/>"); // hidden
 			$("#detail_pet_serial").val(petDetail.pet_serial);					     // hidden
@@ -261,7 +282,12 @@ function setModiInfo(petDetail){
 	$("#modi_etc").val(petDetail.pet_etc);
 	$("#modi_animal_type").val(petDetail.animal_type);
 	$("#detail_thumb").prop("src", petDetail.image_source_oriname);
+<<<<<<< HEAD:Bowwow/src/main/webapp/mypage/myPetInfoList3.jsp
 
+=======
+	$("#modi_image").val(petDetail.image_source);
+	
+>>>>>>> parent of d5ef625 (문의 추가, 반려동물crud수정(file)):Bowwow/src/main/webapp/mypage/myPetInfoList.jsp
 	$("#modi_tnr").val(petDetail.tnr);				// hidden
 	$("#modi_member_serial").val("<c:out value='${user.memberSerial}'/>");	// hidden
 	$("#modi_pet_serial").val(petDetail.pet_serial);	// hidden

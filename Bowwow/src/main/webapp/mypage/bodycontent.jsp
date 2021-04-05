@@ -125,7 +125,11 @@
 	</div>
     <form class="pet-form" id="pet-detail-form" name="pet-detail-form">
 		<div class="popup-inner img-pet" id="detail_petimg">
+<<<<<<< HEAD:Bowwow/src/main/webapp/mypage/bodycontent.jsp
 			<img src="" alt="이미지" id="detail_thumb" onerror= this.style.display='none'>
+=======
+			<img src="" id="detail_thumb">
+>>>>>>> parent of d5ef625 (문의 추가, 반려동물crud수정(file)):Bowwow/src/main/webapp/mypage/petcontent.jsp
 		</div>
 		<div class="popup-inner text-pet">
 		<div class="form-group-detail">
@@ -244,7 +248,11 @@
 		        </tr>
 		        <tr>
 			        <td rowspan="3" colspan="2">
+<<<<<<< HEAD:Bowwow/src/main/webapp/mypage/bodycontent.jsp
 			        	<input type="file" accept="image/jpg, image/gif image/png, image/jpeg" name="image_source" >
+=======
+			        	<input type="file" id="modi_image" accept="image/jpg, image/gif image/png, image/jpeg" name="image_source" onchange="setThumbnail(event)">
+>>>>>>> parent of d5ef625 (문의 추가, 반려동물crud수정(file)):Bowwow/src/main/webapp/mypage/petcontent.jsp
 		        		<div id="img_container">
 		        		</div>
 			        </td>

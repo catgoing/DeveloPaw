@@ -78,6 +78,7 @@
 						<div class="myPageInfo-header">
 							<h2> 뫄뫄님의 페이지</h2>
 						</div>
+<<<<<<< HEAD
 						
 					    <button class="scroll-top" id="js-button" style="margin-bottom: 190px; margin-right: 30px;">
 				        <i class="fa fa-chevron-up" aria-hidden="true">TOP</i>
@@ -110,11 +111,27 @@
 						<!-- footer 푸터 끝부분-->
 								</div>
 							</div>
+=======
+						<div class="container reason_one">
+							<
+						</div>						
+						<div class="container reason_two">
+						
+						</div>
+							</div>
+							</div>
+>>>>>>> parent of d5ef625 (문의 추가, 반려동물crud수정(file))
 						</div>
 					</div>
 				</div>
 			</div>
 		</div>
+<<<<<<< HEAD
+=======
+		<!-- footer 푸터 시작부분-->
+		<%@include file="/common/footer.jsp" %>
+		<!-- footer 푸터 끝부분-->
+>>>>>>> parent of d5ef625 (문의 추가, 반려동물crud수정(file))
 	</div>
 </div>
 
