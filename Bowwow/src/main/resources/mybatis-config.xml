@@ -19,7 +19,10 @@
 		<typeAlias type="ga.bowwow.service.user.VO.UserAddress" alias="UserAddress"/>
 		<typeAlias type="ga.bowwow.service.user.VO.UserWallet" alias="UserWallet"/>
 <<<<<<< HEAD
+<<<<<<< HEAD
 		<typeAlias type="ga.bowwow.service.user.VO.UserDTO" alias="UserDTO"/>
+=======
+>>>>>>> parent of d5ef625 (문의 추가, 반려동물crud수정(file))
 =======
 >>>>>>> parent of d5ef625 (문의 추가, 반려동물crud수정(file))
 		<typeAlias type="ga.bowwow.service.pet.Pet" alias="pet"/>
@@ -29,7 +32,10 @@
 		<typeAlias type="ga.bowwow.service.store.Order" alias="Order" />
 		<typeAlias type="ga.bowwow.service.store.Inquiry" alias="Inquiry" />
 <<<<<<< HEAD
+<<<<<<< HEAD
 		
+=======
+>>>>>>> parent of d5ef625 (문의 추가, 반려동물crud수정(file))
 =======
 >>>>>>> parent of d5ef625 (문의 추가, 반려동물crud수정(file))
 	</typeAliases>
@@ -45,7 +51,11 @@
 		<mapper resource="mappings/CartListMapper.xml" />
 		<mapper resource="mappings/StoreReviewMapper.xml" />
 <<<<<<< HEAD
+<<<<<<< HEAD
 		<mapper resource="mappings/StoreOrderMapper.xml" />
+=======
+		<mapper resource="mappings/StoreInquiryMapper.xml" />
+>>>>>>> parent of d5ef625 (문의 추가, 반려동물crud수정(file))
 =======
 		<mapper resource="mappings/StoreInquiryMapper.xml" />
 >>>>>>> parent of d5ef625 (문의 추가, 반려동물crud수정(file))

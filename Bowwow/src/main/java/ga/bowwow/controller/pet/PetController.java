@@ -40,6 +40,9 @@ public class PetController {
 	
 	private HttpServletRequest request;
 	private int member_serial = 994;
+<<<<<<< HEAD
+>>>>>>> parent of d5ef625 (문의 추가, 반려동물crud수정(file))
+=======
 >>>>>>> parent of d5ef625 (문의 추가, 반려동물crud수정(file))
 
 	public PetController() {
@@ -57,6 +60,10 @@ public class PetController {
 	@RequestMapping(value = "/mypage/myPageMain")
 	public String myPageMain() {
 <<<<<<< HEAD
+<<<<<<< HEAD
+=======
+		
+>>>>>>> parent of d5ef625 (문의 추가, 반려동물crud수정(file))
 =======
 		
 >>>>>>> parent of d5ef625 (문의 추가, 반려동물crud수정(file))
@@ -125,9 +132,12 @@ public class PetController {
 	public String ajaxGetPetInfo(Pet pet) {
 		System.out.println("ajax 반려동물정보를 가져옵니다");
 <<<<<<< HEAD
+<<<<<<< HEAD
 		
 		//pet.setMember_serial(member_serial);
 =======
+=======
+>>>>>>> parent of d5ef625 (문의 추가, 반려동물crud수정(file))
 		String default_url = "https://projectbit.s3.us-east-2.amazonaws.com/petImg/6262857e-1887-46fc-b77c-9209935f8657.jpg";
 		String fs_url = "https://projectbit.s3.us-east-2.amazonaws.com/";
 		
@@ -151,7 +161,10 @@ public class PetController {
 		System.out.println("> 반려동물 정보 입력");
 		System.out.println("pet~~:"+ pet);
 <<<<<<< HEAD
+<<<<<<< HEAD
 		//pet.setMember_serial(member_serial);
+=======
+>>>>>>> parent of d5ef625 (문의 추가, 반려동물crud수정(file))
 =======
 >>>>>>> parent of d5ef625 (문의 추가, 반려동물crud수정(file))
 		
@@ -174,6 +187,7 @@ public class PetController {
 			String fs_url = "https://projectbit.s3.us-east-2.amazonaws.com/";
 			
 <<<<<<< HEAD
+<<<<<<< HEAD
 			pet.setImage_source_oriname(fs_url + foldername + "/" + imgName);
 			System.out.println(fs_url + foldername + "/" + imgName);
 			
@@ -191,6 +205,12 @@ public class PetController {
 			
 			System.out.println(fs_url + foldername + "/" + imgName);
 			
+=======
+			pet.setImage_source_oriname(foldername + "/" + imgName);
+			
+			System.out.println(fs_url + foldername + "/" + imgName);
+			
+>>>>>>> parent of d5ef625 (문의 추가, 반려동물crud수정(file))
 			result = petService.insertPetInfo(pet);	
 			
 		} else if(pet.getImage_source() == null) {
@@ -207,6 +227,7 @@ public class PetController {
 	public int ajaxUpdatePetInfo(Pet pet, HttpServletRequest request, MultipartController mc) throws AmazonClientException, IllegalStateException, IOException, InterruptedException {
 		System.out.println("> 반려동물 정보 수정");
 		System.out.println("pet~~:"+ pet);
+<<<<<<< HEAD
 <<<<<<< HEAD
 		//pet.setMember_serial(member_serial);
 		
@@ -232,6 +253,9 @@ public class PetController {
 		
 =======
 		
+=======
+		
+>>>>>>> parent of d5ef625 (문의 추가, 반려동물crud수정(file))
 		pet.setMember_serial(member_serial);
 
 		int result = 0;
@@ -270,9 +294,12 @@ public class PetController {
 		System.out.println("ajax 반려동물 정보 삭제 실행!!");
 		System.out.println("pet :"+pet);
 <<<<<<< HEAD
+<<<<<<< HEAD
 		//pet.setMember_serial(member_serial);
 		
 =======
+=======
+>>>>>>> parent of d5ef625 (문의 추가, 반려동물crud수정(file))
 		
 		pet.setMember_serial(member_serial);
 

@@ -5,6 +5,7 @@
 <%@ taglib uri="http://tiles.apache.org/tags-tiles" prefix="tiles"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <<<<<<< HEAD:Bowwow/src/main/webapp/mypage/myInquiry2.jsp
+<<<<<<< HEAD:Bowwow/src/main/webapp/mypage/myInquiry2.jsp
 <%-- <%
 	//임시 로그인처리
 	int memberSerial = 1;
@@ -14,6 +15,9 @@
 	user.setMemberSerial(memberSerial);
 	session.setAttribute("user", user);
 %> --%>
+=======
+
+>>>>>>> parent of d5ef625 (문의 추가, 반려동물crud수정(file)):Bowwow/src/main/webapp/mypage/myInquiry.jsp
 =======
 
 >>>>>>> parent of d5ef625 (문의 추가, 반려동물crud수정(file)):Bowwow/src/main/webapp/mypage/myInquiry.jsp

@@ -5,6 +5,7 @@
 <%@ taglib uri="http://tiles.apache.org/tags-tiles" prefix="tiles"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <<<<<<< HEAD:Bowwow/src/main/webapp/mypage/myPetInfoList3.jsp
+<<<<<<< HEAD:Bowwow/src/main/webapp/mypage/myPetInfoList3.jsp
  <%
 	//임시 로그인처리
 	int memberSerial = 1;
@@ -14,6 +15,9 @@
 	user.setMemberSerial(memberSerial);
 	session.setAttribute("user", user);
 %>
+=======
+
+>>>>>>> parent of d5ef625 (문의 추가, 반려동물crud수정(file)):Bowwow/src/main/webapp/mypage/myPetInfoList.jsp
 =======
 
 >>>>>>> parent of d5ef625 (문의 추가, 반려동물crud수정(file)):Bowwow/src/main/webapp/mypage/myPetInfoList.jsp
@@ -107,6 +111,9 @@ input[type="number"]::-webkit-inner-spin-button {
 tr td textarea{
 	width : 100%;
 }
+<<<<<<< HEAD:Bowwow/src/main/webapp/mypage/myPetInfoList3.jsp
+>>>>>>> parent of d5ef625 (문의 추가, 반려동물crud수정(file)):Bowwow/src/main/webapp/mypage/myPetInfoList.jsp
+=======
 >>>>>>> parent of d5ef625 (문의 추가, 반려동물crud수정(file)):Bowwow/src/main/webapp/mypage/myPetInfoList.jsp
 </style>
 <script>
@@ -190,8 +197,11 @@ $().ready(function(){
 		});
 	});
 <<<<<<< HEAD:Bowwow/src/main/webapp/mypage/myPetInfoList3.jsp
+<<<<<<< HEAD:Bowwow/src/main/webapp/mypage/myPetInfoList3.jsp
 	
 	
+=======
+>>>>>>> parent of d5ef625 (문의 추가, 반려동물crud수정(file)):Bowwow/src/main/webapp/mypage/myPetInfoList.jsp
 =======
 >>>>>>> parent of d5ef625 (문의 추가, 반려동물crud수정(file)):Bowwow/src/main/webapp/mypage/myPetInfoList.jsp
 });
@@ -249,6 +259,10 @@ function getPetInfo(frm){
 			$("#detail_etc").html(petDetail.pet_etc);
 
 <<<<<<< HEAD:Bowwow/src/main/webapp/mypage/myPetInfoList3.jsp
+<<<<<<< HEAD:Bowwow/src/main/webapp/mypage/myPetInfoList3.jsp
+=======
+			$("#detail_orifile_name").val(petDetail.image_source_oriname);			 // hidden
+>>>>>>> parent of d5ef625 (문의 추가, 반려동물crud수정(file)):Bowwow/src/main/webapp/mypage/myPetInfoList.jsp
 =======
 			$("#detail_orifile_name").val(petDetail.image_source_oriname);			 // hidden
 >>>>>>> parent of d5ef625 (문의 추가, 반려동물crud수정(file)):Bowwow/src/main/webapp/mypage/myPetInfoList.jsp
@@ -283,8 +297,11 @@ function setModiInfo(petDetail){
 	$("#modi_animal_type").val(petDetail.animal_type);
 	$("#detail_thumb").prop("src", petDetail.image_source_oriname);
 <<<<<<< HEAD:Bowwow/src/main/webapp/mypage/myPetInfoList3.jsp
+<<<<<<< HEAD:Bowwow/src/main/webapp/mypage/myPetInfoList3.jsp
 
 =======
+=======
+>>>>>>> parent of d5ef625 (문의 추가, 반려동물crud수정(file)):Bowwow/src/main/webapp/mypage/myPetInfoList.jsp
 	$("#modi_image").val(petDetail.image_source);
 	
 >>>>>>> parent of d5ef625 (문의 추가, 반려동물crud수정(file)):Bowwow/src/main/webapp/mypage/myPetInfoList.jsp
