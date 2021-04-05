@@ -23,6 +23,10 @@ public class UserAccountServiceImpl extends UserGenericService<UserAccount> {
 		return StaticUtil.isNotNull(((UserAccountDAO)dao).verifyAccount(userAccount));
 	}
 	
+	public boolean checkIdDuplication(UserAccount userAccount) {
+		return !StaticUtil.isNotNull(((UserAccountDAO)dao).verifyId(userAccount));
+	}
+	
 	@Override
 	public List<UserAccount> getVoList(Map<String, String> map) {
 		return null;

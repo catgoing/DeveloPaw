@@ -9,10 +9,12 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.dao.DataIntegrityViolationException;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.SessionAttributes;
 
 import ga.bowwow.controller.user.UserCRUDGenericController;
@@ -53,7 +55,23 @@ public class UserAccountController extends UserCRUDGenericController<UserAccount
 	@PostMapping(value= "/addJson",
 			produces = "application/text; charset=UTF-8")
 	protected String addJson(@RequestBody UserAccount vo)  {
-		System.out.println("addresslist controller test2");
+		System.out.println("account controller addJson Test");
+		try {
+			System.out.println("controller : " + vo);
+			return router(service.addVo(vo), resolveRoute, errorRoute);
+		} catch (DataIntegrityViolationException  e) {
+			System.out.println("Caught Integerity Exception Test");
+			e.printStackTrace();
+		} catch (TooManyResultsException e) {
+			e.printStackTrace();
+		}
+		return "/ok";
+	}
+	
+	@GetMapping(value= "/checkIdDuplication",
+			produces = "application/text; charset=UTF-8")
+	protected String checkIdDuplication(@RequestBody UserAccount vo)  {
+		System.out.println("account controller checkIdTest");
 		try {
 			System.out.println("controller : " + vo);
 			return router(service.addVo(vo), resolveRoute, errorRoute);

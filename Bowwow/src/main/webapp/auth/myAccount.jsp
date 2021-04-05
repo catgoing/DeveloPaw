@@ -206,13 +206,38 @@
 														</div>
 													</fieldset>
 													<div class="btn">
-														<input type="button" value="주소 입력" class="btn btn-primary" 	onclick="dynamicAjaxSubmit();">
+														<input type="button" value="주소 입력" class="btn btn-primary" onclick="dynamicAjaxSubmit();">
 													</div>
 												</form>
-												<form>
-													<fieldset id="imageSource">
+												<form id="wallet_form" name="wallet_form" action="/wallet/addWalletList" method="post">
 													
+													<fieldset id="Address">
+														<div id="row">
+															<div class="form-group form-primary">
+																<input type="number" name="addressId_1" id="addressId_1" class="form-control form-control">
+																<span class="form-bar"></span> <label for="addressId_1" class="float-label">주소ID</label>
+															</div>
+															<div class="form-group form-primary">
+																<input type="number" name="memberSerial_1" id="memberSerial_1" class="form-control form-control">
+																<span class="form-bar"></span> <label for="memberSerial_1" class="float-label">멤버시리얼 </label>
+															</div>
+															<div class="form-group form-primary">
+																<input type="text" name="address_1" id="address_1" class="form-control form-control">
+																<span class="form-bar"></span> <label for="userAddress_1" class="float-label">주소</label>
+															</div>
+															<div class="form-group form-primary">
+																<input type="text" name="addressDetail_1" id="addressDetail_1" class="form-control form-control">
+																<span class="form-bar"></span> <label for="addressDetail_1" class="float-label">상세주소</label> 
+															</div>
+															<div class="form-group form-primary">
+																<input type="text" name="zonecode_1" id="zonecode_1" class="form-control form-control">
+																<span class="form-bar"></span> <label for="zonecode_1" class="float-label">우편번호</label> 
+															</div>
+														</div>
 													</fieldset>
+													<div class="btn">
+														<input type="button" value="주소 입력" class="btn btn-primary" onclick="dynamicAjaxSubmit();">
+													</div>
 												</form>
 												
 
