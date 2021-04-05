@@ -113,7 +113,12 @@ th {
 }
 </style>
 <script>
+
+	
+
 	$(function() {
+		$('#summernote').summernote('code', '지역 상세 : <br> 가격 : <br> 구매일 : <br> 상품 상태 : <br> 거래 방법 : 택배 / 직거래 <br> 상품 설명 : ');
+		
 		$('#summernote').summernote({
 			placeholder : '최대 500자 작성 가능합니다.',
 			height : 300,
@@ -235,7 +240,7 @@ th {
 									<div class="page-body">
 										<section class="featured spad">
 											<div class="container">
-												<h1>펫 일기장</h1>
+												<h1>물품 중고거래</h1>
 												<hr>
 
 												<form action="insertBoard" method="post" enctype="multipart/form-data">
@@ -250,11 +255,10 @@ th {
 													<table>
 														<tr>
 															<th width="40">제목</th>
-															<td>
-																<input type="text" name="board_title" size="30">
+															<td><input type="text" name="board_title" size="30">
 															</td>
 														</tr>
-														<tr>
+																												<tr>
 															<th width="40">상품종류</th>
 															<td>
 								                    			<select name="goods" style="height:20px">
@@ -273,28 +277,34 @@ th {
 												                   	<option value="0" selected>서울</option>
 														            <option value="1">경기</option>
 														            <option value="2">인천</option>
-														            <option value="3">강원</option>
-														            <option value="4">충청</option>
-														            <option value="3">대전</option>
 														            <option value="3">대구</option>
-														            <option value="3">부산</option>
-														            <option value="3">전라</option>
-														            <option value="3">제주</option>
-														            <option value="3">부산</option>
-														            <option value="3">부산</option>
+														            <option value="4">부산</option>
+														            <option value="5">울산</option>
+														            <option value="6">광주</option>
+														            <option value="7">강원</option>
+														            <option value="8">충북</option>
+														            <option value="9">충남</option>
+														            <option value="10">경북</option>
+														            <option value="11">경남</option>
+														            <option value="12">전북</option>
+														            <option value="13">전남</option>
+														            <option value="14">제주</option>
 										                    	</select>
 															</td>
 														</tr>
 														<tr>
-															<th width="40">제목</th>
+															<th width="40">판매 여부</th>
 															<td>
-																<input type="text" name="board_title" size="30">
+								                    			<select name="is_selled" style="height:20px">
+												                   	<option value="0" selected>판매 중</option>
+														            <option value="1">판매 완료</option>
+										                    	</select>
 															</td>
 														</tr>
 														<tr>
-															<th width="40">제목</th>
+															<th width="40">가격</th>
 															<td>
-																<input type="text" name="board_title" size="30">
+																<input type="text" name="price" size="30">
 															</td>
 														</tr>
 														
