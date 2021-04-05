@@ -4,7 +4,15 @@
     <% request.setCharacterEncoding("UTF-8"); %>
 <%-- <%@ taglib uri="http://tiles.apache.org/tags-tiles" prefix="tiles"%> --%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
-
+<%
+	//임시 로그인처리
+	int memberSerial = 1;
+	String id = "z";
+	UserAccount user= new UserAccount();
+	user.setId(id);
+	user.setMemberSerial(memberSerial);
+	session.setAttribute("user", user);
+%>
 <!DOCTYPE html>
 <html>
 
@@ -90,6 +98,10 @@ input[type="number"]::-webkit-inner-spin-button {
 tr td textarea{
 	width : 100%;
 }
+#thumb_container{
+	width : 200px;
+	height : 200px;
+}
 </style>
 <script>
 
@@ -128,6 +140,7 @@ $().ready(function(){
 		var datas = new FormData(document.getElementById('insertPetform'));
 		console.log(datas);
 		console.log($("#insertPetform input[type='file']").val());
+		
 		$.ajax("/ajaxInsertPetInfo", {
 			type : "post",
 			enctype: "multipart/form-data",
@@ -165,15 +178,27 @@ $().ready(function(){
 				console.log("result : " + result);
 				alert("yes");
 				$("#modiPetInfo").modal("hide");
-				location.href = "/getPetInfoList";
+				location.href = "/getPetInfoList?member_serial=${user.memberSerial}";
 			}, error : function(request,status,error){
 				alert("no");
 			}
 		});
 	});
+	
+	
+	var imgFile = $('#inputimage').val();
+	var fileForm = /(.*?)\.(jpg|jpeg|png|gif|bmp)$/;
+	
+	if(imgFile != "" && imageFile != null) {
+		if(!imgFile.match(fileForm)) {
+	    	alert("이미지 파일만 업로드 가능");
+	        return;
+	    }
+	}
+	
 });
 
-function setThumbnail(event){
+/* function setThumbnail(event){
 	var reader = new FileReader(); 
 	
 	reader.onload = function(event) { 
@@ -182,7 +207,7 @@ function setThumbnail(event){
 		document.querySelector("div#image_container").appendChild(img);
 	}; 
 	reader.readAsDataURL(event.target.files[0]); 
-}
+} */
 
 
 function getPetInfo(frm){
@@ -220,8 +245,9 @@ function getPetInfo(frm){
 			$("#detail_back").html(petDetail.back_length + " cm");
 			$("#detail_chest").html(petDetail.chest_length + " cm");
 			$("#detail_etc").html(petDetail.pet_etc);
-
-			$("#detail_orifile_name").val(petDetail.image_source_oriname);			 // hidden
+			$("#thumb_container").prop("src", petDetail.image_source);
+			
+			$("#detail_orifile_name").val(petDetail.image_source);			 // hidden
 			$("#detail_tnr").val(petDetail.tnr);									 // hidden
 			$("#detail_member_serial").val("<c:out value='${user.memberSerial}'/>"); // hidden
 			$("#detail_pet_serial").val(petDetail.pet_serial);					     // hidden
@@ -251,13 +277,15 @@ function setModiInfo(petDetail){
 	$("#modi_chest").val(petDetail.chest_length + " cm");
 	$("#modi_etc").val(petDetail.pet_etc);
 	$("#modi_animal_type").val(petDetail.animal_type);
-	$("#detail_thumb").prop("src", petDetail.image_source_oriname);
+	//$("#thumb_container").prop("src", petDetail.image_source);
 	$("#modi_image").val(petDetail.image_source);
 	
 	$("#modi_tnr").val(petDetail.tnr);				// hidden
 	$("#modi_member_serial").val("<c:out value='${user.memberSerial}'/>");	// hidden
 	$("#modi_pet_serial").val(petDetail.pet_serial);	// hidden
 }
+
+
 
  function transferType(){
 	 console.log("test");

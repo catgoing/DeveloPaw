@@ -17,12 +17,13 @@
 		<typeAlias type="ga.bowwow.service.user.VO.UserDetail" alias="UserDetail"/>
 		<typeAlias type="ga.bowwow.service.user.VO.UserAddress" alias="UserAddress"/>
 		<typeAlias type="ga.bowwow.service.user.VO.UserWallet" alias="UserWallet"/>
-		<typeAlias type="ga.bowwow.service.pet.Pet" alias="pet"/>
 		<typeAlias type="ga.bowwow.service.store.Product" alias="Product"/>
 		<typeAlias type="ga.bowwow.service.store.Review" alias="Review" />
 		<typeAlias type="ga.bowwow.service.store.CartList" alias="CartList" />
 		<typeAlias type="ga.bowwow.service.store.Order" alias="Order" />
 		<typeAlias type="ga.bowwow.service.store.Inquiry" alias="Inquiry" />
+		<typeAlias type="ga.bowwow.service.userpage.UserInquiry" alias="userinquiry" />
+		<typeAlias type="ga.bowwow.service.admin.AdminInquiry" alias="admininquiry" />
 	</typeAliases>
 
 	<mappers>
@@ -30,11 +31,12 @@
 	<mapper resource="mappings/UserAddressMapper.xml"/>
   	<mapper resource="mappings/UserDetailMapper.xml"/>
   	<mapper resource="mappings/WalletMapper.xml"/>
-		<mapper resource="mappings/BoardMapper.xml" />
-		<mapper resource="mappings/PetMapper.xml" />
-		<mapper resource="mappings/StoreMapper.xml" />
-		<mapper resource="mappings/CartListMapper.xml" />
-		<mapper resource="mappings/StoreReviewMapper.xml" />
-		<mapper resource="mappings/StoreInquiryMapper.xml" />
+	<mapper resource="mappings/BoardMapper.xml" />
+	<mapper resource="mappings/PetMapper.xml" />
+	<mapper resource="mappings/StoreMapper.xml" />
+	<mapper resource="mappings/CartListMapper.xml" />
+	<mapper resource="mappings/StoreReviewMapper.xml" />
+	<mapper resource="mappings/StoreInquiryMapper.xml" />
+	<mapper resource="mappings/InquiryMapper.xml" />
 	</mappers>
 </configuration>

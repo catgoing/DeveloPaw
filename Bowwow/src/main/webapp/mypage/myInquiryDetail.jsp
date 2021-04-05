@@ -4,7 +4,15 @@
     <% request.setCharacterEncoding("UTF-8"); %>
 <%@ taglib uri="http://tiles.apache.org/tags-tiles" prefix="tiles"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
-
+<%
+	//임시 로그인처리
+	int memberSerial = 1;
+	String id = "z";
+	UserAccount user= new UserAccount();
+	user.setId(id);
+	user.setMemberSerial(memberSerial);
+	session.setAttribute("user", user);
+%>
 <!DOCTYPE html>
 <html>
 
@@ -52,7 +60,9 @@
     <link rel="stylesheet" type="text/css" href="/resources/css/style.css">
     <link rel="stylesheet" type="text/css" href="/resources/css/test.css">
 <style>
-  .featured__item__text { width: 150px; }
+ table, th, td{
+ 	border : 1px solid black;
+ }
 </style>
 </head>
 
@@ -74,33 +84,48 @@
 				
 				<!-- Main-body start 본문 시작 -->
 				<%-- <tiles:insertAttribute name="body" /> --%>
-					<table>
-						<tr>
-							<th>제목</th>
-							<th>내용</th>
-							<th>작성일</th>
-						</tr>
-						<tr>
-							<td>${detail.title }</td>
-							<td>${detail.content }</td>
-							<td>${detail.writeDate }</td>
-						</tr>					
-					</table>
-					<table>
-						<tr>
-							<th>등록일</th>
-							<th>관리자 답변</th>
-						</tr>
-						<tr>
-							<td>${detail.reWriteDate }</td>
-							<td>${detail.reContent }</td>
-						</tr>
-					</table>
-					
+				<div class="page-body">
+					<div class="inquiry-detail">
+						<div class="question-title">
+					    	<h2>문의목록</h2>
+				     	</div>
+						     	
+						<table>
+							<tr>
+								<th>제목</th>
+								<td>제목!<%-- ${userInquiryDetail.inquiry_title } --%></td>
+								<th>작성일</th>
+								<td>작성일!<%-- ${userInquiryDetail.inquiry_writedate } --%></td>
+							</tr>
+							<tr>							
+								<th>내용</th>
+								<td colspan="3">문의내용<%-- ${userInquiryDetail.inquiry_content } --%></td>
+							</tr>				
+						</table>
+						
+						<c:if test="${empty inquiryAnswer }">
+						</c:if>
+						<c:if test="${not empty inquiryAnswer }">
+						<table>
+							<tr>
+								<th>관리자 답변</th>
+								<td>d</td>
+							</tr>
+							<tr>
+								<th>등록일</th>
+								<td>d</td>
+							</tr>
+						</table>
+						</c:if>
+						<div class="btn-container">
+							<button href="location:back(-1)">돌아가기</button>
+						</div>
+					</div>
 				</div>
 			</div>
 		</div>
 	</div>
+</div>
 	
 	<!-- footer 푸터 시작부분-->
 	<%-- <tiles:insertAttribute name="footer" /> --%>

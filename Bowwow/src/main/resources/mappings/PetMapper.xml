@@ -12,7 +12,7 @@
 			TNR, PET_WEIGHT, PET_BIRTH, NECK_LENGTH, BACK_LENGTH,
 			CHEST_LENGTH, PET_ETC, IMAGE_SOURCE_ORINAME)
 		VALUES (
-		 PET_SEQ.NEXTVAL , #{member_serial}, 'upload', #{animal_type},
+		 PET_SEQ.NEXTVAL , #{member_serial}, #{image_source}, #{animal_type},
 		 #{pet_name}, #{pet_gender}, #{pet_variety}, #{pet_age}, #{pet_size},
 		 #{tnr}, #{pet_weight}, TO_DATE(#{pet_birth}, 'yyyy-MM-dd'), #{neck_length}, #{back_length},
 		 #{chest_length}, #{pet_etc}, #{image_source_oriname})
@@ -22,7 +22,7 @@
 	<update id="updatePetInfo" parameterType="pet">
 		UPDATE USER_PETINFO
 		 SET
-			IMAGE_SOURCE = 're-upload',
+			IMAGE_SOURCE = #{image_source},
 			PET_NAME = #{pet_name},
 			PET_GENDER = #{pet_gender},
 			PET_VARIETY = #{pet_variety},
@@ -38,7 +38,16 @@
 			IMAGE_SOURCE_ORINAME = #{image_source_oriname}
 		WHERE PET_SERIAL = #{pet_serial }
 	</update>
-
+	
+	<!-- 정보 수정시 사진먼저 빈칸처리 -->
+	<update id="updatePetImg" parameterType="Map">
+		UPDATE USER_PETINFO
+		 SET 
+		 	IMAGE_SOURCE = '',
+	        image_source_oriname = ''
+		WHERE PET_SERIAL =  #{pet_serial }
+	</update>
+	
 	<!-- 정보 삭제 -->
 	<delete id="deletePetInfo" parameterType="pet">
 		DELETE FROM USER_PETINFO

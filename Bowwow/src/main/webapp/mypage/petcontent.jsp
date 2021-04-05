@@ -81,8 +81,8 @@
 			        </tr>
 			        <tr>
 				        <td rowspan="3" colspan="2">
-				        <input type="file" name="image_source" accept="image/jpg, image/gif image/png, image/jpeg" onchange="setThumbnail(event)">
-			        	<div id="image_container"></div>
+				        <input type="file" id="inputimage" name="file" accept="image/jpg, image/gif image/png, image/jpeg image/bmp" onchange="setThumbnail(event)">
+			        	<div id="thumb_container"></div>
 				       
 				        </td>
 						<td class="insert-title">목둘레</td>
@@ -125,7 +125,7 @@
 	</div>
     <form class="pet-form" id="pet-detail-form" name="pet-detail-form">
 		<div class="popup-inner img-pet" id="detail_petimg">
-			<img src="" id="detail_thumb">
+			<img src="" id="thumb_container">
 		</div>
 		<div class="popup-inner text-pet">
 		<div class="form-group-detail">
@@ -245,8 +245,8 @@
 		        </tr>
 		        <tr>
 			        <td rowspan="3" colspan="2">
-			        	<input type="file" id="modi_image" accept="image/jpg, image/gif image/png, image/jpeg" name="image_source" onchange="setThumbnail(event)">
-		        		<div id="img_container">
+			        	<input type="file" id="inputimage" accept="image/jpg, image/gif image/png, image/jpeg image/bmp" name="file" >
+		        		<div id="thumb_container">
 		        		</div>
 			        </td>
 					<td class="insert-title">목둘레</td>
