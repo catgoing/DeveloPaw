@@ -231,7 +231,7 @@ public class BoardController {
 		System.out.println("board_idx : "  + board_idx);
 		System.out.println(">>> 글상세 - String getBoard()");
 		Map<String, Integer> map = new HashMap<String, Integer>();
-		System.out.println("board_idx" + board_idx);
+		System.out.println("session : " + session.getAttribute("board_idx"));
 		map.put("board_idx", board_idx);
 		map.put("board_no", board_no );
 		vo = boardService.getBoard(map);
