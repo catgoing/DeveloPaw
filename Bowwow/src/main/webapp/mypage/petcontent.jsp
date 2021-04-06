@@ -81,8 +81,8 @@
 			        </tr>
 			        <tr>
 				        <td rowspan="3" colspan="2">
-				        <input type="file" name="image_source" accept="image/jpg, image/gif image/png, image/jpeg" onchange="setThumbnail(event)">
-			        	<div id="image_container"></div>
+				        <input type="file" id="inputimage" name="file" accept="image/jpg, image/gif image/png, image/jpeg image/bmp" onchange="setThumbnail(event)">
+			        	<div id="thumb_container"></div>
 				       
 				        </td>
 						<td class="insert-title">목둘레</td>
@@ -98,12 +98,12 @@
 			        </tr>
 			        <tr>
 						<td class="insert-title">특이사항</td>
-						<td colspan="3"><textarea name="pet_etc" ></textarea></td>
+						<td colspan="3"><textarea class="form-control" name="pet_etc" ></textarea></td>
 			        </tr>
 		         </tbody>
 	            </table>
 		          <input type="hidden" id="insert_animal_type" name="animal_type" value="">
-		          <input type="hidden" id="insert_member_serial" name="member_serial" value="">
+		          <input type="hidden" id="insert_member_serial" name="member_serial" value="<c:out value='${user.memberSerial}'/>">
 	          </div>
 	      	</div>
 	      <div class="modal-footer">
@@ -125,15 +125,7 @@
 	</div>
     <form class="pet-form" id="pet-detail-form" name="pet-detail-form">
 		<div class="popup-inner img-pet" id="detail_petimg">
-<<<<<<< HEAD:Bowwow/src/main/webapp/mypage/bodycontent.jsp
-<<<<<<< HEAD:Bowwow/src/main/webapp/mypage/bodycontent.jsp
-			<img src="" alt="이미지" id="detail_thumb" onerror= this.style.display='none'>
-=======
-			<img src="" id="detail_thumb">
->>>>>>> parent of d5ef625 (문의 추가, 반려동물crud수정(file)):Bowwow/src/main/webapp/mypage/petcontent.jsp
-=======
-			<img src="" id="detail_thumb">
->>>>>>> parent of d5ef625 (문의 추가, 반려동물crud수정(file)):Bowwow/src/main/webapp/mypage/petcontent.jsp
+			<img src="" id="thumb_container">
 		</div>
 		<div class="popup-inner text-pet">
 		<div class="form-group-detail">
@@ -185,7 +177,8 @@
 			<input type="hidden" id="detail_tnr" name="tnr" value="">
 			<input type="hidden" id="detail_animal_type" name="animal_type" value="">
 			<input type="hidden" id="detail_pet_serial" name="pet_serial" value="">
-			<input type="hidden" id="detail_member_serial" name="member_serial" value="">
+			<input type="hidden" id="detail_member_serial" name="member_serial" value="<c:out value='${user.memberSerial}'/>">
+			<input type="hidden" id="detail_orifile_name" name="image_source_oriname" value="">
 		</div>
 		</div>
       <div class="modal-footer">
@@ -252,16 +245,8 @@
 		        </tr>
 		        <tr>
 			        <td rowspan="3" colspan="2">
-<<<<<<< HEAD:Bowwow/src/main/webapp/mypage/bodycontent.jsp
-<<<<<<< HEAD:Bowwow/src/main/webapp/mypage/bodycontent.jsp
-			        	<input type="file" accept="image/jpg, image/gif image/png, image/jpeg" name="image_source" >
-=======
-			        	<input type="file" id="modi_image" accept="image/jpg, image/gif image/png, image/jpeg" name="image_source" onchange="setThumbnail(event)">
->>>>>>> parent of d5ef625 (문의 추가, 반려동물crud수정(file)):Bowwow/src/main/webapp/mypage/petcontent.jsp
-=======
-			        	<input type="file" id="modi_image" accept="image/jpg, image/gif image/png, image/jpeg" name="image_source" onchange="setThumbnail(event)">
->>>>>>> parent of d5ef625 (문의 추가, 반려동물crud수정(file)):Bowwow/src/main/webapp/mypage/petcontent.jsp
-		        		<div id="img_container">
+			        	<input type="file" id="inputimage" accept="image/jpg, image/gif image/png, image/jpeg image/bmp" name="file" >
+		        		<div id="thumb_container">
 		        		</div>
 			        </td>
 					<td class="insert-title">목둘레</td>
@@ -277,7 +262,7 @@
 		        </tr>
 		        <tr>
 					<td class="insert-title">특이사항</td>
-					<td colspan="3"><textarea name="pet_etc" id="modi_etc"></textarea></td>
+					<td colspan="3"><textarea class="form-control" name="pet_etc" id="modi_etc"></textarea></td>
 		        </tr>
 	         </tbody>
             </table>
@@ -286,7 +271,7 @@
       <div class="modal-footer">
 		<input type="hidden" id="modi_animal_type" name="animal_type" value="">
 		<input type="hidden" id="modi_pet_serial" name="pet_serial" value="">
-		<input type="hidden" id="modi_member_serial" name="member_serial" value="">
+		<input type="hidden" id="modi_member_serial" name="member_serial" value="<c:out value='${user.memberSerial}'/>">
         <button type="button" class="btn btn-primary" id="updatePetInfobtn">반려동물 정보수정</button>
         <button type="button" class="btn btn-secondary" data-dismiss="modal" onclick="clearInput()">Close</button>
       </div>

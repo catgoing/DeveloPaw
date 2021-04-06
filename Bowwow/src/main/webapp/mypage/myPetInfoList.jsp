@@ -2,11 +2,9 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
     <% request.setCharacterEncoding("UTF-8"); %>
-<%@ taglib uri="http://tiles.apache.org/tags-tiles" prefix="tiles"%>
+<%-- <%@ taglib uri="http://tiles.apache.org/tags-tiles" prefix="tiles"%> --%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
-<<<<<<< HEAD:Bowwow/src/main/webapp/mypage/myPetInfoList3.jsp
-<<<<<<< HEAD:Bowwow/src/main/webapp/mypage/myPetInfoList3.jsp
- <%
+<%
 	//임시 로그인처리
 	int memberSerial = 1;
 	String id = "z";
@@ -15,12 +13,6 @@
 	user.setMemberSerial(memberSerial);
 	session.setAttribute("user", user);
 %>
-=======
-
->>>>>>> parent of d5ef625 (문의 추가, 반려동물crud수정(file)):Bowwow/src/main/webapp/mypage/myPetInfoList.jsp
-=======
-
->>>>>>> parent of d5ef625 (문의 추가, 반려동물crud수정(file)):Bowwow/src/main/webapp/mypage/myPetInfoList.jsp
 <!DOCTYPE html>
 <html>
 
@@ -69,10 +61,9 @@
     <!-- Style.css -->
     <link rel="stylesheet" type="text/css" href="/resources/css/style.css">
     <link rel="stylesheet" type="text/css" href="/resources/css/test.css">
-
 <style>
 .insert-title{
-	width : 15%;
+	width : 17%;
 }
 /* 반려동물 정보 출력영역 설정*/
 .col-md-4 .list-inner{
@@ -100,10 +91,6 @@ input[type="number"]::-webkit-inner-spin-button {
     -webkit-appearance: none;
     margin: 0;
 }
-<<<<<<< HEAD:Bowwow/src/main/webapp/mypage/myPetInfoList3.jsp
-.classname {max-width:100%;height:auto}
-
-=======
 .classname { 
 	max-width:100%;
 	height:auto 
@@ -111,10 +98,10 @@ input[type="number"]::-webkit-inner-spin-button {
 tr td textarea{
 	width : 100%;
 }
-<<<<<<< HEAD:Bowwow/src/main/webapp/mypage/myPetInfoList3.jsp
->>>>>>> parent of d5ef625 (문의 추가, 반려동물crud수정(file)):Bowwow/src/main/webapp/mypage/myPetInfoList.jsp
-=======
->>>>>>> parent of d5ef625 (문의 추가, 반려동물crud수정(file)):Bowwow/src/main/webapp/mypage/myPetInfoList.jsp
+#thumb_container{
+	width : 200px;
+	height : 200px;
+}
 </style>
 <script>
 
@@ -153,6 +140,7 @@ $().ready(function(){
 		var datas = new FormData(document.getElementById('insertPetform'));
 		console.log(datas);
 		console.log($("#insertPetform input[type='file']").val());
+		
 		$.ajax("/ajaxInsertPetInfo", {
 			type : "post",
 			enctype: "multipart/form-data",
@@ -190,36 +178,36 @@ $().ready(function(){
 				console.log("result : " + result);
 				alert("yes");
 				$("#modiPetInfo").modal("hide");
-				location.href = "/getPetInfoList";
+				location.href = "/getPetInfoList?member_serial=${user.memberSerial}";
 			}, error : function(request,status,error){
 				alert("no");
 			}
 		});
 	});
-<<<<<<< HEAD:Bowwow/src/main/webapp/mypage/myPetInfoList3.jsp
-<<<<<<< HEAD:Bowwow/src/main/webapp/mypage/myPetInfoList3.jsp
 	
 	
-=======
->>>>>>> parent of d5ef625 (문의 추가, 반려동물crud수정(file)):Bowwow/src/main/webapp/mypage/myPetInfoList.jsp
-=======
->>>>>>> parent of d5ef625 (문의 추가, 반려동물crud수정(file)):Bowwow/src/main/webapp/mypage/myPetInfoList.jsp
+	var imgFile = $('#inputimage').val();
+	var fileForm = /(.*?)\.(jpg|jpeg|png|gif|bmp)$/;
+	
+	if(imgFile != "" && imageFile != null) {
+		if(!imgFile.match(fileForm)) {
+	    	alert("이미지 파일만 업로드 가능");
+	        return;
+	    }
+	}
+	
 });
 
-function setThumbnail(event){
+/* function setThumbnail(event){
 	var reader = new FileReader(); 
 	
 	reader.onload = function(event) { 
 		var img = document.createElement("img"); 
 		img.setAttribute("src", event.target.result); 
 		document.querySelector("div#image_container").appendChild(img);
-		
-       // var dataurl = canvas.toDataURL("image/png");
-       // document.getElementById('image_container').src = dataurl;
-
 	}; 
 	reader.readAsDataURL(event.target.files[0]); 
-}
+} */
 
 
 function getPetInfo(frm){
@@ -227,7 +215,7 @@ function getPetInfo(frm){
 	var pSerial = frm.thispetserial.value;
 	console.log(pSerial);
 
-	var serialData =  { 'pet_serial' : pSerial }
+	var serialData =  { 'pet_serial' : pSerial };
 	console.log(serialData);
 
 	$.ajax("/ajaxGetPetInfo", {
@@ -257,15 +245,9 @@ function getPetInfo(frm){
 			$("#detail_back").html(petDetail.back_length + " cm");
 			$("#detail_chest").html(petDetail.chest_length + " cm");
 			$("#detail_etc").html(petDetail.pet_etc);
-
-<<<<<<< HEAD:Bowwow/src/main/webapp/mypage/myPetInfoList3.jsp
-<<<<<<< HEAD:Bowwow/src/main/webapp/mypage/myPetInfoList3.jsp
-=======
-			$("#detail_orifile_name").val(petDetail.image_source_oriname);			 // hidden
->>>>>>> parent of d5ef625 (문의 추가, 반려동물crud수정(file)):Bowwow/src/main/webapp/mypage/myPetInfoList.jsp
-=======
-			$("#detail_orifile_name").val(petDetail.image_source_oriname);			 // hidden
->>>>>>> parent of d5ef625 (문의 추가, 반려동물crud수정(file)):Bowwow/src/main/webapp/mypage/myPetInfoList.jsp
+			$("#thumb_container").prop("src", petDetail.image_source);
+			
+			$("#detail_orifile_name").val(petDetail.image_source);			 // hidden
 			$("#detail_tnr").val(petDetail.tnr);									 // hidden
 			$("#detail_member_serial").val("<c:out value='${user.memberSerial}'/>"); // hidden
 			$("#detail_pet_serial").val(petDetail.pet_serial);					     // hidden
@@ -283,11 +265,11 @@ function getPetInfo(frm){
 //정보수정창 값 입력해놓기(?)
 function setModiInfo(petDetail){
 	$("#modi_petname").val(petDetail.pet_name);
-	$("#modi_gender").val(petDetail.pet_gender);
+	$("#modi_petgender").val(petDetail.pet_gender);
 	$("#modi_pet_serial").val(petDetail.pet_serial);
 	$("#modi_variety").val(petDetail.pet_variety);
-	$("#modi_birth").val(petDetail.pet_birth);
-	$("#modi_age").val(petDetail.pet_age);
+	$("#modi_petbirth").val(petDetail.pet_birth);
+	$("#modi_petage").val(petDetail.pet_age);
 	$("#modi_size").val(petDetail.pet_size);
 	$("#modi_weight").val(petDetail.pet_weight + " kg");
 	$("#modi_neck").val(petDetail.neck_length + " cm");
@@ -295,20 +277,15 @@ function setModiInfo(petDetail){
 	$("#modi_chest").val(petDetail.chest_length + " cm");
 	$("#modi_etc").val(petDetail.pet_etc);
 	$("#modi_animal_type").val(petDetail.animal_type);
-	$("#detail_thumb").prop("src", petDetail.image_source_oriname);
-<<<<<<< HEAD:Bowwow/src/main/webapp/mypage/myPetInfoList3.jsp
-<<<<<<< HEAD:Bowwow/src/main/webapp/mypage/myPetInfoList3.jsp
-
-=======
-=======
->>>>>>> parent of d5ef625 (문의 추가, 반려동물crud수정(file)):Bowwow/src/main/webapp/mypage/myPetInfoList.jsp
+	//$("#thumb_container").prop("src", petDetail.image_source);
 	$("#modi_image").val(petDetail.image_source);
 	
->>>>>>> parent of d5ef625 (문의 추가, 반려동물crud수정(file)):Bowwow/src/main/webapp/mypage/myPetInfoList.jsp
 	$("#modi_tnr").val(petDetail.tnr);				// hidden
 	$("#modi_member_serial").val("<c:out value='${user.memberSerial}'/>");	// hidden
 	$("#modi_pet_serial").val(petDetail.pet_serial);	// hidden
 }
+
+
 
  function transferType(){
 	 console.log("test");
@@ -325,14 +302,15 @@ function setModiInfo(petDetail){
  }
 
  function inputMemberSerial(){
-	 var mSerial = ${user.memberSerial };
+	// 유저번호
+	 var mSerial = "<c:out value='${user.memberSerial}'/>";
 	 console.log(mSerial);
 
 	 $("#insertPetInfo #insert_member_serial").val(mSerial);
  }
 
 function clearInput(){
-	/* 정보입력하다가 취소하면 입력했던 것 지우기 */
+	// 정보입력하다가 취소하면 입력했던 것 지우기
 	var inputText = $("#insertPetform input[type='text']");
 	for(var i = 0; i < inputText.length; i++){
 		inputText[i].value = "";
@@ -414,7 +392,7 @@ function clearInput(){
                                         </div>
                                    </div>
 								<!-- 본문 컨텐츠 -->
-								<%@include file="/mypage/bodycontent.jsp" %>
+								<%@include file="/mypage/petcontent.jsp" %>
 
 								  <!-- Page-body end -->
                                   </div>
@@ -424,9 +402,9 @@ function clearInput(){
                     </div>
                 </div>
             </div>
-   	<!-- footer 푸터 시작부분-->
-	<%@include file="/common/footer.jsp" %>
-	<!-- footer 푸터 끝부분-->
+		   	<!-- footer 푸터 시작부분-->
+			<%@include file="/common/footer.jsp" %>
+			<!-- footer 푸터 끝부분-->
          </div>
 	</div>
 
