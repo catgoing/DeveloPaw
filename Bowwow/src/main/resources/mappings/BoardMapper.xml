@@ -38,24 +38,53 @@
 	</insert>
 	
 	<select id="getBoardList" parameterType="Map" resultType="board" >
-		SELECT BOARD_NO, B.MEMBER_SERIAL, BOARD_TITLE, ID, IMG1
+		SELECT BOARD_NO, B.MEMBER_SERIAL, BOARD_TITLE, ID, IMG1, HITS, NICKNAME
 		FROM 
 		<choose>
 			<when test="board_idx == 1"> DIARY_BOARD B, USER_ACCOUNT U WHERE B.MEMBER_SERIAL = U.MEMBER_SERIAL </when>
 			<when test="board_idx == 2"> INTRO_BOARD B, USER_ACCOUNT U WHERE B.MEMBER_SERIAL = U.MEMBER_SERIAL </when>
+			<when test="board_idx == 3"> KNOWHOW_BOARD B, USER_ACCOUNT U WHERE B.MEMBER_SERIAL = U.MEMBER_SERIAL </when>
 		</choose>
 		ORDER BY BOARD_NO DESC
 	</select>
 	
 	<select id="getBoard" parameterType="Map" resultType="board">
-		SELECT BOARD_NO, BOARD_CONTENT, BOARD_TITLE, ANIMAL_CLASS
+		SELECT BOARD_NO, BOARD_CONTENT, BOARD_TITLE, ANIMAL_CLASS, HITS, NICKNAME
 		FROM 
 		<choose>
-			<when test="board_idx == 1"> DIARY_BOARD </when>
-			<when test="board_idx == 2"> INTRO_BOARD </when>
+			<when test="board_idx == 1"> DIARY_BOARD B, USER_ACCOUNT U </when>
+			<when test="board_idx == 2"> INTRO_BOARD B, USER_ACCOUNT U  </when>
+			<when test="board_idx == 3"> KNOWHOW_BOARD B, USER_ACCOUNT U </when>
 		</choose>
-		WHERE BOARD_NO = ${board_no}
+		WHERE B.MEMBER_SERIAL = U.MEMBER_SERIAL 
+		AND BOARD_NO = ${board_no}
 	</select>
+	
+	<update id="updateHits" parameterType="Map">
+		UPDATE  
+		<choose>
+			<when test="board_idx == 1"> 
+			DIARY_BOARD 
+			</when>
+			<when test="board_idx == 2"> 
+			INTRO_BOARD 
+			</when>
+			<when test="board_idx == 3"> 
+			KNOWHOW_BOARD 
+			</when>
+			<when test="board_idx == 4"> 
+			MISSING_BOARD 
+			</when>
+			<when test="board_idx == 5"> 
+			USED_TRANSACTION_BOARD 
+			</when>
+			<when test="board_idx == 6"> 
+			EVENT_BOARD 
+			</when>
+		</choose> 
+		SET HITS = HITS + 1
+		WHERE BOARD_NO = ${board_no}
+	</update>
 	
 	<update id="updateBoard" parameterType="Map">
 		UPDATE 
@@ -105,24 +134,56 @@
 	</update>
 	
 	
-	<insert id="insertComment" parameterType="comment">
-		INSERT INTO DIARY_COMMENTS (COMMENT_NO, MEMBER_SERIAL, BOARD_NO, COMMENT_CONTENT, REGDATE) 
-		VALUES (DIARY_COMMENTS_SEQ.NEXTVAL, 994, #{board_no}, #{comment_content}, SYSDATE)
-<!-- 		VALUES (DIARY_COMMENTS_SEQ.NEXTVAL, #{member_serial}, #{board_no}, #{comment_content}, SYSDATE) -->
+	<insert id="insertComment" parameterType="Map">
+		INSERT INTO 
+		<choose>
+			<when test="board_idx == 1"> 
+				DIARY_COMMENTS (COMMENT_NO, MEMBER_SERIAL, BOARD_NO, COMMENT_CONTENT, REGDATE) 
+				VALUES (DIARY_COMMENTS_SEQ.NEXTVAL, 994, #{comment.board_no}, #{comment.comment_content}, SYSDATE)
+		<!-- 		VALUES (DIARY_COMMENTS_SEQ.NEXTVAL, #{member_serial}, #{board_no}, #{comment_content}, SYSDATE) -->
+			</when>
+			<when test="board_idx == 2"> 
+				INTRO_COMMENTS (COMMENT_NO, MEMBER_SERIAL, BOARD_NO, COMMENT_CONTENT, REGDATE) 
+				VALUES (DIARY_COMMENTS_SEQ.NEXTVAL, 994, #{comment.board_no}, #{comment.comment_content}, SYSDATE)
+		<!-- 		VALUES (DIARY_COMMENTS_SEQ.NEXTVAL, #{member_serial}, #{board_no}, #{comment_content}, SYSDATE) -->
+			</when>
+			<when test="board_idx == 3"> 
+				KNOWHOW_COMMENTS (COMMENT_NO, MEMBER_SERIAL, BOARD_NO, COMMENT_CONTENT, REGDATE) 
+				VALUES (DIARY_COMMENTS_SEQ.NEXTVAL, 994, #{comment.board_no}, #{comment.comment_content}, SYSDATE)
+		<!-- 		VALUES (DIARY_COMMENTS_SEQ.NEXTVAL, #{member_serial}, #{board_no}, #{comment_content}, SYSDATE) -->
+			</when>
+		</choose>
+		
 	</insert>
 	
-	<insert id="insertComment2" parameterType="comment">
-		INSERT INTO DIARY_COMMENTS2 (COMMENT_NO2, MEMBER_SERIAL, COMMENT_NO, COMMENT_CONTENT2, REGDATE) 
-		VALUES (DIARY_COMMENTS2_SEQ.NEXTVAL, #{member_serial}, #{comment_no}, #{comment_content}, SYSDATE)
+	<insert id="insertComment2" parameterType="Map">
+	INSERT INTO 
+	<choose>
+		<when test="board_idx == 1"> 
+			DIARY_COMMENTS2 (COMMENT_NO2, MEMBER_SERIAL, COMMENT_NO, COMMENT_CONTENT2, REGDATE) 
+			VALUES (DIARY_COMMENTS2_SEQ.NEXTVAL, 994, #{comment.comment_no}, #{comment.comment_content}, SYSDATE)
+		</when>
+		<when test="board_idx == 2"> 
+			INTRO_COMMENTS2 (COMMENT_NO2, MEMBER_SERIAL, COMMENT_NO, COMMENT_CONTENT2, REGDATE) 
+			VALUES (INTRO_COMMENTS2_SEQ.NEXTVAL, 994, #{comment.comment_no}, #{comment.comment_content}, SYSDATE)
+		</when>
+		<when test="board_idx == 3"> 
+			KNOWHOW_COMMENTS2 (COMMENT_NO2, MEMBER_SERIAL, COMMENT_NO, COMMENT_CONTENT2, REGDATE) 
+			VALUES (KNOWHOW_COMMENTS2_SEQ.NEXTVAL, 994, #{comment.comment_no}, #{comment.comment_content}, SYSDATE)
+		</when>
+	</choose>
 	</insert>
+		
+		
 	
 	
 	<select id="getCommentList" parameterType="Map" resultType="comment" >
 		SELECT COMMENT_NO, BOARD_NO, COMMENT_CONTENT, REGDATE, NICKNAME
 		FROM 
 		<choose>
-			<when test="board_idx == 1"> DIARY_COMMENTS C, USER_DETAIL U WHERE C.MEMBER_SERIAL = U.MEMBER_SERIAL </when>
-			<when test="board_idx == 2"> INTRO_COMMENTS C, USER_DETAIL U WHERE C.MEMBER_SERIAL = U.MEMBER_SERIAL </when>
+			<when test="board_idx == 1"> DIARY_COMMENTS C, USER_ACCOUNT U WHERE C.MEMBER_SERIAL = U.MEMBER_SERIAL </when>
+			<when test="board_idx == 2"> INTRO_COMMENTS C, USER_ACCOUNT U WHERE C.MEMBER_SERIAL = U.MEMBER_SERIAL </when>
+			<when test="board_idx == 3"> KNOWHOW_COMMENTS C, USER_ACCOUNT U WHERE C.MEMBER_SERIAL = U.MEMBER_SERIAL </when>
 		</choose>
 		AND BOARD_NO = ${board_no}
 	</select>
@@ -132,10 +193,13 @@
 		FROM 
 		<choose>
 			<when test="board_idx == 1"> 
-			DIARY_COMMENTS2 C2, DIARY_COMMENTS C, USER_DETAIL U 
+			DIARY_COMMENTS2 C2, DIARY_COMMENTS C, USER_ACCOUNT U 
 			</when>
 			<when test="board_idx == 2"> 
-			INTRO_COMMENTS2 C2, INTRO_COMMENTS C, USER_DETAIL U 
+			INTRO_COMMENTS2 C2, INTRO_COMMENTS C, USER_ACCOUNT U 
+			</when>
+			<when test="board_idx == 3"> 
+			INTRO_COMMENTS2 C2, KNOWHOW_COMMENTS C, USER_ACCOUNT U 
 			</when>
 		</choose>
 		WHERE C2.COMMENT_NO = C.COMMENT_NO
@@ -165,9 +229,148 @@
 		<choose>
 			<when test="board_idx == 1"> DIARY_BOARD</when>
 			<when test="board_idx == 2"> INTRO_BOARD</when>
+			<when test="board_idx == 3"> KNOWHOW_BOARD</when>
 		</choose>
-		WHERE BOARD_NO = #{board_no}
+		WHERE BOARD_NO=#{board_no}
 	</delete>
+	
+	<update id="commentDelete" parameterType="Map">
+		UPDATE 
+		<choose>
+			<when test="board_idx == 1"> 
+			DIARY_COMMENTS 
+			SET MEMBER_SERIAL = NULL
+			, COMMENT_CONTENT = NULL
+		 
+			</when>
+			<when test="board_idx == 2"> 
+			INTRO_COMMENTS 
+			SET MEMBER_SERIAL = NULL
+			, COMMENT_CONTENT = NULL
+			</when>
+			
+			<when test="board_idx == 3"> 
+			KNOWHOW_COMMENTS 
+			SET MEMBER_SERIAL = NULL
+			, COMMENT_CONTENT = NULL
+			</when>
+			<!--
+			<when test="board_idx == 4"> 
+			MISSING_BOARD 
+			SET BOARD_TITLE = #{board_title}
+				, BOARD_CONTENT = #{board_content}
+				, ANIMAL_CLASS = #{animal_class}
+			</when>
+			<when test="board_idx == 5"> 
+			USED_TRANSACTION_BOARD 
+			SET BOARD_TITLE = #{board_title}
+				, GOODS = #{goods}
+				, AREA = #{area}
+				, PRICE = #{price}
+				, IS_SELLED = #{is_selled}
+				, BOARD_CONTENT = #{board_content}
+				, ANIMAL_CLASS = #{animal_class}
+			</when>
+			<when test="board_idx == 6"> 
+			EVENT_BOARD 
+			SET BOARD_TITLE = #{board_title}
+				, BOARD_CONTENT = #{board_content}
+			</when>
+			 -->
+		</choose> 
+		WHERE COMMENT_NO = ${comment.comment_no}
+	</update>
+	
+		<update id="commentDelete2" parameterType="Map">
+		UPDATE 
+		<choose>
+			<when test="board_idx == 1"> 
+			DIARY_COMMENTS2 
+			SET MEMBER_SERIAL = NULL
+			, COMMENT_CONTENT2 = NULL
+		 
+			</when>
+			<when test="board_idx == 2"> 
+			INTRO_COMMENTS2 
+			SET MEMBER_SERIAL = NULL
+			, COMMENT_CONTENT2 = NULL
+			</when>
+			
+			<when test="board_idx == 3"> 
+			KNOWHOW_COMMENTS2 
+			SET MEMBER_SERIAL = NULL
+			, COMMENT_CONTENT2 = NULL
+			</when>
+			<!--
+			<when test="board_idx == 4"> 
+			MISSING_BOARD 
+			SET BOARD_TITLE = #{board_title}
+				, BOARD_CONTENT = #{board_content}
+				, ANIMAL_CLASS = #{animal_class}
+			</when>
+			<when test="board_idx == 5"> 
+			USED_TRANSACTION_BOARD 
+			SET BOARD_TITLE = #{board_title}
+				, GOODS = #{goods}
+				, AREA = #{area}
+				, PRICE = #{price}
+				, IS_SELLED = #{is_selled}
+				, BOARD_CONTENT = #{board_content}
+				, ANIMAL_CLASS = #{animal_class}
+			</when>
+			<when test="board_idx == 6"> 
+			EVENT_BOARD 
+			SET BOARD_TITLE = #{board_title}
+				, BOARD_CONTENT = #{board_content}
+			</when>
+			 -->
+		</choose> 
+		WHERE COMMENT_NO = ${comment.comment_no}
+	</update>
+
+	<select id="getReportList" parameterType="Map" resultType="report" >
+		<choose>
+			<when test="report_idx == 1">
+				SELECT 	REPORT_NO, BOARD_CLASS, BOARD_NO, REPORT_CLASS, CONTENT, RESULT, REPORTER_SERIAL, 
+						ACCUSED_SERIAL, REPORT_DATE, HANDLED_DATE
+				FROM  	BOARD_REPORT
+		</when>
+			<when test="report_idx == 2"> 
+				SELECT 	REPORT_NO, BOARD_CLASS, COMMENTS_NO, REPORT_CLASS, CONTENT, RESULT, REPORTER_SERIAL, 
+						ACCUSED_SERIAL, REPORT_DATE, HANDLED_DATE
+				FROM 	COMMENTS_REPORT 
+			</when>
+			<when test="report_idx == 3"> 
+				SELECT 	REPORT_NO, BOARD_CLASS, COMMENTS_NO, REPORT_CLASS, CONTENT, RESULT, REPORTER_SERIAL, 
+						ACCUSED_SERIAL, REPORT_DATE, HANDLED_DATE
+				FROM 	COMMENTS_REPORT
+			</when>
+		</choose>
+	</select>
+
+		
+	<select id="getReport" parameterType="Map" resultType="report" >
+		SELECT *
+		FROM 
+		<choose>
+			<when test="report_idx == 1"> BOARD_REPORT</when>
+			<when test="report_idx == 2"> COMMENTS_REPORT</when>
+		</choose>
+	</select>
+	
+	<select id="updateReport" parameterType="Map" resultType="report" >
+		SELECT *
+		FROM 
+		<choose>
+			<when test="report_idx == 1"> BOARD_REPORT</when>
+			<when test="report_idx == 2"> COMMENTS_REPORT</when>
+		</choose>
+		WHERE REPORT_NO = ${report_no}
+	</select>
+
+	
+	
+	
 	
 	
 	
