@@ -245,19 +245,19 @@
 															<ul>
 																<li>
 																	<h4>
-																		판매금액: <fmt:formatNumber value="${p.price }" pattern="#,###" /> 원
+																		판매금액 <fmt:formatNumber value="${p.price }" pattern="#,###" /> 원
 																	</h4>
 																</li>
 															</ul>
 														</div>
 														<div class="quantity">
 															<div class="pro-qty">
-																<h5>
-																	상품 수량 : <input type="hidden" id="sell_price" name="price" value="${p.price }"> 
-																			 <input type="button" class="store_btn2" value=" - " onclick="del();"> 
-																			 <input type="text" class="store_input" onkeyup="onlyNumber(this);" maxlength="2" autocomplete="off" 
-																			 	min="1" name="amount" value="1" size="3" onchange="changeValue();"> 
-																			 <input type="button" id="addBtn" class="store_btn2" value=" + " onclick="add();">
+																<h5>상품 수량
+															      	 <input type="hidden" id="sell_price" name="price" value="${p.price }"> 
+																	 <input type="button" class="store_btn2" value=" - " onclick="del();">
+																	 <input type="text" class="store_input" onkeyup="onlyNumber(this);" maxlength="2" autocomplete="off" 
+																	 	min="1" name="amount" value="1" size="3" onchange="changeValue();"> 
+																	 <input type="button" id="addBtn" class="store_btn2" value=" + " onclick="add();">
 																</h5>
 															</div>
 															<br>
@@ -266,7 +266,7 @@
 															<ul>
 																<li>
 																	<h3>
-																		총 상품금액: <input type="text" class="store_input2"
+																		총 상품금액 <input type="text" class="store_input2"
 																			size="9" id="sum" readonly>원
 																	</h3>
 																</li>
