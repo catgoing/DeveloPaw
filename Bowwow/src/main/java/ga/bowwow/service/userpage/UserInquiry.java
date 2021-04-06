@@ -16,7 +16,7 @@ import lombok.ToString;
 @NoArgsConstructor
 @AllArgsConstructor
 @Component
-public class UserInquiry implements Serializable {
+public class UserInquiry {
 	
 	private int inquiry_serial;		//문의번호
 	private int member_serial;			//유저번호

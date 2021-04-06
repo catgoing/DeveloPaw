@@ -109,7 +109,11 @@
 								</tr>
 								<tr>							
 									<th class="inquiry_th">문의내용</th>
-									<td colspan="3">${uiqDetail.inquiry_content }</td>
+									<td colspan="3">
+									<!-- <textarea cols="50" rows="8"> -->
+									<pre><c:out value="${uiqDetail.inquiry_content }" /></pre>
+									<!-- </textarea> -->
+									</td>
 								</tr>				
 							</table>
 							<hr>
