@@ -32,17 +32,26 @@ public class StoreDAO {
 	
 	
 	// 장바구니 관련 dao
+	
+	// 장바구니 추가
 	public void addCart(CartList cartList) {
 		mybatis.insert("Cart.addCart", cartList);
 	}
 	
+	// 장바구니 목록 조회
 	public List<CartList> getCartList(String id) {
 		return mybatis.selectList("Cart.getCartList", id);
 	}
 	
-	public int pidCheck(CartList cartList) {
+	// 장바구니 동일한 제품 있는지 조회
+	public int cartCheck(CartList cartList) {
 		return mybatis.selectOne("Cart.cartCheck", cartList);
 		
+	}
+	
+	// 장바구니 상품 삭제
+	public int deleteCart(CartList cartList) {
+		return mybatis.delete("Cart.deleteCart", cartList);
 	}
 	
 	

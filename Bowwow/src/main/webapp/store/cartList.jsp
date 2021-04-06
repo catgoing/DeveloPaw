@@ -46,7 +46,124 @@
     <link rel="stylesheet" type="text/css" href="/resources/css/style.css">
     <link rel="stylesheet" type="text/css" href="/resources/css/cartStyle.css">
     <link rel="stylesheet" type="text/css" href="/resources/css/test.css">
-   <script type="text/javascript" src="/resources/js/jquery/jquery.min.js "></script>
+	<script type="text/javascript" src="/resources/js/jquery/jquery.min.js "></script>
+	<script type="text/javascript" src="/resources/js/ajax.js"></script>
+
+<script type="text/javascript">
+
+	$(function() {
+		var sell_price = $("input:hidden[name='price']");
+		var amount = $("input:text[name='amount']");
+		var prodSum = $("input:text[name='sum']");
+		var sum;
+
+		for (var i=0; i<sell_price.length; i++) {
+			sum = sell_price.eq(i).val() * amount.eq(i).val();
+			prodSum.eq(i).val(sum.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ","));
+		}
+
+	});
+
+	// 장바구니 상품 삭제
+	function delCart(pId, userId) {
+
+		var chk = confirm("상품을 삭제하시겠습니까?");
+
+		if (chk) {
+			var tUrl = '/store/deleteCart';
+			var result;
+			var param = {
+					pIdArr : pId,
+					id : userId
+			}
+
+			result = callAjax(tUrl, 'post', param, 'data');
+
+			if (result.code == '0000') {
+				alert(result.msg);
+				location.reload();
+			} else {
+				alert(result.msg);
+			}
+		}
+	} //end of delCart(pId, userId);
+
+	// 장바구니 상품 전체 체크
+	function chkAll() {
+		if ($("#checkAll").is(':checked')) {
+			$("input:checkbox[name='p_id']").prop("checked", true);
+			itemCheck();
+
+		} else {
+			$("input:checkbox[name='p_id']").prop("checked", false);
+			itemCheck();
+		}
+	}
+
+	// 체크된 상품만 총액 계산
+ 	function itemCheck() {
+ 		var sum = 0;
+ 		var count = $("input:checkbox[name='p_id']");
+ 		var price = $("input:text[name='sum']");
+ 		var totalPrice = $("input:text[name='totalPrice']");
+
+		for (var i=0; i < count.length; i++ ) {
+
+			if (count.eq(i).is(":checked") == true ) {
+				console.log(count.is(":checked"));
+				console.log(price.eq(i).val());
+
+				sum += parseInt(numberRemoveCommas(price.eq(i).val()));
+		     }
+		}
+		  console.log(sum);
+		  totalPrice.val(numberAddCommas(sum));
+ 	}
+
+ 	// 체크된 상품 삭제
+ 	function delCheck() {
+
+ 		var pIdArr = [];
+ 		var count = $("input:checkbox[name='p_id']");
+ 		var userId = $("input[name='id']").val();
+
+ 		if ($("input[name='p_id']:checked").length == 0) {
+ 				alert("선택된 상품이 없습니다.");
+ 				return;
+ 			}
+
+ 		for (var i=0; i < count.length; i++ ) {
+ 			if (count.eq(i).is(":checked") == true) {
+ 				pIdArr.push(count.eq(i).val());
+
+ 			}
+ 		}
+ 			delCart(pIdArr, userId);
+
+
+
+ 	}
+
+ 	// 콤마 빼기
+	function numberRemoveCommas(x) {
+	    return parseInt(x.replace(/,/g,""));
+	 }
+
+ 	// 콤마 넣기
+	function numberAddCommas(x) {
+
+	   if(x == 0) {
+	      return 0;
+	   } else {
+	      return x.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
+	   }
+	}
+
+ 	function hsBack() {
+ 		history.back();
+ 	}
+
+</script>
 
 </head>
 
@@ -78,7 +195,9 @@
 												<table>
 													<thead>
 														<tr>
-															<th>번호
+															<th>
+																<input type="checkbox" id="checkAll" onclick="chkAll();">
+															</th>
 															<th></th>
 															<th class="p-name" colspan="2">상품명</th>
 															<th>판매가</th>
@@ -97,7 +216,9 @@
 															</tr>
 														</c:if>
 														<c:if test="${!empty cart}">
+														<form id="listForm" >
 															<c:forEach var="cart" items="${cart }">
+																<input type="hidden" name="id" value="${cart.id }">
 																<c:choose>
 																	<c:when test="${cart.p_type == 'dog'}">
 																		<c:set var="imgDir" value="dogImg" />
@@ -107,7 +228,7 @@
 																	</c:when>
 																</c:choose>
 																<tr style="border-bottom: 1px solid #ddd;">
-																	<td></td>
+																	<td><input type="checkbox" name="p_id" value="${cart.p_id }" onclick="itemCheck()"></td>
 																	<td class="cart-pic first-row"><a
 																		href="detail?p_id=${cart.p_id }"> <img
 																			src="https://projectbit.s3.us-east-2.amazonaws.com/${imgDir }/${cart.s_image }"
@@ -118,21 +239,27 @@
 																			<a href="detail?p_id=${cart.p_id }">${cart.p_name }</a>
 																		</p>
 																	</td>
-																	<td class="p-price first-row"><fmt:formatNumber
-																			value="${cart.price }" pattern="#,###" />원</td>
+																	<td class="p-price first-row">
+																		<input type="hidden" name="price" value="${cart.price}">
+																		<fmt:formatNumber value="${cart.price }" pattern="#,###" />원</td>
 																	<td class="qua-col first-row">
 																		<div class="quantity">
-																			<div class="">
-																				<input type="button" class="store_btn2" value=" - " onclick=>
-																					<input type="text" value="${cart.amount }" size="3">
-																					<input type="button" class="store_btn2" value=" + " onclick=>
+																			<div class="cartList_amount">
+																				<input type="button" class="store_btn2" value=" - " onclick="add()">
+																				<input type="text" name="amount" value="${cart.amount }" size="3" readonly>
+																				<input type="button" class="store_btn2" value=" + " onclick=>
 																			</div>
 																		</div>
 																	</td>
-																	<td class="total-price first-row">$60.00</td>
-																	<td class="close-td first-row"><i class="ti-close"></i></td>
+																	<td class="total-price first-row">
+																		<input type="text" class="store_input3" size="9" name="sum" readonly>원
+																	</td>
+																	<td class="close-td first-row">
+																		<a onclick="delCart('${cart.p_id}', '${cart.id }')"><i class="ti-close"></i></a>
+																	</td>
 																</tr>
 															</c:forEach>
+														</form>
 														</c:if>
 													</tbody>
 												</table>
@@ -140,8 +267,8 @@
 											<div class="row">
 												<div class="col-lg-4">
 													<div class="cart-buttons">
-														<a href="#" class="primary-btn continue-shop">계속 쇼핑하기</a>
-														<a href="#" class="primary-btn up-cart">선택 삭제</a>
+														<a onclick="hsBack()" class="primary-btn continue-shop" style="cursor:pointer; color: #000;">계속 쇼핑하기</a>
+														<a onclick="delCheck()" class="primary-btn up-cart" style="cursor:pointer;">선택 삭제</a>
 													</div>
 													<div class="discount-coupon">
 														<h6>적립금 사용</h6>
@@ -155,9 +282,13 @@
 													<div class="proceed-checkout"
 														style="background-color: white;">
 														<ul>
-															<li class="subtotal">상품 금액 <span>$240.00</span></li>
-															<li class="subtotal">할인 금액 <span>$240.00</span></li>
-															<li class="cart-total">최종 결제 금액 <span>$240.00</span></li>
+															<li class="subtotal">선택  상품  금액
+																<input type="text" class="store_input4" name="totalPrice" value="0" readonly>원
+															</li>
+															<li class="subtotal">상품 할인 금액 <span>$240.00</span></li>
+															<li class="cart-total">최종 결제 금액
+																<input type="text" class="store_input4" name="totalPrice" value="0" readonly>원
+															</li>
 														</ul>
 														<a href="#" class="proceed-btn">주문하기</a>
 													</div>

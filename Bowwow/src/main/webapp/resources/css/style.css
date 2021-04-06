@@ -112,6 +112,7 @@ font-size: 16px; color : #fff; border-radius: 2px; line-height: 42px;}
 	 background-color : #eeeeee;
 	 color : #000;
 	 border-radius: 25px;
+	 cursor: pointer;
    }
    
     .store_btn2:hover{
@@ -129,8 +130,30 @@ font-size: 16px; color : #fff; border-radius: 2px; line-height: 42px;}
      background-color: #faf3f4;
      color: #ff6347;
      font-weight: bold;
-     text-align: center;
+     text-align: right;
    }
+   
+   .store_input3 {
+     border: 1px solid #fff;
+     background-color: #fff;
+     color: #000;
+     font-weight: bold;
+     text-align: right;
+     
+   }
+   
+   .store_input4 {
+     border: 1px solid #f3f3f3;
+     background-color: #f3f3f3;
+     color: #000;
+     font-weight: bold;
+     text-align: right;
+     
+   }
+   
+   .cartList_amount input {
+	  text-align: center;
+	}
    
    .details_pic {
    	 border: 1px solid #fff;

@@ -25,6 +25,17 @@
 		 WHERE ID = #{id} AND P_ID = ${p_id}
 	</select>
 	
+	<!-- 장바구니 제품 삭제 -->
+	<delete id="deleteCart" parameterType="CartList">
+		DELETE FROM STORE_CARTLIST
+		 WHERE ID = #{id}
+		   AND P_ID IN
+		<foreach item="list" collection="pIdArr" open="(" separator="," close=")">
+		    #{list}
+		</foreach> 
+	</delete>
+	
+	
 </mapper>
 
 

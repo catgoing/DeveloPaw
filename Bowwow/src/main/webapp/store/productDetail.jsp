@@ -7,72 +7,48 @@
 <html>
 
 <head>
-<title>개발바닥</title>
-<!-- Meta -->
-<meta charset="utf-8">
-<meta name="viewport"
-	content="width=device-width, initial-scale=1.0, user-scalable=0, minimal-ui">
-<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+	<title>개발바닥</title>
+	<!-- Meta -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=0, minimal-ui">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
 
-<meta name="keywords"
-	content="bootstrap, bootstrap admin template, admin theme, admin dashboard, dashboard template, admin template, responsive" />
-<meta name="author" content="Codedthemes" />
+    <meta name="keywords" content="bootstrap, bootstrap admin template, admin theme, admin dashboard, dashboard template, admin template, responsive" />
+    <meta name="author" content="Codedthemes" />
 
-<link rel="preconnect" href="https://fonts.gstatic.com">
-<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@700&display=swap" rel="stylesheet">
+    <!--Jua 폰트 import-->
+    <link rel="preconnect" href="https://fonts.gstatic.com">
+    <link href="https://fonts.googleapis.com/css2?family=Jua&display=swap" rel="stylesheet">
 
-<!--Jua 폰트 import-->
-<link rel="preconnect" href="https://fonts.gstatic.com">
-<link href="https://fonts.googleapis.com/css2?family=Jua&display=swap"
-	rel="stylesheet">
+    <!-- Dohyeon 폰트 import-->
+    <link rel="preconnect" href="https://fonts.gstatic.com">
+    <link href="https://fonts.googleapis.com/css2?family=Do+Hyeon&display=swap" rel="stylesheet">
 
-<!-- Dohyeon 폰트 import-->
-<link rel="preconnect" href="https://fonts.gstatic.com">
-<link
-	href="https://fonts.googleapis.com/css2?family=Do+Hyeon&display=swap"
-	rel="stylesheet">
+    <!-- Favicon icon -->
+    <link rel="icon" href="/resources/images/favicon.ico" type="image/x-icon">
+    <!-- Google font-->
+    <link href="https://fonts.googleapis.com/css?family=Open+Sans:400,600,700" rel="stylesheet">
+    <!-- waves.css -->
+    <link rel="stylesheet" href="/resources/pages/waves/css/waves.min.css" type="text/css" media="all">
+    <!-- Required Fremwork -->
+    <link rel="stylesheet" type="text/css" href="/resources/css/bootstrap/css/bootstrap.min.css">
+    <!-- waves.css -->
+    <link rel="stylesheet" href="/resources/pages/waves/css/waves.min.css" type="text/css" media="all">
+    <!-- themify icon -->
+    <link rel="stylesheet" type="text/css" href="/resources/icon/themify-icons/themify-icons.css">
+    <!-- font-awesome-n -->
+    <link rel="stylesheet" type="text/css" href="/resources/css/font-awesome-n.min.css">
+    <link rel="stylesheet" type="text/css" href="/resources/css/font-awesome.min.css">
+    <!-- scrollbar.css -->
+    <link rel="stylesheet" type="text/css" href="/resources/css/jquery.mCustomScrollbar.css">
+    <!-- Style.css -->
+    <link rel="stylesheet" type="text/css" href="/resources/css/style.css">
+    <link rel="stylesheet" type="text/css" href="/resources/css/test.css">
 
-<!-- Favicon icon -->
-<link rel="icon" href="/resources/images/favicon.ico"
-	type="image/x-icon">
-<!-- Google font-->
-<link
-	href="https://fonts.googleapis.com/css?family=Open+Sans:400,600,700"
-	rel="stylesheet">
-<!-- waves.css -->
-<link rel="stylesheet" href="/resources/pages/waves/css/waves.min.css"
-	type="text/css" media="all">
-<!-- Required Fremwork -->
-<link rel="stylesheet" type="text/css"
-	href="/resources/css/bootstrap/css/bootstrap.min.css">
-<!-- waves.css -->
-<link rel="stylesheet" href="/resources/pages/waves/css/waves.min.css"
-	type="text/css" media="all">
-<!-- themify icon -->
-<link rel="stylesheet" type="text/css"
-	href="/resources/icon/themify-icons/themify-icons.css">
-<!-- font-awesome-n -->
-<link rel="stylesheet" type="text/css"
-	href="/resources/css/font-awesome-n.min.css">
-<link rel="stylesheet" type="text/css"
-	href="/resources/css/font-awesome.min.css">
-<!-- scrollbar.css -->
-<link rel="stylesheet" type="text/css"
-	href="/resources/css/jquery.mCustomScrollbar.css">
-<!-- Style.css -->
-<link rel="stylesheet" type="text/css" href="/resources/css/style.css">
-<link rel="stylesheet" type="text/css" href="/resources/css/test.css">
+	<script type="text/javascript" src="/resources/js/jquery/jquery.min.js"></script>
+	<script type="text/javascript" src="/resources/js/ajax.js"></script>
 
-<script type="text/javascript" src="/resources/js/jquery/jquery.min.js "></script>
-
-<style type="text/css">
-section.replyForm { padding:30px 0; }
-		section.reviewForm div.input_area { margin:10px 0; }
-		section.reviewForm textarea { font-size:16px; font-family:'맑은 고딕', verdana; padding:10px; width:500px;; height:150px; }
-		section.reviewForm button { font-size:20px; padding:5px 10px; margin:10px 0; background:#fff; border:1px solid #ccc; }
-		
-
-
+<style>
 .featured__item__text {
 	width: 150px;
 }
@@ -84,41 +60,29 @@ section.replyForm { padding:30px 0; }
 </style>
 
 <script type="text/javascript">
-	var sell_price;
-	var amount;
 
-	$(function init() {
-		sell_price = document.getElementById('sell_price').value;
-		document.getElementById('sum').value = sell_price.replace(
-				/\B(?=(\d{3})+(?!\d))/g, ",");
-		sell_price = document.form.sell_price.value;
-		amount = document.form.amount.value;
-		document.form.sum.value = sell_price;
-	});
+		var sell_price;
+		var amount;
 
-	function add() {
-		hm = document.form.amount;
-		sum = document.form.sum;
-		hm.value++;
+		$(function init () {
+			sell_price = document.getElementById('sell_price').value;
+			document.getElementById('sum').value = sell_price
+			sell_price = document.form.sell_price.value;
+			amount = document.form.amount.value;
+			document.form.sum.value = sell_price.replace(/\B(?=(\d{3})+(?!\d))/g, ",");
+		});
 
-		var temp = parseInt(hm.value) * sell_price
+		function add () {
+			hm = document.form.amount;
+			sum = document.form.sum;
 
-		document.getElementById('sum').value = temp;
-		document.getElementById('sum').value = document.getElementById('sum').value
-				.replace(/\B(?=(\d{3})+(?!\d))/g, ",");
-	}
+			hm.value ++ ;
 
-	function del() {
-		hm = document.form.amount;
-		sum = document.form.sum;
-		if (hm.value > 1) {
-			hm.value--;
 			var temp = parseInt(hm.value) * sell_price
 
 			document.getElementById('sum').value = temp;
-			document.getElementById('sum').value = document
-					.getElementById('sum').value.replace(
-					/\B(?=(\d{3})+(?!\d))/g, ",");
+			document.getElementById('sum').value = document.getElementById('sum').value.replace(/\B(?=(\d{3})+(?!\d))/g, ",");
+
 		}
 
 	}
@@ -134,46 +98,13 @@ section.replyForm { padding:30px 0; }
 				.replace(/\B(?=(\d{3})+(?!\d))/g, ",");
 	}
 
-	function cartList(frm) {
-		console.log('frm 함수');
-		var param = $("form[name=form]").serialize();
-
-		$.ajax({
-			url : '/store/addCart',
-			type : 'post',
-			data : param,
-			dataType : 'json',
-			success : function(data) {
-
-				if (data.result == "code") {
-					var chk = confirm(data.msg);
-
-					if (chk) {
-						location.href = "/store/cartList";
-					} else {
-						return;
-					}
-
-				} else if (data.result == "error") {
-					var chk = confirm(data.msg);
-
-					if (chk) {
-						location.href = "/store/cartList";
-					} else {
-						return;
-					}
-				}
-			}
-		});
-	}
-
 
 	function insertOrder(frm) {
 		console.log('order 함수');
 		var p_id = $('#product_id').val();
 		var p_count = $('#product_count').val();
 		var sum = $('#sum').val();
-		
+
 		location.href = "/store/storeOrder?p_id=" + p_id + "&p_count=" + p_count + "&sum=" + sum;
 	}
 
@@ -206,9 +137,9 @@ section.replyForm { padding:30px 0; }
 			return true;
 
 	}
-	
+
 	function reviewInsert() {
-		
+
 		var formObj = $("#reviewForm").serialize();
 		/* var formdata = new FormData();
 		formdata.append(); */
@@ -230,8 +161,8 @@ section.replyForm { padding:30px 0; }
 							'</li>'
 					);
 				}
-				
-	            
+
+
 				if(data.code == '0000') {
 					alert(data.msg);
 				} else {
@@ -240,21 +171,20 @@ section.replyForm { padding:30px 0; }
 			}
 		});
 	 }
-	
+
 	function reviewList() {
-		
+
 		var pId = ${p.p_id};
-		
 		$.getJSON("/store/reviewList" + "?p_id=" + pId, function(data){
 			var str = "";
-			
+
 			$(data).each(function(){
-				
+
 				console.log(data);
-				
+
 				var reviewDate = new Date(this.review_regdate);
 				reviewDate = reviewDate.toLocaleDateString("ko-US")
-								
+
 				// HTML코드 조립
 				str += '<li class="rev_'+this.review_id+'">'
 					 + '<div class="userInfo">'
@@ -263,15 +193,57 @@ section.replyForm { padding:30px 0; }
 					 + '<div class="reviewContent">'+this.review_content+'</div>'
 					 + '<button class="store_btn" onclick="deleteReview('+this.review_id+')">삭제</button>'
 					 + '</div>'
-					 + "</li>";											
+					 + "</li>";
 			});
-			
+
 			// 조립한 HTML코드를 추가
 			$("section.reviewList ol").html(str);
 		});
-		
-	}	
-	
+
+		// 숫자만 들어오도록 체크
+		function onlyNumber(e) {
+			var reg = /[^0-9]{1,100}$/g;
+			var value = $(e).val();	// $(e) : 선택자, jQuery에서 매개변수로 받은 Object를 지칭함
+
+			if (reg.test(value)) { // 숫자만 들어오도록 test()로 체크
+				$(e).val(value.replace(reg, ""));
+				return false;
+			}
+		}
+
+		function cartList(frm) {
+			var param = $("form[name=form]").serialize();
+			var tUrl = '/store/addCart';
+			var result;
+
+			result = callAjax(tUrl, 'post', param, 'data');
+
+	       	   	if (result.code == "0000") {
+	       		  	var chk = confirm(result.msg);
+
+	       		  	if (chk) {
+	         			location.href="/store/cartList";
+	       	   		}
+
+				} else {
+	       		  	var chk = confirm(result.msg);
+
+	       		 	if (chk) {
+	         			location.href="/store/cartList";
+	         		}
+       	    	}
+
+		}
+
+
+		function storeOrder(frm) {
+			frm.action="/store/storeOrder";
+			frm.submit();
+		}
+
+
+	}
+
 </script>
 
 </head>
@@ -330,9 +302,7 @@ section.replyForm { padding:30px 0; }
 															<ul>
 																<li>
 																	<h4>
-																		판매금액:
-																		<fmt:formatNumber value="${p.price }" pattern="#,###" />
-																		원
+																		판매금액: <fmt:formatNumber value="${p.price }" pattern="#,###" /> 원
 																	</h4>
 																</li>
 															</ul>
@@ -340,10 +310,11 @@ section.replyForm { padding:30px 0; }
 														<div class="quantity">
 															<div class="pro-qty">
 																<h5>
-																	상품 수량     <input type="hidden" id="sell_price" name="price" value="${p.price }"> 
-																			<input type="button" class="store_btn2" value=" - " onclick="del()"> 
-																			<input type="text" id="product_count" class="store_input" autocomplete="off" min="1" name="amount" value="1" size="3" onchange="changeValue();"> 
-																			<input type="button" class="store_btn2" value=" + " onclick="add()">
+																	상품 수량 : <input type="hidden" id="sell_price" name="price" value="${p.price }">
+																			 <input type="button" class="store_btn2" value=" - " onclick="del();">
+																			 <input type="text" class="store_input" onkeyup="onlyNumber(this);" maxlength="2" autocomplete="off"
+																			 	min="1" name="amount" value="1" size="3" onchange="changeValue();">
+																			 <input type="button" id="addBtn" class="store_btn2" value=" + " onclick="add();">
 																</h5>
 															</div>
 															<br>
@@ -421,7 +392,7 @@ section.replyForm { padding:30px 0; }
 																</ol>
 																<script>
 																	reviewList();
-																</script>	
+																</script>
 															</section>
 														</div>
 													</div>
@@ -441,7 +412,7 @@ section.replyForm { padding:30px 0; }
 		</div>
 	</div>
 
-	<%@include file="/common/storeFoot.jsp"%>
+	<%@include file="/common/storeFoot.jsp" %>
 
 	<!-- Required Jquery -->
 	<script type="text/javascript"

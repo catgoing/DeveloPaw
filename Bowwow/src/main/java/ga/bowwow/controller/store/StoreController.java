@@ -34,7 +34,7 @@ public class StoreController {
 	
 	// 상품 상세 보기
 	@RequestMapping(value = "/store/detail")
-	public String getProductDetailDog(Model model, HttpServletRequest request) {
+	public String getProductDetail(Model model, HttpServletRequest request) {
 		System.out.println("p_id : " + request.getParameter("p_id"));
 		int p_id = Integer.parseInt(request.getParameter("p_id"));
 		
