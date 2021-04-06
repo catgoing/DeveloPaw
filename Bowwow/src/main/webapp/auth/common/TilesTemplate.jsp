@@ -1,7 +1,6 @@
-<%@page import="ga.bowwow.service.user.VO.UserAccount"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<%@ taglib uri="http://tiles.apache.org/tags-tiles" prefix="tiles"%>
 
 <!DOCTYPE html>
 <html>
@@ -15,8 +14,6 @@
       <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
       <![endif]-->
     <!-- Meta -->
-    <script src="http://code.jquery.com/jquery-3.5.1.min.js"></script>
-
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=0, minimal-ui">
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
@@ -52,134 +49,92 @@
     <link rel="stylesheet" type="text/css" href="../resources/css/style.css">
     <link rel="stylesheet" type="text/css" href="../resources/css/test.css">
 <style>
-  .myPageInfo-header{ text-align : center;}
-  .container h3 { text-align: center;}
+  .featured__item__text { width: 150px; }
 </style>
 </head>
 
 <body>
-	<!-- Pre-loader start -->
-	<div class="theme-loader">
-		<div class="loader-track">
-			<div class="preloader-wrapper">
-				<div class="spinner-layer spinner-blue">
-					<div class="circle-clipper left">
-						<div class="circle"></div>
-					</div>
-					<div class="gap-patch">
-						<div class="circle"></div>
-					</div>
-					<div class="circle-clipper right">
-						<div class="circle"></div>
-					</div>
-				</div>
-				<div class="spinner-layer spinner-red">
-					<div class="circle-clipper left">
-						<div class="circle"></div>
-					</div>
-					<div class="gap-patch">
-						<div class="circle"></div>
-					</div>
-					<div class="circle-clipper right">
-						<div class="circle"></div>
-					</div>
-				</div>
+    <!-- Pre-loader start -->
+    <div class="theme-loader">
+        <div class="loader-track">
+            <div class="preloader-wrapper">
+                <div class="spinner-layer spinner-blue">
+                    <div class="circle-clipper left">
+                        <div class="circle"></div>
+                    </div>
+                    <div class="gap-patch">
+                        <div class="circle"></div>
+                    </div>
+                    <div class="circle-clipper right">
+                        <div class="circle"></div>
+                    </div>
+                </div>
+                <div class="spinner-layer spinner-red">
+                    <div class="circle-clipper left">
+                        <div class="circle"></div>
+                    </div>
+                    <div class="gap-patch">
+                        <div class="circle"></div>
+                    </div>
+                    <div class="circle-clipper right">
+                        <div class="circle"></div>
+                    </div>
+                </div>
 
-				<div class="spinner-layer spinner-yellow">
-					<div class="circle-clipper left">
-						<div class="circle"></div>
-					</div>
-					<div class="gap-patch">
-						<div class="circle"></div>
-					</div>
-					<div class="circle-clipper right">
-						<div class="circle"></div>
-					</div>
-				</div>
+                <div class="spinner-layer spinner-yellow">
+                    <div class="circle-clipper left">
+                        <div class="circle"></div>
+                    </div>
+                    <div class="gap-patch">
+                        <div class="circle"></div>
+                    </div>
+                    <div class="circle-clipper right">
+                        <div class="circle"></div>
+                    </div>
+                </div>
 
-				<div class="spinner-layer spinner-green">
-					<div class="circle-clipper left">
-						<div class="circle"></div>
-					</div>
-					<div class="gap-patch">
-						<div class="circle"></div>
-					</div>
-					<div class="circle-clipper right">
-						<div class="circle"></div>
+                <div class="spinner-layer spinner-green">
+                    <div class="circle-clipper left">
+                        <div class="circle"></div>
+                    </div>
+                    <div class="gap-patch">
+                        <div class="circle"></div>
+                    </div>
+                    <div class="circle-clipper right">
+                        <div class="circle"></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+    <!-- Pre-loader end -->
+    <div id="pcoded" class="pcoded">
+        <div class="pcoded-overlay-box"></div>
+        <div class="pcoded-container navbar-wrapper">
+            
+		<!-- 헤더 -->
+		<tiles:insertAttribute name="header" />
+		
+            <div class="pcoded-main-container">
+                <div class="pcoded-wrapper">
+					<!-- 좌측메뉴바 -->
+					<tiles:insertAttribute name="menubar"/>
+				
+			 
+					<div class="pcoded-content">
+						<div class="pcoded-inner-content">
+							
+							<!-- Main-body start 본문 시작 -->
+							<tiles:insertAttribute name="body" />
+							
+						</div>
 					</div>
 				</div>
 			</div>
 		</div>
 	</div>
-	<!-- Pre-loader end -->
-	<div id="pcoded" class="pcoded">
-		<div class="pcoded-overlay-box"></div>
-		<div class="pcoded-container navbar-wrapper">
-			<!-- header -->
-			<%@include file="/common/header.jsp" %>
-
-			<div class="pcoded-main-container">
-				<div class="pcoded-wrapper">
-
-				<!-- 좌측 메뉴바 시작 -->
-				<%@include file="/common/myPageMenuBar.jsp" %>
-
-			<div class="pcoded-content">
-				<div class="pcoded-inner-content">
-					<!-- Main-body start 본문 시작 -->
-					<div class="main-body">
-					<div class="page-wrapper">
-					<!-- Page-body start -->
-						<div class="page-body">
-						<div class="myPageInfo-header">
-							<h2> ${user.memberSerial} 님의 페이지</h2>
-						</div>
-
-						<div class="mypage_main_content">
-
-							<div class="container mypage_main_content mypointlist">
-								<h3>누적적립금출력영역</h3>
-							</div>
-							<br>
-							<hr>
-							<div class="container">
-							  	<h3>반려동물리스트</h3>
-							  <div class="row">
-							  	<c:if test="${not empty petList }">
-                       			<c:forEach var="petList" items="${petList }">
-							    <div class="col-sm">
-							      	${petList.pet_name }
-							    	<div class="card" style="width: 200px;">
-										<img src="../resources/images/avatar-2.jpg" class="card-img-top" alt="...">
-									</div>
-							    </div>
-							    </c:forEach>
-							    </c:if>
-							    <c:if test="${empty petList }">
-						    	<div class="col-md-6">
-                           			<div class="list-inner">
-                               	<h3>등록된 반려동물이 없습니다.</h3>
-                            	</div>
-                            </div>
-							    </c:if>
-							  </div>
-							</div>
-							<br>
-							<hr>
-							<div class="container mypage_main_content boardlist">
-								<h3>게시글출력영역</h3>
-							</div>
-						</div>
-					</div>
-					<!-- Page-body end -->
-					</div>
-					<div id="styleSelector"> </div>
-	               	</div>
-				</div>
-			</div>
-		</div>
-	</div>
-
+	
     <button class="scroll-top" id="js-button" style="margin-bottom: 190px; margin-right: 30px;">
         <i class="fa fa-chevron-up" aria-hidden="true">TOP</i>
     </button>
@@ -187,13 +142,13 @@
         scrollTop('js-button', 500);
         function scrollTop(elem,duration) {
             let target = document.getElementById(elem);
-
+        
             target.addEventListener('click', function() {
-                let currentY = window.pageYOffset;
+                let currentY = window.pageYOffset; 
                 let step = duration/currentY > 1 ? 10 : 100;
                 let timeStep = duration/currentY * step;
                 let intervalID = setInterval(scrollUp, timeStep);
-
+        
                 function scrollUp(){
                     currentY = window.pageYOffset;
                     if(currentY === 0) {
@@ -205,12 +160,10 @@
             });
         }
         </script>
-
+        
 	<!-- footer 푸터 시작부분-->
-	<%@include file="/common/footer.jsp" %>
+	<tiles:insertAttribute name="footer" />
 	<!-- footer 푸터 끝부분-->
-    </div>
-</div>
 
     <!-- Required Jquery -->
     <script type="text/javascript" src="../resources/js/jquery/jquery.min.js "></script>

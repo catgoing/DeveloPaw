@@ -30,7 +30,6 @@
 		}
 	}
 </script>
-<div class="pcoded-content">
  <section class="login-block">
         <!-- Container-fluid starts -->
         <div class="container-fluid">
@@ -131,4 +130,3 @@
 	</div>
 </div>
 </section>
-</div>

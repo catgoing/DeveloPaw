@@ -216,12 +216,13 @@ public class PetController {
 			result = petService.updatePetInfo(pet);	
 		
 		} else { //첨부한 파일이 없을 때
-			result = petService.updatePetInfo2(pet);	
+//			result = petService.updatePetInfo2(pet);	
 			System.out.println("update 사진없음!!!");
 			result = 0;
 		}
 		return result;
 	}
+
 	
 //	@PostMapping(value="/ajaxInsertPetInfo")
 //	@ResponseBody //json으로 변환해서 보내줌!-@RequestBody : 받은 거 json으로 바꿔줌

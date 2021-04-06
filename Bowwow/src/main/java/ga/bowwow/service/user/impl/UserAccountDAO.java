@@ -2,6 +2,8 @@ package ga.bowwow.service.user.impl;
 
 import java.util.List;
 
+import org.apache.ibatis.exceptions.TooManyResultsException;
+import org.apache.ibatis.session.RowBounds;
 import org.mybatis.spring.SqlSessionTemplate;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
@@ -25,8 +27,12 @@ public class UserAccountDAO extends UserGenericDAO<UserAccount> {
 //		TODO REPLACE TEMPORARY INSERT mybatis.insert("UserAccount.insertUserAccount", userAccount);
 	}
 
-	public UserAccount verifyAccount(UserAccount userAccount) {
-		return mybatis.selectOne("UserAccount.loginValidation", userAccount);
+	public List<UserAccount> verifyAccount(UserAccount userAccount) {
+		return mybatis.selectList("UserAccount.loginValidation", userAccount, new RowBounds(0, 1));
+	}
+	
+	public List<UserAccount> verifyId(UserAccount userAccount) {
+		return mybatis.selectList("UserAccount.checkIdValidation", userAccount, new RowBounds(0, 1));
 	}
 	
 	public List<UserAccount> getUserList() {

@@ -43,9 +43,4 @@ public class PetServiceImpl implements PetService {
 		return petDAO.getPetInfo(pet);
 	}
 
-	@Override
-	public int updatePetInfo2(Pet pet) {
-		return petDAO.updatePetInfo2(pet);
-	}
-
 }

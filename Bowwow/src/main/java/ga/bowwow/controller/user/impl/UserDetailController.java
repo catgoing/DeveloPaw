@@ -26,9 +26,4 @@ public class UserDetailController extends UserCRUDGenericController<UserDetail> 
 	public String getDetailInfo(@ModelAttribute("userDetail") UserDetail userDetail) {
 		return "/auth.myDetail";
 	}
-	
-	//TODO 컨트롤러가 너무 구체적인 작업을 하고 있음, GENERICCONTROLLER를 사용하지 않고 있음. 파이프라인 정도의 역할만 해아함.
-	private String simpleOkPageDistributor(boolean isOK) {
-		return (isOK) ? "/ok" : "failedRoute <- usually itself";
-	}
 }

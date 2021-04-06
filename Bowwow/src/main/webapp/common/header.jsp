@@ -144,18 +144,18 @@
 						alt="User-Profile-Image"> <i class="ti-angle-down"></i>
 				</a>
 					<ul class="show-notification profile-notification">
-						<li class="waves-effect waves-light"><a href="/mypage/myPageMain">마이홈
+						<li class="waves-effect waves-light"><a href="#!">마이홈
 						</a></li>
 						<li class="waves-effect waves-light"><a
-							href="/mypage/myPageMain">프로필 </a></li>
+							href="user-profile.html">프로필 </a></li>
 						<li class="waves-effect waves-light"><a
-							href="/getPetInfoList">반려동물 </a></li>
+							href="email-inbox.html">반려동물 </a></li>
 						<li class="waves-effect waves-light"><a
-							href="/mypage/myPostList">게시글</a></li>
+							href="auth-lock-screen.html">게시글</a></li>
 						<li class="waves-effect waves-light"><a
-							href="/mypage/myPoint">포인트 내역 </a></li>
+							href="auth-normal-sign-in.html">포인트 내역 </a></li>
 						<li class="waves-effect waves-light"><a
-							href="/mypage/myPageMain">나의 쇼핑 </a></li>
+							href="auth-normal-sign-in.html">나의 쇼핑 </a></li>
 						<li class="waves-effect waves-light"><a
 							href="/account/logout">로그아웃 </a></li>
 					</ul></li>
