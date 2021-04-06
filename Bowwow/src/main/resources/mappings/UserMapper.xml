@@ -39,7 +39,14 @@
         ORDER BY ACT.MEMBER_SERIAL
 	</select>
 	
-<!-- 	TODO 순서 괜찮은지 확인 -->
+	<select id="getUserByIdPassword" parameterType="UserDTO" resultType="UserDTO">
+		SELECT *
+		FROM USER_ACCOUNT ACT, USER_DETAIL DET
+		WHERE ACT.MEMBER_SERIAL = DET.MEMBER_SERIAL
+		AND ID = #{id}
+		AND PASSWORD = #{password}
+	</select>
+<!-- 	TODO 순서 바꿔도 괜찮은지 확인 -->
 	<select id="getUserDtoBySerial" parameterType="UserDTO" resultType="UserDTO">
 		SELECT *
 		FROM USER_ACCOUNT ACT, USER_DETAIL DET

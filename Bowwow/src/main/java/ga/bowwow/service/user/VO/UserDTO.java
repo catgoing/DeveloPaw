@@ -1,7 +1,6 @@
 package ga.bowwow.service.user.VO;
 
 import java.sql.Date;
-import java.util.ArrayList;
 
 import lombok.AllArgsConstructor;
 import lombok.Getter;
@@ -19,7 +18,6 @@ public class UserDTO extends UserAccount {
 	String email;
 	String citizen_id;
 	String phone;
-	String password;
 	String status;
 	long point;
 	String coupons;

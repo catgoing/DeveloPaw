@@ -20,7 +20,7 @@ public class UserDtoDAO extends UserGenericDAO<UserAccount> {
 		this.setQueries("YETNO INSERT QUERY"
 				, "YETNO UPDATE QUERY"
 				, "YETNO DELETE QUERY"
-				, "UserAccount.getUserDtoBySerial"
+				, "UserAccount.getUserByIdPassword"
 				, "YETNO SEARCH QUERY"
 				, "YETNOGetListQuery");
 	}
