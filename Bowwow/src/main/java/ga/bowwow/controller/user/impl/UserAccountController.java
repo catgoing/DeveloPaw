@@ -26,7 +26,6 @@ import ga.bowwow.service.user.VO.UserAddress;
 import ga.bowwow.service.user.impl.UserAccountServiceImpl;
 
 @Controller
-@SessionAttributes("userDTO")
 @RequestMapping("/account")
 public class UserAccountController extends UserCRUDGenericController<UserAccount> {
 

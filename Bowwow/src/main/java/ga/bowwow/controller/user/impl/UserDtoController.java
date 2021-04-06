@@ -2,8 +2,10 @@ package ga.bowwow.controller.user.impl;
 
 import java.util.ArrayList;
 
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpSession;
+
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.beans.factory.annotation.Value;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
@@ -36,12 +38,15 @@ public class UserDtoController extends UserCRUDGenericController<UserAccount> {
 	}
 	
 	@RequestMapping(value="/login")
-	public String loginUserDTO(@ModelAttribute("userDTO") UserDTO userDTO, Model model) {
+	public String loginUserDTO(@ModelAttribute("userDTO") UserDTO userDTO, Model model, HttpServletRequest request) {
+		HttpSession session = request.getSession();
 		if(attemptUserLogin(userDTO).getStatusCode() == HttpStatus.OK) {
 			UserDTO completeUserDtoTest = (UserDTO) service.getVo(userDTO);
 			System.out.println("userDTO for login : " +completeUserDtoTest);
-			model.addAttribute(service.getVo(userDTO));
-			return "/store/storeMain";
+			session.setAttribute("userDTO", completeUserDtoTest);
+			
+//			model.addAttribute("userDTO", service.getVo(userDTO));
+			return "redirect:/store/storeMain";
 		}
 		return "/auth.login";
 	}
