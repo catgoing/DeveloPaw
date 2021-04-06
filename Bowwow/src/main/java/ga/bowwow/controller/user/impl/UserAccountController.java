@@ -29,11 +29,20 @@ import ga.bowwow.service.user.impl.UserAccountServiceImpl;
 @SessionAttributes("userDTO")
 @RequestMapping("/account")
 public class UserAccountController extends UserCRUDGenericController<UserAccount> {
-	
+
 	public UserAccountController(@Autowired UserAccountServiceImpl service) {
 		System.out.println("---->>> UserAccountController() 객체생성");
 		this.service = service;
 		this.setDomainRoute("/ok", "/auth.login");
+	}
+
+	@ResponseBody
+	@RequestMapping(value="/loginValidateUserAccount")
+	public ResponseEntity getUserAccount(@RequestBody UserAccount userAccount) {
+		System.out.println("userAccountController userAccount :" + userAccount);
+		boolean result = ((UserAccountServiceImpl)this.service).loginAttemp(userAccount);
+//		System.out.println("Rest loginValidation : " + result);
+		return result ? ResponseEntity.ok().build() : ResponseEntity.status(204).build();
 	}
 
 	@GetMapping("/getList")
@@ -103,16 +112,6 @@ public class UserAccountController extends UserCRUDGenericController<UserAccount
 		return "/auth.myAccount";
 	}
 	
-	@RequestMapping(value="/login")
-	public String getUserAccount(@ModelAttribute("userAccount") UserAccount userAccount, Model model) {
-		boolean result = ((UserAccountServiceImpl)this.service).loginAttemp(userAccount);
-		System.out.println("loginController TEST");
-		System.out.println(userAccount);
-		System.out.println(model);
-		if(result) model.addAttribute("userDTO", userAccount);
-		System.out.println(result);
-		return result ? "redirect:/store/storeMain" : "/auth.login";
-	}
 	@RequestMapping(value="/logout")
 	public String getUserAccount(@Autowired HttpSession session) {
 		session.invalidate();

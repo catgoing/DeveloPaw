@@ -17,7 +17,7 @@ public class UserAccount {
 	String phone;
 	String password;
 	String status;
-	int point;
+	long point;
 	String coupons;
 
 	@Override

@@ -12,23 +12,24 @@ import lombok.ToString;
 @Getter @Setter
 @NoArgsConstructor @AllArgsConstructor
 @ToString
-public class UserDTO {
-	long memberSerial;
+
+public class UserDTO extends UserAccount {
+	long member_serial;
 	String id;
 	String email;
-	String citizenId;
+	String citizen_id;
 	String phone;
 	String password;
 	String status;
 	long point;
 	String coupons;
-	String imageSource;
+	String image_source;
 	String nickname;
 	String realname;
-	Date regDate;
+	Date reg_date;
 	Date birthday;
 	String gender;
-	ArrayList<UserAddress> userAddress;
+//	ArrayList<UserAddress> user_address;
 //	ArrayList<UserWallet> userWallet;
 	
 }
