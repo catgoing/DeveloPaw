@@ -23,15 +23,9 @@ public class UserPageServiceImpl implements UserInquiryService{
 	}
 
 	@Override
-	public int updateUserInquiry(UserInquiry userInquiry) {
-		// TODO Auto-generated method stub
-		return 0;
-	}
-
-	@Override
 	public UserInquiry getUserInquiry(UserInquiry userInquiry) {
-		// TODO Auto-generated method stub
-		return null;
+		UserInquiry uiq = uiqDAO.getUserInquiry(userInquiry);
+		return uiq;
 	}
 
 	@Override
@@ -41,8 +35,8 @@ public class UserPageServiceImpl implements UserInquiryService{
 	}
 
 	@Override
-	public int checkAnswer(int uiqSerial) {
-		return uiqDAO.checkAnswer(uiqSerial);
+	public int checkAnswer(UserInquiry userInquiry) {
+		return uiqDAO.checkAnswer(userInquiry);
 	}
 	
 }

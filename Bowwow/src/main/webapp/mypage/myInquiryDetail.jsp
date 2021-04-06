@@ -63,6 +63,12 @@
  table, th, td{
  	border : 1px solid black;
  }
+ .inquiry_th {
+	width : 15%;
+ }
+ .inquiry_td {
+ 	widgh : 30%;
+ }
 </style>
 </head>
 
@@ -89,36 +95,37 @@
 						<div class="question-title">
 					    	<h2>문의목록</h2>
 				     	</div>
-						     	
-						<table>
-							<tr>
-								<th>제목</th>
-								<td>${uiqDetail.inquiry_title }</td>
-								<th>작성일</th>
-								<td>${uiqDetail.inquiry_writedate }</td>
-							</tr>
-							<tr>							
-								<th>내용</th>
-								<td colspan="3">${uiqDetail.inquiry_content }</td>
-							</tr>				
-						</table>
-						
-						<c:if test="${empty inquiryAnswer }">
-						</c:if>
-						<c:if test="${not empty inquiryAnswer }">
-						<table>
-							<tr>
-								<th>관리자 답변</th>
-								<td>${inquiryAnswer.inquiry_re_content}</td>
-							</tr>
-							<tr>
-								<th>등록일</th>
-								<td>${inquiryAnswer.inquiry_re_date}</td>
-							</tr>
-						</table>
-						</c:if>
+						<div class="table-container">
+							<table class="table">
+								<tr>
+									<th class="inquiry_th">제목</th>
+									<td>${uiqDetail.inquiry_title }</td>
+									<th class="inquiry_th">작성일시</th>
+									<td>${uiqDetail.inquiry_writedate }</td>
+								</tr>
+								<tr>							
+									<th class="inquiry_th">문의내용</th>
+									<td colspan="3">${uiqDetail.inquiry_content }</td>
+								</tr>				
+							</table>
+							<hr>
+							<c:if test="${empty uiqDetail.inquiry_re_content }">
+							</c:if>
+							<c:if test="${not empty uiqDetail.inquiry_re_content }">
+							<table class="table">
+								<tr>
+									<th class="inquiry_th">관리자 답변</th>
+									<td>dd<%-- ${inquiryAnswer.inquiry_re_content} --%></td>
+								</tr>
+								<tr>
+									<th class="inquiry_th">등록일</th>
+									<td>dd<%-- ${inquiryAnswer.inquiry_re_date} --%></td>
+								</tr>
+							</table>
+							</c:if>
+						</div>  	
 						<div class="btn-container">
-							<button href="location:back(-1)">돌아가기</button>
+							<button onclick="history.back()">돌아가기</button>
 						</div>
 					</div>
 				</div>

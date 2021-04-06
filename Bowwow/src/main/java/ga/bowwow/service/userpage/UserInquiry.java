@@ -1,5 +1,7 @@
 package ga.bowwow.service.userpage;
 
+import java.io.Serializable;
+
 import org.springframework.stereotype.Component;
 
 import lombok.AllArgsConstructor;
@@ -14,7 +16,7 @@ import lombok.ToString;
 @NoArgsConstructor
 @AllArgsConstructor
 @Component
-public class UserInquiry {
+public class UserInquiry implements Serializable {
 	
 	private int inquiry_serial;		//문의번호
 	private int member_serial;			//유저번호
@@ -26,5 +28,15 @@ public class UserInquiry {
 	
 	//답변이 있는지 확인 ?? 
 	private String have_answer;
+	
+	//AdminInquiry
+	//JOIN해 온 것 받기 _ 
+	private int u_serial;
+	private int a_serial;
+	private int inquiry_re_serial;		//문의답변번호
+	//private int inquiry_serial;		//(유저가 작성한)문의번호
+	private String inquiry_re_content;	//답변내용
+	private String inquiry_re_date;		//답변날짜
+	private String admin_name;			//관리자이름
 	
 }
