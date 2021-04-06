@@ -14,7 +14,7 @@
 	String realname="윤아름";
 	String birth = "2011-12-13";
 	Date birthday = Date.valueOf(birth);
-	String gender = "F";
+	//String gender = "F";
 	String email = "test-email@test.com";
 	
 	UserDTO user= new UserDTO();
@@ -23,7 +23,7 @@
 	user.setNickname(nickname);
 	user.setRealname(realname);
 	user.setBirthday(birthday);
-	user.setGender(gender);
+	//user.setGender(gender);
 	user.setEmail(email);
 	
 	session.setAttribute("user", user);

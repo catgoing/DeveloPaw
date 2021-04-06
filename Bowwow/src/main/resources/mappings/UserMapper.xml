@@ -128,4 +128,10 @@
 		ORDER BY SEQ DESC
 	</select>
 	 -->
+	 <select id="searchMyPoint" parameterType="Map" resultType="Map">
+	 	SELECT ORDER_DATE, TOTALSUM , FLOOR(TOTALSUM * 0.001) AS POINT
+		FROM STORE_ORDER
+		WHERE MEMBER_SERIAL = #{member_serial}
+		ORDER BY ORDER_DATE DESC;
+	 </select>
 </mapper>

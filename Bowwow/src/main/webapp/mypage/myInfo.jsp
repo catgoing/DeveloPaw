@@ -146,9 +146,8 @@ $(function(){
 	//이메일 - input type="email"
 	//전화번호 - input type="tel" pattern="(010|011|016|017|018|019)-\d{4}-\d{4}"(폰번호만허용)
 	
-	//gender radio버튼에 체크!
-	//=-=---=-=-=-=(1) gender가 없어서 프로퍼티 gender를 못불러올 경우에 에러 뜸 어떻게한다..?
-	const checkValue = '<c:out value="${user.gender }"/>';
+	//gender radio버튼에 체크! (없으면 빈 체크)
+	const checkValue = '${sessionScope.user.gender }';
 	$("input[name=gender]").filter("input[value='"+checkValue+"']").attr("checked",true);
 	
 });
