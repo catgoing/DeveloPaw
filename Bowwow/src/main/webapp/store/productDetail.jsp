@@ -113,7 +113,7 @@
 	   document.getElementById('sum').value = document.getElementById('sum').value.replace(/\B(?=(\d{3})+(?!\d))/g, ",");
 	}
 	
-	// 숫자만 들어오도록 체크
+	// 수량에 숫자만 들어오도록 체크
 	function onlyNumber(e) {
 	   var reg = /[^0-9]{1,100}$/g;
 	   var value = $(e).val();   // $(e) : 선택자, jQuery에서 매개변수로 받은 Object를 지칭함
@@ -124,16 +124,14 @@
 	   }
 	}
 	
+	// 수량에 빈문자열이나 0이 들어오면 1반환
 	function amountChk(e) {
 		var reg = /[0-9]{1,100}$/g;
 		var value = $(e).val();
 		
-		if (reg.test(value)) {
-			if (value == 0) {
-				$(e).val(1);
-			}	
+		if (value == '' || value == 0) {
+			$(e).val(1);
 		} else {
-			$(e).val(value.replace(reg));
 		    return false;
 		}
 		
@@ -270,13 +268,6 @@
 			frm.submit();
 		}
 		
-		/* $('input[type="text"]').keydown(function() {
-		    if (event.keyCode === 13) {
-		        event.preventDefault();
-		    }
-		}); */
-
-
 	}
 
 </script>
@@ -327,11 +318,10 @@
 										</div>
 										<div class="col-lg-6">
 											<div class="details_text">
-												<form name="form" onsubmit="return false;" method="POST">
+												<form name="form" method="POST" >
 													<h4 style="color: #000">${p.p_name }</h4>
-													<input type="hidden" id="product_id" name="p_id"
-														value="${p.p_id }"> <input type="hidden"
-														name="stock" value="${p.stock }">
+													<input type="hidden" id="product_id" name="p_id" value="${p.p_id }"> 
+													<input type="hidden" name="stock" value="${p.stock }">
 													<div class="product__details__button">
 														<div class="product__details__widget">
 															<ul>
@@ -347,8 +337,8 @@
 																<h5>상품 수량
 															      	 <input type="hidden" id="sell_price" name="price" value="${p.price }"> 
 																	 <input type="button" class="store_btn2" value=" - " onclick="del();">
-																	 <input type="text" id="product_count" class="store_input" onkeyup="onlyNumber(this); amountChk(this);" maxlength="2" autocomplete="off" 
-																	 	min="1" name="amount" value="1" size="3" onchange="changeValue();"> 
+																	 <input type="text" id="product_count" class="store_input" onkeyup="onlyNumber(this); amountChk(this); changeValue();" maxlength="2" autocomplete="off" 
+																	 	min="1" name="amount" value="1" size="3">
 																	 <input type="button" id="addBtn" class="store_btn2" value=" + " onclick="add();">
 																</h5>
 															</div>
@@ -371,9 +361,8 @@
 													</div>
 													<div class="btn_area">
 														<c:if test="${p.stock != 0 }">
-															<button class="store_btn"  onclick="cartList(this.form)">장바구니</button>
-															<button class="store_btn"
-																onclick="insertOrder(this.form)">바로구매</button>
+															<input type="button" class="store_btn" value="장바구니" onclick="cartList(this.form)">
+															<input type="button" class="store_btn" value="바로구매" onclick="insertOrder(this.form)">
 															<input type="hidden" id="totalSum" name="totalSum">
 														</c:if>
 														<c:if test="${p.stock == 0 }">
@@ -403,7 +392,7 @@
 													<div class="tab-pane fade show active" id="review" role="tabpanel" aria-labelledby="review-tab">
 														<div id="reply">
 															<section class="reviewForm">
-																<form name="reviewForm" id="reviewForm" method="post" autocomplete="off">
+																<form name="reviewForm" id="reviewForm" method="post" autocomplete="off" >
 																	<input type="hidden" name="p_id" value="${p.p_id}">
 																	<input type="hidden" name="member_serial" value="999">
 																	<div class="input_area">
