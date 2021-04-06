@@ -12,17 +12,17 @@
 	
 	<!-- 장바구니 목록 조회 -->
 	<select id="getCartList" parameterType="String" resultType="CartList">
-		SELECT ROWNUM, C.CART_ID, C.P_ID, C.ID, C.AMOUNT, 
+		SELECT C.CART_ID, C.P_ID, C.ID, C.AMOUNT, 
 			   P.P_NAME, P.PRICE, P.S_IMAGE, P.P_TYPE
 		  FROM STORE_CARTLIST C, STORE_PRODUCTS P
 		 WHERE C.P_ID = P.P_ID AND ID = #{id}
 	</select>
 	
 	<!-- 장바구니 동일한 제품 있는지 조회 -->
-	<select id="pIdCheck" parameterType="String" resultType="CartList">
-		SELECT P_ID 
+	<select id="cartCheck" parameterType="CartList" resultType="int">
+		SELECT COUNT(*) 
 		  FROM STORE_CARTLIST
-		 WHERE ID = #{id}
+		 WHERE ID = #{id} AND P_ID = ${p_id}
 	</select>
 	
 	<!-- 장바구니 제품 삭제 -->

@@ -35,4 +35,10 @@
 		AND ADDRESS_DETAIL = #{addressDetail}
 		AND ZONECODE = #{zonecode}
 	</select>
+	
+	<select id="getUserAddressList" parameterType="UserAddress" resultType="UserAddress" >
+		SELECT
+		 FROM USER_ADDRESS
+		WHERE MEMBER_SERIAL = #{memberSerial}
+	</select>
 </mapper>

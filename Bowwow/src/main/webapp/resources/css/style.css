@@ -21,6 +21,9 @@ File: style.css
 /**  =====================
       Custom css start
 ==========================  **/
+style="max-width: 100%; height: auto;"
+
+
 /* 상품 상세페이지 */
 .product_view { position : relative; padding : 0 0 0 395px; width : 962px; box-sizing: border-box;}
 .product_view .img { position: absolute; left: 0; top: 0;}
@@ -57,6 +60,14 @@ font-size: 16px; color : #fff; border-radius: 2px; line-height: 42px;}
 	padding: 10px;
 }
 /* 상품 상세페이지 끝*/ 
+
+.review_box input:read-only {
+    background-color: white;
+}
+
+.review_box textarea:read-only {
+    background-color: white;
+}
 
    .store_btn{
      margin-right: 5px;
@@ -219,6 +230,7 @@ body {
     font-family: "Do Hyeon";
     background-attachment: fixed;
     background-image: linear-gradient(rgba(255, 255, 255, 0.2) 180px, rgba(255, 255, 255, 0.9) 0%);
+    margin-botton : 20px;
 }
 
 ul {
@@ -742,7 +754,7 @@ code {
 ==========================  **/
 
 .modal {
-    z-index: 9999;
+    z-index: 1050;
 }
 
 .modal .modal-dialog {
@@ -10941,7 +10953,7 @@ table.dataTable.dtr-inline.collapsed>tbody>tr>th:first-child:before {
 }
 
 footer.footer.navbar-wrapper {
-    z-index: 1050;
+    z-index: 9999;
 }
 
 

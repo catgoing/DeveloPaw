@@ -8,7 +8,6 @@ import java.util.UUID;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
-import org.apache.ibatis.session.SqlSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -28,7 +27,6 @@ import com.google.gson.Gson;
 import ga.bowwow.controller.common.MultipartController;
 import ga.bowwow.service.pet.Pet;
 import ga.bowwow.service.pet.PetService;
-import ga.bowwow.service.user.VO.UserAccount;
 
 @Controller
 @SessionAttributes("petList") //pet이라는 model을 세션에 저장
@@ -81,8 +79,8 @@ public class PetController {
 		System.out.println("pet " + pet);
 		
 		HttpSession session = request.getSession();
-		UserAccount user = (UserAccount)session.getAttribute("user");
-		System.out.println("멤~시리얼 : " + user.getMemberSerial());
+//		UserAccount user = (UserAccount)session.getAttribute("user");
+//		System.out.println("멤~시리얼 : " + user.getMemberSerial());
 		
 		String default_url = "https://projectbit.s3.us-east-2.amazonaws.com/petImg/6262857e-1887-46fc-b77c-9209935f8657.jpg";
 		String fs_url = "https://projectbit.s3.us-east-2.amazonaws.com/";
@@ -216,12 +214,13 @@ public class PetController {
 			result = petService.updatePetInfo(pet);	
 		
 		} else { //첨부한 파일이 없을 때
-			result = petService.updatePetInfo2(pet);	
+//			result = petService.updatePetInfo2(pet);	
 			System.out.println("update 사진없음!!!");
 			result = 0;
 		}
 		return result;
 	}
+
 	
 //	@PostMapping(value="/ajaxInsertPetInfo")
 //	@ResponseBody //json으로 변환해서 보내줌!-@RequestBody : 받은 거 json으로 바꿔줌

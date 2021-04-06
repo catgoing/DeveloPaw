@@ -21,7 +21,7 @@
 			
 			     <ul class="pcoded-item pcoded-left-item">
 			         <li class="">
-			             <a href="/account/getList" class="waves-effect waves-dark">
+			             <a href="/userList/manageList" class="waves-effect waves-dark">
 			                 <span class="pcoded-micon">
 			                 </span>
 			                 <span class="pcoded-mtext">관리자 회원관리 리스트</span>
@@ -41,6 +41,13 @@
                                  <a href="/account/signupAccount" class="waves-effect waves-dark">
                                      <span class="pcoded-micon"><i class="ti-angle-right"></i></span>
                                      <span class="pcoded-mtext">계정</span>
+                                     <span class="pcoded-mcaret"></span>
+                                 </a>
+                             </li>
+                             <li class="">
+                                 <a href="/account/signup" class="waves-effect waves-dark">
+                                     <span class="pcoded-micon"><i class="ti-angle-right"></i></span>
+                                     <span class="pcoded-mtext">약관</span>
                                      <span class="pcoded-mcaret"></span>
                                  </a>
                              </li>

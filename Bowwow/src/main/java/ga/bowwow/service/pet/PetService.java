@@ -5,7 +5,6 @@ import java.util.List;
 public interface PetService {
 	int insertPetInfo(Pet pet);
 	int updatePetInfo(Pet pet);
-	int updatePetInfo2(Pet pet);
 	int deletePetInfo(Pet pet);
 	Pet getPetInfo(Pet pet);
 	List<Pet> getPetInfoList(Pet pet);
