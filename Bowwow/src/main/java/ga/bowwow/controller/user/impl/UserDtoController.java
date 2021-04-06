@@ -9,11 +9,11 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.SessionAttributes;
 
 import ga.bowwow.controller.user.UserCRUDGenericController;
 import ga.bowwow.service.user.VO.UserAccount;
 import ga.bowwow.service.user.VO.UserDTO;
+import ga.bowwow.service.user.impl.UserAddressServiceImpl;
 import ga.bowwow.service.user.impl.UserDtoServiceImpl;
 
 @Controller
@@ -35,7 +35,7 @@ public class UserDtoController extends UserCRUDGenericController<UserAccount> {
 	}
 	
 	@GetMapping("/getUserAccountAddressList")
-	protected String getUserAccountAddressList(@ModelAttribute ArrayList<UserAccount> userDtoList, Model model ) {
+	protected String getUserAccountAddressList(@Autowired UserAddressServiceImpl serviceImpl, @ModelAttribute ArrayList<UserAccount> userDtoList, Model model ) {
 		System.out.println("GETUserAccountAddressLIST Controller TEST");
 		userDtoList = (ArrayList<UserAccount>) service.getVoList();
 		model.addAttribute("userDtoList", userDtoList);
