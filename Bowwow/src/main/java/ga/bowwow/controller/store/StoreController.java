@@ -42,10 +42,11 @@ public class StoreController {
 		Product p = storeService.getProductDetail(p_id);
 		model.addAttribute("p", p);
 		
-		// 상품에 작성된 리뷰 리스트 출력
-		List<Review> reviewList = storeReviewService.getReviewList(p_id);
-		System.out.println(reviewList);
-		model.addAttribute("reviewList", reviewList);
+		/*
+		 * // 상품에 작성된 리뷰 리스트 출력 List<Review> reviewList =
+		 * storeReviewService.getReviewList(p_id); System.out.println(reviewList);
+		 * model.addAttribute("reviewList", reviewList);
+		 */
 		
 		return "productDetail";
 	}

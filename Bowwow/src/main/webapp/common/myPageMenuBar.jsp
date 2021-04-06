@@ -16,16 +16,16 @@
 		<ul class="pcoded-item pcoded-left-item">
 			<li class="">
 			<a href="/mypage/myPageMain"
-				class="waves-effect waves-dark"> <span class="pcoded-micon"><i
-						class="ti-layers"></i><b>FC</b></span> <span class="pcoded-mtext">마이
-						홈</span> <span class="pcoded-mcaret"></span>
+				class="waves-effect waves-dark"> <span class="pcoded-micon">
+				<i class="ti-layers"></i><b>FC</b></span> 
+				<span class="pcoded-mtext">마이홈</span> <span class="pcoded-mcaret"></span>
 			</a></li>
 		</ul>
 
 		<ul class="pcoded-item pcoded-left-item">
 			<li class="">
 				<!-- 회원번호(memberSerial)을 이용해서 내 정보 출력 --> 
-				<a href="/myInfo/"
+				<a href="/mypage/myInfo"
 				 class="waves-effect waves-dark"> <%-- <a href="myInfo.do?memberSerial=${memberSerial }" class="waves-effect waves-dark"> --%>
 					<span class="pcoded-micon"> <!-- <i class="ti-id-badge"></i><b>A</b> -->
 				</span> <span class="pcoded-mtext">프로필</span> <span class="pcoded-mcaret"></span>
@@ -59,7 +59,7 @@
 		</ul>
 		<ul class="pcoded-item pcoded-left-item">
 			<li class="">
-			<a href="/mypage/myInquiry2"
+			<a href="/getUserInquiryList?member_serial=${user.memberSerial }"
 				class="waves-effect waves-dark"> <span class="pcoded-micon">
 						<!-- <i class="ti-id-badge"></i><b>A</b> -->
 				</span> <span class="pcoded-mtext">1:1문의</span> <span class="pcoded-mcaret"></span>

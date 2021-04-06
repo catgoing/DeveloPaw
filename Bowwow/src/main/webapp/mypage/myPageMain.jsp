@@ -23,7 +23,6 @@
       <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
       <![endif]-->
     <!-- Meta -->
-    <script src="http://code.jquery.com/jquery-3.5.1.min.js"></script>
 
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=0, minimal-ui">
@@ -147,10 +146,15 @@
 
 							<div class="container mypage_main_content mypointlist">
 								<h3>누적적립금출력영역</h3>
+								<div class="container totalpoint">
+									<div clss="table">
+										
+									</div>
+								</div>
 							</div>
 							<br>
 							<hr>
-							<div class="container">
+							<div class="container petlist">
 							  	<h3>반려동물리스트</h3>
 							  <div class="row">
 							  	<c:if test="${not empty petList }">
@@ -158,7 +162,7 @@
 							    <div class="col-sm">
 							      	${petList.pet_name }
 							    	<div class="card" style="width: 200px;">
-										<img src="../resources/images/avatar-2.jpg" class="card-img-top" alt="...">
+										<img src="${petList.image_source_oriname }" class="card-img-top" alt="...">
 									</div>
 							    </div>
 							    </c:forEach>
@@ -187,33 +191,6 @@
 			</div>
 		</div>
 	</div>
-
-    <button class="scroll-top" id="js-button" style="margin-bottom: 190px; margin-right: 30px;">
-        <i class="fa fa-chevron-up" aria-hidden="true">TOP</i>
-    </button>
-    <script type="text/javascript">
-        scrollTop('js-button', 500);
-        function scrollTop(elem,duration) {
-            let target = document.getElementById(elem);
-
-            target.addEventListener('click', function() {
-                let currentY = window.pageYOffset;
-                let step = duration/currentY > 1 ? 10 : 100;
-                let timeStep = duration/currentY * step;
-                let intervalID = setInterval(scrollUp, timeStep);
-
-                function scrollUp(){
-                    currentY = window.pageYOffset;
-                    if(currentY === 0) {
-                        clearInterval(intervalID);
-                    } else {
-                        scrollBy( 0, -step );
-                    }
-                }
-            });
-        }
-        </script>
-
 	<!-- footer 푸터 시작부분-->
 	<%@include file="/common/footer.jsp" %>
 	<!-- footer 푸터 끝부분-->

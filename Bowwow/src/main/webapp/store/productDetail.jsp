@@ -15,7 +15,7 @@
 
     <meta name="keywords" content="bootstrap, bootstrap admin template, admin theme, admin dashboard, dashboard template, admin template, responsive" />
     <meta name="author" content="Codedthemes" />
-    
+
     <!--Jua 폰트 import-->
     <link rel="preconnect" href="https://fonts.gstatic.com">
     <link href="https://fonts.googleapis.com/css2?family=Jua&display=swap" rel="stylesheet">
@@ -47,7 +47,7 @@
 
 	<script type="text/javascript" src="/resources/js/jquery/jquery.min.js"></script>
 	<script type="text/javascript" src="/resources/js/ajax.js"></script>
-	
+
 <style>
 .featured__item__text {
 	width: 150px;
@@ -61,133 +61,206 @@
 
 <script type="text/javascript">
 
-		var sell_price;
-		var amount;
-		
-		$(function init () {
-			sell_price = document.getElementById('sell_price').value;
-			document.getElementById('sum').value = sell_price
-			sell_price = document.form.sell_price.value;
-			amount = document.form.amount.value;
-			document.form.sum.value = sell_price.replace(/\B(?=(\d{3})+(?!\d))/g, ",");
-		});
-		
-		function add () {
-			hm = document.form.amount;
-			sum = document.form.sum;
-			
-			hm.value ++ ;
-			
-			var temp = parseInt(hm.value) * sell_price
-		
-			document.getElementById('sum').value = temp;
-			document.getElementById('sum').value = document.getElementById('sum').value.replace(/\B(?=(\d{3})+(?!\d))/g, ",");
-			
-		}
-		
-		function del () {
-			hm = document.form.amount;
-			sum = document.form.sum;
-				if (hm.value > 1) {
-					hm.value -- ;
-					var temp = parseInt(hm.value) * sell_price
-					
-					document.getElementById('sum').value = temp;
-					document.getElementById('sum').value = document.getElementById('sum').value.replace(/\B(?=(\d{3})+(?!\d))/g, ",");
+	var sell_price;
+	var amount;
+	var totalSum;
+	
+	$(function init () {
+	   sell_price = document.getElementById('sell_price').value;
+	   document.getElementById('sum').value = sell_price;
+	   sell_price = document.form.sell_price.value;
+	   console.log(document.getElementById('totalSum').value = sell_price);
+	   amount = document.form.amount.value;
+	   document.form.sum.value = sell_price.replace(/\B(?=(\d{3})+(?!\d))/g, ",");
+	   
+	});
+	
+	function add () {
+	   hm = document.form.amount;
+	   sum = document.form.sum;
+	   
+	   hm.value ++ ;
+	   
+	   var temp = parseInt(hm.value) * sell_price
+	
+	   console.log(document.getElementById('totalSum').value = temp);
+	   document.getElementById('sum').value = temp;
+	   document.getElementById('sum').value = document.getElementById('sum').value.replace(/\B(?=(\d{3})+(?!\d))/g, ",");
+	}
+	
+	function del () {
+	   hm = document.form.amount;
+	   sum = document.form.sum;
+	      if (hm.value > 1) {
+	         hm.value -- ;
+	         var temp = parseInt(hm.value) * sell_price
+	         
+	         console.log(document.getElementById('totalSum').value = temp);
+	         document.getElementById('sum').value = temp;
+	         document.getElementById('sum').value = document.getElementById('sum').value.replace(/\B(?=(\d{3})+(?!\d))/g, ",");
+	      }
+	      
+	}
+	
+	function changeValue(){
+	   hm = document.form.amount;
+	   sum = document.form.sum;
+	   
+	   var temp = parseInt(hm.value) * sell_price
+	
+	   console.log(document.getElementById('totalSum').value = temp); 
+	   document.getElementById('sum').value = temp;
+	   document.getElementById('sum').value = document.getElementById('sum').value.replace(/\B(?=(\d{3})+(?!\d))/g, ",");
+	}
+	
+	// 숫자만 들어오도록 체크
+	function onlyNumber(e) {
+	   var reg = /[^0-9]{1,100}$/g;
+	   var value = $(e).val();   // $(e) : 선택자, jQuery에서 매개변수로 받은 Object를 지칭함
+	   
+	   if (reg.test(value)) { // 숫자만 들어오도록 test()로 체크
+	      $(e).val(value.replace(reg, ""));
+	      return false;
+	   }
+	}
+	
+	function cartList(frm) {
+	   var param = $("form[name=form]").serialize();
+	   var tUrl = '/store/addCart';
+	   var result;
+	   
+	   result = callAjax(tUrl, 'post', param, 'data');
+	
+	             if (result.code == "0000") {
+	               var chk = confirm(result.msg);
+	            
+	               if (chk) {
+	               location.href="/store/cartList";
+	                }
+	               
+	      } else {
+	               var chk = confirm(result.msg);
+	         
+	              if (chk) {
+	               location.href="/store/cartList";
+	            } 
+	           }
+	         
+	}
+
+
+
+	function insertOrder(frm) {
+		console.log('order 함수');
+		var p_id = $('#product_id').val();
+		var p_count = $('#product_count').val();
+		var sum = $('#totalSum').val();
+
+		location.href = "/store/storeOrder?p_id=" + p_id + "&p_count=" + p_count + "&totalSum=" + sum;
+	}
+
+	function deleteReview(review_id) {
+		console.log('리뷰아이디 : ' + review_id);
+		var data = {
+			"r_id" : review_id
+		};
+		$.ajax({
+			url : '/store/deleteReview',
+			type : 'POST',
+			data : data,
+			success : function(data) {
+				console.log('?? ' + data)
+				if (data == "success") {
+					$('.rev_'+review_id).remove();
 				}
-				
-		}
-		
-		function changeValue(){
-			hm = document.form.amount;
-			sum = document.form.sum;
-			
-			var temp = parseInt(hm.value) * sell_price
-		
-			document.getElementById('sum').value = temp;
-			document.getElementById('sum').value = document.getElementById('sum').value.replace(/\B(?=(\d{3})+(?!\d))/g, ",");
-		}
-		
-		// 숫자만 들어오도록 체크
-		function onlyNumber(e) {
-			var reg = /[^0-9]{1,100}$/g;
-			var value = $(e).val();	// $(e) : 선택자, jQuery에서 매개변수로 받은 Object를 지칭함
-			
-			if (reg.test(value)) { // 숫자만 들어오도록 test()로 체크
-				$(e).val(value.replace(reg, ""));
-				return false;
 			}
-		}
-		
-		function cartList(frm) {
-			var param = $("form[name=form]").serialize();
-			var tUrl = '/store/addCart';
-			var result;
-			
-			result = callAjax(tUrl, 'post', param, 'data');
-		
-	       	   	if (result.code == "0000") {
-	       		  	var chk = confirm(result.msg);
-	       		  
-	       		  	if (chk) {
-	         			location.href="/store/cartList";
-	       	   		}
-	       		  	
+		});
+	}
+
+	function chkRev() {
+		if (document.getElementById('review_title').value == "") {
+			alert("제목을 입력해 주세요.");
+			return false;
+		} else if (document.getElementById('review_content').value == "") {
+			alert("내용을 입력해주세요");
+			return false;
+		} else
+			return true;
+
+	}
+
+	function reviewInsert() {
+
+		var formObj = $("#reviewForm").serialize();
+		/* var formdata = new FormData();
+		formdata.append(); */
+		$.ajax({
+			url : "/store/insertReview",
+			type : "post",
+			data : formObj,
+			dataType : 'json',
+			success : function(data){
+				if(data) {
+					$('.reviewList').prepend(
+							'<li class="rev_'+data.revId+'">'+
+							'<div class="userInfo">'+
+							'<span class="userName">'+data.revTitle +'</span>'+
+							'<span class="date">'+data.revContent +'</span>'+
+							'<div class="reviewContent">'+data.revRegdate + '</div>'+
+							'<button class="store_btn" onclick="deleteReview("'+data.revId+'")>삭제</button>'+
+							'</div>'+
+							'</li>'
+					);
+				}
+
+
+				if(data.code == '0000') {
+					alert(data.msg);
 				} else {
-	       		  	var chk = confirm(result.msg);
-       		  
-	       		 	if (chk) {
-	         			location.href="/store/cartList";
-	         		} 
-       	    	}
-         		
-		}
+					alert(data.msg);
+				}
+			}
+		});
+	 }
+
+	function reviewList() {
+
+		var pId = ${p.p_id};
+		$.getJSON("/store/reviewList" + "?p_id=" + pId, function(data){
+			var str = "";
+
+			$(data).each(function(){
+
+				console.log(data);
+
+				var reviewDate = new Date(this.review_regdate);
+				reviewDate = reviewDate.toLocaleDateString("ko-US")
+
+				// HTML코드 조립
+				str += '<li class="rev_'+this.review_id+'">'
+					 + '<div class="userInfo">'
+					 + '<span class="userName">'+this.review_title+'</span>'
+					 + '<span class="date">' + reviewDate + '</span>'
+					 + '<div class="reviewContent">'+this.review_content+'</div>'
+					 + '<button class="store_btn" onclick="deleteReview('+this.review_id+')">삭제</button>'
+					 + '</div>'
+					 + "</li>";
+			});
+
+			// 조립한 HTML코드를 추가
+			$("section.reviewList ol").html(str);
+		});
+
 		
-		function insertReview(p_id) {
-         	console.log('상품번호 : ' + p_id);
-         	var getMemValue = $('#member_serial').val();
-         	var getTitleValue = $('#review_title').val();
-         	var getContentValue = $('#review_content').val();
 
-         	var data = {'p_id' : p_id, 'member_serial' : getMemValue, 'review_title' : getTitleValue, 'review_content' : getContentValue};
-
-         	$.ajax({
-         		url : '/store/insertReview',
-         		type: 'POST',
-                 data: data,
-                 success: function(data){
-						console.log(data)
-						 if(data) {
-							/* $('#tabs-3').append('<table>'+
-													'<tr><th>리뷰번호</th><td>${rList.review_id}</td></tr>'+
-												'</table>'); */
-						}
-             	}
-         	});
-         }
-
-         function deleteReview(review_id) {
-         	console.log('리뷰아이디 : ' + review_id);
-         	var data = {"r_id": review_id};
-         	$.ajax({
-                 url: '/store/deleteReview',
-                 type: 'POST',
-                 data: data,
-                 success: function(data){
-						console.log('?? ' + data)
-						if(data == "success") {
-							$('#rList_' + review_id).remove();
-						}
-             	}
-         	});
-         }
-		
 		function storeOrder(frm) {
 			frm.action="/store/storeOrder";
 			frm.submit();
 		}
-		
-		
+
+
+	}
+
 </script>
 
 </head>
@@ -238,8 +311,9 @@
 											<div class="details_text">
 												<form name="form" onsubmit="return false;" method="POST">
 													<h4 style="color: #000">${p.p_name }</h4>
-													<input type="hidden" name="p_id" value="${p.p_id }">
-													<input type="hidden" name="stock" value="${p.stock }">
+													<input type="hidden" id="product_id" name="p_id"
+														value="${p.p_id }"> <input type="hidden"
+														name="stock" value="${p.stock }">
 													<div class="product__details__button">
 														<div class="product__details__widget">
 															<ul>
@@ -278,13 +352,16 @@
 														</ul>
 													</div>
 													<div class="btn_area">
-														<button class="store_btn" onclick="cartList(this.form)">장바구니</button>
-														<button class="store_btn" onclick="storeOrder(this.form)">바로구매</button>
+														<c:if test="${p.stock != 0 }">
+															<button class="store_btn" onclick="cartList(this.form)">장바구니</button>
+															<button class="store_btn"
+																onclick="insertOrder(this.form)">바로구매</button>
+															<input type="hidden" id="totalSum" name="totalSum">
+														</c:if>
+														<c:if test="${p.stock == 0 }">
+															<h4>품절된 상품입니다.</h4>
+														</c:if>
 													</div>
-													<ul>
-														<li><a href="#"><span class="icon_heart_alt"></span></a></li>
-														<li><a href="#"><span class="icon_adjust-horiz"></span></a></li>
-													</ul>
 												</form>
 											</div>
 										</div>
@@ -298,99 +375,43 @@
 													data-toggle="tab" href="#tabs-2" role="tab">리뷰 남기기</a></li>
 											</ul>
 											<div class="tab-content">
-												<div class="tab-pane active" id="tabs-1" role="tabpanel"
-													style="margin: 30px;">
-													<img class="detailProduct"
-														src="https://projectbit.s3.us-east-2.amazonaws.com/${imgDir }/${p.l_image }"
-														alt="">
+												<div class="tab-pane active" id="tabs-1" role="tabpanel" style="margin: 30px;">
+													<img class="detailProduct" src="https://projectbit.s3.us-east-2.amazonaws.com/${imgDir }/${p.l_image }" alt="">
 												</div>
 												<div class="tab-pane" id="tabs-2" role="tabpanel"
 													style="margin: 30px;">
 													<h2>상품에 대한 후기를 자유롭게 남겨주세요!</h2>
 													<br>
-													<div class="tab-pane fade show active" id="review"
-														role="tabpanel" aria-labelledby="review-tab">
-														<div class="row">
-															<div class="col-lg-6">
-																<div class="review_list">
-																	<c:forEach var="rList" items="${reviewList}">
-																		<div id="rList_${rList.review_id}" class="review_box"
-																			style="border: 1px solid lightgray; margin-bottom: 10px; padding: 10px;">
-																			<h4>작성된 리뷰</h4>
-																			<form class="row contact_form" id="contactForm"
-																				onsubmit="return false;">
-																				<div class="col-md-12">
-																					<div class="form-group">
-																						<input type="text" class="form-control"
-																							value="${rList.review_title }" readonly />
-																					</div>
-																				</div>
-																				<div class="col-md-6">
-																					<div class="form-group">
-																						<input type="text" class="form-control" value=999
-																							readonly />
-																					</div>
-																				</div>
-																				<div class="col-md-6">
-																					<div class="form-group">
-																						<input type="text" class="form-control"
-																							value="${rList.review_regdate }" readonly />
-																					</div>
-																				</div>
-																				<div class="col-md-12">
-																					<div class="form-group">
-																						<textarea class="form-control"
-																							style="resize: none;" rows="2" readonly>${rList.review_content }</textarea>
-																					</div>
-																					<button class="store_btn"
-																						onclick="deleteReview(${rList.review_id})"
-																						style="float: right;">삭제</button>
-																				</div>
-																			</form>
+													<div class="tab-pane fade show active" id="review" role="tabpanel" aria-labelledby="review-tab">
+														<div id="reply">
+															<section class="reviewForm">
+																<form name="reviewForm" id="reviewForm" method="post" autocomplete="off">
+																	<input type="hidden" name="p_id" value="${p.p_id}">
+																	<input type="hidden" name="member_serial" value="999">
+																	<div class="input_area">
+																		<input type="text" id="revTitle" name="review_title"
+																			placeholder="후기 제목">
+																		<textarea name="review_content" style="resize: none;" placeholder="후기 내용" ></textarea>
+																	</div>
+																	<div class="input_area">
+																		<button type="button" onclick="reviewInsert()">후기 작성</button>
+																	</div>
+																</form>
+															</section>
+															<section class="reviewList">
+																<ol>
+																<%-- 	<li>
+																		<div class="userInfo">
+																			<span class="userName">${rList.member_serial}</span>
+																			<span class="date">${rList.review_regdate}"</span>
 																		</div>
-																	</c:forEach>
-																</div>
-															</div>
-															<div class="col-lg-6">
-																<div class="review_box">
-																	<h4>리뷰 작성하기</h4>
-																	<form class="row contact_form" id="contactForm">
-																		<div class="col-md-6">
-																			<div class="form-group">
-																				<span>상품 번호</span> <input type="text"
-																					class="form-control" id="p_id" name="p_id"
-																					value="${p.p_id}" />
-																			</div>
-																		</div>
-																		<div class="col-md-6">
-																			<div class="form-group">
-																				<span>작성자</span> <input type="text"
-																					class="form-control" id="member_serial"
-																					name="member_serial" value=999 />
-																			</div>
-																		</div>
-																		<div class="col-md-12">
-																			<div class="form-group">
-																				<span>후기 제목</span> <input type="text"
-																					class="form-control" id="review_title"
-																					name="review_title" placeholder="후기 제목을 입력하세요" />
-																			</div>
-																		</div>
-																		<div class="col-md-12">
-																			<div class="form-group">
-																				<span>후기 내용</span>
-																				<textarea class="form-control" style="resize: none;"
-																					name="review_content" id="review_content" rows="2"
-																					placeholder="후기 내용을 입력하세요"></textarea>
-																			</div>
-																		</div>
-																		<div class="col-md-12 text-right">
-																			<button onclick="insertReview(${p.p_id})"
-																				class="store_btn">작성</button>
-																		</div>
-																	</form>
-																</div>
-															</div>
+																		<div class="reviewContent">${rList.review_content}</div>
+																	</li> --%>
+																</ol>
+																<script>
+																	reviewList();
+																</script>
+															</section>
 														</div>
 													</div>
 												</div>
@@ -412,14 +433,19 @@
 	<%@include file="/common/storeFoot.jsp" %>
 
 	<!-- Required Jquery -->
-	<script type="text/javascript" src="/resources/js/jquery/jquery.min.js "></script>
-	<script type="text/javascript" src="/resources/js/jquery-ui/jquery-ui.min.js "></script>
-	<script type="text/javascript" src="/resources/js/popper.js/popper.min.js"></script>
-	<script type="text/javascript" src="/resources/js/bootstrap/js/bootstrap.min.js "></script>
+	<script type="text/javascript"
+		src="/resources/js/jquery/jquery.min.js "></script>
+	<script type="text/javascript"
+		src="/resources/js/jquery-ui/jquery-ui.min.js "></script>
+	<script type="text/javascript"
+		src="/resources/js/popper.js/popper.min.js"></script>
+	<script type="text/javascript"
+		src="/resources/js/bootstrap/js/bootstrap.min.js "></script>
 	<!-- waves js -->
 	<script src="/resources/pages/waves/js/waves.min.js"></script>
 	<!-- jquery slimscroll js -->
-	<script type="text/javascript" src="/resources/js/jquery-slimscroll/jquery.slimscroll.js"></script>
+	<script type="text/javascript"
+		src="/resources/js/jquery-slimscroll/jquery.slimscroll.js"></script>
 
 	<!-- slimscroll js -->
 	<script src="/resources/js/jquery.mCustomScrollbar.concat.min.js "></script>
@@ -429,6 +455,7 @@
 	<script src="/resources/js/vertical/vertical-layout.min.js "></script>
 
 	<script type="text/javascript" src="/resources/js/script.js "></script>
+
 
 </body>
 

@@ -7,7 +7,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import ga.bowwow.service.user.UserGenericService;
-import ga.bowwow.service.user.VO.UserDetail;
 import ga.bowwow.service.user.VO.UserWallet;
 
 //@Service : @Component 상속확장 어노테이션

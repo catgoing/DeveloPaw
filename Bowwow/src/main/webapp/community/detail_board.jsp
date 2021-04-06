@@ -64,6 +64,8 @@
 </style>
 <!-- 신고하기  -->
 	<script>
+	
+
         $(function (){
         	$('.readonly').prop('readonly', true);
             $('.report_class').click(function(){
@@ -76,6 +78,17 @@
                 }
             });
         });
+        
+        
+        
+		$(function(){
+			$(".comment2Click").click(function(){
+				var idx = $(".comment2Click").index(this); //클릭한 댓글위치찾기
+				$(".comment2Box").eq(idx).css("display","block");
+			})
+		})
+
+    
     </script>
     
 </head>
@@ -123,32 +136,37 @@
 												<div class="monthly-products">
 													<form action="/community/update/board" method="post">
 													<div>
+														<div class="title">
 														<h3 class="join_title">
-															<label for="id">제목</label>
+															<label for="id" style="color:black;">${vo.board_title }</label>
 														</h3>
-														<span class="box int_id"> ${vo.board_title } </span>
+														</div>
+														<div class="nickname hits">
+														<h3 class="join_title" style="text-align:right">
+															<label style="color:black;">${vo.nickname }</label>
+															<label style="color:black;">조회 ${vo.hits }</label>
+														</h3>
+														</div>
 													</div>
 													
+													
+													<!-- 여기에 회원정보(사진, 닉네임 등) 출력 -->
 													
 													<div>
 														<h3 class="join_title">
 															<label for="id">내용</label>
 														</h3>
-														<span class="box int_id"> ${vo.board_content } </span>
+														<span class="box int_id" style="color:black; text-align:center;"> ${vo.board_content } </span>
 													</div>
 													
 													<!-- 수정하기 -->
 													<input type="hidden" name="board_idx" value="${board_idx }">
 													<input type="hidden" name="board_no" value="${vo.board_no }">
 													<input type="submit" value="수정">
+													<input type="submit" value="삭제 " formaction="/community/delete/board">
 													</form>
-					
-													<!-- 삭제하기 -->
-													<form action="boardDelete">
-													<input type="hidden" name="board_no" value=${board_no }>											
-													<input type="hidden" name="board_idx" value=${board_idx }>
-													<input type="submit" value="삭제하기">
-													</form>
+				
+
 													<hr>
 													댓글달기								
 													<form action="/community/comment" method="GET">												
@@ -156,7 +174,7 @@
 															내용 : <textarea name="comment_content" id="comment_content" cols="30" rows="3"></textarea>
 														</div>
 														<input type="hidden" name="board_no" value=${board_no }>											
-														<input type="hidden" name="board_idx" value=${board_idx }>												
+														<input type="hidden" name="board_idx" value=${board_idx }>	
 														<input type="submit" value="등록">
 													</form>
 													댓글
@@ -167,11 +185,37 @@
 															<button id =  comment name = "comment" value="${comvo.comment_no },${tempMemberSerial}	">신고</button>
 															
 															<!-- 댓글 삭제하기 -->
+															<form action="commentDelete">
+																<input type="hidden" name="board_no" value=${board_no }>		
+																<input type="hidden" name="board_idx" value=${board_idx }>									
+																<input type="hidden" name="comment_no" value=${comvo.comment_no }>
+																<input type="submit" value="삭제하기">
+															</form>
 															
-															<button id =  comment name = "comment" value="${comvo.comment_no }	">삭제하기</button>
-
-															<button name = "comment" value="${comvo.comment_no },${tempMemberSerial}" onclick="">신고</button>
-
+															<div class="comment2Click">
+																<button id =  comment2_insert name = "comment2_insert" >대댓글 등록</button>											
+															</div>
+															<div class="comment2Box" style="display:none; boarder-bottom:2px dotted silver;">													
+																<form action="/community/comment2" method="GET">												
+																	<div>
+																		내용 : <textarea name="comment_content" id="comment_content" cols="30" rows="3"></textarea>
+																	</div>
+																	<input type="hidden" name="comment_no" value=${comvo.comment_no }>											
+																	<input type="hidden" name="board_idx" value=${board_idx }>	
+																	<input type="hidden" name="board_no" value=${board_no }>
+																	<input type="submit" value="등록">
+																</form>
+															</div>
+															
+													<%--	<script>
+															$(function(){
+																$("#comment2_insert").click(function(){
+																	var idx = $("#comment2_insert").index(this); //클릭한 댓글위치찾기
+																	$(".comment2Box").eq(idx).css("display","block");
+																})
+															})
+														</script> --%>
+															
 
 															<c:set var="com1" value="${comvo.comment_no }" />
 															<hr>
@@ -182,6 +226,13 @@
 																	<div >
 																	대댓글<br>
 																	${com2vo.comment_content } // ${com2vo.nickname } // ${com2vo.regdate }
+																<!-- 대댓글 삭제하기 -->
+																	<form action="commentDelete2">
+																		<input type="hidden" name="board_no" value=${board_no }>		
+																		<input type="hidden" name="board_idx" value=${board_idx }>									
+																		<input type="hidden" name="comment_no" value=${com2vo.comment_no }>
+																		<input type="submit" value="삭제하기" >
+																	</form>
 																	</div>
 																<hr>
 																</c:if>
@@ -209,6 +260,8 @@
 			style="margin-bottom: 190px; margin-right: 30px; font: 'Jua'">
 			<i class="fa fa-chevron-up" aria-hidden="true">TOP</i>
 		</button>
+		
+		
 		
 		
 		

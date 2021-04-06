@@ -12,7 +12,7 @@
 	<meta name="viewport"
 		content="width=device-width, initial-scale=1.0, user-scalable=0, minimal-ui">
 	<meta http-equiv="X-UA-Compatible" content="IE=edge" />
-	
+
 	<meta name="keywords"
 		content="bootstrap, bootstrap admin template, admin theme, admin dashboard, dashboard template, admin template, responsive" />
 	<meta name="author" content="Codedthemes" />
@@ -20,7 +20,7 @@
 	<link rel="preconnect" href="https://fonts.gstatic.com">
 	<link href="https://fonts.googleapis.com/css2?family=Jua&display=swap"
 		rel="stylesheet">
-	
+
 	<!-- Dohyeon 폰트 import-->
 	<link rel="preconnect" href="https://fonts.gstatic.com">
 	<link href="https://fonts.googleapis.com/css2?family=Do+Hyeon&display=swap" rel="stylesheet">
@@ -48,37 +48,37 @@
     <link rel="stylesheet" type="text/css" href="/resources/css/test.css">
 	<script type="text/javascript" src="/resources/js/jquery/jquery.min.js "></script>
 	<script type="text/javascript" src="/resources/js/ajax.js"></script>
-	
+
 <script type="text/javascript">
-	
+
 	$(function() {
 		var sell_price = $("input:hidden[name='price']");
 		var amount = $("input:text[name='amount']");
 		var prodSum = $("input:text[name='sum']");
 		var sum;
-		
+
 		for (var i=0; i<sell_price.length; i++) {
 			sum = sell_price.eq(i).val() * amount.eq(i).val();
 			prodSum.eq(i).val(sum.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ","));
 		}
-		
+
 	});
-	
+
 	// 장바구니 상품 삭제
 	function delCart(pId, userId) {
-		
+
 		var chk = confirm("상품을 삭제하시겠습니까?");
-		
+
 		if (chk) {
 			var tUrl = '/store/deleteCart';
 			var result;
 			var param = {
-					pIdArr : pId, 
+					pIdArr : pId,
 					id : userId
 			}
-		
+
 			result = callAjax(tUrl, 'post', param, 'data');
-			
+
 			if (result.code == '0000') {
 				alert(result.msg);
 				location.reload();
@@ -87,84 +87,84 @@
 			}
 		}
 	} //end of delCart(pId, userId);
-	
+
 	// 장바구니 상품 전체 체크
 	function chkAll() {
 		if ($("#checkAll").is(':checked')) {
 			$("input:checkbox[name='p_id']").prop("checked", true);
 			itemCheck();
-			
+
 		} else {
 			$("input:checkbox[name='p_id']").prop("checked", false);
 			itemCheck();
 		}
 	}
-	
+
 	// 체크된 상품만 총액 계산
  	function itemCheck() {
  		var sum = 0;
  		var count = $("input:checkbox[name='p_id']");
  		var price = $("input:text[name='sum']");
  		var totalPrice = $("input:text[name='totalPrice']");
- 		
+
 		for (var i=0; i < count.length; i++ ) {
-			
+
 			if (count.eq(i).is(":checked") == true ) {
 				console.log(count.is(":checked"));
 				console.log(price.eq(i).val());
-				
+
 				sum += parseInt(numberRemoveCommas(price.eq(i).val()));
 		     }
 		}
 		  console.log(sum);
 		  totalPrice.val(numberAddCommas(sum));
  	}
- 	
+
  	// 체크된 상품 삭제
  	function delCheck() {
- 		
+
  		var pIdArr = [];
  		var count = $("input:checkbox[name='p_id']");
  		var userId = $("input[name='id']").val();
- 			
+
  		if ($("input[name='p_id']:checked").length == 0) {
  				alert("선택된 상품이 없습니다.");
  				return;
  			}
- 		
+
  		for (var i=0; i < count.length; i++ ) {
  			if (count.eq(i).is(":checked") == true) {
  				pIdArr.push(count.eq(i).val());
- 				
+
  			}
  		}
  			delCart(pIdArr, userId);
- 			
- 		
- 		
+
+
+
  	}
- 	
+
  	// 콤마 빼기
 	function numberRemoveCommas(x) {
 	    return parseInt(x.replace(/,/g,""));
 	 }
-	
+
  	// 콤마 넣기
 	function numberAddCommas(x) {
-	   
+
 	   if(x == 0) {
 	      return 0;
 	   } else {
 	      return x.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
 	   }
 	}
- 	
+
  	function hsBack() {
  		history.back();
  	}
 
 </script>
-	
+
 </head>
 
 <body>
@@ -245,8 +245,8 @@
 																	<td class="qua-col first-row">
 																		<div class="quantity">
 																			<div class="cartList_amount">
-																				<input type="button" class="store_btn2" value=" - " onclick="add()"> 
-																				<input type="text" name="amount" value="${cart.amount }" size="3" readonly> 
+																				<input type="button" class="store_btn2" value=" - " onclick="add()">
+																				<input type="text" name="amount" value="${cart.amount }" size="3" readonly>
 																				<input type="button" class="store_btn2" value=" + " onclick=>
 																			</div>
 																		</div>
@@ -286,7 +286,7 @@
 																<input type="text" class="store_input4" name="totalPrice" value="0" readonly>원
 															</li>
 															<li class="subtotal">상품 할인 금액 <span>$240.00</span></li>
-															<li class="cart-total">최종 결제 금액 
+															<li class="cart-total">최종 결제 금액
 																<input type="text" class="store_input4" name="totalPrice" value="0" readonly>원
 															</li>
 														</ul>

@@ -12,7 +12,7 @@
 <!--         </definition> -->
 
 <!-- 		user -->
-        <definition name="/auth.*" template="/mypage/myPageTemplate.jsp">
+        <definition name="/auth.*" template="/common/tilesTemplate.jsp">
                 <put-attribute name="header" value="/common/header.jsp" />
                 <put-attribute name="menubar" value="/auth/common/myPageMenuBar.jsp"/>
                 <put-attribute name="body" value="/auth/{1}.jsp" />

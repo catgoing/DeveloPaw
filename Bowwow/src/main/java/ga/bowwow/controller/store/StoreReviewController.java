@@ -2,13 +2,19 @@ package ga.bowwow.controller.store;
 
 import java.io.IOException;
 import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
 
 import ga.bowwow.service.store.Review;
 import ga.bowwow.service.store.StoreReviewService;
@@ -23,35 +29,45 @@ public class StoreReviewController {
 		System.out.println(">> StoreReviewController 실행");
 	}
 	
+	// 상품 소감(댓글) 목록
+		@ResponseBody
+		@RequestMapping(value = "/store/reviewList", method = RequestMethod.GET)
+		public List<Review> getReplyList(@RequestParam("p_id") int p_id, Model model) throws Exception {
+					
+			List<Review> reviewList = storeReviewService.getReviewList(p_id);
+			model.addAttribute("reviewList", reviewList);
+			return reviewList;
+		}
+	
 	// 리뷰 작성
-	@RequestMapping("/store/insertReview")
-	public void insertReview(Review review, HttpServletRequest request, HttpServletResponse response) throws IllegalStateException, IOException {
-		HashMap<String, String> map = new HashMap<String, String>();
-		
-		System.out.println(">>> 리뷰 작성 - insertReview()");
-		System.out.println("review : " + review);
-		System.out.println(review.getP_id());		
-		// 메소드 호출
-		storeReviewService.insertReview(review);
-		
-		// 가장 마지막에 작성된 리뷰 조회
-		
-		Review lastNum = storeReviewService.getLastReview(review.getP_id());
-		map.put("test", lastNum.getReview_title());
-		System.out.println("----------------------");
-		System.out.println(lastNum.getReview_id());
-		
-		try {
-			response.getWriter().print(map);
-		} catch (IOException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}		
-
-		//return "redirect:detail?p_id=" + review.getP_id();
-	}	
+		@RequestMapping("/store/insertReview")
+		@ResponseBody
+		public Map<String, Object> insertReview(Review review, HttpServletRequest request, HttpServletResponse response) throws IllegalStateException, IOException {
+			Map<String, Object> map = new HashMap<String, Object>();
+			
+			System.out.println(">>> 리뷰 작성 - insertReview()");
+			System.out.println("review : " + review);
+			System.out.println(review.getP_id());		
+			
+			int result = storeReviewService.insertReview(review);
+			
+			if(result >= 1) {
+				map.put("msg","등록되었습니다");
+				map.put("code", "0000");
+				map.put("revId", review.getReview_id());
+				map.put("revTitle", review.getReview_title());
+				map.put("revContent", review.getReview_content());
+				map.put("revRegdate", review.getReview_regdate());
+			} else {
+				map.put("msg","오류발생");
+				map.put("code", "9999");
+			}
+			
+			return map; 
+		}
 	
 	
+		
 	// 리뷰 삭제
 	@RequestMapping(value = "/store/deleteReview")
 	public void getDeleteReview(HttpServletRequest request, HttpServletResponse response) {

@@ -14,10 +14,8 @@ public class StoreReviewServiceImpl implements StoreReviewService {
 	private StoreDAO storeDAO;
 	
 	@Override
-	public void insertReview(Review review) {
-		System.out.println("impl-------------");
-		System.out.println(review);
-		storeDAO.insertReview(review);
+	public int insertReview(Review review) {
+		return storeDAO.insertReview(review);
 	}
 
 	@Override
@@ -31,9 +29,11 @@ public class StoreReviewServiceImpl implements StoreReviewService {
 		return storeDAO.getReviewList(p_id);
 	}
 
-	@Override
-	public Review getLastReview(int p_id) {
-		return storeDAO.getLastReview(p_id);
+	
+	@Override 
+	public Review getLastReview(int p_id) { 
+		return storeDAO.getLastReview(p_id); 
 	}
+	
 
 }

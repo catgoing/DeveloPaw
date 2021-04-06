@@ -3,14 +3,75 @@
   PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
   "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="inquiry">
-
-	<!-- <insert id="inquiryUser" parameterType="board">
+	<!-- ~~문의는 수정, 삭제 불가~~ -->
+	
+	<!-- 이용자 -->
+	<!-- 문의입력 -->
+	<insert id="userInquiryWrite" parameterType="userinquiry">
 		INSERT INTO INQUIRY_USER (INQUIRY_SERIAL,MEMBER_SERIAL,NICKNAME,INQUIRY_TITLE,INQUIRY_CONTENT,
-				INQUIRY_WRITEDATE,IMAGE_SOURCE,INQUITY_TYPE) 
-		VALUES (INQ_PERSONAL_SEQ.NEXTVAL, #{memberSerial}, #{nickName}, #{inquiryTitle},#{inquiryContent},
-				SYSDATE, #{imageSource}, #{inquiryType})
-	</insert> -->
-
+				INQUIRY_WRITEDATE,INQUITY_TYPE) 
+		VALUES (INQ_PERSONAL_SEQ.NEXTVAL, #{member_serial}, #{nickname}, #{inquiry_title}, #{inquiry_content},
+				SYSDATE, #{inquiry_type})
+	</insert>
+	
+	<!-- 본인 문의조회 -->
+	<select id="userInquiryListSelect" parameterType="userinquiry" resultType="userinquiry">
+		SELECT * FROM INQUIRY_USER
+		WHERE MEMBER_SERIAL = #{member_serial}
+		<!-- <choose>
+			<when test='inquiry_type.equals("contactUs")'>AND INQUIRY_TYPE = 'contactUs'</when>
+			<when test='inquiry_type.equals("buy")'>AND INQUIRY_TYPE = 'buy'</when>
+			<when test='inquiry_type.equals("delivery")'>AND INQUIRY_TYPE = 'delivery'</when>
+			<when test='inquiry_type.equals("etc")'>AND INQUIRY_TYPE = 'etc'</when>
+		</choose> -->
+		ORDER BY INQUIRY_WRITEDATE DESC
+	</select>
+	
+	<!-- 유저문의조회(개별-답변있으면 답변도 조회) -->
+	<select id="userInquiryCount" parameterType="userinquiry" resultType="userinquiry">
+		SELECT U.MEMBER_SERIAL, 
+		U.NICKNAME, U.INQUIRY_TITLE,
+				    U.INQUIRY_CONTENT,
+				    U.INQUIRY_WRITEDATE,
+				    U.INQUIRY_TYPE,
+				    U.INQUIRY_SERIAL AS U_SERIAL , A.INQUIRY_SERIAL AS A_SERIAL,
+				    A.INQUIRY_RE_SERIAL, 
+				    A.INQUIRY_RE_CONTENT, 
+				    A.INQUIRY_RE_DATE, 
+				    A.ADMIN_NAME
+		FROM INQUIRY_USER U LEFT OUTER JOIN INQUIRY_ADMIN A
+		ON U.INQUIRY_SERIAL = A.INQUIRY_SERIAL
+		WHERE U.INQUIRY_SERIAL = #{inquiry_serial}
+	</select>
+	
+	<select id="selectOneTest" parameterType="userInquiry" resultType="userinquiry">
+		SELECT * FROM INQUIRY_USER WHERE INQUIRY_SERIAL = #{inquiry_serial}
+	</select>
+	
+	<!-- 답변여부조회 -->
+	<select id="checkAnswerCount" parameterType="userinquiry" resultType="int">
+		SELECT COUNT(*) FROM INQUIRY_ADMIN
+		WHERE INQUIRY_SERIAL = #{inquiry_serial }
+	</select>
+	
+	
+	<!-- 관리자 -->
+	<insert id="adminInquiryWrite" parameterType="admininquiry">
+		INSERT INTO INQUIRY_ADMIN (INQUIRY_RE_SERIAL, INQUIRY_SERIAL, INQUIRY_RE_CONTENT,
+				INQUIRY_RE_DATE, ADMIN_NAME) 
+		VALUES (INQ_RE_SEQ.NEXTVAL, #{inquiry_serial}, #{inquiry_re_content}, 
+				SYSDATE, #{admin_name})
+	</insert>
+	
+	<!-- 문의는 관리자만 삭제가능 -->
+	<delete id="deleteInquirySet" parameterType="Map">
+		DELETE U, A
+		FROM INQUIRY_USER AS U INNER JOIN INQUIRY_ADMIN AS A 
+		ON U.INQUIRY_SERIAL = A.INQUIRY_SERIAL 
+		WHERE U.INQUIRY_SERIAL = #{inquiry_serial }
+	</delete>
+	
+	
 </mapper>
 
 

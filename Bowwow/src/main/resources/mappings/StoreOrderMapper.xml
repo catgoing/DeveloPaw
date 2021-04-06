@@ -5,18 +5,18 @@
 <mapper namespace="StoreOrder">
 
 	<!-- 주문 내역 작성 -->
-	<insert id="insertOrder" parameterType="Order">
-		INSERT INTO STORE_ORDER (ORDER_ID, P_ID, MEMBER_SERIAL, AMOUNT, PRICE, MEMO, 
-								 ORDER_DATE, ORDER_STATUS, ADDRESS_FIRST, ADDRESS_SECOND, ZIP) 
-		VALUES (ORDER_SEQ.NEXTVAL, #{p_id}, #{member_serial}, #{amount}, #{price}, #{memo}, SYSDATE, 
-				#{order_status}, #{address_first}, #{address_second}, #{zip})
+	<insert parameterType="Order" id="insertOrder">
+		INSERT INTO STORE_ORDER (ORDER_ID, P_ID, MEMBER_SERIAL, AMOUNT, TOTALSUM, MEMO,ORDER_DATE, 
+								ORDER_STATUS, ADDRESS, ADDRESS_DETAIL, ZIP)
+		VALUES (ORDER_SEQ.NEXTVAL, #{p_id}, #{member_serial}, #{amount}, #{totalSum}, #{memo}, 
+							SYSDATE,#{order_status}, #{address}, #{address_detail}, #{zip}) 
 	</insert>
 	
 	<!-- 주문 내역 수정 -->
 	<update id="updateOrder" parameterType="Order">
 		UPDATE STORE_ORDER 
 		SET AMOUNT = #{AMOUNT}, MEMO = #{MEMO}, 
-			ADDRESS_FIRST = #{address_first}, ADDRESS_SECOND = #{address_second}, ZIP = #{zip} 
+			ADDRESS = #{address}, ADDRESS_DETAIL = #{address_detail}, ZIP = #{zip} 
 		WHERE ORDER_ID = #{ORDER_ID}
 	</update>
 	
@@ -30,6 +30,7 @@
 	<select id="orderList" parameterType="int" resultType="Order">
 		SELECT * FROM STORE_ORDER
 		WHERE MEMBER_SERIAL = #{member_serial}
+		ORDER BY ORDER_ID DESC
 	</select>
 	
 	<!-- 주문 내역 하나만 출력 -->	
@@ -37,6 +38,13 @@
 		SELECT * FROM STORE_ORDER
 		WHERE ORDER_ID = #{order_id}
 	</select>
+	
+	<!-- 배송 시작시 재고 감소 -->
+	<update id="changeStock">
+		UPDATE STORE_PRODUCT
+		SET STOCK = STOCK - ${stock}
+		WHERE P_ID = #{p_id}
+	</update>
 </mapper>
 
 

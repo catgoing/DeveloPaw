@@ -56,9 +56,9 @@ public class StoreDAO {
 	
 	
 	// 상품 후기 dao
-	public void insertReview(Review review) {
+	public int insertReview(Review review) {
 		System.out.println("후기 등록 : " + review);
-		mybatis.insert("StoreReview.insertProductReview", review);
+		return mybatis.insert("StoreReview.insertProductReview", review);
 	}
 
 	public void deleteReview(int review_id) {
@@ -100,6 +100,10 @@ public class StoreDAO {
 	public Order getOrderDetail(int order_id) {
 		System.out.println("주문 상세 내역 : " + order_id);
 		return mybatis.selectOne("StoreOrder.orderDetail", order_id);
+	}
+
+	public void changeStock(Order order) {
+		mybatis.update("StoreOrder.changeStock",order);
 	}
 
 }

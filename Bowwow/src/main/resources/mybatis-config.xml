@@ -3,38 +3,42 @@
   PUBLIC "-//mybatis.org//DTD Config 3.0//EN"
   "http://mybatis.org/dtd/mybatis-3-config.dtd">
 <configuration>
+
 	<settings>
 		<setting name="jdbcTypeForNull" value="NULL" />
 	</settings>
-	<typeAliases>
 
+	<typeAliases>
 		<typeAlias type="ga.bowwow.service.board.Board" alias="board" />
 		<typeAlias type="ga.bowwow.service.board.Comment" alias="comment" />
+		<typeAlias type="ga.bowwow.service.board.Report" alias="report" />
 		<typeAlias type="ga.bowwow.service.pet.Pet" alias="pet" />
 		<typeAlias type="ga.bowwow.service.store.Product" alias="Product" />
 		<typeAlias type="ga.bowwow.service.user.VO.UserAccount" alias="UserAccount"/>
 		<typeAlias type="ga.bowwow.service.user.VO.UserDetail" alias="UserDetail"/>
 		<typeAlias type="ga.bowwow.service.user.VO.UserAddress" alias="UserAddress"/>
 		<typeAlias type="ga.bowwow.service.user.VO.UserWallet" alias="UserWallet"/>
+		<typeAlias type="ga.bowwow.service.user.VO.UserDTO" alias="UserDTO"/>
 		<typeAlias type="ga.bowwow.service.pet.Pet" alias="pet"/>
 		<typeAlias type="ga.bowwow.service.store.Product" alias="Product"/>
 		<typeAlias type="ga.bowwow.service.store.Review" alias="Review" />
 		<typeAlias type="ga.bowwow.service.store.CartList" alias="CartList" />
 		<typeAlias type="ga.bowwow.service.store.Order" alias="Order" />
-		<typeAlias type="ga.bowwow.service.store.Inquiry" alias="Inquiry" />
-		
+		<typeAlias type="ga.bowwow.service.userpage.UserInquiry" alias="userinquiry" />
+		<typeAlias type="ga.bowwow.service.admin.AdminInquiry" alias="admininquiry" />
 	</typeAliases>
 
 	<mappers>
-    <mapper resource="mappings/UserMapper.xml"/>
-	<mapper resource="mappings/UserAddressMapper.xml"/>
-  	<mapper resource="mappings/UserDetailMapper.xml"/>
-  	<mapper resource="mappings/WalletMapper.xml"/>
+	    <mapper resource="mappings/UserMapper.xml"/>
+		<mapper resource="mappings/UserAddressMapper.xml"/>
+	  	<mapper resource="mappings/UserDetailMapper.xml"/>
+	  	<mapper resource="mappings/WalletMapper.xml"/>
 		<mapper resource="mappings/BoardMapper.xml" />
 		<mapper resource="mappings/PetMapper.xml" />
 		<mapper resource="mappings/StoreMapper.xml" />
 		<mapper resource="mappings/CartListMapper.xml" />
 		<mapper resource="mappings/StoreReviewMapper.xml" />
 		<mapper resource="mappings/StoreOrderMapper.xml" />
+		<mapper resource="mappings/InquiryMapper.xml" />
 	</mappers>
 </configuration>

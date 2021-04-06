@@ -23,10 +23,10 @@ public class CommentDAO {
 	}
 	
 	//댓글 입력
-	public void insertComment(Comment vo) {
+	public void insertComment(Map<String, Object> map) {
 		System.out.println("===> MyBatis로 insertComment() 실행");
-		System.out.println(vo);
-		mybatis.insert("BoardDAO.insertComment", vo);
+		System.out.println("댓글 입력 map" + map);
+		mybatis.insert("BoardDAO.insertComment", map);
 	}
 	
 	//댓글 수정
@@ -53,9 +53,9 @@ public class CommentDAO {
 	
 	
 	//대댓글 입력
-	public void insertComment2(Comment vo) {
+	public void insertComment2(Map<String, Object> map) {
 		System.out.println("===> MyBatis로 insertComment() 실행");
-		mybatis.insert("BoardDAO.insertComment2", vo);
+		mybatis.insert("BoardDAO.insertComment2", map);
 	}
 	
 	//대댓글 수정
@@ -67,7 +67,7 @@ public class CommentDAO {
 	//대댓글 삭제
 	public void deleteComment2(Comment vo) {
 		System.out.println("===> MyBatis로 deleteComment() 실행");
-		mybatis.delete("BoardDAO.deleteComment2", vo);
+		mybatis.delete("BoardDAO.deleteComment", vo);
 	}	
 	
 	//댓글 1개 조회
