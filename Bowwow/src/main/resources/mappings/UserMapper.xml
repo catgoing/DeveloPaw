@@ -6,6 +6,34 @@
 
 <!-- TODO SearchAccount의 동적검색을 추가해야 함 -->
 <!-- TODO SearchAccount를 List형태로 돌려주는 것으로 변환해야 함 -->
+	
+    <resultMap id="nestedAddressUserAccount" type="UserDTO">
+	  <association property="userAddress" column="MEMBER_SERIAL" javaType="UserAddress" select="getUserAddressList"/>
+	</resultMap>
+	<select id="getNestedAddressUserAccount" resultMap="nestedAddressUserAccount">
+	 	SELECT *
+		FROM USER_ACCOUNT ACT, USER_DETAIL DET
+		WHERE DET.MEMBER_SERIAL(+) = ACT.MEMBER_SERIAL
+        ORDER BY ACT.MEMBER_SERIAL
+	</select>
+	
+	<select id="getUserDtoList" resultType="UserDTO">
+		SELECT *
+		FROM USER_ACCOUNT ACT, USER_DETAIL DET
+		WHERE DET.MEMBER_SERIAL(+) = ACT.MEMBER_SERIAL
+        ORDER BY ACT.MEMBER_SERIAL
+	</select>
+	
+	<select id="getUserList" resultType="UserAccount">
+		SELECT *
+		FROM USER_ACCOUNT
+		ORDER BY MEMBER_SERIAL
+<!-- 		SELECT * -->
+<!-- 		FROM USER_ACCOUNT ACT, USER_DETAIL DET -->
+<!-- 		WHERE DET.MEMBER_SERIAL = ACT.MEMBER_SERIAL -->
+<!--         ORDER BY ACT.MEMBER_SERIAL -->
+	</select>
+	
 
 	<insert id="insertUserAccount" parameterType="UserAccount">
 				INSERT INTO USER_ACCOUNT (MEMBER_SERIAL, ID, EMAIL, CITIZEN_ID, PHONE, PASSWORD, STATUS, POINT, COUPONS)
@@ -50,23 +78,6 @@
 	
 	<select id="checkIdValidation" parameterType="UserAccount" resultType="UserAccount">
 		SELECT * FROM USER_ACCOUNT WHERE ID = #{id}
-	</select>
-	
-	<select id="getUserList" resultType="UserAccount">
-		SELECT *
-		FROM USER_ACCOUNT
-		ORDER BY MEMBER_SERIAL
-<!-- 		SELECT * -->
-<!-- 		FROM USER_ACCOUNT ACT, USER_DETAIL DET -->
-<!-- 		WHERE DET.MEMBER_SERIAL = ACT.MEMBER_SERIAL -->
-<!--         ORDER BY ACT.MEMBER_SERIAL -->
-	</select>
-	
-	<select id="getUserDtoList" resultType="UserDTO">
-		SELECT *
-		FROM USER_ACCOUNT ACT, USER_DETAIL DET
-		WHERE DET.MEMBER_SERIAL(+) = ACT.MEMBER_SERIAL
-        ORDER BY ACT.MEMBER_SERIAL
 	</select>
 	
 	<select id="searchUserList" resultType="UserAccount">

@@ -28,7 +28,7 @@ public class UserDTO {
 	Date regDate;
 	Date birthday;
 	String gender;
-//	ArrayList<UserAddress> userAddress;
+	ArrayList<UserAddress> userAddress;
 //	ArrayList<UserWallet> userWallet;
 	
 }
