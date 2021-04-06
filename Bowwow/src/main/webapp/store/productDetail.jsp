@@ -61,51 +61,102 @@
 
 <script type="text/javascript">
 
-		var sell_price;
-		var amount;
-
-		$(function init () {
-			sell_price = document.getElementById('sell_price').value;
-			document.getElementById('sum').value = sell_price
-			sell_price = document.form.sell_price.value;
-			amount = document.form.amount.value;
-			document.form.sum.value = sell_price.replace(/\B(?=(\d{3})+(?!\d))/g, ",");
-		});
-
-		function add () {
-			hm = document.form.amount;
-			sum = document.form.sum;
-
-			hm.value ++ ;
-
-			var temp = parseInt(hm.value) * sell_price
-
-			document.getElementById('sum').value = temp;
-			document.getElementById('sum').value = document.getElementById('sum').value.replace(/\B(?=(\d{3})+(?!\d))/g, ",");
-
-		}
-
+	var sell_price;
+	var amount;
+	var totalSum;
+	
+	$(function init () {
+	   sell_price = document.getElementById('sell_price').value;
+	   document.getElementById('sum').value = sell_price;
+	   sell_price = document.form.sell_price.value;
+	   console.log(document.getElementById('totalSum').value = sell_price);
+	   amount = document.form.amount.value;
+	   document.form.sum.value = sell_price.replace(/\B(?=(\d{3})+(?!\d))/g, ",");
+	   
+	});
+	
+	function add () {
+	   hm = document.form.amount;
+	   sum = document.form.sum;
+	   
+	   hm.value ++ ;
+	   
+	   var temp = parseInt(hm.value) * sell_price
+	
+	   console.log(document.getElementById('totalSum').value = temp);
+	   document.getElementById('sum').value = temp;
+	   document.getElementById('sum').value = document.getElementById('sum').value.replace(/\B(?=(\d{3})+(?!\d))/g, ",");
+	}
+	
+	function del () {
+	   hm = document.form.amount;
+	   sum = document.form.sum;
+	      if (hm.value > 1) {
+	         hm.value -- ;
+	         var temp = parseInt(hm.value) * sell_price
+	         
+	         console.log(document.getElementById('totalSum').value = temp);
+	         document.getElementById('sum').value = temp;
+	         document.getElementById('sum').value = document.getElementById('sum').value.replace(/\B(?=(\d{3})+(?!\d))/g, ",");
+	      }
+	      
+	}
+	
+	function changeValue(){
+	   hm = document.form.amount;
+	   sum = document.form.sum;
+	   
+	   var temp = parseInt(hm.value) * sell_price
+	
+	   console.log(document.getElementById('totalSum').value = temp); 
+	   document.getElementById('sum').value = temp;
+	   document.getElementById('sum').value = document.getElementById('sum').value.replace(/\B(?=(\d{3})+(?!\d))/g, ",");
+	}
+	
+	// 숫자만 들어오도록 체크
+	function onlyNumber(e) {
+	   var reg = /[^0-9]{1,100}$/g;
+	   var value = $(e).val();   // $(e) : 선택자, jQuery에서 매개변수로 받은 Object를 지칭함
+	   
+	   if (reg.test(value)) { // 숫자만 들어오도록 test()로 체크
+	      $(e).val(value.replace(reg, ""));
+	      return false;
+	   }
+	}
+	
+	function cartList(frm) {
+	   var param = $("form[name=form]").serialize();
+	   var tUrl = '/store/addCart';
+	   var result;
+	   
+	   result = callAjax(tUrl, 'post', param, 'data');
+	
+	             if (result.code == "0000") {
+	               var chk = confirm(result.msg);
+	            
+	               if (chk) {
+	               location.href="/store/cartList";
+	                }
+	               
+	      } else {
+	               var chk = confirm(result.msg);
+	         
+	              if (chk) {
+	               location.href="/store/cartList";
+	            } 
+	           }
+	         
 	}
 
-	function changeValue() {
-		hm = document.form.amount;
-		sum = document.form.sum;
-
-		var temp = parseInt(hm.value) * sell_price
-
-		document.getElementById('sum').value = temp;
-		document.getElementById('sum').value = document.getElementById('sum').value
-				.replace(/\B(?=(\d{3})+(?!\d))/g, ",");
-	}
 
 
 	function insertOrder(frm) {
 		console.log('order 함수');
 		var p_id = $('#product_id').val();
 		var p_count = $('#product_count').val();
-		var sum = $('#sum').val();
+		var sum = $('#totalSum').val();
 
-		location.href = "/store/storeOrder?p_id=" + p_id + "&p_count=" + p_count + "&sum=" + sum;
+		location.href = "/store/storeOrder?p_id=" + p_id + "&p_count=" + p_count + "&totalSum=" + sum;
 	}
 
 	function deleteReview(review_id) {
@@ -200,41 +251,7 @@
 			$("section.reviewList ol").html(str);
 		});
 
-		// 숫자만 들어오도록 체크
-		function onlyNumber(e) {
-			var reg = /[^0-9]{1,100}$/g;
-			var value = $(e).val();	// $(e) : 선택자, jQuery에서 매개변수로 받은 Object를 지칭함
-
-			if (reg.test(value)) { // 숫자만 들어오도록 test()로 체크
-				$(e).val(value.replace(reg, ""));
-				return false;
-			}
-		}
-
-		function cartList(frm) {
-			var param = $("form[name=form]").serialize();
-			var tUrl = '/store/addCart';
-			var result;
-
-			result = callAjax(tUrl, 'post', param, 'data');
-
-	       	   	if (result.code == "0000") {
-	       		  	var chk = confirm(result.msg);
-
-	       		  	if (chk) {
-	         			location.href="/store/cartList";
-	       	   		}
-
-				} else {
-	       		  	var chk = confirm(result.msg);
-
-	       		 	if (chk) {
-	         			location.href="/store/cartList";
-	         		}
-       	    	}
-
-		}
-
+		
 
 		function storeOrder(frm) {
 			frm.action="/store/storeOrder";
@@ -312,7 +329,7 @@
 																<h5>
 																	상품 수량 : <input type="hidden" id="sell_price" name="price" value="${p.price }">
 																			 <input type="button" class="store_btn2" value=" - " onclick="del();">
-																			 <input type="text" class="store_input" onkeyup="onlyNumber(this);" maxlength="2" autocomplete="off"
+																			 <input type="text" id="product_count" class="store_input" onkeyup="onlyNumber(this);" maxlength="2" autocomplete="off"
 																			 	min="1" name="amount" value="1" size="3" onchange="changeValue();">
 																			 <input type="button" id="addBtn" class="store_btn2" value=" + " onclick="add();">
 																</h5>
@@ -339,6 +356,7 @@
 															<button class="store_btn" onclick="cartList(this.form)">장바구니</button>
 															<button class="store_btn"
 																onclick="insertOrder(this.form)">바로구매</button>
+															<input type="hidden" id="totalSum" name="totalSum">
 														</c:if>
 														<c:if test="${p.stock == 0 }">
 															<h4>품절된 상품입니다.</h4>
