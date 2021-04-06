@@ -17,7 +17,7 @@ public class StoreInquiryServiceImpl implements StoreInquiryService {
 	public void insertInquiry(Inquiry inquiry) {
 		System.out.println("impl-------------");
 		System.out.println(inquiry);
-		storeDAO.insertInquiry(inquiry);		
+		//storeDAO.insertInquiry(inquiry);		
 	}
 
 	@Override

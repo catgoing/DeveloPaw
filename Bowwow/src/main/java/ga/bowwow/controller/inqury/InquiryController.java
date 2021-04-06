@@ -16,7 +16,7 @@ import ga.bowwow.service.userpage.UserInquiry;
 import ga.bowwow.service.userpage.UserInquiryService;
 
 @Controller
-@SessionAttributes("uiqDetail")
+@SessionAttributes({"userinquiryList","uiqDetail"})
 public class InquiryController {
 	
 	@Autowired

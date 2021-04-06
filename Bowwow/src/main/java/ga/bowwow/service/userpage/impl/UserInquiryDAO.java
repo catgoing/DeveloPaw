@@ -39,7 +39,7 @@ public class UserInquiryDAO {
 
 		UserInquiry test = mybatis.selectOne("inquiry.selectOneTest", userInquiry);
 		System.out.println("test : " + test);
-		//test.get
+		
 		return test;
 	}
 	
@@ -49,7 +49,7 @@ public class UserInquiryDAO {
 		int member_serial = userInquiry.getMember_serial();
 		String inquiry_type = userInquiry.getInquiry_type();
 		
-		System.out.println("selectAll : " +member_serial + ", " + inquiry_type);
+		System.out.println("selectAll : " + member_serial + ", " + inquiry_type);
 		
 		List<UserInquiry> list = mybatis.selectList("inquiry.userInquiryListSelect", userInquiry);
 		for(UserInquiry uiq : list) {
@@ -68,10 +68,7 @@ public class UserInquiryDAO {
 	//관리자 답변유무 체크
 	public int checkAnswer(UserInquiry userInquiry) {
 		System.out.println("답변유무체크 checkAnswer >>> " + userInquiry.getInquiry_serial());
-//		Map<String, Integer> map = new HashMap<String, Integer>();
-//		map.put("inquiry_serial", userInquiry.getInquiry_serial());
-//		System.out.println(map.toString());
-		
+
 		return mybatis.selectOne("inquiry.checkAnswerCount", userInquiry);
 	}
 	

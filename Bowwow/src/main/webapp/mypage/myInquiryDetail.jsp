@@ -87,7 +87,11 @@
 			<div class="pcoded-wrapper">
 				<!-- 좌측메뉴바 -->
 				<%@include file="/common/myPageMenuBar.jsp" %>
-				
+
+<div class="pcoded-content">
+	<div class="pcoded-inner-content">
+		<div class="main-body">
+	    	<div class="page-wrapper">
 				<!-- Main-body start 본문 시작 -->
 				<%-- <tiles:insertAttribute name="body" /> --%>
 				<div class="page-body">
@@ -132,12 +136,13 @@
 			</div>
 		</div>
 	</div>
-</div>
+</div></div></div>
 	
 	<!-- footer 푸터 시작부분-->
 	<%-- <tiles:insertAttribute name="footer" /> --%>
 	<%@include file="/common/footer.jsp" %>
 	<!-- footer 푸터 끝부분-->
+</div></div>
 
     <!-- Required Jquery -->
     <script type="text/javascript" src="/resources/js/jquery/jquery.min.js "></script>

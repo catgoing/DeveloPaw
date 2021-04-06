@@ -23,7 +23,8 @@
 		<typeAlias type="ga.bowwow.service.store.Review" alias="Review" />
 		<typeAlias type="ga.bowwow.service.store.CartList" alias="CartList" />
 		<typeAlias type="ga.bowwow.service.store.Order" alias="Order" />
-		<typeAlias type="ga.bowwow.service.store.Inquiry" alias="Inquiry" />
+		<typeAlias type="ga.bowwow.service.userpage.UserInquiry" alias="userinquiry" />
+		<typeAlias type="ga.bowwow.service.admin.AdminInquiry" alias="admininquiry" />
 	</typeAliases>
 
 	<mappers>
@@ -37,5 +38,6 @@
 		<mapper resource="mappings/CartListMapper.xml" />
 		<mapper resource="mappings/StoreReviewMapper.xml" />
 		<mapper resource="mappings/StoreOrderMapper.xml" />
+		<mapper resource="mappings/InquiryMapper.xml" />
 	</mappers>
 </configuration>
