@@ -199,7 +199,7 @@
 									
 								<c:if test="${empty pointList }">
 									<tr>
-										<td colspan="5" class="center">데이터가 없습니다.</td>
+										<td colspan="5" class="center">적립된 포인트가 없습니다.</td>
 									</tr>
 								</c:if>
 								<c:if test="${not empty pointList }">	

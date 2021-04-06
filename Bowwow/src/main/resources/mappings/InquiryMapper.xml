@@ -8,8 +8,8 @@
 	<!-- 이용자 -->
 	<!-- 문의입력 -->
 	<insert id="userInquiryWrite" parameterType="userinquiry">
-		INSERT INTO INQUIRY_USER (INQUIRY_SERIAL,MEMBER_SERIAL,NICKNAME,INQUIRY_TITLE,INQUIRY_CONTENT,
-				INQUIRY_WRITEDATE,INQUITY_TYPE) 
+		INSERT INTO INQUIRY_USER (INQUIRY_SERIAL, MEMBER_SERIAL, NICKNAME, INQUIRY_TITLE, INQUIRY_CONTENT,
+				INQUIRY_WRITEDATE, INQUIRY_TYPE) 
 		VALUES (INQ_PERSONAL_SEQ.NEXTVAL, #{member_serial}, #{nickname}, #{inquiry_title}, #{inquiry_content},
 				SYSDATE, #{inquiry_type})
 	</insert>

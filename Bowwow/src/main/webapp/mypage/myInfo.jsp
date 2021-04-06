@@ -335,7 +335,8 @@ $(function(){
 									<div class="side-content">
 										<div class="my-area">
 											<div class="side-profile-img">
-												<img src="${user.image_source }" alt="이미지없음~">
+												<%-- <img src="${user.image_source }" alt="이미지없음~"> --%>
+												<img src="" alt="이미지없음~">
 											</div>
 											<p>닉네임${user.nickname }</p>
 										</div>
@@ -357,18 +358,14 @@ $(function(){
     <label for="inputPassword" class="col-sm-4 control-label">Password</label>
     <div class="col-sm-8 passinput">
       <input type="password" class="form-control password" name="password" id="password" placeholder="Password">
-      <div class="eyes"> 
-      	<i class="fa fa-eye fa-lg"></i>
-      </div>
+
     </div>
   </div>
   <div class="form-group">
     <label for="inputPassword2" class="col-sm-4 control-label">Password 확인</label>
     <div class="col-sm-8 passinput2">
       <input type="password" class="form-control password" id="password2" placeholder="Password 재입력">
-      <div class="eyes2"> 
-      	<i class="fa fa-eye fa-lg"></i>
-      </div>
+
     </div>
   </div>
   <div class="form-group">
@@ -380,7 +377,7 @@ $(function(){
   <div class="form-group">
     <label for="inputNickname" class="col-sm-4 control-label">닉네임</label>
     <div class="col-sm-8">
-      <input type="text" class="form-control" name="nickname" id="inputNickname" placeholder="닉네임" value="닉네임${uesr.nickname}">
+      <input type="text" class="form-control" name="nickname" id="inputNickname" placeholder="닉네임" value="닉네임${user.nickname}">
     </div>
   </div>
   <div class="form-group">
@@ -397,7 +394,7 @@ $(function(){
   <div class="form-group">
     <label for="inputEmail" class="col-sm-4 control-label">이메일</label>
     <div class="col-sm-8">
-      <input type="email" class="form-control" name="email" id="inputEmail" placeholder="hong@example.com">
+      <input type="email" class="form-control" name="email" id="inputEmail" placeholder="hong@example.com" value="${user.email }">
     </div>
   </div>
   <div class="form-group">

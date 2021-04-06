@@ -18,7 +18,7 @@
 <meta name="author" content="Codedthemes" />
 <!--Jua 폰트 import-->
 <link rel="preconnect" href="https://fonts.gstatic.com">
-<link href="https://fonts.googleapis.com/css2?family=Jua&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Do+Hyeon&display=swap" rel="stylesheet">
 
 <!-- Favicon icon -->
 <link rel="icon" href="/resources/images/favicon.ico" type="image/x-icon">
@@ -177,56 +177,28 @@ $(document).ready(function () {
 				</div>
 			</div>
 		</div>
-		<button class="scroll-top" id="js-button"
+<!-- 		<button class="scroll-top" id="js-button"
 			style="margin-bottom: 190px; margin-right: 30px; font: 'Jua'">
 			<i class="fa fa-chevron-up" aria-hidden="true">TOP</i>
-		</button>
+		</button> -->
 		
-		<!-- <div class="fixed-button active"><a href="/community/write_board.jsp" class="btn btn-md btn-primary"> 글쓰기</a> </div> -->
-		
-		<script type="text/javascript">
-			scrollTop('js-button', 100);
-			function scrollTop(elem, duration) {
-				let target = document.getElementById(elem);
-
-				target.addEventListener('click', function() {
-					let currentY = window.pageYOffset;
-					let step = duration / currentY > 1 ? 10 : 100;
-					let timeStep = duration / currentY * step;
-					let intervalID = setInterval(scrollUp, timeStep);
-
-					function scrollUp() {
-						currentY = window.pageYOffset;
-						if (currentY === 0) {
-							clearInterval(intervalID);
-						} else {
-							scrollBy(0, -step);
-						}
-					}
-				});
-			}
-		</script>
-
 		<!-- footer 푸터 영역 -->
 		<%@ include file="/common/footer.jsp"%>
 		<!-- footer 푸터 영역 -->
+		<!-- <div class="fixed-button active"><a href="/community/write_board.jsp" class="btn btn-md btn-primary"> 글쓰기</a> </div> -->
+
 
 	</div>
 
 	<!-- Required Jquery -->
-	<script type="text/javascript"
-		src="/resources/js/jquery/jquery.min.js "></script>
-	<script type="text/javascript"
-		src="/resources/js/jquery-ui/jquery-ui.min.js "></script>
-	<script type="text/javascript"
-		src="/resources/js/popper.js/popper.min.js"></script>
-	<script type="text/javascript"
-		src="/resources/js/bootstrap/js/bootstrap.min.js "></script>
+	<script type="text/javascript" src="/resources/js/jquery/jquery.min.js "></script>
+	<script type="text/javascript" src="/resources/js/jquery-ui/jquery-ui.min.js "></script>
+	<script type="text/javascript" src="/resources/js/popper.js/popper.min.js"></script>
+	<script type="text/javascript" src="/resources/js/bootstrap/js/bootstrap.min.js "></script>
 	<!-- waves js -->
 	<script src="/resources/pages/waves/js/waves.min.js"></script>
 	<!-- jquery slimscroll js -->
-	<script type="text/javascript"
-		src="/resources/js/jquery-slimscroll/jquery.slimscroll.js"></script>
+	<script type="text/javascript" src="/resources/js/jquery-slimscroll/jquery.slimscroll.js"></script>
 
 	<!-- slimscroll js -->
 	<script src="/resources/js/jquery.mCustomScrollbar.concat.min.js "></script>

@@ -19,10 +19,9 @@
 <meta name="keywords"
 	content="bootstrap, bootstrap admin template, admin theme, admin dashboard, dashboard template, admin template, responsive" />
 <meta name="author" content="Codedthemes" />
-<!--Jua 폰트 import-->
+
 <link rel="preconnect" href="https://fonts.gstatic.com">
-<link href="https://fonts.googleapis.com/css2?family=Jua&display=swap"
-	rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Do+Hyeon&display=swap" rel="stylesheet">
 
 <!-- Favicon icon -->
 <link rel="icon" href="/resources/images/favicon.ico"

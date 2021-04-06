@@ -156,11 +156,6 @@ $(document).ready(function(){
 		var checked = $("#inquiry_type>option:selected").val();
 		console.log(checked);
 	});
-	$('.contact-btn').click(function(event){
-		event.preventDefault();
-		console.log($(this));			
-	
-	});
 	
 	$('.cancel-btn').click(function(){
 		console.log($(this));
@@ -170,33 +165,6 @@ $(document).ready(function(){
 	});
 });
 
-//문의목록 가져오는 스크립트 -_-; 과연??
-/* $().ready(function(){
-	(function(){
-		var mSerial = '<c:out value="${user.memberSerial }"/>';
-		$.getJSON("getlisttest", mSerial, function(inquiryArr){
-			console.log(inquiryArr);
-			var str = "<tr>";
-				$(inquiryArr).each(function(idx, inquiry){
-					if(inquiry[idx] != null){
-						console.log(this);
-						str += '<td>';
-						str += '<a href="myInquiryDetail.jsp?seq='+ this.seq +'">'+ this.title +'</a>';
-						str += '</td>';
-						str += '<td>' + this.writer + '</td>';
-						str += '<td>' + this.regdate + '</td>';
-					} else {
-						str += '<tr>';
-						str += '<td colspan="3" class="center">데이터가 없습니다.</td>';
-					}
-				});
-			
-			str += '</tr>';
-			$("#inquirylist-table-tbody").html(str);
-		});//end getJSON
-	});//end function
-}); */
-	
 </script>
 </head>
 
@@ -290,27 +258,28 @@ $(document).ready(function(){
 										  </div>
                                       	  <div id="collapseOne" class="panel-collapse collapse in" role="tabpanel" aria-labelledby="headingOne">
                                            <div class="accordion-content accordion-desc">
-                                           <form id="inquiry_form" action="" method="post" >
+                                           <form id="inquiry_form" action="/insertUserInquiry" method="post" >
                                                <div class="form-group row" id="question-section">
-                                               	<input type="text" class="form-control" name="inquiry_title" placeholder="제목을 입력하세요">
+                                              		<input type="text" class="form-control" name="inquiry_title" placeholder="제목을 입력하세요">
 							    					<div class="col-sm-10">
 							    					<input type="hidden" value="">
 											    		<select class="form-control" id="inquiry_type" aria-label="문의유형선택" name="inquiry_type">
 														  <option disabled>문의 유형 선택</option>
-														  <option value="1" onclick="inquiryType('contactUs')">이용문의</option>
-														  <option value="2" onclick="inquiryType('buy')">구매문의</option>
-														  <option value="3" onclick="inquiryType('delivery')">배송문의</option>
-														  <option value="4" onclick="inquiryType('etc')">기타문의</option>
+														  <option value="contactUs" onclick="inquiryType('contactUs')">이용문의</option>
+														  <option value="buy" onclick="inquiryType('buy')">구매문의</option>
+														  <option value="delivery" onclick="inquiryType('delivery')">배송문의</option>
+														  <option value="etc" onclick="inquiryType('etc')">기타문의</option>
 														</select>
 							    					</div>
 							    					<textarea class="form-control" name="inquiry_content" rows="5" placeholder="질문을 입력하세요!"></textarea>
 								  					</div>
+							    				<input type="hidden" name="nickname" value="${user.nickname }">
 							    				<input type="hidden" name="member_serial" value="${user.memberSerial }">
-                                           </form>
-                                           </div>
-	                                           <input type="submit" class="contact-btn" value="문의하기" form="inquiry_form">	
+	                                           <input type="submit" class="contact-btn" value="문의하기" >	
 							    			   <input type="button" class="cancel-btn" value="취소">
-	                                       </div>
+                                           </form>
+                                           	</div>
+                                         </div>
 	                                  </div>
 	                                </div>
 	                              </div>
