@@ -4,27 +4,12 @@
   "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="inquiry">
 
-<<<<<<< HEAD
-<<<<<<< HEAD
-	<!-- <insert id="inquiryUser" parameterType="board">
-		INSERT INTO INQUIRY_USER (INQUIRY_SERIAL,MEMBER_SERIAL,NICKNAME,INQUIRY_TITLE,INQUIRY_CONTENT,
-				INQUIRY_WRITEDATE,IMAGE_SOURCE,INQUITY_TYPE) 
-		VALUES (INQ_PERSONAL_SEQ.NEXTVAL, #{memberSerial}, #{nickName}, #{inquiryTitle},#{inquiryContent},
-				SYSDATE, #{imageSource}, #{inquiryType})
-	</insert> -->
-=======
-=======
->>>>>>> parent of d5ef625 (문의 추가, 반려동물crud수정(file))
 	<insert id="inquiryUser" parameterType="board">
 		INSERT INTO INQUIRY_USER (INQUIRY_SERIAL,MEMBER_SERIAL,NICKNAME,INQUIRY_TITLE,INQUIRY_CONTENT,
 				INQUIRY_WRITEDATE,INQUITY_TYPE) 
 		VALUES (INQ_PERSONAL_SEQ.NEXTVAL, #{memberSerial}, #{nickName}, #{inquiryTitle},#{inquiryContent},
 				SYSDATE,#{inquiryType})
 	</insert>
-<<<<<<< HEAD
->>>>>>> parent of d5ef625 (문의 추가, 반려동물crud수정(file))
-=======
->>>>>>> parent of d5ef625 (문의 추가, 반려동물crud수정(file))
 
 </mapper>
 
