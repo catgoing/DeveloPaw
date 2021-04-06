@@ -170,33 +170,24 @@
                                                             <div class="col-lg-6 col-md-6 col-sm-6">
                                                                 <div class="checkout__form__input">
                                                                     <p>
-                                                                        	상품번호 <span>* (*)항목은 필수 입력 항목입니다.</span>
-                                                                    </p>
-                                                                    <input type="text" id="p_id" name="p_id">
-                                                                </div>
-                                                            </div>
-                                                            <div class="col-lg-6 col-md-6 col-sm-6">
-                                                                <div class="checkout__form__input">
-                                                                    <p>
-                                                                      	   회원번호 <span>*</span>
+                                                                      	   주문자 성명 <span>* (*)항목은 필수 입력 항목입니다.</span>
                                                                     </p>
                                                                     <input type="text" name="member_serial" value=999>
+                                                                    <input type="hidden" id="p_id" name="p_id">
                                                                 </div>
                                                             </div>
                                                             <div class="col-lg-12">
                                                                 <div class="checkout__form__input">
                                                                     <p>
-                                                                     	   주소 <span>*</span>
+                                                                     	   주소 <span>*</span><input type="button" style="margin-left : 20px; width : 120px; text-align : center" class="searchAddress" onclick="execMap()" value="주소찾기">
                                                                     </p>
-                                                                    <input type="button" onclick="execMap()" value="주소찾기">
-                                                                    <input type="text" id="userAddress" name="address" placeholder="" readonly> 
+                                                                    
+                                                                    <input type="text" id="userZonecode" name="zip" readonly placeholder="우편번호">
+                                                                    <input type="text" id="userAddress" name="address" placeholder="주소" readonly> 
                                                                     <input type="text"  name="address_detail" placeholder="동,호수 등 상세 주소를 입력하세요">
                                                                 </div>
                                                                 <div class="checkout__form__input">
-                                                                    <p>
-                                                                        	우편번호 <span>*</span>
-                                                                    </p>
-                                                                    <input type="text" id="userZonecode" name="zip" readonly>
+                                                                    
                                                                 </div>
                                                             </div>
                                                             <div class="col-lg-6 col-md-6 col-sm-6">
@@ -223,8 +214,8 @@
                                                                 </div>
                                                                 <div class="checkout__form__input">
                                                                     <input type="hidden" id="order_status" name="order_status" value="주문 완료">
-                                                                    <input type="text" id="pCount" name="amount">
-                                                                    <input type="text" id="pSum" name="totalSum">
+                                                                    <input type="hidden" id="pCount" name="amount">
+                                                                    <input type="hidden" id="pSum" name="totalSum">
                                                                 </div>
                                                             </div>
                                                         </div>

@@ -32,7 +32,7 @@ public class StoreReviewController {
 	// 상품 소감(댓글) 목록
 		@ResponseBody
 		@RequestMapping(value = "/store/reviewList", method = RequestMethod.GET)
-		public List<Review> getReplyList(@RequestParam("p_id") int p_id, Model model) throws Exception {
+		public List<Review> getReviewList(@RequestParam("p_id") int p_id, Model model) throws Exception {
 					
 			List<Review> reviewList = storeReviewService.getReviewList(p_id);
 			model.addAttribute("reviewList", reviewList);

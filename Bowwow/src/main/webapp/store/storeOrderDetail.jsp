@@ -127,7 +127,7 @@ function deleteOrder(frm) {
 												<h4>Order Info</h4>
 												<ul class="list">
 													<li><a href="#"><span>주문번호</span> : ${o.order_id}</a></li>
-													<li><a href="#"><span>Member Serial</span> : ${o.member_serial}</a></li>
+													<li><a href="#"><span>Member Serial</span> : ${o.nickname}</a></li>
 													<li><a href="#"><span>Total</span> : USD 2210</a></li>
 													<li><a href="#"><span>Payment method</span> : Check payments</a></li>
 												</ul>

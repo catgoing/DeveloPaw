@@ -23,4 +23,6 @@ public class Order {
 	private String address;			// 기본 주소
 	private String address_detail;	// 상세 주소
 	private String zip;				// 우편번호
+	
+	private String nickname;		// 닉네임
 }
