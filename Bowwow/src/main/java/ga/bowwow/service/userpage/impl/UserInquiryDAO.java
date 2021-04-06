@@ -1,5 +1,6 @@
 package ga.bowwow.service.userpage.impl;
 
+import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
@@ -30,17 +31,11 @@ public class UserInquiryDAO {
 	public UserInquiry getUserInquiry(UserInquiry userInquiry) {
 		System.out.println("유저문의DAO selectOne");
 		System.out.println(">> userInquiry :" + userInquiry);
-//		Map<String, Object> map = mybatis.selectOne("inquiry.userInquiryCount", userInquiry);
-//		System.out.println("result : " + map);
-//		for(String key : map.keySet()) {
-//			String value = (String) map.get(key); 
-//			System.out.println(">>" + key + " : " + value);
-//		}
 
-		UserInquiry test = mybatis.selectOne("inquiry.selectOneTest", userInquiry);
-		System.out.println("test : " + test);
-		
-		return test;
+		UserInquiry uiqDetail = mybatis.selectOne("inquiry.userInquiryCount", userInquiry);
+		System.out.println("test : " + uiqDetail);
+				
+		return uiqDetail;
 	}
 	
 	//유저문의 리스트
@@ -48,8 +43,13 @@ public class UserInquiryDAO {
 		System.out.println("유저문의DAO selectAll");
 		int member_serial = userInquiry.getMember_serial();
 		String inquiry_type = userInquiry.getInquiry_type();
+		System.out.println("타입검색 : " + userInquiry.getTypeSelect());
+		//문의유형 설정하지않으면 기본값 : all
+		if(userInquiry.getTypeSelect() == null) {
+			userInquiry.setTypeSelect("all");
+		}
 		
-		System.out.println("selectAll : " + member_serial + ", " + inquiry_type);
+		System.out.println("selectAll : " + member_serial + ", " + userInquiry.getTypeSelect());
 		
 		List<UserInquiry> list = mybatis.selectList("inquiry.userInquiryListSelect", userInquiry);
 		for(UserInquiry uiq : list) {

@@ -1,3 +1,5 @@
+<%@page import="java.sql.Date"%>
+<%@page import="ga.bowwow.service.user.VO.UserDTO"%>
 <%@page import="ga.bowwow.service.user.VO.UserAccount"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
@@ -7,10 +9,23 @@
 <%
 	//임시 로그인처리
 	int memberSerial = 1;
-	String id = "z";
-	UserAccount user= new UserAccount();
+	String id = "test_id";
+	String nickname="테스트 닉네임";
+	String realname="윤아름";
+	String birth = "2011-12-13";
+	Date birthday = Date.valueOf(birth);
+	String gender = "F";
+	String email = "test-email@test.com";
+	
+	UserDTO user= new UserDTO();
 	user.setId(id);
 	user.setMemberSerial(memberSerial);
+	user.setNickname(nickname);
+	user.setRealname(realname);
+	user.setBirthday(birthday);
+	user.setGender(gender);
+	user.setEmail(email);
+	
 	session.setAttribute("user", user);
 %>
 <!DOCTYPE html>
@@ -314,12 +329,12 @@ $(document).ready(function(){
 									</c:forEach>
 								</c:if>
 								</table>
-								<form action="/getInquiryTypeList" method="post">
+								<form action="/getUserInquiryList" method="post">
 								<table class="border-none">
 									<tr>
 										<td class="input-group">
 										    <select class="form-control" id="inputGroupSelect04" name="typeSelect" aria-label="Example select with button addon">
-										      <option value="0" selected>전체보기</option>
+										      <option value="all" selected>전체보기</option>
 										      <option value="contactUs">이용문의</option>
 										      <option value="buy">구매문의</option>
 										      <option value="delivery">배송문의</option>

@@ -110,24 +110,24 @@
 								<tr>							
 									<th class="inquiry_th">문의내용</th>
 									<td colspan="3">
-									<!-- <textarea cols="50" rows="8"> -->
 									<pre><c:out value="${uiqDetail.inquiry_content }" /></pre>
-									<!-- </textarea> -->
 									</td>
 								</tr>				
 							</table>
 							<hr>
-							<c:if test="${empty uiqDetail.inquiry_re_content }">
+							<c:if test="${empty inquiryAnswer }">
 							</c:if>
-							<c:if test="${not empty uiqDetail.inquiry_re_content }">
+							<c:if test="${not empty inquiryAnswer }">
 							<table class="table">
 								<tr>
 									<th class="inquiry_th">관리자 답변</th>
-									<td>dd<%-- ${inquiryAnswer.inquiry_re_content} --%></td>
+									<td>
+									<pre><c:out value="${inquiryAnswer.inquiry_re_content} " /></pre>
+									</td>
 								</tr>
 								<tr>
 									<th class="inquiry_th">등록일</th>
-									<td>dd<%-- ${inquiryAnswer.inquiry_re_date} --%></td>
+									<td>${inquiryAnswer.inquiry_re_date} </td>
 								</tr>
 							</table>
 							</c:if>

@@ -29,10 +29,11 @@ public class UserInquiry {
 	//답변이 있는지 확인 ?? 
 	private String have_answer;
 	
+	//타입으로 검색할때 사용
+	private String typeSelect;
+	
 	//AdminInquiry
-	//JOIN해 온 것 받기 _ 
-	private int u_serial;
-	private int a_serial;
+	//JOIN해 온 것 받기
 	private int inquiry_re_serial;		//문의답변번호
 	//private int inquiry_serial;		//(유저가 작성한)문의번호
 	private String inquiry_re_content;	//답변내용

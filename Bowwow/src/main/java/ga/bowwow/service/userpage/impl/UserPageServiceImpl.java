@@ -16,7 +16,6 @@ public class UserPageServiceImpl implements UserInquiryService{
 
 	@Override
 	public int insertUserInquiry(UserInquiry userInquiry) {
-
 		return uiqDAO.insertUserInquiry(userInquiry);
 	}
 
