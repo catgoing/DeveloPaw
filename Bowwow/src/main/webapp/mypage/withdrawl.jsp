@@ -51,11 +51,45 @@
     <!-- 개별CSS -->
     <link rel="stylesheet" type="text/css" href="/main/resources/css/myinfo.css">
 <style>
-  .featured__item__text { width: 150px; }
+.form-group.container {
+	display: table;
+    width: 100%;
+    table-layout: fixed;
+    border-top: 1px #7F858F solid;
+    border-bottom: 1px #7F858F solid;
+    font-size: 15px;
+}
+.reason_one>ul, .reason_two>ul{
+	display : table-row;
+}
+.reason_one>ul>li, .reason_two>ul>li{
+	display: table-cell;
+}
+.withdrawlAgreement{
+	padding-top : 20px;
+}
+.center{
+	text-align : center;
+}
+.textarea {
+	box-sizing: border-box;
+    padding: 6px 9px;
+    width: 100%;
+    font-size: 13px;
+    line-height: 1.4;
+}
+
+/*
+@media only screen and (max-width: 500px) {
+	.reason_one>ul>li { padding:10px 5px; }
+	.reason_one>ul>li {padding:5px;}
+	.reason_one.input_form>ul>li { padding:5px; }
+	.reason_one>ul>li.th {width:20%;}
+} */
 </style>
 </head>
 
-<body>    
+<body>
 <div id="pcoded" class="pcoded">
 	<div class="pcoded-overlay-box"></div>
 	<div class="pcoded-container navbar-wrapper">
@@ -72,71 +106,25 @@
 					<!-- Main-body start 본문 시작 -->
 					<div class="main-body">
 					<div class="page-wrapper">
-                                
+
 						<!-- Page-body start -->
 						<div class="page-body">
 						<div class="myPageInfo-header">
 							<h2> 뫄뫄님의 페이지</h2>
 						</div>
-<<<<<<< HEAD
-<<<<<<< HEAD
-						
-					    <button class="scroll-top" id="js-button" style="margin-bottom: 190px; margin-right: 30px;">
-				        <i class="fa fa-chevron-up" aria-hidden="true">TOP</i>
-					    </button>
-					    <script type="text/javascript">
-					        scrollTop('js-button', 500);
-					        function scrollTop(elem,duration) {
-					            let target = document.getElementById(elem);
-					        
-					            target.addEventListener('click', function() {
-					                let currentY = window.pageYOffset; 
-					                let step = duration/currentY > 1 ? 10 : 100;
-					                let timeStep = duration/currentY * step;
-					                let intervalID = setInterval(scrollUp, timeStep);
-					        
-					                function scrollUp(){
-					                    currentY = window.pageYOffset;
-					                    if(currentY === 0) {
-					                        clearInterval(intervalID);
-					                    } else {
-					                        scrollBy( 0, -step );
-					                    }
-					                }
-					            });
-					        }
-					    </script>
-	        
-						<!-- footer 푸터 시작부분-->
-						<%@include file="/common/footer.jsp" %>
-						<!-- footer 푸터 끝부분-->
-								</div>
-							</div>
-=======
-=======
->>>>>>> parent of d5ef625 (문의 추가, 반려동물crud수정(file))
 						<div class="container reason_one">
 							<
-						</div>						
+						</div>
 						<div class="container reason_two">
-						
+
 						</div>
 							</div>
 							</div>
-<<<<<<< HEAD
->>>>>>> parent of d5ef625 (문의 추가, 반려동물crud수정(file))
-=======
->>>>>>> parent of d5ef625 (문의 추가, 반려동물crud수정(file))
 						</div>
 					</div>
 				</div>
 			</div>
 		</div>
-<<<<<<< HEAD
-<<<<<<< HEAD
-=======
-=======
->>>>>>> parent of d5ef625 (문의 추가, 반려동물crud수정(file))
 		<!-- footer 푸터 시작부분-->
 		<%@include file="/common/footer.jsp" %>
 		<!-- footer 푸터 끝부분-->
