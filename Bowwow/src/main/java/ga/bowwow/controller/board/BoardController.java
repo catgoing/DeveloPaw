@@ -97,17 +97,17 @@ public class BoardController {
 	
 	//펫 다이어리(list)
 	@RequestMapping(value="/community/diary_board",method=RequestMethod.GET)
-	public String getdiary_BoardList(Model model,@RequestParam("board_idx") int board_idx,
-			HttpSession session) {
+	public String getdiary_BoardList(Model model) {
 		System.out.println(">>> 게시글 전체 목록- String getdiary_BoardList()");
 		System.out.println("> boardService : " + boardService);
-		System.out.println("board_idx : " + board_idx);
+//		System.out.println("board_idx : " + board_idx);
+		int board_idx = 1;
 		Map<String, Integer> map = new HashMap<String, Integer>();
 		map.put("board_idx", board_idx);
 		System.out.println("diary_board map : " + map);
 		List<Board> boardList = boardService.getBoardList(map);
 		
-		System.out.println("diary_board boardList input(map) : " + board_idx);
+//		System.out.println("diary_board boardList input(map) : " + board_idx);
 		session.setAttribute("board_idx", board_idx);
 		model.addAttribute("boardList", boardList);
 		model.addAttribute("board_idx", board_idx);
@@ -235,6 +235,7 @@ public class BoardController {
 		map.put("board_idx", board_idx);
 		map.put("board_no", board_no );
 		vo = boardService.getBoard(map);
+		boardService.updateHits(map);
 
 		List<Comment> commentList = boardService.getCommentList(map);
 		List<Comment> comment2List = boardService.getComment2List(map);

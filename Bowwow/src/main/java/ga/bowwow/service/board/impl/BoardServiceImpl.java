@@ -164,6 +164,12 @@ public class BoardServiceImpl implements BoardService{
 		
 	}
 
+	@Override
+	public void updateHits(Map<String, Integer> map) {
+		boardDAO.updateHits(map);
+		
+	}
+
 
 
 	

@@ -95,6 +95,10 @@ public class BoardDAO {
 		return mybatis.selectOne("BoardDAO.getBoard", map);
 	}
 	
+	public int updateHits(Map<String, Integer> map) {
+		return mybatis.update("BoardDAO.updateHits", map);
+	}
+	
 	public List<Board> getBoardList(Map<String, Integer> map) {
 		
 		System.out.println("===> MyBatis로 getBoardList() 실행-vo");

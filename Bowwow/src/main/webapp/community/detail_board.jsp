@@ -136,10 +136,19 @@
 												<div class="monthly-products">
 													<form action="/community/update/board" method="post">
 													<div>
+														<div class="title">
 														<h3 class="join_title">
 															<label for="id" style="color:black;">${vo.board_title }</label>
 														</h3>
+														</div>
+														<div class="nickname hits">
+														<h3 class="join_title" style="text-align:right">
+															<label style="color:black;">${vo.nickname }</label>
+															<label style="color:black;">조회 ${vo.hits }</label>
+														</h3>
+														</div>
 													</div>
+													
 													
 													<!-- 여기에 회원정보(사진, 닉네임 등) 출력 -->
 													

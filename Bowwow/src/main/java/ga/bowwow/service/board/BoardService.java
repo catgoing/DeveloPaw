@@ -12,6 +12,7 @@ public interface BoardService {
 	void updateBoard(Board vo, HttpSession session);
 	void deleteBoard(Board vo);
 	Board getBoard(Map<String, Integer> map);
+	void updateHits(Map<String, Integer> map);
 //	List<Board> getBoardList();
 
 	//List<Board> getBoardList(int idx);

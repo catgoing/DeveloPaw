@@ -38,7 +38,7 @@
 	</insert>
 	
 	<select id="getBoardList" parameterType="Map" resultType="board" >
-		SELECT BOARD_NO, B.MEMBER_SERIAL, BOARD_TITLE, ID, IMG1
+		SELECT BOARD_NO, B.MEMBER_SERIAL, BOARD_TITLE, ID, IMG1, HITS, NICKNAME
 		FROM 
 		<choose>
 			<when test="board_idx == 1"> DIARY_BOARD B, USER_ACCOUNT U WHERE B.MEMBER_SERIAL = U.MEMBER_SERIAL </when>
@@ -49,15 +49,42 @@
 	</select>
 	
 	<select id="getBoard" parameterType="Map" resultType="board">
-		SELECT BOARD_NO, BOARD_CONTENT, BOARD_TITLE, ANIMAL_CLASS
+		SELECT BOARD_NO, BOARD_CONTENT, BOARD_TITLE, ANIMAL_CLASS, HITS, NICKNAME
 		FROM 
 		<choose>
-			<when test="board_idx == 1"> DIARY_BOARD </when>
-			<when test="board_idx == 2"> INTRO_BOARD </when>
-			<when test="board_idx == 3"> KNOWHOW_BOARD</when>
+			<when test="board_idx == 1"> DIARY_BOARD B, USER_ACCOUNT U </when>
+			<when test="board_idx == 2"> INTRO_BOARD B, USER_ACCOUNT U  </when>
+			<when test="board_idx == 3"> KNOWHOW_BOARD B, USER_ACCOUNT U </when>
 		</choose>
-		WHERE BOARD_NO = ${board_no}
+		WHERE B.MEMBER_SERIAL = U.MEMBER_SERIAL 
+		AND BOARD_NO = ${board_no}
 	</select>
+	
+	<update id="updateHits" parameterType="Map">
+		UPDATE  
+		<choose>
+			<when test="board_idx == 1"> 
+			DIARY_BOARD 
+			</when>
+			<when test="board_idx == 2"> 
+			INTRO_BOARD 
+			</when>
+			<when test="board_idx == 3"> 
+			KNOWHOW_BOARD 
+			</when>
+			<when test="board_idx == 4"> 
+			MISSING_BOARD 
+			</when>
+			<when test="board_idx == 5"> 
+			USED_TRANSACTION_BOARD 
+			</when>
+			<when test="board_idx == 6"> 
+			EVENT_BOARD 
+			</when>
+		</choose> 
+		SET HITS = HITS + 1
+		WHERE BOARD_NO = ${board_no}
+	</update>
 	
 	<update id="updateBoard" parameterType="Map">
 		UPDATE 
@@ -144,10 +171,7 @@
 			KNOWHOW_COMMENTS2 (COMMENT_NO2, MEMBER_SERIAL, COMMENT_NO, COMMENT_CONTENT2, REGDATE) 
 			VALUES (KNOWHOW_COMMENTS2_SEQ.NEXTVAL, 994, #{comment.comment_no}, #{comment.comment_content}, SYSDATE)
 		</when>
-		
-		
-		
-		</choose>
+	</choose>
 	</insert>
 		
 		
@@ -157,9 +181,9 @@
 		SELECT COMMENT_NO, BOARD_NO, COMMENT_CONTENT, REGDATE, NICKNAME
 		FROM 
 		<choose>
-			<when test="board_idx == 1"> DIARY_COMMENTS C, USER_DETAIL U WHERE C.MEMBER_SERIAL = U.MEMBER_SERIAL </when>
-			<when test="board_idx == 2"> INTRO_COMMENTS C, USER_DETAIL U WHERE C.MEMBER_SERIAL = U.MEMBER_SERIAL </when>
-			<when test="board_idx == 3"> KNOWHOW_COMMENTS C, USER_DETAIL U WHERE C.MEMBER_SERIAL = U.MEMBER_SERIAL </when>
+			<when test="board_idx == 1"> DIARY_COMMENTS C, USER_ACCOUNT U WHERE C.MEMBER_SERIAL = U.MEMBER_SERIAL </when>
+			<when test="board_idx == 2"> INTRO_COMMENTS C, USER_ACCOUNT U WHERE C.MEMBER_SERIAL = U.MEMBER_SERIAL </when>
+			<when test="board_idx == 3"> KNOWHOW_COMMENTS C, USER_ACCOUNT U WHERE C.MEMBER_SERIAL = U.MEMBER_SERIAL </when>
 		</choose>
 		AND BOARD_NO = ${board_no}
 	</select>
@@ -169,13 +193,13 @@
 		FROM 
 		<choose>
 			<when test="board_idx == 1"> 
-			DIARY_COMMENTS2 C2, DIARY_COMMENTS C, USER_DETAIL U 
+			DIARY_COMMENTS2 C2, DIARY_COMMENTS C, USER_ACCOUNT U 
 			</when>
 			<when test="board_idx == 2"> 
-			INTRO_COMMENTS2 C2, INTRO_COMMENTS C, USER_DETAIL U 
+			INTRO_COMMENTS2 C2, INTRO_COMMENTS C, USER_ACCOUNT U 
 			</when>
 			<when test="board_idx == 3"> 
-			INTRO_COMMENTS2 C2, KNOWHOW_COMMENTS C, USER_DETAIL U 
+			INTRO_COMMENTS2 C2, KNOWHOW_COMMENTS C, USER_ACCOUNT U 
 			</when>
 		</choose>
 		WHERE C2.COMMENT_NO = C.COMMENT_NO

@@ -44,6 +44,10 @@
 
 <title>펫 다이어리</title>
 <style>
+
+.block-item:hover{
+	cursor:pointer;
+}
 </style>
 <script>
 $(document).ready(function () {
@@ -120,78 +124,42 @@ $(document).ready(function () {
 												</div>
 												<div class="monthly-products">
 													<ul>
-													
-														
-														
 														<c:forEach var="list" items="${ boardList}">
 															<li>
-																<div class="block-item default-item" onclick="location.href='/community/detail?board_idx=${board_idx }&board_no=${list.board_no}'">
+																<div class="block-item default-item col-lg-3 col-md-4 col-sm-6" onclick="location.href='/community/detail?board_idx=${board_idx }&board_no=${list.board_no}'">
 																	<div class="best-label">${list.board_no }</div>
-																	<div class="bookmark_btn click-btn">
-																		<div class="scrap" id="scrapBtn_311"
-																			onclick="WitCommon.boardScrap('knowhow', '311')">
+													<%-- 				<div class="bookmark_btn click-btn" style="width:200px; height:200px;">
 																			<img style="width:200px" id="scrapImg_311"
 																				src='https://projectbit.s3.us-east-2.amazonaws.com/${list.img1 }' alt="썸네일이 없음ㅁ">
-																		</div>
-																	</div>
-																	<div class="img-area"
+																		
+																	</div> --%>
+																	<div class="img-area" style="width:300px; height:300px;"
 																		onclick="location.href='/board/knowhow/311'">
-																		<div class="imgItem"
-																			style="background: url('https://web-wit.s3.ap-northeast-2.amazonaws.com/images/boardKnowhow/311/knowhow_1609169403_0.gif') center center no-repeat; background-size: cover;">
+															<%-- 			<div class="imgItem"
+																			style="background: url('https://projectbit.s3.us-east-2.amazonaws.com/${list.img1 }') center center no-repeat; background-size: cover; width:100%; height:100%;">
+																		</div> --%>
+																		<div class="imgItem" style="width:300px; height:300px;">
+																			<img src='https://projectbit.s3.us-east-2.amazonaws.com/${list.img1 }' onerror='this.src="/resources/images/cat&dog.jpg"' width="100%" height="100%">
 																		</div>
 																	</div>
+																	<br>
 																	<div class="text-area">
-																		<div class="item-title">
-																			<a href="/community/detail?board_idx=${board_idx }&board_no=${list.board_no}">${list.board_title }</a>
+																		<div class="item-title" style="width:300px; color:black;">
+																			<a href="/community/detail?board_idx=${board_idx }&board_no=${list.board_no}">
+																			</a><h4>${list.board_title }</h4>
 																		</div>
-																		<p class="hashtag">
-																			<span>#마사지 </span><span>#강아지마사지 </span><span>#강아지테라피
-																			</span><span>#예민한강아지 </span><span>#강아지</span><span>#...</span>
-																		</p>
 																		<div class="item-items">
-																			<div class="profile"
-																				onclick="pagePopup.openGotoPopup()">
-																				<p>${list.id }</p>
+																			<div class="profile">
+																				<span>${list.nickname }</span>
+																				<span>조회 ${list.hits }</span>
+																			</div>
+																			<div class="profile" style="margin-right:0">
 																			</div>
 																		</div>
 																	</div>
 																</div>
 															</li>
 														</c:forEach>
-														<li>
-															<div class="block-item default-item">
-																<div class="best-label">1</div>
-																<div class="bookmark_btn click-btn">
-																	<div class="scrap" id="scrapBtn_311"
-																		onclick="WitCommon.boardScrap('knowhow', '311')">
-																		<img id="scrapImg_311" src="/resources/images/dog.jpg"
-																			alt="">
-																	</div>
-																</div>
-																<div class="img-area"
-																	onclick="location.href='/board/knowhow/311'">
-																	<div class="imgItem"
-																		style="background: url('https://web-wit.s3.ap-northeast-2.amazonaws.com/images/boardKnowhow/311/knowhow_1609169403_0.gif') center center no-repeat; background-size: cover;">
-																	</div>
-																</div>
-																<div class="text-area">
-																	<div class="item-title"
-																		onclick="location.href='/board/knowhow/311'">
-																		<h4>제목</h4>
-																	</div>
-																	<p class="hashtag">
-																		<span>#마사지 </span><span>#강아지마사지 </span><span>#강아지테라피
-																		</span><span>#예민한강아지 </span><span>#강아지</span><span>#...</span>
-																	</p>
-																	<div class="item-items">
-																		<div class="profile"
-																			onclick="pagePopup.openGotoPopup()">
-																			<p>닉네임</p>
-																		</div>
-																	</div>
-																</div>
-															</div>
-														</li>
 													</ul>
 												</div>
 											</div>
@@ -214,7 +182,7 @@ $(document).ready(function () {
 			<i class="fa fa-chevron-up" aria-hidden="true">TOP</i>
 		</button>
 		
-		<div class="fixed-button active"><a href="/community/write_board.jsp" class="btn btn-md btn-primary"> 글쓰기</a> </div>
+		<!-- <div class="fixed-button active"><a href="/community/write_board.jsp" class="btn btn-md btn-primary"> 글쓰기</a> </div> -->
 		
 		<script type="text/javascript">
 			scrollTop('js-button', 100);
