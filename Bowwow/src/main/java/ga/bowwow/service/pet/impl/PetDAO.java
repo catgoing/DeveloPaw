@@ -1,7 +1,10 @@
 package ga.bowwow.service.pet.impl;
 
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
+import org.apache.commons.collections.map.HashedMap;
 import org.mybatis.spring.SqlSessionTemplate;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
@@ -24,11 +27,22 @@ public class PetDAO {
 		
 		return mybatis.insert("PetInfo.insertPetInfo", pet);
 	}
-	//펫 정보 수정
+	//펫 정보 수정1 - 이미지있을때
 	public int updatePetInfo(Pet pet) {
 		System.out.println("--->> updatePetInfo() 실행");
 		
 		return mybatis.update("PetInfo.updatePetInfo", pet);
+	}
+	//펫 정보 수정2 - 이미지없을때
+	public int updatePetInfo2(Pet pet) {
+		System.out.println("--->> updatePetInfo() 실행");
+		
+		Map<String, Integer> serialMap = new HashMap<String, Integer>();
+		int pet_serial = pet.getPet_serial();
+		serialMap.put("pet_serial", pet_serial);
+		
+		mybatis.update("PetInfo.updatePetImg", serialMap); //수정시에 사진 빈칸처리
+		return mybatis.update("PetInfo.updatePetInfo", pet); //후 다른 데이터도 수정
 	}
 	//펫 정보 삭제
 	public int deletePetInfo(Pet pet) {

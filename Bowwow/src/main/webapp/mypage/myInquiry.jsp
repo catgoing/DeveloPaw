@@ -4,7 +4,7 @@
     <% request.setCharacterEncoding("UTF-8"); %>
 <%@ taglib uri="http://tiles.apache.org/tags-tiles" prefix="tiles"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
-<%-- <%
+<%
 	//임시 로그인처리
 	int memberSerial = 1;
 	String id = "z";
@@ -12,7 +12,7 @@
 	user.setId(id);
 	user.setMemberSerial(memberSerial);
 	session.setAttribute("user", user);
-%> --%>
+%>
 <!DOCTYPE html>
 <html>
 
@@ -171,7 +171,7 @@ $(document).ready(function(){
 });
 
 //문의목록 가져오는 스크립트 -_-; 과연??
-$().ready(function(){
+/* $().ready(function(){
 	(function(){
 		var mSerial = '<c:out value="${user.memberSerial }"/>';
 		$.getJSON("getlisttest", mSerial, function(inquiryArr){
@@ -195,7 +195,7 @@ $().ready(function(){
 			$("#inquirylist-table-tbody").html(str);
 		});//end getJSON
 	});//end function
-});
+}); */
 	
 </script>
 </head>
@@ -304,12 +304,7 @@ $().ready(function(){
 														</select>
 							    					</div>
 							    					<textarea class="form-control" name="inquiry_content" rows="5" placeholder="질문을 입력하세요!"></textarea>
-								  					<div class="upload-file">
-												    	<div class="upload-file-content">
-													    	<input type="file" class="form-control" id="contactUsImage" name="image_source" accept="image/*">
-												    	</div>
-												    </div>
-							    				</div>
+								  					</div>
 							    				<input type="hidden" name="member_serial" value="${user.memberSerial }">
                                            </form>
                                            </div>
@@ -324,24 +319,28 @@ $().ready(function(){
 							<div class="content-list">
 						     	<table>
 									<tr>
+										<th width="100">문의유형</th>
 										<th width="200">제목</th>
 										<th width="150">작성자</th>
 										<th width="150">작성일</th>
+										<th width="150">답변유무</th>
 									</tr>
-								<c:if test="${empty inquiryList }">
+								<c:if test="${empty userinquiryList }">
 									<tr>
 										<td colspan="5" class="center">데이터가 없습니다.</td>
 									</tr>
 								</c:if>
-								<c:if test="${not empty inquiryList }">	
-									<c:forEach var="inquiry" items="${inquiryList }">
+								<c:if test="${not empty userinquiryList }">	
+									<c:forEach var="inquiry" items="${userinquiryList }">
 									<tr>
+										<td>${inquiry.inquiry_type }</td>
 										<td>
-											<a href="myInquiryDetail.jsp?seq=${inquiry.seq }">
-												${inquiry.title }</a>
+											<a href="/myInquiryDetail?inquiry_serial=${inquiry.inquiry_serial }">
+												${inquiry.inquiry_title }</a>
 										</td>
-										<td>${inquiry.writer }</td>
-										<td>${inquiry.regdate }</td>
+										<td>${inquiry.nickname }</td>
+										<td>${inquiry.inquiry_writedate }</td>
+										<td>${inquiry.have_answer }</td>
 									</tr>
 									</c:forEach>
 								</c:if>
@@ -350,14 +349,14 @@ $().ready(function(){
 								<table class="border-none">
 									<tr>
 										<td class="input-group">
-										    <select class="form-control" id="inputGroupSelect04" aria-label="Example select with button addon">
-										      <option selected>전체보기</option>
-										      <option value="1">이용문의</option>
-										      <option value="2">구매문의</option>
-										      <option value="3">배송문의</option>
-										      <option value="4">기타문의</option>
+										    <select class="form-control" id="inputGroupSelect04" name="typeSelect" aria-label="Example select with button addon">
+										      <option value="0" selected>전체보기</option>
+										      <option value="contactUs">이용문의</option>
+										      <option value="buy">구매문의</option>
+										      <option value="delivery">배송문의</option>
+										      <option value="etc">기타문의</option>
 										    </select>
-											<input type="button" class="btn btn-outline-secondary" value="검색">
+											<input type="submit" class="btn btn-outline-secondary" value="검색">
 										</td>
 									</tr>
 								</table>
@@ -406,8 +405,8 @@ $().ready(function(){
                         </div>
                     </div>
                 </footer>
-                <!-- footer 푸터 끝부분-->
-          </div>
+         	 </div>
+     <!-- footer 푸터 끝부분-->
         </div>
       </div>
     </div></div></div>
