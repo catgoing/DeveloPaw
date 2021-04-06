@@ -37,5 +37,10 @@ public class StoreOrderServiceImpl implements StoreOrderService {
 		return storeDAO.getOrderDetail(order_id);
 	}
 
+	@Override
+	public void changeStock(Order order) {
+		storeDAO.changeStock(order);
+	}
+
 
 }

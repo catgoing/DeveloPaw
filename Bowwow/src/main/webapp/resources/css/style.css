@@ -53,6 +53,12 @@ font-size: 16px; color : #fff; border-radius: 2px; line-height: 42px;}
 .product_view .btns > a.btnOne { background: #666;}
 .product_view .btns > a.btnTwo { background: #0a56a9;}
 
+
+.review_box {
+	border: 1px solid lightgray; 
+	margin-bottom: 10px; 
+	padding: 10px;
+}
 /* 상품 상세페이지 끝*/ 
 
 .review_box input:read-only {
@@ -198,8 +204,7 @@ body {
     font-size: 0.875em;
     overflow-x: hidden;
     color: #ff6347;
-    font-family: "Jua";
-    /* font-family: "Do Hyeon"; */
+    font-family: "Do Hyeon";
     background-attachment: fixed;
     background-image: linear-gradient(rgba(255, 255, 255, 0.2) 180px, rgba(255, 255, 255, 0.9) 0%);
     margin-botton : 20px;

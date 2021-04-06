@@ -8,5 +8,6 @@ public interface StoreOrderService {
 	public void deleteOrder(int order_id);
 	public List<Order> getOrderList(int member_serial);
 	public Order getOrderDetail(int order_id);
+	public void changeStock(Order order);
 
 }
