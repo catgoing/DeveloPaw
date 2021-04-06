@@ -20,6 +20,7 @@ public class UserAccountServiceImpl extends UserGenericService<UserAccount> {
 	}
 
 	public boolean loginAttemp(UserAccount userAccount) {
+		System.out.println("loginAttemptTest : " + userAccount);
 		return StaticUtil.isListNotNull(((UserAccountDAO)dao).verifyAccount(userAccount));
 	}
 	
