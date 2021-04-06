@@ -13,14 +13,14 @@ import lombok.ToString;
 @NoArgsConstructor @AllArgsConstructor
 @ToString
 public class UserDTO {
-	int memberSerial;
+	long memberSerial;
 	String id;
 	String email;
 	String citizenId;
 	String phone;
 	String password;
 	String status;
-	int point;
+	long point;
 	String coupons;
 	String imageSource;
 	String nickname;

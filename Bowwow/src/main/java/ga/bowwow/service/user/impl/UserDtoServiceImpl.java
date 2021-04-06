@@ -19,7 +19,7 @@ public class UserDtoServiceImpl extends UserGenericService<UserDTO> {
 	public List<UserDTO> getVoList() {
 		return ((UserDtoDAO)dao).getUserList();
 	}
-
+	
 	@Override
 	public List<UserDTO> getVoList(Map<String, String> map) {
 		return null;

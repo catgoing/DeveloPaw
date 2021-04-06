@@ -1,5 +1,6 @@
 package ga.bowwow.controller.user.impl;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import javax.servlet.http.HttpSession;
@@ -11,6 +12,7 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -32,6 +34,15 @@ public class UserAccountController extends UserCRUDGenericController<UserAccount
 		System.out.println("---->>> UserAccountController() 객체생성");
 		this.service = service;
 		this.setDomainRoute("/ok", "/auth.login");
+	}
+
+	@GetMapping("/getList")
+	protected String getList(@ModelAttribute ArrayList<UserAccount> userDtoList, Model model) {
+		System.out.println("GETLIST RESOLVING TEST");
+		userDtoList = (ArrayList<UserAccount>) service.getVoList();
+		model.addAttribute("userDtoList", userDtoList);
+		System.out.println(userDtoList);
+		return "/auth.userList";
 	}
 	
 	@PostMapping(value= "/addAccountWithAddressList",
@@ -79,7 +90,6 @@ public class UserAccountController extends UserCRUDGenericController<UserAccount
 					  : ResponseEntity.status(HttpStatus.FOUND).build();
 	}
 	
-	//legacy
 
 	//TODO 일관된 resolve/error 리턴 환경 만들 수 있는가?
 	//TODO =>DI하는 식으로, 실패시 돌아가는 경로를 담은 리스트를 쓴다? -> 클래스가 될 수도 있음.
@@ -121,18 +131,8 @@ public class UserAccountController extends UserCRUDGenericController<UserAccount
 		return super.get(userAccount);
 	}
 	
+	
 	//legacy
-	
-//				@SuppressWarnings("unchecked")
-//				@GetMapping("/getList")
-//				protected String getList(@ModelAttribute ArrayList<UserAccount> userDtoList, Model model) {
-//					System.out.println("GETLIST RESOLVING TEST");
-//					userDtoList = (ArrayList<UserAccount>) service.getVoList();
-//					model.addAttribute("userDtoList", userDtoList);
-//					System.out.println(userDtoList);
-//					return "/auth.userList";
-//				}
-	
 				@RequestMapping(value="/modifyUser")
 				public String modifyUserInDB(@ModelAttribute("userAccount") UserAccount userAccount) {
 					return super.update(userAccount, "/ok", "/auth.login");

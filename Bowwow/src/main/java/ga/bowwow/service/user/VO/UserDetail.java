@@ -17,7 +17,7 @@ import lombok.ToString;
 @ToString
 @Component
 public class UserDetail {
-	int memberSerial;
+	long memberSerial;
 	String imageSource;
 	String nickname;
 	String realname;
@@ -25,19 +25,6 @@ public class UserDetail {
 	Date birthday;
 	String gender;
 	
-	@Override
-	public int hashCode() {
-		final int prime = 31;
-		int result = 1;
-		result = prime * result + ((birthday == null) ? 0 : birthday.hashCode());
-		result = prime * result + ((gender == null) ? 0 : gender.hashCode());
-		result = prime * result + ((imageSource == null) ? 0 : imageSource.hashCode());
-		result = prime * result + memberSerial;
-		result = prime * result + ((nickname == null) ? 0 : nickname.hashCode());
-		result = prime * result + ((realname == null) ? 0 : realname.hashCode());
-		result = prime * result + ((regDate == null) ? 0 : regDate.hashCode());
-		return result;
-	}
 	@Override
 	public boolean equals(Object obj) {
 		if (obj == null)

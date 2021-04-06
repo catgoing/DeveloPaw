@@ -223,50 +223,6 @@ public class PetController {
 		return result;
 	}
 
-	class Example {
-		public String field1;
-		public NestedObject nestedObect;
-	}
-
-	class NestedObject {
-		public String field2;
-	}
-	class ExampleMapper {
-		@Select("select 'field1' as field1, 'field2' as nestedObjectField")
-		Example map();
-	}
-	@Select("select field1 from ExampleEntity")
-	@Results(id = "selectMap", value = { @Result(property = "field1", column = "FIELD1", jdbcType = JdbcType.VARCHAR),
-			@Result(property = "nestedObject", javaType = NestedObject.class, column = "ID_NESTEDOBJECT", one = @One(select = "getNestedObjectById")) })
-	Example map();
-
-	@Select("select field2 from NestedObjectEntity where ID_NESTEDOBJECT=#{id}")
-	@Results(id = "nestedObjectMap", value = {
-			@Result(property = "field2", column = "FIELD2", jdbcType = JdbcType.VARCHAR) })
-	NestedObject getNestedObjectById(@Param("id") Long id);
-
-	
-	class Book {
-	    private String bookName;
-	    public Book(String bookName){
-	        this.bookName = bookName;
-	    }
-	    public String getBookName(){
-	        return bookName;
-	    }
-	}
-
-
-	class Student {
-	    private String studentName;
-	    private Book book;
-	    public Student(){}
-	}
-	@Select("Select studentName, book from Students")
-	@ConstructorArgs(value = { 
-	@Arg(column = "studentName", javaType=java.lang.String.class),
-	@Arg(column = "book", javaType = java.lang.String.class)
-	})
 	
 //	@PostMapping(value="/ajaxInsertPetInfo")
 //	@ResponseBody //json으로 변환해서 보내줌!-@RequestBody : 받은 거 json으로 바꿔줌

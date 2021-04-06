@@ -5,11 +5,8 @@
 <configuration>
 	<settings>
 		<setting name="jdbcTypeForNull" value="NULL" />
-		<setting name="mapUnderscoreToCamelCase" value="true"/>
-
 	</settings>
 	<typeAliases>
-
 		<typeAlias type="ga.bowwow.service.board.Board" alias="board" />
 		<typeAlias type="ga.bowwow.service.board.Comment" alias="comment" />
 		<typeAlias type="ga.bowwow.service.pet.Pet" alias="pet" />

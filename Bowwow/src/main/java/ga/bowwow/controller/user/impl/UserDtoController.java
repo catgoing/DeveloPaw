@@ -34,6 +34,15 @@ public class UserDtoController extends UserCRUDGenericController<UserAccount> {
 		return "/auth.userList";
 	}
 	
+	@GetMapping("/getUserAccountAddressList")
+	protected String getUserAccountAddressList(@ModelAttribute ArrayList<UserAccount> userDtoList, Model model ) {
+		System.out.println("GETUserAccountAddressLIST Controller TEST");
+		userDtoList = (ArrayList<UserAccount>) service.getVoList();
+		model.addAttribute("userDtoList", userDtoList);
+		System.out.println(userDtoList);
+		return "/auth.userAccountAddressList";
+	}
+	
 	@PostMapping(value="/manageList") //CRUD페이지
 	public String addUserDtoInfo(@ModelAttribute("userDTO") UserDTO userDto) {
 		return "/auth.userList";

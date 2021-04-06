@@ -8,7 +8,29 @@
 <!-- TODO SearchAccount를 List형태로 돌려주는 것으로 변환해야 함 -->
 	
     <resultMap id="nestedAddressUserAccount" type="UserDTO">
-	  <association property="userAddress" column="MEMBER_SERIAL" javaType="UserAddress" select="getUserAddressList"/>
+		<id property="memberSerial" column="member_Serial" jdbcType="INTEGER" />
+		<result property="id" column="id" />
+		<result property="email" column="email" />
+		<result property="citizenId" column="citizen_Id" />
+		<result property="phone" column="phone" />
+		<result property="password" column="password" />
+		<result property="status" column="status" />
+		<result property="point" column="point" />
+		<result property="coupons" column="coupons" />
+		<result property="imageSource" column="image_Source" />
+		<result property="nickname" column="nickname" />
+		<result property="realname" column="realname" />
+		<result property="regDate" column="regDate" />
+		<result property="birthday" column="birthday" />
+		<result property="gender" column="gender" />
+<!-- 		mybatis collection/컬렉션에 대해 이해하기 전까지 보류 -->
+<!-- 	  <collection property="userAddress" column="MEMBER_SERIAL" select="UserAddress.getUserAddressList"> -->
+<!-- 		<id property="memberSerial" column="member_Serial" /> -->
+<!-- 		<result property="addressId" column="address_Id" /> -->
+<!-- 		<result property="address" column="address" /> -->
+<!-- 		<result property="addressDetail" column="address_Detail" /> -->
+<!-- 		<result property="zonecode" column="zonecode" /> -->
+<!-- 	  </collection> -->
 	</resultMap>
 	<select id="getNestedAddressUserAccount" resultMap="nestedAddressUserAccount">
 	 	SELECT *
