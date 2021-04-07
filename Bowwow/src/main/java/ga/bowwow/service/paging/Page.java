@@ -51,12 +51,11 @@ public class Page {
 	}
 	
 	//1개의 파라미터로 페이징 처리할 때(ex:아이디, 게시판 종류)
-	public Map<String, String> data1(Page p, String data1){
+	public Map<String, String> data1(Page p, String data1, Map<String, String> map){
 		
-		Map<String, String> map = new HashMap<>();
 		map.put("begin", Integer.toString(p.getRecordBeginIdx()));
 		map.put("end", Integer.toString(p.getRecordEndIdx()));
-		map.put("data1", data1);
+		map.put(data1, data1);
 		
 		return map;
 	}
@@ -141,6 +140,7 @@ public class Page {
 		System.out.println(">> 시작페이지(beginPage) : " + this.getPageBeginIdx());
 		System.out.println(">> 끝페이지(endPage) : " + this.getPageEndIdx());
 	}
+
 
 
 }

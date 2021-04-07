@@ -58,7 +58,7 @@ public class BoardServiceImpl implements BoardService{
 //	}
 	
 	@Override
-	public List<Board> getBoardList(Map<String, Integer> map) {
+	public List<Board> getBoardList(Map<String, String> map) {
 		return boardDAO.getBoardList(map);
 	}
 
@@ -169,6 +169,11 @@ public class BoardServiceImpl implements BoardService{
 	public void updateHits(Map<String, Integer> map) {
 		boardDAO.updateHits(map);
 		
+	}
+
+	@Override
+	public int getBoardCount(Map<String, String> map) {
+		return boardDAO.getBoardCount(map);
 	}
 
 

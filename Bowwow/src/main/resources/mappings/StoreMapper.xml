@@ -39,10 +39,10 @@
 		SELECT 	COUNT(*) AS CNT 
 		FROM	STORE_PRODUCTS
 		WHERE	1=1
-		<if test="data1.equals("")">
+		<if test='data1.equals("1")'>
 		  AND P_TYPE = '${data1}'
 		</if>
-		<if test="data2.nequals("")'>
+		<if test='data2.nequals("1")'>
 		  AND P_CATEGORY = '${data2}'
 		</if>
 
