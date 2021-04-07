@@ -5,7 +5,8 @@
 function checker() {
   var id = document.getElementById("id").value;
   var pwd = document.getElementById("password").value;
-
+	
+//   TODO msgBox를 구현할 것 
   if(id.length == 0) {
     alert("아이디가 입력되지 않았습니다.");
     return false;
@@ -27,7 +28,7 @@ function checker() {
             <div class="col-sm-12">
                 <!-- Authentication card start -->
 
-                    <form class="md-float-material form-material" action="/account/login" onsubmit = "return checker();">
+                    <form class="md-float-material form-material" action="/user/login" method="post" onsubmit = "return checker();">
                         <div class="text-center">
                             <img src="/resources/images/logo.png" alt="logo.png">
                         </div>
@@ -67,8 +68,11 @@ function checker() {
                                                 <span class="text-inverse">아이디 저장</span>
                                             </label>
                                         </div>
+                                        <div class="forgot-phone text-left f-left">
+                                            <a href="/account/signupAccount" class="text-right f-w-600">회원가입</a>
+                                        </div>
                                         <div class="forgot-phone text-right f-right">
-                                            <a href="auth-reset-password.html" class="text-right f-w-600">비밀번호를 잊으셨나요?</a>
+                                            <a href="auth-reset-password.html" class="text-right f-w-600">아이디/비밀번호를 잊으셨나요?</a>
                                         </div>
                                     </div>
                                 </div>
@@ -81,7 +85,7 @@ function checker() {
                                 <div class="row">
                                     <div class="col-md-10">
                                         <p></p>
-                                        <p class="text-inverse text-left"><a href="/account/login"><b>메인화면으로 돌아가기</b></a></p>
+                                        <p class="text-inverse text-left"><a href="/store/storeMain"><b>메인화면으로 돌아가기</b></a></p>
                                     </div>
                                     <div class="col-md-2">
                                         <img src="/resources/images/colored_logo.png" alt="colored_logo.png">

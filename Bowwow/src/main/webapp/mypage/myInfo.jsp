@@ -1,4 +1,4 @@
-<%@page import="ga.bowwow.service.user.VO.UserAccount"%>
+<%-- <%@page import="ga.bowwow.service.user.VO.UserAccount"%> --%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
     <% request.setCharacterEncoding("UTF-8"); %>
@@ -142,16 +142,53 @@
 <script>
 
 $(function(){
-	//아이디, 이름 변경불가
-	//이메일 - input type="email"
-	//전화번호 - input type="tel" pattern="(010|011|016|017|018|019)-\d{4}-\d{4}"(폰번호만허용)
-	
-	//gender radio버튼에 체크!(값 없으면 체크X)
-	const checkValue = '${sessionScope.user.gender }';
-	$("input[name=gender]").filter("input[value='"+checkValue+"']").attr("checked",true);
+	//email검증
+	$("input[name=email]").on("keyup", function(event){
+		if(!(event.keyCode >=37 && event.keyCode<=40)){
+			var inputVal = $(this).val(); //input name="email"에 입력한 value값 
+			$(this).val(inputVal.replace(/[^a-z0-9@_.-]/gi,''));//한글과 @_.-를 제외한 특수문자입력금지
+		}
+	});
+	//아이디는 변경금지라서 필요없어짐ㅋㅋ
+	/* $("input[name=id]").on("keyup", function(event){
+		if(!(event.keyCode >=37 && event.keyCode<=40)){
+			var inputVal = $(this).val(); 
+			$(this).val(inputVal.replace(/[^a-z0-9_-]/gi,'')); 
+		}
+	}); */
 	
 });
 
+ function goModify(form){
+	 var idCheck = form.id.value;
+	
+	//휴대폰번호 검증=_=
+   	 var cellPhoneRule = /^\d{3}-\d{3,4}-\d{4}$/;
+	if(!/01[01689]-[1-9]{1}[0-9]{2,3}-[0-9]{4}$/.test(phoneCheck) ||
+   		 !/01[01689][1-9]{1}[0-9]{2,3}[0-9]{4}$/.test(phoneCheck)){
+		console.log(phoneCheck);
+		alert("전화번호 형식을 지켜주세요.");
+	}
+	
+ }
+
+ $(function(){
+	$('.eyes').on('click', function(){
+		$('.passinput').addClass('active');
+		
+		if($('.passinput').hasClass('active') == true){
+			$('.passinput').removeClass('active');
+			$(this).find('.fa-eye').attr('class',"fa fa-eye-slash fa-lg").parents('.passinput').find('#password').attr('type',"text");
+			//$(this).find('.fa-eye').attr('class',"fa fa-eye-slash fa-lg").parents('.passinput').find("#password2").attr('type',"text");
+		} else {
+			$('.passinput').addClass('active');
+			$(this).find('.fa-eye').attr('class',"fa fa-eye fa-lg").parents('.passinput').find('#password').prop('type','password');
+			//$(this).find('.fa-eye').attr('class',"fa fa-eye fa-lg").parents('.passinput').find("#password2").attr('type','password');
+		}
+	});
+});
+ 
+ 
  function sample4_execDaumPostcode() {
      new daum.Postcode({
          oncomplete: function(data) {
@@ -288,7 +325,7 @@ $(function(){
 						<!-- Page-body start -->
 						<div class="page-body">
 						<div class="myPageInfo-header">
-							<h2> ${sessionScope.user.id }님의 페이지</h2>
+							<h2> ${sessionScope.userDTO.id }님의 페이지</h2>
 						</div>
 						<div class="myPageInfo-wrapper">
 
@@ -298,10 +335,10 @@ $(function(){
 									<div class="side-content">
 										<div class="my-area">
 											<div class="side-profile-img">
-												<%-- <img src="${sessionScope.user.image_source }" alt="이미지없음~"> --%>
+												<%-- <img src="${sessionScope.userDTO.image_source }" alt="이미지없음~"> --%>
 												<img src="" alt="이미지없음~">
 											</div>
-											<p>${sessionScope.user.nickname }</p>
+											<p>${sessionScope.userDTO.nickname }</p>
 										</div>
 									</div>
 
@@ -310,52 +347,54 @@ $(function(){
 										<h3>정보수정</h3>
 										<a href="withdrawl">회원탈퇴</a>
 									</div>
-									<form class="form-myinfo" action="" method="post">
+									<form class="form-myinfo">
   <div class="form-group">
     <label for="inputId" class="col-sm-4 control-label">아이디(변경불가)</label>
     <div class="col-sm-8">
-		<input type="text" class="form-control" id="noborderline" value="${sessionScope.user.id }" disabled>
+		<input type="text" class="form-control" id="noborderline" value="${sessionScope.userDTO.id }" disabled>
     </div>
   </div>
   <div class="form-group">
     <label for="inputPassword" class="col-sm-4 control-label">Password</label>
     <div class="col-sm-8 passinput">
       <input type="password" class="form-control password" name="password" id="password" placeholder="Password">
+
     </div>
   </div>
   <div class="form-group">
     <label for="inputPassword2" class="col-sm-4 control-label">Password 확인</label>
     <div class="col-sm-8 passinput2">
       <input type="password" class="form-control password" id="password2" placeholder="Password 재입력">
+
     </div>
   </div>
   <div class="form-group">
     <label for="inputPassword3" class="col-sm-4 control-label">이름(변경불가)</label>
     <div class="col-sm-8">
-   		<input type="text" class="form-control" id="noborderline" value="${sessionScope.user.realname }" disabled>
+   		<input type="text" class="form-control" id="noborderline" value="${sessionScope.userDTO.realname }" disabled>
     </div>
   </div>
   <div class="form-group">
     <label for="inputNickname" class="col-sm-4 control-label">닉네임</label>
     <div class="col-sm-8">
-      <input type="text" class="form-control" name="nickname" id="inputNickname" value="${sessionScope.user.nickname}">
+      <input type="text" class="form-control" name="nickname" id="inputNickname" placeholder="닉네임" value="${sessionScope.userDTO.nickname}">
     </div>
   </div>
   <div class="form-group">
     <label for="inputGender" class="col-sm-4 control-label">성별</label>
     <div class="col-sm-8">
       <label class="radio-inline">
-        <input type="radio" name="gender" id="gender_f" value="F"> 여자
+        <input type="radio" name="gender" id="gender_f" value="female"> 여자
       </label>
       <label class="radio-inline">
-        <input type="radio" name="gender" id="gender_m" value="M"> 남자
+        <input type="radio" name="gender" id="gender_m" value="male"> 남자
       </label>
     </div>
   </div>
   <div class="form-group">
     <label for="inputEmail" class="col-sm-4 control-label">이메일</label>
     <div class="col-sm-8">
-      <input type="email" class="form-control" name="email" id="inputEmail" value="${sessionScope.user.email }">
+      <input type="email" class="form-control" name="email" id="inputEmail" placeholder="hong@example.com" value="${sessionScope.userDTO.email }">
     </div>
   </div>
   <div class="form-group">
@@ -373,15 +412,22 @@ $(function(){
     </div>
   </div>
   <div class="form-group">
-    <label for="inputPhone" class="col-sm-4 control-label">휴대폰번호</label>
+    <label for="inputPhone" class="col-sm-4 control-label">전화번호</label>
     <div class="col-sm-8">
-	  <input type="tel" class="form-control" name="phone" id="inputPhone" pattern="(010|011|016|017|018|019)-\d{4}-\d{4}" placeholder="010-1234-4567형식으로 입력">
+	  <select>
+		<option>010</option>
+		<option>011</option>
+		<option>017</option>
+		<option>018</option>
+		<option>019</option>
+		</select>
+      <input type="text" class="form-control" name="phone" id="inputPhone" placeholder="123-4567 혹은 1234-5678 형식으로 입력">
     </div>
   </div>
      <div class="form-group">
     <label for="inputBirth" class="col-sm-4 control-label">생일</label>
     <div class="col-sm-8">
-      <input type="date" class="form-control" name="birthday" id="inputBirthday" value="${sessionScope.user.birthday }">
+      <input type="date" class="form-control" name="birthday" id="inputBirthday" >
     </div>
   </div>
   <div class="form-group">
@@ -390,9 +436,10 @@ $(function(){
     </div>
   </div>
 </form>
+									</div>
+									</div>
+		  						  </div>
 								</div>
-								</div>
-	  						  </div>
 							</div>
 						</div>
 					</div>
@@ -400,7 +447,6 @@ $(function(){
 			</div>
 		</div>
 	</div>
-</div>
 
 	<!-- footer 푸터 시작부분-->
 	<%@include file="/common/footer.jsp" %>

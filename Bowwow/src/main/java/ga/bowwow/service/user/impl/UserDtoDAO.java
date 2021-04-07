@@ -17,16 +17,16 @@ public class UserDtoDAO extends UserGenericDAO<UserAccount> {
 	
 	public UserDtoDAO() {
 		System.out.println(">> UserDetailDAO() 객체생성");
-		this.setQueries("UserAccount.insertTemporaryUserDetail"
-				, "UserAccount.updateUserDetail"
-				, "UserAccount.deleteUserDetail"
-				, "UserAccount.getUserDetail"
-				, "UserAccount.searchUserDetail"
+		this.setQueries("YETNO INSERT QUERY"
+				, "YETNO UPDATE QUERY"
+				, "YETNO DELETE QUERY"
+				, "UserAccount.getUserByIdPassword"
+				, "YETNO SEARCH QUERY"
 				, "YETNOGetListQuery");
 	}
 
 	public List<UserDTO> getUserList() {
-//		return mybatis.selectList("UserAccount.getUserDtoList");
-		return mybatis.selectList("UserAccount.getNestedAddressUserAccount");
+		return mybatis.selectList("UserAccount.getUserDtoList");
+//		return mybatis.selectList("UserAccount.getNestedAddressUserAccount");
 	}
 }

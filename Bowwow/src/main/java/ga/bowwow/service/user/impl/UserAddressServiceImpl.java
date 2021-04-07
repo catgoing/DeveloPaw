@@ -7,6 +7,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import ga.bowwow.service.user.UserGenericService;
+import ga.bowwow.service.user.VO.UserAccount;
 import ga.bowwow.service.user.VO.UserAddress;
 
 //@Service : @Component 상속확장 어노테이션
@@ -22,9 +23,8 @@ public class UserAddressServiceImpl extends UserGenericService<UserAddress> {
 		return null;
 	}
 	
-	public List<UserAddress> getVoList(UserAddress userAddress) {
-//		return ((UserAddressDAO)dao).getUserList(userAddress);
-		return null;
+	public List<UserAddress> getVoList(UserAccount userAccount) {
+		return ((UserAddressDAO)dao).getAddressList(userAccount);
 	}
 
 	@Override
