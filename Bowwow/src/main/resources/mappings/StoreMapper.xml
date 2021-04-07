@@ -12,7 +12,7 @@
 	</insert>
 	
 	<!-- 전체 상품 조회 -->
-	<select id="ProductList" parameterType="Product" resultType="Product">
+	<select id="ProductList" parameterType="Map" resultType="Product">
 		SELECT * FROM 
 			(
 				SELECT ROWNUM AS RN, PROD.* FROM 
@@ -22,16 +22,29 @@
 		  				PRICE, STOCK, S_IMAGE, L_IMAGE 
 		  			FROM STORE_PRODUCTS
 		 			WHERE 1=1
-		 			<if test="p_type != null">
-		 			  AND P_TYPE = #{p_type}
+		 			<if test="idx != null">
+		 			  AND P_TYPE = #{idx}
 		 			</if>
-		 			<if test="p_category != null">
-		 			  AND P_CATEGORY = #{p_category}
+		 			<if test="keyword != null">
+		 			  AND P_CATEGORY = #{keyword}
 		 			</if>
 		 			ORDER BY P_ID DESC 
 		 		) PROD 
 		 	)
-		 WHERE RN BETWEEN 0 AND 20
+		 WHERE RN BETWEEN #{begin} AND #{end}
+	</select>
+	
+	<!-- 전체 상품 수 -->
+	<select id="ProductCount" parameterType="Map" resultType="int">
+		SELECT 	COUNT(*) AS CNT 
+		FROM	STORE_PRODUCTS
+		WHERE	1=1
+		 			<if test="idx != null">
+		 			  AND P_TYPE = #{idx}
+		 			</if>
+		 			<if test="keyword != null">
+		 			  AND P_CATEGORY = #{keyword}
+		 			</if>
 	</select>
 	
 	<!--상품 상세 조회 -->

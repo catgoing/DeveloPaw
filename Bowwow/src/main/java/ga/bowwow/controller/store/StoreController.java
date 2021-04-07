@@ -1,6 +1,8 @@
 package ga.bowwow.controller.store;
 
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import javax.servlet.http.HttpServletRequest;
 
@@ -9,8 +11,9 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 
+import ga.bowwow.common.Page;
+import ga.bowwow.service.common.PagingService;
 import ga.bowwow.service.store.Product;
-import ga.bowwow.service.store.Review;
 import ga.bowwow.service.store.StoreReviewService;
 import ga.bowwow.service.store.StoreService;
 
@@ -56,6 +59,7 @@ public class StoreController {
 	public String getProductList(Product product, Model model, HttpServletRequest request) {
 		
 		System.out.println("products " + product);
+		String cPage = request.getParameter("cPage");
 		
 		if (product.getP_type().equals("dog")) {
 			model.addAttribute("imgDir", "dogImg");
@@ -63,8 +67,27 @@ public class StoreController {
 			model.addAttribute("imgDir", "catImg");
 		}
 		
-		List<Product> productList = storeService.getProductList(product);
+		
+		Page p = new Page();
+		
+		Map<String, String> map = new HashMap<String, String>();
+		map.put("idx", product.getP_type());
+		map.put("keyword", product.getP_category());
+		
+		p = p.setPage(storeService.getProductCount(map), cPage, 4, 10);
+//		int count = storeService.getProductCount(map);
+//		System.out.println("count: " + count);
+		
+		map = p.idx_keyword(p, product.getP_type(), product.getP_category());
+		
+		List<Product> productList = storeService.getProductList(map);
+		System.out.println("list : " + productList);
+		
 		model.addAttribute("pList", productList);
+		model.addAttribute("pvo", p);
+		model.addAttribute("command", "/store/productList");
+		model.addAttribute("p_type", product.getP_type());
+		model.addAttribute("p_category", product.getP_category());
 		
 		return "productList";
 		

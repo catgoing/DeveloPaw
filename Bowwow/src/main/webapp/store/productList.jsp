@@ -43,9 +43,45 @@
     <!-- Style.css -->
     <link rel="stylesheet" type="text/css" href="/resources/css/style.css">
     <link rel="stylesheet" type="text/css" href="/resources/css/test.css">
-
+    
 <style>
   .featured__item__text { width: 150px; }
+  .center {
+	text-align: center;
+}
+
+.pagination {
+	display: inline-block;
+}
+
+.pagination a {
+	display: block;
+	padding: 3px 7px;
+	border: 1px solid #00B3DC;
+	font-weight: bold;
+	color: black;
+	float: left;
+	text-decoration: none;
+	transition: background-color .3s;
+	margin: 0 4px;
+}
+
+.pagination a.now {
+	 background-color: #00B3DC;
+	 color: white;
+	 border: 1px solid #00B3DC;
+}
+
+.pagination .disable {
+	border: 1px solid silver;
+	padding: 3px 7px;
+	color: silver;
+}
+
+.pagination a:hover {
+	background-color: #00B3DC;
+	color: white;
+}
 </style>
 </head>
 
@@ -117,6 +153,9 @@
 															</li>
 														</c:forEach>
 													</ul>
+												</div>
+												<div>
+												<%@include file="/common/paging.jsp"%>
 												</div>
 											</div>
 										</section>

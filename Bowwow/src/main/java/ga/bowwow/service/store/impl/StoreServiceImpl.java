@@ -1,15 +1,18 @@
 package ga.bowwow.service.store.impl;
 
 import java.util.List;
+import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import ga.bowwow.common.Page;
+import ga.bowwow.service.common.PagingService;
 import ga.bowwow.service.store.Product;
 import ga.bowwow.service.store.StoreService;
 
 @Service
-public class StoreServiceImpl implements StoreService {
+public class StoreServiceImpl implements StoreService, PagingService {
 	
 	@Autowired
 	private StoreDAO storeDAO;
@@ -35,8 +38,20 @@ public class StoreServiceImpl implements StoreService {
 	}
 	
 	@Override
-	public List<Product> getProductList(Product product) {
-		return storeDAO.getProductList(product);
+	public List<Product> getProductList(Map<String, String> map) {
+		return storeDAO.getProductList(map);
+	}
+
+	@Override
+	public int getProductCount(Map<String, String> map) {
+		
+		return storeDAO.getProductCount(map);
+	}
+
+	@Override
+	public void doPaging(Page p, String idx, String keyword, String id, int board_idx) {
+		this.getPageMap(p, idx, keyword, id, board_idx);
+		
 	}
 
 }

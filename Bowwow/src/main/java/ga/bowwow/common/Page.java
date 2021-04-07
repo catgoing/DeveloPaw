@@ -1,5 +1,8 @@
 package ga.bowwow.common;
 
+import java.util.HashMap;
+import java.util.Map;
+
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
@@ -30,6 +33,8 @@ public class Page {
 
 	private int pageBeginIdx = 0; //현재 블록의 시작 페이지 번호
 	private int pageEndIdx = 0; //현재 블록의 끝 페이지 번호
+	
+	private Map<String, String> map = new HashMap<String, String>();
 	
 	public Page setPage(int recordCount, String nowPage, int recordPerPage, int pagePerBlock) {
 		this.setRecordPerPage(recordPerPage);
@@ -73,6 +78,52 @@ public class Page {
 
 
 	}
+	
+	public Map<String, String> begin_end(Page p){
+		
+		Map<String, String> map = new HashMap<>();
+		map.put("begin", Integer.toString(p.getRecordBeginIdx()));
+		map.put("end", Integer.toString(p.getRecordEndIdx()));
+		
+		return map;
+	}
+	
+	public Map<String, String> begin_end_id(Page p, String id){
+		
+		Map<String, String> map = new HashMap<>();
+		map.put("begin", Integer.toString(p.getRecordBeginIdx()));
+		map.put("end", Integer.toString(p.getRecordEndIdx()));
+		map.put("id", id);
+		
+		return map;
+	}
+	
+	public Map<String, String> idx_keyword(Page p, String idx, String keyword){
+		
+		Map<String, String> map = new HashMap<>();
+		map.put("begin", Integer.toString(p.getRecordBeginIdx()));
+		map.put("end", Integer.toString(p.getRecordEndIdx()));
+		map.put("idx", idx);
+		map.put("keyword", keyword);
+		
+		return map;
+	}
+//	
+//	public Map<String, Object> idx_keyword(Page p, String idx, String keyword, String id, int board_idx){
+//		
+//		Map<String, Object> map = new HashMap<>();
+//		map.put("begin", Integer.toString(p.getRecordBeginIdx()));
+//		map.put("end", Integer.toString(p.getRecordEndIdx()));
+//		map.put("id", id);
+//		map.put("idx", idx);
+//		map.put("keyword", keyword);
+//		map.put("board_idx", "");
+//		map.put("p_type", "");
+//		map.put("p_category", "");
+//		
+//		return map;
+//	}
+	
 
 
 	public void logging() {

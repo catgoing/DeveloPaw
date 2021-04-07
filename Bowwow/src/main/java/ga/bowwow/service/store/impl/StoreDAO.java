@@ -1,6 +1,7 @@
 package ga.bowwow.service.store.impl;
 
 import java.util.List;
+import java.util.Map;
 
 import org.mybatis.spring.SqlSessionTemplate;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -26,8 +27,12 @@ public class StoreDAO {
 	    return mybatis.selectOne("Store.getProductDetail", p_id);
 	}
 
-	public List<Product> getProductList(Product product) {
-		return mybatis.selectList("Store.ProductList", product);
+	public List<Product> getProductList(Map<String, String> map) {
+		return mybatis.selectList("Store.ProductList", map);
+	}
+	
+	public int getProductCount(Map<String, String> map) {
+		return mybatis.selectOne("Store.ProductCount", map);
 	}
 	
 	
