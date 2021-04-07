@@ -146,7 +146,7 @@ $(function(){
 	//이메일 - input type="email"
 	//전화번호 - input type="tel" pattern="(010|011|016|017|018|019)-\d{4}-\d{4}"(폰번호만허용)
 	
-	//gender radio버튼에 체크! (없으면 빈 체크)
+	//gender radio버튼에 체크!(값 없으면 체크X)
 	const checkValue = '${sessionScope.user.gender }';
 	$("input[name=gender]").filter("input[value='"+checkValue+"']").attr("checked",true);
 	
@@ -288,7 +288,7 @@ $(function(){
 						<!-- Page-body start -->
 						<div class="page-body">
 						<div class="myPageInfo-header">
-							<h2> ${user.id }님의 페이지</h2>
+							<h2> ${sessionScope.user.id }님의 페이지</h2>
 						</div>
 						<div class="myPageInfo-wrapper">
 
@@ -298,10 +298,10 @@ $(function(){
 									<div class="side-content">
 										<div class="my-area">
 											<div class="side-profile-img">
-												<%-- <img src="${user.image_source }" alt="이미지없음~"> --%>
+												<%-- <img src="${sessionScope.user.image_source }" alt="이미지없음~"> --%>
 												<img src="" alt="이미지없음~">
 											</div>
-											<p>${user.nickname }</p>
+											<p>${sessionScope.user.nickname }</p>
 										</div>
 									</div>
 
@@ -314,7 +314,7 @@ $(function(){
   <div class="form-group">
     <label for="inputId" class="col-sm-4 control-label">아이디(변경불가)</label>
     <div class="col-sm-8">
-		<input type="text" class="form-control" id="noborderline" value="${user.id }" disabled>
+		<input type="text" class="form-control" id="noborderline" value="${sessionScope.user.id }" disabled>
     </div>
   </div>
   <div class="form-group">
@@ -332,13 +332,13 @@ $(function(){
   <div class="form-group">
     <label for="inputPassword3" class="col-sm-4 control-label">이름(변경불가)</label>
     <div class="col-sm-8">
-   		<input type="text" class="form-control" id="noborderline" value="${user.realname }" disabled>
+   		<input type="text" class="form-control" id="noborderline" value="${sessionScope.user.realname }" disabled>
     </div>
   </div>
   <div class="form-group">
     <label for="inputNickname" class="col-sm-4 control-label">닉네임</label>
     <div class="col-sm-8">
-      <input type="text" class="form-control" name="nickname" id="inputNickname" value="${user.nickname}">
+      <input type="text" class="form-control" name="nickname" id="inputNickname" value="${sessionScope.user.nickname}">
     </div>
   </div>
   <div class="form-group">
@@ -355,7 +355,7 @@ $(function(){
   <div class="form-group">
     <label for="inputEmail" class="col-sm-4 control-label">이메일</label>
     <div class="col-sm-8">
-      <input type="email" class="form-control" name="email" id="inputEmail" value="${user.email }">
+      <input type="email" class="form-control" name="email" id="inputEmail" value="${sessionScope.user.email }">
     </div>
   </div>
   <div class="form-group">
@@ -381,7 +381,7 @@ $(function(){
      <div class="form-group">
     <label for="inputBirth" class="col-sm-4 control-label">생일</label>
     <div class="col-sm-8">
-      <input type="date" class="form-control" name="birthday" id="inputBirthday" value="${user.birthday }">
+      <input type="date" class="form-control" name="birthday" id="inputBirthday" value="${sessionScope.user.birthday }">
     </div>
   </div>
   <div class="form-group">

@@ -102,6 +102,23 @@ tr td textarea{
 	width : 200px;
 	height : 200px;
 }
+
+.detailClass, .box-detail {
+	padding-left:10px;
+}
+.detailClass {
+	font-size:1.2em;
+	color : #212529;
+}
+pre{
+	overflow: auto;
+	white-space: pre-wrap;
+	word-break: break-all;
+}
+#img-thumbnail{
+	width : 200px;
+	height : 200px;
+}
 </style>
 <script>
 
@@ -245,11 +262,10 @@ function getPetInfo(frm){
 			$("#detail_back").html(petDetail.back_length + " cm");
 			$("#detail_chest").html(petDetail.chest_length + " cm");
 			$("#detail_etc").html(petDetail.pet_etc);
-			$("#thumb_container").prop("src", petDetail.image_source);
+			$("#thumb_container").prop("src", petDetail.image_source_oriname);
 			
-			$("#detail_orifile_name").val(petDetail.image_source);			 // hidden
 			$("#detail_tnr").val(petDetail.tnr);									 // hidden
-			$("#detail_member_serial").val("<c:out value='${user.memberSerial}'/>"); // hidden
+			$("#detail_member_serial").val("${sessionScope.user.memberSerial}"); // hidden
 			$("#detail_pet_serial").val(petDetail.pet_serial);					     // hidden
 
 			$("#petDetail").modal('show'); //모달창 오픈
@@ -271,11 +287,11 @@ function setModiInfo(petDetail){
 	$("#modi_petbirth").val(petDetail.pet_birth);
 	$("#modi_petage").val(petDetail.pet_age);
 	$("#modi_size").val(petDetail.pet_size);
-	$("#modi_weight").val(petDetail.pet_weight + " kg");
-	$("#modi_neck").val(petDetail.neck_length + " cm");
-	$("#modi_back").val(petDetail.back_length + " cm");
-	$("#modi_chest").val(petDetail.chest_length + " cm");
-	$("#modi_etc").val(petDetail.pet_etc);
+	$("#modi_weight").html(petDetail.pet_weight + " kg");
+	$("#modi_neck").html(petDetail.neck_length + " cm");
+	$("#modi_back").html(petDetail.back_length + " cm");
+	$("#modi_chest").html(petDetail.chest_length + " cm");
+	$("#modi_etc").html(petDetail.pet_etc);
 	$("#modi_animal_type").val(petDetail.animal_type);
 	//$("#thumb_container").prop("src", petDetail.image_source);
 	$("#modi_image").val(petDetail.image_source);
@@ -362,7 +378,7 @@ function clearInput(){
 	                                        <div class="col-md-4">
 		                                        <div class="list-inner">
 			                                        <div class="pet-img">
-			                                        	<img src="${pet.image_source_oriname }" alt="이미지" class="img-circle img-thumbnail">
+			                                        	<img src="${pet.image_source_oriname }" alt="이미지" class="img-circle img-thumbnail" id="img-thumbnail">
 			                                        </div>
 			                                        <div class="pet-name">${pet.pet_name }</div>
 			                                        <div class="pet-detail">
