@@ -7,9 +7,9 @@
 	<!-- 주문 내역 작성 -->
 	<insert parameterType="Order" id="insertOrder">
 		INSERT INTO STORE_ORDER (ORDER_ID, P_ID, MEMBER_SERIAL, AMOUNT, TOTALSUM, MEMO,ORDER_DATE, 
-								ORDER_STATUS, ADDRESS, ADDRESS_DETAIL, ZIP)
+								ORDER_STATUS, ADDRESS, ADDRESS_DETAIL, ZIP, ORDER_POINT)
 		VALUES (ORDER_SEQ.NEXTVAL, #{p_id}, #{member_serial}, #{amount}, #{totalSum}, #{memo}, 
-							SYSDATE,#{order_status}, #{address}, #{address_detail}, #{zip}) 
+							SYSDATE,#{order_status}, #{address}, #{address_detail}, #{zip}, #{order_point}) 
 	</insert>
 	
 	<!-- 주문 내역 수정 -->
@@ -28,8 +28,10 @@
 	
 	<!-- 회원 주문 내역 전체 출력 -->
 	<select id="orderList" parameterType="int" resultType="Order">
-		SELECT * FROM STORE_ORDER
-		WHERE MEMBER_SERIAL = #{member_serial}
+		SELECT O.ORDER_ID, O.P_ID, O.MEMBER_SERIAL, O.AMOUNT, O.TOTALSUM, O.MEMO, O.ORDER_DATE, 
+								O.ORDER_STATUS, O.ADDRESS, O.ADDRESS_DETAIL, O.ZIP, O.ORDER_POINT, U.NICKNAME 
+		FROM STORE_ORDER O, USER_ACCOUNT U
+		WHERE O.MEMBER_SERIAL = U.MEMBER_SERIAL AND O.MEMBER_SERIAL = #{member_serial}
 		ORDER BY ORDER_ID DESC
 	</select>
 	
