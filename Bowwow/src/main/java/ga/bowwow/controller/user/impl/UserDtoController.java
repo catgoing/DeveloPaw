@@ -70,12 +70,13 @@ public class UserDtoController extends UserCRUDGenericController<UserAccount> {
 	private List<UserAddress> getUserAddressList(UserAccount userAccount) {
 		final String baseUrl = ServletUriComponentsBuilder.fromCurrentContextPath().build().toUriString();
 		System.out.println("dtoController userAccount : " + userAccount);
-		return rt.PostForEntity(baseUrl + "/account/loginValidateUserAccount", userAccount, String.class);
+//		rt.PostForEntity(baseUrl + "/address/loginValidateUserAccount", userAccount, String.class);
+		return null;
 	}
 
 	//TODO 로직을 보이기 위해서 singleLine method로 두었는데, 그냥 인라인하거나 아니면 setRoute? 아니면 익명 콜백으로 추상화 할 수도 있음.
 	private ResponseEntity<String> attemptUserLogin(UserAccount userAccount) {
-		private final String baseUrl = ServletUriComponentsBuilder.fromCurrentContextPath().build().toUriString();
+		final String baseUrl = ServletUriComponentsBuilder.fromCurrentContextPath().build().toUriString();
 		System.out.println("dtoController userAccount : " + userAccount);
 		return rt.postForEntity(baseUrl + "/account/loginValidateUserAccount", userAccount, String.class);
 //		System.out.println(baseUrl + "/account/loginValidateUserAccount");
