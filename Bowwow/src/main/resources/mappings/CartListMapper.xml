@@ -25,6 +25,12 @@
 		 WHERE ID = #{id} AND P_ID = ${p_id}
 	</select>
 	
+	<update id="updateCart" parameterType="CartList">
+		UPDATE STORE_CARTLIST
+		   SET AMOUNT = ${amount}
+		 WHERE ID = #{id} and P_ID = ${p_id}
+	</update>
+	
 	<!-- 장바구니 제품 삭제 -->
 	<delete id="deleteCart" parameterType="CartList">
 		DELETE FROM STORE_CARTLIST

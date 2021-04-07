@@ -57,6 +57,27 @@ public class CartListController {
 		return "/store/cartList";
 	}
 	
+	//장바구니 수량 수정
+	@RequestMapping(value = "/store/updateCart")
+	@ResponseBody
+	public Map<String, Object> updateCart(CartList cartList, Model model) {
+		
+		Map<String, Object> resultMap = new HashMap<String, Object>();
+		System.out.println("update cart : " + cartList);
+		
+		int result = cartListService.updateCart(cartList);
+		
+		if (result >= 1) {
+			resultMap.put("msg", "장바구니에서 삭제되었습니다.");
+			resultMap.put("code", "0000");
+		} else {
+			resultMap.put("msg", "오류가 발생하였습니다.");
+			resultMap.put("code", "9999");
+		}
+		
+		return resultMap;
+	}
+	
 	// 장바구니 상품 삭제
 	@RequestMapping(value = "/store/deleteCart")
 	@ResponseBody

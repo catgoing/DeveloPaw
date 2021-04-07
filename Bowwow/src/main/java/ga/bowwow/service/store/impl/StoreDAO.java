@@ -49,6 +49,11 @@ public class StoreDAO {
 		
 	}
 	
+	// 장바구니 상품 갯수 수정
+	public int updateCart(CartList cartList) {
+		return mybatis.update("Cart.updateCart", cartList);
+	}
+	
 	// 장바구니 상품 삭제
 	public int deleteCart(CartList cartList) {
 		return mybatis.delete("Cart.deleteCart", cartList);

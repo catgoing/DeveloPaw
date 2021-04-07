@@ -67,6 +67,7 @@
 	var sell_price;
 	var amount;
 	var totalSum;
+	var stock;
 	
 	$(function init () {
 	   sell_price = document.getElementById('sell_price').value;
@@ -75,6 +76,7 @@
 	   document.getElementById('totalSum').value = sell_price;
 	   amount = document.form.amount.value;
 	   document.form.sum.value = sell_price.replace(/\B(?=(\d{3})+(?!\d))/g, ",");
+	   stock = document.getElementById('stock').value;
 	   
 	});
 	
@@ -82,18 +84,28 @@
 	   hm = document.form.amount;
 	   sum = document.form.sum;
 	   
-	   hm.value ++ ;
+	   hm.value ++;
 	   
-	   var temp = parseInt(hm.value) * sell_price
-	
-	   document.getElementById('totalSum').value = temp;
-	   document.getElementById('sum').value = temp;
-	   document.getElementById('sum').value = document.getElementById('sum').value.replace(/\B(?=(\d{3})+(?!\d))/g, ",");
+	   if(parseInt(hm.value) > stock) {
+		    console.log("hm : " + hm.value);
+		    console.log("stock : " + stock);
+	   		alert("재고가 부족합니다, 해당 상품의 재고는 총" + stock + "개 입니다.");
+	   	    hm.value --;
+	   } else {
+		   var temp = parseInt(hm.value) * sell_price
+		
+		   document.getElementById('totalSum').value = temp;
+		   document.getElementById('sum').value = temp;
+		   document.getElementById('sum').value = document.getElementById('sum').value.replace(/\B(?=(\d{3})+(?!\d))/g, ",");
+		   
+	   }
+		   
 	}
 	
 	function del () {
 	   hm = document.form.amount;
 	   sum = document.form.sum;
+	   
 	      if (hm.value > 1) {
 	         hm.value -- ;
 	         var temp = parseInt(hm.value) * sell_price
@@ -109,11 +121,19 @@
 	   hm = document.form.amount;
 	   sum = document.form.sum;
 	   
-	   var temp = parseInt(hm.value) * sell_price
-	
-	   document.getElementById('totalSum').value = temp; 
-	   document.getElementById('sum').value = temp;
-	   document.getElementById('sum').value = document.getElementById('sum').value.replace(/\B(?=(\d{3})+(?!\d))/g, ",");
+	   if(parseInt(hm.value) > stock) {
+		    console.log("hm : " + hm.value);
+		    console.log("stock : " + stock);
+		    alert("재고가 부족합니다, 해당 상품의 재고는 총 " + stock + "개 입니다.");
+	   		hm.value = 1;
+	   } else {
+		   var temp = parseInt(hm.value) * sell_price
+		
+		   document.getElementById('totalSum').value = temp; 
+		   document.getElementById('sum').value = temp;
+		   document.getElementById('sum').value = document.getElementById('sum').value.replace(/\B(?=(\d{3})+(?!\d))/g, ",");
+	   }
+	   
 	}
 	
 	// 수량에 숫자만 들어오도록 체크
@@ -360,7 +380,7 @@
 																<h5>상품 수량
 															      	 <input type="hidden" id="sell_price" name="price" value="${p.price }"> 
 																	 <input type="button" class="store_btn2" value=" - " onclick="del();">
-																	 <input type="text" id="product_count" class="store_input" onkeyup="onlyNumber(this); amountChk(this); changeValue();" maxlength="2" autocomplete="off" 
+																	 <input type="text" id="product_count" class="store_input" onkeyup="onlyNumber(this); amountChk(this); changeValue();" maxlength="3" autocomplete="off" 
 																	 	min="1" name="amount" value="1" size="3">
 																	 <input type="button" id="addBtn" class="store_btn2" value=" + " onclick="add();">
 																</h5>

@@ -63,6 +63,26 @@
 		}
 
 	});
+	
+	// 장바구니 상품 수량 수정
+	var tUrl = '/store/updateCart'
+	var result;
+		
+	function add(pId, userId) {
+		var param = {
+				p_id : pId,
+				id : userId
+			}
+		
+		result = callAjax(tUrl, 'post', param, 'data');
+		
+		if (result.code == '0000') {
+			alert(result.msg);
+			location.reload();
+		} else {
+			alter(result.msg);
+		}
+	}
 
 	// 장바구니 상품 삭제
 	function delCart(pId, userId) {
@@ -259,9 +279,9 @@
 																	<td class="qua-col first-row">
 																		<div class="quantity">
 																			<div class="cartList_amount">
-																				<input type="button" class="store_btn2" value=" - " onclick="add()">
+																				<input type="button" class="store_btn2" value=" - " onclick="">
 																				<input type="text" name="amount" value="${cart.amount }" size="3" readonly>
-																				<input type="button" class="store_btn2" value=" + " onclick=>
+																				<input type="button" class="store_btn2" value=" + " onclick="add('${cart.p_id}', '${cart.id }')">
 																			</div>
 																		</div>
 																	</td>
