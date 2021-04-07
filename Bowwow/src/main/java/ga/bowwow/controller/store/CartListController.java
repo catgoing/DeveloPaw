@@ -26,7 +26,7 @@ public class CartListController {
 	// 장바구니 추가
 	@RequestMapping(value = "/store/addCart")
 	@ResponseBody
-	public Map<String, String> addCartList(CartList cartList) {
+	public Map<String, String> addCartList(CartList cartList, Model model) {
 		
 		Map<String, String> result = new HashMap<String, String>();
 
@@ -67,8 +67,11 @@ public class CartListController {
 		
 		int result = cartListService.updateCart(cartList);
 		
-		if (result >= 1) {
-			resultMap.put("msg", "장바구니에서 삭제되었습니다.");
+		if (cartList.getAmount() < 1) {
+			resultMap.put("msg", "수량은 1 이상이야 합니다.");
+			resultMap.put("code", "1111");
+		} else if (result >= 1) {
+			resultMap.put("msg", "수량이 변경되었습니다.");
 			resultMap.put("code", "0000");
 		} else {
 			resultMap.put("msg", "오류가 발생하였습니다.");

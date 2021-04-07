@@ -50,7 +50,7 @@
 	<script type="text/javascript" src="/resources/js/ajax.js"></script>
 
 <script type="text/javascript">
-
+	
 	$(function() {
 		var sell_price = $("input:hidden[name='price']");
 		var amount = $("input:text[name='amount']");
@@ -65,13 +65,15 @@
 	});
 	
 	// 장바구니 상품 수량 수정
-	var tUrl = '/store/updateCart'
+	var tUrl = '/store/updateCart';
 	var result;
 		
-	function add(pId, userId) {
+	function add(pId, userId, amount) {
+		var amount = Number(amount) + 1;
 		var param = {
 				p_id : pId,
-				id : userId
+				id : userId,
+				amount : amount
 			}
 		
 		result = callAjax(tUrl, 'post', param, 'data');
@@ -83,7 +85,28 @@
 			alter(result.msg);
 		}
 	}
-
+	
+	function del(pId, userId, amount) {
+		var amount = Number(amount) - 1;
+		var param = {
+				p_id : pId,
+				id : userId,
+				amount : amount
+			}
+		
+		result = callAjax(tUrl, 'post', param, 'data');
+		
+		if (result.code == '1111') {
+			amount = 1;
+			alert(result.msg);
+		} else if (result.code == '0000') {
+			alert(result.msg);
+			location.reload();
+		} else {
+			alter(result.msg);
+		}
+	}
+	
 	// 장바구니 상품 삭제
 	function delCart(pId, userId) {
 
@@ -111,11 +134,11 @@
 	// 장바구니 상품 전체 체크
 	function checkSelectAll()  {
 	  // 전체 체크박스
-	  const checkboxes = document.querySelectorAll('input[name="p_id"]');
+	  const checkboxes = document.querySelectorAll("input[name='p_id']");
 	  // 선택된 체크박스
-	  const checked = document.querySelectorAll('input[name="p_id"]:checked');
+	  const checked = document.querySelectorAll("input[name='p_id']:checked");
 	  // select all 체크박스
-	  const selectAll = document.querySelector('input[name="selectall"]');
+	  const selectAll = document.querySelector("input[name='selectall']");
 	  
 	  if(checkboxes.length === checked.length)  {
 	    selectAll.checked = true;
@@ -279,9 +302,9 @@
 																	<td class="qua-col first-row">
 																		<div class="quantity">
 																			<div class="cartList_amount">
-																				<input type="button" class="store_btn2" value=" - " onclick="">
-																				<input type="text" name="amount" value="${cart.amount }" size="3" readonly>
-																				<input type="button" class="store_btn2" value=" + " onclick="add('${cart.p_id}', '${cart.id }')">
+																				<input type="button" class="store_btn2" value=" - " onclick="del('${cart.p_id}', '${cart.id }', '${cart.amount }')">
+																				<input type="text" name="amount" value="${cart.amount }" min="1" size="3" readonly>
+																				<input type="button" class="store_btn2" value=" + " onclick="add('${cart.p_id}', '${cart.id }', '${cart.amount }')">
 																			</div>
 																		</div>
 																	</td>
