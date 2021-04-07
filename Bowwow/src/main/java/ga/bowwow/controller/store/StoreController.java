@@ -10,8 +10,6 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 import ga.bowwow.service.store.Product;
-import ga.bowwow.service.store.Review;
-import ga.bowwow.service.store.StoreReviewService;
 import ga.bowwow.service.store.StoreService;
 
 @Controller
@@ -20,8 +18,6 @@ public class StoreController {
 	@Autowired
 	private StoreService storeService;
 	
-	@Autowired
-	private StoreReviewService storeReviewService;
 	
 	public StoreController() {
 		System.out.println(">> StoreController() 실행");

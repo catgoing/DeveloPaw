@@ -156,8 +156,6 @@
  		}
  			delCart(pIdArr, userId);
 
-
-
  	}
 
  	// 콤마 빼기
