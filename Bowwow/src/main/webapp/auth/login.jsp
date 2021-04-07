@@ -5,7 +5,8 @@
 function checker() {
   var id = document.getElementById("id").value;
   var pwd = document.getElementById("password").value;
-
+	
+//   TODO msgBox를 구현할 것 
   if(id.length == 0) {
     alert("아이디가 입력되지 않았습니다.");
     return false;
@@ -27,7 +28,7 @@ function checker() {
             <div class="col-sm-12">
                 <!-- Authentication card start -->
 
-                    <form class="md-float-material form-material" action="/account/login" onsubmit = "return checker();">
+                    <form class="md-float-material form-material" action="/user/login" onsubmit = "return checker();">
                         <div class="text-center">
                             <img src="/resources/images/logo.png" alt="logo.png">
                         </div>
@@ -81,7 +82,7 @@ function checker() {
                                 <div class="row">
                                     <div class="col-md-10">
                                         <p></p>
-                                        <p class="text-inverse text-left"><a href="/account/login"><b>메인화면으로 돌아가기</b></a></p>
+                                        <p class="text-inverse text-left"><a href="/store/storeMain"><b>메인화면으로 돌아가기</b></a></p>
                                     </div>
                                     <div class="col-md-2">
                                         <img src="/resources/images/colored_logo.png" alt="colored_logo.png">
