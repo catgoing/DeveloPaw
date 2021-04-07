@@ -15,6 +15,7 @@ import ga.bowwow.service.user.VO.UserAccount;
 //		비즈니스 로직처리 서비스 영역에 사용
 @Service("UserAccountService")
 public class UserAccountServiceImpl extends UserGenericService<UserAccount> {
+	//TODO ServiceImpl과 DAOImpl의 강결합이 좋지 않은 건가? 싶기도?
 	public UserAccountServiceImpl(@Autowired UserAccountDAO dao) {
 		this.dao = dao;
 	}

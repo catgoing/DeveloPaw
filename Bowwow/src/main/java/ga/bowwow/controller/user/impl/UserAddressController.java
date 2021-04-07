@@ -40,6 +40,7 @@ public class UserAddressController extends UserCRUDGenericController<UserAddress
 		}
 		return "/ok";
 	}
+	
 	@RequestMapping(value="/manageAddress") //CRUD페이지
 	public String getAddressInfo(@ModelAttribute("userAccount") UserAccount userAccount) {
 		return "/auth.myAddress";

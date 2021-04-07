@@ -140,24 +140,27 @@
 					</ul></li>
 				<li class="user-profile header-notification"><a href="#!"
 					class="waves-effect waves-light"> <img
-						src="../resources/images/avatar-4.jpg" class="img-radius"
+						src="../resources/images/logo.png" class="img-radius"
 						alt="User-Profile-Image"> <i class="ti-angle-down"></i>
 				</a>
 					<ul class="show-notification profile-notification">
-						<li class="waves-effect waves-light"><a href="#!">마이홈
+						<li class="waves-effect waves-light"><a href="/mypage/myPageMain">마이홈
 						</a></li>
 						<li class="waves-effect waves-light"><a
-							href="user-profile.html">프로필 </a></li>
+							href="/mypage/myInfo">프로필 </a></li>
 						<li class="waves-effect waves-light"><a
-							href="email-inbox.html">반려동물 </a></li>
+							href="/getPetInfoList?member_serial=${user.memberSerial }">반려동물 </a></li>
 						<li class="waves-effect waves-light"><a
-							href="auth-lock-screen.html">게시글</a></li>
+							href="/mypage/myPostList">내 게시글</a></li>
 						<li class="waves-effect waves-light"><a
-							href="auth-normal-sign-in.html">포인트 내역 </a></li>
+							href="/mypage/myPoint">포인트 내역 </a></li>
+<!-- 						로그아웃 시, 헤더의 목록을 동적으로 바꿔야 함->로그인 시 헤더목록을 동적으로 출력해야 함  -->
 						<li class="waves-effect waves-light"><a
-							href="auth-normal-sign-in.html">나의 쇼핑 </a></li>
+							href="/getUserInquiryList?member_serial=${user.memberSerial }">나의 쇼핑 </a></li>
 						<li class="waves-effect waves-light"><a
-							href="/account/logout">로그아웃 </a></li>
+							href="/user/login">로그인 </a></li>
+						<li class="waves-effect waves-light"><a
+							href="/user/logout">로그아웃 </a></li>
 					</ul></li>
 			</ul>
 		</div>

@@ -1,6 +1,7 @@
 package ga.bowwow.controller.user.impl;
 
 import java.util.ArrayList;
+import java.util.List;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
@@ -15,11 +16,13 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.bind.support.SessionStatus;
 import org.springframework.web.client.RestTemplate;
 import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 
 import ga.bowwow.controller.user.UserCRUDGenericController;
 import ga.bowwow.service.user.VO.UserAccount;
+import ga.bowwow.service.user.VO.UserAddress;
 import ga.bowwow.service.user.VO.UserDTO;
 import ga.bowwow.service.user.impl.UserDtoServiceImpl;
 
@@ -46,14 +49,33 @@ public class UserDtoController extends UserCRUDGenericController<UserAccount> {
 			session.setAttribute("userDTO", completeUserDtoTest);
 			
 //			model.addAttribute("userDTO", service.getVo(userDTO));
-			return "redirect:/store/storeMain";
+			return "redirect:/mypage/myInfo";
 		}
 		return "/auth.login";
 	}
 
+	@RequestMapping(value="/logout")
+	public String getUserAccount(@Autowired HttpSession session, SessionStatus sessionStatus) {
+		
+//		System.out.println("onSession userDTO : " + session.getAttribute("userDTO"));
+		session.removeAttribute("userDTO");
+		sessionStatus.setComplete();
+//		try {
+//			System.out.println("onSession userDTO : " + session.getAttribute("userDTO"));
+//		} catch (Exception e) {
+//			e.printStackTrace();
+//		}
+		return "redirect:/mypage/myInfo";
+	}
+	private List<UserAddress> getUserAddressList(UserAccount userAccount) {
+		final String baseUrl = ServletUriComponentsBuilder.fromCurrentContextPath().build().toUriString();
+		System.out.println("dtoController userAccount : " + userAccount);
+		return rt.PostForEntity(baseUrl + "/account/loginValidateUserAccount", userAccount, String.class);
+	}
+
 	//TODO 로직을 보이기 위해서 singleLine method로 두었는데, 그냥 인라인하거나 아니면 setRoute? 아니면 익명 콜백으로 추상화 할 수도 있음.
 	private ResponseEntity<String> attemptUserLogin(UserAccount userAccount) {
-		final String baseUrl = ServletUriComponentsBuilder.fromCurrentContextPath().build().toUriString();
+		private final String baseUrl = ServletUriComponentsBuilder.fromCurrentContextPath().build().toUriString();
 		System.out.println("dtoController userAccount : " + userAccount);
 		return rt.postForEntity(baseUrl + "/account/loginValidateUserAccount", userAccount, String.class);
 //		System.out.println(baseUrl + "/account/loginValidateUserAccount");
