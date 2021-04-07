@@ -1,7 +1,9 @@
-package ga.bowwow.common;
+package ga.bowwow.service.paging;
 
 import java.util.HashMap;
 import java.util.Map;
+
+import org.springframework.stereotype.Component;
 
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -12,6 +14,7 @@ import lombok.ToString;
 @Setter
 @ToString
 @NoArgsConstructor
+@Component
 public class Page {
 
 	private int nowPage = 1;		//현재페이지
@@ -35,6 +38,55 @@ public class Page {
 	private int pageEndIdx = 0; //현재 블록의 끝 페이지 번호
 	
 	private Map<String, String> map = new HashMap<String, String>();
+	
+	
+	//0개의 파라미터로 페이징 처리할 때(ex:전체 회원 출력, 전체 상품 출력)
+	public Map<String, String> data0(Page p){
+		
+		Map<String, String> map = new HashMap<>();
+		map.put("begin", Integer.toString(p.getRecordBeginIdx()));
+		map.put("end", Integer.toString(p.getRecordEndIdx()));
+		
+		return map;
+	}
+	
+	//1개의 파라미터로 페이징 처리할 때(ex:아이디, 게시판 종류)
+	public Map<String, String> data1(Page p, String data1){
+		
+		Map<String, String> map = new HashMap<>();
+		map.put("begin", Integer.toString(p.getRecordBeginIdx()));
+		map.put("end", Integer.toString(p.getRecordEndIdx()));
+		map.put("data1", data1);
+		
+		return map;
+	}
+	
+	
+	//2개의 파라미터로 페이징 처리할 때(ex:제목, 검색어)
+	public Map<String, String> data2(Page p, String data1, String data2){
+		
+		Map<String, String> map = new HashMap<>();
+		map.put("begin", Integer.toString(p.getRecordBeginIdx()));
+		map.put("end", Integer.toString(p.getRecordEndIdx()));
+		map.put("data1", data1);
+		map.put("data2", data2);
+		
+		return map;
+	}
+	
+	//3개의 파라미터로 페이징 처리할 때(ex:게시판 종류, 제목, 검색어)
+	public Map<String, String> search(Page p, String data1, String data2, String data3){
+		
+		Map<String, String> map = new HashMap<>();
+		map.put("begin", Integer.toString(p.getRecordBeginIdx()));
+		map.put("end", Integer.toString(p.getRecordEndIdx()));
+		map.put("data1", data1);
+		map.put("data2", data2);
+		map.put("data3", data3);
+		
+		return map;
+	}
+
 	
 	public Page setPage(int recordCount, String nowPage, int recordPerPage, int pagePerBlock) {
 		this.setRecordPerPage(recordPerPage);
@@ -78,53 +130,6 @@ public class Page {
 
 
 	}
-	
-	public Map<String, String> begin_end(Page p){
-		
-		Map<String, String> map = new HashMap<>();
-		map.put("begin", Integer.toString(p.getRecordBeginIdx()));
-		map.put("end", Integer.toString(p.getRecordEndIdx()));
-		
-		return map;
-	}
-	
-	public Map<String, String> begin_end_id(Page p, String id){
-		
-		Map<String, String> map = new HashMap<>();
-		map.put("begin", Integer.toString(p.getRecordBeginIdx()));
-		map.put("end", Integer.toString(p.getRecordEndIdx()));
-		map.put("id", id);
-		
-		return map;
-	}
-	
-	public Map<String, String> idx_keyword(Page p, String idx, String keyword){
-		
-		Map<String, String> map = new HashMap<>();
-		map.put("begin", Integer.toString(p.getRecordBeginIdx()));
-		map.put("end", Integer.toString(p.getRecordEndIdx()));
-		map.put("idx", idx);
-		map.put("keyword", keyword);
-		
-		return map;
-	}
-//	
-//	public Map<String, Object> idx_keyword(Page p, String idx, String keyword, String id, int board_idx){
-//		
-//		Map<String, Object> map = new HashMap<>();
-//		map.put("begin", Integer.toString(p.getRecordBeginIdx()));
-//		map.put("end", Integer.toString(p.getRecordEndIdx()));
-//		map.put("id", id);
-//		map.put("idx", idx);
-//		map.put("keyword", keyword);
-//		map.put("board_idx", "");
-//		map.put("p_type", "");
-//		map.put("p_category", "");
-//		
-//		return map;
-//	}
-	
-
 
 	public void logging() {
 		System.out.println("--------------");

@@ -6,13 +6,11 @@ import java.util.Map;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import ga.bowwow.common.Page;
-import ga.bowwow.service.common.PagingService;
 import ga.bowwow.service.store.Product;
 import ga.bowwow.service.store.StoreService;
 
 @Service
-public class StoreServiceImpl implements StoreService, PagingService {
+public class StoreServiceImpl implements StoreService {
 	
 	@Autowired
 	private StoreDAO storeDAO;
@@ -46,12 +44,6 @@ public class StoreServiceImpl implements StoreService, PagingService {
 	public int getProductCount(Map<String, String> map) {
 		
 		return storeDAO.getProductCount(map);
-	}
-
-	@Override
-	public void doPaging(Page p, String idx, String keyword, String id, int board_idx) {
-		this.getPageMap(p, idx, keyword, id, board_idx);
-		
 	}
 
 }

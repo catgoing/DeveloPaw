@@ -22,29 +22,30 @@
 		  				PRICE, STOCK, S_IMAGE, L_IMAGE 
 		  			FROM STORE_PRODUCTS
 		 			WHERE 1=1
-		 			<if test="idx != null">
-		 			  AND P_TYPE = #{idx}
+		 			<if test="data1 != null">
+		 			  AND P_TYPE = '${data1}'
 		 			</if>
-		 			<if test="keyword != null">
-		 			  AND P_CATEGORY = #{keyword}
+		 			<if test="data2 != null">
+		 			  AND P_CATEGORY = '${data2}'
 		 			</if>
 		 			ORDER BY P_ID DESC 
 		 		) PROD 
 		 	)
-		 WHERE RN BETWEEN #{begin} AND #{end}
+		 WHERE RN BETWEEN ${begin} AND ${end}
 	</select>
 	
 	<!-- 전체 상품 수 -->
-	<select id="ProductCount" parameterType="Map" resultType="int">
+	<select id="ProductCount" resultType="int">
 		SELECT 	COUNT(*) AS CNT 
 		FROM	STORE_PRODUCTS
 		WHERE	1=1
-		 			<if test="idx != null">
-		 			  AND P_TYPE = #{idx}
-		 			</if>
-		 			<if test="keyword != null">
-		 			  AND P_CATEGORY = #{keyword}
-		 			</if>
+		<if test="data1.equals("")">
+		  AND P_TYPE = '${data1}'
+		</if>
+		<if test="data2.nequals("")'>
+		  AND P_CATEGORY = '${data2}'
+		</if>
+
 	</select>
 	
 	<!--상품 상세 조회 -->
