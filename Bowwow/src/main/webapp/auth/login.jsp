@@ -28,7 +28,7 @@ function checker() {
             <div class="col-sm-12">
                 <!-- Authentication card start -->
 
-                    <form class="md-float-material form-material" action="/user/login" onsubmit = "return checker();">
+                    <form class="md-float-material form-material" action="/user/login" method="post" onsubmit = "return checker();">
                         <div class="text-center">
                             <img src="/resources/images/logo.png" alt="logo.png">
                         </div>
