@@ -40,7 +40,15 @@ public class UserDtoController extends UserCRUDGenericController<UserAccount> {
 		setDomainRoute("/ok", "/auth.login");
 	}
 	
-	@RequestMapping(value="/login")
+	@GetMapping(value="/login")
+	public String loginPage(HttpServletRequest request) {
+		System.out.println("getLogin");
+		if(!isSessionNewAndHasNoUserDTO(request.getSession())) {
+			return "redirect:/mypage/myInfo";
+		}
+		return "/auth.login";
+	}
+	@PostMapping(value="/login")
 	public String loginUserDTO(@ModelAttribute("userDTO") UserDTO userDTO, Model model, HttpServletRequest request) {
 		HttpSession session = request.getSession();
 		if(attemptUserLogin(userDTO).getStatusCode() == HttpStatus.OK) {
@@ -52,6 +60,10 @@ public class UserDtoController extends UserCRUDGenericController<UserAccount> {
 			return "redirect:/mypage/myInfo";
 		}
 		return "/auth.login";
+	}
+	
+	boolean isSessionNewAndHasNoUserDTO(HttpSession session) {
+		return session.getAttribute("userDTO") == null ? true : false;
 	}
 
 	@RequestMapping(value="/logout")
