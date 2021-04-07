@@ -325,7 +325,7 @@ $(function(){
 						<!-- Page-body start -->
 						<div class="page-body">
 						<div class="myPageInfo-header">
-							<h2> ${sessionScope.sessionScope.userDTO.id }님의 페이지</h2>
+							<h2> ${sessionScope.userDTO.id }님의 페이지</h2>
 						</div>
 						<div class="myPageInfo-wrapper">
 

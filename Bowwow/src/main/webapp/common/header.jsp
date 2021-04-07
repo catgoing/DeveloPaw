@@ -1,4 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"	pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+
 
 <nav class="navbar header-navbar pcoded-header">
 	<div class="navbar-wrapper" style="color: red;">
@@ -149,14 +151,14 @@
 						<li class="waves-effect waves-light"><a
 							href="/mypage/myInfo">프로필 </a></li>
 						<li class="waves-effect waves-light"><a
-							href="/getPetInfoList?member_serial=${sessionScope.userDTO.memberSerial }">반려동물 </a></li>
+							href="/getPetInfoList?member_serial=${sessionScope.userDTO.member_serial }">반려동물 </a></li>
 						<li class="waves-effect waves-light"><a
 							href="/mypage/myPostList">내 게시글</a></li>
 						<li class="waves-effect waves-light"><a
 							href="/mypage/myPoint">포인트 내역 </a></li>
 <!-- 						로그아웃 시, 헤더의 목록을 동적으로 바꿔야 함->로그인 시 헤더목록을 동적으로 출력해야 함  -->
 						<li class="waves-effect waves-light"><a
-							href="/getUserInquiryList?member_serial=${sessionScope.userDTO.memberSerial }">나의 쇼핑 </a></li>
+							href="/getUserInquiryList?member_serial=${sessionScope.userDTO.member_serial }">나의 쇼핑 </a></li>
 						<li class="waves-effect waves-light"><a
 							href="/user/login">로그인 </a></li>
 						<li class="waves-effect waves-light"><a
