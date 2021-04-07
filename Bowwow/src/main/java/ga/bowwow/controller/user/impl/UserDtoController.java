@@ -1,6 +1,7 @@
 package ga.bowwow.controller.user.impl;
 
 import java.util.ArrayList;
+import java.util.List;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
@@ -90,21 +91,26 @@ public class UserDtoController extends UserCRUDGenericController<UserAccount> {
 		return "redirect:/mypage/myInfo";
 	}
 
+	//modelAttribute for Method Test -> works
+	@ModelAttribute("userDtoList")
+	public ArrayList<UserDTO> getDefaultUserDto() {
+		ArrayList<UserDTO> userDtoList = (ArrayList<UserDTO>) service.getVoList();
+		return userDtoList;
+	}
 	
-	//TODO offset, limit 주고 오버로딩으로 페이징 처리가 필요 할 수도 있음. 
-		//모델을 줄 수 있는지 테스트?(<- 이상함. 최소한 rest 방식에서는 그냥 최상단 클라이언트가 model을 등록하는 게 합리적으로 보임.)
 	@ResponseBody
-	@GetMapping(value="/manageList") //CRUD페이지
-	public ResponseEntity<ArrayList<UserDTO>> getUserDtoInfo(@ModelAttribute("userDTO") ArrayList<UserDTO> userDtoList, Model model) {
-		System.out.println("GETLIST RESOLVING TEST");
-		userDtoList = (ArrayList<UserDTO>) service.getVoList();
-		model.addAttribute("userDtoList", userDtoList);
+	@GetMapping(value="/list")
+	public ResponseEntity<ArrayList<UserDTO>> getRestUserDtoList() {
+		ArrayList<UserDTO> userDtoList = (ArrayList<UserDTO>) service.getVoList();
 		System.out.println(userDtoList);
 		return ResponseEntity.ok(userDtoList);
 	}
 	
-	@PostMapping(value="/manageList") //CRUD페이지
-	public String addUserDtoInfo(@ModelAttribute("userDTO") UserDTO userDto) {
+	@GetMapping(value="/manageList") //CRUD페이지
+	public String addUserDtoInfo(@ModelAttribute("userDtoList") ArrayList<UserDTO> userDtoList, Model model) {
+//		final String baseUrl = ServletUriComponentsBuilder.fromCurrentContextPath().build().toUriString();
+//		userDtoList = rt.getForEntity(baseUrl+"/user/list", ArrayList.class).getBody();
+		model.addAttribute("userDtoList", userDtoList);
 		return "/auth.userList";
 	}
 	

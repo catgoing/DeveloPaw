@@ -41,19 +41,19 @@
                 <tbody>
                 	<c:forEach var="userAccount" items="${userDtoList }" varStatus="i">
                 		<tr>
-							<td>${userAccount.memberSerial}</td>
+							<td>${userAccount.member_serial}</td>
 							<td>${userAccount.id}</td>
 							<td>${userAccount.email}</td>
-							<td>${userAccount.citizenId}</td>
+							<td>${userAccount.citizen_id}</td>
 							<td>${userAccount.phone}</td>
 							<td>${userAccount.status}</td>
 							<td>${userAccount.point}</td>
 							<td>${userAccount.nickname}</td>
 							<td>${userAccount.realname};</td>
-							<td>${userAccount.regDate};</td>
+							<td>${userAccount.reg_date};</td>
 							<td>${userAccount.birthday};</td>
 							<td>${userAccount.gender};</td>
-							<td>${userAccount.imageSource};</td>
+							<td>${userAccount.image_source};</td>
 						</tr>
 					</c:forEach>
                 </tbody>

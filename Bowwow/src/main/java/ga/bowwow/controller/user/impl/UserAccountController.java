@@ -1,5 +1,6 @@
 package ga.bowwow.controller.user.impl;
 
+import java.net.URI;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -70,18 +71,19 @@ public class UserAccountController extends UserCRUDGenericController<UserAccount
 	
 	@PostMapping(value= "/addJson",
 			produces = "application/text; charset=UTF-8")
-	protected String addJson(@RequestBody UserAccount vo)  {
+	protected ResponseEntity<String> addJson(@RequestBody UserAccount vo)  {
 		System.out.println("account controller addJson Test");
 		try {
 			System.out.println("controller : " + vo);
-			return router(service.addVo(vo), resolveRoute, errorRoute);
+			return service.addVo(vo) ? ResponseEntity.ok().build() : ResponseEntity.badRequest().build();
+			
 		} catch (DataIntegrityViolationException  e) {
 			System.out.println("Caught Integerity Exception Test");
 			e.printStackTrace();
 		} catch (TooManyResultsException e) {
 			e.printStackTrace();
 		}
-		return "/ok";
+		return ResponseEntity.status(409).build();
 	}
 	
 	@PostMapping(value= "/checkIdDuplication",
@@ -94,7 +96,6 @@ public class UserAccountController extends UserCRUDGenericController<UserAccount
 		return result ? ResponseEntity.status(HttpStatus.OK).build()
 					  : ResponseEntity.status(HttpStatus.FOUND).build();
 	}
-	
 
 	//TODO 일관된 resolve/error 리턴 환경 만들 수 있는가?
 	//TODO =>DI하는 식으로, 실패시 돌아가는 경로를 담은 리스트를 쓴다? -> 클래스가 될 수도 있음.
