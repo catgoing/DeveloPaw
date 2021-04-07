@@ -76,7 +76,7 @@
 	<insert id="insertUserAccount" parameterType="UserAccount">
 				INSERT INTO USER_ACCOUNT (MEMBER_SERIAL, ID, EMAIL, CITIZEN_ID, PHONE, PASSWORD, STATUS, POINT, COUPONS)
 				VALUES (MEMBER_SERIAL_SEQ.NEXTVAL,
-						#{id}, #{email}, #{citizenId}, #{phone}, #{status}, #{point}, #{coupons})
+						#{id}, #{email}, #{citizen_id}, #{phone}, #{status}, #{point}, #{coupons})
 	</insert>
 
 	<insert id="insertTemporaryUserAccount" parameterType="UserAccount" >
@@ -99,7 +99,7 @@
 
 	<select id="getUserAccount" parameterType="UserAccount" resultType="UserAccount">
 		SELECT * FROM USER_ACCOUNT
-		WHERE MEMBER_SERIAL = #{memberSerial}
+		WHERE MEMBER_SERIAL = #{member_serial}
 	</select>
 	
 	<select id="searchUserAccount" parameterType="UserAccount" resultType="UserAccount">

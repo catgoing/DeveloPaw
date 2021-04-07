@@ -10,9 +10,9 @@ import lombok.ToString;
 @NoArgsConstructor @AllArgsConstructor
 @ToString
 public class UserAddress {
-	long memberSerial;
-	long addressId;
+	long member_serial;
+	long address_id;
 	String address;
-	String addressDetail;
+	String address_detail;
 	String zonecode;
 }
