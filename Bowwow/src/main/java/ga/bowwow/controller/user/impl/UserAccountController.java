@@ -18,7 +18,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
-import org.springframework.web.bind.annotation.SessionAttributes;
+import org.springframework.web.bind.support.SessionStatus;
 
 import ga.bowwow.controller.user.UserCRUDGenericController;
 import ga.bowwow.service.user.VO.UserAccount;
@@ -28,7 +28,7 @@ import ga.bowwow.service.user.impl.UserAccountServiceImpl;
 @Controller
 @RequestMapping("/account")
 public class UserAccountController extends UserCRUDGenericController<UserAccount> {
-
+	//GENERIC Contorller를 상속하는 방식을 RESTful하게 만들 수 있는가? 
 	public UserAccountController(@Autowired UserAccountServiceImpl service) {
 		System.out.println("---->>> UserAccountController() 객체생성");
 		this.service = service;
@@ -109,12 +109,6 @@ public class UserAccountController extends UserCRUDGenericController<UserAccount
 	@RequestMapping(value="/signupAccount") //CRUD페이지
 	public String getUserInfo(@ModelAttribute("userAccount") UserAccount userAccount) {
 		return "/auth.myAccount";
-	}
-	
-	@RequestMapping(value="/logout")
-	public String getUserAccount(@Autowired HttpSession session) {
-		session.invalidate();
-		return "/store/storeMain";
 	}
 	@RequestMapping(value="/signup")
 	public String confirmUserTerms() {

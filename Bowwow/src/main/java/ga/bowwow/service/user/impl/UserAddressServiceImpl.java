@@ -23,8 +23,8 @@ public class UserAddressServiceImpl extends UserGenericService<UserAddress> {
 	}
 	
 	public List<UserAddress> getVoList(UserAddress userAddress) {
-//		return ((UserAddressDAO)dao).getUserList(userAddress);
-		return null;
+		return ((UserAddressDAO)dao).getUserList(userAddress);
+//		return null;
 	}
 
 	@Override
