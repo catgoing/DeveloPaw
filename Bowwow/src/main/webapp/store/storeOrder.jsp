@@ -241,7 +241,7 @@
                                                         </div>
                                                         <div class="checkout__order__total">
                                                             <ul>
-                                                                <li>배송비 <span>무료</span></li>
+                                                                <li>사용 적립금 <span>무료</span></li>
                                                                 <li>총 결제금액 <span id="pSum3"></span></li>
                                                             </ul>
                                                         </div>

@@ -141,6 +141,10 @@ font-size: 16px; color : #fff; border-radius: 2px; line-height: 42px;}
 	padding: 10px;
 }
 /* 상품 상세페이지 끝*/ 
+.details_text h3, h4, h5 {
+	color : #666666;
+}
+
 
 .review_box input:read-only {
     background-color: white;
@@ -190,7 +194,7 @@ font-size: 16px; color : #fff; border-radius: 2px; line-height: 42px;}
    
    .store_btn2 {
 	 border : 1px solid #faf3f4;
-	 background-color : #eeeeee;
+	 background-color : #fff;
 	 color : #000;
 	 border-radius: 25px;
 	 cursor: pointer;
@@ -207,8 +211,8 @@ font-size: 16px; color : #fff; border-radius: 2px; line-height: 42px;}
    }
    
    .store_input2 {
-     border: 1px solid #faf3f4;
-     background-color: #faf3f4;
+     border: 1px solid #fff;
+     background-color: #fff;
      color: #ff6347;
      font-weight: bold;
      text-align: right;
@@ -305,8 +309,8 @@ font-size: 16px; color : #fff; border-radius: 2px; line-height: 42px;}
 /* 본문 영역 */
 body {
     background-color: #f3f3f3;
-    font-size: 0.875em;
-    overflow-x: hidden;
+    font-size: 1em;
+    overflow-x: hidden;	
     color: #ff6347;
     font-family: "Do Hyeon";
     background-attachment: fixed;
@@ -343,14 +347,6 @@ a:hover {
     color: #f7b5b7;
 }
 
-h1,
-h2,
-h3,
-h4,
-h5,
-h6 {
-    font-weight: 600;
-}
 
 h1 {
     font-size: 40px;
@@ -5604,7 +5600,7 @@ table tbody .border-bottom-info td {
 .pcoded-main-container {
     display: block;
     position: relative;
-    background: #faf3f3;
+    background: #fff;
     min-height: calc(100vh - 56px);
 }
 
@@ -5695,6 +5691,7 @@ table tbody .border-bottom-info td {
 }
 
 .pcoded .pcoded-navbar .pcoded-item .pcoded-hasmenu .pcoded-submenu li>a>.pcoded-mtext {
+	
     color: #ff6347;
     -webkit-transition: all 0.3s ease-in-out;
     transition: all 0.3s ease-in-out;
@@ -6719,6 +6716,7 @@ body[themebg-pattern="theme1"] {
 }
 
 .pcoded .pcoded-navbar[active-item-theme="theme1"] .pcoded-item li:hover>a {
+	
     color: #f7b5b7 !important;
 }
 

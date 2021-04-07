@@ -92,10 +92,10 @@ function delOrder(){
 }
 
 
-function deleteOrder(frm) {
+/* function deleteOrder(frm) {
 	frm.action="/store/deleteOrder";
 	frm.submit();
-}
+} */
 
 </script>
 <body>
@@ -194,7 +194,7 @@ function deleteOrder(frm) {
 												</tbody>
 											</table>
 											<button onclick="location.href='storeOrderDetailUpdate.jsp'" class="site-btn" style="font-size: 1.5em; float: right;">주문내역 수정</button>
-											<button onclick="deleteOrder(this.form)" style="font-size: 1.5em; float: right;" >주문 취소</button>
+											<input type="submit" style="font-size: 1.5em; float: right;" value="주문 취소">
 											<input type="hidden" name="order_id" value="${o.order_id} ">
 											<input type="hidden" id="orderStatus" name="order_status" value="${o_status}">
 										</div>

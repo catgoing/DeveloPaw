@@ -83,7 +83,7 @@
 			success : function(data) {
 				console.log('?? ' + data)
 				if (data == "success") {
-					$('#oList_' + order_id).remove();
+					$('.oList_' + order_id).remove();
 				}
 			}
 		});
@@ -137,7 +137,7 @@
 																	<td class="cart-title first-row">${oList.p_id }</td>
 																	<td class="p-price first-row">${oList.order_date}</td>
 																	<td class="total-price first-row">$60.00</td>
-																	<td class="close-td first-row"><button class="store_btn" onclick="deleteOrder(${oList.order_id})"
+																	<td class="close-td first-row"><button class="store_btn" onclick="deleteOrder(${oList.order_id })"
                                                                   		style="float: right;">주문 취소</button></td>
 																</tr>
 															</tbody>

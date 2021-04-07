@@ -187,6 +187,7 @@
 			type : "post",
 			data : formObj,
 			dataType : 'json',
+			async : false,
 			success : function(data){
 				if(data) {
 					$('.appendReview').prepend(
@@ -209,10 +210,11 @@
 							
 					); 
 				}
-
+				
 
 				if(data.code == '0000') {
 					alert(data.msg);
+					reviewList();
 				} else {
 					alert(data.msg);
 				}
@@ -260,7 +262,7 @@
 					 + '</div>'
 					 + '<div class="comment-text">'
 					 + '<h3>'+this.member_serial+'</h3>'
-					 + '<span>'+this.review_regdate+'</span>'
+					 + '<span>'+reviewDate+'</span>'
 					 + '<p>'+this.review_title+'</p>'
 					 + '<p>'+this.review_content+'</p>'
 					 + '<button class="btn custom-btn" onclick="deleteReview('+this.review_id+')">삭제</button>'
@@ -331,7 +333,7 @@
 										<div class="col-lg-6">
 											<div class="details_text">
 												<form name="form" onsubmit="return false;" method="POST">
-													<h4 style="color: #000">${p.p_name }</h4>
+													<h4 style="color: #000; font-weight : 600;" >${p.p_name }</h4>
 													<input type="hidden" id="product_id" name="p_id"
 														value="${p.p_id }"> <input type="hidden"
 														name="stock" value="${p.stock }">
