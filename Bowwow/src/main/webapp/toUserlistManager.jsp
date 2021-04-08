@@ -8,7 +8,7 @@
 </head>
 <body>
 <!-- <script> window.location.href = 'http://localhost:8080/userList/manageList'; -->
-<script> window.location.href = 'http://localhost:8080/user/getUserAccountAddressList';
+<script> window.location.href = 'http://localhost:8080/user/manageList';
 
 </script>
 <h1>

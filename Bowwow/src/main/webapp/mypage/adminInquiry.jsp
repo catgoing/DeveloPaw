@@ -1,3 +1,5 @@
+<%@page import="java.sql.Date"%>
+<%@page import="ga.bowwow.service.user.VO.UserDTO"%>
 <%@page import="ga.bowwow.service.user.VO.UserAccount"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
@@ -5,6 +7,9 @@
 <%@ taglib uri="http://tiles.apache.org/tags-tiles" prefix="tiles"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 
+<%
+
+%>
 <!DOCTYPE html>
 <html>
 
@@ -54,33 +59,6 @@
     <link rel="stylesheet" type="text/css" href="../resources/css/style.css">
     <link rel="stylesheet" type="text/css" href="../resources/css/test.css">
 <style>
-  .featured__item__text { width: 150px; }
-  
-  .input-content .input-wrap {
-	margin-bottom: 15px;
-	position: relative;
-}
- .input-content .input-wrap:last-of-type {
-	margin-bottom: 0;
-}
-
- .input-content .input-wrap input {
-	width: 100%;
-	height: 50px;
-	border-radius: 10px;
-	color: #48484d;
-	font-size: 15px;
-	font-weight: 700;
-	padding: 14px 20px;
-	border: 1px solid #e4e4e4;
-	padding-right: 50px;
-}
- .content-list {
-   display : block;
-   width: 80%;
-    margin-bottom: 50px;
- } 
- 
  table { border-collapse: collapse; }
  th, td {
 	border: 1px solid black;
@@ -92,8 +70,80 @@
  td .input-group{
  	width : 100%;
  }
+ .my-inquiry{
+	position: relative;
+ }
+ .question-write, .content-list, table{
+	padding-bottom: 30px;
+	text-align:center;
+	margin : 50px;
+	width: 80%;	
+ }
+ .question-write div, .question-write input[type="text"], 
+ .question-write textarea, .question-write select{
+	margin: 5px 0px; 
+	width: 100%;
+	font-size: 20px;
+ }
  
+ .textarea {
+ 	height: 200px;
+ }
+ .question-section {
+  	width : 700px;
+  	display : none;
+  	overflow: hidden;
+  	padding: 20px;
+  	margin: 20px;
+ }
+ .question-title {
+ 	width : 100%;	
+    font-size: 25px;
+    font-weight: 700;
+    line-height: 37px;
+    float: left;
+ }
+ .question-title .cancel-btn{
+	float: right;
+    line-height: 37px;
+ }
+ .question-write{
+	position: relative;
+	width : 80%;
+ }
+ .content-list {
+   display : block;
+   width: 80%;
+    margin-bottom: 50px;
+ } 
+
+.form-control {
+	width : 100%;
+	border : 1px solid #e4e4e4;
+	border-radius : 10px;
+	
+}
+
 </style>
+<script>
+
+$(document).ready(function(){
+	$('#inquiry_type').on("change", function(){
+		var checked = $("#inquiry_type>option:selected").val();
+		console.log(checked);
+	});
+	
+	$('.cancel-btn').click(function(){
+		console.log($(this));
+		$('input[type="text"]').val('');
+		$('form-control fill').removeAttr("selected");
+		$('textarea').val('');
+	});
+	
+	
+});
+
+</script>
 </head>
 
 <body>
@@ -163,70 +213,117 @@
 				<!-- 좌측 메뉴바 시작 -->
 				<%@include file="/common/myPageMenuBar.jsp" %>
 
-				<div class="pcoded-content">
-				<div class="pcoded-inner-content">
-					<!-- Main-body start 본문 시작 -->
-					<div class="main-body">
-						<div class="page-wrapper">
-	                                
-							<!-- Page-body start -->
-							<div class="page-body">
-								<section class="featured spad">
-									<div class="container">
-										<div class="row">
-											<div class="col-lg-12">
-												<div class="section-title">
-													<h2>포인트 출력</h2>
-												</div>
-												<br>
-											</div>
-										</div>			
-								<div class="content-list">
+<div class="pcoded-content">
+	<div class="pcoded-inner-content">
+		<!-- Main-body start 본문 시작 -->
+		<div class="main-body">
+	    <div class="page-wrapper">
+		        <!-- Page-body start -->
+					<div class="page-body">
+						<div class="my-inquiry">
+							<div class="question-write">
+								<div class="question-title">
+							    	<h2>고객문의</h2>
+						     	</div>
+						     	
+						     	
+								</div>
+							
+							<div class="content-list">
 						     	<table>
 									<tr>
-										<th width="200">추가일</th>
-										<th width="150">추가포인트</th>
-										<th width="150">누적포인트</th>
+										<th width="100">문의유형</th>
+										<th width="200">제목</th>
+										<th width="150">작성자</th>
+										<th width="150">작성일</th>
+										<th width="150">답변유무</th>
 									</tr>
-									
-								<c:if test="${empty pointList }">
+								<c:if test="${empty sessionScope.AllUsersInquiry }">
 									<tr>
-										<td colspan="5" class="center">적립된 포인트가 없습니다.</td>
+										<td colspan="5" class="center">들어온 문의가 없습니다.</td>
 									</tr>
 								</c:if>
-								<c:if test="${not empty pointList }">	
-									<h5>상품 구매 후 적립된 포인트 내역을 보여드립니다.</h5>
-									<c:forEach var="point" items="${pointList }">
+								<c:if test="${not empty sessionScope.AllUsersInquiry }">	
+									<c:forEach var="inquiry" items="${sessionScope.AllUsersInquiry }">
 									<tr>
-										<td>${point.order_date }</td>
-										<td>${point.order_point }</td>
-										<td>${point.point }</td>
+										<td>${inquiry.inquiry_type }</td>
+										<td>
+											<a href="/getAdminInquiryDetail?inquiry_serial=${inquiry.inquiry_serial }">
+												${inquiry.inquiry_title }</a>
+										</td>
+										<td>${inquiry.nickname }</td>
+										<td>${inquiry.inquiry_writedate }</td>
+										<td>${inquiry.have_answer }</td>
 									</tr>
 									</c:forEach>
 								</c:if>
 								</table>
+								<form action="/getUserInquiryList" method="post">
+								<table class="border-none">
+									<tr>
+										<td class="input-group">
+										    <select class="form-control" id="inputGroupSelect04" name="typeSelect" aria-label="Example select with button addon">
+										      <option selected>전체보기</option>
+										      <option value="contactUs">이용문의</option>
+										      <option value="product">상품문의</option>
+										      <option value="delivery">배송문의</option>
+										      <option value="etc">기타문의</option>
+										    </select>
+											<input type="submit" class="btn btn-outline-secondary" value="검색">
+										</td>
+									</tr>
+								</table>
+								</form>
 						     </div>
-											
-							</div>
-							</section>
-								<!-- Page-body end -->
-						</div>
-						<div id="styleSelector"> </div>
-					</div>
-					<!-- Main-body start 본문 끝 -->
-				</div>
-			</div>
-		</div>
-	</div>
-            
-	</div>
+					    </div>
+				    </div>
+					<!-- Page-body end -->
+            	</div>
+	            <div id="styleSelector"> </div>
+	        </div>
+	      </div>
+	      
+	<button class="scroll-top" id="js-button" style="margin-bottom: 190px; margin-right: 30px;">
+        <i class="fa fa-chevron-up" aria-hidden="true">TOP</i>
+    </button>
+    <script type="text/javascript">
+        scrollTop('js-button', 500);
+        function scrollTop(elem,duration) {
+            let target = document.getElementById(elem);
+        
+            target.addEventListener('click', function() {
+                let currentY = window.pageYOffset; 
+                let step = duration/currentY > 1 ? 10 : 100;
+                let timeStep = duration/currentY * step;
+                let intervalID = setInterval(scrollUp, timeStep);
+        
+                function scrollUp(){
+                    currentY = window.pageYOffset;
+                    if(currentY === 0) {
+                        clearInterval(intervalID);
+                    } else {
+                        scrollBy( 0, -step );
+                    }
+                }
+            });
+        }
+        </script>
+        
 	<!-- footer 푸터 시작부분-->
-	<%@include file="/common/footer.jsp" %>
-	<!-- footer 푸터 끝부분-->
-  </div>
-</div>
-
-    <!-- Required Jquery -->
+            <div style="display: block;">
+                <footer class="footer navbar-wrapper">
+                    <div class="footer-wrapper navbar-wrapper">
+                        <div class="footer-box" style="height: 100px; text-align: center;">
+                            푸터
+                        </div>
+                    </div>
+                </footer>
+         	 </div>
+     <!-- footer 푸터 끝부분-->
+        </div>
+      </div>
+    </div></div></div>
+	<!-- Required Jquery -->
     <script type="text/javascript" src="../resources/js/jquery/jquery.min.js "></script>
     <script type="text/javascript" src="../resources/js/jquery-ui/jquery-ui.min.js "></script>
     <script type="text/javascript" src="../resources/js/popper.js/popper.min.js"></script>
@@ -245,6 +342,4 @@
 
     <script type="text/javascript" src="../resources/js/script.js "></script>
 </body>
-
-
 </html>

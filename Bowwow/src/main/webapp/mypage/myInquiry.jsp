@@ -1,18 +1,12 @@
+<%@page import="java.sql.Date"%>
+<%@page import="ga.bowwow.service.user.VO.UserDTO"%>
 <%@page import="ga.bowwow.service.user.VO.UserAccount"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
     <% request.setCharacterEncoding("UTF-8"); %>
 <%@ taglib uri="http://tiles.apache.org/tags-tiles" prefix="tiles"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
-<%
-	//임시 로그인처리
-	int memberSerial = 1;
-	String id = "z";
-	UserAccount user= new UserAccount();
-	user.setId(id);
-	user.setMemberSerial(memberSerial);
-	session.setAttribute("user", user);
-%>
+
 <!DOCTYPE html>
 <html>
 
@@ -88,6 +82,7 @@
 	width: 100%;
 	font-size: 20px;
  }
+ 
  .textarea {
  	height: 200px;
  }
@@ -113,43 +108,21 @@
 	position: relative;
 	width : 80%;
  }
- .write-question .question-section ul {
-   border: 1px solid #e4e4e4;
-   border-radius: 10px;
-   background: #fff;
-   width: 100%;
- }   
-
  .content-list {
    display : block;
    width: 80%;
     margin-bottom: 50px;
  } 
- 
- .select-category{
- 	width : 100%;	
-    font-size: 25px;
-    font-weight: 700;
-    line-height: 37px;
-    float: left;
- }
- .drop-category{
- 	width: 100%;
- }
- input[type='text'],.question-write textarea, .select-category{
- 	border: 1px solid #e4e4e4;
-    border-radius: 10px;
- }
- .form-select form-select-lg mb-3 {
-	width: 100%;
+
+.form-control {
+	width : 100%;
+	border : 1px solid #e4e4e4;
+	border-radius : 10px;
+	
 }
+
 </style>
 <script>
-
-function inquiryType(val){
-	console.log(val);
-	$('input[name="contact_us_type"]').val(val);
-}
 
 $(document).ready(function(){
 	$('#inquiry_type').on("change", function(){
@@ -165,6 +138,29 @@ $(document).ready(function(){
 	});
 });
 
+//빈칸, 문의유형선택안하면 경고
+function allInputCheck(frm) {
+	if(frm.inquiry_type.value==""){
+		alert("문의 유형을 선택하세요");
+		console.log(frm.inquiry_type);
+		frm.inquiry_type.focus();
+	} 
+	else if(frm.inquiry_title.value==""){
+		alert("문의 제목을 입력하세요");
+		frm.inquiry_title.focus();
+	} 
+	else if(frm.inquiry_content.value==""){
+		alert("문의 내용을 입력하세요");
+		frm.inquiry_content.focus();
+	} 
+	else {
+		frm.action = "/insertUserInquiry";
+		frm.method = "post";
+		frm.submit();
+	}
+	return false;
+}
+	
 </script>
 </head>
 
@@ -254,28 +250,30 @@ $(document).ready(function(){
                                            <div class="accordion-heading" role="tab" id="headingOne">
                                                    <a class="accordion-msg waves-effect waves-dark card-title accordion-title" data-toggle="collapse"
                                                    data-parent="#accordion" href="#collapseOne"
-                                                   aria-expanded="true" aria-controls="collapseOne"><i class="fas fa-chevron-down"></i> 고객님의 문의사항을 해결해드리겠습니다. <i class="fas fa-chevron-down"></i></a>
+                                                   aria-expanded="true" aria-controls="collapseOne">
+                                                   <h4>
+                                                   <i class="fas fa-chevron-down"></i> 고객님의 문의사항을 해결해드리겠습니다. <i class="fas fa-chevron-down"></i>
+                                                   </h4>
+                                                   </a>
 										  </div>
                                       	  <div id="collapseOne" class="panel-collapse collapse in" role="tabpanel" aria-labelledby="headingOne">
                                            <div class="accordion-content accordion-desc">
-                                           <form id="inquiry_form" action="/insertUserInquiry" method="post" >
+                                           <form id="inquiry_form" name="inquiry_input_form">
                                                <div class="form-group row" id="question-section">
-                                              		<input type="text" class="form-control" name="inquiry_title" placeholder="제목을 입력하세요">
-							    					<div class="col-sm-10">
-							    					<input type="hidden" value="">
-											    		<select class="form-control" id="inquiry_type" aria-label="문의유형선택" name="inquiry_type">
+                                              		<input type="text" class="form-control" name="inquiry_title" placeholder="제목을 입력하세요">							    					
+											    		<select class="form-control" id="inquiry_type" aria-label="문의유형선택" name="inquiry_type" style="border : 1px solid #e4e4e4">
 														  <option disabled>문의 유형 선택</option>
 														  <option value="contactUs" onclick="inquiryType('contactUs')">이용문의</option>
-														  <option value="buy" onclick="inquiryType('buy')">구매문의</option>
+														  <option value="product" onclick="inquiryType('product')">상품문의</option>
 														  <option value="delivery" onclick="inquiryType('delivery')">배송문의</option>
 														  <option value="etc" onclick="inquiryType('etc')">기타문의</option>
 														</select>
-							    					</div>
 							    					<textarea class="form-control" name="inquiry_content" rows="5" placeholder="질문을 입력하세요!"></textarea>
-								  					</div>
-							    				<input type="hidden" name="nickname" value="${user.nickname }">
-							    				<input type="hidden" name="member_serial" value="${user.memberSerial }">
-	                                           <input type="submit" class="contact-btn" value="문의하기" >	
+							  					</div>
+							    				<div class="form-group input_product" id="input_product"></div>
+							    				<input type="hidden" name="nickname" value="${sessionScope.user.nickname }">
+							    				<input type="hidden" name="member_serial" value="${sessionScope.user.memberSerial }">
+	                                           <input type="button" class="contact-btn" value="문의하기" onclick="allInputCheck(this.form)">	
 							    			   <input type="button" class="cancel-btn" value="취소">
                                            </form>
                                            	</div>
@@ -294,13 +292,13 @@ $(document).ready(function(){
 										<th width="150">작성일</th>
 										<th width="150">답변유무</th>
 									</tr>
-								<c:if test="${empty userinquiryList }">
+								<c:if test="${empty sessionScope.userinquiryList }">
 									<tr>
 										<td colspan="5" class="center">데이터가 없습니다.</td>
 									</tr>
 								</c:if>
-								<c:if test="${not empty userinquiryList }">	
-									<c:forEach var="inquiry" items="${userinquiryList }">
+								<c:if test="${not empty sessionScope.userinquiryList }">	
+									<c:forEach var="inquiry" items="${sessionScope.userinquiryList }">
 									<tr>
 										<td>${inquiry.inquiry_type }</td>
 										<td>
@@ -314,14 +312,14 @@ $(document).ready(function(){
 									</c:forEach>
 								</c:if>
 								</table>
-								<form action="/getInquiryTypeList" method="post">
+								<form action="/getUserInquiryList" method="post">
 								<table class="border-none">
 									<tr>
 										<td class="input-group">
 										    <select class="form-control" id="inputGroupSelect04" name="typeSelect" aria-label="Example select with button addon">
-										      <option value="0" selected>전체보기</option>
+										      <option selected>전체보기</option>
 										      <option value="contactUs">이용문의</option>
-										      <option value="buy">구매문의</option>
+										      <option value="product">상품문의</option>
 										      <option value="delivery">배송문의</option>
 										      <option value="etc">기타문의</option>
 										    </select>

@@ -18,6 +18,7 @@ public class UserDtoServiceImpl extends UserGenericService<UserDTO> {
 	@Override
 	public List<UserDTO> getVoList() {
 		return ((UserDtoDAO)dao).getUserList();
+//		return null;
 	}
 	
 	@Override

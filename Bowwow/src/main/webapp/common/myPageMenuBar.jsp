@@ -34,7 +34,7 @@
 		</ul>
 		<ul class="pcoded-item pcoded-left-item">
 			<li class="">
-			<a href="/getPetInfoList?member_serial=${user.memberSerial }"
+			<a href="/getPetInfoList?member_serial=${sessionScope.user.memberSerial }"
 				class="waves-effect waves-dark"> <span class="pcoded-micon">
 						<!-- <i class="ti-id-badge"></i><b>A</b> -->
 				</span> <span class="pcoded-mtext">반려동물</span> <span class="pcoded-mcaret"></span>
@@ -50,7 +50,7 @@
 		</ul>
 		<ul class="pcoded-item pcoded-left-item">
 			<li class="">
-			<a href="/mypage/myPoint"
+			<a href="/getMyPointList?member_serial=${sessionScope.user.memberSerial }"
 				class="waves-effect waves-dark"> <span class="pcoded-micon">
 						<!-- <i class="ti-id-badge"></i><b>A</b> -->
 				</span> <span class="pcoded-mtext">적립금(?)</span> <span
@@ -59,7 +59,7 @@
 		</ul>
 		<ul class="pcoded-item pcoded-left-item">
 			<li class="">
-			<a href="/getUserInquiryList?member_serial=${user.memberSerial }"
+			<a href="/getUserInquiryList?member_serial=${sessionScope.user.memberSerial }"
 				class="waves-effect waves-dark"> <span class="pcoded-micon">
 						<!-- <i class="ti-id-badge"></i><b>A</b> -->
 				</span> <span class="pcoded-mtext">1:1문의</span> <span class="pcoded-mcaret"></span>

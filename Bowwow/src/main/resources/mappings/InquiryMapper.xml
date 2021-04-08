@@ -7,7 +7,7 @@
 	
 	<!-- 이용자 -->
 	<!-- 문의입력 -->
-	<insert id="userInquiryWrite" parameterType="userinquiry">
+	<insert id="myInquiryWrite" parameterType="inquiry">
 		INSERT INTO INQUIRY_USER (INQUIRY_SERIAL, MEMBER_SERIAL, NICKNAME, INQUIRY_TITLE, INQUIRY_CONTENT,
 				INQUIRY_WRITEDATE, INQUIRY_TYPE) 
 		VALUES (INQ_PERSONAL_SEQ.NEXTVAL, #{member_serial}, #{nickname}, #{inquiry_title}, #{inquiry_content},
@@ -15,26 +15,36 @@
 	</insert>
 	
 	<!-- 본인 문의조회 -->
-	<select id="userInquiryListSelect" parameterType="userinquiry" resultType="userinquiry">
+	<select id="myInquiryListSelect" parameterType="inquiry" resultType="inquiry">
 		SELECT * FROM INQUIRY_USER
-		WHERE MEMBER_SERIAL = #{member_serial}
+		WHERE MEMBER_SERIAL = #{member_serial} 
+			AND #{typeSelect} IS NULL OR INQUIRY_TYPE = #{typeSelect}
+		<!-- <where>
+			MEMBER_SERIAL = #{member_serial}
+		    <if test='typeSelect.equals("contactUs")'>AND INQUIRY_TYPE = 'contactUs'</if>
+		    <if test='typeSelect.equals("product")'>AND INQUIRY_TYPE = 'buy'</if>
+		    <if test='typeSelect.equals("delivery")'>AND INQUIRY_TYPE = 'delivery'</if>
+		    <if test='typeSelect.equals("etc")'>AND INQUIRY_TYPE = 'etc'</if>
+		</where> -->
 		<!-- <choose>
-			<when test='inquiry_type.equals("contactUs")'>AND INQUIRY_TYPE = 'contactUs'</when>
-			<when test='inquiry_type.equals("buy")'>AND INQUIRY_TYPE = 'buy'</when>
-			<when test='inquiry_type.equals("delivery")'>AND INQUIRY_TYPE = 'delivery'</when>
-			<when test='inquiry_type.equals("etc")'>AND INQUIRY_TYPE = 'etc'</when>
+			<when test='typeSelect.equals("all")'>WHERE MEMBER_SERIAL = #{member_serial}</when>
+			<when test='typeSelect.equals("contactUs")'>WHERE MEMBER_SERIAL = #{member_serial} AND INQUIRY_TYPE = 'contactUs'</when>
+			<when test='typeSelect.equals("buy")'>WHERE MEMBER_SERIAL = #{member_serial} AND INQUIRY_TYPE = 'buy'</when>
+			<when test='typeSelect.equals("delivery")'>WHERE MEMBER_SERIAL = #{member_serial} AND INQUIRY_TYPE = 'delivery'</when>
+			<when test='typeSelect.equals("etc")'>WHERE MEMBER_SERIAL = #{member_serial} AND INQUIRY_TYPE = 'etc'</when> 
 		</choose> -->
 		ORDER BY INQUIRY_WRITEDATE DESC
 	</select>
 	
 	<!-- 유저문의조회(개별-답변있으면 답변도 조회) -->
-	<select id="userInquiryCount" parameterType="userinquiry" resultType="userinquiry">
+	<select id="myInquiryCount" parameterType="inquiry" resultType="inquiry">
 		SELECT U.MEMBER_SERIAL, 
 		U.NICKNAME, U.INQUIRY_TITLE,
 				    U.INQUIRY_CONTENT,
 				    U.INQUIRY_WRITEDATE,
 				    U.INQUIRY_TYPE,
-				    U.INQUIRY_SERIAL AS U_SERIAL , A.INQUIRY_SERIAL AS A_SERIAL,
+				    U.P_ID,
+				    U.INQUIRY_SERIAL,
 				    A.INQUIRY_RE_SERIAL, 
 				    A.INQUIRY_RE_CONTENT, 
 				    A.INQUIRY_RE_DATE, 
@@ -44,23 +54,32 @@
 		WHERE U.INQUIRY_SERIAL = #{inquiry_serial}
 	</select>
 	
-	<select id="selectOneTest" parameterType="userInquiry" resultType="userinquiry">
-		SELECT * FROM INQUIRY_USER WHERE INQUIRY_SERIAL = #{inquiry_serial}
-	</select>
-	
 	<!-- 답변여부조회 -->
-	<select id="checkAnswerCount" parameterType="userinquiry" resultType="int">
+	<select id="checkAnswerCount" parameterType="inquiry" resultType="int">
 		SELECT COUNT(*) FROM INQUIRY_ADMIN
 		WHERE INQUIRY_SERIAL = #{inquiry_serial }
 	</select>
 	
 	
-	<!-- 관리자 -->
-	<insert id="adminInquiryWrite" parameterType="admininquiry">
+	<!-- 상품문의시 상품조회 -->
+	<select id="productInquiry" parameterType="inquiry" resultType="Map">
+		SELECT P_ID, P_NAME, PRICE, S_IMAGE 
+		  FROM STORE_PRODUCTS
+		 WHERE P_ID = #{p_id}
+	</select>
+	
+	
+	<!-- 관리자의 문의전체조회 -->
+	<select id="selectAllInquiry" resultType="inquiry">
+		SELECT * FROM INQUIRY_USER
+	</select>
+	
+	<!-- 관리자 문의답변입력 -->
+	<insert id="adminInquiryWrite" parameterType="inquiry">
 		INSERT INTO INQUIRY_ADMIN (INQUIRY_RE_SERIAL, INQUIRY_SERIAL, INQUIRY_RE_CONTENT,
 				INQUIRY_RE_DATE, ADMIN_NAME) 
 		VALUES (INQ_RE_SEQ.NEXTVAL, #{inquiry_serial}, #{inquiry_re_content}, 
-				SYSDATE, #{admin_name})
+				SYSDATE, 'admin')
 	</insert>
 	
 	<!-- 문의는 관리자만 삭제가능 -->
@@ -70,6 +89,7 @@
 		ON U.INQUIRY_SERIAL = A.INQUIRY_SERIAL 
 		WHERE U.INQUIRY_SERIAL = #{inquiry_serial }
 	</delete>
+	
 	
 	
 </mapper>

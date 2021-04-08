@@ -2,15 +2,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@ taglib uri="http://tiles.apache.org/tags-tiles" prefix="tiles"%>
-<%
-	//임시 로그인처리
-	int memberSerial = 1;
-	String id = "z";
-	UserAccount user= new UserAccount();
-	user.setId(id);
-	user.setMemberSerial(memberSerial);
-	session.setAttribute("user", user);
-%>
+
 <!DOCTYPE html>
 <html>
 
@@ -97,6 +89,23 @@
 	.reason_one>ul>li.th {width:20%;}
 } */
 </style>
+<script>
+function checkAgree(frm){
+	if(!$('input:checkbox[name=agree]').is(':checked')){
+		alert("동의하셔야 탈퇴할 수 있습니다.");
+	} else if(!$('input:radio[name=reasonOne]').is(':checked')){
+		alert("탈퇴사유를 체크하셔야 탈퇴할 수 있습니다.");
+	} else if($('#reasonTwo').val()==""){
+		alert("상세사유를 입력하셔야 탈퇴할 수 있습니다.");
+	} else {
+		frm.action="";
+		frm.method="";
+		frm.submit();
+	}
+	return false;
+}
+
+</script>
 </head>
 
 <body>    
@@ -156,7 +165,7 @@
 							</div>						
 							<div class="form-group container reason_two">
 								<ul class="tr">
-									<li class="th">내용</li>
+									<li class="th">상세사유</li>
 									<li class="td">
 										<textarea class="form-control" name="reasonTwo" id="reasonTwo"></textarea>
 									</li>
@@ -169,8 +178,8 @@
 								</label>
 							</div>
 							<div class="btn-area center">
-								<button type="button" id="btn_submit" >탈퇴하기</button>
-								<a href="javascript:history.back();" >취소</a>
+								<input type="button" onclick="checkAgree(this.form)" value="탈퇴하기">
+								<input type="button" onclick="javascript:history.back();" value="취소">
 							</div>
 						</form>
 						</div>

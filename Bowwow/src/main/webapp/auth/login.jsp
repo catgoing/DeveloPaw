@@ -28,7 +28,7 @@ function checker() {
             <div class="col-sm-12">
                 <!-- Authentication card start -->
 
-                    <form class="md-float-material form-material" action="/user/login" onsubmit = "return checker();">
+                    <form class="md-float-material form-material" action="/user/login" method="post" onsubmit = "return checker();">
                         <div class="text-center">
                             <img src="/resources/images/logo.png" alt="logo.png">
                         </div>
@@ -68,8 +68,11 @@ function checker() {
                                                 <span class="text-inverse">아이디 저장</span>
                                             </label>
                                         </div>
+                                        <div class="forgot-phone text-left f-left">
+                                            <a href="/account/signupAccount" class="text-right f-w-600">회원가입</a>
+                                        </div>
                                         <div class="forgot-phone text-right f-right">
-                                            <a href="auth-reset-password.html" class="text-right f-w-600">비밀번호를 잊으셨나요?</a>
+                                            <a href="auth-reset-password.html" class="text-right f-w-600">아이디/비밀번호를 잊으셨나요?</a>
                                         </div>
                                     </div>
                                 </div>

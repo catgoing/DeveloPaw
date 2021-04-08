@@ -25,5 +25,4 @@ public class UserWalletController extends UserCRUDGenericController<UserWallet>{
 		System.out.println("test");
 		return "/auth.myWallet";
 	}
-
 }

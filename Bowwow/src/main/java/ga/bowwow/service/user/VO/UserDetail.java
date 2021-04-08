@@ -17,11 +17,11 @@ import lombok.ToString;
 @ToString
 @Component
 public class UserDetail {
-	long memberSerial;
-	String imageSource;
+	long member_serial;
+	String image_source;
 	String nickname;
 	String realname;
-	Date regDate;
+	Date reg_date;
 	Date birthday;
 	String gender;
 	
@@ -42,7 +42,7 @@ public class UserDetail {
 				return false;
 		} else if (!gender.equals(other.gender))
 			return false;
-		if (memberSerial != other.memberSerial)
+		if (member_serial != other.member_serial)
 			return false;
 		if (nickname == null) {
 			if (other.nickname != null)
@@ -54,10 +54,10 @@ public class UserDetail {
 				return false;
 		} else if (!realname.equals(other.realname))
 			return false;
-		if (regDate == null) {
-			if (other.regDate != null)
+		if (reg_date == null) {
+			if (other.reg_date != null)
 				return false;
-		} else if (!regDate.equals(other.regDate))
+		} else if (!reg_date.equals(other.reg_date))
 			return false;
 		return true;
 	}

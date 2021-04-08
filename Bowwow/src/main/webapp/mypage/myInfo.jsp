@@ -1,4 +1,4 @@
-<%@page import="ga.bowwow.service.user.VO.UserAccount"%>
+<%-- <%@page import="ga.bowwow.service.user.VO.UserAccount"%> --%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
     <% request.setCharacterEncoding("UTF-8"); %>
@@ -325,7 +325,7 @@ $(function(){
 						<!-- Page-body start -->
 						<div class="page-body">
 						<div class="myPageInfo-header">
-							<h2> ${user.id }님의 페이지</h2>
+							<h2> ${sessionScope.userDTO.id }님의 페이지</h2>
 						</div>
 						<div class="myPageInfo-wrapper">
 
@@ -335,10 +335,10 @@ $(function(){
 									<div class="side-content">
 										<div class="my-area">
 											<div class="side-profile-img">
-												<%-- <img src="${user.image_source }" alt="이미지없음~"> --%>
+												<%-- <img src="${sessionScope.userDTO.image_source }" alt="이미지없음~"> --%>
 												<img src="" alt="이미지없음~">
 											</div>
-											<p>닉네임${user.nickname }</p>
+											<p>${sessionScope.userDTO.nickname }</p>
 										</div>
 									</div>
 
@@ -351,7 +351,7 @@ $(function(){
   <div class="form-group">
     <label for="inputId" class="col-sm-4 control-label">아이디(변경불가)</label>
     <div class="col-sm-8">
-		<input type="text" class="form-control" id="noborderline" value="아이디 ${user.id }" disabled>
+		<input type="text" class="form-control" id="noborderline" value="${sessionScope.userDTO.id }" disabled>
     </div>
   </div>
   <div class="form-group">
@@ -371,13 +371,13 @@ $(function(){
   <div class="form-group">
     <label for="inputPassword3" class="col-sm-4 control-label">이름(변경불가)</label>
     <div class="col-sm-8">
-   		<input type="text" class="form-control" id="noborderline" value="이름 ${user.realname }" disabled>
+   		<input type="text" class="form-control" id="noborderline" value="${sessionScope.userDTO.realname }" disabled>
     </div>
   </div>
   <div class="form-group">
     <label for="inputNickname" class="col-sm-4 control-label">닉네임</label>
     <div class="col-sm-8">
-      <input type="text" class="form-control" name="nickname" id="inputNickname" placeholder="닉네임" value="닉네임${user.nickname}">
+      <input type="text" class="form-control" name="nickname" id="inputNickname" placeholder="닉네임" value="${sessionScope.userDTO.nickname}">
     </div>
   </div>
   <div class="form-group">
@@ -394,7 +394,7 @@ $(function(){
   <div class="form-group">
     <label for="inputEmail" class="col-sm-4 control-label">이메일</label>
     <div class="col-sm-8">
-      <input type="email" class="form-control" name="email" id="inputEmail" placeholder="hong@example.com" value="${user.email }">
+      <input type="email" class="form-control" name="email" id="inputEmail" placeholder="hong@example.com" value="${sessionScope.userDTO.email }">
     </div>
   </div>
   <div class="form-group">

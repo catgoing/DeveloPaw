@@ -76,7 +76,7 @@
 	<insert id="insertUserAccount" parameterType="UserAccount">
 				INSERT INTO USER_ACCOUNT (MEMBER_SERIAL, ID, EMAIL, CITIZEN_ID, PHONE, PASSWORD, STATUS, POINT, COUPONS)
 				VALUES (MEMBER_SERIAL_SEQ.NEXTVAL,
-						#{id}, #{email}, #{citizenId}, #{phone}, #{status}, #{point}, #{coupons})
+						#{id}, #{email}, #{citizen_id}, #{phone}, #{status}, #{point}, #{coupons})
 	</insert>
 
 	<insert id="insertTemporaryUserAccount" parameterType="UserAccount" >
@@ -99,7 +99,7 @@
 
 	<select id="getUserAccount" parameterType="UserAccount" resultType="UserAccount">
 		SELECT * FROM USER_ACCOUNT
-		WHERE MEMBER_SERIAL = #{memberSerial}
+		WHERE MEMBER_SERIAL = #{member_serial}
 	</select>
 	
 	<select id="searchUserAccount" parameterType="UserAccount" resultType="UserAccount">
@@ -144,4 +144,20 @@
 		ORDER BY SEQ DESC
 	</select>
 	 -->
+	 
+	 <!-- 포인트 검색 (총 포인트도 같이 검색) -->
+	 <select id="searchMyPoint" parameterType="Order" resultType="Order">
+		 SELECT O.ORDER_DATE, O.TOTALSUM, O.ORDER_POINT, A.POINT
+		  FROM STORE_ORDER O, USER_ACCOUNT A
+		   WHERE O.MEMBER_SERIAL = A.MEMBER_SERIAL
+		    AND O.MEMBER_SERIAL = #{member_serial}
+		  ORDER BY O.ORDER_DATE DESC
+	 	<!-- ORDER테이블 컬럼에 ORDER_POINT가 없었을 때 쿼리문(적립포인트계산)
+	 	SELECT ORDER_DATE, TOTALSUM , FLOOR(TOTALSUM * 0.001) AS ORDER_POINT
+		FROM STORE_ORDER
+		WHERE MEMBER_SERIAL = #{member_serial}
+		ORDER BY ORDER_DATE DESC -->
+	 </select>
+	 
+	 	 
 </mapper>

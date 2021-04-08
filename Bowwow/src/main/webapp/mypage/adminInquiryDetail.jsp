@@ -108,31 +108,29 @@
 								<c:if test="${uiqDetail.p_id == null }">
 								<tr>
 									<th>문의상품</th>
-									<td></td>
+									<td colspan="3"></td>
 								</tr>
 								</c:if>			
 							</table>
-							<hr>
-							<c:if test="${empty inquiryAnswer }">
-							</c:if>
-							<c:if test="${not empty inquiryAnswer }">
-							<table class="table">
-								<tr>
-									<th class="inquiry_th">관리자 답변</th>
-									<td>
-									<pre><c:out value="${inquiryAnswer.inquiry_re_content} " /></pre>
-									</td>
-								</tr>
-								<tr>
-									<th class="inquiry_th">등록일</th>
-									<td>${inquiryAnswer.inquiry_re_date} </td>
-								</tr>
-							</table>
-							</c:if>
-						</div>  	
-						<div class="btn-container">
-							<button onclick="history.back()">돌아가기</button>
 						</div>
+						<hr>
+						<form action="/insertInquiryAnswer" method="post">
+							<div>
+								<table class="table">
+									<tr>
+										<th class="inquiry_th">관리자 답변</th>
+										<td>
+										<textarea rows="10" name="inquiry_re_content" placeholder="답변 입력 필드"></textarea>
+										</td>
+									</tr>
+								</table>
+							</div>  	
+							<div class="btn-container">
+								<input type="hidden" name="inquiry_serial" value="${uiqDetail.inquiry_serial }">
+								<input type="submit" class="btn btn-outline-secondary" value="답변등록">
+								<button onclick="history.back()">돌아가기</button>
+							</div>
+						</form>
 					</div>
 				</div>
 			</div>

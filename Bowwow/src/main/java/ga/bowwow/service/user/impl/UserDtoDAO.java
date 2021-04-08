@@ -26,7 +26,7 @@ public class UserDtoDAO extends UserGenericDAO<UserAccount> {
 	}
 
 	public List<UserDTO> getUserList() {
-//		return mybatis.selectList("UserAccount.getUserDtoList");
-		return mybatis.selectList("UserAccount.getNestedAddressUserAccount");
+		return mybatis.selectList("UserAccount.getUserDtoList");
+//		return mybatis.selectList("UserAccount.getNestedAddressUserAccount");
 	}
 }
