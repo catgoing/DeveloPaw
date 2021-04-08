@@ -10,7 +10,7 @@
 	String id = "z";
 	UserAccount user= new UserAccount();
 	user.setId(id);
-	user.setMemberSerial(memberSerial);
+	user.setMember_serial(memberSerial);
 	session.setAttribute("user", user);
 %>
 <!DOCTYPE html>

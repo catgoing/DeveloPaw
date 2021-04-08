@@ -19,7 +19,7 @@
 	
 	UserDTO user= new UserDTO();
 	user.setId(id);
-	user.setMemberSerial(memberSerial);
+	user.setMember_serial(memberSerial);
 	user.setNickname(nickname);
 	user.setRealname(realname);
 	user.setBirthday(birthday);
