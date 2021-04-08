@@ -1,5 +1,27 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"	pageEncoding="UTF-8"%>
 
+<style>
+ .form-control{
+      width:250px;
+      height:40px;
+      border:none;
+      font-size:1em;
+      padding-left: 5px;
+      font-style: oblique;
+      display:inline;
+      outline:none;
+      box-sizing: border-box;
+      color:black;
+}
+
+input[type="submit"] {
+	font-family: FontAwesome;
+	background-color: #f7b5b7;
+	border: none;
+	color: #fff;
+}
+</style>
+
 <!-- Pre-loader start -->
 	<div class="theme-loader">
 		<div class="loader-track">
@@ -90,10 +112,14 @@
 							<li><a href="/community/main"> 커뮤니티 </a></li>
 							<li><a href="storeMain"> 스토어 </a></li>
 						</ul>
+						<form action="prodSearch" method="POST">
 						<ul class="nav-right">
 							<li class="form-group form-primary">
-								<input type="text" name="footer-email" style="margin-top: 12px; width: 250px;" class="form-control" placeholder="검색창"> 
+								<input type="text" class="form-control" name="keyword" autocomplete="off" placeholder="검색창"> 
 								<span class="form-bar"></span>
+							</li>
+							<li>
+								<input type="submit" name="search" value="&#xf002;">
 							</li>
 							<li class="header-notification">
 								<a href="/store/cartList" class="waves-effect waves-light"> 
@@ -118,6 +144,7 @@
 										href="auth-normal-sign-in.html">로그아웃 </a></li>
 								</ul></li>
 						</ul>
+						</form>
 					</div>
 				</div>
 			</nav>
