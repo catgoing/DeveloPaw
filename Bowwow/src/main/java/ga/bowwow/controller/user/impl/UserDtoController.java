@@ -1,12 +1,16 @@
 package ga.bowwow.controller.user.impl;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpEntity;
+import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
+import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -18,6 +22,8 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.support.SessionStatus;
 import org.springframework.web.client.RestTemplate;
 import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
+
+import com.amazonaws.HttpMethod;
 
 import ga.bowwow.controller.user.UserCRUDGenericController;
 import ga.bowwow.service.user.VO.UserAccount;
@@ -65,29 +71,44 @@ public class UserDtoController extends UserCRUDGenericController<UserAccount> {
 	}
 	
 	public String autoAdminLogin() {
+		
 		final String baseUrl = ServletUriComponentsBuilder.fromCurrentContextPath().build().toUriString();
 		UserDTO adminUser = new UserDTO();
 		adminUser.setId("z");
 		adminUser.setPassword("z");
-		return rt.postForEntity(baseUrl + "/user/login", adminUser, String.class).getBody();
+		
+		HttpHeaders headers = new HttpHeaders();
+        headers.setAccept(Arrays.asList(MediaType.APPLICATION_JSON));
+        headers.add("user-agent", "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/54.0.2840.99 Safari/537.36");
+        
+		return rt.postForEntity(baseUrl + "/user/login", new HttpEntity<UserDTO>(adminUser, headers), String.class).getBody();
 	}
 
 	//추상화된 REST 자원 받아오기 명령 : (baseUrl, 체킹 T(추상VO, 또는 Serial), 경로(rest자원명), 파라미터)=>{}
 	//실험. getBody로 넘긴 리스트를 타입체킹해서 올바르게 넘길 수 있는가? 
-	private ArrayList requestUserAddressList(final String baseUrl, UserAccount userAccount) {
-		return rt.postForEntity(baseUrl + "/address/list", userAccount, ArrayList.class).getBody();
+	public ArrayList requestUserAddressList(final String baseUrl, UserAccount userAccount) {
+		HttpHeaders headers = new HttpHeaders();
+        headers.setAccept(Arrays.asList(MediaType.APPLICATION_JSON));
+        headers.add("user-agent", "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/54.0.2840.99 Safari/537.36");
+        
+		return rt.postForEntity(baseUrl + "/address/list", new HttpEntity<UserAccount>(userAccount, headers), ArrayList.class).getBody();
 	}
 	
 	//TODO 로직을 보이기 위해서 singleLine method로 두었는데, 그냥 인라인하거나 아니면 setRoute? 아니면 익명 콜백으로 추상화 할 수도 있음.
-	private ResponseEntity<String> attemptUserLogin(String baseUrl, UserAccount userAccount) {
+	public ResponseEntity<String> attemptUserLogin(String baseUrl, UserAccount userAccount) {
+		
+		HttpHeaders headers = new HttpHeaders();
+        headers.setAccept(Arrays.asList(MediaType.APPLICATION_JSON));
+        headers.add("user-agent", "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/54.0.2840.99 Safari/537.36");
+        
 //		System.out.println("dtoController userAccount : " + userAccount);
-		return rt.postForEntity(baseUrl + "/account/loginValidateUserAccount", userAccount, String.class);
+		return rt.postForEntity(baseUrl + "/account/loginValidateUserAccount", new HttpEntity<UserAccount>(userAccount, headers), String.class);
 //		System.out.println(baseUrl + "/account/loginValidateUserAccount");
 //		System.out.println(re.getStatusCode());
 //		System.out.println(re.getBody());
 	}
 
-	boolean isSessionNewAndHasNoUserDTO(HttpSession session) {
+	public boolean isSessionNewAndHasNoUserDTO(HttpSession session) {
 		return session.getAttribute("userDTO") == null ? true : false;
 	}
 
