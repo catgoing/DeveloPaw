@@ -1,6 +1,6 @@
 package ga.bowwow.controller.user.impl;
 
-import java.net.URI;
+import java.io.File;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -16,6 +16,7 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import ga.bowwow.controller.user.UserCRUDGenericController;
@@ -31,6 +32,12 @@ public class UserAccountController extends UserCRUDGenericController<UserAccount
 		System.out.println("---->>> UserAccountController() 객체생성");
 		this.service = service;
 		this.setDomainRoute("/ok", "/auth.login");
+	}
+	@RequestMapping("/img")
+	public String getImg(@RequestParam("profileImg") File profileImg) {
+		System.out.println(profileImg.getName());
+		System.out.println(profileImg);
+		return "/index";
 	}
 
 	@ResponseBody

@@ -105,20 +105,11 @@
 
 							<!-- Page-body start -->
 							<div class="page-body">
-								<div class="myPageInfo-header">
-									<h2>뫄뫄님의 페이지</h2>
-								</div>
 								<div class="myPageInfo-wrapper">
 
 									<!-- 회원정보수정 부분 -->
 									<div class="form-group">
 										<div class="input-content">
-											<div class="side-content">
-												<div class="my-area">
-													<div class="side-profile-img">프로필사진영역</div>
-													<p>닉네임</p>
-												</div>
-											</div>
 
 											<div class="mainMypage-content">
 												<div class="block-title">
@@ -172,7 +163,7 @@
 																<label for="uploadImage" id="imageview"> <img
 																	src="" class="thumb">
 																</label>
-																<!-- <input type="file" id="uploadImage" accept="image/gif, image/jpeg, image/jpg, image/png" name="uploadImage" onchange="readURL(this);"> -->
+																<input type="file" id="uploadImage" accept="image/gif, image/jpeg, image/jpg, image/png" name="uploadImage" onchange="readURL(this);">
 															</div>
 														</div>
 														<p></p>
