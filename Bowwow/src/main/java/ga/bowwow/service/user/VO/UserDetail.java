@@ -17,7 +17,7 @@ import lombok.ToString;
 @ToString
 @Component
 public class UserDetail {
-	long member_serial;
+	int member_serial;
 	String image_source;
 	String nickname;
 	String realname;

@@ -42,7 +42,7 @@ public class UserAddressController extends UserCRUDGenericController<UserAddress
 		try {
 			//컨트롤러 전반에서 session에서 일관되게 memberSerial을 담을 수 있는 방식? intercepter를 이용하면 되는가? redis?
 			UserAccount userAccount = (UserAccount)session.getAttribute("userDTO");
-			long sessionMemberSerial = userAccount.getMember_serial();
+			int sessionMemberSerial = userAccount.getMember_serial();
 			
 			address.stream().filter(adr->adr.isValueNeverNull())
 //							.forEach(System.out::println);

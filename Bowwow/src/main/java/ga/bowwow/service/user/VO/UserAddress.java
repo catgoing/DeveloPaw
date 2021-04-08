@@ -11,14 +11,14 @@ import lombok.ToString;
 @NoArgsConstructor @AllArgsConstructor
 @ToString
 public class UserAddress {
-	long member_serial;
-	long address_id;
+	int member_serial;
+	int address_id;
 	String address;
 	String address_detail;
 	String zonecode;
 	
-	public UserAddress buildMemberSerial(long member_serial) {
-		this.member_serial = member_serial;
+	public UserAddress buildMemberSerial(int sessionMemberSerial) {
+		this.member_serial = sessionMemberSerial;
 		return this;
 	}
 	public boolean isValueNeverNull() {

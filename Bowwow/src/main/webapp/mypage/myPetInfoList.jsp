@@ -112,6 +112,7 @@ pre{
 	height : 200px;
 }
 </style>
+<script type="text/javascript" src="/common/commonThumbnail.js"></script>
 <script>
 
 $().ready(function(){
@@ -204,22 +205,7 @@ $().ready(function(){
 	        return;
 	    }
 	}
-	
 });
-
-function setThumbnail(event){
-	var reader = new FileReader(); 
-	
-	reader.onload = function(event) { 
-		var img = document.createElement("img"); 
-		img.setAttribute("id", "petThumbnail");
-		img.setAttribute("src", event.target.result); 
-		console.log(img);
-		document.querySelector("div#image_container").appendChild(img);
-	}; 
-	reader.readAsDataURL(event.target.files[0]); 
-}
-
 
 function getPetInfo(frm){
 	console.log("getPetInfo 시작");
