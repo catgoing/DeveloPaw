@@ -12,7 +12,7 @@ import lombok.ToString;
 @NoArgsConstructor @AllArgsConstructor
 @ToString
 public class UserAccount {
-	long member_serial;
+	int member_serial;
 	String id;
 	String email;
 	String citizen_id;

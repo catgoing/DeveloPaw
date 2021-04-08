@@ -13,7 +13,7 @@ import lombok.ToString;
 @ToString
 
 public class UserDTO extends UserAccount {
-	long member_serial;
+	int member_serial;
 	String id;
 	String email;
 	String citizen_id;

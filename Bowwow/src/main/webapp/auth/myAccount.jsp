@@ -163,7 +163,9 @@
 																<label for="uploadImage" id="imageview"> <img
 																	src="" class="thumb">
 																</label>
-																<input type="file" id="uploadImage" accept="image/gif, image/jpeg, image/jpg, image/png" name="profileImage" onchange="readImage(this);">
+																<input type="file" id="inputimage" accept="image/jpg, image/gif image/png, image/jpeg image/bmp" name="file" >
+												        		<div id="thumb_container">
+												        		</div>
 															</div>
 														</div>
 														<p></p>
@@ -335,16 +337,16 @@
   		var imagePaths = _imageSource.value.split('\\');
   		var imageLastIndex = imagePaths.length;
   		var imageName = imagePaths[imageLastIndex-1];
+    	return imageName;
 //   		console.log(imageSource.value);
 //   		console.log(imagePaths);
 //   		console.log(imageLastIndex);
 //   		console.log(imageName);
 
-      	const datas = new FormData(_imageSource);
-		console.log(datas);
-		console.log($("#insertPetform input[type='file']").val());
-		
-    	return imageName;
+
+//       	const datas = new FormData(document.getElementById('uploadImage'));
+// 		console.log(datas);
+// 		console.log($("#insertPetform input[type='file']").val());
      }
      	function readImage(_image) {
      	console.log(getImageName(_image));
