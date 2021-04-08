@@ -37,17 +37,17 @@ public class Board {
 	private String img_locas;
 	
 	
-	public void setAnimal_class(String animal_class) {
-		if(animal_class.equals("1")) {
-			this.animal_class = "강아지"; 
-		}
-		else if(animal_class.equals("2")) {
-			this.animal_class = "고양이"; 
-		}
-		else if(animal_class.equals("3")) {
-			this.animal_class = "자유"; 
-		}
-	}
+//	public void setAnimal_class(String animal_class) {
+//		if(animal_class.equals("1")) {
+//			this.animal_class = "강아지"; 
+//		}
+//		else if(animal_class.equals("2")) {
+//			this.animal_class = "고양이"; 
+//		}
+//		else if(animal_class.equals("3")) {
+//			this.animal_class = "자유"; 
+//		}
+//	}
 
 	public void setRegdate(String regdate) {
 		this.regdate = regdate.substring(0, 16);

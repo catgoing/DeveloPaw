@@ -254,49 +254,6 @@ th {
 																<input type="text" name="board_title" size="30">
 															</td>
 														</tr>
-														<tr>
-															<th width="40">상품종류</th>
-															<td>
-								                    			<select name="goods" style="height:20px">
-												                   	<option value="0" selected>식품</option>
-														            <option value="1">장난감</option>
-														            <option value="2">의류</option>
-														            <option value="3">생활용품</option>
-														            <option value="4">기타</option>
-										                    	</select>
-															</td>
-														</tr>
-																												<tr>
-															<th width="40">지역</th>
-															<td>
-								                    			<select name="area" style="height:20px">
-												                   	<option value="0" selected>서울</option>
-														            <option value="1">경기</option>
-														            <option value="2">인천</option>
-														            <option value="3">강원</option>
-														            <option value="4">충청</option>
-														            <option value="3">대전</option>
-														            <option value="3">대구</option>
-														            <option value="3">부산</option>
-														            <option value="3">전라</option>
-														            <option value="3">제주</option>
-														            <option value="3">부산</option>
-														            <option value="3">부산</option>
-										                    	</select>
-															</td>
-														</tr>
-														<tr>
-															<th width="40">제목</th>
-															<td>
-																<input type="text" name="board_title" size="30">
-															</td>
-														</tr>
-														<tr>
-															<th width="40">제목</th>
-															<td>
-																<input type="text" name="board_title" size="30">
-															</td>
-														</tr>
 														
 													</table>
 													<br>
@@ -307,7 +264,7 @@ th {
 													<br> <br>
 													
 													<input type="hidden" name="member_serial" value="994">
-													<input type="hidden" name="board_idx" value="1">
+													<input type="hidden" name="board_idx" value="${board_idx }">
 													
 													<div style="text-align: center" class="enter_button">
 														<input type="submit" value="확인">

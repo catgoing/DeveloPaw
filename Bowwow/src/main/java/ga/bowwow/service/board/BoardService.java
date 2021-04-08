@@ -8,6 +8,7 @@ import javax.servlet.http.HttpSession;
 public interface BoardService {
 	
 //	void insertBoard(int board_idx, int board_no, Board vo);
+//	void insertBoard(Map<String, Object> map);
 	void insertBoard(Board vo);
 	void updateBoard(Board vo, HttpSession session);
 	void deleteBoard(Board vo);
