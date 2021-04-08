@@ -163,7 +163,7 @@
 																<label for="uploadImage" id="imageview"> <img
 																	src="" class="thumb">
 																</label>
-																<input type="file" id="inputimage" accept="image/jpg, image/gif image/png, image/jpeg image/bmp" name="file" >
+																<input type="file" id="inputimage" name="file" accept="image/jpg, image/gif image/png, image/jpeg image/bmp" onchange="setThumbnail(event)">
 												        		<div id="thumb_container">
 												        		</div>
 															</div>
@@ -488,6 +488,6 @@
 // 		});
     };
    	</script>
-
+   	<script type="text/javascript" src="/common/commonThumbnail.js"></script>
 </html>
 
