@@ -140,6 +140,11 @@ ul, ol {
 }
 
 /* buttons */
+.searchAddress {
+	cursor : pointer;
+	width : 20px ;
+}
+
 .primary-btn {
 	display: inline-block;
 	font-size: 14px;
@@ -151,9 +156,10 @@ ul, ol {
 }
 
 .site-btn {
+	cursor : pointer;
 	font-size: 14px;
 	color: #ffffff;
-	background: #ca1515;
+	background: #000;
 	font-weight: 600;
 	border: none;
 	text-transform: uppercase;

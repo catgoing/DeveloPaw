@@ -92,10 +92,10 @@ function delOrder(){
 }
 
 
-function deleteOrder(frm) {
+/* function deleteOrder(frm) {
 	frm.action="/store/deleteOrder";
 	frm.submit();
-}
+} */
 
 </script>
 <body>
@@ -127,7 +127,7 @@ function deleteOrder(frm) {
 												<h4>Order Info</h4>
 												<ul class="list">
 													<li><a href="#"><span>주문번호</span> : ${o.order_id}</a></li>
-													<li><a href="#"><span>Member Serial</span> : ${o.member_serial}</a></li>
+													<li><a href="#"><span>Member Serial</span> : ${o.nickname}</a></li>
 													<li><a href="#"><span>Total</span> : USD 2210</a></li>
 													<li><a href="#"><span>Payment method</span> : Check payments</a></li>
 												</ul>
@@ -194,7 +194,7 @@ function deleteOrder(frm) {
 												</tbody>
 											</table>
 											<button onclick="location.href='storeOrderDetailUpdate.jsp'" class="site-btn" style="font-size: 1.5em; float: right;">주문내역 수정</button>
-											<button onclick="deleteOrder(this.form)" style="font-size: 1.5em; float: right;" >주문 취소</button>
+											<input type="submit" style="font-size: 1.5em; float: right;" value="주문 취소">
 											<input type="hidden" name="order_id" value="${o.order_id} ">
 											<input type="hidden" id="orderStatus" name="order_status" value="${o_status}">
 										</div>

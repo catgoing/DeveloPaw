@@ -50,7 +50,7 @@
 	<script type="text/javascript" src="/resources/js/ajax.js"></script>
 
 <script type="text/javascript">
-
+	
 	$(function() {
 		var sell_price = $("input:hidden[name='price']");
 		var amount = $("input:text[name='amount']");
@@ -63,7 +63,50 @@
 		}
 
 	});
-
+	
+	// 장바구니 상품 수량 수정
+	var tUrl = '/store/updateCart';
+	var result;
+		
+	function add(pId, userId, amount) {
+		var amount = Number(amount) + 1;
+		var param = {
+				p_id : pId,
+				id : userId,
+				amount : amount
+			}
+		
+		result = callAjax(tUrl, 'post', param, 'data');
+		
+		if (result.code == '0000') {
+			alert(result.msg);
+			location.reload();
+		} else {
+			alter(result.msg);
+		}
+	}
+	
+	function del(pId, userId, amount) {
+		var amount = Number(amount) - 1;
+		var param = {
+				p_id : pId,
+				id : userId,
+				amount : amount
+			}
+		
+		result = callAjax(tUrl, 'post', param, 'data');
+		
+		if (result.code == '1111') {
+			amount = 1;
+			alert(result.msg);
+		} else if (result.code == '0000') {
+			alert(result.msg);
+			location.reload();
+		} else {
+			alter(result.msg);
+		}
+	}
+	
 	// 장바구니 상품 삭제
 	function delCart(pId, userId) {
 
@@ -89,15 +132,31 @@
 	} //end of delCart(pId, userId);
 
 	// 장바구니 상품 전체 체크
-	function chkAll() {
-		if ($("#checkAll").is(':checked')) {
-			$("input:checkbox[name='p_id']").prop("checked", true);
-			itemCheck();
+	function checkSelectAll()  {
+	  // 전체 체크박스
+	  const checkboxes = document.querySelectorAll("input[name='p_id']");
+	  // 선택된 체크박스
+	  const checked = document.querySelectorAll("input[name='p_id']:checked");
+	  // select all 체크박스
+	  const selectAll = document.querySelector("input[name='selectall']");
+	  
+	  if(checkboxes.length === checked.length)  {
+	    selectAll.checked = true;
+	    itemCheck();
+	  }else {
+	    selectAll.checked = false;
+	    itemCheck();
+	  }
+	
+	}
 
-		} else {
-			$("input:checkbox[name='p_id']").prop("checked", false);
-			itemCheck();
-		}
+	function selectAll(selectAll)  {
+	  const checkboxes = document.getElementsByName('p_id');
+	  
+	  checkboxes.forEach((checkbox) => {
+	    checkbox.checked = selectAll.checked
+	    itemCheck();
+	  })
 	}
 
 	// 체크된 상품만 총액 계산
@@ -139,8 +198,6 @@
  			}
  		}
  			delCart(pIdArr, userId);
-
-
 
  	}
 
@@ -196,7 +253,7 @@
 													<thead>
 														<tr>
 															<th>
-																<input type="checkbox" id="checkAll" onclick="chkAll();">
+																<input type="checkbox" id="checkAll" name='selectall' onclick="selectAll(this);">
 															</th>
 															<th></th>
 															<th class="p-name" colspan="2">상품명</th>
@@ -228,7 +285,7 @@
 																	</c:when>
 																</c:choose>
 																<tr style="border-bottom: 1px solid #ddd;">
-																	<td><input type="checkbox" name="p_id" value="${cart.p_id }" onclick="itemCheck()"></td>
+																	<td><input type="checkbox" name="p_id" value="${cart.p_id }" onclick="itemCheck(); checkSelectAll();"></td>
 																	<td class="cart-pic first-row"><a
 																		href="detail?p_id=${cart.p_id }"> <img
 																			src="https://projectbit.s3.us-east-2.amazonaws.com/${imgDir }/${cart.s_image }"
@@ -245,9 +302,9 @@
 																	<td class="qua-col first-row">
 																		<div class="quantity">
 																			<div class="cartList_amount">
-																				<input type="button" class="store_btn2" value=" - " onclick="add()">
-																				<input type="text" name="amount" value="${cart.amount }" size="3" readonly>
-																				<input type="button" class="store_btn2" value=" + " onclick=>
+																				<input type="button" class="store_btn2" value=" - " onclick="del('${cart.p_id}', '${cart.id }', '${cart.amount }')">
+																				<input type="text" name="amount" value="${cart.amount }" min="1" size="3" readonly>
+																				<input type="button" class="store_btn2" value=" + " onclick="add('${cart.p_id}', '${cart.id }', '${cart.amount }')">
 																			</div>
 																		</div>
 																	</td>
