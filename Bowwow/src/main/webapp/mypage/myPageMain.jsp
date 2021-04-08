@@ -5,8 +5,10 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%
 	int member_serial = 999;
+	String nickname = "야";
 	UserDTO userDTO = new UserDTO();
 	userDTO.setMember_serial(member_serial);
+	userDTO.setNickname(nickname);
 	session.setAttribute("userDTO", userDTO);
 %>
 <!DOCTYPE html>
@@ -148,7 +150,7 @@
 						<div class="mypage_main_content">
 
 							<div class="container mypage_main_content mypointlist">
-								<h3>누적적립금출력영역</h3>
+								<h3>누적 적립금 출력영역</h3>
 								<div class="container totalpoint">
 									<div class="table">
 									
@@ -184,7 +186,7 @@
 							<br>
 							<hr>
 							<div class="container petlist">
-							  	<h3>반려동물리스트</h3>
+							  	<h3>반려동물 리스트</h3>
 							  <div class="row">
 							  	<c:if test="${not empty myHomepetList }">
                        			<c:forEach var="petList" items="${myHomepetList }">

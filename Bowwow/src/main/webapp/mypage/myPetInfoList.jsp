@@ -365,7 +365,7 @@ function clearInput(){
 			                                        <form name="thisform">
 				                                        <input type="hidden" name="thispetserial" value="${pet.pet_serial }">
 				                                        <%-- <input type="hidden" name="thismemberserial" id="thismem" value="${sessionScope.userDTO.member_serial }"> --%>
-				                                        <input type="button" value="상세보기" data-toggle="modal" role="button" onclick="getPetInfo(this.form)">
+				                                        <input type="button" class="btn btn-outline-secondary"  value="상세보기" data-toggle="modal" role="button" onclick="getPetInfo(this.form)">
 			                                        </form>
 			                                        </div>
 		                                        </div>
@@ -383,7 +383,7 @@ function clearInput(){
                                         <div class="action-button">
 	                                        <div class="action-button-inner">
 	                                        	<input type="hidden" id="member_serial" name="member_serial" value="${sessionScope.userDTO.member_serial }">
-	                                        	<input type="button" value="반려동물 추가하기" data-toggle="modal" data-target="#petType" role="button" onclick="inputMemberSerial()">
+	                                        	<input type="button" class="btn btn-outline-secondary"  value="반려동물 추가하기" data-toggle="modal" data-target="#petType" role="button" onclick="inputMemberSerial()">
 	                                        </div>
                                         </div>
                                    </div>

@@ -26,4 +26,6 @@ public class Order {
 	private int order_point;		// 적립 포인트
 	
 	private String nickname;		// 닉네임
+	
+	private long point;				// join용 UserAccount point
 }

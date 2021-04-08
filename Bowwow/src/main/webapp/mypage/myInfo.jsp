@@ -141,14 +141,6 @@ $(function(){
 			$(this).val(inputVal.replace(/[^a-z0-9@_.-]/gi,''));//한글과 @_.-를 제외한 특수문자입력금지
 		}
 	});
-	//아이디는 변경금지라서 필요없어짐ㅋㅋ
-	/* $("input[name=id]").on("keyup", function(event){
-		if(!(event.keyCode >=37 && event.keyCode<=40)){
-			var inputVal = $(this).val(); 
-			$(this).val(inputVal.replace(/[^a-z0-9_-]/gi,'')); 
-		}
-	}); */
-	
 });
 
  function goModify(form){
@@ -163,23 +155,6 @@ $(function(){
 	}
 	
  }
-
- $(function(){
-	$('.eyes').on('click', function(){
-		$('.passinput').addClass('active');
-		
-		if($('.passinput').hasClass('active') == true){
-			$('.passinput').removeClass('active');
-			$(this).find('.fa-eye').attr('class',"fa fa-eye-slash fa-lg").parents('.passinput').find('#password').attr('type',"text");
-			//$(this).find('.fa-eye').attr('class',"fa fa-eye-slash fa-lg").parents('.passinput').find("#password2").attr('type',"text");
-		} else {
-			$('.passinput').addClass('active');
-			$(this).find('.fa-eye').attr('class',"fa fa-eye fa-lg").parents('.passinput').find('#password').prop('type','password');
-			//$(this).find('.fa-eye').attr('class',"fa fa-eye fa-lg").parents('.passinput').find("#password2").attr('type','password');
-		}
-	});
-});
- 
  
  function sample4_execDaumPostcode() {
      new daum.Postcode({
@@ -317,7 +292,7 @@ $(function(){
 						<!-- Page-body start -->
 						<div class="page-body">
 						<div class="myPageInfo-header">
-							<h2> ${sessionScope.userDTO.id }님의 페이지</h2>
+							<h2> ${sessionScope.userDTO.nickname }님의 페이지</h2>
 						</div>
 						<div class="myPageInfo-wrapper">
 

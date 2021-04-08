@@ -100,7 +100,7 @@
     line-height: 37px;
     float: left;
  }
- .question-title .cancel-btn{
+ .question-title #cancel-btn{
 	float: right;
     line-height: 37px;
  }
@@ -130,7 +130,7 @@ $(document).ready(function(){
 		console.log(checked);
 	});
 	
-	$('.cancel-btn').click(function(){
+	$('#cancel-btn').click(function(){
 		console.log($(this));
 		$('input[type="text"]').val('');
 		$('form-control fill').removeAttr("selected");
@@ -141,6 +141,9 @@ $(document).ready(function(){
 //빈칸, 문의유형선택안하면 경고
 function allInputCheck(frm) {
 	if(frm.inquiry_type.value==""){
+		if(frm.p_id.value!=""){
+			alert("문의 유형은 상품유형을 선택하세요");
+		}
 		alert("문의 유형을 선택하세요");
 		console.log(frm.inquiry_type);
 		frm.inquiry_type.focus();
@@ -258,11 +261,11 @@ function allInputCheck(frm) {
 										  </div>
                                       	  <div id="collapseOne" class="panel-collapse collapse in" role="tabpanel" aria-labelledby="headingOne">
                                            <div class="accordion-content accordion-desc">
-                                           <form id="inquiry_form" name="inquiry_input_form">
+                                           <form id="inquiry_form" name="inquiry_input_form" method="post">
                                                <div class="form-group row" id="question-section">
                                               		<input type="text" class="form-control" name="inquiry_title" placeholder="제목을 입력하세요">							    					
 											    		<select class="form-control" id="inquiry_type" aria-label="문의유형선택" name="inquiry_type" style="border : 1px solid #e4e4e4">
-														  <option disabled>문의 유형 선택</option>
+														  <option value="" selected disabled hidden>문의 유형 선택</option>
 														  <option value="contactUs" onclick="inquiryType('contactUs')">이용문의</option>
 														  <option value="product" onclick="inquiryType('product')">상품문의</option>
 														  <option value="delivery" onclick="inquiryType('delivery')">배송문의</option>
@@ -270,11 +273,16 @@ function allInputCheck(frm) {
 														</select>
 							    					<textarea class="form-control" name="inquiry_content" rows="5" placeholder="질문을 입력하세요!"></textarea>
 							  					</div>
+							  					<c:if test="${not empty targetProduct }">
+							  					<div>
+							  						<input type="hidden" id="targetPid" name="p_id" value="${targetProduct.p_id }">							  						
+							  					</div>
+							  					</c:if>
 							    				<div class="form-group input_product" id="input_product"></div>
 							    				<input type="hidden" name="nickname" value="${sessionScope.userDTO.nickname }">
 							    				<input type="hidden" name="member_serial" value="${sessionScope.userDTO.member_serial }">
-	                                           <input type="button" class="contact-btn" value="문의하기" onclick="allInputCheck(this.form)">	
-							    			   <input type="button" class="cancel-btn" value="취소">
+	                                           <input type="button" class="btn btn-outline-secondary" id="contact-btn" value="문의하기" onclick="allInputCheck(this.form)">	
+							    			   <input type="button" class="btn btn-outline-secondary" id="cancel-btn" value="취소">
                                            </form>
                                            	</div>
                                          </div>

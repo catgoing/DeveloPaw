@@ -14,11 +14,21 @@
 				SYSDATE, #{inquiry_type})
 	</insert>
 	
-	<!-- 본인 문의조회 -->
-	<select id="myInquiryListSelect" parameterType="inquiry" resultType="inquiry">
-		SELECT * FROM INQUIRY_USER
+	<!-- 본인 문의 전체 조회 -->
+	<select id="myInquiryListSelect" parameterType="Map" resultType="Map"> <!-- 기존페이징사용하면 member_serial에서 에러남(타입안맞음) -->
+		SELECT * 
+	    FROM(SELECT ROWNUM AS RN, IQUSER.* 
+	        FROM(SELECT *
+	            FROM INQUIRY_USER
+	            WHERE 1=1 
+	            AND #{typeSelect} IS NULL OR INQUIRY_TYPE = #{typeSelect}
+	            and MEMBER_SERIAL = #{member_serial} 
+	            		 ORDER BY INQUIRY_WRITEDATE DESC
+						 ) IQUSER )
+	    WHERE RN BETWEEN #{begin} AND #{end}
+		<!-- SELECT * FROM INQUIRY_USER
 		WHERE MEMBER_SERIAL = #{member_serial} 
-			AND #{typeSelect} IS NULL OR INQUIRY_TYPE = #{typeSelect}
+			AND #{typeSelect} IS NULL OR INQUIRY_TYPE = #{typeSelect} -->
 		<!-- <where>
 			MEMBER_SERIAL = #{member_serial}
 		    <if test='typeSelect.equals("contactUs")'>AND INQUIRY_TYPE = 'contactUs'</if>
@@ -37,7 +47,7 @@
 	</select>
 	
 	<!-- 유저문의조회(개별-답변있으면 답변도 조회) -->
-	<select id="myInquiryCount" parameterType="inquiry" resultType="inquiry">
+	<select id="myInquirySearch" parameterType="inquiry" resultType="inquiry">
 		SELECT U.MEMBER_SERIAL, 
 		U.NICKNAME, U.INQUIRY_TITLE,
 				    U.INQUIRY_CONTENT,
@@ -52,6 +62,15 @@
 		FROM INQUIRY_USER U LEFT OUTER JOIN INQUIRY_ADMIN A
 		ON U.INQUIRY_SERIAL = A.INQUIRY_SERIAL
 		WHERE U.INQUIRY_SERIAL = #{inquiry_serial}
+	</select>
+	
+	<!-- 유저 개별 문의 갯수 조회 -->
+	<select id="myInquiryCount" resultType="int">
+		SELECT COUNT(*) AS COUNT
+		FROM INQUIRY_USER
+		WHERE 1=1
+		and member_serial = #{member_serial} 
+		<if test="typeSelect != null">AND INQUIRY_TYPE = #{typeSelect}</if>
 	</select>
 	
 	<!-- 답변여부조회 -->
@@ -69,9 +88,18 @@
 	</select>
 	
 	
-	<!-- 관리자의 문의전체조회 -->
-	<select id="selectAllInquiry" resultType="inquiry">
-		SELECT * FROM INQUIRY_USER
+	<!-- 관리자의 유저문의전체조회 -->
+	<select id="selectAllInquiry" parameterType="Map" resultType="inquiry">
+		SELECT * 
+		 FROM(SELECT ROWNUM AS RN, IQUSER.* 
+				FROM(SELECT *
+					 FROM INQUIRY_USER
+					 WHERE 1=1
+					<if test="typeSelect != null">#{typeSelect} IS NULL OR AND INQUIRY_TYPE = #{typeSelect}</if>
+					 ORDER BY INQUIRY_WRITEDATE DESC
+					 ) IQUSER
+		 	   )
+		  WHERE RN BETWEEN #{begin} AND #{end}
 	</select>
 	
 	<!-- 관리자 문의답변입력 -->
@@ -90,6 +118,13 @@
 		WHERE U.INQUIRY_SERIAL = #{inquiry_serial }
 	</delete>
 	
+	<!-- 전체 문의 수  -->
+	<select id="InquiryCount" resultType="int">
+		SELECT COUNT(*) AS COUNT
+		FROM INQUIRY_USER
+		WHERE 1=1
+		<if test="typeSelect != null">AND INQUIRY_TYPE = #{typeSelect}</if>
+	</select>
 	
 	
 </mapper>
