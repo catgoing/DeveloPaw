@@ -46,7 +46,6 @@ public class UserDtoController extends UserCRUDGenericController<UserAccount> {
 		}
 		return "/auth.login";
 	}
-	
 	@PostMapping(value="/login")
 	public String loginUserDTO(@ModelAttribute("userDTO") UserDTO userDTO, Model model, HttpServletRequest request) {
 		final String baseUrl = ServletUriComponentsBuilder.fromCurrentContextPath().build().toUriString();
