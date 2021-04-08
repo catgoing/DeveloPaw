@@ -69,7 +69,7 @@
 
 
 <style>
-.carousel-inner>.carousel-item>a img {  width: 300px; height: 350px; 
+.carousel-inner>.carousel-item>a img {  width: 300px; height: 400px; 
 }
 
 

@@ -20,6 +20,8 @@ public class BoardServiceImpl implements BoardService{
 	private BoardDAO boardDAO;
 	@Autowired
 	private CommentDAO commentDAO;
+	@Autowired
+	private ReportDAO reportDAO;
 	
 	public BoardServiceImpl() {
 		System.out.println(">> BoardServiceImpl() 객체생성");
@@ -29,6 +31,7 @@ public class BoardServiceImpl implements BoardService{
 //	public void insertBoard(int board_idx, int board_no, Board vo) {
 //		boardDAO.insertBoard(board_idx, board_no, vo);
 //	}
+	
 	@Override
 	public void insertBoard(Board vo) {
 		boardDAO.insertBoard(vo);
@@ -55,7 +58,7 @@ public class BoardServiceImpl implements BoardService{
 //	}
 	
 	@Override
-	public List<Board> getBoardList(Map<String, Integer> map) {
+	public List<Board> getBoardList(Map<String, String> map) {
 		return boardDAO.getBoardList(map);
 	}
 
@@ -64,9 +67,9 @@ public class BoardServiceImpl implements BoardService{
 	//댓글부분
 	
 	@Override
-	public void insertComment(Comment vo) {
-		System.out.println("service: " + vo);
-		commentDAO.insertComment(vo);
+	public void insertComment(Map<String, Object> map) {
+		System.out.println("inserComment: " + map);
+		commentDAO.insertComment(map);
 		
 	}
 
@@ -90,8 +93,8 @@ public class BoardServiceImpl implements BoardService{
 	//대댓글 부분
 	
 	@Override
-	public void insertComment2(Comment vo) {
-		commentDAO.insertComment2(vo);
+	public void insertComment2(Map<String, Object> map) {
+		commentDAO.insertComment2(map);
 	}
 
 	@Override
@@ -114,18 +117,68 @@ public class BoardServiceImpl implements BoardService{
 		return boardDAO.search(board, keyword);
 	}
 
-	@Override
-	public void insertReport(Report vo) {
-		System.out.println("report vo  :  " + vo);
-		boardDAO.insertReport(vo);
-		
-		
-	}
 	
 	public void boardDelete(Map<String,Object> map) {
 		System.out.println("map: " + map);
 		boardDAO.boardDelete(map);
 	}
+
+
+	@Override
+	public void updateBoardReport(Report vo) {
+		// TODO Auto-generated method stub
+		
+	}
+
+
+	@Override
+	public void updateCommentReport(Report vo) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public List<Report> getReportList(int report_idx) {
+		
+		return reportDAO.getReportList(report_idx);
+	}
+
+
+	@Override
+	public Report getReport(int report_idx, int report_no) {
+		return reportDAO.getReport(report_idx, report_no);
+	}
+	
+	public void commentDelete(Map<String,Object> map) {
+		System.out.println("map: " + map);
+		boardDAO.commentDelete(map);
+	}
+	
+	public void commentDelete2(Map<String,Object> map) {
+		System.out.println("map: " + map);
+		boardDAO.commentDelete2(map);
+	}
+
+	@Override
+	public void insertReport(Report vo) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public void updateHits(Map<String, Integer> map) {
+		boardDAO.updateHits(map);
+		
+	}
+
+	@Override
+	public int getBoardCount(Map<String, String> map) {
+		return boardDAO.getBoardCount(map);
+	}
+
+
+
+	
 	
 
 }

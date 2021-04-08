@@ -17,27 +17,14 @@ import lombok.ToString;
 @ToString
 @Component
 public class UserDetail {
-	int memberSerial;
-	String imageSource;
+	int member_serial;
+	String image_source;
 	String nickname;
 	String realname;
-	Date regDate;
+	Date reg_date;
 	Date birthday;
 	String gender;
 	
-	@Override
-	public int hashCode() {
-		final int prime = 31;
-		int result = 1;
-		result = prime * result + ((birthday == null) ? 0 : birthday.hashCode());
-		result = prime * result + ((gender == null) ? 0 : gender.hashCode());
-		result = prime * result + ((imageSource == null) ? 0 : imageSource.hashCode());
-		result = prime * result + memberSerial;
-		result = prime * result + ((nickname == null) ? 0 : nickname.hashCode());
-		result = prime * result + ((realname == null) ? 0 : realname.hashCode());
-		result = prime * result + ((regDate == null) ? 0 : regDate.hashCode());
-		return result;
-	}
 	@Override
 	public boolean equals(Object obj) {
 		if (obj == null)
@@ -55,7 +42,7 @@ public class UserDetail {
 				return false;
 		} else if (!gender.equals(other.gender))
 			return false;
-		if (memberSerial != other.memberSerial)
+		if (member_serial != other.member_serial)
 			return false;
 		if (nickname == null) {
 			if (other.nickname != null)
@@ -67,10 +54,10 @@ public class UserDetail {
 				return false;
 		} else if (!realname.equals(other.realname))
 			return false;
-		if (regDate == null) {
-			if (other.regDate != null)
+		if (reg_date == null) {
+			if (other.reg_date != null)
 				return false;
-		} else if (!regDate.equals(other.regDate))
+		} else if (!reg_date.equals(other.reg_date))
 			return false;
 		return true;
 	}

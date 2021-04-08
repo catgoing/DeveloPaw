@@ -15,55 +15,68 @@
 <meta name="viewport"
 	content="width=device-width, initial-scale=1.0, user-scalable=0, minimal-ui">
 <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-
-<meta name="keywords"
-	content="bootstrap, bootstrap admin template, admin theme, admin dashboard, dashboard template, admin template, responsive" />
-<meta name="author" content="Codedthemes" />
-<!--Jua 폰트 import-->
-<link rel="preconnect" href="https://fonts.gstatic.com">
-<link href="https://fonts.googleapis.com/css2?family=Jua&display=swap"
-	rel="stylesheet">
-
-<!-- Favicon icon -->
-<link rel="icon" href="/resources/images/favicon.ico"
-	type="image/x-icon">
-<!-- Google font-->
-<link
-	href="https://fonts.googleapis.com/css?family=Open+Sans:400,600,700"
-	rel="stylesheet">
-<!-- waves.css -->
-<link rel="stylesheet" href="/resources/pages/waves/css/waves.min.css"
-	type="text/css" media="all">
-<!-- Required Fremwork -->
-<link rel="stylesheet" type="text/css"
-	href="/resources/css/bootstrap/css/bootstrap.min.css">
-<!-- waves.css -->
-<link rel="stylesheet" href="/resources/pages/waves/css/waves.min.css"
-	type="text/css" media="all">
-<!-- themify icon -->
-<link rel="stylesheet" type="text/css"
-	href="/resources/icon/themify-icons/themify-icons.css">
-<!-- font-awesome-n -->
-<link rel="stylesheet" type="text/css"
-	href="/resources/css/font-awesome-n.min.css">
-<link rel="stylesheet" type="text/css"
-	href="/resources/css/font-awesome.min.css">
-<!-- scrollbar.css -->
-<link rel="stylesheet" type="text/css"
-	href="/resources/css/jquery.mCustomScrollbar.css">
-	<script type="text/javascript"
-		src="/resources/js/jquery/jquery.min.js "></script>
-<!-- Style.css -->
-<!-- <link rel="stylesheet" type="text/css" href="/Bowwow/src/main/webapp/resources/css/style.css"> -->
-
-<link rel="stylesheet" type="text/css" href="/resources/css/style.css">
-<link rel="stylesheet" type="text/css" href="/resources/css/test.css">
+<%@ include file="/common/import.jsp"%>
 
 <title>펫 다이어리</title>
 <style>
+
+.button {
+	box-shadow:inset 0px 1px 0px 0px #f7c5c0;
+	background:linear-gradient(to bottom, #fc8d83 5%, #e4685d 100%);
+	background-color:#fc8d83;
+	border-radius:6px;
+	border:1px solid #d83526;
+	display:inline-block;
+	cursor:pointer;
+	color:#ffffff;
+	font-family:Arial;
+	font-size:15px;
+	font-weight:bold;	
+	text-decoration:none;
+	text-shadow:0px 1px 0px #b23e35;
+}
+
+.buttonsmbt {
+	padding:4px 16px;
+
+}
+
+.buttonbig {
+	padding:6px 24px;
+
+}
+
+.button:hover, .buttonsm:hover {
+	background:linear-gradient(to bottom, #e4685d 5%, #fc8d83 100%);
+	background-color:#e4685d;
+}
+.button:active, .buttonsm:hover  {
+	position:relative;
+	top:1px;
+}
+
+.clearfix::after {
+  content: "";
+  clear: both;
+  display: table;
+}
+
+.nonbutton{
+	border:none;
+	
+}
+
+.nonbutton:hover{
+	cursor:pointer;
+	
+}
+
+.c_hidden { display: none; }
+
 </style>
 <!-- 신고하기  -->
 	<script>
+
         $(function (){
         	$('.readonly').prop('readonly', true);
             $('.report_class').click(function(){
@@ -76,6 +89,22 @@
                 }
             });
         });
+        
+		//답글(대댓글) 토글식 구현
+ 		$(function(){
+	        $(".comment2Click").on("click", function(){
+	        	var idx = $(".comment2Click").index(this);
+	        	$(".comment2Box").eq(idx).toggleClass("c_hidden");
+	        });
+		}); 
+
+		
+		$(function(){
+			$(".autosize").on('keydown keyup', function () {
+				 $(this).height(1).height( $(this).prop('scrollHeight')+12 );	
+			});
+		});
+    
     </script>
     
 </head>
@@ -120,58 +149,103 @@
 														<br>
 													</div>
 												</div>
-												<div class="monthly-products">
-													<form action="/community/update/board" method="post">
+												<div class="monthly-products" style="background-color:white; width:900px; margin:auto; border:5px solid pink; padding:15px">
+													<form method="post">
 													<div>
-														<h3 class="join_title">
-															<label for="id">제목</label>
+														<div style="margin-left:20px; margin-top:50px; color:green">
+														${vo.animal_class }
+														</div>
+														<div class="title">
+														<h3 class="join_title" style="margin-left:20px; margin-top:10px">
+															<label for="id" style="color:black;">${vo.board_title }</label>
 														</h3>
-														<span class="box int_id"> ${vo.board_title } </span>
+														</div>
+														<div class="nickname hits" style="margin:10px">
+														<h6 class="join_title" style="text-align:right">
+															<label style="color:black;">${vo.nickname }</label>
+															<label style="color:black;">조회 ${vo.hits }</label>
+														</h6>
+														<h6 class="join_title" style="text-align:right">
+															<label style="color:black;"> ${vo.regdate }</label>
+														</h6>
+														</div>
 													</div>
+													<hr>
 													
+													<!-- 여기에 회원정보(사진, 닉네임 등) 출력 -->
 													
 													<div>
-														<h3 class="join_title">
-															<label for="id">내용</label>
-														</h3>
-														<span class="box int_id"> ${vo.board_content } </span>
+														<span class="box int_id" style="color:black; text-align:center;"> ${vo.board_content } </span>
 													</div>
 													
 													<!-- 수정하기 -->
-													<input type="hidden" name="board_idx" value="${board_idx }">
-													<input type="hidden" name="board_no" value="${vo.board_no }">
-													<input type="submit" value="수정">
+													<div style="text-align:right; margin-right:10px">
+														<input type="hidden" name="board_idx" value="${board_idx }">
+														<input type="hidden" name="board_no" value="${vo.board_no }">
+														<input type="submit" class="button buttonbig" value="수정" formaction="/community/update/board" >
+														<input type="submit" class="button buttonbig" value="삭제 " formaction="/community/delete/board">
+													</div>
 													</form>
-					
-													<!-- 삭제하기 -->
-													<form action="boardDelete">
-													<input type="hidden" name="board_no" value=${board_no }>											
-													<input type="hidden" name="board_idx" value=${board_idx }>
-													<input type="submit" value="삭제하기">
-													</form>
+				
+
 													<hr>
-													댓글달기								
+												<div style="border: solid 1px lightgray; border-radius : 5px; margin : 10px">
 													<form action="/community/comment" method="GET">												
-														<div>
-															내용 : <textarea name="comment_content" id="comment_content" cols="30" rows="3"></textarea>
+													<div style="padding:20px; position:relative">
+													추후 닉네임 출력	
+													<br>							
+															<textarea placeholder="댓글 입력" class="autosize" name="comment_content" id="comment_content" 
+															style="border:none; width:800px; min-height: 50px; resize:none;"></textarea>
+															<br>
+															<input type="hidden" name="board_no" value=${board_no }>											
+															<input type="hidden" name="board_idx" value=${board_idx }>
+															<div class="clearfix">
+																<input type="submit" class="button buttonsmbt" value="등록" style=" float: right;">
+															</div>
 														</div>
-														<input type="hidden" name="board_no" value=${board_no }>											
-														<input type="hidden" name="board_idx" value=${board_idx }>												
-														<input type="submit" value="등록">
 													</form>
-													댓글
-													<br>
-													<div class="comments_div">
-														<c:forEach var="comvo" items="${commentList }">
-															<h4>${comvo.comment_content } // ${comvo.nickname } // ${comvo.regdate }</h4>
-															<button id =  comment name = "comment" value="${comvo.comment_no },${tempMemberSerial}	">신고</button>
+													</div>
+														<div class="comments_div" style="margin:20px">
+															<c:forEach var="comvo" items="${commentList }">
+															<form action="commentDelete">
+															<div>
+																${comvo.nickname }
+																<ul style="float:right">
+																<li>
+																	${comvo.regdate }
+																</li>
+																</ul>
+															</div>
+															<p style="color:black; font-size:1.2em">${comvo.comment_content } </p>
+															<div style="float:right">
+															<button class="nonbutton" id="comment" name="comment" value="${comvo.comment_no },${tempMemberSerial}	">신고</button>
 															
 															<!-- 댓글 삭제하기 -->
+																<input type="hidden" name="board_no" value=${board_no }>		
+																<input type="hidden" name="board_idx" value=${board_idx }>									
+																<input type="hidden" name="comment_no" value=${comvo.comment_no }>
+																<input class="nonbutton" type="submit" value="삭제">
+																</div>
+															</form>
 															
-															<button id =  comment name = "comment" value="${comvo.comment_no }	">삭제하기</button>
-
-															<button name = "comment" value="${comvo.comment_no },${tempMemberSerial}" onclick="">신고</button>
-
+															<div class="comment2Click">
+																<button class="nonbutton" id =comment2_insert name = "comment2_insert" >답글</button>											
+															</div>
+															<div class="comment2Box c_hidden" style="boarder-bottom:2px dotted silver;">													
+																<form action="/community/comment2" method="GET">												
+																	<div>
+																		<textarea name="comment_content" id="comment_content" placeholder="댓글 입력" class="autosize" 
+																					style="border:none; width:800px; min-height: 50px; resize:none;"></textarea>
+																	</div>
+																	<input type="hidden" name="comment_no" value=${comvo.comment_no }>											
+																	<input type="hidden" name="board_idx" value=${board_idx }>	
+																	<input type="hidden" name="board_no" value=${board_no }>
+																	<div class="clearfix">
+																		<input type="submit" class="button" style="float:right" value="등록">
+																	</div>
+																</form>
+															</div>
+														
 
 															<c:set var="com1" value="${comvo.comment_no }" />
 															<hr>
@@ -182,6 +256,13 @@
 																	<div >
 																	대댓글<br>
 																	${com2vo.comment_content } // ${com2vo.nickname } // ${com2vo.regdate }
+																<!-- 대댓글 삭제하기 -->
+																	<form action="commentDelete2">
+																		<input type="hidden" name="board_no" value=${board_no }>		
+																		<input type="hidden" name="board_idx" value=${board_idx }>									
+																		<input type="hidden" name="comment_no" value=${com2vo.comment_no }>
+																		<input type="submit" value="삭제하기" >
+																	</form>
 																	</div>
 																<hr>
 																</c:if>
@@ -205,35 +286,6 @@
 				</div>
 			</div>
 		</div>
-		<button class="scroll-top" id="js-button"
-			style="margin-bottom: 190px; margin-right: 30px; font: 'Jua'">
-			<i class="fa fa-chevron-up" aria-hidden="true">TOP</i>
-		</button>
-		
-		
-		
-		<script type="text/javascript">
-			scrollTop('js-button', 100);
-			function scrollTop(elem, duration) {
-				let target = document.getElementById(elem);
-
-				target.addEventListener('click', function() {
-					let currentY = window.pageYOffset;
-					let step = duration / currentY > 1 ? 10 : 100;
-					let timeStep = duration / currentY * step;
-					let intervalID = setInterval(scrollUp, timeStep);
-
-					function scrollUp() {
-						currentY = window.pageYOffset;
-						if (currentY === 0) {
-							clearInterval(intervalID);
-						} else {
-							scrollBy(0, -step);
-						}
-					}
-				});
-			}
-		</script>
 
 		<!-- footer 푸터 영역 -->
 		<%@ include file="/common/footer.jsp"%>

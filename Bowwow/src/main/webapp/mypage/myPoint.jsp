@@ -4,15 +4,7 @@
     <% request.setCharacterEncoding("UTF-8"); %>
 <%@ taglib uri="http://tiles.apache.org/tags-tiles" prefix="tiles"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
-<%-- <%
-	//임시 로그인처리
-	int memberSerial = 1;
-	String id = "z";
-	UserAccount user= new UserAccount();
-	user.setId(id);
-	user.setMemberSerial(memberSerial);
-	session.setAttribute("user", user);
-%> --%>
+
 <!DOCTYPE html>
 <html>
 
@@ -171,8 +163,7 @@
 				<!-- 좌측 메뉴바 시작 -->
 				<%@include file="/common/myPageMenuBar.jsp" %>
 
-                    
-			<div class="pcoded-content">
+				<div class="pcoded-content">
 				<div class="pcoded-inner-content">
 					<!-- Main-body start 본문 시작 -->
 					<div class="main-body">
@@ -200,15 +191,16 @@
 									
 								<c:if test="${empty pointList }">
 									<tr>
-										<td colspan="5" class="center">데이터가 없습니다.</td>
+										<td colspan="5" class="center">적립된 포인트가 없습니다.</td>
 									</tr>
 								</c:if>
 								<c:if test="${not empty pointList }">	
+									<h5>상품 구매 후 적립된 포인트 내역을 보여드립니다.</h5>
 									<c:forEach var="point" items="${pointList }">
 									<tr>
-										<td>${point.addDate }</td>
-										<td>${point.addPoint }</td>
-										<td>${point.totalPoint }</td>
+										<td>${point.order_date }</td>
+										<td>${point.order_point }</td>
+										<td>${point.point }</td>
 									</tr>
 									</c:forEach>
 								</c:if>
@@ -227,36 +219,12 @@
 		</div>
 	</div>
             
-	<button class="scroll-top" id="js-button" style="margin-bottom: 190px; margin-right: 30px;">
-	<i class="fa fa-chevron-up" aria-hidden="true">TOP</i>
-	</button>
-	<script type="text/javascript">
-		scrollTop('js-button', 500);
-		function scrollTop(elem,duration) {
-		    let target = document.getElementById(elem);
-		
-		    target.addEventListener('click', function() {
-		        let currentY = window.pageYOffset; 
-		        let step = duration/currentY > 1 ? 10 : 100;
-		        let timeStep = duration/currentY * step;
-		        let intervalID = setInterval(scrollUp, timeStep);
-		
-		        function scrollUp(){
-		            currentY = window.pageYOffset;
-		            if(currentY === 0) {
-		                clearInterval(intervalID);
-		            } else {
-		                scrollBy( 0, -step );
-		            }
-		        }
-		    });
-		}
-	</script>
-  </div>
-</div>
+	</div>
 	<!-- footer 푸터 시작부분-->
 	<%@include file="/common/footer.jsp" %>
 	<!-- footer 푸터 끝부분-->
+  </div>
+</div>
 
     <!-- Required Jquery -->
     <script type="text/javascript" src="../resources/js/jquery/jquery.min.js "></script>

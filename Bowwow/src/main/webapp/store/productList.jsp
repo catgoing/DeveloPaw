@@ -43,6 +43,7 @@
     <!-- Style.css -->
     <link rel="stylesheet" type="text/css" href="/resources/css/style.css">
     <link rel="stylesheet" type="text/css" href="/resources/css/test.css">
+    <link rel="stylesheet" type="text/css" href="/resources/css/paging.css">
 	<script type="text/javascript" src="http://code.jquery.com/jquery-latest.js"></script>
 	
 <script type="text/javascript">
@@ -132,6 +133,9 @@
 															</li>
 														</c:forEach>
 													</ul>
+												</div>
+												<div>
+												<%@include file="/common/paging.jsp"%>
 												</div>
 											</div>
 										</section>

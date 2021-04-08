@@ -1,6 +1,7 @@
 package ga.bowwow.service.store.impl;
 
 import java.util.List;
+import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -35,8 +36,14 @@ public class StoreServiceImpl implements StoreService {
 	}
 	
 	@Override
-	public List<Product> getProductList(Product product) {
-		return storeDAO.getProductList(product);
+	public List<Product> getProductList(Map<String, String> map) {
+		return storeDAO.getProductList(map);
+	}
+
+	@Override
+	public int getProductCount(Map<String, String> map) {
+		
+		return storeDAO.getProductCount(map);
 	}
 
 }

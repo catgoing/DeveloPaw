@@ -6,33 +6,39 @@
 
 	<insert id="insertTemporaryUserAddress" parameterType="UserAddress" >
 		INSERT INTO USER_ADDRESS (ADDRESS_ID, MEMBER_SERIAL, ADDRESS, ADDRESS_DETAIL, ZONECODE) 
-		VALUES (USER_ADDRESS_ID_SEQ.NEXTVAL, #{memberSerial} , #{address}, #{addressDetail}, #{zonecode})
+		VALUES (USER_ADDRESS_ID_SEQ.NEXTVAL, #{member_serial} , #{address}, #{address_detail}, #{zonecode})
 	</insert>
 	
 	<delete id="deleteUserAddress" parameterType="UserAddress">
 		DELETE USER_ADDRESS
-		WHERE ADDRESS_ID = #{addressId}
+		WHERE ADDRESS_ID = #{address_id}
 	</delete>
 	
 	<update id="updateUserAddress" parameterType="UserAddress">
 		UPDATE USER_ADDRESS 
-		SET ADDRESS_ID = #{addressId}
-		, MEMBER_SERIAL = #{memberSerial}
+		SET ADDRESS_ID = #{address_id}
+		, MEMBER_SERIAL = #{member_serial}
 		, ADDRESS = #{address}
-		, ADDRESS_DETAIL = #{addressDetail}
+		, ADDRESS_DETAIL = #{address_detail}
 		, ZONECODE = #{zonecode}
-		WHERE MEMBER_SERIAL = #{memberSerial}
+		WHERE MEMBER_SERIAL = #{member_serial}
 	</update>
 	
 	<select id="getUserAddress" parameterType="UserAddress" resultType="UserAddress" >
 		SELECT * FROM USER_ADDRESS
-		WHERE ADDRESS_ID = #{addressId}
+		WHERE ADDRESS_ID = #{address_id}
 	</select>
 	<select id="searchUserAddress" parameterType="UserAddress" resultType="UserAddress" >
 		SELECT * FROM USER_ADDRESS
-		WHERE MEMBER_SERIAL = #{memberSerial}
+		WHERE MEMBER_SERIAL = #{member_serial}
 		AND ADDRESS = #{address}
-		AND ADDRESS_DETAIL = #{addressDetail}
+		AND ADDRESS_DETAIL = #{address_detail}
 		AND ZONECODE = #{zonecode}
+	</select>
+	
+	<select id="getUserAddressList" parameterType="UserAccount" resultType="UserAddress" >
+		SELECT *
+		 FROM USER_ADDRESS
+		WHERE MEMBER_SERIAL = #{member_serial}
 	</select>
 </mapper>

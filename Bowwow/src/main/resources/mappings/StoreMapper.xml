@@ -5,14 +5,13 @@
 <mapper namespace="Store">
 
 	<insert id="insertProduct" parameterType="Product">
-		INSERT INTO STORE_PRODUCTS (P_ID, P_NAME, P_TYPE, P_CATEGORY, PRICE, 
-									STOCK, S_IMAGE, L_IMAGE, P_PICK)
-		VALUES (P_SEQ.NEXTVAL, #{p_name}, #{p_type}, #{p_category}, #{price}, 
-									#{stock}, #{s_image}, #{l_image}, #{p_pick})
+		INSERT INTO STORE_PRODUCTS (P_ID, P_NAME, P_TYPE, PRICE, STOCK, S_IMAGE, L_IMAGE, P_CATEGORY)
+		VALUES (P_SEQ.NEXTVAL, #{p_name}, #{p_type}, #{price},  
+									#{stock}, #{s_image}, #{l_image}, #{p_category})
 	</insert>
 	
 	<!-- 전체 상품 조회 -->
-	<select id="ProductList" parameterType="Product" resultType="Product">
+	<select id="ProductList" parameterType="Map" resultType="Product">
 		SELECT * FROM 
 			(
 				SELECT ROWNUM AS RN, PROD.* FROM 
@@ -22,16 +21,30 @@
 		  				PRICE, STOCK, S_IMAGE, L_IMAGE 
 		  			FROM STORE_PRODUCTS
 		 			WHERE 1=1
-		 			<if test="p_type != null">
-		 			  AND P_TYPE = #{p_type}
+		 			<if test='p_type != null'>
+		 			  AND P_TYPE = '${p_type}'
 		 			</if>
-		 			<if test="p_category != null">
-		 			  AND P_CATEGORY = #{p_category}
+		 			<if test='p_category != null'>
+		 			  AND P_CATEGORY = '${p_category}'
 		 			</if>
 		 			ORDER BY P_ID DESC 
 		 		) PROD 
 		 	)
-		 WHERE RN BETWEEN 0 AND 20
+		 WHERE RN BETWEEN ${begin} AND ${end}
+	</select>
+	
+	<!-- 전체 상품 수 -->
+	<select id="ProductCount" resultType="int">
+		SELECT 	COUNT(*) AS CNT 
+		FROM	STORE_PRODUCTS
+		WHERE	1=1
+		<if test='p_type != null'>
+		  AND P_TYPE = '${p_type}'
+		</if>
+		<if test='p_category != null'>
+		  AND P_CATEGORY = '${p_category}'
+		</if>
+
 	</select>
 	
 	<!--상품 상세 조회 -->

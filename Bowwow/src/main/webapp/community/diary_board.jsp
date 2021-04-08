@@ -18,7 +18,7 @@
 <meta name="author" content="Codedthemes" />
 <!--Jua 폰트 import-->
 <link rel="preconnect" href="https://fonts.gstatic.com">
-<link href="https://fonts.googleapis.com/css2?family=Jua&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Do+Hyeon&display=swap" rel="stylesheet">
 
 <!-- Favicon icon -->
 <link rel="icon" href="/resources/images/favicon.ico" type="image/x-icon">
@@ -41,10 +41,47 @@
 <!-- <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/resources/css/style.css"> -->
 <link rel="stylesheet" type="text/css" href="/resources/css/style.css">
 <link rel="stylesheet" type="text/css" href="/resources/css/test.css">
+<link rel="stylesheet" type="text/css" href="/resources/css/paging.css">
 
 <title>펫 다이어리</title>
 <style>
+
+.block-item:hover{
+	cursor:pointer;
+}
 </style>
+<script>
+$(document).ready(function () {
+    $("button").click(function () {
+        //ajax 쓰는 법
+        $.ajax({
+            //속성을 설정할 수 있다
+            url:"NewFile.jsp", //데이터를  넘겨줄 링크 설정
+            type:"GET", // get or post 방식
+            data:"t1=" + $("#data").val()+"&t2=Ajax", //넘겨줄 데이터
+            
+            //위에 과정이 성공했을 것을 생각하여 작성 
+             //ajax를 통해서 연결 성공하면 출력
+             //데이터가 전달되고 나서 다시 돌아왔을 때의 검사하는 것
+             //생략하면 안됨 적어줘야 한다.
+              success: function (data, status, xhr) {
+                   
+                    alert("통신 성공!");
+                    $("#demo").html(data);
+                },
+                error: function (xhr, status, error) {
+                    alert("통신 실패!");
+                },
+                complete: function (xhr, status) {
+                    alert("통신 종료");
+                }
+        });
+        
+    });
+    
+});
+
+</script>
 </head>
 <body>
 
@@ -88,80 +125,50 @@
 												</div>
 												<div class="monthly-products">
 													<ul>
-
 														<c:forEach var="list" items="${ boardList}">
 															<li>
-																<div class="block-item default-item" onclick="location.href='/community/detail?board_idx=${board_idx }&board_no=${list.board_no}'">
+																<div class="block-item default-item col-lg-3 col-md-4 col-sm-6" onclick="location.href='/community/detail?board_idx=${board_idx }&board_no=${list.board_no}'">
 																	<div class="best-label">${list.board_no }</div>
-																	<div class="bookmark_btn click-btn">
-																		<div class="scrap" id="scrapBtn_311"
-																			onclick="WitCommon.boardScrap('knowhow', '311')">
+													<%-- 				<div class="bookmark_btn click-btn" style="width:200px; height:200px;">
 																			<img style="width:200px" id="scrapImg_311"
 																				src='https://projectbit.s3.us-east-2.amazonaws.com/${list.img1 }' alt="썸네일이 없음ㅁ">
-																		</div>
-																	</div>
-																	<div class="img-area"
+																		
+																	</div> --%>
+																	<div class="img-area" style="width:300px; height:300px;"
 																		onclick="location.href='/board/knowhow/311'">
-																		<div class="imgItem"
-																			style="background: url('https://web-wit.s3.ap-northeast-2.amazonaws.com/images/boardKnowhow/311/knowhow_1609169403_0.gif') center center no-repeat; background-size: cover;">
+															<%-- 			<div class="imgItem"
+																			style="background: url('https://projectbit.s3.us-east-2.amazonaws.com/${list.img1 }') center center no-repeat; background-size: cover; width:100%; height:100%;">
+																		</div> --%>
+																		<div class="imgItem" style="width:300px; height:300px;">
+																			<img src='https://projectbit.s3.us-east-2.amazonaws.com/${list.img1 }' onerror='this.src="/resources/images/cat&dog.jpg"' width="100%" height="100%">
 																		</div>
 																	</div>
+																	<br>
 																	<div class="text-area">
-																		<div class="item-title">
-																			<a href="/community/detail?board_idx=${board_idx }&board_no=${list.board_no}">${list.board_title }</a>
+																		<div class="item-title" style="width:300px; color:black;">
+																			<a href="/community/detail?board_idx=${board_idx }&board_no=${list.board_no}">
+																			</a><h4>${list.board_title }</h4>
 																		</div>
-																		<p class="hashtag">
-																			<span>#마사지 </span><span>#강아지마사지 </span><span>#강아지테라피
-																			</span><span>#예민한강아지 </span><span>#강아지</span><span>#...</span>
-																		</p>
 																		<div class="item-items">
-																			<div class="profile"
-																				onclick="pagePopup.openGotoPopup()">
-																				<p>${list.id }</p>
+																			<div class="profile">
+																				<span>${list.nickname }</span>
+																				<span>조회 ${list.hits }</span>
+																			</div>
+																			<div class="profile" style="margin-right:0">
 																			</div>
 																		</div>
 																	</div>
 																</div>
 															</li>
 														</c:forEach>
-														<li>
-															<div class="block-item default-item">
-																<div class="best-label">1</div>
-																<div class="bookmark_btn click-btn">
-																	<div class="scrap" id="scrapBtn_311"
-																		onclick="WitCommon.boardScrap('knowhow', '311')">
-																		<img id="scrapImg_311" src="/resources/images/dog.jpg"
-																			alt="">
-																	</div>
-																</div>
-																<div class="img-area"
-																	onclick="location.href='/board/knowhow/311'">
-																	<div class="imgItem"
-																		style="background: url('https://web-wit.s3.ap-northeast-2.amazonaws.com/images/boardKnowhow/311/knowhow_1609169403_0.gif') center center no-repeat; background-size: cover;">
-																	</div>
-																</div>
-																<div class="text-area">
-																	<div class="item-title"
-																		onclick="location.href='/board/knowhow/311'">
-																		<h4>제목</h4>
-																	</div>
-																	<p class="hashtag">
-																		<span>#마사지 </span><span>#강아지마사지 </span><span>#강아지테라피
-																		</span><span>#예민한강아지 </span><span>#강아지</span><span>#...</span>
-																	</p>
-																	<div class="item-items">
-																		<div class="profile"
-																			onclick="pagePopup.openGotoPopup()">
-																			<p>닉네임</p>
-																		</div>
-																	</div>
-																</div>
-															</div>
-														</li>
 													</ul>
+												</div>
+												<div>
+										<%@include file="/common/paging.jsp"%>
 												</div>
 											</div>
 										</section>
+										
 									</div>
 
 								</div>
@@ -175,53 +182,28 @@
 				</div>
 			</div>
 		</div>
-		<button class="scroll-top" id="js-button"
+<!-- 		<button class="scroll-top" id="js-button"
 			style="margin-bottom: 190px; margin-right: 30px; font: 'Jua'">
 			<i class="fa fa-chevron-up" aria-hidden="true">TOP</i>
-		</button>
-		<script type="text/javascript">
-			scrollTop('js-button', 100);
-			function scrollTop(elem, duration) {
-				let target = document.getElementById(elem);
-
-				target.addEventListener('click', function() {
-					let currentY = window.pageYOffset;
-					let step = duration / currentY > 1 ? 10 : 100;
-					let timeStep = duration / currentY * step;
-					let intervalID = setInterval(scrollUp, timeStep);
-
-					function scrollUp() {
-						currentY = window.pageYOffset;
-						if (currentY === 0) {
-							clearInterval(intervalID);
-						} else {
-							scrollBy(0, -step);
-						}
-					}
-				});
-			}
-		</script>
-
+		</button> -->
+		
 		<!-- footer 푸터 영역 -->
 		<%@ include file="/common/footer.jsp"%>
 		<!-- footer 푸터 영역 -->
+		<!-- <div class="fixed-button active"><a href="/community/write_board.jsp" class="btn btn-md btn-primary"> 글쓰기</a> </div> -->
+
 
 	</div>
 
 	<!-- Required Jquery -->
-	<script type="text/javascript"
-		src="/resources/js/jquery/jquery.min.js "></script>
-	<script type="text/javascript"
-		src="/resources/js/jquery-ui/jquery-ui.min.js "></script>
-	<script type="text/javascript"
-		src="/resources/js/popper.js/popper.min.js"></script>
-	<script type="text/javascript"
-		src="/resources/js/bootstrap/js/bootstrap.min.js "></script>
+	<script type="text/javascript" src="/resources/js/jquery/jquery.min.js "></script>
+	<script type="text/javascript" src="/resources/js/jquery-ui/jquery-ui.min.js "></script>
+	<script type="text/javascript" src="/resources/js/popper.js/popper.min.js"></script>
+	<script type="text/javascript" src="/resources/js/bootstrap/js/bootstrap.min.js "></script>
 	<!-- waves js -->
 	<script src="/resources/pages/waves/js/waves.min.js"></script>
 	<!-- jquery slimscroll js -->
-	<script type="text/javascript"
-		src="/resources/js/jquery-slimscroll/jquery.slimscroll.js"></script>
+	<script type="text/javascript" src="/resources/js/jquery-slimscroll/jquery.slimscroll.js"></script>
 
 	<!-- slimscroll js -->
 	<script src="/resources/js/jquery.mCustomScrollbar.concat.min.js "></script>

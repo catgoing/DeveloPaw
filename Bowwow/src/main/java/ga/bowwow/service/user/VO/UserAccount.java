@@ -1,5 +1,7 @@
 package ga.bowwow.service.user.VO;
 
+import org.springframework.web.multipart.MultipartFile;
+
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -10,14 +12,17 @@ import lombok.ToString;
 @NoArgsConstructor @AllArgsConstructor
 @ToString
 public class UserAccount {
-	int memberSerial;
+	int member_serial;
 	String id;
 	String email;
-	String citizenId;
+	String citizen_id;
 	String phone;
+	MultipartFile profileImage;
+	String image_source;
+	String nickname;
 	String password;
 	String status;
-	int point;
+	long point;
 	String coupons;
 
 	@Override

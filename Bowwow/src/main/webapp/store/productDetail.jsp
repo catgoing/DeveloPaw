@@ -67,14 +67,16 @@
 	var sell_price;
 	var amount;
 	var totalSum;
+	var stock;
 	
 	$(function init () {
 	   sell_price = document.getElementById('sell_price').value;
 	   document.getElementById('sum').value = sell_price;
 	   sell_price = document.form.sell_price.value;
-	   console.log(document.getElementById('totalSum').value = sell_price);
+	   document.getElementById('totalSum').value = sell_price;
 	   amount = document.form.amount.value;
 	   document.form.sum.value = sell_price.replace(/\B(?=(\d{3})+(?!\d))/g, ",");
+	   stock = document.getElementById('stock').value;
 	   
 	});
 	
@@ -82,23 +84,33 @@
 	   hm = document.form.amount;
 	   sum = document.form.sum;
 	   
-	   hm.value ++ ;
+	   hm.value ++;
 	   
-	   var temp = parseInt(hm.value) * sell_price
-	
-	   console.log(document.getElementById('totalSum').value = temp);
-	   document.getElementById('sum').value = temp;
-	   document.getElementById('sum').value = document.getElementById('sum').value.replace(/\B(?=(\d{3})+(?!\d))/g, ",");
+	   if(parseInt(hm.value) > stock) {
+		    console.log("hm : " + hm.value);
+		    console.log("stock : " + stock);
+	   		alert("재고가 부족합니다, 해당 상품의 재고는 총" + stock + "개 입니다.");
+	   	    hm.value --;
+	   } else {
+		   var temp = parseInt(hm.value) * sell_price
+		
+		   document.getElementById('totalSum').value = temp;
+		   document.getElementById('sum').value = temp;
+		   document.getElementById('sum').value = document.getElementById('sum').value.replace(/\B(?=(\d{3})+(?!\d))/g, ",");
+		   
+	   }
+		   
 	}
 	
 	function del () {
 	   hm = document.form.amount;
 	   sum = document.form.sum;
+	   
 	      if (hm.value > 1) {
 	         hm.value -- ;
 	         var temp = parseInt(hm.value) * sell_price
 	         
-	         console.log(document.getElementById('totalSum').value = temp);
+	         document.getElementById('totalSum').value = temp;
 	         document.getElementById('sum').value = temp;
 	         document.getElementById('sum').value = document.getElementById('sum').value.replace(/\B(?=(\d{3})+(?!\d))/g, ",");
 	      }
@@ -109,14 +121,22 @@
 	   hm = document.form.amount;
 	   sum = document.form.sum;
 	   
-	   var temp = parseInt(hm.value) * sell_price
-	
-	   console.log(document.getElementById('totalSum').value = temp); 
-	   document.getElementById('sum').value = temp;
-	   document.getElementById('sum').value = document.getElementById('sum').value.replace(/\B(?=(\d{3})+(?!\d))/g, ",");
+	   if(parseInt(hm.value) > stock) {
+		    console.log("hm : " + hm.value);
+		    console.log("stock : " + stock);
+		    alert("재고가 부족합니다, 해당 상품의 재고는 총 " + stock + "개 입니다.");
+	   		hm.value = 1;
+	   } else {
+		   var temp = parseInt(hm.value) * sell_price
+		
+		   document.getElementById('totalSum').value = temp; 
+		   document.getElementById('sum').value = temp;
+		   document.getElementById('sum').value = document.getElementById('sum').value.replace(/\B(?=(\d{3})+(?!\d))/g, ",");
+	   }
+	   
 	}
 	
-	// 숫자만 들어오도록 체크
+	// 수량에 숫자만 들어오도록 체크
 	function onlyNumber(e) {
 	   var reg = /[^0-9]{1,100}$/g;
 	   var value = $(e).val();   // $(e) : 선택자, jQuery에서 매개변수로 받은 Object를 지칭함
@@ -128,6 +148,18 @@
 	  
 	}
 	
+	// 수량에 빈문자열이나 0이 들어오면 1반환
+	function amountChk(e) {
+		var reg = /[0-9]{1,100}$/g;
+		var value = $(e).val();
+		
+		if (value == '' || value == 0) {
+			$(e).val(1);
+		} else {
+		    return false;
+		}
+		
+	}
 	
 	function cartList(frm) {
 	   var param = $("form[name=form]").serialize();
@@ -136,25 +168,21 @@
 	   
 	   result = callAjax(tUrl, 'post', param, 'data');
 	
-	             if (result.code == "0000") {
-	               var chk = confirm(result.msg);
-	            
-	               if (chk) {
-	               location.href="/store/cartList";
-	                }
-	               
-	      } else {
-	               var chk = confirm(result.msg);
-	         
-	              if (chk) {
-	               location.href="/store/cartList";
-	            } 
-	           }
-	         
+		if (result.code == "0000") {
+			var chk = confirm(result.msg);
+			
+		 	if (chk) {
+		 		location.href="/store/cartList";
+		 	}
+         
+		} else {
+			var chk = confirm(result.msg);
+ 
+			if (chk) {
+				location.href="/store/cartList";
+      		} 
+   		}
 	}
-	
-	
-
 
 	function insertOrder(frm) {
 		console.log('order 함수');
@@ -247,7 +275,7 @@
 	
 	
 	 function reviewList() {
-
+	 
 		var pId = ${p.p_id};
 		$.getJSON("/store/reviewList" + "?p_id=" + pId, function(data){
 			var str = "";
@@ -280,17 +308,17 @@
 					 
 				
 			});
-
+	
 			// 조립한 HTML코드를 추가
 			$("section.reviewList ol").html(str);
 		});
-
-	} 
-
-		function storeOrder(frm) {
-			frm.action="/store/storeOrder";
-			frm.submit();
-		}
+	 } // end of reviewList()
+	
+	 function storeOrder(frm) {
+	 	frm.action="/store/storeOrder";
+	  	frm.submit();
+     }
+	 
 </script>
 
 </head>
@@ -339,29 +367,29 @@
 										</div>
 										<div class="col-lg-6">
 											<div class="details_text">
-												<form name="form" onsubmit="return false;" method="POST">
-													<h4 style="color: #000; font-weight : 600;" >${p.p_name }</h4>
+												<form name="form" method="POST" >
+													<h4 style="color: #000; font-weight: 600;">${p.p_name }</h4>
 													<input type="hidden" name="p_name" value="${p.p_name }">
-													<input type="hidden" id="product_id" name="p_id" value="${p.p_id }">
-													<input type="hidden" name="stock" value="${p.stock }">
+													<input type="hidden" id="product_id" name="p_id" value="${p.p_id }"> 
+													<input type="hidden" id="stock" name="stock" value="${p.stock }">
 													<div class="product__details__button">
 														<div class="product__details__widget">
 															<ul>
 																<li>
 																	<h4>
-																		판매금액: <fmt:formatNumber value="${p.price }" pattern="#,###" /> 원
+																		판매금액&nbsp; <fmt:formatNumber value="${p.price }" pattern="#,###" />원
 																	</h4>
 																</li>
 															</ul>
 														</div>
 														<div class="quantity">
 															<div class="pro-qty">
-																<h5>
-																	상품 수량 : <input type="hidden" id="sell_price" name="price" value="${p.price }">
-																			 <input type="button" class="store_btn2" value=" - " onclick="del();">
-																			 <input type="text" id="product_count" class="store_input" onkeyup="onlyNumber(this);" maxlength="2" autocomplete="off"
-																			 	min="1" name="amount" value="1" size="3" onchange="changeValue();">
-																			 <input type="button" id="addBtn" class="store_btn2" value=" + " onclick="add();">
+																<h5>상품 수량
+															      	 <input type="hidden" id="sell_price" name="price" value="${p.price }"> 
+																	 <input type="button" class="store_btn2" value=" - " onclick="del();">
+																	 <input type="text" id="product_count" class="store_input" onkeyup="onlyNumber(this); amountChk(this); changeValue();" maxlength="3" autocomplete="off" 
+																	 	min="1" name="amount" value="1" size="3">
+																	 <input type="button" id="addBtn" class="store_btn2" value=" + " onclick="add();">
 																</h5>
 															</div>
 															<br>
@@ -370,7 +398,7 @@
 															<ul>
 																<li>
 																	<h3>
-																		총 상품금액: <input type="text" class="store_input2"
+																		총 상품금액 <input type="text" class="store_input2"
 																			size="9" id="sum" readonly>원
 																	</h3>
 																</li>
@@ -383,9 +411,8 @@
 													</div>
 													<div class="btn_area">
 														<c:if test="${p.stock != 0 }">
-															<button class="store_btn" onclick="cartList(this.form)">장바구니</button>
-															<button class="store_btn"
-																onclick="insertOrder(this.form)">바로구매</button>
+															<input type="button" class="store_btn" value="장바구니" onclick="cartList(this.form)">
+															<input type="button" class="store_btn" value="바로구매" onclick="insertOrder(this.form)">
 															<input type="hidden" id="totalSum" name="totalSum">
 														</c:if>
 														<c:if test="${p.stock == 0 }">
@@ -431,8 +458,7 @@
 																				<div class="product__details__smallpic">
 																					<div class="product__details__slider__content">
 																						<div class="details_smallpic" style="padding : 10px;">
-																							<img
-																								 style="width:120px; height:120px;" src="https://projectbit.s3.us-east-2.amazonaws.com/${imgDir }/${p.s_image }">
+																							<img style="width:120px; height:120px;" src="https://projectbit.s3.us-east-2.amazonaws.com/${imgDir }/${p.s_image }">
 																						</div>
 																					</div>
 																				</div>
@@ -444,8 +470,7 @@
 																						<ul>
 																							<li>
 																								<h5>
-																									<fmt:formatNumber value="${p.price }"
-																										pattern="#,###" />
+																									<fmt:formatNumber value="${p.price }" pattern="#,###" />
 																									원
 																								</h5>
 																							</li>

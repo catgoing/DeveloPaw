@@ -22,6 +22,7 @@ public abstract class UserGenericService<T> {
 		return isResignSuccess(vo);
 	}
 	public T getVo(T vo) {
+		System.out.println("GenericGet vo : " + vo);
 		return (T)dao.get(vo);
 	}
 	public T searchVo(T vo) {

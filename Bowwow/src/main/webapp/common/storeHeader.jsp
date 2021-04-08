@@ -87,7 +87,7 @@
 									<a href="javascript:void(0)"><i class="ti-menu"></i></a>
 								</div>
 							</li>
-							<li><a href="index.html"> 커뮤니티 </a></li>
+							<li><a href="/community/main"> 커뮤니티 </a></li>
 							<li><a href="storeMain"> 스토어 </a></li>
 						</ul>
 						<ul class="nav-right">
@@ -104,18 +104,16 @@
 								<img src="resources/images/avatar-4.jpg" class="img-radius" alt="User-Profile-Image"> <i class="ti-angle-down"></i>
 							</a>
 								<ul class="show-notification profile-notification">
-									<li class="waves-effect waves-light"><a href="#!">마이홈
+									<li class="waves-effect waves-light"><a href="/mypage/myPageMain">마이홈
 									</a></li>
 									<li class="waves-effect waves-light"><a
-										href="user-profile.html">프로필 </a></li>
+										href="/getPetInfoList?member_serial=${sessionScope.userDTO.member_serial }">프로필 </a></li>
 									<li class="waves-effect waves-light"><a
 										href="email-inbox.html">반려동물 </a></li>
 									<li class="waves-effect waves-light"><a
-										href="auth-lock-screen.html">게시글</a></li>
+										href="/mypage/myPoint">포인트 내역 </a></li>
 									<li class="waves-effect waves-light"><a
-										href="auth-normal-sign-in.html">포인트 내역 </a></li>
-									<li class="waves-effect waves-light"><a
-										href="auth-normal-sign-in.html">나의 쇼핑 </a></li>
+										href="/store/storeOrderList">나의 쇼핑 </a></li>
 									<li class="waves-effect waves-light"><a
 										href="auth-normal-sign-in.html">로그아웃 </a></li>
 								</ul></li>

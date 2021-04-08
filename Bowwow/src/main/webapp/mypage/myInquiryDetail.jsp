@@ -4,15 +4,7 @@
     <% request.setCharacterEncoding("UTF-8"); %>
 <%@ taglib uri="http://tiles.apache.org/tags-tiles" prefix="tiles"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
-<%
-	//임시 로그인처리
-	int memberSerial = 1;
-	String id = "z";
-	UserAccount user= new UserAccount();
-	user.setId(id);
-	user.setMemberSerial(memberSerial);
-	session.setAttribute("user", user);
-%>
+
 <!DOCTYPE html>
 <html>
 
@@ -60,7 +52,15 @@
     <link rel="stylesheet" type="text/css" href="/resources/css/style.css">
     <link rel="stylesheet" type="text/css" href="/resources/css/test.css">
 <style>
-  .featured__item__text { width: 150px; }
+ table, th, td{
+ 	border : 1px solid black;
+ }
+ .inquiry_th {
+	width : 15%;
+ }
+ .inquiry_td {
+ 	widgh : 30%;
+ }
 </style>
 </head>
 
@@ -79,67 +79,72 @@
 			<div class="pcoded-wrapper">
 				<!-- 좌측메뉴바 -->
 				<%@include file="/common/myPageMenuBar.jsp" %>
-				
+
+<div class="pcoded-content">
+	<div class="pcoded-inner-content">
+		<div class="main-body">
+	    	<div class="page-wrapper">
 				<!-- Main-body start 본문 시작 -->
 				<%-- <tiles:insertAttribute name="body" /> --%>
-					<table>
-						<tr>
-							<th>제목</th>
-							<th>내용</th>
-							<th>작성일</th>
-						</tr>
-						<tr>
-							<td>${detail.title }</td>
-							<td>${detail.content }</td>
-							<td>${detail.writeDate }</td>
-						</tr>					
-					</table>
-					<table>
-						<tr>
-							<th>등록일</th>
-							<th>관리자 답변</th>
-						</tr>
-						<tr>
-							<td>${detail.reWriteDate }</td>
-							<td>${detail.reContent }</td>
-						</tr>
-					</table>
-					
+				<div class="page-body">
+					<div class="inquiry-detail">
+						<div class="question-title">
+					    	<h2>문의목록</h2>
+				     	</div>
+						<div class="table-container">
+							<table class="table">
+								<tr>
+									<th class="inquiry_th">제목</th>
+									<td>${uiqDetail.inquiry_title }</td>
+									<th class="inquiry_th">작성일시</th>
+									<td>${uiqDetail.inquiry_writedate }</td>
+								</tr>
+								<tr>							
+									<th class="inquiry_th">문의내용</th>
+									<td colspan="3">
+									<pre><c:out value="${uiqDetail.inquiry_content }" /></pre>
+									</td>
+								</tr>	
+								<c:if test="${uiqDetail.p_id == null }">
+								<tr>
+									<th>문의상품</th>
+									<td></td>
+								</tr>
+								</c:if>			
+							</table>
+							<hr>
+							<c:if test="${empty inquiryAnswer }">
+							</c:if>
+							<c:if test="${not empty inquiryAnswer }">
+							<table class="table">
+								<tr>
+									<th class="inquiry_th">관리자 답변</th>
+									<td>
+									<pre><c:out value="${inquiryAnswer.inquiry_re_content} " /></pre>
+									</td>
+								</tr>
+								<tr>
+									<th class="inquiry_th">등록일</th>
+									<td>${inquiryAnswer.inquiry_re_date} </td>
+								</tr>
+							</table>
+							</c:if>
+						</div>  	
+						<div class="btn-container">
+							<button onclick="history.back()">돌아가기</button>
+						</div>
+					</div>
 				</div>
 			</div>
 		</div>
 	</div>
+</div></div></div>
 	
-    <button class="scroll-top" id="js-button" style="margin-bottom: 190px; margin-right: 30px;">
-        <i class="fa fa-chevron-up" aria-hidden="true">TOP</i>
-    </button>
-    <script type="text/javascript">
-        scrollTop('js-button', 500);
-        function scrollTop(elem,duration) {
-            let target = document.getElementById(elem);
-        
-            target.addEventListener('click', function() {
-                let currentY = window.pageYOffset; 
-                let step = duration/currentY > 1 ? 10 : 100;
-                let timeStep = duration/currentY * step;
-                let intervalID = setInterval(scrollUp, timeStep);
-        
-                function scrollUp(){
-                    currentY = window.pageYOffset;
-                    if(currentY === 0) {
-                        clearInterval(intervalID);
-                    } else {
-                        scrollBy( 0, -step );
-                    }
-                }
-            });
-        }
-    </script>
-        
 	<!-- footer 푸터 시작부분-->
 	<%-- <tiles:insertAttribute name="footer" /> --%>
 	<%@include file="/common/footer.jsp" %>
 	<!-- footer 푸터 끝부분-->
+</div></div>
 
     <!-- Required Jquery -->
     <script type="text/javascript" src="/resources/js/jquery/jquery.min.js "></script>

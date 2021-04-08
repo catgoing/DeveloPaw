@@ -20,13 +20,15 @@ public class UserAddressServiceImpl extends UserGenericService<UserAddress> {
 
 	@Override
 	public List<UserAddress> getVoList() {
-		// TODO Auto-generated method stub
 		return null;
+	}
+	
+	public List<UserAddress> getVoList(UserAccount userAccount) {
+		return ((UserAddressDAO)dao).getAddressList(userAccount);
 	}
 
 	@Override
 	public List<UserAddress> getVoList(Map<String, String> map) {
-		// TODO Auto-generated method stub
 		return null;
 	}
 	
