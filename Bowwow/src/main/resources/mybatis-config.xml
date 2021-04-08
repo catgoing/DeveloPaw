@@ -40,5 +40,6 @@
 		<mapper resource="mappings/StoreReviewMapper.xml" />
 		<mapper resource="mappings/StoreOrderMapper.xml" />
 		<mapper resource="mappings/InquiryMapper.xml" />
+		<mapper resource="mappings/AdminMapper.xml" />
 	</mappers>
 </configuration>

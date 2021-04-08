@@ -1,5 +1,7 @@
 package ga.bowwow.service.store;
 
+import org.springframework.web.multipart.MultipartFile;
+
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -20,5 +22,8 @@ public class Product {
 	private int stock;			// 상품 재고
 	private String s_image;		// 미리보기 이미지
 	private String l_image;		// 상세페이지 이미지
+	
+	MultipartFile file1;
+	MultipartFile file2;
 
 }
