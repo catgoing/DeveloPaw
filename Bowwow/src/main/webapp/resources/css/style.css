@@ -5479,7 +5479,7 @@ table tbody .border-bottom-info td {
 }
 
 .header-navbar .navbar-wrapper .navbar-container .header-notification.active:before {
-    content: "";
+    /* content: ""; */
     border: 10px solid transparent;
     border-left-color: #fff;
     border-top-color: #fff;

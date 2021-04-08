@@ -339,7 +339,7 @@
 													<h4 style="color: #000; font-weight : 600;" >${p.p_name }</h4>
 													<input type="hidden" name="p_name" value="${p.p_name }">
 													<input type="hidden" id="product_id" name="p_id" value="${p.p_id }">
-														 <input type="hidden" name="stock" value="${p.stock }">
+													<input type="hidden" name="stock" value="${p.stock }">
 													<div class="product__details__button">
 														<div class="product__details__widget">
 															<ul>
@@ -451,16 +451,6 @@
 																			</div>
 																		</div>
 																		<hr>
-																		<div class="field half first">
-																				<label for="name">작성자 닉네임</label> <input type="text"
-																					class="form-control" id="writer"
-																					name="member_serial" value="999" >
-																			</div>
-																			<div class="field half">
-																				<label for="name">작성 일자</label> <input type="datetime-local"
-																					class="form-control" id="revRegdate"
-																					name="review_regdate" readonly>
-																			</div>
 																			<div class="field">
 																				<label for="name">후기 제목</label> <input type="text"
 																					class="form-control" id="revTitle"

@@ -99,7 +99,6 @@
 												<div class="monthly-products">
 													<ul>
 														<c:forEach var="list" items="${pList }">
-														<div>
 															<li>
 																<div
 																	class="col-lg-3 col-md-4 col-sm-6 mix oranges fresh-meat"
@@ -131,7 +130,6 @@
 																	</div>
 																</div>
 															</li>
-														</div>
 														</c:forEach>
 													</ul>
 												</div>
