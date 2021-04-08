@@ -207,16 +207,18 @@ $().ready(function(){
 	
 });
 
-/* function setThumbnail(event){
+function setThumbnail(event){
 	var reader = new FileReader(); 
 	
 	reader.onload = function(event) { 
 		var img = document.createElement("img"); 
+		img.setAttribute("id", "petThumbnail");
 		img.setAttribute("src", event.target.result); 
+		console.log(img);
 		document.querySelector("div#image_container").appendChild(img);
 	}; 
 	reader.readAsDataURL(event.target.files[0]); 
-} */
+}
 
 
 function getPetInfo(frm){

@@ -11,7 +11,7 @@
 			  
 			     <ul class="pcoded-item pcoded-left-item">
 			         <li class="">
-			             <a href="/account/login" class="waves-effect waves-dark">
+			             <a href="/user/login" class="waves-effect waves-dark">
 			                 <span class="pcoded-micon"><i class="ti-layers"></i><b>FC</b></span>
 			                 <span class="pcoded-mtext">로그인</span>
 			                 <span class="pcoded-mcaret"></span>
@@ -21,7 +21,7 @@
 			
 			     <ul class="pcoded-item pcoded-left-item">
 			         <li class="">
-			             <a href="/userList/manageList" class="waves-effect waves-dark">
+			             <a href="/user/manageList" class="waves-effect waves-dark">
 			                 <span class="pcoded-micon">
 			                 </span>
 			                 <span class="pcoded-mtext">관리자 회원관리 리스트</span>

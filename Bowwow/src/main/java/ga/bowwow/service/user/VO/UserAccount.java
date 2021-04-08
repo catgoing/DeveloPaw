@@ -15,6 +15,8 @@ public class UserAccount {
 	String email;
 	String citizen_id;
 	String phone;
+	String image_source;
+	String nickname;
 	String password;
 	String status;
 	long point;

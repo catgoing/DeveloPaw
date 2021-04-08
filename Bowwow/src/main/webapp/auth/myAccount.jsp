@@ -163,7 +163,7 @@
 																<label for="uploadImage" id="imageview"> <img
 																	src="" class="thumb">
 																</label>
-																<input type="file" id="uploadImage" accept="image/gif, image/jpeg, image/jpg, image/png" name="uploadImage" onchange="readURL(this);">
+																<input type="file" id="uploadImage" accept="image/gif, image/jpeg, image/jpg, image/png" name="image_source" onchange="readImage(this);">
 															</div>
 														</div>
 														<p></p>
@@ -331,6 +331,34 @@
      </script>
      
      <script>
+     function getImageName(_imageSource) {
+    	 var imageSource = _image;
+  		console.log(imageSource.value);
+  		imagePaths = imageSource.value.split('\\');
+  		console.log(imagePaths);
+  		var imageLastIndex = imagePaths.length;
+  		console.log(imageLastIndex);
+  		var imageName = imagePaths[imageLastIndex-1];
+  		console.log(imageName);
+    	 return imageName;
+     }
+     	function readImage(_image) {
+     		console.log(getImageName(_image));
+     		
+//      	$.ajax("/account/checkIdDuplication", {
+//     	        type: "POST",
+//     	        data: JSON.stringify(idData),
+//     	        contentType:"application/json; charset=UTF-8",
+//     	        success: function() {
+//     	      	  alert('가입 가능한 아이디입니다.');
+//     	      	  //TODO readOnly 필드의 개방!!!! 
+//     	        }
+//     	 	 }).fail(function(data, textStatus, xhr) {
+//     	      	  alert('이미 등록된 아이디입니다.');
+
+//                   console.log("fail error", data.status);
+//              });
+     	}
      	function getMultiForm(_form) {
      		var form = _form;
           	const data = [];
@@ -357,10 +385,10 @@
           	for (var formData of datas.entries()) {
           	  	var _key = formData[0];
           	  	var _value = formData[1];
-//           	  	console.log(_key, _value);
+          	  	console.log(_key, _value);
 
           	  	data[_key] = _value;
-//           		console.log(data);
+          		console.log(data);
           	}
           	return data;
      	}
@@ -411,17 +439,18 @@
 	</script>
 	<script>
 // 		TODO: 하나의 요청/컨트롤러로 합쳐야함
+	
       function dynamicAjaxSubmit() {
     	 const addressData = getMultiForm(document.address_form);
 
-      	 $.ajax("/address/addAddressList", {
-	           type: "POST",
-	           data: JSON.stringify(addressData),
-	           contentType:"application/json; charset=UTF-8",
-	           success: function() {
-	         	  alert('success');
-	           }
-         });
+//       	 $.ajax("/address/addAddressList", {
+// 	           type: "POST",
+// 	           data: JSON.stringify(addressData),
+// 	           contentType:"application/json; charset=UTF-8",
+// 	           success: function() {
+// 	         	  alert('success');
+// 	           }
+//          });
    	  	const accountData = getSingleForm(document.account_form);
       	$.ajax("/account/addJson", {
             type: "POST",
@@ -430,8 +459,30 @@
             success: function() {
           	  alert('success');
             }
-  		 });
-      };
+  		});
+      	
+//       	const datas = new FormData(document.getElementById('uploadImage'));
+// 		console.log(datas);
+// 		console.log($("#insertPetform input[type='file']").val());
+		
+// 		$.ajax("/ajaxInsertPetInfo", {
+// 			type : "post",
+// 			enctype: "multipart/form-data",
+// 		    data : datas,
+// 			processData: false,
+// 			contentType: false,
+// 			cache: false,
+// 			dataType: "json",
+// 			success : function(result){
+// 				console.log("result : " + result);
+// 				alert("yes");
+// 				$("#newPet").modal("hide");
+// 				location.href = "/getPetInfoList";
+// 			}, error : function(request,status,error){
+// 				alert("no");
+// 			}
+// 		});
+    };
    	</script>
 
 </html>
