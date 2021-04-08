@@ -247,8 +247,8 @@
 				
  			}
  		}
- 		location.href="/store/storeOrder?pIdArr=" + ;
- 	} */
+ 		 location.href="/store/storeOrder?pIdArr=" + ; 
+ 	}  */
  
 </script>
 
@@ -379,6 +379,11 @@
 														</ul>
 														<a onclick="toOrder()" class="proceed-btn">주문하기</a>
 													</div>
+												</div>
+												<div>
+												<form>
+													<input type="hidden" name="totalPrice" value="">
+												</form>
 												</div>
 											</div>
 										</div>

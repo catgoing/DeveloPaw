@@ -1,7 +1,7 @@
 <%@page import="java.io.PrintWriter"%>
-<%@ page language="java" contentType="text/html; charset=UTF-8"
-	pageEncoding="UTF-8"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <!DOCTYPE html>
 
 <html>
@@ -62,8 +62,7 @@
 <!-- Style.css -->
 <link rel="stylesheet" type="text/css" href="/resources/css/style.css">
 <link rel="stylesheet" type="text/css" href="/resources/css/test.css">
-<link rel="stylesheet"
-   href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
+<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
    integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T"
    crossorigin="anonymous">
 
@@ -105,31 +104,15 @@
 					<%@include file="/common/storeMenuBar.jsp"%>
 					<div class="pcoded-content">
 						<div class="pcoded-inner-content">
-							<!-- Page-header start -->
-                     <!-- body 본문 영역 -->
+                     		<!-- body 본문 영역 -->
 							<div id="demo" class="carousel slide" data-ride="carousel">
 								<div class="carousel-inner">
 									<!-- 슬라이드 쇼 -->
-									<!-- <div class="carousel-item active">
-										가로
-										<img class="w-30"
-											src="https://images.pexels.com/photos/213399/pexels-photo-213399.jpeg?auto=compress&cs=tinysrgb&h=650&w=940"
-											alt="First slide"> 
-										<img class="w-30"
-											src="https://images.pexels.com/photos/213399/pexels-photo-213399.jpeg?auto=compress&cs=tinysrgb&h=650&w=940"
-											alt="First slide"> 
-										<img class="w-30"
-											src="https://images.pexels.com/photos/213399/pexels-photo-213399.jpeg?auto=compress&cs=tinysrgb&h=650&w=940"
-											alt="First slide">
-
-									</div> -->
 									<div class="carousel-item active">
-										<a><img class="d-block w-100"
-											src="/resources/images/storeBanner1.jpg" alt="Second slide"></a>
+										<a href="/account/signup"><img class="d-block w-100" src="/resources/images/storeBanner1.jpg" alt="Second slide"></a>
 									</div>
 									<div class="carousel-item">
-										<a href="/account/signup"><img class="d-block w-100"
-											src="/resources/images/storeBanner2.jpg" alt="Third slide"></a>
+										<a href="/account/signup"><img class="d-block w-100" src="/resources/images/storeBanner2.jpg" alt="Third slide"></a>
 									</div>
 									<!-- / 슬라이드 쇼 끝 -->
 									<!-- 왼쪽 오른쪽 화살표 버튼 -->
@@ -150,15 +133,18 @@
 									</ul>
 									<!-- 인디케이터 끝 -->
 								</div>
-
-
-								<!-- Page-header end -->
-
 							</div>
+							<section class="shopping-cart spad" style="margin : 20px;">
+								<div class="container">
+									<div class="row">
+									</div>
+								</div>
+							</section>
 						</div>
 				</div>
 			</div>
 		</div>
+	</div>
 	</div>
 	<%@include file="/common/storeFoot.jsp"%>
 	<!-- Required Jquery -->
