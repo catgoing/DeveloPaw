@@ -487,18 +487,27 @@
 // 		TODO: 하나의 요청/컨트롤러로 합쳐야함
 	
       function dynamicAjaxSubmit() {
-//     	 const addressData = getMultiForm(document.address_form);
+    	 const addressData = getMultiForm(document.address_form);
 
-//       	 $.ajax("/address/addAddressList", {
-// 	           type: "POST",
-// 	           data: JSON.stringify(addressData),
-// 	           contentType:"application/json; charset=UTF-8",
-// 	           success: function() {
-// 	         	  alert('success');
-// 	           }
-//          });
+      	 $.ajax("/address/addAddressList", {
+	           type: "POST",
+	           data: JSON.stringify(addressData),
+	           contentType:"application/json; charset=UTF-8",
+	           success: function() {
+	         	  alert('success');
+	           }
+         });
 	   	 
-//       	const accountData = getSingleForm(document.account_form);
+     	const detailData = getSingleForm(document.account_form);
+      	
+      	$.ajax("/detail/add", {
+      		type: "POST",
+	           data: JSON.stringify(detailData),
+	           contentType:"application/json; charset=UTF-8",
+	           success: function() {
+	         	  alert('success');
+	           }
+      });
       	
          var files = document.account_form.file.files[0];
          
