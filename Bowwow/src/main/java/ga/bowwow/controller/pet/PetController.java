@@ -44,29 +44,6 @@ public class PetController {
 		System.out.println(">>PetController() 객체 생성");
 	}
 
-	@RequestMapping(value = "/mypage/myPageMain")
-	public String myPageMain() {
-		return "myPageMain";
-	}
-
-	@RequestMapping(value = "/mypage/myInfo")
-	public String myInfo() {
-		return "myInfo";
-	}
-	@RequestMapping(value = "/mypage/myPoint")
-	public String myPoint() {
-		return "/mypage/myPoint";
-	}
-
-	@RequestMapping(value = "/mypage/myPostList")
-	public String myPostList() {
-		return "/mypage/myPostList";
-	}
-	@RequestMapping(value = "/mypage/withdrawl")
-	public String withdrawl() {
-		return "/mypage/withdrawl";
-	}
-	
 	//반려동물리스트
 	//@PostMapping(value="/getPetInfoList")
 	//@GetMapping(value="/getPetInfoList")
@@ -112,7 +89,7 @@ public class PetController {
 	@RequestMapping(value="/ajaxGetPetInfo", produces = "application/text; charset=UTF-8")
 	@ResponseBody
 	public String ajaxGetPetInfo(Pet pet, Model model, HttpServletRequest request) {
-		System.out.println("ajax 반려동물정보를 가져옵니다");
+		System.out.println("ajax 반려동물정보를 가져옵니다!");
 		
 		HttpSession session = request.getSession();
 		UserDTO user = (UserDTO)session.getAttribute("userDTO");
@@ -152,7 +129,7 @@ public class PetController {
 	@RequestMapping(value="/ajaxInsertPetInfo")
 	@ResponseBody //json으로 변환해서 보내줌!-@RequestBody : 받은 거 json으로 바꿔줌
 	public int ajaxInsertPetInfo(Pet pet, @RequestParam(value="file", required = false) MultipartFile file, HttpServletRequest request, MultipartController mc) throws AmazonClientException, IllegalStateException, IOException, InterruptedException {
-		System.out.println("> 반려동물 정보 입력");
+		System.out.println("> insert 반려동물 정보 입력!");
 		System.out.println("pet~~:"+ pet);
 		System.out.println(file);
 		
@@ -197,7 +174,7 @@ public class PetController {
 	@RequestMapping(value="/ajaxUpdatePetInfo")
 	@ResponseBody
 	public int ajaxUpdatePetInfo(Pet pet, @RequestParam(value="file", required = false) MultipartFile file, HttpServletRequest request, MultipartController mc) throws AmazonClientException, IllegalStateException, IOException, InterruptedException {
-		System.out.println("> 반려동물 정보 입력");
+		System.out.println("> update 반려동물 정보 입력!");
 		System.out.println("pet~~:"+ pet);
 		
 		HttpSession session = request.getSession();

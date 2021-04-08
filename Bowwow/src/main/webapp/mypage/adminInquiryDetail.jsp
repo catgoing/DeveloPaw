@@ -105,11 +105,13 @@
 									<pre><c:out value="${uiqDetail.inquiry_content }" /></pre>
 									</td>
 								</tr>	
-								<c:if test="${uiqDetail.p_id == null }">
+								<c:if test="${uiqDetail.p_id != null }">
 								<tr>
 									<th>문의상품</th>
 									<td colspan="3"></td>
 								</tr>
+								</c:if>			
+								<c:if test="${uiqDetail.p_id == null }">
 								</c:if>			
 							</table>
 						</div>

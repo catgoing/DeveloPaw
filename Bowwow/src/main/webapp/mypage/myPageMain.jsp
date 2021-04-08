@@ -60,6 +60,11 @@
   .myPageInfo-header{ text-align : center;}
   .container h3 { text-align: center;}
 </style>
+<script>
+/* (function(member_serial) {
+	이거어떻게하지??
+}('${sessoionScope.userDTO.member_serial}'); */
+</script>
 </head>
 
 <body>
@@ -137,7 +142,7 @@
 					<!-- Page-body start -->
 						<div class="page-body">
 						<div class="myPageInfo-header">
-							<h2> ${user.memberSerial} 님의 페이지</h2>
+							<h2> ${sessionScope.userDTO.nickname} 님의 페이지</h2>
 						</div>
 
 						<div class="mypage_main_content">
@@ -145,10 +150,10 @@
 							<div class="container mypage_main_content mypointlist">
 								<h3>누적적립금출력영역</h3>
 								<div class="container totalpoint">
-									<div clss="table">
+									<div class="table">
 									
 									<table>
-									<c:if test="${empty pointList }">
+									<c:if test="${empty myHomePointList }">
 										<tr>	
 											<td colspan="5" class="center">
 												<div style="">
@@ -157,14 +162,14 @@
 											</td>
 										</tr>
 									</c:if>
-									<c:if test="${not empty pointList }">	
+									<c:if test="${not empty myHomePointList }">	
 										<h5>상품 구매 후 적립된 포인트 내역을 보여드립니다.</h5>
 										<tr>
 											<th width="200">추가일</th>
 											<th width="150">추가포인트</th>
-											<th width="150">누적포인트</th>
+											<th width="150">현재 총 포인트</th>
 										</tr>
-										<c:forEach var="point" items="${pointList }">
+										<c:forEach var="point" items="${myHomePointList }">
 										<tr>
 											<td>${point.order_date }</td>
 											<td>${point.order_point }</td>
@@ -181,17 +186,17 @@
 							<div class="container petlist">
 							  	<h3>반려동물리스트</h3>
 							  <div class="row">
-							  	<c:if test="${not empty petList }">
-                       			<c:forEach var="petList" items="${petList }">
+							  	<c:if test="${not empty myHomepetList }">
+                       			<c:forEach var="petList" items="${myHomepetList }">
 							    <div class="col-sm">
 							      	${petList.pet_name }
-							    	<div class="card" style="width: 200px;">
-										<img src="${petList.image_source_oriname }" class="card-img-top" alt="...">
+							    	<div class="card" style="width: 200px; height: 200px;">
+										<img src="${petList.image_source_oriname }" class="card-img-top" alt="..." style="width: 200px; height: 200px;">
 									</div>
 							    </div>
 							    </c:forEach>
 							    </c:if>
-							    <c:if test="${empty petList }">
+							    <c:if test="${empty myHomepetList }">
 						    	<div class="col-md-6">
                            			<div class="list-inner">
                                	<h3>등록된 반려동물이 없습니다.</h3>

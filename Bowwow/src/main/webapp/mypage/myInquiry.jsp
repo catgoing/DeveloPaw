@@ -271,8 +271,8 @@ function allInputCheck(frm) {
 							    					<textarea class="form-control" name="inquiry_content" rows="5" placeholder="질문을 입력하세요!"></textarea>
 							  					</div>
 							    				<div class="form-group input_product" id="input_product"></div>
-							    				<input type="hidden" name="nickname" value="${sessionScope.user.nickname }">
-							    				<input type="hidden" name="member_serial" value="${sessionScope.user.memberSerial }">
+							    				<input type="hidden" name="nickname" value="${sessionScope.userDTO.nickname }">
+							    				<input type="hidden" name="member_serial" value="${sessionScope.userDTO.member_serial }">
 	                                           <input type="button" class="contact-btn" value="문의하기" onclick="allInputCheck(this.form)">	
 							    			   <input type="button" class="cancel-btn" value="취소">
                                            </form>

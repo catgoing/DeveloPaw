@@ -7,6 +7,9 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
 import ga.bowwow.service.pet.Pet;
+import ga.bowwow.service.store.Order;
+import ga.bowwow.service.user.VO.UserAccount;
+import ga.bowwow.service.user.VO.UserDTO;
 
 @Repository("PetDAO")
 public class PetDAO {
@@ -51,6 +54,24 @@ public class PetDAO {
 			System.out.println("pet: " + pet2.toString());
 		}
 		
+		return list;
+	}
+	//마이홈 출력용 반려동물 정보(최신순)
+	public List<Pet> getMyHomePetList(int member_serial) {
+		System.out.println("--->> getMyHomePetList() 실행");
+		
+		List<Pet> list = mybatis.selectList("PetInfo.mainSearchAnimal", member_serial);
+		String default_url = "https://projectbit.s3.us-east-2.amazonaws.com/petImg/6262857e-1887-46fc-b77c-9209935f8657.jpg";
+		String fs_url = "https://projectbit.s3.us-east-2.amazonaws.com/";
+		
+		for(Pet onePet : list) {
+			if(onePet.getImage_source_oriname() == null) {
+				onePet.setImage_source_oriname(default_url);
+			} else {
+				String base_url = onePet.getImage_source_oriname();
+				onePet.setImage_source_oriname(fs_url + base_url);
+			}
+		}
 		return list;
 	}
 }

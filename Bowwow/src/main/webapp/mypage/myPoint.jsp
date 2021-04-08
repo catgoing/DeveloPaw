@@ -176,7 +176,7 @@
 										<div class="row">
 											<div class="col-lg-12">
 												<div class="section-title">
-													<h2>포인트 출력</h2>
+													<h2>${sessionScope.userDTO.nickname}님의 포인트</h2>
 												</div>
 												<br>
 											</div>

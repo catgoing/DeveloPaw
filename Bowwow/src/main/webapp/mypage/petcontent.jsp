@@ -124,7 +124,7 @@
 		<h4 class="modal-title" id="myModalLabel">반려동물 상세보기</h4>
 	</div>
     <form class="pet-form" id="pet-detail-form" name="pet-detail-form">
-		<div class="popup-inner img-pet" id="detail_petimg">
+		<div class="popup-inner img-pet" id="detail_petimg" style="width: 200px; height: 200px; margin-left:50px;">
 			<img src="${petDetail.image_source_oriname }" id="thumb_container">
 		</div>
 		<div class="popup-inner text-pet">
@@ -247,7 +247,7 @@
 		        </tr>
 		        <tr>
 			        <td rowspan="3" colspan="2">
-			        	<input type="file" id="inputimage" accept="image/jpg, image/gif image/png, image/jpeg image/bmp" name="file" >
+			        	<input type="file" id="inputimage" name="file" accept="image/jpg, image/gif image/png, image/jpeg image/bmp" onchange="setThumbnail(event)">
 		        		<div id="thumb_container">
 		        		</div>
 			        </td>

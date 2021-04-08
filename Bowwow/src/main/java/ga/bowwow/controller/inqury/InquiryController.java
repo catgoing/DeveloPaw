@@ -9,21 +9,19 @@ import javax.servlet.http.HttpServletRequest;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.SessionAttributes;
 
 import ga.bowwow.service.userpage.MyInquiry;
-import ga.bowwow.service.userpage.impl.MyInquiryServiceImpl;
+import ga.bowwow.service.userpage.MyInquiryService;
 
 @Controller
 @SessionAttributes({"userinquiryList","uiqDetail","AllUsersInquiry"})
 public class InquiryController {
 	
 	@Autowired
-	MyInquiryServiceImpl myServive;
-	@Autowired
+	private MyInquiryService myServive;
 	
 	public InquiryController() {
 		System.out.println("문의 컨트롤러 생성");
@@ -38,6 +36,7 @@ public class InquiryController {
 	//유저문의입력
 	@RequestMapping(value="/insertUserInquiry", method=RequestMethod.POST)
 	public String insertUserInquiry(MyInquiry myinquiry) {
+		System.out.println("유저문의를 입력합니다.");
 		myServive.insertMyInquiry(myinquiry);
 		
 		return "redirect:/getUserInquiryList";
@@ -46,7 +45,7 @@ public class InquiryController {
 	//유저문의리스트
 	@RequestMapping(value="/getUserInquiryList", method=RequestMethod.POST)
 	public String getUserInquiryList(MyInquiry myInquiry, Model model, HttpServletRequest requetst) {
-		System.out.println(">> getUserInquiryList !");
+		System.out.println(">> 로그인한 유저의 문의 리스트를 가져옵니다. !");
 		System.out.println("userInquiry : " + myInquiry);
 		
 		List<MyInquiry> uiqList = myServive.getMyInquiryList(myInquiry);
@@ -76,7 +75,7 @@ public class InquiryController {
 	//유저문의상세 
 	@RequestMapping(value="/myInquiryDetail")
 	public String getUserInquiryDetail(MyInquiry myInquiry, Model model, HttpServletRequest requetst) {
-		System.out.println(">> getUserInquiryDetail !");
+		System.out.println(">> 유저가 작성한 문의의 상세페이지 오픈 !");
 		System.out.println("userInquiry : " + myInquiry);
 		System.out.println("inquiry_serial : " + myInquiry.getInquiry_serial());
 		
@@ -107,7 +106,7 @@ public class InquiryController {
 	//관리자의 유저문의리스트 출력페이지
 	@RequestMapping(value="/getAdminInquiryList", method=RequestMethod.POST)
 	public String getAdminInquiryList(MyInquiry myInquiry, Model model, HttpServletRequest requetst) {
-		System.out.println(">> 유저문의리스트 출력페이지 !");
+		System.out.println(">> 관리자 : 유저문의리스트 출력페이지 !");
 		
 		List<MyInquiry> ListAll = myServive.getAllInquiry(myInquiry);
 		model.addAttribute("AllUsersInquiry", ListAll);
@@ -118,7 +117,7 @@ public class InquiryController {
 	//관리자의 유저문의 상세페이지
 	@RequestMapping(value="/getAdminInquiryDetail")
 	public String getAdminInquiryDetail(MyInquiry myInquiry, Model model, HttpServletRequest requetst) {
-		System.out.println(">> 유저문의 상세페이지 !");
+		System.out.println(">> 관리자 : 유저문의 상세페이지 !");
 		
 		MyInquiry uiq = myServive.getMyInquiry(myInquiry);
 		model.addAttribute("uiqDetail", uiq);
@@ -129,7 +128,7 @@ public class InquiryController {
 	//관리자 문의답변입력
 	@RequestMapping(value="/insertInquiryAnswer", method=RequestMethod.POST)
 	public String insertInquiryAnswer(MyInquiry myInquiry) {
-		System.out.println(">> 문의답변입력 !");
+		System.out.println(">> 관리자 : 문의답변입력 !");
 
 		myServive.insertAdminInquiryAnswer(myInquiry);
 		

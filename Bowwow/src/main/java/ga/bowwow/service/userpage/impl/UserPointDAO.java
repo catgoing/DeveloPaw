@@ -7,6 +7,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
 import ga.bowwow.service.store.Order;
+import ga.bowwow.service.user.VO.UserAccount;
+import ga.bowwow.service.user.VO.UserDTO;
 
 @Repository("UserPointDAO")
 public class UserPointDAO{
@@ -24,9 +26,18 @@ public class UserPointDAO{
 			String date = o.getOrder_date().substring(0, 16);
 			o.setOrder_date(date);
 		}
-		
 		return list;
 	}
-
+	
+	//마이홈 출력용 포인트리스트(최신순 6개)
+	public List<Order> getMyHomePointList(int member_serial){
+		List<Order> list = mybatis.selectList("UserAccount.mainSerachPoint", member_serial);
+		for(Order o : list) {
+			//date를 연월일시분 까지 출력
+			String date = o.getOrder_date().substring(0, 16);
+			o.setOrder_date(date);
+		}
+		return list;
+	}
 	
 }
