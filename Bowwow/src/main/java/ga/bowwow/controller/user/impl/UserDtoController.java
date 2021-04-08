@@ -1,7 +1,6 @@
 package ga.bowwow.controller.user.impl;
 
 import java.util.ArrayList;
-import java.util.List;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
@@ -47,6 +46,7 @@ public class UserDtoController extends UserCRUDGenericController<UserAccount> {
 		}
 		return "/auth.login";
 	}
+	
 	@PostMapping(value="/login")
 	public String loginUserDTO(@ModelAttribute("userDTO") UserDTO userDTO, Model model, HttpServletRequest request) {
 		final String baseUrl = ServletUriComponentsBuilder.fromCurrentContextPath().build().toUriString();
@@ -62,6 +62,14 @@ public class UserDtoController extends UserCRUDGenericController<UserAccount> {
 			return "redirect:/mypage/myInfo";
 		}
 		return "/auth.login";
+	}
+	
+	public String autoAdminLogin() {
+		final String baseUrl = ServletUriComponentsBuilder.fromCurrentContextPath().build().toUriString();
+		UserDTO adminUser = new UserDTO();
+		adminUser.setId("z");
+		adminUser.setPassword("z");
+		return rt.postForEntity(baseUrl + "/user/login", adminUser, String.class).getBody();
 	}
 
 	//추상화된 REST 자원 받아오기 명령 : (baseUrl, 체킹 T(추상VO, 또는 Serial), 경로(rest자원명), 파라미터)=>{}

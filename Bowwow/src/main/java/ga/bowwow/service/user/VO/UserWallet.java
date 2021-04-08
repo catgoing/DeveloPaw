@@ -10,7 +10,7 @@ import lombok.ToString;
 @NoArgsConstructor @AllArgsConstructor
 @ToString
 public class UserWallet {
-	Integer member_serial;
+	int member_serial;
 	String wallet_id;
 	String pay_type;
 	String bank_name;

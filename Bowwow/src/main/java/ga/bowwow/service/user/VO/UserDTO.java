@@ -11,8 +11,9 @@ import lombok.ToString;
 @Getter @Setter
 @NoArgsConstructor @AllArgsConstructor
 @ToString
+
 public class UserDTO extends UserAccount {
-	Integer member_serial;
+	int member_serial;
 	String id;
 	String email;
 	String citizen_id;

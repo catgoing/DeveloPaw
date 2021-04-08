@@ -105,20 +105,11 @@
 
 							<!-- Page-body start -->
 							<div class="page-body">
-								<div class="myPageInfo-header">
-									<h2>뫄뫄님의 페이지</h2>
-								</div>
 								<div class="myPageInfo-wrapper">
 
 									<!-- 회원정보수정 부분 -->
 									<div class="form-group">
 										<div class="input-content">
-											<div class="side-content">
-												<div class="my-area">
-													<div class="side-profile-img">프로필사진영역</div>
-													<p>닉네임</p>
-												</div>
-											</div>
 
 											<div class="mainMypage-content">
 												<div class="block-title">
@@ -172,7 +163,9 @@
 																<label for="uploadImage" id="imageview"> <img
 																	src="" class="thumb">
 																</label>
-																<!-- <input type="file" id="uploadImage" accept="image/gif, image/jpeg, image/jpg, image/png" name="uploadImage" onchange="readURL(this);"> -->
+																<input type="file" id="inputimage" name="file" accept="image/jpg, image/gif image/png, image/jpeg image/bmp" onchange="setThumbnail(event)">
+												        		<div id="thumb_container">
+												        		</div>
 															</div>
 														</div>
 														<p></p>
@@ -340,6 +333,38 @@
      </script>
      
      <script>
+     function getImageName(_imageSource) {
+  		var imagePaths = _imageSource.value.split('\\');
+  		var imageLastIndex = imagePaths.length;
+  		var imageName = imagePaths[imageLastIndex-1];
+    	return imageName;
+//   		console.log(imageSource.value);
+//   		console.log(imagePaths);
+//   		console.log(imageLastIndex);
+//   		console.log(imageName);
+
+
+//       	const datas = new FormData(document.getElementById('uploadImage'));
+// 		console.log(datas);
+// 		console.log($("#insertPetform input[type='file']").val());
+     }
+     	function readImage(_image) {
+     	console.log(getImageName(_image));
+     		
+//      	$.ajax("/account/checkIdDuplication", {
+//     	        type: "POST",
+//     	        data: JSON.stringify(idData),
+//     	        contentType:"application/json; charset=UTF-8",
+//     	        success: function() {
+//     	      	  alert('가입 가능한 아이디입니다.');
+//     	      	  //TODO readOnly 필드의 개방!!!! 
+//     	        }
+//     	 	 }).fail(function(data, textStatus, xhr) {
+//     	      	  alert('이미 등록된 아이디입니다.');
+
+//                   console.log("fail error", data.status);
+//              });
+     	}
      	function getMultiForm(_form) {
      		var form = _form;
           	const data = [];
@@ -366,10 +391,10 @@
           	for (var formData of datas.entries()) {
           	  	var _key = formData[0];
           	  	var _value = formData[1];
-//           	  	console.log(_key, _value);
+          	  	console.log(_key, _value);
 
           	  	data[_key] = _value;
-//           		console.log(data);
+          		console.log(data);
           	}
           	return data;
      	}
@@ -420,28 +445,49 @@
 	</script>
 	<script>
 // 		TODO: 하나의 요청/컨트롤러로 합쳐야함
+	
       function dynamicAjaxSubmit() {
     	 const addressData = getMultiForm(document.address_form);
 
-      	 $.ajax("/address/addAddressList", {
-	           type: "POST",
-	           data: JSON.stringify(addressData),
-	           contentType:"application/json; charset=UTF-8",
-	           success: function() {
-	         	  alert('success');
-	           }
-         });
+//       	 $.ajax("/address/addAddressList", {
+// 	           type: "POST",
+// 	           data: JSON.stringify(addressData),
+// 	           contentType:"application/json; charset=UTF-8",
+// 	           success: function() {
+// 	         	  alert('success');
+// 	           }
+//          });
    	  	const accountData = getSingleForm(document.account_form);
       	$.ajax("/account/addJson", {
             type: "POST",
+			enctype: "multipart/form-data",
             data: JSON.stringify(accountData),
             contentType:"application/json; charset=UTF-8",
             success: function() {
           	  alert('success');
             }
-  		 });
-      };
+  		});
+      	
+		
+// 		$.ajax("/ajaxInsertPetInfo", {
+// 			type : "post",
+// 			enctype: "multipart/form-data",
+// 		    data : datas,
+// 			processData: false,
+// 			contentType: false,
+// 			cache: false,
+// 			dataType: "json",
+// 			success : function(result){
+// 				console.log("result : " + result);
+// 				alert("yes");
+// 				$("#newPet").modal("hide");
+// 				location.href = "/getPetInfoList";
+// 			}, error : function(request,status,error){
+// 				alert("no");
+// 			}
+// 		});
+    };
    	</script>
-
+   	<script type="text/javascript" src="/common/commonThumbnail.js"></script>
 </html>
 

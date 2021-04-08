@@ -1,6 +1,6 @@
 package ga.bowwow.controller.user.impl;
 
-import java.net.URI;
+import java.io.File;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -16,7 +16,9 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.multipart.MultipartFile;
 
 import ga.bowwow.controller.user.UserCRUDGenericController;
 import ga.bowwow.service.user.VO.UserAccount;
@@ -31,6 +33,12 @@ public class UserAccountController extends UserCRUDGenericController<UserAccount
 		System.out.println("---->>> UserAccountController() 객체생성");
 		this.service = service;
 		this.setDomainRoute("/ok", "/auth.login");
+	}
+	@RequestMapping("/img")
+	public String getImg(@RequestParam("profileImg") File profileImg) {
+		System.out.println(profileImg.getName());
+		System.out.println(profileImg);
+		return "/index";
 	}
 
 	@ResponseBody
@@ -53,11 +61,12 @@ public class UserAccountController extends UserCRUDGenericController<UserAccount
 	
 	@PostMapping(value= "/addAccountWithAddressList",
 			produces = "application/text; charset=UTF-8")
-	protected String add(UserAccount vo, @RequestBody List<UserAddress> userAddressList)  {
+	protected String add(UserAccount vo, @RequestParam(value="file", required = false) MultipartFile file, @RequestBody List<UserAddress> userAddressList)  {
 		System.out.println("addresslist controller test2");
 		try {
-			System.out.println("controller : " + vo);
-			System.out.println(userAddressList);
+			System.out.println(file);
+//			System.out.println("controller : " + vo);
+//			System.out.println(userAddressList);
 //			return router(service.addVo(vo), resolveRoute, errorRoute);
 			return "/auth.myAccount";
 		} catch (DataIntegrityViolationException  e) {

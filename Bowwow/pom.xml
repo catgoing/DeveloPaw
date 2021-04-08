@@ -37,6 +37,8 @@
          <version>3.0.8</version>
       </dependency>
       
+      
+      
 		<!-- lombok 설정 -->
 		<dependency>
             <groupId>org.projectlombok</groupId>
@@ -130,6 +132,13 @@
 		    <version>12.2.0.1</version>
 		</dependency>
 		<!-- 오라클 드라이버 등록 끝 -->
+		
+		<!--sql 로그에 저장하기 위함-->
+		<dependency>
+		    <groupId>org.bgee.log4jdbc-log4j2</groupId>
+		    <artifactId>log4jdbc-log4j2-jdbc4</artifactId>
+		    <version>1.16</version>
+		</dependency>
 
 
 

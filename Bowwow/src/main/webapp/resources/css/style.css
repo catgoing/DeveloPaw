@@ -223,8 +223,8 @@ font-size: 16px; color : #fff; border-radius: 2px; line-height: 42px;}
 
 /* 본문 영역 */
 body {
-    background-color: #f3f3f3;
-    font-size: 0.875em;
+    background-color: #fff;
+    font-size: 1em;
     overflow-x: hidden;
     color: #ff6347;
     font-family: "Do Hyeon";
@@ -2590,7 +2590,7 @@ img.comment-img {
 /* 사이드바 색깔 부분*/
 
 .mCSB_container_wrapper {
-    background-color: #ffffff;
+    background-color: #faf3f3;
     opacity: 0.8;
 }
 
@@ -5523,7 +5523,7 @@ table tbody .border-bottom-info td {
 .pcoded-main-container {
     display: block;
     position: relative;
-    background: #faf3f3;
+    background: white;
     min-height: calc(100vh - 56px);
 }
 
@@ -5584,7 +5584,7 @@ table tbody .border-bottom-info td {
 
 .pcoded .pcoded-navbar .pcoded-item>li:hover>a,
 .pcoded .pcoded-navbar .pcoded-item>li.active>a {
-    -webkit-box-shadow: 0 15px 8px -11px rgba(0, 0, 0, 0.25);
+    -webkit-box-shadow: 0 50px 8px -11px rgba(0, 0, 0, 0.25);
     box-shadow: 0 15px 8px -11px rgba(0, 0, 0, 0.25);
 }
 

@@ -43,7 +43,8 @@
     <!-- Style.css -->
     <link rel="stylesheet" type="text/css" href="/resources/css/style.css">
     <link rel="stylesheet" type="text/css" href="/resources/css/test.css">
-
+    <link rel="stylesheet" type="text/css" href="/resources/css/paging.css">
+    
 <style>
   .featured__item__text { width: 150px; }
 </style>
@@ -117,6 +118,9 @@
 															</li>
 														</c:forEach>
 													</ul>
+												</div>
+												<div>
+												<%@include file="/common/paging.jsp"%>
 												</div>
 											</div>
 										</section>

@@ -41,49 +41,33 @@
 <!-- <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/resources/css/style.css"> -->
 <link rel="stylesheet" type="text/css" href="/resources/css/style.css">
 <link rel="stylesheet" type="text/css" href="/resources/css/test.css">
-<link rel="stylesheet" type="text/css" href="/resources/css/paging.css">
 
-<title>펫 다이어리</title>
+
+ <title>키워드로 장소검색하기</title>
+
 <style>
 
-.block-item:hover{
-	cursor:pointer;
-}
-</style>
-<script>
-$(document).ready(function () {
-    $("button").click(function () {
-        //ajax 쓰는 법
-        $.ajax({
-            //속성을 설정할 수 있다
-            url:"NewFile.jsp", //데이터를  넘겨줄 링크 설정
-            type:"GET", // get or post 방식
-            data:"t1=" + $("#data").val()+"&t2=Ajax", //넘겨줄 데이터
-            
-            //위에 과정이 성공했을 것을 생각하여 작성 
-             //ajax를 통해서 연결 성공하면 출력
-             //데이터가 전달되고 나서 다시 돌아왔을 때의 검사하는 것
-             //생략하면 안됨 적어줘야 한다.
-              success: function (data, status, xhr) {
-                   
-                    alert("통신 성공!");
-                    $("#demo").html(data);
-                },
-                error: function (xhr, status, error) {
-                    alert("통신 실패!");
-                },
-                complete: function (xhr, status) {
-                    alert("통신 종료");
-                }
-        });
-        
-    });
-    
-});
+.block-item:hover{cursor:pointer;}
 
-</script>
+  
+   .placeinfo_wrap {position:absolute;bottom:28px;left:-150px;width:300px;}
+   .placeinfo {position:relative;width:100%;border-radius:6px;border: 1px solid #ccc;border-bottom:2px solid #ddd;padding-bottom: 10px;background: #fff;}
+   .placeinfo:nth-of-type(n) {border:0; box-shadow:0px 1px 2px #888;}
+   .placeinfo_wrap .after {content:'';position:relative;margin-left:-12px;left:50%;width:22px;height:12px;background:url('https://t1.daumcdn.net/localimg/localimages/07/mapapidoc/vertex_white.png')}
+   .placeinfo a, .placeinfo a:hover, .placeinfo a:active{color:#fff;text-decoration: none;}
+   .placeinfo a, .placeinfo span {display: block;text-overflow: ellipsis;overflow: hidden;white-space: nowrap;}
+   .placeinfo span {margin:5px 5px 0 5px;cursor: default;font-size:13px;}
+   .placeinfo .title {font-weight: bold; font-size:14px;border-radius: 6px 6px 0 0;margin: -1px -1px 0 -1px;padding:10px; color: #fff;background: #d95050;background: #d95050 url(https://t1.daumcdn.net/localimg/localimages/07/mapapidoc/arrow_white.png) no-repeat right 14px center;}
+   .placeinfo .tel {color:#0f7833;}
+   .placeinfo .jibun {color:#999;font-size:11px;margin-top:0;}
+   </style>
+
+
+
 </head>
 <body>
+	
+
 
 	<div id="pcoded" class="pcoded">
 		<div class="pcoded-overlay-box"></div>
@@ -92,7 +76,7 @@ $(document).ready(function () {
 			<!-- header 헤더 영역 -->
 			<%@ include file="/common/header.jsp"%>
 			<!-- header 헤더 영역 -->
-
+			
 
 			<div class="pcoded-main-container">
 				<div class="pcoded-wrapper">
@@ -118,57 +102,21 @@ $(document).ready(function () {
 												<div class="row">
 													<div class="col-lg-12">
 														<div class="section-title">
-															<h2>펫 다이어리</h2>
-														</div>
+															<h2>동물병원 지도</h2>
+														</div>											
 														<br>
+														<div id="map" style="width:100%;height:350px;"></div>
+														
+														<script type="text/javascript" src="//dapi.kakao.com/v2/maps/sdk.js?appkey=d5c1b87a3ea48432cd965082eccebcd8&libraries=services"></script>
+
+														
 													</div>
 												</div>
 												<div class="monthly-products">
-													<ul>
-														<c:forEach var="list" items="${ boardList}">
-															<li>
-																<div class="block-item default-item col-lg-3 col-md-4 col-sm-6" onclick="location.href='/community/detail?board_idx=${board_idx }&board_no=${list.board_no}'">
-																	<div class="best-label">${list.board_no }</div>
-													<%-- 				<div class="bookmark_btn click-btn" style="width:200px; height:200px;">
-																			<img style="width:200px" id="scrapImg_311"
-																				src='https://projectbit.s3.us-east-2.amazonaws.com/${list.img1 }' alt="썸네일이 없음ㅁ">
-																		
-																	</div> --%>
-																	<div class="img-area" style="width:300px; height:300px;"
-																		onclick="location.href='/board/knowhow/311'">
-															<%-- 			<div class="imgItem"
-																			style="background: url('https://projectbit.s3.us-east-2.amazonaws.com/${list.img1 }') center center no-repeat; background-size: cover; width:100%; height:100%;">
-																		</div> --%>
-																		<div class="imgItem" style="width:300px; height:300px;">
-																			<img src='https://projectbit.s3.us-east-2.amazonaws.com/${list.img1 }' onerror='this.src="/resources/images/cat&dog.jpg"' width="100%" height="100%">
-																		</div>
-																	</div>
-																	<br>
-																	<div class="text-area">
-																		<div class="item-title" style="width:300px; color:black;">
-																			<a href="/community/detail?board_idx=${board_idx }&board_no=${list.board_no}">
-																			</a><h4>${list.board_title }</h4>
-																		</div>
-																		<div class="item-items">
-																			<div class="profile">
-																				<span>${list.nickname }</span>
-																				<span>조회 ${list.hits }</span>
-																			</div>
-																			<div class="profile" style="margin-right:0">
-																			</div>
-																		</div>
-																	</div>
-																</div>
-															</li>
-														</c:forEach>
-													</ul>
-												</div>
-												<div>
-										<%@include file="/common/paging.jsp"%>
+													
 												</div>
 											</div>
 										</section>
-										
 									</div>
 
 								</div>
@@ -182,16 +130,8 @@ $(document).ready(function () {
 				</div>
 			</div>
 		</div>
-<!-- 		<button class="scroll-top" id="js-button"
-			style="margin-bottom: 190px; margin-right: 30px; font: 'Jua'">
-			<i class="fa fa-chevron-up" aria-hidden="true">TOP</i>
-		</button> -->
-		
-		<!-- footer 푸터 영역 -->
-		<%@ include file="/common/footer.jsp"%>
-		<!-- footer 푸터 영역 -->
-		<!-- <div class="fixed-button active"><a href="/community/write_board.jsp" class="btn btn-md btn-primary"> 글쓰기</a> </div> -->
 
+		<%@ include file="/common/footer.jsp"%>
 
 	</div>
 
@@ -213,6 +153,75 @@ $(document).ready(function () {
 	<script src="/resources/js/vertical/vertical-layout.min.js "></script>
 
 	<script type="text/javascript" src="/resources/js/script.js "></script>
+		<script>
+		// 마커를 클릭하면 장소명을 표출할 인포윈도우 입니다
+		var infowindow = new kakao.maps.InfoWindow({zIndex:1});
+		
+		var mapContainer = document.getElementById('map'), // 지도를 표시할 div 
+		    mapOption = {
+		        center: new kakao.maps.LatLng(37.566826, 126.9786567), // 지도의 중심좌표
+		        level: 5 // 지도의 확대 레벨
+		    };  
+		
+		// 지도를 생성합니다    
+		var map = new kakao.maps.Map(mapContainer, mapOption); 
+		
+		// 장소 검색 객체를 생성합니다
+		var ps = new kakao.maps.services.Places(); 
+		
+		// 키워드로 장소를 검색합니다
+		
+		ps.keywordSearch('동물병원', placesSearchCB); 
+		
+		// 키워드 검색 완료 시 호출되는 콜백함수 입니다
+		function placesSearchCB (data, status, pagination) {
+		    if (status === kakao.maps.services.Status.OK) {
+		
+		        // 검색된 장소 위치를 기준으로 지도 범위를 재설정하기위해
+		        // LatLngBounds 객체에 좌표를 추가합니다
+		        var bounds = new kakao.maps.LatLngBounds();
+		
+		        for (var i=0; i<data.length; i++) {
+		            displayMarker(data[i]);    
+		            bounds.extend(new kakao.maps.LatLng(data[i].y, data[i].x));
+		        }       
+		
+		        // 검색된 장소 위치를 기준으로 지도 범위를 재설정합니다
+		        map.setBounds(bounds);
+		    } 
+		}
+		
+		// 지도에 마커를 표시하는 함수입니다
+		function displayMarker(place) {
+		    
+		    // 마커를 생성하고 지도에 표시합니다
+		    var marker = new kakao.maps.Marker({
+		        map: map,
+		        position: new kakao.maps.LatLng(place.y, place.x) 
+		    });
+		
+		    kakao.maps.event.addListener(marker, 'click', function() {
+		        // 마커를 클릭하면 장소명이 인포윈도우에 표출됩니다
+		            var content = '<div class="placeinfo">' +
+		                    '   <a class="title" href="' + place.place_url + '" target="_blank" title="' + place.place_name + '">' + place.place_name + '</a>';   
+
+		                if (place.road_address_name) {
+		                 content += '    <span title="' + place.road_address_name + '">' + place.road_address_name + '</span>' +
+		                    '  <span class="jibun" title="' + place.address_name + '">(지번 : ' + place.address_name + ')</span>';
+		                  }  else {
+		                 content += '    <span title="' + place.address_name + '">' + place.address_name + '</span>';
+		                 }                
+		                content += '    <span class="tel">' + place.phone + '</span>' + 
+		                  '</div>' + 
+		                    '<div class="after"></div>';
+		        infowindow.setContent(content);
+		        infowindow.open(map, marker);
+		   
+		    });
+		}
+		</script>
+		
+		
 
 </body>
 </html>

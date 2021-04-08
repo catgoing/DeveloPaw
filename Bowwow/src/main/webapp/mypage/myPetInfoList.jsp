@@ -112,6 +112,7 @@ pre{
 	height : 200px;
 }
 </style>
+<script type="text/javascript" src="/common/commonThumbnail.js"></script>
 <script>
 
 $().ready(function(){
@@ -187,7 +188,7 @@ $().ready(function(){
 				console.log("result : " + result);
 				alert("yes");
 				$("#modiPetInfo").modal("hide");
-				location.href = "/getPetInfoList";
+				location.href = "/getPetInfoList?member_serial=${user.memberSerial}";
 			}, error : function(request,status,error){
 				alert("no");
 			}
@@ -204,25 +205,7 @@ $().ready(function(){
 	        return;
 	    }
 	}
-	
 });
-
-/*
-~~이미지 추가시에 파일선택아래에 이미지미리보기가 출력됨~~
-1. 이미지크기가 클 경우 크게 출력됨
-2. 첨부이미지를 바꿀 경우 처음에 선택한 이미지가 삭제되지않는 현상
-*/
-/* function setThumbnail(event){
-	var reader = new FileReader(); 
-	
-	reader.onload = function(event) { 
-		var img = document.createElement("img"); 
-		img.setAttribute("src", event.target.result); 
-		document.querySelector("div#image_container").appendChild(img);
-	}; 
-	reader.readAsDataURL(event.target.files[0]); 
-} */
-
 
 function getPetInfo(frm){
 	console.log("getPetInfo 시작");
@@ -262,7 +245,7 @@ function getPetInfo(frm){
 			$("#thumb_container").prop("src", petDetail.image_source_oriname);
 			
 			$("#detail_tnr").val(petDetail.tnr);									 // hidden
-			$("#detail_member_serial").val("${sessionScope.userDTO.member_serial}"); 	 // hidden
+			$("#detail_member_serial").val("${sessionScope.user.memberSerial}"); // hidden
 			$("#detail_pet_serial").val(petDetail.pet_serial);					     // hidden
 
 			$("#petDetail").modal('show'); //모달창 오픈
@@ -294,7 +277,7 @@ function setModiInfo(petDetail){
 	$("#modi_image").val(petDetail.image_source);
 	
 	$("#modi_tnr").val(petDetail.tnr);				// hidden
-	$("#modi_member_serial").val("${sessionScope.userDTO.member_serial}");	// hidden
+	$("#modi_member_serial").val("<c:out value='${user.memberSerial}'/>");	// hidden
 	$("#modi_pet_serial").val(petDetail.pet_serial);	// hidden
 }
 
@@ -307,7 +290,7 @@ function setModiInfo(petDetail){
 		 alert("선택해ㅡㅡ");
 	 } else {
 		 $("#newPet #insert_animal_type").val(type);
-		 $("#newPet #insert_member_serial").val("${sessionScope.userDTO.member_serial}");
+		 $("#newPet #insert_member_serial").val("<c:out value='${user.memberSerial}'/>");
 		 console.log($("#newPet #insert_animal_type").val());
 		 console.log($("#newPet #insert_member_serial").val());
 		 $("#newPet").modal('show');
@@ -316,7 +299,7 @@ function setModiInfo(petDetail){
 
  function inputMemberSerial(){
 	// 유저번호
-	 var mSerial = "${sessionScope.userDTO.member_serial}";
+	 var mSerial = "<c:out value='${user.memberSerial}'/>";
 	 console.log(mSerial);
 
 	 $("#insertPetInfo #insert_member_serial").val(mSerial);
@@ -381,8 +364,8 @@ function clearInput(){
 			                                        <div class="pet-detail">
 			                                        <form name="thisform">
 				                                        <input type="hidden" name="thispetserial" value="${pet.pet_serial }">
-				                                        <%-- <input type="hidden" name="thismemberserial" id="thismem" value="${sessionScope.userDTO.member_serial}"> --%>
-				                                        <input type="button" class="btn btn-outline-secondary" value="상세보기" data-toggle="modal" role="button" onclick="getPetInfo(this.form)">
+				                                        <%-- <input type="hidden" name="thismemberserial" id="thismem" value="${user.memberSerial }"> --%>
+				                                        <input type="button" value="상세보기" data-toggle="modal" role="button" onclick="getPetInfo(this.form)">
 			                                        </form>
 			                                        </div>
 		                                        </div>
@@ -399,8 +382,8 @@ function clearInput(){
                                        </div>
                                         <div class="action-button">
 	                                        <div class="action-button-inner">
-	                                        	<input type="hidden" id="member_serial" name="member_serial" value="${sessionScope.userDTO.member_serial}">
-	                                        	<input type="button" class="btn btn-outline-secondary" value="반려동물 추가하기" data-toggle="modal" data-target="#petType" role="button" onclick="inputMemberSerial()">
+	                                        	<input type="hidden" id="member_serial" name="member_serial" value="${user.memberSerial }">
+	                                        	<input type="button" value="반려동물 추가하기" data-toggle="modal" data-target="#petType" role="button" onclick="inputMemberSerial()">
 	                                        </div>
                                         </div>
                                    </div>

@@ -99,7 +99,7 @@ public class BoardDAO {
 		return mybatis.update("BoardDAO.updateHits", map);
 	}
 	
-	public List<Board> getBoardList(Map<String, Integer> map) {
+	public List<Board> getBoardList(Map<String, String> map) {
 		
 		System.out.println("===> MyBatis로 getBoardList() 실행-vo");
 //		System.out.println("dao board_name: " + board_name);
@@ -160,6 +160,10 @@ public class BoardDAO {
 		System.out.println("commentDelete map :"+map );
 		mybatis.update("BoardDAO.commentDelete2", map);
 		
+	}
+	
+	public int getBoardCount(Map<String, String> map) {
+		return mybatis.selectOne("BoardDAO.getBoardCount", map);
 	}
 
 }
