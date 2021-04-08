@@ -23,4 +23,8 @@ public class Order {
 	private String address;			// 기본 주소
 	private String address_detail;	// 상세 주소
 	private String zip;				// 우편번호
+	
+	private int order_point;
+	
+	private int point;				//point join 조회용
 }
