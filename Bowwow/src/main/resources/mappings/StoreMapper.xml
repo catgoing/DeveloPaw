@@ -22,11 +22,11 @@
 		  				PRICE, STOCK, S_IMAGE, L_IMAGE 
 		  			FROM STORE_PRODUCTS
 		 			WHERE 1=1
-		 			<if test="data1 != null">
-		 			  AND P_TYPE = '${data1}'
+		 			<if test='p_type != null'>
+		 			  AND P_TYPE = '${p_type}'
 		 			</if>
-		 			<if test="data2 != null">
-		 			  AND P_CATEGORY = '${data2}'
+		 			<if test='p_category != null'>
+		 			  AND P_CATEGORY = '${p_category}'
 		 			</if>
 		 			ORDER BY P_ID DESC 
 		 		) PROD 
@@ -39,11 +39,11 @@
 		SELECT 	COUNT(*) AS CNT 
 		FROM	STORE_PRODUCTS
 		WHERE	1=1
-		<if test='data1.equals("1")'>
-		  AND P_TYPE = '${data1}'
+		<if test='p_type != null'>
+		  AND P_TYPE = '${p_type}'
 		</if>
-		<if test='data2.nequals("1")'>
-		  AND P_CATEGORY = '${data2}'
+		<if test='p_category != null'>
+		  AND P_CATEGORY = '${p_category}'
 		</if>
 
 	</select>
