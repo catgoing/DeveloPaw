@@ -203,7 +203,9 @@
 							'<div class="comment-text">'+
 							'<h3>'+data.member_serial+'</h3>'+
 							'<span>'+data.revRegdate+'</span>'+
+							'<label for="name">후기 제목</label>'+ 
 							'<p>'+data.revTitle+'</p>'+
+							'<label for="message">후기 내용</label>'+
 							'<p>'+data.revContent+'</p>'+
 							'<button class="btn custom-btn" onclick="deleteReview('+data.revId+')">삭제</button>'+
 							'</div>'+
@@ -266,7 +268,9 @@
 					 + '<div class="comment-text">'
 					 + '<h3>'+this.member_serial+'</h3>'
 					 + '<span>'+this.review_regdate+'</span>'
+					 + '<label for="name">후기 제목</label>'
 					 + '<p>'+this.review_title+'</p>'
+					 + '<label for="message">후기 내용</label>'
 					 + '<p>'+this.review_content+'</p>'
 					 + '<button class="btn custom-btn" onclick="deleteReview('+this.review_id+')">삭제</button>'
 					 + '</div>'
@@ -466,6 +470,7 @@
 																				<button type="button" onclick="reviewInsert()"
 																					class="btn custom-btn" style="float: right;">작성</button>
 																				<input type="hidden" name="p_id" value="${p.p_id}">
+																				<input type="hidden" name="member_serial" value="999">
 																			</div>
 																		</div>
 																</form>
@@ -538,7 +543,6 @@
 
 	<script type="text/javascript" src="/resources/js/script.js "></script>
 	<script>
-		document.getElementById('revRegdate').value= new Date().toISOString().slice(0, 16);
 	</script>
 
 </body>
