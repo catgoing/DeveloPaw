@@ -23,6 +23,7 @@ public class CartList {
 	private int price;				// 가격
 	private String s_image;			// 상품 이미지
 	private String p_type;			// 상품 타입
+	private int stock;				// 상품 재고
 	
 	private List<Integer> pIdArr; // 상품 번호 리스트
 }

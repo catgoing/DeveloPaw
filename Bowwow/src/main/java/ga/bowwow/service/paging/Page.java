@@ -62,9 +62,8 @@ public class Page {
 	
 	
 	//2개의 파라미터로 페이징 처리할 때(ex:제목, 검색어)
-	public Map<String, String> data2(Page p, String data1, String data2){
+	public Map<String, String> data2(Page p, String data1, String data2, Map<String, String> map){
 		
-		Map<String, String> map = new HashMap<>();
 		map.put("begin", Integer.toString(p.getRecordBeginIdx()));
 		map.put("end", Integer.toString(p.getRecordEndIdx()));
 		map.put("data1", data1);

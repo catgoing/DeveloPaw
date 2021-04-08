@@ -23,6 +23,95 @@ File: style.css
 ==========================  **/
 style="max-width: 100%; height: auto;"
 
+.orderBtn
+{font-size: 1.5em; float: right;}
+
+
+.field.half input:read-only {
+    background-color: white;
+}
+
+/* Form */
+
+
+form .field {
+	margin-bottom: 4px;
+}
+
+form .field.half {
+	display: inline-block;
+	width: 48%;
+	margin-left : 2px;
+	margin-bottom: 4px;
+}
+
+form .field.half.first {
+	margin-right: 2.5%;
+}
+
+textarea {
+	padding: 0.75rem 1rem;
+	width: 95%;
+}
+
+.field {
+	margin-bottom: 4px;
+}
+.field.half {
+	display: inline-block;
+	width: 48%;
+	margin-left : 2px;
+	margin-bottom: 4px;
+}	
+
+.field.half.first {
+	margin-right: 2.5%;
+}
+
+.reviewList ol {
+	list-style: none;
+	padding: 50px;
+}
+
+.reviewList ol li {
+	color : #000;
+}
+
+.comment-body {
+    display: flex;
+    margin-bottom: 30px;
+}
+
+.comment-img {
+    width: 60px;
+}
+
+.comment-img img {
+    width: 50px;
+    height:50px;
+    border-radius: 50px; /* 이미지 반크기만큼 반경을 잡기*/
+
+}
+
+.comment-text h3 {
+    font-size: 24px;
+    font-weight: 600;
+    margin-bottom: 3px;
+}
+
+.comment-text span {
+    display: block;
+    font-size: 16px;
+    font-weight: 300;
+    margin-bottom: 5px;
+}
+
+.comment-text p {
+    display: block;
+    font-size: 16px;
+    font-weight: 300;
+    margin-bottom: 5px;
+}
 
 /* 상품 상세페이지 */
 .product_view { position : relative; padding : 0 0 0 395px; width : 962px; box-sizing: border-box;}
@@ -60,6 +149,10 @@ font-size: 16px; color : #fff; border-radius: 2px; line-height: 42px;}
 	padding: 10px;
 }
 /* 상품 상세페이지 끝*/ 
+.details_text h3, h4, h5 {
+	color : #666666;
+}
+
 
 .review_box input:read-only {
     background-color: white;
@@ -109,7 +202,7 @@ font-size: 16px; color : #fff; border-radius: 2px; line-height: 42px;}
    
    .store_btn2 {
 	 border : 1px solid #faf3f4;
-	 background-color : #eeeeee;
+	 background-color : #fff;
 	 color : #000;
 	 border-radius: 25px;
 	 cursor: pointer;
@@ -126,8 +219,8 @@ font-size: 16px; color : #fff; border-radius: 2px; line-height: 42px;}
    }
    
    .store_input2 {
-     border: 1px solid #faf3f4;
-     background-color: #faf3f4;
+     border: 1px solid #fff;
+     background-color: #fff;
      color: #ff6347;
      font-weight: bold;
      text-align: right;
@@ -179,13 +272,13 @@ font-size: 16px; color : #fff; border-radius: 2px; line-height: 42px;}
 
 .scroll-top {
 	position: fixed;
-	right: 20px;
+	right: 25px;
 	bottom: 20px;
 	z-index: 100;
 	background-color: #fd6970;
 	opacity: .8;
-	width: 50px;
-	height: 50px;
+	width: 60px;
+	height: 60px;
 	border-radius: 50%;
 	border: none;
 	color: #fff;
@@ -220,18 +313,29 @@ font-size: 16px; color : #fff; border-radius: 2px; line-height: 42px;}
     float: left;
 }
 
+@font-face { 
+	font-family: 'Typo_FactoryEB'; 
+	src: url(/resources/fonts/Typo_FactoryEB.ttf) format('truetype'); 
+}
+
+@font-face { 
+	font-family: 'NanumBarunpenB'; 
+	src: url(/resources/fonts/NanumBarunpenB.ttf) format('truetype'); 
+}
 
 /* 본문 영역 */
 body {
-    background-color: #fff;
+    background-color: #f3f3f3;
     font-size: 1em;
-    overflow-x: hidden;
+    overflow-x: hidden;	
     color: #ff6347;
-    font-family: "Do Hyeon";
+    font-family: "NanumBarunpenB";
     background-attachment: fixed;
     background-image: linear-gradient(rgba(255, 255, 255, 0.2) 180px, rgba(255, 255, 255, 0.9) 0%);
     margin-botton : 20px;
 }
+
+
 
 ul {
     padding-left: 0;
@@ -262,14 +366,6 @@ a:hover {
     color: #f7b5b7;
 }
 
-h1,
-h2,
-h3,
-h4,
-h5,
-h6 {
-    font-weight: 600;
-}
 
 h1 {
     font-size: 40px;
@@ -2590,7 +2686,7 @@ img.comment-img {
 /* 사이드바 색깔 부분*/
 
 .mCSB_container_wrapper {
-    background-color: #faf3f3;
+    background-color: #ffffff;
     opacity: 0.8;
 }
 
@@ -5143,6 +5239,7 @@ table tbody .border-bottom-info td {
 ==========================  **/
 
 .header-navbar {
+	font-family : "Typo_FactoryEB";
     min-height: 56px;
     padding: 0;
 }
@@ -5382,7 +5479,7 @@ table tbody .border-bottom-info td {
 }
 
 .header-navbar .navbar-wrapper .navbar-container .header-notification.active:before {
-    content: "";
+    /* content: ""; */
     border: 10px solid transparent;
     border-left-color: #fff;
     border-top-color: #fff;
@@ -5523,7 +5620,7 @@ table tbody .border-bottom-info td {
 .pcoded-main-container {
     display: block;
     position: relative;
-    background: white;
+    background: #fff;
     min-height: calc(100vh - 56px);
 }
 
@@ -5584,7 +5681,7 @@ table tbody .border-bottom-info td {
 
 .pcoded .pcoded-navbar .pcoded-item>li:hover>a,
 .pcoded .pcoded-navbar .pcoded-item>li.active>a {
-    -webkit-box-shadow: 0 50px 8px -11px rgba(0, 0, 0, 0.25);
+    -webkit-box-shadow: 0 15px 8px -11px rgba(0, 0, 0, 0.25);
     box-shadow: 0 15px 8px -11px rgba(0, 0, 0, 0.25);
 }
 
@@ -5614,6 +5711,7 @@ table tbody .border-bottom-info td {
 }
 
 .pcoded .pcoded-navbar .pcoded-item .pcoded-hasmenu .pcoded-submenu li>a>.pcoded-mtext {
+	
     color: #ff6347;
     -webkit-transition: all 0.3s ease-in-out;
     transition: all 0.3s ease-in-out;
@@ -6638,6 +6736,7 @@ body[themebg-pattern="theme1"] {
 }
 
 .pcoded .pcoded-navbar[active-item-theme="theme1"] .pcoded-item li:hover>a {
+	
     color: #f7b5b7 !important;
 }
 
