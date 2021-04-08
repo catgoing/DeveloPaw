@@ -15,56 +15,40 @@
       <![endif]-->
 <!-- Meta -->
 <meta charset="utf-8">
-<meta name="viewport"
-	content="width=device-width, initial-scale=1.0, user-scalable=0, minimal-ui">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=0, minimal-ui">
 <meta http-equiv="X-UA-Compatible" content="IE=edge" />
 
-<meta name="keywords"
-	content="bootstrap, bootstrap admin template, admin theme, admin dashboard, dashboard template, admin template, responsive" />
+<meta name="keywords" content="bootstrap, bootstrap admin template, admin theme, admin dashboard, dashboard template, admin template, responsive" />
 <meta name="author" content="Codedthemes" />
 <!--Jua 폰트 import-->
 <link rel="preconnect" href="https://fonts.gstatic.com">
-<link href="https://fonts.googleapis.com/css2?family=Jua&display=swap"
-	rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Jua&display=swap" rel="stylesheet">
 
 <!-- Dohyeon 폰트 import-->
 <link rel="preconnect" href="https://fonts.gstatic.com">
-<link
-	href="https://fonts.googleapis.com/css2?family=Do+Hyeon&display=swap"
-	rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Do+Hyeon&display=swap"rel="stylesheet">
 
 <!-- Favicon icon -->
-<link rel="icon" href="../resources/images/favicon.ico"
-	type="image/x-icon">
+<link rel="icon" href="/resources/images/favicon.ico" type="image/x-icon">
 <!-- Google font-->
-<link
-	href="https://fonts.googleapis.com/css?family=Open+Sans:400,600,700"
-	rel="stylesheet">
+<link href="https://fonts.googleapis.com/css?family=Open+Sans:400,600,700" rel="stylesheet">
 <!-- waves.css -->
-<link rel="stylesheet"
-	href="../	resources/pages/waves/css/waves.min.css" type="text/css"
-	media="all">
+<link rel="stylesheet" href="/resources/pages/waves/css/waves.min.css" type="text/css" media="all">
 <!-- Required Fremwork -->
-<link rel="stylesheet" type="text/css"
-	href="../resources/css/bootstrap/css/bootstrap.min.css">
+<link rel="stylesheet" type="text/css" href="/resources/css/bootstrap/css/bootstrap.min.css">
 <!-- waves.css -->
-<link rel="stylesheet" href="../resources/pages/waves/css/waves.min.css"
-	type="text/css" media="all">
+<link rel="stylesheet" href="/resources/pages/waves/css/waves.min.css" type="text/css" media="all">
 <!-- themify icon -->
-<link rel="stylesheet" type="text/css"
-	href="../resources/icon/themify-icons/themify-icons.css">
+<link rel="stylesheet" type="text/css" href="/resources/icon/themify-icons/themify-icons.css">
 <!-- font-awesome-n -->
-<link rel="stylesheet" type="text/css"
-	href="../resources/css/font-awesome-n.min.css">
-<link rel="stylesheet" type="text/css"
-	href="../resources/css/font-awesome.min.css">
+<link rel="stylesheet" type="text/css" href="/resources/css/font-awesome-n.min.css">
+<link rel="stylesheet" type="text/css" href="/resources/css/font-awesome.min.css">
 <!-- scrollbar.css -->
-<link rel="stylesheet" type="text/css"
-	href="../resources/css/jquery.mCustomScrollbar.css">
+<link rel="stylesheet" type="text/css" href="/resources/css/jquery.mCustomScrollbar.css">
 <!-- Style.css -->
-<link rel="stylesheet" type="text/css" href="../resources/css/style.css">
+<link rel="stylesheet" type="text/css" href="/resources/css/style.css">
 <link rel="stylesheet" type="text/css" href="/resources/css/storeStyle.css">
-<link rel="stylesheet" type="text/css" href="../resources/css/test.css">
+<link rel="stylesheet" type="text/css" href="/resources/css/test.css">
 <style>
 .featured__item__text {
 	width: 150px;
@@ -73,29 +57,25 @@
 </style>
 </head>
 <script>
-/* function updateOrder(frm) {
-	if ("${o.order_status} != 주문완료") {
-		alert("배송 단계로 넘어간 주문입니다. 고객센터에 문의하세요.");
-		frm.preventDefault();
-		return;	
-	}
-	else{
-		frm.preventDefault();
-	    frm.submit();
-	}
-}
+
 
 function delOrder(){
 	if(document.getElementById('orderStatus').value != "주문 완료"){
+		console.log(document.getElementById('orderStatus').value);
 		alert("배송이 시작된 상품입니다. 고객센터에 문의해 주세요.");
 		return false;
-}
+
+	} else {
+		alert("주문이 취소되었습니다.");
+		return true;
+	}
+}	
 
 
 function deleteOrder(frm) {
 	frm.action="/store/deleteOrder";
 	frm.submit();
-}
+} 
 
 </script>
 <body>
@@ -116,31 +96,31 @@ function deleteOrder(frm) {
 
 							
 							<!--================Order Details Area =================-->
-							<section class="order_details section_gap">
+							<section class="order_details section_gap" >
 								<div class="container" style="background-color: white;">
-								<form action="deleteOrder" onsubmit="return delOrder();" method="POST">
+								<form action="deleteOrder" onsubmit="return delOrder();" method="POST" style="border : 2px solid #eee; margin : 60px; padding : 30px;">
 									<br>
-									<h3 class="title_confirmation">주문 상세 내역</h3>
+									<h2	 class="title_confirmation">주문 상세 내역</h2>
+									<hr>
 									<div class="row order_d_inner">
 										<div class="col-lg-4">
 											<div class="details_item">
 												<h4>Order Info</h4>
+												<br>
 												<ul class="list">
-													<li><a href="#"><span>주문번호</span> : ${o.order_id}</a></li>
-													<li><a href="#"><span>Member Serial</span> : ${o.member_serial}</a></li>
-													<li><a href="#"><span>Total</span> : USD 2210</a></li>
-													<li><a href="#"><span>Payment method</span> : Check payments</a></li>
+													<li><span>주문번호</span> : ${o.order_id}</li>
+													<li><span>주문자 성명</span> : ${o.realname}</li>
+													<li><span>주문자 전화번호</span> : ${o.phone}</li>
 												</ul>
 											</div>
 										</div>
 										<div class="col-lg-4">
 											<div class="details_item">
 												<h4>주문인 주소</h4>
+												<br>
 												<ul class="list">
-													<li><a href="#"><span>Street</span> : 56/8</a></li>
-													<li><a href="#"><span>City</span> : Los Angeles</a></li>
-													<li><a href="#"><span>Country</span> : United
-															States</a></li>
+													<li><span>우편번호 </span>${o.zip }</li>
+													<li><span>주소</span> : ${o.address } ${o.address_detail }</li>
 												</ul>
 											</div>
 										</div>
@@ -148,6 +128,7 @@ function deleteOrder(frm) {
 									<br>
 									<div class="order_details_table">
 										<h2>주문한 상품 목록</h2>
+										<br>
 										<div class="table-responsive">
 											<table class="table">
 												<thead>
@@ -160,13 +141,13 @@ function deleteOrder(frm) {
 												<tbody>
 													<tr>
 														<td>
-															<p>Pixelstore fresh Blackberry</p>
+															<p>${o.p_name }</p>
 														</td>
 														<td>
-															<h5>x 02</h5>
+															<h5>x ${o.amount }</h5>
 														</td>
 														<td>
-															<p>$720.00</p>
+															<p>${o.totalSum }원</p>
 														</td>
 													</tr>
 													<tr>
@@ -182,23 +163,29 @@ function deleteOrder(frm) {
 													</tr>
 													<tr>
 														<td>
-															<h4>Total</h4>
+															<h4>총 결제금액</h4>
 														</td>
 														<td>
 															<h5></h5>
 														</td>
 														<td>
-															<p>$2210.00</p>
+															<p>${o.totalSum}원</p>
 														</td>
 													</tr>
 												</tbody>
 											</table>
-											<button onclick="location.href='storeOrderDetailUpdate.jsp'" class="site-btn" style="font-size: 1.5em; float: right;">주문내역 수정</button>
-											<button onclick="deleteOrder(this.form)" style="font-size: 1.5em; float: right;" >주문 취소</button>
+											<input type="submit" class="orderBtn" value="주문 취소">
 											<input type="hidden" name="order_id" value="${o.order_id} ">
-											<input type="hidden" id="orderStatus" name="order_status" value="${o_status}">
+											<input type="hidden" id="orderStatus" name="order_status" value="${o.order_status}">
+											
 										</div>
 									</div>
+								</form>
+								<form action="changeOrderStatus" method="post" class="deliveryForm">
+									<input type="hidden" name="order_id" value="${o.order_id} ">
+									<input type="hidden" id="orderStatus1" name="order_status" value="">
+									<button type="button" class="delivery1_btn">배송중</button>
+									<button type="button" class="delivery2_btn">배송완료</button>
 								</form>
 							</div>
 							</section>
@@ -214,28 +201,39 @@ function deleteOrder(frm) {
 <%@include file="/common/storeFoot.jsp" %>
 		
 		<!-- Required Jquery -->
-		<script type="text/javascript"
-			src="../resources/js/jquery/jquery.min.js "></script>
-		<script type="text/javascript"
-			src="../resources/js/jquery-ui/jquery-ui.min.js "></script>
-		<script type="text/javascript"
-			src="../resources/js/popper.js/popper.min.js"></script>
-		<script type="text/javascript"
-			src="../resources/js/bootstrap/js/bootstrap.min.js "></script>
+		<script type="text/javascript" src="/resources/js/jquery/jquery.min.js "></script>
+		<script type="text/javascript" src="/resources/js/jquery-ui/jquery-ui.min.js "></script>
+		<script type="text/javascript" src="/resources/js/popper.js/popper.min.js"></script>
+		<script type="text/javascript" src="/resources/js/bootstrap/js/bootstrap.min.js "></script>
 		<!-- waves js -->
-		<script src="../resources/pages/waves/js/waves.min.js"></script>
+		<script src="/resources/pages/waves/js/waves.min.js"></script>
 		<!-- jquery slimscroll js -->
-		<script type="text/javascript"
-			src="../resources/js/jquery-slimscroll/jquery.slimscroll.js"></script>
+		<script type="text/javascript" src="/resources/js/jquery-slimscroll/jquery.slimscroll.js"></script>
 
 		<!-- slimscroll js -->
-		<script src="../resources/js/jquery.mCustomScrollbar.concat.min.js "></script>
+		<script src="/resources/js/jquery.mCustomScrollbar.concat.min.js "></script>
 
 		<!-- menu js -->
-		<script src="../resources/js/pcoded.min.js"></script>
-		<script src="../resources/js/vertical/vertical-layout.min.js "></script>
+		<script src="/resources/js/pcoded.min.js"></script>
+		<script src="/resources/js/vertical/vertical-layout.min.js "></script>
 
-		<script type="text/javascript" src="../resources/js/script2.js "></script>
+		<script type="text/javascript" src="/resources/js/script2.js "></script>
+		<script>
+			$(".delivery1_btn").click(function(){
+				$("#orderStatus1").val("배송중");
+				run();
+			});
+			
+			$(".delivery2_btn").click(function(){
+				$("#orderStatus1").val("배송완료");
+				run();
+			});
+			
+			function run() {
+				$(".deliveryForm").submit();
+			}
+			
+		</script>		
 </body>
 
 

@@ -30,9 +30,15 @@ public class CartListServiceImpl implements CartListService {
 	}
 
 	@Override
+	public int updateCart(CartList cartList) {
+		return storeDAO.updateCart(cartList);
+	}
+
+	@Override
 	public int deleteCart(CartList cartList) {
 		return storeDAO.deleteCart(cartList);
 	}
+
 
 	
 	

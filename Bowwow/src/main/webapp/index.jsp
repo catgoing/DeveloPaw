@@ -10,9 +10,9 @@
 <body>
 <h2>index</h2>
 
-${sessionScope.userDTO.id}
-<form action="/user/logout">
-<input type="submit" value="logout">
+<form action="/account/img">
+	<input type="file" name="profileImg"/>
+	<input type="submit" value="logout">
 </form>
 </body>
 </html>

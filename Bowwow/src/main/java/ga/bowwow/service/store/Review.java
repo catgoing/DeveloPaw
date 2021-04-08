@@ -19,4 +19,6 @@ public class Review {
 	private String review_content;		// 후기 내용
 	private String review_regdate;		// 후기 작성 날짜
 	private String review_image;		// 후기 이미지
+	
+	private String nickname;			// 닉네임
 }

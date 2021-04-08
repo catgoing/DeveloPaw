@@ -25,12 +25,7 @@ public class UserAddressDAO extends UserGenericDAO<UserAddress> {
 				, "YetNoGetListQuery");
 	}
 	
-	public List<UserAccount> getUserList() {
-		return mybatis.selectList("UserAddress.getUserAddressList");
-	}
-
-	public List<UserAddress> getUserList(UserAddress userAddress) {
-		// TODO Auto-generated method stub
-		return null;
+	public List<UserAddress> getAddressList(UserAccount userAccount) {
+		return mybatis.selectList("UserAddress.getUserAddressList", userAccount);
 	}
 }

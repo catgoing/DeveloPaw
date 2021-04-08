@@ -1,6 +1,7 @@
 package ga.bowwow.service.store.impl;
 
 import java.util.List;
+import java.util.Map;
 
 import org.mybatis.spring.SqlSessionTemplate;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -26,8 +27,12 @@ public class StoreDAO {
 	    return mybatis.selectOne("Store.getProductDetail", p_id);
 	}
 
-	public List<Product> getProductList(Product product) {
-		return mybatis.selectList("Store.ProductList", product);
+	public List<Product> getProductList(Map<String, String> map) {
+		return mybatis.selectList("Store.ProductList", map);
+	}
+	
+	public int getProductCount(Map<String, String> map) {
+		return mybatis.selectOne("Store.ProductCount", map);
 	}
 	
 	
@@ -47,6 +52,11 @@ public class StoreDAO {
 	public int cartCheck(CartList cartList) {
 		return mybatis.selectOne("Cart.cartCheck", cartList);
 		
+	}
+	
+	// 장바구니 상품 갯수 수정
+	public int updateCart(CartList cartList) {
+		return mybatis.update("Cart.updateCart", cartList);
 	}
 	
 	// 장바구니 상품 삭제
@@ -87,14 +97,14 @@ public class StoreDAO {
 		mybatis.update("StoreOrder.updateOrder", order);
 	}
 	
-	public void deleteOrder(int order_id) {
+	public void deleteOrder(String order_id) {
 		System.out.println("삭제할 주문내역 : " + order_id);
 		mybatis.delete("StoreOrder.deleteOrder", order_id);
 	}
 	
-	public List<Order> getOrderList(int member_serial) {
-		System.out.println("회원 주문 내역 리스트 : " + member_serial);
-		return mybatis.selectList("StoreOrder.orderList", member_serial);
+	public List<Order> getOrderList(Order order) {
+		System.out.println("회원 주문 내역 리스트 : " + order);
+		return mybatis.selectList("StoreOrder.orderList", order);
 	}
 
 	public Order getOrderDetail(int order_id) {
@@ -104,6 +114,10 @@ public class StoreDAO {
 
 	public void changeStock(Order order) {
 		mybatis.update("StoreOrder.changeStock",order);
+	}
+
+	public void changeOrderStatus(int order_id) {
+		mybatis.update("StoreOrder.changeOrderStatus",order_id);
 	}
 
 }

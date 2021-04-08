@@ -10,13 +10,13 @@ import lombok.ToString;
 @NoArgsConstructor @AllArgsConstructor
 @ToString
 public class UserWallet {
-	long memberSerial;
-	String walletId;
-	String payType;
-	String bankName;
-	String bankNo;
-	String cardName;
-	String cardNo;
+	int member_serial;
+	String wallet_id;
+	String pay_type;
+	String bank_name;
+	String bank_no;
+	String card_name;
+	String card_no;
 	
 	@Override
 	public boolean equals(Object obj) {
@@ -27,35 +27,35 @@ public class UserWallet {
 		if (getClass() != obj.getClass())
 			return false;
 		UserWallet other = (UserWallet) obj;
-		if (payType == null) {
-			if (other.payType != null)
+		if (pay_type == null) {
+			if (other.pay_type != null)
 				return false;
-		} else if (!payType.equals(other.payType))
+		} else if (!pay_type.equals(other.pay_type))
 			return false;
-		if (memberSerial != other.memberSerial)
+		if (member_serial != other.member_serial)
 			return false;
-		if(payType.equals("bank")) {
-			if (bankName == null) {
-				if (other.bankName != null)
+		if(pay_type.equals("bank")) {
+			if (bank_name == null) {
+				if (other.bank_name != null)
 					return false;
-			} else if (!bankName.equals(other.bankName))
+			} else if (!bank_name.equals(other.bank_name))
 				return false;
-			if (bankNo == null) {
-				if (other.bankNo != null)
+			if (bank_no == null) {
+				if (other.bank_no != null)
 					return false;
-			} else if (!bankNo.equals(other.bankNo))
+			} else if (!bank_no.equals(other.bank_no))
 				return false;
 		}
-		if(payType.equals("card")) {
-			if (cardName == null) {
-				if (other.cardName != null)
+		if(pay_type.equals("card")) {
+			if (card_name == null) {
+				if (other.card_name != null)
 					return false;
-			} else if (!cardName.equals(other.cardName))
+			} else if (!card_name.equals(other.card_name))
 				return false;
-			if (cardNo == null) {
-				if (other.cardNo != null)
+			if (card_no == null) {
+				if (other.card_no != null)
 					return false;
-			} else if (!cardNo.equals(other.cardNo))
+			} else if (!card_no.equals(other.card_no))
 				return false;
 		}
 		return true;

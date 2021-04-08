@@ -105,20 +105,11 @@
 
 							<!-- Page-body start -->
 							<div class="page-body">
-								<div class="myPageInfo-header">
-									<h2>뫄뫄님의 페이지</h2>
-								</div>
 								<div class="myPageInfo-wrapper">
 
 									<!-- 회원정보수정 부분 -->
 									<div class="form-group">
 										<div class="input-content">
-											<div class="side-content">
-												<div class="my-area">
-													<div class="side-profile-img">프로필사진영역</div>
-													<p>닉네임</p>
-												</div>
-											</div>
 
 											<div class="mainMypage-content">
 												<div class="block-title">
@@ -172,7 +163,9 @@
 																<label for="uploadImage" id="imageview"> <img
 																	src="" class="thumb">
 																</label>
-																<!-- <input type="file" id="uploadImage" accept="image/gif, image/jpeg, image/jpg, image/png" name="uploadImage" onchange="readURL(this);"> -->
+																<input type="file" id="inputimage" accept="image/jpg, image/gif image/png, image/jpeg image/bmp" name="file" >
+												        		<div id="thumb_container">
+												        		</div>
 															</div>
 														</div>
 														<p></p>
@@ -184,24 +177,16 @@
 													<fieldset id="Address">
 														<div id="row">
 															<div class="form-group form-primary">
-																<input type="number" name="addressId_1" id="addressId_1" class="form-control form-control">
-																<span class="form-bar"></span> <label for="addressId_1" class="float-label">주소ID</label>
+																<input type="text" name="address-1" id="address-1" class="form-control form-control" readonly >
+																<span class="form-bar"></span> <label for="user_address-1" class="float-label" >주소</label>
 															</div>
 															<div class="form-group form-primary">
-																<input type="number" name="memberSerial_1" id="memberSerial_1" class="form-control form-control">
-																<span class="form-bar"></span> <label for="memberSerial_1" class="float-label">멤버시리얼 </label>
+																<input type="text" name="address_detail-1" id="address_detail-1" class="form-control form-control">
+																<span class="form-bar"></span> <label for="address_detail-1" class="float-label">상세주소</label> 
 															</div>
 															<div class="form-group form-primary">
-																<input type="text" name="address_1" id="address_1" class="form-control form-control" readonly >
-																<span class="form-bar"></span> <label for="userAddress_1" class="float-label" >주소</label>
-															</div>
-															<div class="form-group form-primary">
-																<input type="text" name="addressDetail_1" id="addressDetail_1" class="form-control form-control">
-																<span class="form-bar"></span> <label for="addressDetail_1" class="float-label">상세주소</label> 
-															</div>
-															<div class="form-group form-primary">
-																<input type="text" name="zonecode_1" id="zonecode_1" class="form-control form-control" readonly >
-																<span class="form-bar"></span> <label for="zonecode_1" class="float-label">우편번호</label> 
+																<input type="text" name="zonecode-1" id="zonecode-1" class="form-control form-control" readonly >
+																<span class="form-bar"></span> <label for="zonecode-1" class="float-label">우편번호</label> 
 															</div>
 														</div>
 													</fieldset>
@@ -239,49 +224,6 @@
 <!-- 														<input type="button" value="지불 정보 입력" class="btn btn-primary" onclick="dynamicAjaxSubmit();"> -->
 													</div>
 												</form>
-												
-
-												
-
-												<script>
-// 								            var down = document.getElementById("GFG_DOWN");
-// 								            function GFG_Fun() {
-								                
-// 								                // Create a form synamically
-// 								                var form = document.createElement("form");
-// 								                form.setAttribute("method", "post");
-// 								                form.setAttribute("action", "submit.php");
-								  
-// 								                // Create an input element for emailID
-// 								                var ID = document.createElement("input");
-// 								                ID.setAttribute("type", "text");
-// 								                ID.setAttribute("name", "emailID");
-// 								                ID.setAttribute("placeholder", "E-Mail ID");
-								  
-// 								                // Create an input element for password
-// 								                var PWD = document.createElement("input");
-// 								                PWD.setAttribute("type", "password");
-// 								                PWD.setAttribute("name", "password");
-// 								                PWD.setAttribute("placeholder", "Password");
-								  
-// 								                // Create a submit button
-// 								                var s = document.createElement("input");
-// 								                s.setAttribute("type", "submit");
-// 								                s.setAttribute("value", "Submit");
-								  
-// 								                // Append the email_ID input to the form
-// 								                form.append(ID); 
-								                
-// 								                // Append the password to the form
-// 								                form.append(PWD); 
-								                
-// 								                // Append the button to the form
-// 								                form.append(s); 
-								  
-// 								                document.getElementsByTagName("body")[0]
-// 								               .appendChild(form);
-// 								            }
-								        </script>
 											</div>
 										</div>
 									</div>
@@ -341,8 +283,8 @@
 									                fullAddr += (extraAddr !== '' ? ' ('+ extraAddr +')' : '');
 									            }
 									            
-									            document.getElementById("address" + "_" + count).value = fullAddr;
-									            document.getElementById("zonecode" + "_" + count).value = zoneCode;
+									            document.getElementById("address" + "-" + count).value = fullAddr;
+									            document.getElementById("zonecode" + "-" + count).value = zoneCode;
 									        }
 									    }).open();
 			 			},
@@ -351,10 +293,8 @@
                            ++this.count;
                            var here = document.getElementById("here");
                            var row = here.parentNode.insertBefore(this.make("div", {id: "row" + this.count}), here);
-                           this.addField(row, "주소ID", "addressId");
-                           this.addField(row, "멤버시리얼", "memberSerial");
                            this.addField(row, "주소", "address");
-                           this.addField(row, "상세주소", "addressDetail");
+                           this.addField(row, "상세주소", "address_detail");
                            this.addField(row, "우편번호", "zonecode");
                            var div = row.appendChild(this.make("div", {className: "btn"}));
                            var execMapBtn = div.appendChild(this.make("input", {type: "button", value: "주소 찾기", id: this.count, className: "btn btn-primary"}));
@@ -365,7 +305,7 @@
              addField: function (parent, label, prefix) {
                            var div = parent.appendChild(this.make("div", {className: "form-group form-primary"}));
                            div.appendChild(this.make("div"))
-                           div.appendChild(this.make("input", {type: "text", name: prefix + "_" + this.count, id: prefix + "_" + this.count, className:"form-control form-control"}));
+                           div.appendChild(this.make("input", {type: "text", name: prefix + "-" + this.count, id: prefix + "-" + this.count, className:"form-control"}));
                            div.appendChild(this.make("label", {htmlFor: prefix + this.count, className: "float-label"}, label));
                     		
                        },
@@ -393,14 +333,46 @@
      </script>
      
      <script>
+     function getImageName(_imageSource) {
+  		var imagePaths = _imageSource.value.split('\\');
+  		var imageLastIndex = imagePaths.length;
+  		var imageName = imagePaths[imageLastIndex-1];
+    	return imageName;
+//   		console.log(imageSource.value);
+//   		console.log(imagePaths);
+//   		console.log(imageLastIndex);
+//   		console.log(imageName);
+
+
+//       	const datas = new FormData(document.getElementById('uploadImage'));
+// 		console.log(datas);
+// 		console.log($("#insertPetform input[type='file']").val());
+     }
+     	function readImage(_image) {
+     	console.log(getImageName(_image));
+     		
+//      	$.ajax("/account/checkIdDuplication", {
+//     	        type: "POST",
+//     	        data: JSON.stringify(idData),
+//     	        contentType:"application/json; charset=UTF-8",
+//     	        success: function() {
+//     	      	  alert('가입 가능한 아이디입니다.');
+//     	      	  //TODO readOnly 필드의 개방!!!! 
+//     	        }
+//     	 	 }).fail(function(data, textStatus, xhr) {
+//     	      	  alert('이미 등록된 아이디입니다.');
+
+//                   console.log("fail error", data.status);
+//              });
+     	}
      	function getMultiForm(_form) {
      		var form = _form;
           	const data = [];
           	var datas = new FormData(form);
           	
           	for (var formData of datas.entries()) {
-          	  	var _key = formData[0].split("_")[0];
-          	  	var _index = formData[0].split("_")[1];
+          	  	var _key = formData[0].split("-")[0];
+          	  	var _index = formData[0].split("-")[1];
           	  	var _value = formData[1];
 //           	  	console.log(_key, _index, _value);
           	  	
@@ -419,10 +391,10 @@
           	for (var formData of datas.entries()) {
           	  	var _key = formData[0];
           	  	var _value = formData[1];
-//           	  	console.log(_key, _value);
+          	  	console.log(_key, _value);
 
           	  	data[_key] = _value;
-//           		console.log(data);
+          		console.log(data);
           	}
           	return data;
      	}
@@ -473,27 +445,48 @@
 	</script>
 	<script>
 // 		TODO: 하나의 요청/컨트롤러로 합쳐야함
+	
       function dynamicAjaxSubmit() {
     	 const addressData = getMultiForm(document.address_form);
 
-      	 $.ajax("/address/addAddressList", {
-	           type: "POST",
-	           data: JSON.stringify(addressData),
-	           contentType:"application/json; charset=UTF-8",
-	           success: function() {
-	         	  alert('success');
-	           }
-         });
+//       	 $.ajax("/address/addAddressList", {
+// 	           type: "POST",
+// 	           data: JSON.stringify(addressData),
+// 	           contentType:"application/json; charset=UTF-8",
+// 	           success: function() {
+// 	         	  alert('success');
+// 	           }
+//          });
    	  	const accountData = getSingleForm(document.account_form);
       	$.ajax("/account/addJson", {
             type: "POST",
+			enctype: "multipart/form-data",
             data: JSON.stringify(accountData),
             contentType:"application/json; charset=UTF-8",
             success: function() {
           	  alert('success');
             }
-  		 });
-      };
+  		});
+      	
+		
+// 		$.ajax("/ajaxInsertPetInfo", {
+// 			type : "post",
+// 			enctype: "multipart/form-data",
+// 		    data : datas,
+// 			processData: false,
+// 			contentType: false,
+// 			cache: false,
+// 			dataType: "json",
+// 			success : function(result){
+// 				console.log("result : " + result);
+// 				alert("yes");
+// 				$("#newPet").modal("hide");
+// 				location.href = "/getPetInfoList";
+// 			}, error : function(request,status,error){
+// 				alert("no");
+// 			}
+// 		});
+    };
    	</script>
 
 </html>

@@ -4,15 +4,7 @@
     <% request.setCharacterEncoding("UTF-8"); %>
 <%@ taglib uri="http://tiles.apache.org/tags-tiles" prefix="tiles"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
-<%
-	//임시 로그인처리
-	int memberSerial = 1;
-	String id = "z";
-	UserAccount user= new UserAccount();
-	user.setId(id);
-	user.setMemberSerial(memberSerial);
-	session.setAttribute("user", user);
-%>
+
 <!DOCTYPE html>
 <html>
 
@@ -203,11 +195,12 @@
 									</tr>
 								</c:if>
 								<c:if test="${not empty pointList }">	
+									<h5>상품 구매 후 적립된 포인트 내역을 보여드립니다.</h5>
 									<c:forEach var="point" items="${pointList }">
 									<tr>
-										<td>${point.addDate }</td>
-										<td>${point.addPoint }</td>
-										<td>${point.totalPoint }</td>
+										<td>${point.order_date }</td>
+										<td>${point.order_point }</td>
+										<td>${point.point }</td>
 									</tr>
 									</c:forEach>
 								</c:if>

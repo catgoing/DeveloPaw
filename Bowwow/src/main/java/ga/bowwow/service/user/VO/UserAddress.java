@@ -1,5 +1,6 @@
 package ga.bowwow.service.user.VO;
 
+import ga.bowwow.controller.common.StaticUtil;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -10,9 +11,22 @@ import lombok.ToString;
 @NoArgsConstructor @AllArgsConstructor
 @ToString
 public class UserAddress {
-	long memberSerial;
-	long addressId;
+	int member_serial;
+	int address_id;
 	String address;
-	String addressDetail;
+	String address_detail;
 	String zonecode;
+	
+	public UserAddress buildMemberSerial(int sessionMemberSerial) {
+		this.member_serial = sessionMemberSerial;
+		return this;
+	}
+	public boolean isValueNeverNull() {
+		return address != null
+			&& address_detail != null
+			&& zonecode != null
+			&& !address.equals("")
+			&& !address_detail.equals("")
+			&& !zonecode.equals("");
+	}
 }

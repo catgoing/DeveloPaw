@@ -57,10 +57,7 @@ public class PetController {
 	public String myPoint() {
 		return "/mypage/myPoint";
 	}
-//	@RequestMapping(value = "/mypage/myInquiry")
-//	public String myInquiry2() {
-//		return "/mypage/myInquiry";
-//	}
+
 	@RequestMapping(value = "/mypage/myPostList")
 	public String myPostList() {
 		return "/mypage/myPostList";
@@ -69,6 +66,8 @@ public class PetController {
 	public String withdrawl() {
 		return "/mypage/withdrawl";
 	}
+	
+	//반려동물리스트
 	@GetMapping(value="/getPetInfoList")
 	public String getPetInfoList(Pet pet, Model model, HttpServletRequest request) {
 		System.out.println("....> 반려동물 리스트를 가져옵니다!!");
@@ -101,13 +100,13 @@ public class PetController {
 		return "/mypage/myPetInfoList";
 	}
 	
-	//ajax이용 - 상세정보
+	//ajax이용 - 반려동물 상세정보
 	//produces = "application/text; charset=UTF-8"
 	// - 가져온 데이터 전송시 한글깨짐방지
 	@PostMapping(value= "/ajaxGetPetInfo",
 			produces = "application/text; charset=UTF-8")
 	@ResponseBody
-	public String ajaxGetPetInfo(Pet pet) {
+	public String ajaxGetPetInfo(Pet pet, Model model) {
 		System.out.println("ajax 반려동물정보를 가져옵니다");
 		
 		String default_url = "https://projectbit.s3.us-east-2.amazonaws.com/petImg/6262857e-1887-46fc-b77c-9209935f8657.jpg";
@@ -118,8 +117,11 @@ public class PetController {
 		
 		Pet petData = petService.getPetInfo(pet);
 		System.out.println("petData : " + petData.toString());
-		//null(기본값)일때 설정
-		
+		//생일정보 있을 때 날짜출력 수정(yyyy-MM-dd)
+		if(petData.getPet_birth() != null) {
+			String birth = petData.getPet_birth().substring(0, 10);
+			petData.setPet_birth(birth);
+		}
 		//디폴트이미지 설정
 		if(petData.getImage_source_oriname() == null) {
 			petData.setImage_source_oriname(default_url);
@@ -130,7 +132,8 @@ public class PetController {
 		
 		Gson gson = new Gson();
 		String petDetail = gson.toJson(petData);
-
+		
+		model.addAttribute("petDetail", petDetail);
 		System.out.println("petDetail : " + petDetail);
 
 		return petDetail;
@@ -150,8 +153,6 @@ public class PetController {
 		if(!file.isEmpty()) { //첨부한 파일이 있을 때
 			System.out.println("insert 사진있음~");
 			String foldername = "petImg";
-			//int thumb_w = 200;
-			//int thumb_h = 200;
 			
 			String originalFileName = file.getOriginalFilename();
 			System.out.println("originalFileName : " + originalFileName);
@@ -159,13 +160,13 @@ public class PetController {
 			String savedFileName = UUID.randomUUID() + extension;
 			
 			File uploadfile = new File(originalFileName);
+			file.transferTo(uploadfile);
 			String imgName = mc.s3upload(uploadfile, savedFileName, foldername);
-			
-			String fs_url = "https://projectbit.s3.us-east-2.amazonaws.com/";
 			
 			pet.setImage_source_oriname(foldername + "/" + imgName);
 			pet.setImage_source(foldername + "/" + imgName);
 			
+			String fs_url = "https://projectbit.s3.us-east-2.amazonaws.com/";
 			System.out.println(fs_url + foldername + "/" + savedFileName);
 			System.out.println("입력할 pet : " + pet);
 			
@@ -202,6 +203,7 @@ public class PetController {
 			String savedFileName = UUID.randomUUID() + extension;
 			
 			File uploadfile = new File(originalFileName);
+			file.transferTo(uploadfile);
 			String imgName = mc.s3upload(uploadfile, savedFileName, foldername);
 			
 			String fs_url = "https://projectbit.s3.us-east-2.amazonaws.com/";

@@ -12,7 +12,6 @@
 		<typeAlias type="ga.bowwow.service.board.Board" alias="board" />
 		<typeAlias type="ga.bowwow.service.board.Comment" alias="comment" />
 		<typeAlias type="ga.bowwow.service.board.Report" alias="report" />
-		<typeAlias type="ga.bowwow.service.pet.Pet" alias="pet" />
 		<typeAlias type="ga.bowwow.service.store.Product" alias="Product" />
 		<typeAlias type="ga.bowwow.service.user.VO.UserAccount" alias="UserAccount"/>
 		<typeAlias type="ga.bowwow.service.user.VO.UserDetail" alias="UserDetail"/>
@@ -24,8 +23,7 @@
 		<typeAlias type="ga.bowwow.service.store.Review" alias="Review" />
 		<typeAlias type="ga.bowwow.service.store.CartList" alias="CartList" />
 		<typeAlias type="ga.bowwow.service.store.Order" alias="Order" />
-		<typeAlias type="ga.bowwow.service.userpage.UserInquiry" alias="userinquiry" />
-		<typeAlias type="ga.bowwow.service.admin.AdminInquiry" alias="admininquiry" />
+		<typeAlias type="ga.bowwow.service.userpage.MyInquiry" alias="inquiry" />
 	</typeAliases>
 
 	<mappers>

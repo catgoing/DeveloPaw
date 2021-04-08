@@ -1,7 +1,6 @@
 package ga.bowwow.controller.user.impl;
 
 import java.util.ArrayList;
-import java.util.List;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
@@ -22,7 +21,6 @@ import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 
 import ga.bowwow.controller.user.UserCRUDGenericController;
 import ga.bowwow.service.user.VO.UserAccount;
-import ga.bowwow.service.user.VO.UserAddress;
 import ga.bowwow.service.user.VO.UserDTO;
 import ga.bowwow.service.user.impl.UserDtoServiceImpl;
 
@@ -48,76 +46,79 @@ public class UserDtoController extends UserCRUDGenericController<UserAccount> {
 		}
 		return "/auth.login";
 	}
+	
 	@PostMapping(value="/login")
 	public String loginUserDTO(@ModelAttribute("userDTO") UserDTO userDTO, Model model, HttpServletRequest request) {
+		final String baseUrl = ServletUriComponentsBuilder.fromCurrentContextPath().build().toUriString();
 		HttpSession session = request.getSession();
-		if(attemptUserLogin(userDTO).getStatusCode() == HttpStatus.OK) {
+		if(attemptUserLogin(baseUrl, userDTO).getStatusCode() == HttpStatus.OK) {
 			UserDTO completeUserDtoTest = (UserDTO) service.getVo(userDTO);
-			System.out.println("userDTO for login : " +completeUserDtoTest);
+			ArrayList userAddressList = requestUserAddressList(baseUrl, completeUserDtoTest);
+			System.out.println("userAddressList for login" + userAddressList);
 			session.setAttribute("userDTO", completeUserDtoTest);
+			session.setAttribute("userAddress", userAddressList);
 			
-//			model.addAttribute("userDTO", service.getVo(userDTO));
+//			System.out.println("userDTO for login : " +completeUserDtoTest);
 			return "redirect:/mypage/myInfo";
 		}
 		return "/auth.login";
 	}
 	
+	public String autoAdminLogin() {
+		final String baseUrl = ServletUriComponentsBuilder.fromCurrentContextPath().build().toUriString();
+		UserDTO adminUser = new UserDTO();
+		adminUser.setId("z");
+		adminUser.setPassword("z");
+		return rt.postForEntity(baseUrl + "/user/login", adminUser, String.class).getBody();
+	}
+
+	//추상화된 REST 자원 받아오기 명령 : (baseUrl, 체킹 T(추상VO, 또는 Serial), 경로(rest자원명), 파라미터)=>{}
+	//실험. getBody로 넘긴 리스트를 타입체킹해서 올바르게 넘길 수 있는가? 
+	private ArrayList requestUserAddressList(final String baseUrl, UserAccount userAccount) {
+		return rt.postForEntity(baseUrl + "/address/list", userAccount, ArrayList.class).getBody();
+	}
+	
+	//TODO 로직을 보이기 위해서 singleLine method로 두었는데, 그냥 인라인하거나 아니면 setRoute? 아니면 익명 콜백으로 추상화 할 수도 있음.
+	private ResponseEntity<String> attemptUserLogin(String baseUrl, UserAccount userAccount) {
+//		System.out.println("dtoController userAccount : " + userAccount);
+		return rt.postForEntity(baseUrl + "/account/loginValidateUserAccount", userAccount, String.class);
+//		System.out.println(baseUrl + "/account/loginValidateUserAccount");
+//		System.out.println(re.getStatusCode());
+//		System.out.println(re.getBody());
+	}
+
 	boolean isSessionNewAndHasNoUserDTO(HttpSession session) {
 		return session.getAttribute("userDTO") == null ? true : false;
 	}
 
 	@RequestMapping(value="/logout")
 	public String getUserAccount(@Autowired HttpSession session, SessionStatus sessionStatus) {
-		
 //		System.out.println("onSession userDTO : " + session.getAttribute("userDTO"));
 		session.removeAttribute("userDTO");
 		sessionStatus.setComplete();
-//		try {
-//			System.out.println("onSession userDTO : " + session.getAttribute("userDTO"));
-//		} catch (Exception e) {
-//			e.printStackTrace();
-//		}
 		return "redirect:/mypage/myInfo";
 	}
-	private List<UserAddress> getUserAddressList(UserAccount userAccount) {
-		final String baseUrl = ServletUriComponentsBuilder.fromCurrentContextPath().build().toUriString();
-		System.out.println("dtoController userAccount : " + userAccount);
-//		rt.PostForEntity(baseUrl + "/address/loginValidateUserAccount", userAccount, String.class);
-		return null;
-	}
 
-	//TODO 로직을 보이기 위해서 singleLine method로 두었는데, 그냥 인라인하거나 아니면 setRoute? 아니면 익명 콜백으로 추상화 할 수도 있음.
-	private ResponseEntity<String> attemptUserLogin(UserAccount userAccount) {
-		final String baseUrl = ServletUriComponentsBuilder.fromCurrentContextPath().build().toUriString();
-		System.out.println("dtoController userAccount : " + userAccount);
-		return rt.postForEntity(baseUrl + "/account/loginValidateUserAccount", userAccount, String.class);
-//		System.out.println(baseUrl + "/account/loginValidateUserAccount");
-//		System.out.println(re.getStatusCode());
-//		System.out.println(re.getBody());
-	}
-	
-	//TODO offset, limit 주고 오버로딩으로 페이징 처리가 필요 할 수도 있음. 
-	//모델을 줄 수 있는지 테스트?(<- 이상함. 최소한 rest 방식에서는 그냥 최상단 클라이언트가 model을 등록하는 게 합리적으로 보임.)
-	private void getUserDtoList(Model model) {
-		final String baseUrl = ServletUriComponentsBuilder.fromCurrentContextPath().build().toUriString();
-		ArrayList<UserDTO> userList = rt.getForObject(baseUrl + "/userDTO/manageList", ArrayList.class);
-		System.out.println(userList);
-		model.addAttribute(userList);
-		return;
+	//modelAttribute for Method Test -> works
+	@ModelAttribute("userDtoList")
+	public ArrayList<UserDTO> getDefaultUserDto() {
+		ArrayList<UserDTO> userDtoList = (ArrayList<UserDTO>) service.getVoList();
+		return userDtoList;
 	}
 	
 	@ResponseBody
-	@GetMapping(value="/manageList") //CRUD페이지
-	public String getUserDtoInfo(@ModelAttribute("userDTO") ArrayList<UserDTO> userDtoList, Model model) {
-		System.out.println("GETLIST RESOLVING TEST");
-		userDtoList = (ArrayList<UserDTO>) service.getVoList();
-		model.addAttribute("userDtoList", userDtoList);
+	@GetMapping(value="/list")
+	public ResponseEntity<ArrayList<UserDTO>> getRestUserDtoList() {
+		ArrayList<UserDTO> userDtoList = (ArrayList<UserDTO>) service.getVoList();
 		System.out.println(userDtoList);
-		return "/auth.userList";
+		return ResponseEntity.ok(userDtoList);
 	}
 	
-	@PostMapping(value="/manageList") //CRUD페이지
-	public String addUserDtoInfo(@ModelAttribute("userDTO") UserDTO userDto) {
+	@GetMapping(value="/manageList") //CRUD페이지
+	public String addUserDtoInfo(@ModelAttribute("userDtoList") ArrayList<UserDTO> userDtoList, Model model) {
+//		final String baseUrl = ServletUriComponentsBuilder.fromCurrentContextPath().build().toUriString();
+//		userDtoList = rt.getForEntity(baseUrl+"/user/list", ArrayList.class).getBody();
+		model.addAttribute("userDtoList", userDtoList);
 		return "/auth.userList";
 	}
 	

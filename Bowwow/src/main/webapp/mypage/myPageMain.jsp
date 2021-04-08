@@ -2,15 +2,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
-<%
-	//임시 로그인처리
-	int memberSerial = 1;
-	String id = "z";
-	UserAccount user= new UserAccount();
-	user.setId(id);
-	user.setMemberSerial(memberSerial);
-	session.setAttribute("user", user);
-%>
+
 <!DOCTYPE html>
 <html>
 
@@ -148,7 +140,33 @@
 								<h3>누적적립금출력영역</h3>
 								<div class="container totalpoint">
 									<div clss="table">
-										
+									
+									<table>
+									<c:if test="${empty pointList }">
+										<tr>	
+											<td colspan="5" class="center">
+												<div style="">
+													<h3>적립된 포인트가 없습니다.</h3>
+												</div>
+											</td>
+										</tr>
+									</c:if>
+									<c:if test="${not empty pointList }">	
+										<h5>상품 구매 후 적립된 포인트 내역을 보여드립니다.</h5>
+										<tr>
+											<th width="200">추가일</th>
+											<th width="150">추가포인트</th>
+											<th width="150">누적포인트</th>
+										</tr>
+										<c:forEach var="point" items="${pointList }">
+										<tr>
+											<td>${point.order_date }</td>
+											<td>${point.order_point }</td>
+											<td>${point.point }</td>
+										</tr>
+										</c:forEach>
+									</c:if>
+									</table>
 									</div>
 								</div>
 							</div>
@@ -177,10 +195,6 @@
 							  </div>
 							</div>
 							<br>
-							<hr>
-							<div class="container mypage_main_content boardlist">
-								<h3>게시글출력영역</h3>
-							</div>
 						</div>
 					</div>
 					<!-- Page-body end -->

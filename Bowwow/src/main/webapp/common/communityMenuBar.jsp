@@ -95,14 +95,14 @@
 			</a></li>
 		</ul>
 		<ul class="pcoded-item pcoded-left-item">
-			<li class=""><a href="storeMain.html"
+			<li class=""><a href="/community/animal_hospital.jsp";
 				class="waves-effect waves-dark"> <span class="pcoded-micon"><i
 						class="ti-layers"></i><b>FC</b></span> <span class="pcoded-mtext">동물병원지도
 						</span> <span class="pcoded-mcaret"></span>
 			</a></li>
 		</ul>
 		<ul class="pcoded-item pcoded-left-item">
-			<li class=""><a href="/community/reportList?idx=1"
+			<li class=""><a href=""
 				class="waves-effect waves-dark"> <span class="pcoded-micon"><i
 						class="ti-layers"></i><b>FC</b></span> <span class="pcoded-mtext">게시물 신고내역
 						</span> <span class="pcoded-mcaret"></span>

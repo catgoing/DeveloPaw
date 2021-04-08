@@ -12,6 +12,7 @@ public interface BoardService {
 	void updateBoard(Board vo, HttpSession session);
 	void deleteBoard(Board vo);
 	Board getBoard(Map<String, Integer> map);
+	int getBoardCount(Map<String, String> map);
 	void updateHits(Map<String, Integer> map);
 //	List<Board> getBoardList();
 
@@ -19,7 +20,7 @@ public interface BoardService {
 	
 	List<Board> search(String string, String keyword);
 
-	List<Board> getBoardList(Map<String, Integer> map);
+	List<Board> getBoardList(Map<String, String> map);
 
 	void insertReport(Report vo);
 	void insertComment(Map<String, Object> map);

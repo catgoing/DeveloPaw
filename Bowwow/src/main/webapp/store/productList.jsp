@@ -43,9 +43,25 @@
     <!-- Style.css -->
     <link rel="stylesheet" type="text/css" href="/resources/css/style.css">
     <link rel="stylesheet" type="text/css" href="/resources/css/test.css">
+    <link rel="stylesheet" type="text/css" href="/resources/css/paging.css">
+	<script type="text/javascript" src="http://code.jquery.com/jquery-latest.js"></script>
+	
+<script type="text/javascript">
+	  $(document).ready(function(){
+	   var max_h=400;
+	   $(".monthly-products li").each(function(){
+	 var h = parseInt($(this).css("height"));
+	    if(max_h<h){ max_h = h; }
+	   });
+	   $(".monthly-products li").each(function(){
+	 $(this).css({height:max_h});
+	   });
+	  });
+</script>
 
 <style>
   .featured__item__text { width: 150px; }
+  
 </style>
 </head>
 
@@ -104,7 +120,7 @@
 																		<div class="featured__item__text"
 																			style="width: 200px;">
 																			<h6>
-																				<a href="detail?p_id=${list.p_id }">${list.p_name }...</a>
+																				<a href="detail?p_id=${list.p_id }">${list.p_name }</a>
 																			</h6>
 																			<h5>
 																				<fmt:formatNumber value="${list.price }"
@@ -117,6 +133,9 @@
 															</li>
 														</c:forEach>
 													</ul>
+												</div>
+												<div>
+												<%@include file="/common/paging.jsp"%>
 												</div>
 											</div>
 										</section>

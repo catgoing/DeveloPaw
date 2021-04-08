@@ -125,61 +125,63 @@
 	</div>
     <form class="pet-form" id="pet-detail-form" name="pet-detail-form">
 		<div class="popup-inner img-pet" id="detail_petimg">
-			<img src="" id="thumb_container">
+			<img src="${petDetail.image_source_oriname }" id="thumb_container">
 		</div>
 		<div class="popup-inner text-pet">
 		<div class="form-group-detail">
-			<h2 id="detail_petname"></h2>
+			<h2 class="detailClass" id="detail_petname"></h2>
 			<div id="textMain-wrap">
 				<div class="box-detail">
 					<h5>성별</h5>
-					<p id="detail_gender"></p>
+					<p class="detailClass"  id="detail_gender">${petDetail.pet_gender }</p>
 				</div>
 				<div class="box-detail">
 					<h5>품종</h5>
-					<p id="detail_variety"></p>
+					<p class="detailClass"  id="detail_variety">${petDetail.pet_variety }</p>
 				</div>
 				<div class="box-detail">	
 					<h5>생일</h5>
-					<p id="detail_birth"></p>
+					<p class="detailClass"  id="detail_birth">${petDetail.pet_birth }</p>
 				</div>
 				<div class="box-detail">
 					<h5>나이</h5>
-					<p id="detail_age"></p>
+					<p class="detailClass"  id="detail_age">${petDetail.pet_age }</p>
 				</div>
 				<div class="box-detail">
 					<h5>체형</h5>
-					<p id="detail_size"></p>
+					<p class="detailClass"  id="detail_size">${petDetail.pet_size }</p>
 				</div>
 				<div class="box-detail">
 					<h5>무게</h5>
-					<p id="detail_weight"></p>
+					<p class="detailClass"  id="detail_weight">${petDetail.pet_weight }</p>
 				</div>
 				<div class="box-detail">
 					<h5>목둘레</h5>
-					<p id="detail_neck"></p>
+					<p class="detailClass"  id="detail_neck">${petDetail.neck_length }</p>
 				</div>
 				<div class="box-detail">
 					<h5>등길이</h5>
-					<p id="detail_back"></p>
+					<p class="detailClass"  id="detail_back">${petDetail.back_length }</p>
 				</div>
 				<div class="box-detail">
 					<h5>가슴둘레</h5>
-					<p id="detail_chest"></p>
+					<p class="detailClass" id="detail_chest">${petDetail.chest_length }</p>
 				</div>
 			</div>
 			<div class="textSub-wrap">
 				<div class="box-detail">
 					<h5>특이사항</h5>
-					<p id="detail_etc"></p>
+					<pre>
+						<p class="detailClass" id="detail_etc">${petDetail.pet_etc }</p>
+					</pre>
 				</div>
 			</div>
-			<input type="hidden" id="detail_tnr" name="tnr" value="">
-			<input type="hidden" id="detail_animal_type" name="animal_type" value="">
-			<input type="hidden" id="detail_pet_serial" name="pet_serial" value="">
-			<input type="hidden" id="detail_member_serial" name="member_serial" value="<c:out value='${user.memberSerial}'/>">
-			<input type="hidden" id="detail_orifile_name" name="image_source_oriname" value="">
-		</div>
+				<input type="hidden" id="detail_tnr" name="tnr" value="">
+				<input type="hidden" id="detail_animal_type" name="animal_type" value="">
+				<input type="hidden" id="detail_pet_serial" name="pet_serial" value="">
+				<%-- <input type="hidden" id="detail_member_serial" name="member_serial" value="${sessionScope.user.memberSerial}"> --%>
+				<input type="hidden" id="detail_member_serial" name="member_serial" value="">
+			</div>
 		</div>
       <div class="modal-footer">
 	    <button class="btn btn-primary" data-toggle="modal" data-dismiss="modal" data-target="#modiPetInfo">정보 수정</button>
@@ -204,15 +206,15 @@
 	        <table class="table table-bordered">
 	        <tbody>
 		        <tr>
-					<td class="insert-title">이름</td>
+					<td class="insert-title">이름*</td>
 					<td><input type="text" name="pet_name" id="modi_petname"></td>
-					<td class="insert-title">나이</td>
-					<td><input type="number" name="pet_age" id="modi_petage" ></td>
+					<td class="insert-title">나이*</td>
+					<td><input type="number" name="pet_age" id="modi_petage" value="${petDetail.pet_age }"></td>
 		        </tr>
 		        <tr>
-			        <td class="insert-title">성별</td>
+			        <td class="insert-title">성별*</td>
 					<td>
-					<select name="pet_gender" id="modi_petgender">
+					<select name="pet_gender" id="modi_petgender" value="${petDetail.pet_gender }">
 						<option value="girl">암</option>
 						<option value="boy">수</option>
 					</select>
@@ -221,9 +223,9 @@
 					<td><input type="date" name="pet_birth" id="modi_petbirth"></td>
 		        </tr>
 		        <tr>
-			        <td class="insert-title">품종</td>
+			        <td class="insert-title">품종*</td>
 					<td><input type="text" name="pet_variety" id="modi_variety"></td>
-					<td class="insert-title" >중성화여부</td>
+					<td class="insert-title" >중성화여부*</td>
 					<td>
 					<select name="tnr" id="modi_tnr">
 						<option value="yes">예</option>
@@ -232,7 +234,7 @@
 					</td>
 		        </tr>
 		        <tr>
-			        <td class="insert-title">사이즈</td>
+			        <td class="insert-title">사이즈*</td>
 					<td>
 					<select name="pet_size" id="modi_size">
 						<option value="small">소형</option>
@@ -240,7 +242,7 @@
 						<option value="large">대형</option>
 					</select>
 					</td>
-					<td class="insert-title">체중</td>
+					<td class="insert-title">체중*</td>
 					<td><input type="number" name="pet_weight" id="modi_weight"></td>
 		        </tr>
 		        <tr>

@@ -7,7 +7,7 @@
 	<insert id="insertBoard" parameterType="Map">
 		INSERT INTO 
 		<choose>
-			<when test="board_idx == 1"> 
+			<when test='board_idx.eq("1")'> 
 				DIARY_BOARD (BOARD_NO, BOARD_TITLE, MEMBER_SERIAL, BOARD_CONTENT, IMG1, REGDATE, HITS, ANIMAL_CLASS) 
 				VALUES (DIARY_BOARD_SEQ.NEXTVAL, #{board_title}, #{member_serial}, #{board_content}, #{img1}, SYSDATE, 0, #{animal_class})
 			</when>
@@ -37,24 +37,60 @@
 		</choose>
 	</insert>
 	
-	<select id="getBoardList" parameterType="Map" resultType="board" >
-		SELECT BOARD_NO, B.MEMBER_SERIAL, BOARD_TITLE, ID, IMG1, HITS, NICKNAME
+<!-- 	<select id="getBoardList" parameterType="Map" resultType="board" >
+		SELECT BOARD_NO, B.MEMBER_SERIAL, BOARD_TITLE, ID, IMG1, HITS, NICKNAME, REGDATE
 		FROM 
 		<choose>
-			<when test="board_idx == 1"> DIARY_BOARD B, USER_ACCOUNT U WHERE B.MEMBER_SERIAL = U.MEMBER_SERIAL </when>
+			<when test='board_idx.equals("1")'> DIARY_BOARD B, USER_ACCOUNT U WHERE B.MEMBER_SERIAL = U.MEMBER_SERIAL </when>
 			<when test="board_idx == 2"> INTRO_BOARD B, USER_ACCOUNT U WHERE B.MEMBER_SERIAL = U.MEMBER_SERIAL </when>
 			<when test="board_idx == 3"> KNOWHOW_BOARD B, USER_ACCOUNT U WHERE B.MEMBER_SERIAL = U.MEMBER_SERIAL </when>
+			<when test="board_idx == 4"> MISSING_BOARD B, USER_ACCOUNT U WHERE B.MEMBER_SERIAL = U.MEMBER_SERIAL </when>
 		</choose>
 		ORDER BY BOARD_NO DESC
+	</select>  셀렉트문 원본 -->
+	
+	<select id="getBoardList" parameterType="Map" resultType="board" >
+	SELECT * FROM 
+			(
+				SELECT ROWNUM AS RN, BOARD.* FROM 
+				( 	
+					SELECT BOARD_NO, B.MEMBER_SERIAL, BOARD_TITLE, ID, IMG1, HITS, NICKNAME, REGDATE
+					FROM 
+						<choose>
+							<when test='board_idx.equals("1")'> DIARY_BOARD B, USER_ACCOUNT U WHERE B.MEMBER_SERIAL = U.MEMBER_SERIAL </when>
+							<when test='board_idx.equals("2")'> INTRO_BOARD B, USER_ACCOUNT U WHERE B.MEMBER_SERIAL = U.MEMBER_SERIAL </when>
+							<when test='board_idx.equals("3")'> KNOWHOW_BOARD B, USER_ACCOUNT U WHERE B.MEMBER_SERIAL = U.MEMBER_SERIAL </when>
+							<when test='board_idx.equals("4")'> MISSING_BOARD B, USER_ACCOUNT U WHERE B.MEMBER_SERIAL = U.MEMBER_SERIAL </when>
+							<when test='board_idx.equals("5")'> USED_TRANSACTION_BOARD B, USER_ACCOUNT U WHERE B.MEMBER_SERIAL = U.MEMBER_SERIAL </when>
+							<when test='board_idx.equals("6")'> EVENT_BOARD B, USER_ACCOUNT U WHERE B.MEMBER_SERIAL = U.MEMBER_SERIAL </when>
+						</choose>
+						ORDER BY BOARD_NO DESC
+				) 	BOARD
+			)
+		WHERE RN BETWEEN ${begin} AND ${end}
+	</select>
+	
+	<select id="getBoardCount" parameterType="Map" resultType="int" >
+		SELECT COUNT(*) AS CNT
+		FROM 
+		<choose>
+			<when test='board_idx.equals("1")'> DIARY_BOARD B</when>
+			<when test='board_idx.equals("2")'> INTRO_BOARD B</when>
+			<when test='board_idx.equals("3")'> KNOWHOW_BOARD B</when>
+			<when test='board_idx.equals("4")'> MISSING_BOARD B</when>
+			<when test='board_idx.equals("5")'> USED_TRANSACTION_BOARD B</when>
+			<when test='board_idx.equals("6")'> EVENT_BOARD B</when>
+		</choose>
 	</select>
 	
 	<select id="getBoard" parameterType="Map" resultType="board">
-		SELECT BOARD_NO, BOARD_CONTENT, BOARD_TITLE, ANIMAL_CLASS, HITS, NICKNAME
+		SELECT BOARD_NO, BOARD_CONTENT, BOARD_TITLE, ANIMAL_CLASS, HITS, NICKNAME, REGDATE
 		FROM 
 		<choose>
 			<when test="board_idx == 1"> DIARY_BOARD B, USER_ACCOUNT U </when>
 			<when test="board_idx == 2"> INTRO_BOARD B, USER_ACCOUNT U  </when>
 			<when test="board_idx == 3"> KNOWHOW_BOARD B, USER_ACCOUNT U </when>
+			<when test="board_idx == 4"> MISSING_BOARD B, USER_ACCOUNT U </when>
 		</choose>
 		WHERE B.MEMBER_SERIAL = U.MEMBER_SERIAL 
 		AND BOARD_NO = ${board_no}
@@ -144,12 +180,17 @@
 			</when>
 			<when test="board_idx == 2"> 
 				INTRO_COMMENTS (COMMENT_NO, MEMBER_SERIAL, BOARD_NO, COMMENT_CONTENT, REGDATE) 
-				VALUES (DIARY_COMMENTS_SEQ.NEXTVAL, 994, #{comment.board_no}, #{comment.comment_content}, SYSDATE)
+				VALUES (INTRO_COMMENTS_SEQ.NEXTVAL, 994, #{comment.board_no}, #{comment.comment_content}, SYSDATE)
 		<!-- 		VALUES (DIARY_COMMENTS_SEQ.NEXTVAL, #{member_serial}, #{board_no}, #{comment_content}, SYSDATE) -->
 			</when>
 			<when test="board_idx == 3"> 
 				KNOWHOW_COMMENTS (COMMENT_NO, MEMBER_SERIAL, BOARD_NO, COMMENT_CONTENT, REGDATE) 
-				VALUES (DIARY_COMMENTS_SEQ.NEXTVAL, 994, #{comment.board_no}, #{comment.comment_content}, SYSDATE)
+				VALUES (KNOWHOW_COMMENTS_SEQ.NEXTVAL, 994, #{comment.board_no}, #{comment.comment_content}, SYSDATE)
+		<!-- 		VALUES (DIARY_COMMENTS_SEQ.NEXTVAL, #{member_serial}, #{board_no}, #{comment_content}, SYSDATE) -->
+			</when>
+			<when test="board_idx == 4"> 
+				MISSING_COMMENTS (COMMENT_NO, MEMBER_SERIAL, BOARD_NO, COMMENT_CONTENT, REGDATE) 
+				VALUES (MISSING_COMMENTS_SEQ.NEXTVAL, 994, #{comment.board_no}, #{comment.comment_content}, SYSDATE)
 		<!-- 		VALUES (DIARY_COMMENTS_SEQ.NEXTVAL, #{member_serial}, #{board_no}, #{comment_content}, SYSDATE) -->
 			</when>
 		</choose>
@@ -171,6 +212,10 @@
 			KNOWHOW_COMMENTS2 (COMMENT_NO2, MEMBER_SERIAL, COMMENT_NO, COMMENT_CONTENT2, REGDATE) 
 			VALUES (KNOWHOW_COMMENTS2_SEQ.NEXTVAL, 994, #{comment.comment_no}, #{comment.comment_content}, SYSDATE)
 		</when>
+		<when test="board_idx == 4"> 
+			MISSING_COMMENTS2 (COMMENT_NO2, MEMBER_SERIAL, COMMENT_NO, COMMENT_CONTENT2, REGDATE) 
+			VALUES (MISSING_COMMENTS2_SEQ.NEXTVAL, 994, #{comment.comment_no}, #{comment.comment_content}, SYSDATE)
+		</when>
 	</choose>
 	</insert>
 		
@@ -184,6 +229,7 @@
 			<when test="board_idx == 1"> DIARY_COMMENTS C, USER_ACCOUNT U WHERE C.MEMBER_SERIAL = U.MEMBER_SERIAL </when>
 			<when test="board_idx == 2"> INTRO_COMMENTS C, USER_ACCOUNT U WHERE C.MEMBER_SERIAL = U.MEMBER_SERIAL </when>
 			<when test="board_idx == 3"> KNOWHOW_COMMENTS C, USER_ACCOUNT U WHERE C.MEMBER_SERIAL = U.MEMBER_SERIAL </when>
+			<when test="board_idx == 4"> MISSING_COMMENTS C, USER_ACCOUNT U WHERE C.MEMBER_SERIAL = U.MEMBER_SERIAL </when>
 		</choose>
 		AND BOARD_NO = ${board_no}
 	</select>
@@ -199,7 +245,10 @@
 			INTRO_COMMENTS2 C2, INTRO_COMMENTS C, USER_ACCOUNT U 
 			</when>
 			<when test="board_idx == 3"> 
-			INTRO_COMMENTS2 C2, KNOWHOW_COMMENTS C, USER_ACCOUNT U 
+			KNOWHOW_COMMENTS2 C2, KNOWHOW_COMMENTS C, USER_ACCOUNT U 
+			</when>
+			<when test="board_idx == 4"> 
+			MISSING_COMMENTS2 C2, MISSING_COMMENTS C, USER_ACCOUNT U 
 			</when>
 		</choose>
 		WHERE C2.COMMENT_NO = C.COMMENT_NO
@@ -219,6 +268,9 @@
 			<when test='board.equals("3")'> 
 			KNOWHOW_BOARD
 			</when>
+			<when test='board.equals("4")'> 
+			MISSING_BOARD
+			</when>
 		</choose>
 			WHERE BOARD_CONTENT LIKE '%'||#{keyword}||'%'
 			OR  BOARD_TITLE LIKE '%'||#{keyword}||'%' 	
@@ -230,6 +282,7 @@
 			<when test="board_idx == 1"> DIARY_BOARD</when>
 			<when test="board_idx == 2"> INTRO_BOARD</when>
 			<when test="board_idx == 3"> KNOWHOW_BOARD</when>
+			<when test="board_idx == 4"> MISSING_BOARD</when>
 		</choose>
 		WHERE BOARD_NO=#{board_no}
 	</delete>
@@ -250,6 +303,12 @@
 			</when>
 			
 			<when test="board_idx == 3"> 
+			KNOWHOW_COMMENTS 
+			SET MEMBER_SERIAL = NULL
+			, COMMENT_CONTENT = NULL
+			</when>
+			
+			<when test="board_idx == 4"> 
 			KNOWHOW_COMMENTS 
 			SET MEMBER_SERIAL = NULL
 			, COMMENT_CONTENT = NULL
@@ -298,6 +357,12 @@
 			
 			<when test="board_idx == 3"> 
 			KNOWHOW_COMMENTS2 
+			SET MEMBER_SERIAL = NULL
+			, COMMENT_CONTENT2 = NULL
+			</when>
+			
+			<when test="board_idx == 4"> 
+			MISSING_COMMENTS2 
 			SET MEMBER_SERIAL = NULL
 			, COMMENT_CONTENT2 = NULL
 			</when>
