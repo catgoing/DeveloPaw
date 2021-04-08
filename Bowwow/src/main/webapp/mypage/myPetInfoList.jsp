@@ -212,10 +212,10 @@ function setThumbnail(event){
 	
 	reader.onload = function(event) { 
 		var img = document.createElement("img");
-		var imgTag = document.querySelector("#petThumbnail");
+		var imgTag = document.querySelector("#thumbnailImage");
 		if(imgTag === null) {
 			document.querySelector("div#thumb_container").appendChild(img);
-			img.setAttribute("id", "petThumbnail");
+			img.setAttribute("id", "thumbnailImage");
 			img.setAttribute("style", "height: 200px;");
 		} else {
 			img = imgTag;
