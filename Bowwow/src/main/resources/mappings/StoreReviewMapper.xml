@@ -6,8 +6,11 @@
 
 	<!-- 리뷰 작성 -->
 	<insert id="insertProductReview" parameterType="Review">
+	<selectKey keyProperty="review_id" resultType="int" order="BEFORE">
+        SELECT REVIEW_SEQ.NEXTVAL FROM DUAL
+    </selectKey>
 		INSERT INTO STORE_REVIEW (REVIEW_ID, P_ID, MEMBER_SERIAL, REVIEW_TITLE, REVIEW_CONTENT, REVIEW_REGDATE, REVIEW_IMAGE) 
-		VALUES (REVIEW_SEQ.NEXTVAL, #{p_id}, #{member_serial}, #{review_title}, #{review_content}, SYSDATE, #{review_image})
+		VALUES (${review_id}, #{p_id}, #{member_serial}, #{review_title}, #{review_content}, SYSDATE, #{review_image})
 	</insert>
 	
 	<!-- 가장 마지막에 작성된 리뷰 가져오기 -->
@@ -20,11 +23,12 @@
 	
 	<!-- 상품에 작성된 리뷰 전체 출력 -->
 	<select id="reviewList" parameterType="int" resultType="Review">
-		SELECT * FROM STORE_REVIEW
-		WHERE P_ID = #{p_id}
+		SELECT R.REVIEW_ID, R.P_ID, R.MEMBER_SERIAL, R.REVIEW_TITLE, R.REVIEW_CONTENT, R.REVIEW_REGDATE, R.REVIEW_IMAGE , U.NICKNAME
+		FROM STORE_REVIEW R, USER_ACCOUNT U
+		WHERE R.MEMBER_SERIAL = U.MEMBER_SERIAL AND R.P_ID = #{p_id}
 		ORDER BY REVIEW_ID DESC
 	</select>
-	
+
 	<!-- 리뷰 삭제 -->
 	<delete id="deleteProductReview" parameterType="int">
 		DELETE FROM STORE_REVIEW

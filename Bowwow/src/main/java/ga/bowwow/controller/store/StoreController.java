@@ -13,7 +13,6 @@ import org.springframework.web.bind.annotation.RequestMapping;
 
 import ga.bowwow.service.paging.Page;
 import ga.bowwow.service.store.Product;
-import ga.bowwow.service.store.StoreReviewService;
 import ga.bowwow.service.store.StoreService;
 
 @Controller
@@ -22,8 +21,6 @@ public class StoreController {
 	@Autowired
 	private StoreService storeService;
 	
-	@Autowired
-	private StoreReviewService storeReviewService;
 	
 	public StoreController() {
 		System.out.println(">> StoreController() 실행");
@@ -58,8 +55,6 @@ public class StoreController {
 	public String getProductList(Product product, Model model, HttpServletRequest request) {
 		
 		System.out.println("products " + product);
-		
-		//cPage : 페이지 번호, jsp에서 get 방식으로 전달받아 String cPage에 저장
 		String cPage = request.getParameter("cPage");
 		
 		if (product.getP_type().equals("dog")) {
@@ -68,37 +63,20 @@ public class StoreController {
 			model.addAttribute("imgDir", "catImg");
 		}
 		
+		Page p = new Page();
 		
-//		int count = storeService.getProductCount(map);
-//		System.out.println("count: " + count);
-		
-		//map객체에 총 개수 획득에 필요한 데이터 입력
-		Page page = new Page();
 		Map<String, String> map = new HashMap<String, String>();
 		map.put("p_type", product.getP_type());
 		map.put("p_category", product.getP_category());
 		
-		// autowired로 생성된 Page 객체에 (총 데이터 개수, 페이지 넘버, 한 페이지에 출력할 게시물 수, 페이징 버튼 개수) 입력
-		// -> 페이지 별 begin, end값 구하기 위한 작업
-		page = page.setPage(storeService.getProductCount(map), cPage, 4, 10);
-
-		//map에 다시 begin, end  생성된 Page객체와 리스트 획득에 필요한 데이터 입력 
-		map = page.data2(page, product.getP_type(), product.getP_category());
 		
-		System.out.println(product.getP_type() + " " + product.getP_category());
+		p = p.setPage(storeService.getProductCount(map), cPage, 20, 10);
+		map = p.data2(p, product.getP_type(), product.getP_category(), map);
 		
-		//map을 이용해 최종 데이터 획득
 		List<Product> productList = storeService.getProductList(map);
 		
-		System.out.println("list : " + productList);
-		for ( String key : map.keySet() ) {
-		    System.out.println("방법1) key : " + key +" / value : " + map.get(key));
-		}
-		
-		
 		model.addAttribute("pList", productList);
-		model.addAttribute("pvo", page);
-		model.addAttribute("command", "/store/productList");
+		model.addAttribute("pvo", p);
 		model.addAttribute("p_type", product.getP_type());
 		model.addAttribute("p_category", product.getP_category());
 		

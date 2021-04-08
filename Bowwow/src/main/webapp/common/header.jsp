@@ -35,8 +35,8 @@
 						<a href="javascript:void(0)"><i class="ti-menu"></i></a>
 					</div>
 				</li>
-				<li><a href="index.html"> 커뮤니티 </a></li>
-				<li><a href="storeMain.html"> 스토어 </a></li>
+				<li><a href="/community/main"> 커뮤니티 </a></li>
+				<li><a href="/store/storeMain"> 스토어 </a></li>
 			</ul>
 			<form action="search">
 			<ul class="nav-right">
@@ -51,103 +51,12 @@
 				<button style = "margin-top: 5px; width: 100px" type="submit"><i class="fas fa-search"></i></button>
 				</li>
 
-				<li class="header-notification"><a href="#!"
-					class="waves-effect waves-light"> <i class="ti-bell"></i> <span
-						class="badge bg-c-red"></span>
-				</a>
-					<ul class="show-notification">
-						<li>
-							<h6>Notifications</h6> <label class="label label-danger">New</label>
-						</li>
-						<li class="waves-effect waves-light">
-							<div class="media">
-								<img class="d-flex align-self-center img-radius"
-									src="../resources/images/avatar-2.jpg"
-									alt="Generic placeholder image">
-								<div class="media-body">
-									<h5 class="notification-user">John Doe</h5>
-									<p class="notification-msg">Lorem ipsum dolor sit amet,
-										consectetuer elit.</p>
-									<span class="notification-time">30 minutes ago</span>
-								</div>
-							</div>
-						</li>
-						<li class="waves-effect waves-light">
-							<div class="media">
-								<img class="d-flex align-self-center img-radius"
-									src="../resources/images/avatar-4.jpg"
-									alt="Generic placeholder image">
-								<div class="media-body">
-									<h5 class="notification-user">Joseph William</h5>
-									<p class="notification-msg">Lorem ipsum dolor sit amet,
-										consectetuer elit.</p>
-									<span class="notification-time">30 minutes ago</span>
-								</div>
-							</div>
-						</li>
-						<li class="waves-effect waves-light">
-							<div class="media">
-								<img class="d-flex align-self-center img-radius"
-									src="../resources/images/avatar-3.jpg"
-									alt="Generic placeholder image">
-								<div class="media-body">
-									<h5 class="notification-user">Sara Soudein</h5>
-									<p class="notification-msg">Lorem ipsum dolor sit amet,
-										consectetuer elit.</p>
-									<span class="notification-time">30 minutes ago</span>
-								</div>
-							</div>
-						</li>
-					</ul></li>
-				<li class="header-notification"><a href="#!"
+				<li class="header-notification"><a href="/store/cartList"
 					class="waves-effect waves-light"> <i
 						class="fa fa-shopping-cart" aria-hidden="true"></i> <span
 						class="badge bg-c-red"></span>
 				</a>
-					<ul class="show-notification">
-						<li>
-							<h6>Notifications</h6> <label class="label label-danger">New</label>
-						</li>
-						<li class="waves-effect waves-light">
-							<div class="media">
-								<img class="d-flex align-self-center img-radius"
-									src="../resources/images/avatar-2.jpg"
-									alt="Generic placeholder image">
-								<div class="media-body">
-									<h5 class="notification-user">John Doe</h5>
-									<p class="notification-msg">Lorem ipsum dolor sit amet,
-										consectetuer elit.</p>
-									<span class="notification-time">30 minutes ago</span>
-								</div>
-							</div>
-						</li>
-						<li class="waves-effect waves-light">
-							<div class="media">
-								<img class="d-flex align-self-center img-radius"
-									src="../resources/images/avatar-4.jpg"
-									alt="Generic placeholder image">
-								<div class="media-body">
-									<h5 class="notification-user">Joseph William</h5>
-									<p class="notification-msg">Lorem ipsum dolor sit amet,
-										consectetuer elit.</p>
-									<span class="notification-time">30 minutes ago</span>
-								</div>
-							</div>
-						</li>
-						<li class="waves-effect waves-light">
-							<div class="media">
-								<img class="d-flex align-self-center img-radius"
-									src="../resources/images/avatar-3.jpg"
-									alt="Generic placeholder image">
-								<div class="media-body">
-									<h5 class="notification-user">Sara Soudein</h5>
-									<p class="notification-msg">Lorem ipsum dolor sit amet,
-										consectetuer elit.</p>
-									<span class="notification-time">30 minutes ago</span>
-								</div>
-							</div>
-						</li>
-					</ul></li>
+					</li>
 				<li class="user-profile header-notification"><a href="#!"
 					class="waves-effect waves-light"> <img
 						src="../resources/images/logo.png" class="img-radius"

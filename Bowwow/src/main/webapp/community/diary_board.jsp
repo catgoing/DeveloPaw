@@ -20,6 +20,13 @@
 <link rel="preconnect" href="https://fonts.gstatic.com">
 <link href="https://fonts.googleapis.com/css2?family=Do+Hyeon&display=swap" rel="stylesheet">
 
+<!-- Dohyeon 폰트 import-->
+<link rel="preconnect" href="https://fonts.gstatic.com">
+<link
+	href="https://fonts.googleapis.com/css2?family=Do+Hyeon&display=swap"
+	rel="stylesheet">
+
+
 <!-- Favicon icon -->
 <link rel="icon" href="/resources/images/favicon.ico" type="image/x-icon">
 <!-- Google font-->
@@ -126,33 +133,28 @@ $(document).ready(function () {
 												<div class="monthly-products">
 													<ul>
 														<c:forEach var="list" items="${ boardList}">
-															<li>
+															<li style="background-color : #f7f2f2; margin:5px; border-radius:10px">
 																<div class="block-item default-item col-lg-3 col-md-4 col-sm-6" onclick="location.href='/community/detail?board_idx=${board_idx }&board_no=${list.board_no}'">
 																	<div class="best-label">${list.board_no }</div>
-													<%-- 				<div class="bookmark_btn click-btn" style="width:200px; height:200px;">
-																			<img style="width:200px" id="scrapImg_311"
-																				src='https://projectbit.s3.us-east-2.amazonaws.com/${list.img1 }' alt="썸네일이 없음ㅁ">
-																		
-																	</div> --%>
 																	<div class="img-area" style="width:300px; height:300px;"
 																		onclick="location.href='/board/knowhow/311'">
-															<%-- 			<div class="imgItem"
-																			style="background: url('https://projectbit.s3.us-east-2.amazonaws.com/${list.img1 }') center center no-repeat; background-size: cover; width:100%; height:100%;">
-																		</div> --%>
 																		<div class="imgItem" style="width:300px; height:300px;">
-																			<img src='https://projectbit.s3.us-east-2.amazonaws.com/${list.img1 }' onerror='this.src="/resources/images/cat&dog.jpg"' width="100%" height="100%">
+																			<img src='https://projectbit.s3.us-east-2.amazonaws.com/${list.img1 }' onerror='this.src="/resources/images/alt_img.png"' width="100%" height="100%">
 																		</div>
 																	</div>
 																	<br>
 																	<div class="text-area">
 																		<div class="item-title" style="width:300px; color:black;">
 																			<a href="/community/detail?board_idx=${board_idx }&board_no=${list.board_no}">
-																			</a><h4>${list.board_title }</h4>
+																			</a><span style="font-size:22px;">${list.board_title }</span>
+																			<span style="postion:inline-block;float:right">${list.regdate }</span>
 																		</div>
 																		<div class="item-items">
-																			<div class="profile">
+																			<div class="profile" style="width:300px;">
 																				<span>${list.nickname }</span>
-																				<span>조회 ${list.hits }</span>
+																				<span style="float:right">조회수 ${list.hits }</span>
+																				<br>
+																				<br>
 																			</div>
 																			<div class="profile" style="margin-right:0">
 																			</div>

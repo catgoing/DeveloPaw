@@ -53,4 +53,6 @@ public class Board {
 		this.regdate = regdate.substring(0, 16);
 	}
 	
+
+	
 }

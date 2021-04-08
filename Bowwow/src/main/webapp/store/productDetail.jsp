@@ -49,6 +49,9 @@
 	<script type="text/javascript" src="/resources/js/ajax.js"></script>
 
 <style>
+
+
+
 .featured__item__text {
 	width: 150px;
 }
@@ -64,14 +67,16 @@
 	var sell_price;
 	var amount;
 	var totalSum;
+	var stock;
 	
 	$(function init () {
 	   sell_price = document.getElementById('sell_price').value;
 	   document.getElementById('sum').value = sell_price;
 	   sell_price = document.form.sell_price.value;
-	   console.log(document.getElementById('totalSum').value = sell_price);
+	   document.getElementById('totalSum').value = sell_price;
 	   amount = document.form.amount.value;
 	   document.form.sum.value = sell_price.replace(/\B(?=(\d{3})+(?!\d))/g, ",");
+	   stock = document.getElementById('stock').value;
 	   
 	});
 	
@@ -79,23 +84,33 @@
 	   hm = document.form.amount;
 	   sum = document.form.sum;
 	   
-	   hm.value ++ ;
+	   hm.value ++;
 	   
-	   var temp = parseInt(hm.value) * sell_price
-	
-	   console.log(document.getElementById('totalSum').value = temp);
-	   document.getElementById('sum').value = temp;
-	   document.getElementById('sum').value = document.getElementById('sum').value.replace(/\B(?=(\d{3})+(?!\d))/g, ",");
+	   if(parseInt(hm.value) > stock) {
+		    console.log("hm : " + hm.value);
+		    console.log("stock : " + stock);
+	   		alert("재고가 부족합니다, 해당 상품의 재고는 총" + stock + "개 입니다.");
+	   	    hm.value --;
+	   } else {
+		   var temp = parseInt(hm.value) * sell_price
+		
+		   document.getElementById('totalSum').value = temp;
+		   document.getElementById('sum').value = temp;
+		   document.getElementById('sum').value = document.getElementById('sum').value.replace(/\B(?=(\d{3})+(?!\d))/g, ",");
+		   
+	   }
+		   
 	}
 	
 	function del () {
 	   hm = document.form.amount;
 	   sum = document.form.sum;
+	   
 	      if (hm.value > 1) {
 	         hm.value -- ;
 	         var temp = parseInt(hm.value) * sell_price
 	         
-	         console.log(document.getElementById('totalSum').value = temp);
+	         document.getElementById('totalSum').value = temp;
 	         document.getElementById('sum').value = temp;
 	         document.getElementById('sum').value = document.getElementById('sum').value.replace(/\B(?=(\d{3})+(?!\d))/g, ",");
 	      }
@@ -106,14 +121,22 @@
 	   hm = document.form.amount;
 	   sum = document.form.sum;
 	   
-	   var temp = parseInt(hm.value) * sell_price
-	
-	   console.log(document.getElementById('totalSum').value = temp); 
-	   document.getElementById('sum').value = temp;
-	   document.getElementById('sum').value = document.getElementById('sum').value.replace(/\B(?=(\d{3})+(?!\d))/g, ",");
+	   if(parseInt(hm.value) > stock) {
+		    console.log("hm : " + hm.value);
+		    console.log("stock : " + stock);
+		    alert("재고가 부족합니다, 해당 상품의 재고는 총 " + stock + "개 입니다.");
+	   		hm.value = 1;
+	   } else {
+		   var temp = parseInt(hm.value) * sell_price
+		
+		   document.getElementById('totalSum').value = temp; 
+		   document.getElementById('sum').value = temp;
+		   document.getElementById('sum').value = document.getElementById('sum').value.replace(/\B(?=(\d{3})+(?!\d))/g, ",");
+	   }
+	   
 	}
 	
-	// 숫자만 들어오도록 체크
+	// 수량에 숫자만 들어오도록 체크
 	function onlyNumber(e) {
 	   var reg = /[^0-9]{1,100}$/g;
 	   var value = $(e).val();   // $(e) : 선택자, jQuery에서 매개변수로 받은 Object를 지칭함
@@ -121,7 +144,21 @@
 	   if (reg.test(value)) { // 숫자만 들어오도록 test()로 체크
 	      $(e).val(value.replace(reg, ""));
 	      return false;
-	   }
+	   } 
+	  
+	}
+	
+	// 수량에 빈문자열이나 0이 들어오면 1반환
+	function amountChk(e) {
+		var reg = /[0-9]{1,100}$/g;
+		var value = $(e).val();
+		
+		if (value == '' || value == 0) {
+			$(e).val(1);
+		} else {
+		    return false;
+		}
+		
 	}
 	
 	function cartList(frm) {
@@ -131,24 +168,21 @@
 	   
 	   result = callAjax(tUrl, 'post', param, 'data');
 	
-	             if (result.code == "0000") {
-	               var chk = confirm(result.msg);
-	            
-	               if (chk) {
-	               location.href="/store/cartList";
-	                }
-	               
-	      } else {
-	               var chk = confirm(result.msg);
-	         
-	              if (chk) {
-	               location.href="/store/cartList";
-	            } 
-	           }
-	         
+		if (result.code == "0000") {
+			var chk = confirm(result.msg);
+			
+		 	if (chk) {
+		 		location.href="/store/cartList";
+		 	}
+         
+		} else {
+			var chk = confirm(result.msg);
+ 
+			if (chk) {
+				location.href="/store/cartList";
+      		} 
+   		}
 	}
-
-
 
 	function insertOrder(frm) {
 		console.log('order 함수');
@@ -159,24 +193,7 @@
 		location.href = "/store/storeOrder?p_id=" + p_id + "&p_count=" + p_count + "&totalSum=" + sum;
 	}
 
-	function deleteReview(review_id) {
-		console.log('리뷰아이디 : ' + review_id);
-		var data = {
-			"r_id" : review_id
-		};
-		$.ajax({
-			url : '/store/deleteReview',
-			type : 'POST',
-			data : data,
-			success : function(data) {
-				console.log('?? ' + data)
-				if (data == "success") {
-					$('.rev_'+review_id).remove();
-				}
-			}
-		});
-	}
-
+	
 	function chkRev() {
 		if (document.getElementById('review_title').value == "") {
 			alert("제목을 입력해 주세요.");
@@ -199,23 +216,34 @@
 			type : "post",
 			data : formObj,
 			dataType : 'json',
+			async : false,
 			success : function(data){
 				if(data) {
-					$('.reviewList').prepend(
+					$('.appendReview').prepend(
 							'<li class="rev_'+data.revId+'">'+
-							'<div class="userInfo">'+
-							'<span class="userName">'+data.revTitle +'</span>'+
-							'<span class="date">'+data.revContent +'</span>'+
-							'<div class="reviewContent">'+data.revRegdate + '</div>'+
-							'<button class="store_btn" onclick="deleteReview("'+data.revId+'")>삭제</button>'+
+							'<hr>'+
+							'<div class="comment-body">'+
+							'<div class="comment-img">'+
+							'<img src="/resources/images/reviewImage.jpg" />'+
 							'</div>'+
-							'</li>'
-					);
+							'<div class="comment-text">'+
+							'<h3>'+data.revId+'</h3>'+
+							'<span>'+data.revRegdate+'</span>'+
+							'<p>'+data.revTitle+'</p>'+
+							'<p>'+data.revContent+'</p>'+
+							'<button class="btn custom-btn" onclick="deleteReview('+data.revId+')">삭제</button>'+
+							'</div>'+
+							'</div>'+
+							'<hr>'+
+							'</li>'	 
+							
+					); 
 				}
-
+				
 
 				if(data.code == '0000') {
 					alert(data.msg);
+					reviewList();
 				} else {
 					alert(data.msg);
 				}
@@ -223,8 +251,27 @@
 		});
 	 }
 
-	function reviewList() {
-
+	function deleteReview(review_id) {
+		console.log('리뷰아이디 : ' + review_id);
+		var data = {
+			"r_id" : review_id
+		};
+		$.ajax({
+			url : '/store/deleteReview',
+			type : 'POST',
+			data : data,
+			success : function(data) {
+				console.log('?? ' + data)
+				if (data == "success") {
+					$('.rev_'+review_id).remove();
+				}
+			}
+		});
+	}
+	
+	
+	 function reviewList() {
+	 
 		var pId = ${p.p_id};
 		$.getJSON("/store/reviewList" + "?p_id=" + pId, function(data){
 			var str = "";
@@ -235,32 +282,37 @@
 
 				var reviewDate = new Date(this.review_regdate);
 				reviewDate = reviewDate.toLocaleDateString("ko-US")
-
-				// HTML코드 조립
+					 
 				str += '<li class="rev_'+this.review_id+'">'
-					 + '<div class="userInfo">'
-					 + '<span class="userName">'+this.review_title+'</span>'
-					 + '<span class="date">' + reviewDate + '</span>'
-					 + '<div class="reviewContent">'+this.review_content+'</div>'
-					 + '<button class="store_btn" onclick="deleteReview('+this.review_id+')">삭제</button>'
+					 + '<hr>'
+					 + '<div class="comment-body">'
+					 + '<div class="comment-img">'
+					 + '<img src="/resources/images/reviewImage.jpg" />'
 					 + '</div>'
-					 + "</li>";
+					 + '<div class="comment-text">'
+					 + '<h3>'+this.member_serial+'</h3>'
+					 + '<span>'+reviewDate+'</span>'
+					 + '<p>'+this.review_title+'</p>'
+					 + '<p>'+this.review_content+'</p>'
+					 + '<button class="btn custom-btn" onclick="deleteReview('+this.review_id+')">삭제</button>'
+					 + '</div>'
+					 + '</div>'
+					 + '<hr>'
+					 + '</li>';	 
+					 
+				
 			});
-
+	
 			// 조립한 HTML코드를 추가
 			$("section.reviewList ol").html(str);
 		});
-
-		
-
-		function storeOrder(frm) {
-			frm.action="/store/storeOrder";
-			frm.submit();
-		}
-
-
-	}
-
+	 } // end of reviewList()
+	
+	 function storeOrder(frm) {
+	 	frm.action="/store/storeOrder";
+	  	frm.submit();
+     }
+	 
 </script>
 
 </head>
@@ -309,29 +361,28 @@
 										</div>
 										<div class="col-lg-6">
 											<div class="details_text">
-												<form name="form" onsubmit="return false;" method="POST">
-													<h4 style="color: #000">${p.p_name }</h4>
-													<input type="hidden" id="product_id" name="p_id"
-														value="${p.p_id }"> <input type="hidden"
-														name="stock" value="${p.stock }">
+												<form name="form" method="POST" >
+													<h4 style="color: #000; font-weight: 600;">${p.p_name }</h4>
+													<input type="hidden" id="product_id" name="p_id" value="${p.p_id }"> 
+													<input type="hidden" id="stock" name="stock" value="${p.stock }">
 													<div class="product__details__button">
 														<div class="product__details__widget">
 															<ul>
 																<li>
 																	<h4>
-																		판매금액: <fmt:formatNumber value="${p.price }" pattern="#,###" /> 원
+																		판매금액&nbsp; <fmt:formatNumber value="${p.price }" pattern="#,###" />원
 																	</h4>
 																</li>
 															</ul>
 														</div>
 														<div class="quantity">
 															<div class="pro-qty">
-																<h5>
-																	상품 수량 : <input type="hidden" id="sell_price" name="price" value="${p.price }">
-																			 <input type="button" class="store_btn2" value=" - " onclick="del();">
-																			 <input type="text" id="product_count" class="store_input" onkeyup="onlyNumber(this);" maxlength="2" autocomplete="off"
-																			 	min="1" name="amount" value="1" size="3" onchange="changeValue();">
-																			 <input type="button" id="addBtn" class="store_btn2" value=" + " onclick="add();">
+																<h5>상품 수량
+															      	 <input type="hidden" id="sell_price" name="price" value="${p.price }"> 
+																	 <input type="button" class="store_btn2" value=" - " onclick="del();">
+																	 <input type="text" id="product_count" class="store_input" onkeyup="onlyNumber(this); amountChk(this); changeValue();" maxlength="3" autocomplete="off" 
+																	 	min="1" name="amount" value="1" size="3">
+																	 <input type="button" id="addBtn" class="store_btn2" value=" + " onclick="add();">
 																</h5>
 															</div>
 															<br>
@@ -340,7 +391,7 @@
 															<ul>
 																<li>
 																	<h3>
-																		총 상품금액: <input type="text" class="store_input2"
+																		총 상품금액 <input type="text" class="store_input2"
 																			size="9" id="sum" readonly>원
 																	</h3>
 																</li>
@@ -353,9 +404,8 @@
 													</div>
 													<div class="btn_area">
 														<c:if test="${p.stock != 0 }">
-															<button class="store_btn" onclick="cartList(this.form)">장바구니</button>
-															<button class="store_btn"
-																onclick="insertOrder(this.form)">바로구매</button>
+															<input type="button" class="store_btn" value="장바구니" onclick="cartList(this.form)">
+															<input type="button" class="store_btn" value="바로구매" onclick="insertOrder(this.form)">
 															<input type="hidden" id="totalSum" name="totalSum">
 														</c:if>
 														<c:if test="${p.stock == 0 }">
@@ -380,34 +430,98 @@
 												</div>
 												<div class="tab-pane" id="tabs-2" role="tabpanel"
 													style="margin: 30px;">
-													<h2>상품에 대한 후기를 자유롭게 남겨주세요!</h2>
+													
 													<br>
 													<div class="tab-pane fade show active" id="review" role="tabpanel" aria-labelledby="review-tab">
-														<div id="reply">
+														<div id="reply" >
 															<section class="reviewForm">
-																<form name="reviewForm" id="reviewForm" method="post" autocomplete="off">
-																	<input type="hidden" name="p_id" value="${p.p_id}">
-																	<input type="hidden" name="member_serial" value="999">
-																	<div class="input_area">
-																		<input type="text" id="revTitle" name="review_title"
-																			placeholder="후기 제목">
-																		<textarea name="review_content" style="resize: none;" placeholder="후기 내용" ></textarea>
-																	</div>
-																	<div class="input_area">
-																		<button type="button" onclick="reviewInsert()">후기 작성</button>
-																	</div>
+																<form name="reviewForm" id="reviewForm" method="post" autocomplete="off" >
+																	<div style="border : 2px solid white; padding : 70px;">
+																		<h2>상품에 대한 후기를 자유롭게 남겨주세요!</h2>
+																		<div style="background-color : white;">
+																			<c:choose>
+																				<c:when test="${p.p_type == 'dog'}">
+																					<c:set var="imgDir" value="dogImg" />
+																				</c:when>
+																				<c:when test="${p.p_type == 'cat'}">
+																					<c:set var="imgDir" value="catImg" />
+																				</c:when>
+																			</c:choose>
+																			<div class="col-lg-3" style="display: inline-block">
+																				<div class="product__details__smallpic">
+																					<div class="product__details__slider__content">
+																						<div class="details_smallpic" style="padding : 10px;">
+																							<img style="width:120px; height:120px;" src="https://projectbit.s3.us-east-2.amazonaws.com/${imgDir }/${p.s_image }">
+																						</div>
+																					</div>
+																				</div>
+																			</div>
+																			<div class="col-lg-6" style="display: inline-block;" >
+																				<div class="details_text" style="padding : 10px;">
+																					<h6 style="color: #000">${p.p_name }</h6>
+																					<div class="product__details__widget">
+																						<ul>
+																							<li>
+																								<h5>
+																									<fmt:formatNumber value="${p.price }" pattern="#,###" />
+																									원
+																								</h5>
+																							</li>
+																						</ul>
+																					</div>
+																				</div>
+																			</div>
+																		</div>
+																		<hr>
+																		<div class="field half first">
+																				<label for="name">작성자 닉네임</label> <input type="text"
+																					class="form-control" id="writer"
+																					name="member_serial" value="999" >
+																			</div>
+																			<div class="field half">
+																				<label for="name">작성 일자</label> <input type="text"
+																					class="form-control" id="revRegdate"
+																					name="review_regdate" >
+																			</div>
+																			<div class="field">
+																				<label for="name">후기 제목</label> <input type="text"
+																					class="form-control" id="revTitle"
+																					name="review_title" placeholder="후기 제목">
+																			</div>
+																			<div class="form-group">
+																				<label for="message">후기 내용</label>
+																				<textarea id="message" class="form-control"
+																					cols="20" rows="2" name="review_content"
+																					style="resize: none;" placeholder="후기 내용"></textarea>
+																			</div>
+																			<div class="form-group">
+																				<button type="button" onclick="reviewInsert()"
+																					class="btn custom-btn" style="float: right;">작성</button>
+																				<input type="hidden" name="p_id" value="${p.p_id}">
+																			</div>
+																		</div>
 																</form>
 															</section>
-															<section class="reviewList">
-																<ol>
-																<%-- 	<li>
-																		<div class="userInfo">
-																			<span class="userName">${rList.member_serial}</span>
-																			<span class="date">${rList.review_regdate}"</span>
-																		</div>
-																		<div class="reviewContent">${rList.review_content}</div>
-																	</li> --%>
-																</ol>
+															<br><br>
+															<section class="reviewList" style="border : 2px solid white;">
+																<ol class="appendReview">
+																	<%-- <li class="rev_${rList.review_id }">
+																		 <hr>
+																		 <div class="comment-body">
+																		 <div class="comment-img">
+																		 <img src="img/user.jpg" />
+																		 </div>
+																		 <div class="comment-text">
+																		 <h3>${rList.nickname }</h3>
+																		 <span>${rList.review_id }</span>
+																		 <p>${rList.review_id }</p>
+																		 <p>${rList.review_id }</p>
+																		 <button class="store_btn" onclick="deleteReview(${rList.review_id })">삭제</button>
+																		 </div>
+																		 </div>
+																		 <hr>
+																	 </li> --%>
+																 </ol>
 																<script>
 																	reviewList();
 																</script>
