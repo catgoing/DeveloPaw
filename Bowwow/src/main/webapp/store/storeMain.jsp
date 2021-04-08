@@ -160,8 +160,8 @@
 									<a href="javascript:void(0)"><i class="ti-menu"></i></a>
 								</div>
 							</li>
-							<li><a href="storeInquiry"> 커뮤니티 </a></li>
-							<li><a href="storeMain"> 스토어 </a></li>
+							<li><a href="/community/main"> 커뮤니티 </a></li>
+							<li><a href="/store/storeMain"> 스토어 </a></li>
 						</ul>
 						<ul class="nav-right">
 							<li class="form-group form-primary"><input type="text"

@@ -365,6 +365,7 @@
 											<div class="details_text">
 												<form name="form" method="POST" >
 													<h4 style="color: #000; font-weight: 600;">${p.p_name }</h4>
+													<input type="hidden" name="p_name" value="${p.p_name }">
 													<input type="hidden" id="product_id" name="p_id" value="${p.p_id }"> 
 													<input type="hidden" id="stock" name="stock" value="${p.stock }">
 													<div class="product__details__button">
