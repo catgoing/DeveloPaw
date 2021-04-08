@@ -95,7 +95,7 @@ input[type="submit"] {
 								</div>
 							</div>
 						</div>
-						<a href="storeMain"
+						<a href="store/storeMain"
 							style="text-align: center; font-weight: bold; font-size: 30px; margin-top: 7px;">BOW-WOW</a>
 
 						<a class="mobile-options waves-effect waves-light"> <i
@@ -126,8 +126,10 @@ input[type="submit"] {
 									<i class="fa fa-shopping-cart" aria-hidden="true" ></i> 
 								</a>
 							</li>
-							<li class="user-profile header-notification"><a href="#!" class="waves-effect waves-light"> 
-								<img src="resources/images/avatar-4.jpg" class="img-radius" alt="User-Profile-Image"> <i class="ti-angle-down"></i>
+							<li class="user-profile header-notification"><a href="#!"
+								class="waves-effect waves-light"> <img
+									src="../resources/images/logo.png" class="img-radius"
+									alt="User-Profile-Image"> <i class="ti-angle-down"></i>
 							</a>
 								<ul class="show-notification profile-notification">
 									<li class="waves-effect waves-light"><a href="/mypage/myPageMain">마이홈
