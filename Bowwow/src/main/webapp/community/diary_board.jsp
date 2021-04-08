@@ -41,6 +41,7 @@
 <!-- <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/resources/css/style.css"> -->
 <link rel="stylesheet" type="text/css" href="/resources/css/style.css">
 <link rel="stylesheet" type="text/css" href="/resources/css/test.css">
+<link rel="stylesheet" type="text/css" href="/resources/css/paging.css">
 
 <title>펫 다이어리</title>
 <style>
@@ -162,8 +163,12 @@ $(document).ready(function () {
 														</c:forEach>
 													</ul>
 												</div>
+												<div>
+										<%@include file="/common/paging.jsp"%>
+												</div>
 											</div>
 										</section>
+										
 									</div>
 
 								</div>
