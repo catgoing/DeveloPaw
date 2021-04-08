@@ -274,7 +274,18 @@ function allInputCheck(frm) {
 							    					<textarea class="form-control" name="inquiry_content" rows="5" placeholder="질문을 입력하세요!"></textarea>
 							  					</div>
 							  					<c:if test="${not empty targetProduct }">
-							  					<div>
+							  					<div class="form-group">
+							  						<table class="form-control" style="line-height:0">
+							  							<tr>
+							  								<td rowspan="2" style="line-height:0">
+							  									<img src="https://projectbit.s3.us-east-2.amazonaws.com/${targetProduct.s_image }" style="max-width:100%;">
+							  								</td>
+							  							<tr>
+							  							<tr>
+							  								<td>${targetProduct.p_name }</td>
+							  								<td>${targetProduct.price }</td>
+						  								</tr>
+							  						</table>
 							  						<input type="hidden" id="targetPid" name="p_id" value="${targetProduct.p_id }">							  						
 							  					</div>
 							  					</c:if>
