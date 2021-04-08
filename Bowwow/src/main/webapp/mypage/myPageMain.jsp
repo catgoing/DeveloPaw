@@ -2,15 +2,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
-<%
-	//임시 로그인처리
-	int memberSerial = 1;
-	String id = "z";
-	UserAccount user= new UserAccount();
-	user.setId(id);
-	user.setMember_serial(memberSerial);
-	session.setAttribute("user", user);
-%>
+
 <!DOCTYPE html>
 <html>
 
@@ -203,10 +195,6 @@
 							  </div>
 							</div>
 							<br>
-							<hr>
-							<div class="container mypage_main_content boardlist">
-								<h3>게시글출력영역</h3>
-							</div>
 						</div>
 					</div>
 					<!-- Page-body end -->

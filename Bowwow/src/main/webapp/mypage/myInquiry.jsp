@@ -6,28 +6,7 @@
     <% request.setCharacterEncoding("UTF-8"); %>
 <%@ taglib uri="http://tiles.apache.org/tags-tiles" prefix="tiles"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
-<%
-	//임시 로그인처리
-	int memberSerial = 1;
-	String id = "test_id";
-	String nickname="테스트 닉네임";
-	String realname="윤아름";
-	String birth = "2011-12-13";
-	Date birthday = Date.valueOf(birth);
-	//String gender = "F";
-	String email = "test-email@test.com";
-	
-	UserDTO user= new UserDTO();
-	user.setId(id);
-	user.setMember_serial(memberSerial);
-	user.setNickname(nickname);
-	user.setRealname(realname);
-	user.setBirthday(birthday);
-	//user.setGender(gender);
-	user.setEmail(email);
-	
-	session.setAttribute("user", user);
-%>
+
 <!DOCTYPE html>
 <html>
 
