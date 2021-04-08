@@ -79,14 +79,22 @@
 												<div class="row">
 													<div class="col-lg-12">
 														<div class="section-title">
-															<h3>스토어</h3>
+															<h3>검색 결과</h3>
 														</div>
 														<br>
 													</div>
 												</div>
 												<div class="monthly-products">
 													<ul>
-														<c:forEach var="list" items="${pList }">
+														<c:forEach var="list" items="${pSearch }">
+															<c:choose>
+																<c:when test="${list.p_type == 'dog'}">
+																	<c:set var="imgDir" value="dogImg" />
+																</c:when>
+																<c:when test="${list.p_type == 'cat'}">
+																	<c:set var="imgDir" value="catImg" />
+																</c:when>
+															</c:choose>
 															<li>
 																<div
 																	class="col-lg-3 col-md-4 col-sm-6 mix oranges fresh-meat"

@@ -54,6 +54,24 @@
 		 WHERE P_ID = #{p_id}
     </select>
     
+    <!-- 상품 검색 -->
+    <select id="searchProd" parameterType="Map" resultType="Product">
+		SELECT * FROM 
+			(
+				SELECT ROWNUM AS RN, PROD.* FROM 
+				( 
+					SELECT 
+						P_ID, P_NAME, P_TYPE, P_CATEGORY, 
+		  				PRICE, STOCK, S_IMAGE, L_IMAGE 
+		  			FROM STORE_PRODUCTS
+		 			WHERE P_NAME LIKE '%' || #{keyword} || '%'
+		 			ORDER BY P_ID DESC 
+		 		) PROD 
+		 	)
+		 WHERE RN BETWEEN ${begin} AND ${end}
+	</select>
+    
+    
 </mapper>
 
 

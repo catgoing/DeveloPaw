@@ -39,8 +39,4 @@ public class CartListServiceImpl implements CartListService {
 		return storeDAO.deleteCart(cartList);
 	}
 
-
-	
-	
-
 }
