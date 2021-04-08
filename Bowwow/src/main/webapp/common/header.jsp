@@ -35,8 +35,8 @@
 						<a href="javascript:void(0)"><i class="ti-menu"></i></a>
 					</div>
 				</li>
-				<li><a href="index.html"> 커뮤니티 </a></li>
-				<li><a href="storeMain.html"> 스토어 </a></li>
+				<li><a href="/community/main"> 커뮤니티 </a></li>
+				<li><a href="/store/storeMain"> 스토어 </a></li>
 			</ul>
 			<form action="search">
 			<ul class="nav-right">

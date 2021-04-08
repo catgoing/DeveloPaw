@@ -7,8 +7,11 @@
 	<c:when test="${pvo.pageBeginIdx == 1 }">		
 		<a class="disable"> < </a>
 	</c:when>
-	<c:when test="${pvo.pageBeginIdx == 1 && p_type != null  && p_category != null }">	<!-- 스토어 카테고리 있을 때 -->	
+	<c:when test="${pvo.pageBeginIdx != 1 && p_category != null}">		
 		<a href="${command }?cPage=${pvo.pageBeginIdx - 1}&p_type=${p_type}&p_category=${p_category}"> < </a>
+	</c:when>
+	<c:when test="${pvo.pageBeginIdx != 1 && p_type != null}">		
+		<a href="${command }?cPage=${pvo.pageBeginIdx - 1}&p_type=${p_type}"> < </a>
 	</c:when>
 	<c:otherwise>
 		<a href="${command }?cPage=${pvo.pageBeginIdx - 1}"> < </a>
@@ -18,23 +21,35 @@
 	<c:if test="${pageNo == pvo.nowPage }">
 		<a class="now">${pageNo }</a>
 	</c:if>
-	<c:if test="${pageNo != pvo.nowPage && p_type != null  && p_category != null }"> <!-- 스토어 카테고리 있을 때 -->
+	<c:if test="${pageNo != pvo.nowPage }">
+	<c:choose>
+		<c:when test="${p_type != null && p_category != null}">
 			<a href="${command }?cPage=${pageNo }&p_type=${p_type}&p_category=${p_category}">${pageNo }</a>
+		</c:when>
+		<c:when test="${p_type != null && p_category != null}">
+			<a href="${command }?cPage=${pageNo }&p_type=${p_type}&p_category=${p_category}">${pageNo }</a>
+		</c:when>
+		<c:otherwise>
+		<a href="${command }?cPage=${pageNo }"> ${pageNo } </a>
+		</c:otherwise>	
+	</c:choose>
 	</c:if>		
-	<c:if test="${pageNo != pvo.nowPage && p_category == null }"> <!-- 스토어 전체상품일 때 -->
-			<a href="${command }?cPage=${pageNo }&p_type=${p_type}">${pageNo }</a>
-	</c:if>		
-</c:forEach>		
-	<c:if test="${pvo.pageEndIdx < pvo.totalPage && p_type != null  && p_category != null  }">	<!-- 스토어 카테고리 있을 때 -->
+</c:forEach>	
+	<c:choose>
+		<c:when test="${pvo.pageEndIdx >= pvo.totalPage }">		
+			<a class="disable"> > </a>
+		</c:when>
+		<c:when test="${pvo.pageEndIdx < pvo.totalPage && p_category != null}">		
 			<a href="${command }?cPage=${pvo.pageEndIdx + 1}&p_type=${p_type}&p_category=${p_category}"> > </a>
-	</c:if>
-	<c:if test="${pvo.pageEndIdx < pvo.totalPage && p_category == null }">	<!-- 스토어 전체상품일 때 -->
+		</c:when>
+		<c:when test="${pvo.pageEndIdx < pvo.totalPage && p_type != null}">		
 			<a href="${command }?cPage=${pvo.pageEndIdx + 1}&p_type=${p_type}"> > </a>
-	</c:if>
-	<c:if test="${pvo.pageEndIdx >= pvo.totalPage }">	
-		<a class="disable"> > </a>
-	</c:if>
-	
+		</c:when>
+		<c:otherwise>
+			<a href="${command }?cPage=${pvo.pageEndIdx + 1}"> > </a>
+		</c:otherwise>	
+	</c:choose>	
+
 	</ol>
 		</div>
  </div>
