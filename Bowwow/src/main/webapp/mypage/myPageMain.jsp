@@ -1,8 +1,14 @@
+<%@page import="ga.bowwow.service.user.VO.UserDTO"%>
 <%@page import="ga.bowwow.service.user.VO.UserAccount"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
-
+<%
+	int member_serial = 999;
+	UserDTO userDTO = new UserDTO();
+	userDTO.setMember_serial(member_serial);
+	session.setAttribute("userDTO", userDTO);
+%>
 <!DOCTYPE html>
 <html>
 

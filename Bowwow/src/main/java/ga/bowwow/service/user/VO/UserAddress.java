@@ -11,13 +11,13 @@ import lombok.ToString;
 @NoArgsConstructor @AllArgsConstructor
 @ToString
 public class UserAddress {
-	long member_serial;
+	Integer member_serial;
 	long address_id;
 	String address;
 	String address_detail;
 	String zonecode;
 	
-	public UserAddress buildMemberSerial(long member_serial) {
+	public UserAddress buildMemberSerial(Integer member_serial) {
 		this.member_serial = member_serial;
 		return this;
 	}

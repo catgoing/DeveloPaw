@@ -103,7 +103,7 @@
 		         </tbody>
 	            </table>
 		          <input type="hidden" id="insert_animal_type" name="animal_type" value="">
-		          <input type="hidden" id="insert_member_serial" name="member_serial" value="<c:out value='${user.memberSerial}'/>">
+		          <input type="hidden" id="insert_member_serial" name="member_serial" value="${sessionScope.userDTO.member_serial }">
 	          </div>
 	      	</div>
 	      <div class="modal-footer">
@@ -273,7 +273,7 @@
       <div class="modal-footer">
 		<input type="hidden" id="modi_animal_type" name="animal_type" value="">
 		<input type="hidden" id="modi_pet_serial" name="pet_serial" value="">
-		<input type="hidden" id="modi_member_serial" name="member_serial" value="<c:out value='${user.memberSerial}'/>">
+		<input type="hidden" id="modi_member_serial" name="member_serial" value="${sessionScope.userDTO.member_serial }">
         <button type="button" class="btn btn-primary" id="updatePetInfobtn">반려동물 정보수정</button>
         <button type="button" class="btn btn-secondary" data-dismiss="modal" onclick="clearInput()">Close</button>
       </div>

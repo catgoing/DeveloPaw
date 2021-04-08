@@ -9,6 +9,7 @@ import javax.servlet.http.HttpServletRequest;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.SessionAttributes;
@@ -43,13 +44,10 @@ public class InquiryController {
 	}
 	
 	//유저문의리스트
-	@RequestMapping(value="/getUserInquiryList")
+	@RequestMapping(value="/getUserInquiryList", method=RequestMethod.POST)
 	public String getUserInquiryList(MyInquiry myInquiry, Model model, HttpServletRequest requetst) {
 		System.out.println(">> getUserInquiryList !");
 		System.out.println("userInquiry : " + myInquiry);
-		
-		int member_serial = 1;
-		myInquiry.setMember_serial(member_serial);
 		
 		List<MyInquiry> uiqList = myServive.getMyInquiryList(myInquiry);
 		for(MyInquiry uiq : uiqList) {
@@ -81,9 +79,6 @@ public class InquiryController {
 		System.out.println(">> getUserInquiryDetail !");
 		System.out.println("userInquiry : " + myInquiry);
 		System.out.println("inquiry_serial : " + myInquiry.getInquiry_serial());
-		
-		int member_serial = 1;
-		myInquiry.setMember_serial(member_serial);
 		
 		MyInquiry uiq = myServive.getMyInquiry(myInquiry);
 		
