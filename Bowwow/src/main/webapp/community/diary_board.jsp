@@ -58,6 +58,35 @@
 }
 </style>
 <script>
+$(document).ready(function () {
+    $("button").click(function () {
+        //ajax 쓰는 법
+        $.ajax({
+            //속성을 설정할 수 있다
+            url:"NewFile.jsp", //데이터를  넘겨줄 링크 설정
+            type:"GET", // get or post 방식
+            data:"t1=" + $("#data").val()+"&t2=Ajax", //넘겨줄 데이터
+            
+            //위에 과정이 성공했을 것을 생각하여 작성 
+             //ajax를 통해서 연결 성공하면 출력
+             //데이터가 전달되고 나서 다시 돌아왔을 때의 검사하는 것
+             //생략하면 안됨 적어줘야 한다.
+              success: function (data, status, xhr) {
+                   
+                    alert("통신 성공!");
+                    $("#demo").html(data);
+                },
+                error: function (xhr, status, error) {
+                    alert("통신 실패!");
+                },
+                complete: function (xhr, status) {
+                    alert("통신 종료");
+                }
+        });
+        
+    });
+    
+});
 
 </script>
 </head>
@@ -161,12 +190,12 @@
 		</button> -->
 		
 		<!-- footer 푸터 영역 -->
+		<%@ include file="/common/footer.jsp"%>
 		<!-- footer 푸터 영역 -->
 		<!-- <div class="fixed-button active"><a href="/community/write_board.jsp" class="btn btn-md btn-primary"> 글쓰기</a> </div> -->
 
 
 	</div>
-		<%@ include file="/common/footer.jsp"%>
 
 	<!-- Required Jquery -->
 	<script type="text/javascript" src="/resources/js/jquery/jquery.min.js "></script>

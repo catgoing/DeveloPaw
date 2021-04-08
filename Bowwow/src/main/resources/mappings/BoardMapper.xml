@@ -11,25 +11,25 @@
 				DIARY_BOARD (BOARD_NO, BOARD_TITLE, MEMBER_SERIAL, BOARD_CONTENT, IMG1, REGDATE, HITS, ANIMAL_CLASS) 
 				VALUES (DIARY_BOARD_SEQ.NEXTVAL, #{board_title}, #{member_serial}, #{board_content}, #{img1}, SYSDATE, 0, #{animal_class})
 			</when>
-			<when test='board_idx.eq("2")'> 
+			<when test="board_idx == 2"> 
 				INTRO_BOARD (BOARD_NO, BOARD_TITLE, MEMBER_SERIAL, BOARD_CONTENT, IMG1, REGDATE, HITS, ANIMAL_CLASS) 
 				VALUES (INTRO_BOARD_SEQ.NEXTVAL, #{board_title}, #{member_serial}, #{board_content}, #{img1}, SYSDATE, 0, #{animal_class})
 			</when>
-			<when test='board_idx.eq("3")'> 
+			<when test="board_idx == 3"> 
 				KNOWHOW_BOARD (BOARD_NO, BOARD_TITLE, MEMBER_SERIAL, BOARD_CONTENT, IMG1, REGDATE, HITS, SUB_CLASS, ANIMAL_CLASS) 
 				VALUES (KNOWHOW_BOARD_SEQ.NEXTVAL, #{board_title}, #{member_serial}, #{board_content}, #{img1}, SYSDATE, 0, #{sub_class}, #{animal_class})
 			</when>
-			<when test='board_idx.eq("4")'> 
+			<when test="board_idx == 4"> 
 				MISSING_BOARD (BOARD_NO, BOARD_TITLE, MEMBER_SERIAL, BOARD_CONTENT, IMG1, REGDATE, HITS, ANIMAL_CLASS) 
 				VALUES (MISSING_BOARD_SEQ.NEXTVAL, #{board_title}, #{member_serial}, #{board_content}, #{img1}, SYSDATE, 0, #{animal_class})
 			</when>
-			<when test='board_idx.eq("5")'> 
+			<when test="board_idx == 5"> 
 				USED_TRANSACTION_BOARD (BOARD_NO, BOARD_TITLE, MEMBER_SERIAL, GOODS, AREA, PRICE, IS_SELLED, 
 										BOARD_CONTENT, IMG1, REGDATE, HITS, ANIMAL_CLASS) 
 				VALUES (USED_TRANSACTION_BOARD_SEQ.NEXTVAL, #{board_title}, #{member_serial}, #{goods}, #{area}, #{price}, #{is_selled}
 						, #{board_content}, #{img1}, SYSDATE, 0, #{animal_class})
 			</when>
-			<when test='board_idx.eq("6")'> 
+			<when test="board_idx == 6"> 
 				EVENT_BOARD (BOARD_NO, BOARD_TITLE, BOARD_CONTENT, REGDATE, IMG1, HITS) 
 				VALUES (EVENT_BOARD_SEQ.NEXTVAL, #{board_title}, #{board_content}, #{img1}, SYSDATE, 0)
 			</when>
