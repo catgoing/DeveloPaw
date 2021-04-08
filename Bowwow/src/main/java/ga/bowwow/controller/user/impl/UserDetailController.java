@@ -1,10 +1,12 @@
 package ga.bowwow.controller.user.impl;
 
-import java.util.List;
-
+import org.apache.ibatis.exceptions.TooManyResultsException;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.dao.DataIntegrityViolationException;
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 import ga.bowwow.controller.user.UserCRUDGenericController;
@@ -14,6 +16,20 @@ import ga.bowwow.service.user.impl.UserDetailServiceImpl;
 @Controller
 @RequestMapping("/detail")
 public class UserDetailController extends UserCRUDGenericController<UserDetail> {
+	
+	@PostMapping(value= "/add")
+	protected ResponseEntity<String> addDetailResponse(UserDetail vo) {
+		System.out.println("detail controller Test");
+		try {
+			return service.addVo(vo) ? ResponseEntity.ok().build() : ResponseEntity.badRequest().build();
+		} catch (DataIntegrityViolationException  e) {
+			System.out.println("Caught Integerity Exception Test");
+			e.printStackTrace();
+		} catch (TooManyResultsException e) {
+			e.printStackTrace();
+		}
+		return ResponseEntity.status(409).build();
+	}
 	
 	public UserDetailController(@Autowired UserDetailServiceImpl service) {
 		System.out.println("---->>> UserDetailController() 객체생성");

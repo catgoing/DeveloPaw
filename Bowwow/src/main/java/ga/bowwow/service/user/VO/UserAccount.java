@@ -1,5 +1,7 @@
 package ga.bowwow.service.user.VO;
 
+import java.sql.Date;
+
 import org.springframework.web.multipart.MultipartFile;
 
 import lombok.AllArgsConstructor;
@@ -17,13 +19,17 @@ public class UserAccount {
 	String email;
 	String citizen_id;
 	String phone;
-	MultipartFile profileImage;
 	String image_source;
+	MultipartFile file;
 	String nickname;
 	String password;
 	String status;
 	long point;
 	String coupons;
+	String realname;
+	Date reg_date;
+	Date birthday;
+	String gender;
 
 	@Override
 	public int hashCode() {

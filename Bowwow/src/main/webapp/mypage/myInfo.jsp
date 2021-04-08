@@ -335,8 +335,9 @@ $(function(){
 									<div class="side-content">
 										<div class="my-area">
 											<div class="side-profile-img">
-												<%-- <img src="${sessionScope.userDTO.image_source }" alt="이미지없음~"> --%>
-												<img src="" alt="이미지없음~">
+											
+<%-- 												<img src="${sessionScope.userDTO.image_source }" alt="이미지없음~"> --%>
+												<img src="${sessionScope.userDTO.image_source }" alt="이미지없음~">
 											</div>
 											<p>${sessionScope.userDTO.nickname }</p>
 										</div>
@@ -412,7 +413,7 @@ $(function(){
     </div>
   </div>
   <div class="form-group">
-    <label for="inputPhone" class="col-sm-4 control-label">전화번호</label>
+    <label for="inputPhone" class="col-sm-4 control-label" >전화번호</label>
     <div class="col-sm-8">
 	  <select>
 		<option>010</option>
@@ -421,13 +422,13 @@ $(function(){
 		<option>018</option>
 		<option>019</option>
 		</select>
-      <input type="text" class="form-control" name="phone" id="inputPhone" placeholder="123-4567 혹은 1234-5678 형식으로 입력">
+      <input type="text" class="form-control" name="phone" id="inputPhone" value="${sessionScope.userDTO.phone }" placeholder="123-4567 혹은 1234-5678 형식으로 입력">
     </div>
   </div>
      <div class="form-group">
     <label for="inputBirth" class="col-sm-4 control-label">생일</label>
     <div class="col-sm-8">
-      <input type="date" class="form-control" name="birthday" id="inputBirthday" >
+      <input type="date" class="form-control" name="birthday" value="${sessionScope.userDTO.birthday}" id="inputBirthday" >
     </div>
   </div>
   <div class="form-group">
