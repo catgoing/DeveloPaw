@@ -163,7 +163,7 @@
 																<label for="uploadImage" id="imageview"> <img
 																	src="" class="thumb">
 																</label>
-																<input type="file" id="uploadImage" accept="image/gif, image/jpeg, image/jpg, image/png" name="image_source" onchange="readImage(this);">
+																<input type="file" id="uploadImage" accept="image/gif, image/jpeg, image/jpg, image/png" name="profileImage" onchange="readImage(this);">
 															</div>
 														</div>
 														<p></p>
@@ -332,18 +332,22 @@
      
      <script>
      function getImageName(_imageSource) {
-    	 var imageSource = _image;
-  		console.log(imageSource.value);
-  		imagePaths = imageSource.value.split('\\');
-  		console.log(imagePaths);
+  		var imagePaths = _imageSource.value.split('\\');
   		var imageLastIndex = imagePaths.length;
-  		console.log(imageLastIndex);
   		var imageName = imagePaths[imageLastIndex-1];
-  		console.log(imageName);
-    	 return imageName;
+//   		console.log(imageSource.value);
+//   		console.log(imagePaths);
+//   		console.log(imageLastIndex);
+//   		console.log(imageName);
+
+      	const datas = new FormData(_imageSource);
+		console.log(datas);
+		console.log($("#insertPetform input[type='file']").val());
+		
+    	return imageName;
      }
      	function readImage(_image) {
-     		console.log(getImageName(_image));
+     	console.log(getImageName(_image));
      		
 //      	$.ajax("/account/checkIdDuplication", {
 //     	        type: "POST",
@@ -454,6 +458,7 @@
    	  	const accountData = getSingleForm(document.account_form);
       	$.ajax("/account/addJson", {
             type: "POST",
+			enctype: "multipart/form-data",
             data: JSON.stringify(accountData),
             contentType:"application/json; charset=UTF-8",
             success: function() {
@@ -461,9 +466,6 @@
             }
   		});
       	
-//       	const datas = new FormData(document.getElementById('uploadImage'));
-// 		console.log(datas);
-// 		console.log($("#insertPetform input[type='file']").val());
 		
 // 		$.ajax("/ajaxInsertPetInfo", {
 // 			type : "post",
