@@ -162,7 +162,37 @@
  	function hsBack() {
  		history.back();
  	}
+ 	
 
+ // 체크된 상품 주문 페이지로 넘기기
+/*  	function toOrder() {
+
+ 		var pIdArr = [];
+ 		var count = $("input:checkbox[name='p_id']");
+ 		var userId = $("input[name='id']");
+		var amount = $("input:text[name='amount']");
+		var prodSum = $("input:text[name='sum']"); 		
+		
+		
+
+ 		if ($("input[name='p_id']:checked").length == 0) {
+ 				alert("선택된 상품이 없습니다.");
+ 				return;
+ 			}
+
+ 		for (var i=0; i < count.length; i++ ) {
+ 			if (count.eq(i).is(":checked") == true) {
+ 				
+ 				pIdArr.push(count.eq(i).val());
+ 				pIdArr.push(userId.eq(i).val());
+ 				pIdArr.push(amount.eq(i).val());
+ 				pIdArr.push(parseInt(numberRemoveCommas(prodSum.eq(i).val())));
+				
+ 			}
+ 		}
+ 		location.href="/store/storeOrder?pIdArr=" + ;
+ 	} */
+ 
 </script>
 
 </head>
@@ -290,7 +320,7 @@
 																<input type="text" class="store_input4" name="totalPrice" value="0" readonly>원
 															</li>
 														</ul>
-														<a href="#" class="proceed-btn">주문하기</a>
+														<a onclick="toOrder()" class="proceed-btn">주문하기</a>
 													</div>
 												</div>
 											</div>

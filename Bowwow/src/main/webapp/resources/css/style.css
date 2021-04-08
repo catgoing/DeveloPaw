@@ -23,6 +23,14 @@ File: style.css
 ==========================  **/
 style="max-width: 100%; height: auto;"
 
+.orderBtn
+{font-size: 1.5em; float: right;}
+
+
+.field.half input:read-only {
+    background-color: white;
+}
+
 /* Form */
 
 
@@ -264,13 +272,13 @@ font-size: 16px; color : #fff; border-radius: 2px; line-height: 42px;}
 
 .scroll-top {
 	position: fixed;
-	right: 20px;
+	right: 25px;
 	bottom: 20px;
 	z-index: 100;
 	background-color: #fd6970;
 	opacity: .8;
-	width: 50px;
-	height: 50px;
+	width: 60px;
+	height: 60px;
 	border-radius: 50%;
 	border: none;
 	color: #fff;
@@ -305,6 +313,15 @@ font-size: 16px; color : #fff; border-radius: 2px; line-height: 42px;}
     float: left;
 }
 
+@font-face { 
+	font-family: 'Typo_FactoryEB'; 
+	src: url(/resources/fonts/Typo_FactoryEB.ttf) format('truetype'); 
+}
+
+@font-face { 
+	font-family: 'NanumBarunpenB'; 
+	src: url(/resources/fonts/NanumBarunpenB.ttf) format('truetype'); 
+}
 
 /* 본문 영역 */
 body {
@@ -312,11 +329,13 @@ body {
     font-size: 1em;
     overflow-x: hidden;	
     color: #ff6347;
-    font-family: "Do Hyeon";
+    font-family: "NanumBarunpenB";
     background-attachment: fixed;
     background-image: linear-gradient(rgba(255, 255, 255, 0.2) 180px, rgba(255, 255, 255, 0.9) 0%);
     margin-botton : 20px;
 }
+
+
 
 ul {
     padding-left: 0;
@@ -5220,6 +5239,7 @@ table tbody .border-bottom-info td {
 ==========================  **/
 
 .header-navbar {
+	font-family : "Typo_FactoryEB";
     min-height: 56px;
     padding: 0;
 }

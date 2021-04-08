@@ -87,14 +87,14 @@ public class StoreDAO {
 		mybatis.update("StoreOrder.updateOrder", order);
 	}
 	
-	public void deleteOrder(int order_id) {
+	public void deleteOrder(String order_id) {
 		System.out.println("삭제할 주문내역 : " + order_id);
 		mybatis.delete("StoreOrder.deleteOrder", order_id);
 	}
 	
-	public List<Order> getOrderList(int member_serial) {
-		System.out.println("회원 주문 내역 리스트 : " + member_serial);
-		return mybatis.selectList("StoreOrder.orderList", member_serial);
+	public List<Order> getOrderList(Order order) {
+		System.out.println("회원 주문 내역 리스트 : " + order);
+		return mybatis.selectList("StoreOrder.orderList", order);
 	}
 
 	public Order getOrderDetail(int order_id) {
@@ -104,6 +104,10 @@ public class StoreDAO {
 
 	public void changeStock(Order order) {
 		mybatis.update("StoreOrder.changeStock",order);
+	}
+
+	public void changeOrderStatus(int order_id) {
+		mybatis.update("StoreOrder.changeOrderStatus",order_id);
 	}
 
 }
