@@ -189,8 +189,10 @@
 		var p_id = $('#product_id').val();
 		var p_count = $('#product_count').val();
 		var sum = $('#totalSum').val();
+		var pName = $("input:hidden[name='p_name']").val();
 
-		location.href = "/store/storeOrder?p_id=" + p_id + "&p_count=" + p_count + "&totalSum=" + sum;
+		location.href = "/store/storeOrder?p_id=" + p_id + "&p_count=" + p_count + 
+				"&totalSum=" + sum + "&p_name=" + pName;
 	}
 
 	
@@ -227,7 +229,7 @@
 							'<img src="/resources/images/reviewImage.jpg" />'+
 							'</div>'+
 							'<div class="comment-text">'+
-							'<h3>'+data.revId+'</h3>'+
+							'<h3>'+data.member_serial+'</h3>'+
 							'<span>'+data.revRegdate+'</span>'+
 							'<p>'+data.revTitle+'</p>'+
 							'<p>'+data.revContent+'</p>'+
@@ -280,8 +282,8 @@
 
 				console.log(data);
 
-				var reviewDate = new Date(this.review_regdate);
-				reviewDate = reviewDate.toLocaleDateString("ko-US")
+				/* var reviewDate = new Date(this.review_regdate);
+				reviewDate = reviewDate.toLocaleDateString("ko-US") */
 					 
 				str += '<li class="rev_'+this.review_id+'">'
 					 + '<hr>'
@@ -291,7 +293,7 @@
 					 + '</div>'
 					 + '<div class="comment-text">'
 					 + '<h3>'+this.member_serial+'</h3>'
-					 + '<span>'+reviewDate+'</span>'
+					 + '<span>'+this.review_regdate+'</span>'
 					 + '<p>'+this.review_title+'</p>'
 					 + '<p>'+this.review_content+'</p>'
 					 + '<button class="btn custom-btn" onclick="deleteReview('+this.review_id+')">삭제</button>'
@@ -432,11 +434,11 @@
 													style="margin: 30px;">
 													
 													<br>
-													<div class="tab-pane fade show active" id="review" role="tabpanel" aria-labelledby="review-tab">
+													<div class="tab-pane fade show active" id="review" role="tabpanel" aria-labelledby="review-tab" style="border : 2px solid #666666;">
 														<div id="reply" >
 															<section class="reviewForm">
 																<form name="reviewForm" id="reviewForm" method="post" autocomplete="off" >
-																	<div style="border : 2px solid white; padding : 70px;">
+																	<div style="padding : 70px;">
 																		<h2>상품에 대한 후기를 자유롭게 남겨주세요!</h2>
 																		<div style="background-color : white;">
 																			<c:choose>
@@ -479,9 +481,9 @@
 																					name="member_serial" value="999" >
 																			</div>
 																			<div class="field half">
-																				<label for="name">작성 일자</label> <input type="text"
+																				<label for="name">작성 일자</label> <input type="datetime-local"
 																					class="form-control" id="revRegdate"
-																					name="review_regdate" >
+																					name="review_regdate" readonly>
 																			</div>
 																			<div class="field">
 																				<label for="name">후기 제목</label> <input type="text"
@@ -503,7 +505,7 @@
 																</form>
 															</section>
 															<br><br>
-															<section class="reviewList" style="border : 2px solid white;">
+															<section class="reviewList">
 																<ol class="appendReview">
 																	<%-- <li class="rev_${rList.review_id }">
 																		 <hr>
@@ -569,7 +571,9 @@
 	<script src="/resources/js/vertical/vertical-layout.min.js "></script>
 
 	<script type="text/javascript" src="/resources/js/script.js "></script>
-
+	<script>
+		document.getElementById('revRegdate').value= new Date().toISOString().slice(0, 16);
+	</script>
 
 </body>
 
