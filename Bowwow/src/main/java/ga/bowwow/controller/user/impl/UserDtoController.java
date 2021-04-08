@@ -53,6 +53,7 @@ public class UserDtoController extends UserCRUDGenericController<UserAccount> {
 		HttpSession session = request.getSession();
 		if(attemptUserLogin(baseUrl, userDTO).getStatusCode() == HttpStatus.OK) {
 			UserDTO completeUserDtoTest = (UserDTO) service.getVo(userDTO);
+			completeUserDtoTest.setImage_source("https://projectbit.s3.us-east-2.amazonaws.com/" + completeUserDtoTest.getImage_source());
 			ArrayList userAddressList = requestUserAddressList(baseUrl, completeUserDtoTest);
 			System.out.println("userAddressList for login" + userAddressList);
 			session.setAttribute("userDTO", completeUserDtoTest);
