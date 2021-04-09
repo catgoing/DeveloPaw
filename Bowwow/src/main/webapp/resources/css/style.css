@@ -831,7 +831,7 @@ code {
 ==========================  **/
 
 .modal {
-    z-index: 6000;
+    z-index: 5000;
 }
 
 .modal .modal-dialog {
@@ -11032,7 +11032,7 @@ table.dataTable.dtr-inline.collapsed>tbody>tr>th:first-child:before {
 }
 
 footer.footer.navbar-wrapper {
-    z-index: 1028;
+    z-index: 4000;
 }
 
 

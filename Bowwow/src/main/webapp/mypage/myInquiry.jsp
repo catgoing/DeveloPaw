@@ -332,6 +332,7 @@ function allInputCheck(frm) {
 									</c:forEach>
 								</c:if>
 								</table>
+								<%@include file="/common/paging.jsp" %>
 								<form action="/getUserInquiryList" method="post">
 								<table class="border-none">
 									<tr>

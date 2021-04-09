@@ -106,6 +106,7 @@ public class InquiryController {
 		model.addAttribute("userinquiryList", uiqList);
 		model.addAttribute("member_serial", member_serial);
 		model.addAttribute("typeSelect", typeSelect);
+		model.addAttribute("pvo", p);
 		model.addAttribute("command","/getUserInquiryList");
 		System.out.println(myInquiry.getMember_serial() + "번 유저의 문의리스트를 넘겨줍니다");
 		

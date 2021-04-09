@@ -69,12 +69,16 @@
 	margin : 0 auto;
 }
 #detail_petimg, #detail_petimg #detail_thumb{
-	width : 300px;
+	width : 330px;
 	height : 300px;
+	margin : 0 auto;
 }
 .action-button{
 	display : flex;
 	justify-content: center;
+}
+.box-detail h5, h4{
+	color:#ff6347;
 }
 .action-button-inner{
 	margin : 20px 0 0 0 ;
@@ -84,6 +88,8 @@ input[type="number"]::-webkit-inner-spin-button {
     -webkit-appearance: none;
     margin: 0;
 }
+.modal-title { margin: 0 auto;}
+#detail_petname {text-align: center;}
 .classname { 
 	max-width:100%;
 	height:auto 
@@ -94,6 +100,10 @@ tr td textarea{
 #thumb_container{
 	width : 200px;
 	height : 200px;
+}
+#thumb_container-detail{
+	width : 330px;
+	height : 300px;
 }
 
 .detailClass, .box-detail {
@@ -107,10 +117,6 @@ pre{
 	overflow: auto;
 	white-space: pre-wrap;
 	word-break: break-all;
-}
-#img-thumbnail{
-	width : 200px;
-	height : 200px;
 }
 </style>
 <script type="text/javascript" src="/common/commonThumbnail.js"></script>
@@ -141,7 +147,7 @@ $().ready(function(){
 				}
 			});
 		} else {
-			alert("취소했어용");
+			alert("삭제를 취소합니다!");
 		}
 	});
 
@@ -243,10 +249,10 @@ function getPetInfo(frm){
 			$("#detail_back").html(petDetail.back_length + " cm");
 			$("#detail_chest").html(petDetail.chest_length + " cm");
 			$("#detail_etc").html(petDetail.pet_etc);
-			$("#thumb_container").prop("src", petDetail.image_source_oriname);
+			$("#thumb_container-detail").prop("src", petDetail.image_source_oriname);
 			
 			$("#detail_tnr").val(petDetail.tnr);									 // hidden
-			$("#detail_member_serial").val("${sessionScope.userDTO.member_serial }"); 	// hidden
+			$("#detail_member_serial").val("${sessionScope.userDTO.member_serial }");// hidden
 			$("#detail_pet_serial").val(petDetail.pet_serial);					     // hidden
 
 			$("#petDetail").modal('show'); //모달창 오픈
@@ -268,14 +274,15 @@ function setModiInfo(petDetail){
 	$("#modi_petbirth").val(petDetail.pet_birth);
 	$("#modi_petage").val(petDetail.pet_age);
 	$("#modi_size").val(petDetail.pet_size);
-	$("#modi_weight").html(petDetail.pet_weight + " kg");
-	$("#modi_neck").html(petDetail.neck_length + " cm");
-	$("#modi_back").html(petDetail.back_length + " cm");
-	$("#modi_chest").html(petDetail.chest_length + " cm");
+	$("#modi_weight").val(petDetail.pet_weight);
+	console.log($("#modi_weight").val());
+	$("#modi_neck").val(petDetail.neck_length);
+	$("#modi_back").val(petDetail.back_length);
+	$("#modi_chest").val(petDetail.chest_length);
 	$("#modi_etc").html(petDetail.pet_etc);
 	$("#modi_animal_type").val(petDetail.animal_type);
 	//$("#thumb_container").prop("src", petDetail.image_source);
-	$("#modi_image").val(petDetail.image_source);
+	//$("#modi_image").val(petDetail.image_source);
 	
 	$("#modi_tnr").val(petDetail.tnr);				// hidden
 	$("#modi_member_serial").val("${sessionScope.userDTO.member_serial }");	// hidden
@@ -351,7 +358,7 @@ function clearInput(){
 		                        <!-- Page-body start -->
 								<div class="page-body">
 									<div class="myPageInfo-header">
-										<h2> ${sessionScope.userDTO.nickname }님의 페이지</h2>
+										<h2 style="text-align: center;"> ${sessionScope.userDTO.nickname }님이 등록한 반려동물</h2>
 									</div>
                                         <div class="row">
                                         <c:if test="${not empty petList }">

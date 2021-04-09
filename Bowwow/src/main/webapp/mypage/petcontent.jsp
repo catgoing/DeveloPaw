@@ -124,44 +124,45 @@
 		<h4 class="modal-title" id="myModalLabel">반려동물 상세보기</h4>
 	</div>
     <form class="pet-form" id="pet-detail-form" name="pet-detail-form">
-		<div class="popup-inner img-pet" id="detail_petimg" style="width: 200px; height: 200px; margin-left:50px;">
-			<img src="" id="thumb_container">
+		<br>
+		<div class="popup-inner img-pet" id="detail_petimg">
+			<img id="thumb_container-detail">
 		</div>
 		<div class="popup-inner text-pet">
 		<div class="form-group-detail">
-			<h2 class="detailClass" id="detail_petname"></h2>
+			<h1 class="detailClass" id="detail_petname"><i class="fas fa-paw"></i></h1>
 			<div id="textMain-wrap">
 				<div class="box-detail">
 					<h5>성별</h5>
-					<p class="detailClass"  id="detail_gender">${petDetail.pet_gender }</p>
+					<p class="detailClass" id="detail_gender">${petDetail.pet_gender }</p>
 				</div>
 				<div class="box-detail">
 					<h5>품종</h5>
-					<p class="detailClass"  id="detail_variety">${petDetail.pet_variety }</p>
+					<p class="detailClass" id="detail_variety">${petDetail.pet_variety }</p>
 				</div>
 				<div class="box-detail">	
 					<h5>생일</h5>
-					<p class="detailClass"  id="detail_birth">${petDetail.pet_birth }</p>
+					<p class="detailClass" id="detail_birth">${petDetail.pet_birth }</p>
 				</div>
 				<div class="box-detail">
 					<h5>나이</h5>
-					<p class="detailClass"  id="detail_age">${petDetail.pet_age }</p>
+					<p class="detailClass" id="detail_age">${petDetail.pet_age }</p>
 				</div>
 				<div class="box-detail">
 					<h5>체형</h5>
-					<p class="detailClass"  id="detail_size">${petDetail.pet_size }</p>
+					<p class="detailClass" id="detail_size">${petDetail.pet_size }</p>
 				</div>
 				<div class="box-detail">
 					<h5>무게</h5>
-					<p class="detailClass"  id="detail_weight">${petDetail.pet_weight }</p>
+					<p class="detailClass" id="detail_weight">${petDetail.pet_weight }</p>
 				</div>
 				<div class="box-detail">
 					<h5>목둘레</h5>
-					<p class="detailClass"  id="detail_neck">${petDetail.neck_length }</p>
+					<p class="detailClass" id="detail_neck">${petDetail.neck_length }</p>
 				</div>
 				<div class="box-detail">
 					<h5>등길이</h5>
-					<p class="detailClass"  id="detail_back">${petDetail.back_length }</p>
+					<p class="detailClass" id="detail_back">${petDetail.back_length }</p>
 				</div>
 				<div class="box-detail">
 					<h5>가슴둘레</h5>
@@ -171,8 +172,8 @@
 			<div class="textSub-wrap">
 				<div class="box-detail">
 					<h5>특이사항</h5>
-					<pre>
-						<p class="detailClass" id="detail_etc">${petDetail.pet_etc }</p>
+					<pre class="detailClass" id="detail_etc">${petDetail.pet_etc }
+						<%-- <p class="detailClass" id="detail_etc">${petDetail.pet_etc }</p> --%>
 					</pre>
 				</div>
 			</div>
@@ -242,7 +243,7 @@
 						<option value="large">대형</option>
 					</select>
 					</td>
-					<td class="insert-title">체중*</td>
+					<td class="insert-title">체중* (kg)</td>
 					<td><input type="number" name="pet_weight" id="modi_weight"></td>
 		        </tr>
 		        <tr>
@@ -251,15 +252,15 @@
 		        		<div id="thumb_container">
 		        		</div>
 			        </td>
-					<td class="insert-title">목둘레</td>
+					<td class="insert-title">목둘레 (cm)</td>
 					<td><input type="number" name="neck_length" id="modi_neck"></td>
 		        </tr>
 		        <tr>
-					<td class="insert-title">등길이</td>
+					<td class="insert-title">등길이 (cm)</td>
 					<td><input type="number" name="back_length" id="modi_back"></td>
 		        </tr>
 		        <tr>
-					<td class="insert-title">가슴둘레</td>
+					<td class="insert-title">가슴둘레 (cm)</td>
 					<td><input type="number" name="chest_length" id="modi_chest"></td>
 		        </tr>
 		        <tr>
