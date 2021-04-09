@@ -372,7 +372,7 @@ $(function(){
     </div>
   </div>
   <div class="form-group">
-    <label for="inputPassword3" class="col-sm-4 control-label">이름(변경불가)</label>
+    <label for="inputPassword3" class="col-sm-4 control-label">이름</label>
     <div class="col-sm-8">
    		<input type="text" class="form-control" id="noborderline" value="${sessionScope.userDTO.realname }" disabled>
     </div>
