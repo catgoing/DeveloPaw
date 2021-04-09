@@ -267,6 +267,7 @@ th {
 													<div class="imgs"></div>
 													<br> <br>
 													
+												
 													<input type="hidden" name="member_serial" value="994">
 													<input type="hidden" name="board_idx" value="1">
 													
