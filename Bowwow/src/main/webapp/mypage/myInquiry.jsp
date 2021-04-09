@@ -57,12 +57,12 @@
     <link rel="stylesheet" type="text/css" href="../resources/css/style.css">
     <link rel="stylesheet" type="text/css" href="../resources/css/test.css">
 <style>
- table { border-collapse: collapse; }
+ /* table { border-collapse: collapse; }
  th, td {
 	border: 1px solid black;
 	margin: 0 auto;
  }
- th { background-color: orange; }
+ th { background-color: orange; } */
  .center { text-align: center; }
  .border-none, .border-none td { border: none; }
  td .input-group{
@@ -304,9 +304,9 @@ function allInputCheck(frm) {
 								</div>
 							
 							<div class="content-list">
-						     	<table>
+						     	<table class="table table-sm">
 									<tr>
-										<th width="100">문의유형</th>
+										<th width="15%">문의유형</th>
 										<th width="200">제목</th>
 										<th width="150">작성자</th>
 										<th width="150">작성일</th>
@@ -330,11 +330,14 @@ function allInputCheck(frm) {
 										<td>${inquiry.have_answer }</td>
 									</tr>
 									</c:forEach>
+									<tr>
+										<td colspan="3"><%@include file="/common/paging.jsp" %></td>
+									</tr>
 								</c:if>
 								</table>
-								<div style="text-align: center; margin:0 auto;">
+								<%-- <div style="text-align: center; margin:0 auto;">
 									<%@include file="/common/paging.jsp" %>
-								</div>
+								</div> --%>
 								<form action="/getUserInquiryList" method="post">
 								<table class="border-none">
 									<tr>

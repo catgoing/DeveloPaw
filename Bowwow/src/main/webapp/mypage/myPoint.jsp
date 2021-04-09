@@ -65,7 +65,7 @@
    margin-bottom: 50px;
  } 
  
- table { 
+/*  table { 
  	width: 100%;
  	border-collapse: collapse; 
  	margin : 0 auto;
@@ -74,8 +74,10 @@
 	border: 1px solid black;
 	margin: 0 auto;
  }
- th { background-color: orange; }
+ th { background-color: orange; } */
+ 
  .center { text-align: center; }
+ 
  td .input-group{
  	width : 100%;
  }
@@ -169,13 +171,12 @@
 											</div>
 										</div>			
 								<div class="content-list">
-						     	<table>
+						     	<table class="table table-sm">
 									<tr>
 										<th width="45%">추가일</th>
 										<th width="25%">추가포인트</th>
 										<th width="150">누적포인트</th>
 									</tr>
-									
 								<c:if test="${empty pointList }">
 									<tr>
 										<td colspan="5" class="center">적립된 포인트가 없습니다.</td>
