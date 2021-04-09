@@ -60,7 +60,7 @@
 			<a href="javascript:page_move_pointList('${sessionScope.userDTO.member_serial }');"
 				class="waves-effect waves-dark"> <span class="pcoded-micon">
 						<!-- <i class="ti-id-badge"></i><b>A</b> -->
-				</span> <span class="pcoded-mtext">적립금(?)</span> <span
+				</span> <span class="pcoded-mtext">포인트</span> <span
 					class="pcoded-mcaret"></span>
 			</a></li>
 		</ul>
