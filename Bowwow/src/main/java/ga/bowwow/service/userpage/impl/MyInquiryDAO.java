@@ -96,6 +96,29 @@ public class MyInquiryDAO {
 		System.out.println(">> MyInquiry :" + map);
 
 		List<MyInquiry> inquiryList = mybatis.selectList("inquiry.selectAllInquiry", map);
+		for(MyInquiry uiq : inquiryList) {
+			//날짜수정
+			String date = uiq.getInquiry_writedate().substring(0, 10);
+			uiq.setInquiry_writedate(date);
+			//답변상태 체크
+			int checkResult = checkAnswer(uiq);
+			if(checkResult > 0) {
+				uiq.setHave_answer("답변완료");
+			} else {
+				uiq.setHave_answer("답변대기");
+			}
+			//문의유형을 출력시 한글로 바꿔서 출력
+			if(uiq.getInquiry_type().equals("contactUs")) {
+				uiq.setInquiry_type("이용문의");
+			} else if(uiq.getInquiry_type().equals("product")) {
+				uiq.setInquiry_type("상품문의");
+			} else if(uiq.getInquiry_type().equals("delivery")) {
+				uiq.setInquiry_type("배송문의");
+			} else {
+				uiq.setInquiry_type("기타문의");
+			}
+			
+		}
 		System.out.println("all inquiryList : " + inquiryList);
 				
 		return inquiryList;

@@ -332,7 +332,9 @@ function allInputCheck(frm) {
 									</c:forEach>
 								</c:if>
 								</table>
-								<%@include file="/common/paging.jsp" %>
+								<div style="text-align: center; margin:0 auto;">
+									<%@include file="/common/paging.jsp" %>
+								</div>
 								<form action="/getUserInquiryList" method="post">
 								<table class="border-none">
 									<tr>

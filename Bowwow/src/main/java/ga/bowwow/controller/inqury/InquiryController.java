@@ -70,18 +70,9 @@ public class InquiryController {
 		System.out.println("겟번호 : " + myInquiry.getP_id());
 		
 		//상품문의 - 상품번호 들어왔을때-_-..
-		Integer test = myInquiry.getP_id();
-		if (test!=null && test!=0) {
-			int p_id = test;
-			System.out.println(p_id);
-			Product targetProduct = storeService.getProductDetail(p_id);
-			System.out.println("targetProduct : " + targetProduct);
-			if(targetProduct!=null&&targetProduct.getP_type().equals("cat")) {
-				model.addAttribute("foldername", "catImg");
-			} else if(targetProduct!=null&&targetProduct.getP_type().equals("dog")) {
-				model.addAttribute("foldername", "dogImg");				
-			}
-			model.addAttribute("targetProduct", targetProduct);
+		Integer p_id = myInquiry.getP_id();
+		if (isPIdNotNull(p_id)) {
+			addProductDetail(model, p_id);
 		}
 		
 		//문의유형 null아닐때
@@ -123,12 +114,9 @@ public class InquiryController {
 		MyInquiry uiq = myServive.getMyInquiry(myInquiry);
 		
 		//상품문의 - 상품번호 들어왔을때-_-....
-		Integer test = uiq.getP_id();
-		if (test!=null || test!=0) {
-			int p_id = test;
-			System.out.println(p_id);
-			Product targetProduct = storeService.getProductDetail(p_id);
-			model.addAttribute("targetProduct", targetProduct);
+		Integer p_id = myInquiry.getP_id();
+		if (isPIdNotNull(p_id)) {
+			addProductDetail(model, p_id);
 		}
 		
 		//관리자 답변이 등록됐을 때		
@@ -155,26 +143,15 @@ public class InquiryController {
 	
 	
 	//관리자의 유저문의리스트 출력페이지
-	@RequestMapping(value="/getAdminInquiryList", method=RequestMethod.POST)
+	@RequestMapping(value="/getAdminInquiryList")
 	public String getAdminInquiryList(MyInquiry myInquiry, Model model, HttpServletRequest request) {
 		System.out.println(">> 관리자 : 유저문의리스트 출력페이지 !");
 		
 		String cPage = request.getParameter("cPage");
 		Page p = new Page();
-//		List<MyInquiry> ListAll = null;		
-//		if(myInquiry.getTypeSelect().equals(null)) {
-//			Map<String, String> map = new HashMap<String, String>();
-//			map = p.data0(p);
-//			ListAll = myServive.getAllInquiry(map);
-//		} else { //typeSelect가 있을 때	
-//			Map<String, String> map = new HashMap<String, String>();
-//			map.put("typeSelect", myInquiry.getTypeSelect());			
-//			p = p.setPage(myServive.getInquiryCount(map), cPage, 10, 5);
-//			map = p.data1(p,myInquiry.getTypeSelect(),map);
-//			ListAll = myServive.getAllInquiry(map);
-//		}
-		String typeSelect = null;
-		if(!myInquiry.getTypeSelect().equals(null)) {
+		
+		String typeSelect = "";
+		if (myInquiry.getTypeSelect() != null && myInquiry.getTypeSelect().length() != 0) {
 			typeSelect = myInquiry.getTypeSelect();
 		}
 		
@@ -199,18 +176,30 @@ public class InquiryController {
 		System.out.println(">> 관리자 : 유저문의 상세페이지 !");
 		
 		//상품번호 들어왔을때-_-..
-		Integer test = myInquiry.getP_id();
-		if (test!=null || test!=0) {
-			int p_id = test;
-			System.out.println(p_id);
-			Product targetProduct = storeService.getProductDetail(p_id);
-			model.addAttribute("targetProduct", targetProduct);
+		Integer p_id = myInquiry.getP_id();
+		if (isPIdNotNull(p_id)) {
+			addProductDetail(model, p_id);
 		}
 		
 		MyInquiry uiq = myServive.getMyInquiry(myInquiry);
 		model.addAttribute("uiqDetail", uiq);
 		
 		return "/mypage/adminInquiryDetail";
+	}
+
+	private void addProductDetail(Model model, Integer p_id) {
+		//상품번호로 상품상세정보 불러오기!
+		Product targetProduct = storeService.getProductDetail(p_id);
+		if(targetProduct!=null&&targetProduct.getP_type().equals("cat")) {
+			model.addAttribute("foldername", "catImg");
+		} else if(targetProduct!=null&&targetProduct.getP_type().equals("dog")) {
+			model.addAttribute("foldername", "dogImg");				
+		} 
+		model.addAttribute("targetProduct", targetProduct);			
+	}
+	
+	public boolean isPIdNotNull(Integer p_id) {
+		return (p_id != null && p_id != 0) ? true : false;
 	}
 	
 	//관리자 문의답변입력

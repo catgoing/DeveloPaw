@@ -32,21 +32,16 @@ import ga.bowwow.service.user.VO.UserDTO;
 
 @Controller
 @SessionAttributes("petList") //pet이라는 model을 세션에 저장
-//@RequestMapping(value = "/mypage")
 public class PetController {
 
 	@Autowired
 	private PetService petService;
-
-//	private HttpServletRequest request;
 
 	public PetController() {
 		System.out.println(">>PetController() 객체 생성");
 	}
 
 	//반려동물리스트
-	//@PostMapping(value="/getPetInfoList")
-	//@GetMapping(value="/getPetInfoList")
 	@RequestMapping(value="/getPetInfoList")
 	public String getPetInfoList(Pet pet, Model model, HttpServletRequest request) {
 		System.out.println("....> 반려동물 리스트를 가져옵니다!!");
@@ -58,10 +53,6 @@ public class PetController {
 		pet.setMember_serial(member_serial);
 		
 		System.out.println("pet " + pet);
-		
-//		HttpSession session = request.getSession();
-//		UserAccount user = (UserAccount)session.getAttribute("user");
-//		System.out.println("멤~시리얼 : " + user.getMemberSerial());
 		
 		String default_url = "https://projectbit.s3.us-east-2.amazonaws.com/petImg/6262857e-1887-46fc-b77c-9209935f8657.jpg";
 		String fs_url = "https://projectbit.s3.us-east-2.amazonaws.com/";
@@ -83,9 +74,7 @@ public class PetController {
 	}
 	
 	//ajax이용 - 반려동물 상세정보
-	//produces = "application/text; charset=UTF-8"
-	// - 가져온 데이터 전송시 한글깨짐방지
-	//@PostMapping(value= "/ajaxGetPetInfo", produces = "application/text; charset=UTF-8")
+	//produces = "application/text; charset=UTF-8" - 가져온 데이터 전송시 한글깨짐방지
 	@RequestMapping(value="/ajaxGetPetInfo", produces = "application/text; charset=UTF-8")
 	@ResponseBody
 	public String ajaxGetPetInfo(Pet pet, Model model, HttpServletRequest request) {
@@ -125,7 +114,6 @@ public class PetController {
 	}
 
 	//ajax - 반려동물 정보 등록
-	//@PostMapping(value="/ajaxInsertPetInfo")
 	@RequestMapping(value="/ajaxInsertPetInfo")
 	@ResponseBody //json으로 변환해서 보내줌!-@RequestBody : 받은 거 json으로 바꿔줌
 	public int ajaxInsertPetInfo(Pet pet, @RequestParam(value="file", required = false) MultipartFile file, HttpServletRequest request, MultipartController mc) throws AmazonClientException, IllegalStateException, IOException, InterruptedException {
@@ -170,7 +158,6 @@ public class PetController {
 	}
 	
 	//ajax이용 -- 반려동물 정보 수정
-	//@PostMapping(value="/ajaxUpdatePetInfo")
 	@RequestMapping(value="/ajaxUpdatePetInfo")
 	@ResponseBody
 	public int ajaxUpdatePetInfo(Pet pet, @RequestParam(value="file", required = false) MultipartFile file, HttpServletRequest request, MultipartController mc) throws AmazonClientException, IllegalStateException, IOException, InterruptedException {
@@ -212,7 +199,6 @@ public class PetController {
 			result = petService.updatePetInfo(pet);	
 		
 		} else { //첨부한 파일이 없을 때
-//			result = petService.updatePetInfo2(pet);	
 			System.out.println("update 사진없음!!!");
 			result = 0;
 		}
@@ -220,7 +206,6 @@ public class PetController {
 	}
 
 	//ajax이용 -- 반려동물 정보 삭제
-	//@PostMapping(value="/ajaxDeletePetInfo")
 	@RequestMapping(value="/ajaxDeletePetInfo")
 	@ResponseBody
 	public int ajaxDeletePetInfo(Pet pet, HttpServletRequest request) {
@@ -239,13 +224,6 @@ public class PetController {
 		return result;
 	}
 	
-	/*
-	public File multipartToFile(MultipartFile mFile) throws IllegalStateException, IOException {
-		File file = new File(mFile.getOriginalFilename());
-		mFile.transferTo(file);
-		return file;
-	}
-	*/
 
 	//petVO image_source를 multipartfile타입으로 만들었을 때, null인 경우를 처리해주려고 추가했던 databind
 	@InitBinder
