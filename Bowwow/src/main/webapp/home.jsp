@@ -4,15 +4,8 @@
 </head>
 <html>
 <head>
-	<title>Home</title>
 </head>
 <body>
-<script> window.location.href = 'http://localhost:8080/main/community/list.do';
+<script> window.location.href = 'https://bowwow.ga/store/storeMain';
 </script>
-<h1>
-	Hello world!  
-</h1>
-	
-<P>  The time on the server is ${serverTime}. </P>
-</body>
 </html>

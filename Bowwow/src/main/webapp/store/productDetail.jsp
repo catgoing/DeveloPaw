@@ -229,7 +229,7 @@
 							'<img src="/resources/images/reviewImage.jpg" />'+
 							'</div>'+
 							'<div class="comment-text">'+
-							'<h3>'+data.member_serial+'</h3>'+
+							'<h3>'+data.nickname+'</h3>'+
 							'<span>'+data.revRegdate+'</span>'+
 							'<label for="name">후기 제목</label>'+ 
 							'<p>'+data.revTitle+'</p>'+
@@ -294,7 +294,7 @@
 					 + '<img src="/resources/images/reviewImage.jpg" />'
 					 + '</div>'
 					 + '<div class="comment-text">'
-					 + '<h3>'+this.member_serial+'</h3>'
+					 + '<h3>'+this.nickname+'</h3>'
 					 + '<span>'+this.review_regdate+'</span>'
 					 + '<label for="name">후기 제목</label>'
 					 + '<p>'+this.review_title+'</p>'

@@ -222,34 +222,52 @@
  	
 
  // 체크된 상품 주문 페이지로 넘기기
-/*  	function toOrder() {
+ 	function toOrder() {
 
- 		var pIdArr = [];
- 		var count = $("input:checkbox[name='p_id']");
- 		var userId = $("input[name='id']");
-		var amount = $("input:text[name='amount']");
-		var prodSum = $("input:text[name='sum']"); 		
+ 		var orderArr = [];
 		
-		
+		$('input:checkbox[name="p_id"]').each(function() {
+			if(this.checked) {
+				/* console.log(this.value) */
+				var amount = $('.amount-' + this.value).val();
+				var totalSum = amount * $('.total_sum-' + this.value).val();
+				var json = {
+						"p_id" : this.value,
+						"amount" : amount,
+						"totalSum" : totalSum
+				}
+				
+				orderArr.push(json);
+			}
 
+		});
+		console.log(orderArr);
+		orderArray = JSON.stringify(orderArr);
  		if ($("input[name='p_id']:checked").length == 0) {
  				alert("선택된 상품이 없습니다.");
  				return;
- 			}
-
- 		for (var i=0; i < count.length; i++ ) {
- 			if (count.eq(i).is(":checked") == true) {
- 				
- 				pIdArr.push(count.eq(i).val());
- 				pIdArr.push(userId.eq(i).val());
- 				pIdArr.push(amount.eq(i).val());
- 				pIdArr.push(parseInt(numberRemoveCommas(prodSum.eq(i).val())));
-				
- 			}
  		}
- 		 location.href="/store/storeOrder?pIdArr=" + ; 
- 	}  */
- 
+ 		
+		$.ajax({
+			url : "/store/storeOrder",
+			type : "post",
+			data : {
+				orderArray : orderArray,
+				},
+			traditional : true,
+			success : function(data){
+				if(data) {
+					alert("성공");
+				}
+			},
+			error : function( jqXHR, textStatus, errorThrown ) {
+				alert( jqXHR.status );
+				alert( jqXHR.statusText );
+				alert( jqXHR.responseText );
+				alert( jqXHR.readyState );
+			}
+		});
+ 	}  
 </script>
 
 </head>
@@ -327,13 +345,13 @@
 																		</p>
 																	</td>
 																	<td class="p-price first-row">
-																		<input type="hidden" name="price" value="${cart.price}">
+																		<input type="hidden" class="total_sum-${cart.p_id }" name="price" value="${cart.price}">
 																		<fmt:formatNumber value="${cart.price }" pattern="#,###" />원</td>
 																	<td class="qua-col first-row">
 																		<div class="quantity">
 																			<div class="cartList_amount">
 																				<input type="button" class="store_btn2" value=" - " onclick="del('${cart.p_id}', '${cart.id }', '${cart.amount }')">
-																				<input type="text" name="amount" value="${cart.amount }" min="1" size="3" readonly>
+																				<input type="text" class="amount-${cart.p_id }" name="amount" value="${cart.amount }" min="1" size="3" readonly>
 																				<input type="button" class="store_btn2" value=" + " onclick="add('${cart.p_id}', '${cart.id }', '${cart.amount }')">
 																			</div>
 																		</div>
