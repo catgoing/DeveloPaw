@@ -134,7 +134,7 @@ public class BoardDAO {
 
 	public List<Board> search(String board, String keyword) {
 		Map<String, String> map = new HashMap<String, String>();
-		map.put("board", board);
+		map.put("board_idx", board);
 		map.put("keyword", keyword);
 		System.out.println("map : " + map);
 		System.out.println("===> MyBatis로 search() 실행-vo");

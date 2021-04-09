@@ -4,6 +4,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+
 <%@ taglib uri="http://tiles.apache.org/tags-tiles" prefix="tiles"%>
 <!DOCTYPE html>
 
@@ -49,6 +50,7 @@
 <link rel="stylesheet" type="text/css" href="/resources/css/style.css">
 <link rel="stylesheet" type="text/css" href="/resources/css/test.css">
 <link rel="stylesheet" type="text/css" href="/resources/css/paging.css">
+<script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>    
 
 <title>펫 다이어리</title>
 <style>
@@ -56,38 +58,21 @@
 .block-item:hover{
 	cursor:pointer;
 }
+.active {
+	background-color : #f7b5b7;
+    -webkit-box-shadow: 0 15px 8px -11px rgba(0, 0, 0, 0.25);
+    box-shadow: 0 15px 8px -11px rgba(0, 0, 0, 0.25);
+}
 </style>
 <script>
-$(document).ready(function () {
-    $("button").click(function () {
-        //ajax 쓰는 법
-        $.ajax({
-            //속성을 설정할 수 있다
-            url:"NewFile.jsp", //데이터를  넘겨줄 링크 설정
-            type:"GET", // get or post 방식
-            data:"t1=" + $("#data").val()+"&t2=Ajax", //넘겨줄 데이터
-            
-            //위에 과정이 성공했을 것을 생각하여 작성 
-             //ajax를 통해서 연결 성공하면 출력
-             //데이터가 전달되고 나서 다시 돌아왔을 때의 검사하는 것
-             //생략하면 안됨 적어줘야 한다.
-              success: function (data, status, xhr) {
-                   
-                    alert("통신 성공!");
-                    $("#demo").html(data);
-                },
-                error: function (xhr, status, error) {
-                    alert("통신 실패!");
-                },
-                complete: function (xhr, status) {
-                    alert("통신 종료");
-                }
-        });
-        
-    });
-    
-});
-
+	$(function (){
+		var board_idx = ${board_idx};
+		board_idx = board_idx + 3;
+		$(".pcoded-inner-navbar>ul:nth-child(" + board_idx + ")>li>a").addClass("active");
+		if(board_idx == 1){
+		
+		}
+	});
 </script>
 </head>
 <body>
@@ -125,7 +110,7 @@ $(document).ready(function () {
 												<div class="row">
 													<div class="col-lg-12">
 														<div class="section-title">
-															<h2>펫 다이어리</h2>
+															
 														</div>
 														<br>
 													</div>
@@ -165,6 +150,7 @@ $(document).ready(function () {
 														</c:forEach>
 													</ul>
 												</div>
+												<br>
 												<div>
 										<%@include file="/common/paging.jsp"%>
 												</div>
