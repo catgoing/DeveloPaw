@@ -530,15 +530,21 @@ public class BoardController {
 	@RequestMapping("/community/search")
 	public String search(Board board, Model model) {
 		String keyword = board.getKeyword();
+		String pattern = "\\<?img(.*?)\\>";
 		System.out.println(">> 통합검색 - String search()");
 		System.out.println(board);
 		System.out.println("search vo:"+board.getKeyword());
 		List<Board> diarylist =boardService.search("1", keyword);
 		List<Board> introlist =boardService.search("2", keyword);
 		List<Board> knowhowlist =boardService.search("3", keyword);
-		System.out.println("searchboard:" + diarylist);
+		
+		
+		
+		//System.out.println(diarylist.toString().replaceAll(pattern,""));
+		System.out.println("searchboard d:" + diarylist);
 		System.out.println("searchboard:" + introlist);
 		System.out.println("searchboard:" + knowhowlist);
+		
 		model.addAttribute("diarylist",diarylist);
 		model.addAttribute("introlist",introlist);
 		model.addAttribute("knowhowlist",knowhowlist);

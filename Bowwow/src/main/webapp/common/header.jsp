@@ -43,6 +43,7 @@ input[type="submit"] {
 					</div>
 				</div>
 			</div>
+			
 			<a href="store/storeMain"
 				style="text-align: center; font-weight: bold; font-size: 30px; margin-top: 7px;">BOW-WOW</a>
 

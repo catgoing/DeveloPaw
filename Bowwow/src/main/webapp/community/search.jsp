@@ -89,7 +89,7 @@
 											    <img class="card-img-top" src=".../100px180/" alt="Card image cap">
 											    <div class="card-body">
 											      <h5 class="card-title">제목 :${diarylist.board_title }</h5>
-											      <p class="card-text">내용 :${diarylist.board_content}</p>
+											      <p class="card-text">내용 :${diarylist.board_scontent}</p>
 											    </div>
 											    <div class="card-footer">
 											      <small class="text-muted">닉네임</small>
@@ -104,13 +104,13 @@
 									</c:if>									
 									<c:if test="${not empty introlist }">
 										<h2>{펫 소개}</h2>
-										<c:forEach var="diarylist" items="${introlist }">
+										<c:forEach var="introlist" items="${introlist }">
 											<div class="card-deck">
 											  <div class="card">
 											    <img class="card-img-top" src=".../100px180/" alt="Card image cap">
 											    <div class="card-body">
 											      <h5 class="card-title">제목 :${introlist.board_title }</h5>
-											      <p class="card-text">내용 :${introlist.board_content}</p>
+											      <p class="card-text">내용 :${introlist.board_scontent}</p>
 											    </div>
 											    <div class="card-footer">
 											      <small class="text-muted">닉네임</small>
@@ -125,13 +125,13 @@
 									</c:if>									
 									<c:if test="${not empty knowhowlist }">
 										<h2>{펫 노하우}</h2>
-										<c:forEach var="diarylist" items="${knowhowlist }">
+										<c:forEach var="knowhowlist" items="${knowhowlist }">
 											<div class="card-deck">
 											  <div class="card">
 											    <img class="card-img-top" src=".../100px180/" alt="Card image cap">
 											    <div class="card-body">
 											      <h5 class="card-title">제목 :${knowhowlist.board_title }</h5>
-											      <p class="card-text">내용 :${knowhowlist.board_content}</p>
+											      <p class="card-text">내용 :${knowhowlist.board_scontent}</p>
 											    </div>
 											    <div class="card-footer">
 											      <small class="text-muted">닉네임</small>

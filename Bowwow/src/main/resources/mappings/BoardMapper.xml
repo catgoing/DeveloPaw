@@ -257,7 +257,7 @@
 	</select>
 	
 	 <select id="search" parameterType="Map" resultType="board">
-		SELECT *
+		SELECT BOARD_NO, BOARD_CONTENT AS BOARD_SCONTENT, BOARD_TITLE, IMG1, REGDATE
 		FROM 
 		<choose>
 			<when test='board.equals("1")'> 
