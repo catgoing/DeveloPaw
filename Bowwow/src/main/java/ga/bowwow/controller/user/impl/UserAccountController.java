@@ -10,7 +10,6 @@ import org.apache.ibatis.exceptions.TooManyResultsException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.dao.DataIntegrityViolationException;
 import org.springframework.http.HttpStatus;
-import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -84,7 +83,7 @@ public class UserAccountController extends UserCRUDGenericController<UserAccount
 	}
 	
 	@PostMapping(value= "/addJson")
-	protected ResponseEntity<String> addJson(UserAccount vo, @RequestParam(value="file", required = false) MultipartFile file,  @Autowired MultipartController mc) throws IllegalStateException, IOException, AmazonClientException, InterruptedException  {
+	protected ResponseEntity<UserAccount> addJson(UserAccount vo, @RequestParam(value="file", required = false) MultipartFile file,  @Autowired MultipartController mc) throws IllegalStateException, IOException, AmazonClientException, InterruptedException  {
 		System.out.println("account controller addJson Test");
 		try {
 			System.out.println("controller : " + vo);
@@ -103,7 +102,13 @@ public class UserAccountController extends UserCRUDGenericController<UserAccount
 				vo.setImage_source(domainFoldername + "/default.jpg");
 			}
 			
-			return service.addVo(vo) ? ResponseEntity.ok().build() : ResponseEntity.badRequest().build();
+			boolean result = service.addVo(vo);
+			UserAccount newVo = new UserAccount();
+			newVo.setMember_serial(((UserAccountServiceImpl)this.service).getMemberSerial(vo));
+			
+			return result
+					? ResponseEntity.ok((UserAccount)service.getVo(newVo))
+					: ResponseEntity.badRequest().build();
 		} catch (DataIntegrityViolationException  e) {
 			System.out.println("Caught Integerity Exception Test");
 			e.printStackTrace();
@@ -146,10 +151,6 @@ public class UserAccountController extends UserCRUDGenericController<UserAccount
 	@RequestMapping(value="/signup")
 	public String confirmUserTerms() {
 		return "/auth.myTerms";
-	}
-	@RequestMapping(value="/loginSuccess")
-	public String confirmLogin() {
-		return "/ok2";
 	}
 	@RequestMapping(value="/getAccount")
 	public UserAccount getUserFromDB(@ModelAttribute("userAccount") UserAccount userAccount) {

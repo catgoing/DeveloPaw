@@ -43,7 +43,7 @@ input[type="submit"] {
 					</div>
 				</div>
 			</div>
-			<a href="store/storeMain"
+			<a href="/store/storeMain"
 				style="text-align: center; font-weight: bold; font-size: 30px; margin-top: 7px;">BOW-WOW</a>
 
 			<a class="mobile-options waves-effect waves-light"> <i
@@ -57,8 +57,8 @@ input[type="submit"] {
 						<a href="javascript:void(0)"><i class="ti-menu"></i></a>
 					</div>
 				</li>
-				<li><a href="index.html"> 커뮤니티 </a></li>
-				<li><a href="storeMain.html"> 스토어 </a></li>
+				<li><a href="/community/main"> 커뮤니티 </a></li>
+				<li><a href="/store/storeMain"> 스토어 </a></li>
 			</ul>
 			<form action="search">
 			<ul class="nav-right">
@@ -69,25 +69,42 @@ input[type="submit"] {
 				<li>
 					<input type="submit" name="search" value="&#xf002;">
 				</li>
-				<li class="user-profile header-notification"><a href="#!"
-					class="waves-effect waves-light"> <img
-						src="../resources/images/logo.png" class="img-radius"
-						alt="User-Profile-Image"> <i class="ti-angle-down"></i>
-				</a>
-					<ul class="show-notification profile-notification">
-							<li class="waves-effect waves-light"><a href="/mypage/myPageMain">마이홈
-							</a></li>
-							<li class="waves-effect waves-light"><a
-								href="/getPetInfoList?member_serial=${sessionScope.userDTO.member_serial }">프로필 </a></li>
-							<li class="waves-effect waves-light"><a
-								href="email-inbox.html">반려동물 </a></li>
-							<li class="waves-effect waves-light"><a
-								href="/mypage/myPoint">포인트 내역 </a></li>
-							<li class="waves-effect waves-light"><a
-								href="/store/storeOrderList">나의 쇼핑 </a></li>
-							<li class="waves-effect waves-light"><a
-								href="auth-normal-sign-in.html">로그아웃 </a></li>
-						</ul></li>
+					<li class="user-profile header-notification"><c:choose>
+							<c:when test="${sessionScope.userDTO != null}">
+								<a href="#!" class="waves-effect waves-light"> <img
+									src="${sessionScope.userDTO.image_source}" class="img-radius" style="height:40px; width:40px;"
+									alt="User-Profile-Image"> <i class="ti-angle-down"></i>
+								</a>
+								<ul class="show-notification profile-notification">
+									<li class="waves-effect waves-light"><a
+										href="/mypage/myPageMain">마이홈 </a></li>
+									<li class="waves-effect waves-light"><a
+										href="/mypage/myInfo">프로필
+									</a></li>
+									<li class="waves-effect waves-light"><a
+										href="/getPetInfoList?member_serial=${sessionScope.userDTO.member_serial }">반려동물 </a></li>
+									<li class="waves-effect waves-light"><a
+										href="/mypage/myPoint">포인트 내역 </a></li>
+									<li class="waves-effect waves-light"><a
+										href="/store/storeOrderList">나의 쇼핑 </a></li>
+									<li class="waves-effect waves-light"><a
+										href="/user/logout">로그아웃 </a></li>
+								</ul>
+							</c:when>
+							<c:otherwise>
+								<a href="#!" class="waves-effect waves-light"> <img
+									src="../resources/images/logo.png" class="img-radius" style="height:40px; width:40px;"
+									alt="User-Profile-Image"> <i class="ti-angle-down"></i>
+								</a>
+								<ul class="show-notification profile-notification">
+									<li class="waves-effect waves-light"><a
+										href="/user/login">로그인</a></li>
+									<li class="waves-effect waves-light"><a
+										href="/account/signup">회원가입</a></li>
+								</ul>
+							</c:otherwise>
+						</c:choose>
+					</li>
 				</ul>
 			</form>
 		</div>

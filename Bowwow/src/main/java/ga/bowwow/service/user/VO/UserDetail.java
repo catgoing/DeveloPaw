@@ -44,20 +44,10 @@ public class UserDetail {
 			return false;
 		if (member_serial != other.member_serial)
 			return false;
-		if (nickname == null) {
-			if (other.nickname != null)
-				return false;
-		} else if (!nickname.equals(other.nickname))
-			return false;
 		if (realname == null) {
 			if (other.realname != null)
 				return false;
 		} else if (!realname.equals(other.realname))
-			return false;
-		if (reg_date == null) {
-			if (other.reg_date != null)
-				return false;
-		} else if (!reg_date.equals(other.reg_date))
 			return false;
 		return true;
 	}

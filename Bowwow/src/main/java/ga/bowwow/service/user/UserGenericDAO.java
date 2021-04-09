@@ -7,13 +7,13 @@ public abstract class UserGenericDAO<T> {
 	@Autowired
 	protected SqlSessionTemplate mybatis;
 	
-	String typeName;
-	String insertQuery;
-	String updateQuery;
-	String deleteQuery;
-	String getQuery;
-	String searchQuery;
-	String getListQuery;
+	public String typeName;
+	public String insertQuery;
+	public String updateQuery;
+	public String deleteQuery;
+	public String getQuery;
+	public String searchQuery;
+	public String getListQuery;
 
 	protected void setQueries(String insertQuery
 							, String updateQuery

@@ -1,4 +1,5 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"	pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 
 <style>
  .form-control{
@@ -95,7 +96,7 @@ input[type="submit"] {
 								</div>
 							</div>
 						</div>
-						<a href="store/storeMain"
+						<a href="/store/storeMain"
 							style="text-align: center; font-weight: bold; font-size: 30px; margin-top: 7px;">BOW-WOW</a>
 
 						<a class="mobile-options waves-effect waves-light"> <i
@@ -110,7 +111,7 @@ input[type="submit"] {
 								</div>
 							</li>
 							<li><a href="/community/main"> 커뮤니티 </a></li>
-							<li><a href="storeMain"> 스토어 </a></li>
+							<li><a href="/store/storeMain"> 스토어 </a></li>
 						</ul>
 						<form action="prodSearch" method="POST">
 						<ul class="nav-right">
@@ -126,26 +127,43 @@ input[type="submit"] {
 									<i class="fa fa-shopping-cart" aria-hidden="true" ></i> 
 								</a>
 							</li>
-							<li class="user-profile header-notification"><a href="#!"
-								class="waves-effect waves-light"> <img
-									src="../resources/images/logo.png" class="img-radius"
+							<li class="user-profile header-notification"><c:choose>
+							<c:when test="${sessionScope.userDTO != null}">
+								<a href="#!" class="waves-effect waves-light"> <img
+									src="${sessionScope.userDTO.image_source}" class="img-radius" style="height:40px; width:40px;"
 									alt="User-Profile-Image"> <i class="ti-angle-down"></i>
-							</a>
+								</a>
 								<ul class="show-notification profile-notification">
-									<li class="waves-effect waves-light"><a href="/mypage/myPageMain">마이홈
+									<li class="waves-effect waves-light"><a
+										href="/mypage/myPageMain">마이홈 </a></li>
+									<li class="waves-effect waves-light"><a
+										href="/mypage/myInfo">프로필
 									</a></li>
 									<li class="waves-effect waves-light"><a
-										href="/getPetInfoList?member_serial=${sessionScope.userDTO.member_serial }">프로필 </a></li>
-									<li class="waves-effect waves-light"><a
-										href="email-inbox.html">반려동물 </a></li>
+										href="/getPetInfoList?member_serial=${sessionScope.userDTO.member_serial }">반려동물 </a></li>
 									<li class="waves-effect waves-light"><a
 										href="/mypage/myPoint">포인트 내역 </a></li>
 									<li class="waves-effect waves-light"><a
 										href="/store/storeOrderList">나의 쇼핑 </a></li>
 									<li class="waves-effect waves-light"><a
-										href="auth-normal-sign-in.html">로그아웃 </a></li>
-								</ul></li>
-						</ul>
+										href="/user/logout">로그아웃 </a></li>
+								</ul>
+							</c:when>
+							<c:otherwise>
+								<a href="#!" class="waves-effect waves-light"> <img
+									src="../resources/images/logo.png" class="img-radius" style="height:40px; width:40px;"
+									alt="User-Profile-Image"> <i class="ti-angle-down"></i>
+								</a>
+								<ul class="show-notification profile-notification">
+									<li class="waves-effect waves-light"><a
+										href="/user/login">로그인</a></li>
+									<li class="waves-effect waves-light"><a
+										href="/account/signup">회원가입</a></li>
+								</ul>
+							</c:otherwise>
+						</c:choose>
+					</li>
+							</ul>
 						</form>
 					</div>
 				</div>

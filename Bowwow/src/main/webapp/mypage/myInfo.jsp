@@ -337,7 +337,7 @@ $(function(){
 											<div class="side-profile-img">
 											
 <%-- 												<img src="${sessionScope.userDTO.image_source }" alt="이미지없음~"> --%>
-												<img src="${sessionScope.userDTO.image_source }" alt="이미지없음~">
+												<img style="height:200px; width:200px;" src="${sessionScope.userDTO.image_source }" alt="이미지없음~">
 											</div>
 											<p>${sessionScope.userDTO.nickname }</p>
 										</div>

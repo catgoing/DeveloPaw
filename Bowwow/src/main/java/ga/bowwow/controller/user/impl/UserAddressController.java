@@ -35,19 +35,40 @@ public class UserAddressController extends UserCRUDGenericController<UserAddress
 
 	//"/list"mapping으로 REST 방식으로 전환할 수 있지 않나? -> AddressController는 자원만 관여하는 RestController의 가능성이 있음.
 	@ResponseBody
-	@PostMapping(value= "/addAddressList",
+	@PostMapping(value= "/addAdditionalAddressList",
 			produces = "application/text; charset=UTF-8")
-	public ResponseEntity<Object> add(@RequestBody ArrayList<UserAddress> address, HttpSession session)  {
+	public ResponseEntity<Object> addAdditional(@RequestBody ArrayList<UserAddress> address, HttpSession session)  {
 		System.out.println("addresslist controller");
 		try {
 			//컨트롤러 전반에서 session에서 일관되게 memberSerial을 담을 수 있는 방식? intercepter를 이용하면 되는가? redis?
 			UserAccount userAccount = (UserAccount)session.getAttribute("userDTO");
 			int sessionMemberSerial = userAccount.getMember_serial();
+			System.out.println(userAccount);
 			
 			address.stream().filter(adr->adr.isValueNeverNull())
 //							.forEach(System.out::println);
 							.map(adr->adr.buildMemberSerial(sessionMemberSerial))
 							.forEach(adr->service.addVo(adr));
+			
+			return ResponseEntity.ok().build();
+		} catch (DataIntegrityViolationException  e) {
+			System.out.println("Caught Integerity Exception Test");
+			e.printStackTrace();
+		} catch (TooManyResultsException e) {
+			e.printStackTrace();
+		}
+		return ResponseEntity.badRequest().build();
+	}
+	@ResponseBody
+	@PostMapping(value= "/addAddressList",
+			produces = "application/text; charset=UTF-8")
+	public ResponseEntity<Object> add(@RequestBody ArrayList<UserAddress> address, HttpSession session)  {
+		System.out.println("addresslist controller");
+		try {
+//			address.stream().filter(adr->adr.isValueNeverNull())
+			address.stream().forEach(System.out::println);
+//							.map(adr->adr.buildMemberSerial(sessionMemberSerial))
+//							.forEach(adr->service.addVo(adr));
 			
 			return ResponseEntity.ok().build();
 		} catch (DataIntegrityViolationException  e) {

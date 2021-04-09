@@ -118,155 +118,154 @@
 												<form id="account_form" name="account_form"
 													enctype="multipart/form-data" action="/account/add"
 													method="post">
-<!-- 													<form id="account_form" onsubmit="return fn_pw_check();"> -->
-														<div class="form-group form-primary">
-															<input type="text" name="id" id="id" value="tesasdfet"
-																class="form-control form-control"> <span
-																class="form-bar"></span> <label class="float-label">아이디</label>
-															<div class="action_btn">
-																<button type="button" class="btn btn-primary"
-																	onclick="checkIdDuplication();">중복 확인</button>
+													<!-- 													<form id="account_form" onsubmit="return fn_pw_check();"> -->
+													<div class="form-group form-primary">
+														<input type="text" name="id" id="id" value="tesasdfet"
+															class="form-control form-control"> <span
+															class="form-bar"></span> <label class="float-label">아이디</label>
+														<div class="action_btn">
+															<button type="button" class="btn btn-primary"
+																onclick="checkIdDuplication();">중복 확인</button>
+														</div>
+													</div>
+													<div class="form-group form-primary">
+														<input type="password" name="password" id="pw"
+															class="form-control form-control">
+														<span class="form-bar"></span> <label class="float-label">비밀번호</label>
+													</div>
+													<div class="form-group form-primary">
+														<input type="password" name="passwordConfirm" id="pwC"
+															class="form-control form-control">
+														<span class="form-bar"></span> <label class="float-label">비밀번호
+															확인</label>
+													</div>
+
+													<div class="form-group form-primary">
+														<input type="text" name="realname" id="realname"
+															class="form-control form-control">
+														<span class="form-bar"></span> <label class="float-label">이름</label>
+													</div>
+
+													<div class="form-group form-primary">
+														<input type="email" name="email" id="email"
+															class="form-control form-control">
+														<span class="form-bar"></span> <label class="float-label">이메일</label>
+													</div>
+													<div class="form-group form-primary">
+														<input type="text" name="citizen_id" id="citizen_id"
+															class="form-control form-control">
+														<span class="form-bar"></span> <label class="float-label">주민번호</label>
+													</div>
+													<div class="form-group form-primary">
+														<input type="text" name="phone" id="phone"
+															class="form-control form-control">
+														<span class="form-bar"></span> <label class="float-label">전화번호</label>
+													</div>
+													<div class="form-group form-primary">
+														<input type="text" name="nickname" id="nickname"
+															class="form-control form-control">
+														<span class="form-bar"></span> <label class="float-label">닉네임</label>
+													</div>
+													<div class="form-group form-primary">
+														<input type="date" name="birthday" id="birthday"
+															class="form-control form-control">
+														<span class="form-bar"></span> <label class="float-label">생일</label>
+													</div>
+													<div class="form-group form-primary">
+														<input type="text" name="gender" id="gender"
+															class="form-control form-control">
+														<span class="form-bar"></span> <label class="float-label">성별</label>
+													</div>
+
+													<div class="input-label">
+														<div class="input-wrap">
+															<div class="my-profile">
+																<label for="uploadImage" id="imageview"> <img
+																	src="" class="thumb">
+																</label> <input type="file" id="imageSource" name="file"
+																	accept="image/jpg, image/gif image/png, image/jpeg image/bmp"
+																	onchange="setThumbnail(event)">
+																<div id="thumb_container"></div>
 															</div>
 														</div>
-														<div class="form-group form-primary">
-															<input type="password" name="password" id="pw"
-																value="77g7g7g7g7g" class="form-control form-control">
-															<span class="form-bar"></span> <label class="float-label">비밀번호</label>
-														</div>
-														<div class="form-group form-primary">
-															<input type="password" name="passwordConfirm" id="pwC" value="tesasdfet"
-																class="form-control form-control"> <span
-																class="form-bar"></span> <label class="float-label">비밀번호
-																확인</label>
-														</div>
+														<p></p>
+													</div>
+													<div id="msgBox"></div>
+													<!-- 													<input type="submit" value="회원 가입" class="btn btn-primary"> -->
 
-														<div class="form-group form-primary">
-															<input type="text" name="realname" id="realname" value="tesasdfet"
-																class="form-control form-control"> <span
-																class="form-bar"></span> <label class="float-label">이름</label>
-														</div>
+												</form>
+												<form id="address_form" name="address_form"
+													action="/address/addAddressList" method="post">
 
-														<div class="form-group form-primary">
-															<input type="text" name="email" id="email" value="tesasdfet"
-																class="form-control form-control"> <span
-																class="form-bar"></span> <label class="float-label">이메일</label>
-														</div>
-														<div class="form-group form-primary">
-															<input type="text" name="citizen_id" id="citizen_id" value="tesasdfet"
-																class="form-control form-control"> <span
-																class="form-bar"></span> <label class="float-label">주민번호</label>
-														</div>
-														<div class="form-group form-primary">
-															<input type="text" name="phone" id="phone" value="tesasdfet"
-																class="form-control form-control"> <span
-																class="form-bar"></span> <label class="float-label">전화번호</label>
-														</div>
-														<div class="form-group form-primary">
-															<input type="text" name="nickname" id="nickname" value="tesasdfet"
-																class="form-control form-control"> <span
-																class="form-bar"></span> <label class="float-label">닉네임</label>
-														</div>
-														<div class="form-group form-primary">
-															<input type="date" name="birthday" id="birthday" value="20200202"
-																class="form-control form-control"> <span
-																class="form-bar"></span> <label class="float-label">생일</label>
-														</div>
-														<div class="form-group form-primary">
-															<input type="text" name="nickname" id="nickname" value="tesasdfet"
-																class="form-control form-control"> <span
-																class="form-bar"></span> <label class="float-label">성별</label>
-														</div>
-
-														<div class="input-label">
-															<div class="input-wrap">
-																<div class="my-profile">
-																	<label for="uploadImage" id="imageview"> <img
-																		src="" class="thumb">
-																	</label> <input type="file" id="imageSource" name="file"
-																		accept="image/jpg, image/gif image/png, image/jpeg image/bmp"
-																		onchange="setThumbnail(event)">
-																	<div id="thumb_container"></div>
-																</div>
+													<fieldset id="Address">
+														<div id="row">
+															<div class="form-group form-primary">
+																<input type="text" name="address-1" id="address-1"
+																	class="form-control form-control" readonly> <span
+																	class="form-bar"></span> <label for="user_address-1"
+																	class="float-label">주소</label>
 															</div>
-															<p></p>
-														</div>
-														<div id="msgBox"></div>
-														<!-- 													<input type="submit" value="회원 가입" class="btn btn-primary"> -->
-
-													</form>
-													<form id="address_form" name="address_form"
-														action="/address/addAddressList" method="post">
-
-														<fieldset id="Address">
-															<div id="row">
-																<div class="form-group form-primary">
-																	<input type="text" name="address-1" id="address-1"
-																		class="form-control form-control" readonly> <span
-																		class="form-bar"></span> <label for="user_address-1"
-																		class="float-label">주소</label>
-																</div>
-																<div class="form-group form-primary">
-																	<input type="text" name="address_detail-1"
-																		id="address_detail-1"
-																		class="form-control form-control"> <span
-																		class="form-bar"></span> <label for="address_detail-1"
-																		class="float-label">상세주소</label>
-																</div>
-																<div class="form-group form-primary">
-																	<input type="text" name="zonecode-1" id="zonecode-1"
-																		class="form-control form-control" readonly> <span
-																		class="form-bar"></span> <label for="zonecode-1"
-																		class="float-label">우편번호</label>
-																</div>
+															<div class="form-group form-primary">
+																<input type="text" name="address_detail-1"
+																	id="address_detail-1" class="form-control form-control">
+																<span class="form-bar"></span> <label
+																	for="address_detail-1" class="float-label">상세주소</label>
 															</div>
-														</fieldset>
-														<div class="btn">
-															<input type="button" value="회원 가입"
-																class="btn btn-primary" onclick="dynamicAjaxSubmit();">
+															<div class="form-group form-primary">
+																<input type="text" name="zonecode-1" id="zonecode-1"
+																	class="form-control form-control" readonly> <span
+																	class="form-bar"></span> <label for="zonecode-1"
+																	class="float-label">우편번호</label>
+															</div>
 														</div>
-													</form>
-													<form id="wallet_form" name="wallet_form"
-														action="/wallet/addWalletList" method="post">
+													</fieldset>
+													<div class="btn">
+														<input type="button" value="회원 가입" class="btn btn-primary"
+															onclick="dynamicAjaxSubmit();">
+													</div>
+												</form>
+												<form id="wallet_form" name="wallet_form"
+													action="/wallet/addWalletList" method="post">
 
-<!-- 														<fieldset id="Wallet"> -->
-<!-- 															<div id="row"> -->
-<!-- 																<div class="form-group form-primary"> -->
-<!-- 																	<input type="number" name="addressId_1" -->
-<!-- 																		id="addressId_1" class="form-control form-control"> -->
-<!-- 																	<span class="form-bar"></span> <label for="addressId_1" -->
-<!-- 																		class="float-label">주소ID</label> -->
-<!-- 																</div> -->
-<!-- 																<div class="form-group form-primary"> -->
-<!-- 																	<input type="number" name="memberSerial_1" -->
-<!-- 																		id="memberSerial_1" class="form-control form-control"> -->
-<!-- 																	<span class="form-bar"></span> <label -->
-<!-- 																		for="memberSerial_1" class="float-label">멤버시리얼 -->
-<!-- 																	</label> -->
-<!-- 																</div> -->
-<!-- 																<div class="form-group form-primary"> -->
-<!-- 																	<input type="text" name="address_1" id="address_1" -->
-<!-- 																		class="form-control form-control"> <span -->
-<!-- 																		class="form-bar"></span> <label for="userAddress_1" -->
-<!-- 																		class="float-label">주소</label> -->
-<!-- 																</div> -->
-<!-- 																<div class="form-group form-primary"> -->
-<!-- 																	<input type="text" name="addressDetail_1" -->
-<!-- 																		id="addressDetail_1" class="form-control form-control"> -->
-<!-- 																	<span class="form-bar"></span> <label -->
-<!-- 																		for="addressDetail_1" class="float-label">상세주소</label> -->
-<!-- 																</div> -->
-<!-- 																<div class="form-group form-primary"> -->
-<!-- 																	<input type="text" name="zonecode_1" id="zonecode_1" -->
-<!-- 																		class="form-control form-control"> <span -->
-<!-- 																		class="form-bar"></span> <label for="zonecode_1" -->
-<!-- 																		class="float-label">우편번호</label> -->
-<!-- 																</div> -->
-<!-- 															</div> -->
-<!-- 														</fieldset> -->
-														<div class="btn">
-															<!-- 														<input type="button" value="지불 정보 입력" class="btn btn-primary" onclick="dynamicAjaxSubmit();"> -->
-														</div>
-													</form>
+													<!-- 														<fieldset id="Wallet"> -->
+													<!-- 															<div id="row"> -->
+													<!-- 																<div class="form-group form-primary"> -->
+													<!-- 																	<input type="number" name="addressId_1" -->
+													<!-- 																		id="addressId_1" class="form-control form-control"> -->
+													<!-- 																	<span class="form-bar"></span> <label for="addressId_1" -->
+													<!-- 																		class="float-label">주소ID</label> -->
+													<!-- 																</div> -->
+													<!-- 																<div class="form-group form-primary"> -->
+													<!-- 																	<input type="number" name="memberSerial_1" -->
+													<!-- 																		id="memberSerial_1" class="form-control form-control"> -->
+													<!-- 																	<span class="form-bar"></span> <label -->
+													<!-- 																		for="memberSerial_1" class="float-label">멤버시리얼 -->
+													<!-- 																	</label> -->
+													<!-- 																</div> -->
+													<!-- 																<div class="form-group form-primary"> -->
+													<!-- 																	<input type="text" name="address_1" id="address_1" -->
+													<!-- 																		class="form-control form-control"> <span -->
+													<!-- 																		class="form-bar"></span> <label for="userAddress_1" -->
+													<!-- 																		class="float-label">주소</label> -->
+													<!-- 																</div> -->
+													<!-- 																<div class="form-group form-primary"> -->
+													<!-- 																	<input type="text" name="addressDetail_1" -->
+													<!-- 																		id="addressDetail_1" class="form-control form-control"> -->
+													<!-- 																	<span class="form-bar"></span> <label -->
+													<!-- 																		for="addressDetail_1" class="float-label">상세주소</label> -->
+													<!-- 																</div> -->
+													<!-- 																<div class="form-group form-primary"> -->
+													<!-- 																	<input type="text" name="zonecode_1" id="zonecode_1" -->
+													<!-- 																		class="form-control form-control"> <span -->
+													<!-- 																		class="form-bar"></span> <label for="zonecode_1" -->
+													<!-- 																		class="float-label">우편번호</label> -->
+													<!-- 																</div> -->
+													<!-- 															</div> -->
+													<!-- 														</fieldset> -->
+													<div class="btn">
+														<!-- 														<input type="button" value="지불 정보 입력" class="btn btn-primary" onclick="dynamicAjaxSubmit();"> -->
+													</div>
+												</form>
 											</div>
 										</div>
 									</div>
@@ -376,29 +375,6 @@
      </script>
 <script>
      
-     function getImageName(_imageSource) {
-    	 var imageSource = _image;
-  		console.log(imageSource.value);
-  		imagePaths = imageSource.value.split('\\');
-  		console.log(imagePaths);
-  		var imagePaths = _imageSource.value.split('\\');
-  		var imageLastIndex = imagePaths.length;
-  		console.log(imageLastIndex);
-  		var imageName = imagePaths[imageLastIndex-1];
-  		console.log(imageName);
-    	 return imageName;
-//   		console.log(imageSource.value);
-//   		console.log(imagePaths);
-//   		console.log(imageLastIndex);
-//   		console.log(imageName);
-
-      	const datas = new FormData(_imageSource);
-		console.log(datas);
-		console.log($("#insertPetform input[type='file']").val());
-		
-    	return imageName;
-     }
-     
      	function getMultiForm(_form) {
      		var form = _form;
           	const data = [];
@@ -416,27 +392,20 @@
           	}
           	return data;
      	}
-     	function getImageForm(_form) {
-     		console.log(_form.file.value);
-     	}
      	
      	function getSingleForm(_form) {
      		var form = _form;
           	const data = {};
           	var datas = new FormData(form);
-          	
-          	getImageForm(form);
 
           	for (var formData of datas.entries()) {
           	  	var _key = formData[0];
           	  	var _value = formData[1];
-          	  	console.log(_key, _value);
 
           	  	data[_key] = _value;
-          		console.log(data);
           	}
           	
-          	return datas;
+          	return data;
      	}
 
      	
@@ -467,7 +436,7 @@
   	}
 	function checkIdDuplication() {
 		const idData = getSelectedFieldForm(document.account_form, ["id"]);
-     	console.log(idData);
+//      	console.log(idData);
 		
 		$.ajax("/account/checkIdDuplication", {
 	        type: "POST",
@@ -479,7 +448,7 @@
 	 	 }).fail(function(data, textStatus, xhr) {
 	      	  alert('이미 등록된 아이디입니다.');
 
-              console.log("fail error", data.status);
+//               console.log("fail error", data.status);
          });
 	}
 	</script>
@@ -487,64 +456,47 @@
 // 		TODO: 하나의 요청/컨트롤러로 합쳐야함
 	
       function dynamicAjaxSubmit() {
-    	 const addressData = getMultiForm(document.address_form);
 
-      	 $.ajax("/address/addAddressList", {
-	           type: "POST",
-	           data: JSON.stringify(addressData),
-	           contentType:"application/json; charset=UTF-8",
-	           success: function() {
-	         	  alert('success');
-	           }
-         });
-	   	 
-     	const detailData = getSingleForm(document.account_form);
-      	
-      	$.ajax("/detail/add", {
-      		type: "POST",
-	           data: JSON.stringify(detailData),
-	           contentType:"application/json; charset=UTF-8",
-	           success: function() {
-	         	  alert('success');
-	           }
-      });
-      	
+	   	const detailData = getSingleForm(document.account_form);
+	   	const addressData = getMultiForm(document.address_form);
+	   	console.log(addressData);
+
          var files = document.account_form.file.files[0];
-         
          var form_data = new FormData(document.account_form);
+         var account_member_serial;
          form_data.append('file', files);
-
-         console.log(files);
          
-         // Check file selected or not
 		$.ajax("/account/addJson", {
 	           type: "POST",
 	 			enctype: "multipart/form-data",
 	            data: form_data,
 	            contentType: false,
 	            processData: false,
-	           success: function() {
-	         	  alert('success');
-	           }
-      });
-		
-// 		$.ajax("/ajaxInsertPetInfo", {
-// 			type : "post",
-// 			enctype: "multipart/form-data",
-// 		    data : datas,
-// 			processData: false,
-// 			contentType: false,
-// 			cache: false,
-// 			dataType: "json",
-// 			success : function(result){
-// 				console.log("result : " + result);
-// 				alert("yes");
-// 				$("#newPet").modal("hide");
-// 				location.href = "/getPetInfoList";
-// 			}, error : function(request,status,error){
-// 				alert("no");
-// 			}
-// 		});
+      }).then((response)=>{
+    	  	console.log(detailData.member_serial);
+    	  	console.log(response.member_serial);
+    	  	account_member_serial = response.member_serial;
+    	  	detailData.member_serial = response.member_serial;
+        	console.log(detailData);
+        	$.ajax("/detail/add", {
+        		type: "POST",
+  	           data: JSON.stringify(detailData),
+  	           contentType:"application/json; charset=UTF-8",
+        }).then(()=>{
+        	addressData.forEach((address)=>{
+        		address.member_serial = account_member_serial;
+        	})
+        	 $.ajax("/address/addAddressList", {
+  	           type: "POST",
+  	           data: JSON.stringify(addressData),
+  	           contentType:"application/json; charset=UTF-8",
+  	           success: function() {
+  	        	   alert("환영합니다");
+  	        	   window.location.href = 'http://localhost:8080/store/storeMain';
+  	           }
+           });
+        })
+      })
     };
    	</script>
 <script type="text/javascript" src="/common/commonThumbnail.js"></script>

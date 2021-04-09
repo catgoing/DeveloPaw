@@ -48,7 +48,7 @@ public class UserDtoController extends UserCRUDGenericController<UserAccount> {
 	public String loginPage(HttpServletRequest request) {
 		System.out.println("getLogin");
 		if(!isSessionNewAndHasNoUserDTO(request.getSession())) {
-			return "redirect:/mypage/myInfo";
+			return "redirect:/store/storeMain";
 		}
 		return "/auth.login";
 	}
@@ -117,7 +117,7 @@ public class UserDtoController extends UserCRUDGenericController<UserAccount> {
 //		System.out.println("onSession userDTO : " + session.getAttribute("userDTO"));
 		session.removeAttribute("userDTO");
 		sessionStatus.setComplete();
-		return "redirect:/mypage/myInfo";
+		return "redirect:/store/storeMain";
 	}
 
 	//modelAttribute for Method Test -> works
