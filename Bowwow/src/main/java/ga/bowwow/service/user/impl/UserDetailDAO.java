@@ -15,7 +15,7 @@ public class UserDetailDAO extends UserGenericDAO<UserAddress> {
 	
 	public UserDetailDAO() {
 		System.out.println(">> UserDetailDAO() 객체생성");
-		this.setQueries("UserAccount.insertTemporaryUserDetail"
+		this.setQueries("UserAccount.insertUserDetail"
 				, "UserAccount.updateUserDetail"
 				, "UserAccount.deleteUserDetail"
 				, "UserAccount.getUserDetail"

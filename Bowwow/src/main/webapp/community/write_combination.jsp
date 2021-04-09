@@ -13,46 +13,7 @@
 <meta name="viewport"
 	content="width=device-width, initial-scale=1.0, user-scalable=0, minimal-ui">
 <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-
-<meta name="keywords"
-	content="bootstrap, bootstrap admin template, admin theme, admin dashboard, dashboard template, admin template, responsive" />
-<meta name="author" content="Codedthemes" />
-<!--Jua 폰트 import-->
-<link rel="preconnect" href="https://fonts.gstatic.com">
-<link href="https://fonts.googleapis.com/css2?family=Jua&display=swap"
-	rel="stylesheet">
-
-<!-- Favicon icon -->
-<link rel="icon" href="/resources/images/favicon.ico"
-	type="image/x-icon">
-<!-- Google font-->
-<link
-	href="https://fonts.googleapis.com/css?family=Open+Sans:400,600,700"
-	rel="stylesheet">
-<!-- waves.css -->
-<link rel="stylesheet" href="/resources/pages/waves/css/waves.min.css"
-	type="text/css" media="all">
-<!-- Required Fremwork -->
-<link rel="stylesheet" type="text/css"
-	href="/resources/css/bootstrap/css/bootstrap.min.css">
-<!-- waves.css -->
-<link rel="stylesheet" href="/resources/pages/waves/css/waves.min.css"
-	type="text/css" media="all">
-<!-- themify icon -->
-<link rel="stylesheet" type="text/css"
-	href="/resources/icon/themify-icons/themify-icons.css">
-<!-- font-awesome-n -->
-<link rel="stylesheet" type="text/css"
-	href="/resources/css/font-awesome-n.min.css">
-<link rel="stylesheet" type="text/css"
-	href="/resources/css/font-awesome.min.css">
-<!-- scrollbar.css -->
-<link rel="stylesheet" type="text/css"
-	href="/resources/css/jquery.mCustomScrollbar.css">
-<!-- Style.css -->
-<!-- <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/resources/css/style.css"> -->
-<link rel="stylesheet" type="text/css" href="/resources/css/style.css">
-<link rel="stylesheet" type="text/css" href="/resources/css/test.css">
+<%@ include file="/common/import.jsp"%>
 
 <title>글 작성</title>
 <link
@@ -111,8 +72,20 @@ th {
 	width: 33.33%;
 	padding: 5px;
 }
+
+.active {
+	background-color : #f7b5b7;
+    -webkit-box-shadow: 0 15px 8px -11px rgba(0, 0, 0, 0.25);
+    box-shadow: 0 15px 8px -11px rgba(0, 0, 0, 0.25);
+}
 </style>
 <script>
+$(function (){
+	var board_idx = ${board_idx};
+	board_idx = board_idx + 3;
+	$(".pcoded-inner-navbar>ul:nth-child(" + board_idx + ")>li>a").addClass("active");
+});
+
 	$(function() {
 		$('#summernote').summernote({
 			placeholder : '최대 500자 작성 가능합니다.',
@@ -235,7 +208,6 @@ th {
 									<div class="page-body">
 										<section class="featured spad">
 											<div class="container">
-												<h1>펫 일기장</h1>
 												<hr>
 
 												<form action="insertBoard" method="post" enctype="multipart/form-data">
@@ -254,49 +226,6 @@ th {
 																<input type="text" name="board_title" size="30">
 															</td>
 														</tr>
-														<tr>
-															<th width="40">상품종류</th>
-															<td>
-								                    			<select name="goods" style="height:20px">
-												                   	<option value="0" selected>식품</option>
-														            <option value="1">장난감</option>
-														            <option value="2">의류</option>
-														            <option value="3">생활용품</option>
-														            <option value="4">기타</option>
-										                    	</select>
-															</td>
-														</tr>
-																												<tr>
-															<th width="40">지역</th>
-															<td>
-								                    			<select name="area" style="height:20px">
-												                   	<option value="0" selected>서울</option>
-														            <option value="1">경기</option>
-														            <option value="2">인천</option>
-														            <option value="3">강원</option>
-														            <option value="4">충청</option>
-														            <option value="3">대전</option>
-														            <option value="3">대구</option>
-														            <option value="3">부산</option>
-														            <option value="3">전라</option>
-														            <option value="3">제주</option>
-														            <option value="3">부산</option>
-														            <option value="3">부산</option>
-										                    	</select>
-															</td>
-														</tr>
-														<tr>
-															<th width="40">제목</th>
-															<td>
-																<input type="text" name="board_title" size="30">
-															</td>
-														</tr>
-														<tr>
-															<th width="40">제목</th>
-															<td>
-																<input type="text" name="board_title" size="30">
-															</td>
-														</tr>
 														
 													</table>
 													<br>
@@ -307,7 +236,7 @@ th {
 													<br> <br>
 													
 													<input type="hidden" name="member_serial" value="994">
-													<input type="hidden" name="board_idx" value="1">
+													<input type="hidden" name="board_idx" value="${board_idx }">
 													
 													<div style="text-align: center" class="enter_button">
 														<input type="submit" value="확인">

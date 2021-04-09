@@ -74,9 +74,10 @@
 	
 
 	<insert id="insertUserAccount" parameterType="UserAccount">
-				INSERT INTO USER_ACCOUNT (MEMBER_SERIAL, ID, EMAIL, CITIZEN_ID, PHONE, PASSWORD, STATUS, POINT, COUPONS)
-				VALUES (MEMBER_SERIAL_SEQ.NEXTVAL,
-						#{id}, #{email}, #{citizen_id}, #{phone}, #{status}, #{point}, #{coupons})
+				INSERT INTO USER_ACCOUNT (MEMBER_SERIAL
+						, ID, EMAIL, NICKNAME, CITIZEN_ID, PHONE, PASSWORD, IMAGE_SOURCE)
+				VALUES (MEMBER_SERIAL_SEQ.NEXTVAL
+						, #{id}, #{email}, #{nickname}, #{citizen_id}, #{phone}, #{password}, #{image_source})
 	</insert>
 
 	<insert id="insertTemporaryUserAccount" parameterType="UserAccount" >

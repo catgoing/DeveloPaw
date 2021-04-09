@@ -1,10 +1,13 @@
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+	pageEncoding="UTF-8"%>
 <meta name="keywords"
 	content="bootstrap, bootstrap admin template, admin theme, admin dashboard, dashboard template, admin template, responsive" />
 <meta name="author" content="Codedthemes" />
-
+<!-- Dohyeon 폰트 import-->
 <link rel="preconnect" href="https://fonts.gstatic.com">
-<link href="https://fonts.googleapis.com/css2?family=Do+Hyeon&display=swap" rel="stylesheet">
-
+<link
+	href="https://fonts.googleapis.com/css2?family=Do+Hyeon&display=swap"
+	rel="stylesheet">
 <!-- Favicon icon -->
 <link rel="icon" href="/resources/images/favicon.ico" type="image/x-icon">
 <!-- Google font-->
@@ -22,7 +25,9 @@
 <link rel="stylesheet" type="text/css" href="/resources/css/font-awesome.min.css">
 <!-- scrollbar.css -->
 <link rel="stylesheet" type="text/css" href="/resources/css/jquery.mCustomScrollbar.css">
-	<script type="text/javascript" src="/resources/js/jquery/jquery.min.js "></script>
 <!-- Style.css -->
+<!-- <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/resources/css/style.css"> -->
 <link rel="stylesheet" type="text/css" href="/resources/css/style.css">
 <link rel="stylesheet" type="text/css" href="/resources/css/test.css">
+<link rel="stylesheet" type="text/css" href="/resources/css/paging.css">
+<script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>   

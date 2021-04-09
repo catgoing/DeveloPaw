@@ -69,10 +69,10 @@ function checker() {
                                             </label>
                                         </div>
                                         <div class="forgot-phone text-left f-left">
-                                            <a href="/account/signupAccount" class="text-right f-w-600">회원가입</a>
+                                            <a href="/account/signup" class="text-right f-w-600">회원가입</a>
                                         </div>
                                         <div class="forgot-phone text-right f-right">
-                                            <a href="auth-reset-password.html" class="text-right f-w-600">아이디/비밀번호를 잊으셨나요?</a>
+                                            <a href="/account/findAccount" class="text-right f-w-600">아이디/비밀번호를 잊으셨나요?</a>
                                         </div>
                                     </div>
                                 </div>

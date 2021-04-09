@@ -6,7 +6,7 @@
 	<div class="container-fluid">
 		<div class="row">
 			<div class="col-sm-12">
-				<form id="terms" class="md-float-material form-material">
+				<form id="terms" class="md-float-material form-material" action="/account/signupAccount" method="post">
 					<div class="text-center">
 						<img src="../resources/images/logo.png">
 					</div>
@@ -479,7 +479,7 @@
 									</div>
 								</div>
 								<!-- Multiple Open Accordion ends -->
-								<input id="confirm" type="button" value="동의하기" class="btn btn-primary" disabled>
+								<input id="confirm" type="submit" value="동의하기" class="btn btn-primary" disabled>
 							</div>
 							<!-- Row end -->
 						</div>
@@ -507,7 +507,7 @@
 		if(_isChecked === true)  {
 			agreeConfirm.removeAttr('disabled');
 		} else {
-			agreeConfirm.prop('disabled', 'disabled');
+// 			agreeConfirm.prop('disabled', 'disabled');
 		}
 	}
 	terms.change(function() {
