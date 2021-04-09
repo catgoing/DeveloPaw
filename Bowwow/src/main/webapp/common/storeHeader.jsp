@@ -97,7 +97,7 @@
 							</li>
 							<li class="header-notification">
 								<a href="/store/cartList" class="waves-effect waves-light"> 
-									<i class="fa fa-shopping-cart" aria-hidden="true" ></i> 
+									<i class="fa fa-shopping-cart" style="font-size : 22px;" aria-hidden="true" ></i> 
 								</a>
 							</li>
 							<li class="user-profile header-notification"><a href="#!" class="waves-effect waves-light"> 
