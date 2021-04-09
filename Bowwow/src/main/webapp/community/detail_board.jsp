@@ -76,6 +76,11 @@
 </style>
 <!-- 신고하기  -->
 	<script>
+	$(function (){
+		var board_idx = ${board_idx};
+		board_idx = board_idx + 3;
+		$(".pcoded-inner-navbar>ul:nth-child(" + board_idx + ")>li>a").addClass("active");
+	});
 
         $(function (){
         	$('.readonly').prop('readonly', true);
@@ -144,14 +149,14 @@
 												<div class="row">
 													<div class="col-lg-12">
 														<div class="section-title">
-															<h2>펫 다이어리</h2>
+														
 														</div>
 														<br>
 													</div>
 												</div>
-												<div class="monthly-products" style="background-color:white; width:900px; margin:auto; border:5px solid pink; padding:15px">
+												<div class="monthly-products" style="background-color:white; width:900px; margin:auto; padding:15px">
 													<form method="post">
-													<div>
+													<div style="background-color : #f7f2f2; margin:5px; border-radius:10px">
 														<div style="margin-left:20px; margin-top:50px; color:green">
 														${vo.animal_class }
 														</div>
@@ -174,9 +179,8 @@
 													
 													<!-- 여기에 회원정보(사진, 닉네임 등) 출력 -->
 													
-													<div>
+													<div style="background-color : #f7f2f2; margin:5px; border-radius:10px">
 														<span class="box int_id" style="color:black; text-align:center;"> ${vo.board_content } </span>
-													</div>
 													
 													<!-- 수정하기 -->
 													<div style="text-align:right; margin-right:10px">
@@ -184,6 +188,7 @@
 														<input type="hidden" name="board_no" value="${vo.board_no }">
 														<input type="submit" class="button buttonbig" value="수정" formaction="/community/update/board" >
 														<input type="submit" class="button buttonbig" value="삭제 " formaction="/community/delete/board">
+													</div>
 													</div>
 													</form>
 				

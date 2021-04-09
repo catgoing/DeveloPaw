@@ -21,7 +21,6 @@ public class StoreController {
 	@Autowired
 	private StoreService storeService;
 	
-	
 	public StoreController() {
 		System.out.println(">> StoreController() 실행");
 	}

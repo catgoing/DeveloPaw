@@ -5,10 +5,9 @@
 <mapper namespace="Store">
 
 	<insert id="insertProduct" parameterType="Product">
-		INSERT INTO STORE_PRODUCTS (P_ID, P_NAME, P_TYPE, P_CATEGORY, PRICE, 
-									STOCK, S_IMAGE, L_IMAGE, P_PICK)
-		VALUES (P_SEQ.NEXTVAL, #{p_name}, #{p_type}, #{p_category}, #{price}, 
-									#{stock}, #{s_image}, #{l_image}, #{p_pick})
+		INSERT INTO STORE_PRODUCTS (P_ID, P_NAME, P_TYPE, PRICE, STOCK, S_IMAGE, L_IMAGE, P_CATEGORY)
+		VALUES (P_SEQ.NEXTVAL, #{p_name}, #{p_type}, #{price},  
+									#{stock}, #{s_image}, #{l_image}, #{p_category})
 	</insert>
 	
 	<!-- 전체 상품 조회 -->
@@ -18,7 +17,7 @@
 				SELECT ROWNUM AS RN, PROD.* FROM 
 				( 
 					SELECT 
-						P_ID, SUBSTR(P_NAME, 0, 17) AS P_NAME, P_TYPE, P_CATEGORY, 
+						P_ID, P_NAME, P_TYPE, P_CATEGORY, 
 		  				PRICE, STOCK, S_IMAGE, L_IMAGE 
 		  			FROM STORE_PRODUCTS
 		 			WHERE 1=1
