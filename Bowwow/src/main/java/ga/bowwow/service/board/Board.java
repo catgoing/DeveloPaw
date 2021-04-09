@@ -53,13 +53,17 @@ public class Board {
 //	public void setRegdate(String regdate) {
 //		this.regdate = regdate.substring(0, 16);
 //	}
-	public void setBoard_scontent(String board_scontent) {
-		this.board_scontent = board_scontent.replaceAll("\\<?img(.*?)\\>", "").replaceAll("\\<?p\\>", "");
+	
+	
+	public void setBoard_content(String board_content) {
+		setBoard_scontent(board_content);
+		this.board_content = board_content;
 	}
 	
+	
 	public void setBoard_scontent(String board_scontent) {
-		String pattern = "/<(\\/)?([a-zA-Z]*)(\\s[a-zA-Z]*=[^>]*)?(\\s)*(\\/)?>/ig";
-		this.board_scontent = board_scontent.replaceAll(pattern,"");
+		
+		this.board_scontent = board_scontent.replaceAll("<(/)?([a-zA-Z]*)(\\s[a-zA-Z]*=[^>]*)?(\\s)*(/)?>"," ");
 	}
 	
 

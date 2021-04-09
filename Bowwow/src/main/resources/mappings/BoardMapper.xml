@@ -8,8 +8,8 @@
 		INSERT INTO 
 		<choose>
 			<when test='board_idx == 1'> 
-				DIARY_BOARD (BOARD_NO, BOARD_TITLE, MEMBER_SERIAL, BOARD_CONTENT, IMG1, REGDATE, HITS, ANIMAL_CLASS) 
-				VALUES (DIARY_BOARD_SEQ.NEXTVAL, #{board_title}, #{member_serial}, #{board_content}, #{img1}, SYSDATE, 0, #{animal_class})
+				DIARY_BOARD (BOARD_NO, BOARD_TITLE, MEMBER_SERIAL, BOARD_CONTENT, IMG1, REGDATE, HITS, ANIMAL_CLASS, BOARD_SCONTENT) 
+				VALUES (DIARY_BOARD_SEQ.NEXTVAL, #{board_title}, #{member_serial}, #{board_content}, #{img1}, SYSDATE, 0, #{animal_class}, #{board_scontent})
 			</when>
 
 			<when test='board_idx == 2'> 
@@ -257,23 +257,23 @@
 	</select>
 	
 	 <select id="search" parameterType="Map" resultType="board">
-		SELECT BOARD_NO, BOARD_CONTENT AS BOARD_SCONTENT, BOARD_TITLE, IMG1, REGDATE
+		SELECT BOARD_NO, BOARD_SCONTENT, BOARD_TITLE, IMG1, REGDATE
 		FROM 
 		<choose>
-			<when test='board.equals("1")'> 
+			<when test='board_idx.equals("1")'> 
 			DIARY_BOARD
 			</when>
-			<when test='board.equals("2")'> 
+			<when test='board_idx.equals("2")'> 
 			INTRO_BOARD 
 			</when>
-			<when test='board.equals("3")'> 
+			<when test='board_idx.equals("3")'> 
 			KNOWHOW_BOARD
 			</when>
-			<when test='board.equals("4")'> 
+			<when test='board_idx.equals("4")'> 
 			MISSING_BOARD
 			</when>
 		</choose>
-			WHERE BOARD_CONTENT LIKE '%'||#{keyword}||'%'
+			WHERE BOARD_SCONTENT LIKE '%'||#{keyword}||'%'
 			OR  BOARD_TITLE LIKE '%'||#{keyword}||'%' 	
 	</select> 
 	
