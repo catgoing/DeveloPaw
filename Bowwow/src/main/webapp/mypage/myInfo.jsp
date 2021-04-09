@@ -325,7 +325,7 @@ $(function(){
 						<!-- Page-body start -->
 						<div class="page-body">
 						<div class="myPageInfo-header">
-							<h2> ${sessionScope.userDTO.id }님의 페이지</h2>
+							<h2> ${sessionScope.userDTO.id } 님의 페이지</h2>
 						</div>
 						<div class="myPageInfo-wrapper">
 
@@ -339,7 +339,9 @@ $(function(){
 <%-- 												<img src="${sessionScope.userDTO.image_source }" alt="이미지없음~"> --%>
 												<img style="height:200px; width:200px;" src="${sessionScope.userDTO.image_source }" alt="이미지없음~">
 											</div>
+											
 											<p>${sessionScope.userDTO.nickname }</p>
+											<p>${sessionScope.userAddress[0].address}</p>
 										</div>
 									</div>
 
@@ -402,13 +404,14 @@ $(function(){
     <label for="inputAddress" class="col-sm-4 control-label">주소</label>
     <div class="col-sm-8">
      <div>
-		<input type="text" id="sample4_postcode" placeholder="우편번호">
+     
+		<input type="text" id="sample4_postcode" placeholder="우편번호" value="${sessionScope.userAddress[0].zonecode}">
 		<input type="button" onclick="sample4_execDaumPostcode()" value="우편번호 찾기"><br>
-		<input type="text" id="sample4_roadAddress" placeholder="도로명주소">
-		<input type="text" id="sample4_jibunAddress" placeholder="지번주소">
+		<input type="text" id="sample4_roadAddress" placeholder="도로명주소" value="${sessionScope.userAddress[0].address}">
+<!-- 		<input type="text" id="sample4_jibunAddress" placeholder="지번주소"> -->
 		<span id="guide" style="color:#999;display:none"></span>
-		<input type="text" id="sample4_detailAddress" placeholder="상세주소">
-		<input type="text" id="sample4_extraAddress" placeholder="참고항목">
+		<input type="text" id="sample4_detailAddress" placeholder="상세주소" value="${sessionScope.userAddress[0].address_detail}">
+<!-- 		<input type="text" id="sample4_extraAddress" placeholder="참고항목"> -->
 	</div>
     </div>
   </div>
@@ -472,5 +475,13 @@ $(function(){
     <script src="/resources/js/vertical/vertical-layout.min.js "></script>
 
     <script type="text/javascript" src="/resources/js/script.js "></script>
+    <script>
+    	function formBuilder() {
+    		init : {
+    			alert("formBuildingTest");
+    		}
+    		this.init();
+    	}();
+    </script>
 </body>
 </html>

@@ -69,20 +69,6 @@ public class UserDtoController extends UserCRUDGenericController<UserAccount> {
 		}
 		return "/auth.login";
 	}
-	
-	public String autoAdminLogin() {
-		
-		final String baseUrl = ServletUriComponentsBuilder.fromCurrentContextPath().build().toUriString();
-		UserDTO adminUser = new UserDTO();
-		adminUser.setId("z");
-		adminUser.setPassword("z");
-		
-		HttpHeaders headers = new HttpHeaders();
-        headers.setAccept(Arrays.asList(MediaType.APPLICATION_JSON));
-        headers.add("user-agent", "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/54.0.2840.99 Safari/537.36");
-        
-		return rt.postForEntity(baseUrl + "/user/login", new HttpEntity<UserDTO>(adminUser, headers), String.class).getBody();
-	}
 
 	//추상화된 REST 자원 받아오기 명령 : (baseUrl, 체킹 T(추상VO, 또는 Serial), 경로(rest자원명), 파라미터)=>{}
 	//실험. getBody로 넘긴 리스트를 타입체킹해서 올바르게 넘길 수 있는가? 

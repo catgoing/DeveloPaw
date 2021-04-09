@@ -65,10 +65,9 @@ public class UserAddressController extends UserCRUDGenericController<UserAddress
 	public ResponseEntity<Object> add(@RequestBody ArrayList<UserAddress> address, HttpSession session)  {
 		System.out.println("addresslist controller");
 		try {
-//			address.stream().filter(adr->adr.isValueNeverNull())
-			address.stream().forEach(System.out::println);
-//							.map(adr->adr.buildMemberSerial(sessionMemberSerial))
-//							.forEach(adr->service.addVo(adr));
+			address.stream().filter(adr->adr.isValueNeverNull())
+//			address.stream().forEach(System.out::println);
+							.forEach(adr->service.addVo(adr));
 			
 			return ResponseEntity.ok().build();
 		} catch (DataIntegrityViolationException  e) {
