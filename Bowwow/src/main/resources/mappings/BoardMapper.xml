@@ -55,7 +55,7 @@
 			(
 				SELECT ROWNUM AS RN, BOARD.* FROM 
 				( 	
-					SELECT BOARD_NO, B.MEMBER_SERIAL, BOARD_TITLE, ID, IMG1, HITS, NICKNAME, TO_CHAR(REGDATE, 'YY-MM-DD')
+					SELECT BOARD_NO, B.MEMBER_SERIAL, BOARD_TITLE, ID, IMG1, HITS, NICKNAME, TO_CHAR(REGDATE, 'YY-MM-DD') AS REGDATE
 					FROM 
 						<choose>
 							<when test='board_idx == 1'> DIARY_BOARD B, USER_ACCOUNT U WHERE B.MEMBER_SERIAL = U.MEMBER_SERIAL </when>
@@ -85,7 +85,7 @@
 	</select>
 	
 	<select id="getBoard" parameterType="Map" resultType="board">
-		SELECT BOARD_NO, BOARD_CONTENT, BOARD_TITLE, ANIMAL_CLASS, HITS, NICKNAME, TO_CHAR(REGDATE, 'YY-MM-DD HH24:MI')
+		SELECT BOARD_NO, BOARD_CONTENT, BOARD_TITLE, ANIMAL_CLASS, HITS, NICKNAME, TO_CHAR(REGDATE, 'YY-MM-DD HH24:MI') AS REGDATE
 		FROM 
 		<choose>
 			<when test='board_idx == 1'> DIARY_BOARD B, USER_ACCOUNT U </when>
@@ -134,37 +134,37 @@
 			</when>
 			<when test='board_idx == 2'> 
 			INTRO_BOARD 
-			SET BOARD_TITLE = #{board_title}
-				, BOARD_CONTENT = #{board_content}
-				, ANIMAL_CLASS = #{animal_class}
+			SET BOARD_TITLE = '${vo.board_title}'
+				, BOARD_CONTENT = '${vo.board_content}'
+				, ANIMAL_CLASS = '${vo.animal_class}'
 			</when>
 			<when test='board_idx == 3'> 
 			KNOWHOW_BOARD 
-			SET BOARD_TITLE = #{board_title}
-				, BOARD_CONTENT = #{board_content}
-				, ANIMAL_CLASS = #{animal_class}
-				, SUB_CLASS = #{sub_class}
+			SET BOARD_TITLE = '${vo.board_title}'
+				, BOARD_CONTENT = '${vo.board_content}'
+				, ANIMAL_CLASS = '${vo.animal_class}'
+				, SUB_CLASS = '${vo.sub_class}'
 			</when>
 			<when test='board_idx == 4'> 
 			MISSING_BOARD 
-			SET BOARD_TITLE = #{board_title}
-				, BOARD_CONTENT = #{board_content}
-				, ANIMAL_CLASS = #{animal_class}
+			SET BOARD_TITLE = '${vo.board_title}'
+				, BOARD_CONTENT = '${vo.board_content}'
+				, ANIMAL_CLASS = '${vo.animal_class}'
 			</when>
 			<when test='board_idx == 5'> 
 			USED_TRANSACTION_BOARD 
-			SET BOARD_TITLE = #{board_title}
-				, GOODS = #{goods}
-				, AREA = #{area}
-				, PRICE = #{price}
-				, IS_SELLED = #{is_selled}
-				, BOARD_CONTENT = #{board_content}
-				, ANIMAL_CLASS = #{animal_class}
+			SET BOARD_TITLE = '${vo.board_title}'
+				, GOODS = '${vo.goods}'
+				, AREA = '${vo.area}'
+				, PRICE = '${vo.price}'
+				, IS_SELLED = '${vo.is_selled}'
+				, BOARD_CONTENT = '${vo.board_content}'
+				, ANIMAL_CLASS = '${vo.animal_class}'
 			</when>
 			<when test='board_idx == 6'> 
 			EVENT_BOARD 
-			SET BOARD_TITLE = #{board_title}
-				, BOARD_CONTENT = #{board_content}
+			SET BOARD_TITLE = '${vo.board_title}'
+				, BOARD_CONTENT = '${vo.board_content}'
 			</when>
 		</choose> 
 		WHERE BOARD_NO = ${vo.board_no}
@@ -224,7 +224,7 @@
 	
 	
 	<select id="getCommentList" parameterType="Map" resultType="comment" >
-		SELECT COMMENT_NO, BOARD_NO, COMMENT_CONTENT, TO_CHAR(REGDATE, 'YY-MM-DD HH24:MI'), NICKNAME
+		SELECT COMMENT_NO, BOARD_NO, COMMENT_CONTENT, TO_CHAR(REGDATE, 'MM-DD HH24:MI') AS REGDATE, NICKNAME
 		FROM 
 		<choose>
 			<when test='board_idx == 1'> DIARY_COMMENTS C, USER_ACCOUNT U WHERE C.MEMBER_SERIAL = U.MEMBER_SERIAL </when>
@@ -236,7 +236,7 @@
 	</select>
 	
 	<select id="getComment2List" parameterType="Map" resultType="comment" >
-		SELECT COMMENT_NO2, C2.COMMENT_NO, C2.COMMENT_CONTENT2 AS COMMENT_CONTENT, TO_CHAR(C2.REGDATE, 'YY-MM-DD HH24:MI'), NICKNAME
+		SELECT COMMENT_NO2, C2.COMMENT_NO, C2.COMMENT_CONTENT2 AS COMMENT_CONTENT, TO_CHAR(C2.REGDATE, 'MM-DD HH24:MI') AS REGDATE, NICKNAME
 		FROM 
 		<choose>
 			<when test='board_idx == 1'> 
@@ -257,7 +257,7 @@
 	</select>
 	
 	 <select id="search" parameterType="Map" resultType="board">
-		SELECT BOARD_NO, BOARD_SCONTENT, BOARD_TITLE, IMG1, REGDATE
+		SELECT BOARD_NO, BOARD_SCONTENT, BOARD_TITLE, IMG1, TO_CHAR(REGDATE, 'MM-DD HH24:MI') AS REGDATE
 		FROM 
 		<choose>
 			<when test='board_idx.equals("1")'> 

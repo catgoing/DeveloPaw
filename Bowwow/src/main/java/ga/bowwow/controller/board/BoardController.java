@@ -21,7 +21,6 @@ import ga.bowwow.controller.common.MultipartController;
 import ga.bowwow.service.board.Board;
 import ga.bowwow.service.board.BoardService;
 import ga.bowwow.service.board.Comment;
-import ga.bowwow.service.board.Report;
 import ga.bowwow.service.paging.Page;
 
 
@@ -45,9 +44,26 @@ public class BoardController {
 	public String insertBoard(Board vo, HttpServletRequest request, MultipartController mc) throws AmazonClientException, IllegalStateException, IOException, InterruptedException {
 		System.out.println(">>> 게시글 입력 - insertBoard()");
 		System.out.println("vo : " + vo);
-		System.out.println("img : ---" + vo.getImg_locas() + "---");
+		String command = "";
+		
+		//TODO INSERT
 		Map<String, Object> map = new HashMap<String, Object>();
-		map.put("board_idx", session.getAttribute("board_idx"));
+		int board_idx = Integer.parseInt((String) session.getAttribute("board_idx"));
+		map.put("board_idx", board_idx);
+		
+		
+		if(board_idx == 1) {
+			command = "diary_board"; }
+		else if (board_idx == 2) {
+			command = "intro_board"; }
+		else if (board_idx == 3) {
+			command = "knowhow_board"; }
+		else if (board_idx == 4) {
+			command = "missing_board"; }
+		else if (board_idx == 5) {
+			command = "used_transaction_board"; }
+		else if (board_idx == 6) {
+			command = "event_board"; }
 
 		if(vo.getImg_locas() == null || vo.getImg_locas().length() == 0) {
 			//이미지 첨부된 거 없으면 바로 db에 저장
@@ -63,9 +79,27 @@ public class BoardController {
 
 			//배열값 확인
 			//		System.out.println(Arrays.toString(imgs_loca));
-
 			//폴더 이름 설정
-			String foldername = "diary";
+			String foldername = "";
+			
+			if(board_idx == 1) {
+				foldername = "diary";
+				command = "diary_board"; }
+			else if (board_idx == 2) {
+				foldername = "intro";
+				command = "intro_board"; }
+			else if (board_idx == 3) {
+				foldername = "knowhow";
+				command = "knowhow_board"; }
+			else if (board_idx == 4) {
+				foldername = "missing";
+				command = "missing_board"; }
+			else if (board_idx == 5) {
+				foldername = "usedtransaction";
+				command = "used_transaction_board"; }
+			else if (board_idx == 6) {
+				foldername = "event"; 
+				command = "event_board"; }
 
 			//이미지 배열 길이(이미지 개수) 만큼 MultipartController 객체 생성, S3에 업로드 
 			for (int i = 0; i < imgs_loca.length; i++) {
@@ -95,7 +129,8 @@ public class BoardController {
 		}
 
 		//		return "redirect:/community/board_idx";
-		return "redirect:/community/diary_board";
+		String rtn = "redirect:" + "/community/" + command;
+		return rtn;
 	}
 
 
@@ -160,7 +195,7 @@ public class BoardController {
 		session.setAttribute("board_idx", board_idx);
 		model.addAttribute("boardList", boardList);
 		model.addAttribute("pvo", p);
-		model.addAttribute("command", "/community/diary_board");
+		model.addAttribute("command", "/community/main");
 		//
 		//		System.out.println("bowwow list : " + boardList);
 		//		System.out.println("board model : " + model);
@@ -173,13 +208,12 @@ public class BoardController {
 
 
 	//펫 소개(list)
-	@RequestMapping(value = "/community/intro_board",method = RequestMethod.GET)
-	public String getIntroBoardList(Model model,@RequestParam("board_idx") String board_idx,
-			HttpSession session) {
+	@RequestMapping(value = "/community/intro_board", method = RequestMethod.GET)
+	public String getIntroBoardList(Model model, HttpSession session) {
 		System.out.println(">>> 게시글 전체 목록- String getintro_BoardList()");
 		System.out.println("> boardService : " + boardService);
-		System.out.println("board_idx : " + board_idx);
 
+		String board_idx = "2";
 		String cPage = request.getParameter("cPage");
 		Page p = new Page();
 
@@ -205,11 +239,11 @@ public class BoardController {
 	}
 
 	//펫 노하우(list)
-	@RequestMapping(value = "/community/knowhow_board",method = RequestMethod.GET)
-	public String getKnowhowBoardList(Model model,@RequestParam("board_idx") String board_idx,
-			HttpSession session) {
+	@RequestMapping(value = "/community/knowhow_board", method = RequestMethod.GET)
+	public String getKnowhowBoardList(Model model, HttpSession session) {
 		System.out.println(">>> 게시글 전체 목록- String getknowhow_BoardList()");
 
+		String board_idx = "3";
 		String cPage = request.getParameter("cPage");
 		Page p = new Page();
 
@@ -237,10 +271,10 @@ public class BoardController {
 
 	//잃어버린 반려동물 찾기(list)
 	@RequestMapping(value = "/community/missing_board",method = RequestMethod.GET)
-	public String getMissingBoardList(Model model,@RequestParam("board_idx") String board_idx,
-			HttpSession session) {
+	public String getMissingBoardList(Model model, HttpSession session) {
 		System.out.println(">>> 게시글 전체 목록- String getmissing_BoardList()");
 
+		String board_idx = "4";
 		String cPage = request.getParameter("cPage");
 		Page p = new Page();
 
@@ -270,10 +304,10 @@ public class BoardController {
 
 	//펫 중고장터(list)
 	@RequestMapping(value = "/community/used_transaction_board", method = RequestMethod.GET)
-	public String used_transaction_board(Model model,@RequestParam("board_idx") String board_idx,
-			HttpSession session) {
+	public String used_transaction_board(Model model, HttpSession session) {
 		System.out.println(">>> 게시글 전체 목록- String getmissing_BoardList()");
 
+		String board_idx = "5";
 		String cPage = request.getParameter("cPage");
 		Page p = new Page();
 
@@ -301,10 +335,10 @@ public class BoardController {
 
 	//이벤트(list)
 	@RequestMapping(value = "/community/event_board", method = RequestMethod.GET)
-	public String getEventBoardList(Model model,@RequestParam("board_idx") String board_idx,
-			HttpSession session) {
+	public String getEventBoardList(Model model, HttpSession session) {
 		System.out.println(">>> 게시글 전체 목록- String getmissing_BoardList()");
 
+		String board_idx = "6";
 		String cPage = request.getParameter("cPage");
 		Page p = new Page();
 
@@ -324,22 +358,36 @@ public class BoardController {
 		session.setAttribute("board_idx", board_idx);
 		model.addAttribute("boardList", boardList);
 		model.addAttribute("pvo", p);
-		model.addAttribute("command", "/community/missing_board");
+		model.addAttribute("command", "/community/event_board");
 
 		return "/community/event_board";
 
+	}	
+	
+	//이벤트(list)
+	@RequestMapping(value = "/community/animal_hospital", method = RequestMethod.GET)
+	public String getAnimalHospital(Model model) {
+		
+		String board_idx = "7";
+		
+		session.setAttribute("board_idx", board_idx);
+		model.addAttribute("command", "/community/animal_hospital");
+		
+		return "/community/animal_hospital";
+		
 	}	
 
 
 	//상세페이지
 	@RequestMapping(value = "/community/detail", method = RequestMethod.GET)
-	public String getBoard(@RequestParam("board_idx") int board_idx,
-			@RequestParam("board_no") int board_no , Board vo, Model model) {
+	public String getBoard(@RequestParam("board_idx") String sboard_idx,
+			@RequestParam("board_no") int board_no, Board vo, Model model) {
 
+		int board_idx = Integer.parseInt(sboard_idx);
 		System.out.println("board_idx : "  + board_idx);
 		System.out.println(">>> 글상세 - String getBoard()");
+		
 		Map<String, Integer> map = new HashMap<String, Integer>();
-		System.out.println("session : " + session.getAttribute("board_idx"));
 		map.put("board_idx", board_idx);
 		map.put("board_no", board_no );
 		vo = boardService.getBoard(map);
@@ -423,8 +471,8 @@ public class BoardController {
 		map.put("board_idx", board_idx);
 		map.put("board_no", board_no);
 		boardService.boardDelete(map);
+		
 		return "redirect:/community/diary_board";
-
 	}
 
 	//댓글 삭제
@@ -442,6 +490,7 @@ public class BoardController {
 		map.put("board_idx", board_idx);
 		map.put("comment", comment);
 		boardService.commentDelete(map);
+		
 		return "redirect:/community/detail?board_idx=" + board_idx + "&board_no=" + board_no;
 	}
 
@@ -460,6 +509,7 @@ public class BoardController {
 		map.put("board_idx", board_idx);
 		map.put("comment", comment);
 		boardService.commentDelete2(map);
+		
 		return "redirect:/community/detail?board_idx=" + board_idx + "&board_no=" + board_no;
 	}
 
@@ -489,6 +539,26 @@ public class BoardController {
 			throws AmazonClientException, IllegalStateException, IOException, InterruptedException {
 		System.out.println(">>> 게시글 수정 - do-updateBoard()");
 		System.out.println("vo : " + vo);
+		String command = "";
+		//TODO UPDATE
+		int board_idx = (int) session.getAttribute("board_idx");
+		
+		Map<String, Object> map = new HashMap<String, Object>();
+		map.put("board_idx", board_idx);
+		
+		
+		if(board_idx == 1) {
+			command = "diary_board"; }
+		else if (board_idx == 2) {
+			command = "intro_board"; }
+		else if (board_idx == 3) {
+			command = "knowhow_board"; }
+		else if (board_idx == 4) {
+			command = "missing_board"; }
+		else if (board_idx == 5) {
+			command = "used_transaction_board"; }
+		else if (board_idx == 6) {
+			command = "event_board"; }
 
 		if(vo.getImg_locas() == null || vo.getImg_locas().length() == 0) {
 			//이미지 첨부된 거 없으면 바로 db에 저장
@@ -505,8 +575,26 @@ public class BoardController {
 			//		System.out.println(Arrays.toString(imgs_loca));
 
 			//폴더 이름 설정
-			String foldername = "diary";
-
+			String foldername = "";
+			
+			if(board_idx == 1) {
+				foldername = "diary";
+				command = "diary_board"; }
+			else if (board_idx == 2) {
+				foldername = "intro";
+				command = "intro_board"; }
+			else if (board_idx == 3) {
+				foldername = "knowhow";
+				command = "knowhow_board"; }
+			else if (board_idx == 4) {
+				foldername = "missing";
+				command = "missing_board"; }
+			else if (board_idx == 5) {
+				foldername = "usedtransaction";
+				command = "used_transaction_board"; }
+			else if (board_idx == 6) {
+				foldername = "event"; 
+				command = "event_board"; }
 			//이미지 배열 길이(이미지 개수) 만큼 MultipartController 객체 생성, S3에 업로드 
 			for (int i = 0; i < imgs_loca.length; i++) {
 				//			MultipartController mc = new MultipartController();
@@ -546,7 +634,6 @@ public class BoardController {
 	@RequestMapping("/community/search")
 	public String search(Board board, Model model) {
 		String keyword = board.getKeyword();
-		String pattern = "\\<?img(.*?)\\>";
 		System.out.println(">> 통합검색 - String search()");
 
 		System.out.println(board);

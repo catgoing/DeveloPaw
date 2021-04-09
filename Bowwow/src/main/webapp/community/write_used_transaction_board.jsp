@@ -72,6 +72,12 @@ th {
 	width: 33.33%;
 	padding: 5px;
 }
+
+.active {
+	background-color : #f7b5b7;
+    -webkit-box-shadow: 0 15px 8px -11px rgba(0, 0, 0, 0.25);
+    box-shadow: 0 15px 8px -11px rgba(0, 0, 0, 0.25);
+}
 </style>
 <script>
 $(function (){
@@ -204,7 +210,6 @@ $(function (){
 									<div class="page-body">
 										<section class="featured spad">
 											<div class="container">
-												<h1>물품 중고거래</h1>
 												<hr>
 
 												<form action="insertBoard" method="post" enctype="multipart/form-data">
