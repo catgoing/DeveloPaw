@@ -1,13 +1,16 @@
 package ga.bowwow.controller.user.impl;
 
 import java.io.File;
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.UUID;
 
 import org.apache.ibatis.exceptions.TooManyResultsException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.dao.DataIntegrityViolationException;
 import org.springframework.http.HttpStatus;
+import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -20,6 +23,9 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.multipart.MultipartFile;
 
+import com.amazonaws.AmazonClientException;
+
+import ga.bowwow.controller.common.MultipartController;
 import ga.bowwow.controller.user.UserCRUDGenericController;
 import ga.bowwow.service.user.VO.UserAccount;
 import ga.bowwow.service.user.VO.UserAddress;
@@ -32,15 +38,9 @@ public class UserAccountController extends UserCRUDGenericController<UserAccount
 	public UserAccountController(@Autowired UserAccountServiceImpl service) {
 		System.out.println("---->>> UserAccountController() 객체생성");
 		this.service = service;
-		this.setDomainRoute("/ok", "/auth.login");
+		this.setDomainRoute("/store/storeMain", "/auth.login");
 	}
-	@RequestMapping("/img")
-	public String getImg(@RequestParam("profileImg") File profileImg) {
-		System.out.println(profileImg.getName());
-		System.out.println(profileImg);
-		return "/index";
-	}
-
+	
 	@ResponseBody
 	@RequestMapping(value="/loginValidateUserAccount")
 	public ResponseEntity getUserAccount(@RequestBody UserAccount userAccount) {
@@ -48,6 +48,11 @@ public class UserAccountController extends UserCRUDGenericController<UserAccount
 		boolean result = ((UserAccountServiceImpl)this.service).loginAttemp(userAccount);
 //		System.out.println("Rest loginValidation : " + result);
 		return result ? ResponseEntity.ok().build() : ResponseEntity.status(204).build();
+	}
+	
+	@GetMapping("/findAccount")
+	public String findAccount() {
+		return "/auth.findAccount";
 	}
 
 	@GetMapping("/getList")
@@ -78,14 +83,27 @@ public class UserAccountController extends UserCRUDGenericController<UserAccount
 		return "/ok";
 	}
 	
-	@PostMapping(value= "/addJson",
-			produces = "application/text; charset=UTF-8")
-	protected ResponseEntity<String> addJson(@RequestBody UserAccount vo)  {
+	@PostMapping(value= "/addJson")
+	protected ResponseEntity<String> addJson(UserAccount vo, @RequestParam(value="file", required = false) MultipartFile file,  @Autowired MultipartController mc) throws IllegalStateException, IOException, AmazonClientException, InterruptedException  {
 		System.out.println("account controller addJson Test");
 		try {
 			System.out.println("controller : " + vo);
-			return service.addVo(vo) ? ResponseEntity.ok().build() : ResponseEntity.badRequest().build();
+
+			String domainFoldername = "userProImg";
 			
+			if(!vo.getFile().isEmpty()) {
+				MultipartFile profileImage = vo.getFile();
+				File uploadfile = new File(profileImage.getOriginalFilename());
+				
+				profileImage.transferTo(uploadfile);
+				vo.setImage_source(domainFoldername + "/"
+													+ mc.s3upload(uploadfile, getRandomizeImageSource(getExtension(uploadfile.getName())) , domainFoldername));
+
+			} else {
+				vo.setImage_source(domainFoldername + "/default.jpg");
+			}
+			
+			return service.addVo(vo) ? ResponseEntity.ok().build() : ResponseEntity.badRequest().build();
 		} catch (DataIntegrityViolationException  e) {
 			System.out.println("Caught Integerity Exception Test");
 			e.printStackTrace();
@@ -94,6 +112,14 @@ public class UserAccountController extends UserCRUDGenericController<UserAccount
 		}
 		return ResponseEntity.status(409).build();
 	}
+	
+	public String getRandomizeImageSource(String extension) {
+		return UUID.randomUUID() + extension;
+	}
+	public String getExtension(String originalFileName) {
+		return originalFileName.substring(originalFileName.lastIndexOf("."));
+	}
+	
 	
 	@PostMapping(value= "/checkIdDuplication",
 			produces = "application/text; charset=UTF-8")

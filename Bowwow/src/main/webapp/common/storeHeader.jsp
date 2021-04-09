@@ -1,5 +1,27 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"	pageEncoding="UTF-8"%>
 
+<style>
+ .form-control{
+      width:250px;
+      height:40px;
+      border:none;
+      font-size:1em;
+      padding-left: 5px;
+      font-style: oblique;
+      display:inline;
+      outline:none;
+      box-sizing: border-box;
+      color:black;
+}
+
+input[type="submit"] {
+	font-family: FontAwesome;
+	background-color: #f7b5b7;
+	border: none;
+	color: #fff;
+}
+</style>
+
 <!-- Pre-loader start -->
 	<div class="theme-loader">
 		<div class="loader-track">
@@ -73,7 +95,7 @@
 								</div>
 							</div>
 						</div>
-						<a href="storeMain"
+						<a href="store/storeMain"
 							style="text-align: center; font-weight: bold; font-size: 30px; margin-top: 7px;">BOW-WOW</a>
 
 						<a class="mobile-options waves-effect waves-light"> <i
@@ -88,132 +110,45 @@
 								</div>
 							</li>
 							<li><a href="/community/main"> 커뮤니티 </a></li>
+
 							<li><a href="/store/storeMain"> 스토어 </a></li>
+
 						</ul>
+						<form action="prodSearch" method="POST">
 						<ul class="nav-right">
-							<li class="form-group form-primary"><input type="text"
-								name="footer-email" style="margin-top: 12px; width: 250px;"
-								class="form-control" placeholder="검색창"> <span
-								class="form-bar"></span></li>
-							<li class="header-notification"><a href="#!"
-								class="waves-effect waves-light"> <i class="ti-bell"></i> <span
-									class="badge bg-c-red"></span>
-							</a>
-								<ul class="show-notification">
-									<li>
-										<h6>Notifications</h6> <label class="label label-danger">New</label>
-									</li>
-									<li class="waves-effect waves-light">
-										<div class="media">
-											<img class="d-flex align-self-center img-radius"
-												src="../resources/images/avatar-2.jpg"
-												alt="Generic placeholder image">
-											<div class="media-body">
-												<h5 class="notification-user">John Doe</h5>
-												<p class="notification-msg">Lorem ipsum dolor sit amet,
-													consectetuer elit.</p>
-												<span class="notification-time">30 minutes ago</span>
-											</div>
-										</div>
-									</li>
-									<li class="waves-effect waves-light">
-										<div class="media">
-											<img class="d-flex align-self-center img-radius"
-												src="../resources/images/avatar-4.jpg"
-												alt="Generic placeholder image">
-											<div class="media-body">
-												<h5 class="notification-user">Joseph William</h5>
-												<p class="notification-msg">Lorem ipsum dolor sit amet,
-													consectetuer elit.</p>
-												<span class="notification-time">30 minutes ago</span>
-											</div>
-										</div>
-									</li>
-									<li class="waves-effect waves-light">
-										<div class="media">
-											<img class="d-flex align-self-center img-radius"
-												src="../resources/images/avatar-3.jpg"
-												alt="Generic placeholder image">
-											<div class="media-body">
-												<h5 class="notification-user">Sara Soudein</h5>
-												<p class="notification-msg">Lorem ipsum dolor sit amet,
-													consectetuer elit.</p>
-												<span class="notification-time">30 minutes ago</span>
-											</div>
-										</div>
-									</li>
-								</ul></li>
-							<li class="header-notification"><a href="#!"
-								class="waves-effect waves-light"> <i
-									class="fa fa-shopping-cart" aria-hidden="true"></i> <span
-									class="badge bg-c-red"></span>
-							</a>
-								<ul class="show-notification">
-									<li>
-										<h6>Notifications</h6> <label class="label label-danger">New</label>
-									</li>
-									<li class="waves-effect waves-light">
-										<div class="media">
-											<img class="d-flex align-self-center img-radius"
-												src="../resources/images/avatar-2.jpg"
-												alt="Generic placeholder image">
-											<div class="media-body">
-												<h5 class="notification-user">John Doe</h5>
-												<p class="notification-msg">Lorem ipsum dolor sit amet,
-													consectetuer elit.</p>
-												<span class="notification-time">30 minutes ago</span>
-											</div>
-										</div>
-									</li>
-									<li class="waves-effect waves-light">
-										<div class="media">
-											<img class="d-flex align-self-center img-radius"
-												src="resources/images/avatar-4.jpg"
-												alt="Generic placeholder image">
-											<div class="media-body">
-												<h5 class="notification-user">Joseph William</h5>
-												<p class="notification-msg">Lorem ipsum dolor sit amet,
-													consectetuer elit.</p>
-												<span class="notification-time">30 minutes ago</span>
-											</div>
-										</div>
-									</li>
-									<li class="waves-effect waves-light">
-										<div class="media">
-											<img class="d-flex align-self-center img-radius"
-												src="resources/images/avatar-3.jpg"
-												alt="Generic placeholder image">
-											<div class="media-body">
-												<h5 class="notification-user">Sara Soudein</h5>
-												<p class="notification-msg">Lorem ipsum dolor sit amet,
-													consectetuer elit.</p>
-												<span class="notification-time">30 minutes ago</span>
-											</div>
-										</div>
-									</li>
-								</ul></li>
+							<li class="form-group form-primary">
+								<input type="text" class="form-control" name="keyword" autocomplete="off" placeholder="검색창"> 
+								<span class="form-bar"></span>
+							</li>
+							<li>
+								<input type="submit" name="search" value="&#xf002;">
+							</li>
+							<li class="header-notification">
+								<a href="/store/cartList" class="waves-effect waves-light"> 
+									<i class="fa fa-shopping-cart" aria-hidden="true" ></i> 
+								</a>
+							</li>
 							<li class="user-profile header-notification"><a href="#!"
 								class="waves-effect waves-light"> <img
-									src="resources/images/avatar-4.jpg" class="img-radius"
+									src="../resources/images/logo.png" class="img-radius"
 									alt="User-Profile-Image"> <i class="ti-angle-down"></i>
 							</a>
 								<ul class="show-notification profile-notification">
-									<li class="waves-effect waves-light"><a href="#!">마이홈
+									<li class="waves-effect waves-light"><a href="/mypage/myPageMain">마이홈
 									</a></li>
 									<li class="waves-effect waves-light"><a
-										href="user-profile.html">프로필 </a></li>
+										href="/getPetInfoList?member_serial=${sessionScope.userDTO.member_serial }">프로필 </a></li>
 									<li class="waves-effect waves-light"><a
 										href="email-inbox.html">반려동물 </a></li>
 									<li class="waves-effect waves-light"><a
-										href="auth-lock-screen.html">게시글</a></li>
+										href="/mypage/myPoint">포인트 내역 </a></li>
 									<li class="waves-effect waves-light"><a
-										href="auth-normal-sign-in.html">포인트 내역 </a></li>
-									<li class="waves-effect waves-light"><a
-										href="auth-normal-sign-in.html">나의 쇼핑 </a></li>
+										href="/store/storeOrderList">나의 쇼핑 </a></li>
 									<li class="waves-effect waves-light"><a
 										href="auth-normal-sign-in.html">로그아웃 </a></li>
 								</ul></li>
 						</ul>
+						</form>
 					</div>
 				</div>
 			</nav>

@@ -102,6 +102,7 @@ public class BoardController {
 	
 	
 	//펫 다이어리(list)
+	
 	@RequestMapping(value = "/community/diary_board", method = RequestMethod.GET)
 	public String getDiaryBoardList(Model model) {
 //		System.out.println(">>> 게시글 전체 목록- String getDiaryBoardList()");
@@ -132,9 +133,44 @@ public class BoardController {
 //
 //		System.out.println("bowwow list : " + boardList);
 //		System.out.println("board model : " + model);
-
+		
 		return "/community/diary_board";
-
+		
+	}
+	
+	@RequestMapping(value = "/community/main", method = RequestMethod.GET)
+	public String communityMain(Model model) {
+//		System.out.println(">>> 게시글 전체 목록- String getDiaryBoardList()");
+//		System.out.println("board_idx : " + board_idx);
+		String board_idx = "1";
+		String cPage = request.getParameter("cPage");
+		
+		Page p = new Page();
+		
+		Map<String, String> map = new HashMap<String, String>();
+		map.put("board_idx", board_idx);
+		
+		p = p.setPage(boardService.getBoardCount(map), cPage, 6, 5);
+		map = p.data1(p, board_idx, map);
+		
+//		for ( String key : map.keySet() ) {
+//		    System.out.println("방법1) key : " + key +" / value : " + map.get(key));
+//		}
+		
+		List<Board> boardList = boardService.getBoardList(map);
+//		
+//		System.out.println("diary_board boardList input(map) : " + board_idx);
+		session.setAttribute("board_idx", board_idx);
+		model.addAttribute("boardList", boardList);
+		model.addAttribute("board_idx", board_idx);
+		model.addAttribute("pvo", p);
+		model.addAttribute("command", "/community/diary_board");
+//
+//		System.out.println("bowwow list : " + boardList);
+//		System.out.println("board model : " + model);
+		
+		return "/community/main";
+		
 	}
 	
 	//펫 다이어리(list)

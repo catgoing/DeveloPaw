@@ -1906,7 +1906,8 @@ transparent;
 
 .checkout__form h5 {
 	color: #111111;
-	font-weight: 600;
+	font-size : 20px;
+	font-weight : bold;
 	text-transform: uppercase;
 	border-bottom: 1px solid #e1e1e1;
 	padding-bottom: 20px;
@@ -2097,8 +2098,7 @@ transparent;
 .checkout__order__widget label {
 	display: block;
 	padding-left: 25px;
-	font-size: 14px;
-	font-weight: 500;
+	font-size: 18px;
 	color: #111111;
 	position: relative;
 	cursor: pointer;

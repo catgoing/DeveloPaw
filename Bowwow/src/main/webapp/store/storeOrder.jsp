@@ -176,20 +176,6 @@
                                                                     <input type="hidden" id="p_id" name="p_id">
                                                                 </div>
                                                             </div>
-                                                            <div class="col-lg-12">
-                                                                <div class="checkout__form__input">
-                                                                    <p>
-                                                                     	   주소 <span>*</span><input type="button" style="margin-left : 20px; width : 120px; text-align : center" class="searchAddress" onclick="execMap()" value="주소찾기">
-                                                                    </p>
-                                                                    
-                                                                    <input type="text" id="userZonecode" name="zip" readonly placeholder="우편번호">
-                                                                    <input type="text" id="userAddress" name="address" placeholder="주소" readonly> 
-                                                                    <input type="text"  name="address_detail" placeholder="동,호수 등 상세 주소를 입력하세요">
-                                                                </div>
-                                                                <div class="checkout__form__input">
-                                                                    
-                                                                </div>
-                                                            </div>
                                                             <div class="col-lg-6 col-md-6 col-sm-6">
                                                                 <div class="checkout__form__input">
                                                                     <p>
@@ -198,10 +184,15 @@
                                                                     <input type="text" name="phone">
                                                                 </div>
                                                             </div>
-                                                            <div class="col-lg-6 col-md-6 col-sm-6">
+                                                            <div class="col-lg-12">
                                                                 <div class="checkout__form__input">
-                                                                    <p>이메일</p>
-                                                                    <input type="text">
+                                                                    <p>
+                                                                     	   받으실 주소 <span>*</span><input type="button" style="margin-left : 20px; width : 120px; text-align : center" class="searchAddress" onclick="execMap()" value="주소찾기">
+                                                                    </p>
+                                                                    
+                                                                    <input type="text" id="userZonecode" name="zip" readonly placeholder="우편번호">
+                                                                    <input type="text" id="userAddress" name="address" placeholder="주소" readonly> 
+                                                                    <input type="text"  name="address_detail" placeholder="동,호수 등 상세 주소를 입력하세요">
                                                                 </div>
                                                             </div>
                                                             <div class="col-lg-12">
@@ -216,6 +207,8 @@
                                                                     <input type="hidden" id="order_status" name="order_status" value="주문 완료">
                                                                     <input type="hidden" id="pCount" name="amount">
                                                                     <input type="hidden" id="pSum" name="totalSum">
+                                                                    <input type="hidden" id="pName" name="p_name">
+                                                                    <input type="hidden" id="orderPoint" name="order_point">
                                                                 </div>
                                                             </div>
                                                         </div>
@@ -228,14 +221,14 @@
                                                             <ul>
                                                                 <li>
                                                                     <div class="top__text cart-product-title">상품명</div>
-                                                                    <div class="top__text cart-product-title ">수량</div>
-                                                                    <div class="top__text cart-product-title">합계금액</div>
+                                                                    <div class="top__text cart-product-title" style="text-align: center !important;">수량</div>
+                                                                    <div class="top__text cart-product-title" style="text-align: right !important;">합계금액</div>
 
                                                                 </li>
                                                                 <li>
-                                                                    <div class="top__text cart-product-value" id="pName">Chain buck bag </div>
-                                                                    <div class="top__text cart-product-value" id="pCount2"></div>
-                                                                    <div class="top__text cart-product-value" id="pSum2"></div>
+                                                                    <div class="top__text cart-product-value" id="pName2"></div>
+                                                                    <div class="top__text cart-product-value" id="pCount2" style="text-align: center !important;"></div>
+                                                                    <div class="top__text cart-product-value" id="pSum2" style="text-align: right !important;"></div>
                                                                 </li>
                                                             </ul>
                                                         </div>
@@ -250,11 +243,11 @@
                                                             <input type="checkbox" name="chk_1" id="o-acc"> 
                                                             <span class="checkmark"></span>
                                                             </label>
-                                                            <p>Bowwow는 귀하께서 Bowwow 입점업체 판매자로부터 상품 및 서비스를 구매하고자 할
-								                                                                경우, 정보통신망 이용촉진 및 정보보호 등에 관한 법률 제 24조의 2(개인정보 공유동의 등)에 따라
-								                                                                귀하의 동의를 받아 귀하의 개인정보를 판매자에게 공유합니다. "개인정보 제3자 공유 동의"를 체크하시면
-								                                                                개인정보 공유에 대해 동의한 것으로 간주합니다. 본 개인정보 공유에 동의하지 않으시는 경우, 동의를
-								                                                                거부할 수 있으며, 이 경우 거래가 제한됩니다.</p>
+                                                            <p>Bowwow는 귀하께서 Bowwow 판매자로부터 상품 및 서비스를 구매하고자 할 경우, 
+                                                                                                                                          정보통신망 이용촉진 및 정보보호 등에 관한 법률 제 24조의 2(개인정보 공유동의 등)에 따라
+								                                                                   귀하의 동의를 받아 귀하의 개인정보를 판매자에게 공유합니다. "개인정보 제3자 공유 동의"를 체크하실 경우
+								                                                                   개인정보 공유에 대해 동의한 것으로 간주합니다. 만약 본 개인정보 공유에 동의하지 않으신다면 동의를
+								                                                                   거부할 수 있으며, 이 경우 거래가 제한됩니다.</p>
                                                             <label for="check-payment"> 위 상품 정보 및 거래 조건을 확인하였으며, 구매 진행에 동의합니다.(필수) 
                                                                 <input type="checkbox" name="chk_2" id="check-payment"> 
                                                                 <span class="checkmark"></span>
@@ -308,24 +301,38 @@
                 var pId = getParameterByName('p_id');
                 var pCount = getParameterByName('p_count');
                 var pSum = getParameterByName('totalSum');
+                var pName = getParameterByName('p_name');
+                var number = pSum.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
+                var point = Math.floor(pSum * 0.001);
 
-                // id가 p_id인 input태그 안에 value를 pId로 set하는 태그
+                // input태그 안에 value를 pId로 set하는 태그
                 $('#p_id').val(pId);
                 $('#pSum').val(pSum);
                 $('#pCount').val(pCount);
+                $('#pName').val(pName);
+                $('#orderPoint').val(point);
 
-                // id가 pSum인 value가 없는 태그 안에 값을 set하는 태그
-                $('#pSum2').append(pSum + "원");
-                $('#pSum3').append(pSum + "원");
+                // value가 없는 태그 안에 값을 set하는 태그
+                $('#pName2').append(pName);
+                $('#pSum2').append(number + "원");
+                $('#pSum3').append(number + "원");
                 $('#pCount2').append("X " + pCount);
-
-
                 console.log(pId);
                 console.log(pCount);
                 console.log(pSum);
-
-
+	          
             });
+            
+            
+	           /*  $(function numberAddCommas(totalS) {
+	            	var totalS= $('#pSum3').val(pSum);
+	         	   	if(totalS == 0) {
+	         	    	  return 0;
+	         	  	 } else {
+	         	     	 return totalS.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
+	         	   	}
+	         	}); */
+            
         </script>    
     </body>
 
