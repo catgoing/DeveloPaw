@@ -97,15 +97,17 @@ public class StoreController {
 		}
 		
 		Map<String, String> map = new HashMap<String, String>();
+		map.put("keyword", product.getKeyword());
 		
-		
-		p = p.setPage(storeService.getProductCount(map), cPage, 20, 10);
+		p = p.setPage(storeService.getSearchCount(map), cPage, 20, 10);
 		map = p.data1(p, product.getKeyword(), map);
 		
 		List<Product> searchProd = storeService.prodSearch(map);
 		
 		model.addAttribute("pSearch", searchProd);
 		model.addAttribute("pvo", p);
+		model.addAttribute("keyword", product.getKeyword());
+		model.addAttribute("command", "/store/searchProd");
 	
 		return "/store/storeSearch";
 	}

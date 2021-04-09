@@ -1,10 +1,8 @@
 package ga.bowwow.service.store.impl;
 
-import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-import org.apache.commons.collections.map.HashedMap;
 import org.mybatis.spring.SqlSessionTemplate;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
@@ -25,6 +23,7 @@ public class StoreDAO {
 	}
 	
 	// 상품 관련 dao
+	
 	public Product getProductDetail(int p_id) {
 	    return mybatis.selectOne("Store.getProductDetail", p_id);
 	}
@@ -37,9 +36,14 @@ public class StoreDAO {
 		return mybatis.selectOne("Store.ProductCount", map);
 	}
 	
+	public int getSearchCount(Map<String, String> map) {
+		return mybatis.selectOne("Store.ProductSearchCount", map);
+	}
+	
 	public List<Product> searchProd(Map<String, String> map) {
 		return mybatis.selectList("Store.searchProd", map);
 	}
+	
 	
 	// 장바구니 관련 dao
 	

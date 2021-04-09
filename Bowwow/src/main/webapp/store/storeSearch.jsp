@@ -50,6 +50,19 @@
   .featured__item__text { width: 150px; }
   
 </style>
+<script type="text/javascript">
+	  $(document).ready(function(){
+	   var max_h=400;
+	   $(".monthly-products li").each(function(){
+	 var h = parseInt($(this).css("height"));
+	    if(max_h<h){ max_h = h; }
+	   });
+	   $(".monthly-products li").each(function(){
+	 $(this).css({height:max_h});
+	   });
+	  });
+</script>
+
 </head>
 
 <body>
@@ -86,6 +99,11 @@
 												</div>
 												<div class="monthly-products">
 													<ul>
+														<c:if test="${empty pSearch }">
+															<h4>검색 결과가 존재하지 않습니다.</h4>
+														</c:if>
+														
+														<c:if test="${not empty pSearch }">
 														<c:forEach var="list" items="${pSearch }">
 															<c:choose>
 																<c:when test="${list.p_type == 'dog'}">
@@ -127,6 +145,7 @@
 																</div>
 															</li>
 														</c:forEach>
+														</c:if>
 													</ul>
 												</div>
 												<div>

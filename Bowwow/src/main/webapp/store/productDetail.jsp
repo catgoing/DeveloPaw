@@ -319,6 +319,12 @@
 	  	frm.submit();
      }
 	 
+	 function toMyPage() {
+		 var p_id = $("input:hidden[name='p_id']").val();
+		 
+		 location.href="/getUserInquiryList?p_id=" + p_id;
+	 }
+	 
 </script>
 
 </head>
@@ -492,8 +498,10 @@
 																					style="resize: none;" placeholder="후기 내용"></textarea>
 																			</div>
 																			<div class="form-group">
-																				<button type="button" onclick="reviewInsert()"
-																					class="btn custom-btn" style="float: right;">작성</button>
+																				<input type="button" onclick="reviewInsert()" value="리뷰 등록"
+																					class="btn custom-btn" style="float: right;">
+																				<input type="button" onclick="toMyPage()" value="상품 문의하기"
+																					class="btn custom-btn">
 																				<input type="hidden" name="p_id" value="${p.p_id}">
 																				<input type="hidden" name="member_serial" value="999">
 																			</div>

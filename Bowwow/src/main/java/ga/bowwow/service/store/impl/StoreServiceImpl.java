@@ -50,4 +50,9 @@ public class StoreServiceImpl implements StoreService {
 		return storeDAO.searchProd(map);
 	}
 
+	@Override
+	public int getSearchCount(Map<String, String> map) {
+		return storeDAO.getSearchCount(map);
+	}
+
 }
