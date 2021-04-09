@@ -55,7 +55,7 @@
 			(
 				SELECT ROWNUM AS RN, BOARD.* FROM 
 				( 	
-					SELECT BOARD_NO, B.MEMBER_SERIAL, BOARD_TITLE, ID, IMG1, HITS, NICKNAME, REGDATE
+					SELECT BOARD_NO, B.MEMBER_SERIAL, BOARD_TITLE, ID, IMG1, HITS, NICKNAME, TO_CHAR(REGDATE, 'YYYY-MM-DD') AS REGDATE
 					FROM 
 						<choose>
 							<when test='board_idx == 1'> DIARY_BOARD B, USER_ACCOUNT U WHERE B.MEMBER_SERIAL = U.MEMBER_SERIAL </when>
@@ -85,7 +85,7 @@
 	</select>
 	
 	<select id="getBoard" parameterType="Map" resultType="board">
-		SELECT BOARD_NO, BOARD_CONTENT, BOARD_TITLE, ANIMAL_CLASS, HITS, NICKNAME, REGDATE
+		SELECT BOARD_NO, BOARD_CONTENT, BOARD_TITLE, ANIMAL_CLASS, HITS, NICKNAME, TO_CHAR(REGDATE, 'YYYY-MM-DD HH24:MI') AS REGDATE
 		FROM 
 		<choose>
 			<when test='board_idx == 1'> DIARY_BOARD B, USER_ACCOUNT U </when>
@@ -224,7 +224,7 @@
 	
 	
 	<select id="getCommentList" parameterType="Map" resultType="comment" >
-		SELECT COMMENT_NO, BOARD_NO, COMMENT_CONTENT, REGDATE, NICKNAME
+		SELECT COMMENT_NO, BOARD_NO, COMMENT_CONTENT, TO_CHAR(REGDATE, 'YYYY-MM-DD HH24:MI') AS REGDATE, NICKNAME
 		FROM 
 		<choose>
 			<when test='board_idx == 1'> DIARY_COMMENTS C, USER_ACCOUNT U WHERE C.MEMBER_SERIAL = U.MEMBER_SERIAL </when>
@@ -236,7 +236,7 @@
 	</select>
 	
 	<select id="getComment2List" parameterType="Map" resultType="comment" >
-		SELECT COMMENT_NO2, C2.COMMENT_NO, C2.COMMENT_CONTENT2 AS COMMENT_CONTENT, C2.REGDATE, NICKNAME
+		SELECT COMMENT_NO2, C2.COMMENT_NO, C2.COMMENT_CONTENT2 AS COMMENT_CONTENT, TO_CHAR(C2.REGDATE, 'YYYY-MM-DD HH24:MI') AS REGDATE, NICKNAME
 		FROM 
 		<choose>
 			<when test='board_idx == 1'> 
@@ -256,20 +256,41 @@
 		AND C2.MEMBER_SERIAL = U.MEMBER_SERIAL
 	</select>
 	
-	 <select id="search" parameterType="Map" resultType="board">
+<!-- 	 <select id="search" parameterType="Map" resultType="board">
 		SELECT *
 		FROM 
 		<choose>
 			<when test='board.equals("1")'> 
 			DIARY_BOARD
 			</when>
-			<when test='board.equals("2")'> 
+			<when test='board_idx == 2'> 
 			INTRO_BOARD 
 			</when>
-			<when test='board.equals("3")'> 
+			<when test='board_idx == 3'> 
 			KNOWHOW_BOARD
 			</when>
-			<when test='board.equals("4")'> 
+			<when test='board_idx == 4'> 
+			MISSING_BOARD
+			</when>
+		</choose>
+			WHERE BOARD_CONTENT LIKE '%'||#{keyword}||'%'
+			OR  BOARD_TITLE LIKE '%'||#{keyword}||'%' 	
+	</select>  -->
+	
+	 <select id="search" parameterType="Map" resultType="board">
+		SELECT BOARD_NO, BOARD_CONTENT AS BOARD_SCONTENT, BOARD_TITLE, HITS, REGDATE
+		FROM 
+		<choose>
+			<when test='board_idx.equals("1")'> 
+			DIARY_BOARD
+			</when>
+			<when test='board_idx.equals("2")'> 
+			INTRO_BOARD 
+			</when>
+			<when test='board_idx.equals("3")'> 
+			KNOWHOW_BOARD
+			</when>
+			<when test='board_idx.equals("4")'> 
 			MISSING_BOARD
 			</when>
 		</choose>

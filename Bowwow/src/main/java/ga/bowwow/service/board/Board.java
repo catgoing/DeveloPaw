@@ -24,6 +24,7 @@ public class Board {
 	private String id;				//회원번호
 	private String goods;			//상품종류
 	private String board_content;	//게시판 내용
+	private String board_scontent;	//게시판 내용
 	private String regdate;			//작성일
 	private String hits;			//조회수
 	private String area;			//지역
@@ -49,8 +50,11 @@ public class Board {
 //		}
 //	}
 
-	public void setRegdate(String regdate) {
-		this.regdate = regdate.substring(0, 16);
+//	public void setRegdate(String regdate) {
+//		this.regdate = regdate.substring(0, 16);
+//	}
+	public void setBoard_scontent(String board_scontent) {
+		this.board_scontent = board_scontent.replaceAll("\\<?img(.*?)\\>", "").replaceAll("\\<?p\\>", "");
 	}
 	
 
