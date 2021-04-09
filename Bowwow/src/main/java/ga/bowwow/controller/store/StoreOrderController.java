@@ -8,6 +8,7 @@ import java.util.Map;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import org.json.simple.JSONArray;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -30,9 +31,17 @@ public class StoreOrderController {
 	}
 
 	@RequestMapping(value = "/store/storeOrder")
-	public String storeOrder() {
-		return "storeOrder";
-	}
+	@ResponseBody
+	public String storeOrder(HttpServletRequest request, Model model) {
+	    String[] orderArray = request.getParameterValues("orderArray");
+	    for (int i = 0; i < orderArray.length; i++) {
+			System.out.println(orderArray[i]);
+		}
+	    
+		return "/store/storeOrder";
+}
+
+
 
 	// 주문내역 작성
 	@RequestMapping(value = "/store/insertOrder")

@@ -242,7 +242,7 @@
 
 		});
 		console.log(orderArr);
-
+		orderArray = JSON.stringify(orderArr);
  		if ($("input[name='p_id']:checked").length == 0) {
  				alert("선택된 상품이 없습니다.");
  				return;
@@ -251,26 +251,23 @@
 		$.ajax({
 			url : "/store/storeOrder",
 			type : "post",
-			data : orderArr,
-			dataType : 'json',
+			data : {
+				orderArray : orderArray,
+				},
 			traditional : true,
 			success : function(data){
 				if(data) {
-					
-					for(var i =0; i<data.length; i++){
-						console.log(data.eq(i).val());
-					}
-					
-					 
+					alert("성공");
 				}
-				
-
+			},
+			error : function( jqXHR, textStatus, errorThrown ) {
+				alert( jqXHR.status );
+				alert( jqXHR.statusText );
+				alert( jqXHR.responseText );
+				alert( jqXHR.readyState );
 			}
 		});
- 		
-		
  	}  
- 
 </script>
 
 </head>
