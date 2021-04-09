@@ -76,6 +76,11 @@
 </style>
 <!-- 신고하기  -->
 	<script>
+	$(function (){
+		var board_idx = ${board_idx};
+		board_idx = board_idx + 3;
+		$(".pcoded-inner-navbar>ul:nth-child(" + board_idx + ")>li>a").addClass("active");
+	});
 
         $(function (){
         	$('.readonly').prop('readonly', true);

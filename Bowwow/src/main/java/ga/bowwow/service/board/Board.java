@@ -53,9 +53,6 @@ public class Board {
 //	public void setRegdate(String regdate) {
 //		this.regdate = regdate.substring(0, 16);
 //	}
-	public void setBoard_scontent(String board_scontent) {
-		this.board_scontent = board_scontent.replaceAll("\\<?img(.*?)\\>", "").replaceAll("\\<?p\\>", "");
-	}
 	
 	public void setBoard_scontent(String board_scontent) {
 		String pattern = "/<(\\/)?([a-zA-Z]*)(\\s[a-zA-Z]*=[^>]*)?(\\s)*(\\/)?>/ig";
