@@ -1,7 +1,5 @@
 package ga.bowwow.service.store;
 
-import java.util.List;
-
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -30,8 +28,5 @@ public class Order {
 	private String phone;			// 주문자 핸드폰 번호
 	
 	private String realname;		// 실명
-	private List<Order> cartPname;	
-	private List<Order> cartId;	
-	private List<Order> cartAmount;	
-	private List<Order> cartProdSum;	
+
 }
