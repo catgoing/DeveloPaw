@@ -6,6 +6,7 @@
     <% request.setCharacterEncoding("UTF-8"); %>
 <%@ taglib uri="http://tiles.apache.org/tags-tiles" prefix="tiles"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
 
 <!DOCTYPE html>
 <html>
@@ -73,7 +74,7 @@
  .question-write, .content-list, table{
 	padding-bottom: 30px;
 	text-align:center;
-	margin : 50px;
+	margin : 0 auto;
 	width: 80%;	
  }
  .question-write div, .question-write input[type="text"], 
@@ -141,13 +142,13 @@ $(document).ready(function(){
 //빈칸, 문의유형선택안하면 경고
 function allInputCheck(frm) {
 	if(frm.inquiry_type.value==""){
-		if(frm.p_id.value!=""){
+		if(frm.p_id){ //p_id가 들어왔을 때
 			alert("문의 유형은 상품유형을 선택하세요");
 		}
-		alert("문의 유형을 선택하세요");
-		console.log(frm.inquiry_type);
-		frm.inquiry_type.focus();
-	} 
+		else if(!frm.p_id){	 //p_id가 안들어왔을 때 
+			alert("문의 유형을 선택하세요");
+		}
+	}
 	else if(frm.inquiry_title.value==""){
 		alert("문의 제목을 입력하세요");
 		frm.inquiry_title.focus();
@@ -278,12 +279,12 @@ function allInputCheck(frm) {
 							  						<table class="form-control" style="line-height:0">
 							  							<tr>
 							  								<td rowspan="2" style="line-height:0">
-							  									<img src="https://projectbit.s3.us-east-2.amazonaws.com/${targetProduct.s_image }" style="max-width:100%;">
+							  									상품이미지<img src="https://projectbit.s3.us-east-2.amazonaws.com/${foldername }/${targetProduct.s_image }" style="max-width:100%;">
 							  								</td>
+							  								<td> <a href="detail?p_id=${targetProduct.p_id }">상품명 ${targetProduct.p_name }</a> </td>
 							  							<tr>
 							  							<tr>
-							  								<td>${targetProduct.p_name }</td>
-							  								<td>${targetProduct.price }</td>
+							  								<td><fmt:formatNumber value="${targetProduct.price}" pattern="#,###"/> 원</td>
 						  								</tr>
 							  						</table>
 							  						<input type="hidden" id="targetPid" name="p_id" value="${targetProduct.p_id }">							  						
@@ -335,6 +336,7 @@ function allInputCheck(frm) {
 								<table class="border-none">
 									<tr>
 										<td class="input-group">
+										    <input type="hidden" name="member_serial" value="${sessionScope.userDTO.member_serial }">
 										    <select class="form-control" id="inputGroupSelect04" name="typeSelect" aria-label="Example select with button addon">
 										      <option selected>전체보기</option>
 										      <option value="contactUs">이용문의</option>

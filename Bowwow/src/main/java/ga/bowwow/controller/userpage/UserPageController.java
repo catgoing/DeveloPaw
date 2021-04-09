@@ -66,6 +66,7 @@ public class UserPageController {
 		HttpSession session = request.getSession();
 		UserDTO user = (UserDTO)session.getAttribute("userDTO");
 		int member_serial = user.getMember_serial();
+		
 		System.out.println("member_serial : " + member_serial);
 		
 		userAccount.setMember_serial(member_serial);

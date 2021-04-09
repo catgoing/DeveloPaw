@@ -9,23 +9,23 @@
 	<!-- 문의입력 -->
 	<insert id="myInquiryWrite" parameterType="inquiry">
 		INSERT INTO INQUIRY_USER (INQUIRY_SERIAL, MEMBER_SERIAL, NICKNAME, INQUIRY_TITLE, INQUIRY_CONTENT,
-				INQUIRY_WRITEDATE, INQUIRY_TYPE) 
+				INQUIRY_WRITEDATE, INQUIRY_TYPE, P_ID) 
 		VALUES (INQ_PERSONAL_SEQ.NEXTVAL, #{member_serial}, #{nickname}, #{inquiry_title}, #{inquiry_content},
-				SYSDATE, #{inquiry_type})
+				SYSDATE, #{inquiry_type}, #{p_id})
 	</insert>
 	
 	<!-- 본인 문의 전체 조회 -->
-	<select id="myInquiryListSelect" parameterType="Map" resultType="Map"> <!-- 기존페이징사용하면 member_serial에서 에러남(타입안맞음) -->
+	<select id="myInquiryListSelect" parameterType="Map" resultType="inquiry"> <!-- 기존페이징사용하면 member_serial에서 에러남(타입안맞음) -->
 		SELECT * 
 	    FROM(SELECT ROWNUM AS RN, IQUSER.* 
-	        FROM(SELECT *
-	            FROM INQUIRY_USER
-	            WHERE 1=1 
-	            AND #{typeSelect} IS NULL OR INQUIRY_TYPE = #{typeSelect}
-	            and MEMBER_SERIAL = #{member_serial} 
-	            		 ORDER BY INQUIRY_WRITEDATE DESC
-						 ) IQUSER )
-	    WHERE RN BETWEEN #{begin} AND #{end}
+	       	 FROM(SELECT *
+		            FROM INQUIRY_USER
+		            WHERE MEMBER_SERIAL = #{member_serial} 
+		            <if test="typeSelect != null">AND INQUIRY_TYPE = #{typeSelect}</if>
+	           		 ORDER BY INQUIRY_WRITEDATE DESC
+					 ) IQUSER
+			  )
+	    WHERE RN BETWEEN ${begin} AND ${end}
 		<!-- SELECT * FROM INQUIRY_USER
 		WHERE MEMBER_SERIAL = #{member_serial} 
 			AND #{typeSelect} IS NULL OR INQUIRY_TYPE = #{typeSelect} -->
@@ -95,11 +95,12 @@
 				FROM(SELECT *
 					 FROM INQUIRY_USER
 					 WHERE 1=1
-					<if test="typeSelect != null">#{typeSelect} IS NULL OR AND INQUIRY_TYPE = #{typeSelect}</if>
+					<!-- <if test="typeSelect != null">#{typeSelect} IS NULL OR AND INQUIRY_TYPE = #{typeSelect}</if> -->
+					<if test="typeSelect != null">AND INQUIRY_TYPE = #{typeSelect}</if>
 					 ORDER BY INQUIRY_WRITEDATE DESC
 					 ) IQUSER
 		 	   )
-		  WHERE RN BETWEEN #{begin} AND #{end}
+		  WHERE RN BETWEEN ${begin} AND ${end}
 	</select>
 	
 	<!-- 관리자 문의답변입력 -->

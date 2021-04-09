@@ -29,9 +29,9 @@ public class UserPointDAO{
 		return list;
 	}
 	
-	//마이홈 출력용 포인트리스트(최신순 6개)
+	//마이홈 출력용 포인트리스트(최신순 10개)
 	public List<Order> getMyHomePointList(int member_serial){
-		List<Order> list = mybatis.selectList("UserAccount.mainSerachPoint", member_serial);
+		List<Order> list = mybatis.selectList("UserAccount.mainSearchPoint", member_serial);
 		for(Order o : list) {
 			//date를 연월일시분 까지 출력
 			String date = o.getOrder_date().substring(0, 16);
@@ -39,5 +39,4 @@ public class UserPointDAO{
 		}
 		return list;
 	}
-	
 }

@@ -54,41 +54,28 @@
     <link rel="stylesheet" type="text/css" href="../resources/css/style.css">
     <link rel="stylesheet" type="text/css" href="../resources/css/test.css">
 <style>
-  .featured__item__text { width: 150px; }
-  
-  .input-content .input-wrap {
-	margin-bottom: 15px;
-	position: relative;
-}
- .input-content .input-wrap:last-of-type {
-	margin-bottom: 0;
-}
-
- .input-content .input-wrap input {
-	width: 100%;
-	height: 50px;
-	border-radius: 10px;
-	color: #48484d;
-	font-size: 15px;
-	font-weight: 700;
-	padding: 14px 20px;
-	border: 1px solid #e4e4e4;
-	padding-right: 50px;
-}
+ .point-container{
+ 	text-align: center;
+ }
+ 
  .content-list {
    display : block;
    width: 80%;
-    margin-bottom: 50px;
+   margin : 0 auto;
+   margin-bottom: 50px;
  } 
  
- table { border-collapse: collapse; }
+ table { 
+ 	width: 100%;
+ 	border-collapse: collapse; 
+ 	margin : 0 auto;
+ }
  th, td {
 	border: 1px solid black;
 	margin: 0 auto;
  }
  th { background-color: orange; }
  .center { text-align: center; }
- .border-none, .border-none td { border: none; }
  td .input-group{
  	width : 100%;
  }
@@ -172,7 +159,7 @@
 							<!-- Page-body start -->
 							<div class="page-body">
 								<section class="featured spad">
-									<div class="container">
+									<div class="container point-container">
 										<div class="row">
 											<div class="col-lg-12">
 												<div class="section-title">
@@ -184,8 +171,8 @@
 								<div class="content-list">
 						     	<table>
 									<tr>
-										<th width="200">추가일</th>
-										<th width="150">추가포인트</th>
+										<th width="45%">추가일</th>
+										<th width="25%">추가포인트</th>
 										<th width="150">누적포인트</th>
 									</tr>
 									

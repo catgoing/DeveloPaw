@@ -66,6 +66,7 @@
 .col-md-4 .list-inner .pet-img{
 	width : 300px;
 	height : 300px;
+	margin : 0 auto;
 }
 #detail_petimg, #detail_petimg #detail_thumb{
 	width : 300px;

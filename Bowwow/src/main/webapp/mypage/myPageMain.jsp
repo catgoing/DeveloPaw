@@ -3,14 +3,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
-<%
-	int member_serial = 999;
-	String nickname = "야";
-	UserDTO userDTO = new UserDTO();
-	userDTO.setMember_serial(member_serial);
-	userDTO.setNickname(nickname);
-	session.setAttribute("userDTO", userDTO);
-%>
+
 <!DOCTYPE html>
 <html>
 
@@ -60,7 +53,15 @@
     <link rel="stylesheet" type="text/css" href="../resources/css/test.css">
 <style>
   .myPageInfo-header{ text-align : center;}
-  .container h3 { text-align: center;}
+  .container h3{ text-align: center;}
+  .div-center { margin: 0 auto;}
+  .text-center {
+  	text-align : center;
+  	color : #ff6347;
+  }
+ .petImg-container{
+  	margin: 0 auto;
+  }
 </style>
 <script>
 /* (function(member_serial) {
@@ -150,20 +151,15 @@
 						<div class="mypage_main_content">
 
 							<div class="container mypage_main_content mypointlist">
-								<h3>누적 적립금 출력영역</h3>
-								<div class="container totalpoint">
-									<div class="table">
+								<h3>누적 적립금</h3>
+								<div class="container point">
 									
-									<table>
 									<c:if test="${empty myHomePointList }">
-										<tr>	
-											<td colspan="5" class="center">
-												<div style="">
-													<h3>적립된 포인트가 없습니다.</h3>
-												</div>
-											</td>
-										</tr>
+										<div >
+											<h5 class="text-center">적립된 포인트가 없습니다.</h5>
+										</div>
 									</c:if>
+									<table>
 									<c:if test="${not empty myHomePointList }">	
 										<h5>상품 구매 후 적립된 포인트 내역을 보여드립니다.</h5>
 										<tr>
@@ -187,23 +183,28 @@
 							<hr>
 							<div class="container petlist">
 							  	<h3>반려동물 리스트</h3>
-							  <div class="row">
+								<div class="row">
 							  	<c:if test="${not empty myHomepetList }">
                        			<c:forEach var="petList" items="${myHomepetList }">
-							    <div class="col-sm">
-							      	${petList.pet_name }
-							    	<div class="card" style="width: 200px; height: 200px;">
-										<img src="${petList.image_source_oriname }" class="card-img-top" alt="..." style="width: 200px; height: 200px;">
-									</div>
-							    </div>
+								    <div class="col-md-4" style="margin-bottom : 40px;">
+		                                <div class="list-inner">
+								      		<h5 class="text-center">${petList.pet_name }</h5>
+									    	<div class="card petImg-container" style="width: 250px; height: 200px;">
+												<img src="${petList.image_source_oriname }" class="card-img-top" alt="..." style="width: 250px; height: 200px;">
+											</div>
+								   		</div>
+								    </div>
 							    </c:forEach>
+							    <div class="div-center">
+							    	<h5 class="text-center">현재 페이지에서는 6마리까지 보여집니다.</h5>
+							    </div>
 							    </c:if>
 							    <c:if test="${empty myHomepetList }">
-						    	<div class="col-md-6">
-                           			<div class="list-inner">
-                               	<h3>등록된 반려동물이 없습니다.</h3>
-                            	</div>
-                            </div>
+							    	<div class="col-md-6">
+	                           			<div class="list-inner">
+		                               	<h3>등록된 반려동물이 없습니다.</h3>
+		                            	</div>
+	                            	</div>
 							    </c:if>
 							  </div>
 							</div>

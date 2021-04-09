@@ -16,6 +16,8 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.SessionAttributes;
 
 import ga.bowwow.service.paging.Page;
+import ga.bowwow.service.store.Product;
+import ga.bowwow.service.store.StoreService;
 import ga.bowwow.service.user.VO.UserDTO;
 import ga.bowwow.service.userpage.MyInquiry;
 import ga.bowwow.service.userpage.MyInquiryService;
@@ -26,6 +28,8 @@ public class InquiryController {
 	
 	@Autowired
 	private MyInquiryService myServive;
+	@Autowired
+	private StoreService storeService;
 	
 	public InquiryController() {
 		System.out.println("문의 컨트롤러 생성");
@@ -52,7 +56,7 @@ public class InquiryController {
 		return "redirect:/getUserInquiryList";
 	}
 	
-	//유저문의리스트
+	//유저문의리스트(본인문의)
 	@RequestMapping(value="/getUserInquiryList")
 	public String getUserInquiryList(MyInquiry myInquiry, Model model, HttpServletRequest request) {
 		System.out.println(">> 로그인한 유저의 문의 리스트를 가져옵니다. !");
@@ -61,21 +65,48 @@ public class InquiryController {
 		HttpSession session = request.getSession();
 		UserDTO user = (UserDTO)session.getAttribute("userDTO");
 		int member_serial = user.getMember_serial();
+		
 		System.out.println("member_serial : " + member_serial);
+		System.out.println("겟번호 : " + myInquiry.getP_id());
 		
+		//상품문의 - 상품번호 들어왔을때-_-..
+		Integer test = myInquiry.getP_id();
+		if (test!=null && test!=0) {
+			int p_id = test;
+			System.out.println(p_id);
+			Product targetProduct = storeService.getProductDetail(p_id);
+			System.out.println("targetProduct : " + targetProduct);
+			if(targetProduct!=null&&targetProduct.getP_type().equals("cat")) {
+				model.addAttribute("foldername", "catImg");
+			} else if(targetProduct!=null&&targetProduct.getP_type().equals("dog")) {
+				model.addAttribute("foldername", "dogImg");				
+			}
+			model.addAttribute("targetProduct", targetProduct);
+		}
+		
+		//문의유형 null아닐때
+		String typeSelect = "";
+		if (myInquiry.getTypeSelect() != null && myInquiry.getTypeSelect().length() != 0) {
+			typeSelect = myInquiry.getTypeSelect();
+		}
+		
+		//페이징처리
 		String cPage = request.getParameter("cPage");
-		
 		Page p = new Page();
-		Map<String, String> map = new HashMap<String, String>();
-		map.put("member_serial", myInquiry.getMember_serial()+"");
+		Map<String, Object> map = new HashMap<String, Object>();
+		map.put("member_serial", member_serial);
 		map.put("typeSelect", myInquiry.getTypeSelect());
 		
 		p = p.setPage(myServive.getMyInquiryCount(map), cPage, 10, 5);
-		map = p.data2(p, myInquiry.getMember_serial()+"", myInquiry.getTypeSelect(), map);
+		map = p.data22(p, member_serial, myInquiry.getTypeSelect(), map);
+		System.out.println("확인!!!!!! : "+map);
 		
 		List<MyInquiry> uiqList = myServive.getMyInquiryList(map);
 		
 		model.addAttribute("userinquiryList", uiqList);
+		model.addAttribute("member_serial", member_serial);
+		model.addAttribute("typeSelect", typeSelect);
+		model.addAttribute("command","/getUserInquiryList");
 		System.out.println(myInquiry.getMember_serial() + "번 유저의 문의리스트를 넘겨줍니다");
 		
 		return "/mypage/myInquiry";
@@ -90,6 +121,16 @@ public class InquiryController {
 		
 		MyInquiry uiq = myServive.getMyInquiry(myInquiry);
 		
+		//상품문의 - 상품번호 들어왔을때-_-....
+		Integer test = uiq.getP_id();
+		if (test!=null || test!=0) {
+			int p_id = test;
+			System.out.println(p_id);
+			Product targetProduct = storeService.getProductDetail(p_id);
+			model.addAttribute("targetProduct", targetProduct);
+		}
+		
+		//관리자 답변이 등록됐을 때		
 		if(uiq.getInquiry_re_content()!=null) {
 			String answerDate = uiq.getInquiry_re_date().substring(0, 10);
 			uiq.setInquiry_re_date(answerDate);
@@ -117,28 +158,36 @@ public class InquiryController {
 	public String getAdminInquiryList(MyInquiry myInquiry, Model model, HttpServletRequest request) {
 		System.out.println(">> 관리자 : 유저문의리스트 출력페이지 !");
 		
-		List<MyInquiry> ListAll = null;
 		String cPage = request.getParameter("cPage");
-		
 		Page p = new Page();
-		
-		if(myInquiry.getTypeSelect().equals(null)) {
-			Map<String, String> map = new HashMap<String, String>();
-			
-			map = p.data0(p);
-			ListAll = myServive.getAllInquiry(map);
-		} else { //typeSelect가 있을 때	
-			Map<String, String> map = new HashMap<String, String>();
-			map.put("typeSelect", myInquiry.getTypeSelect());
-			
-			p = p.setPage(myServive.getInquiryCount(map), cPage, 10, 5);
-			map = p.data1(p,myInquiry.getTypeSelect(),map);
-			
-			ListAll = myServive.getAllInquiry(map);
-			model.addAttribute("AllUsersInquiry", ListAll);
+//		List<MyInquiry> ListAll = null;		
+//		if(myInquiry.getTypeSelect().equals(null)) {
+//			Map<String, String> map = new HashMap<String, String>();
+//			map = p.data0(p);
+//			ListAll = myServive.getAllInquiry(map);
+//		} else { //typeSelect가 있을 때	
+//			Map<String, String> map = new HashMap<String, String>();
+//			map.put("typeSelect", myInquiry.getTypeSelect());			
+//			p = p.setPage(myServive.getInquiryCount(map), cPage, 10, 5);
+//			map = p.data1(p,myInquiry.getTypeSelect(),map);
+//			ListAll = myServive.getAllInquiry(map);
+//		}
+		String typeSelect = null;
+		if(!myInquiry.getTypeSelect().equals(null)) {
+			typeSelect = myInquiry.getTypeSelect();
 		}
 		
+		Map<String, String> map = new HashMap<String, String>();
+		map.put("typeSelect", myInquiry.getTypeSelect());
+		
+		p = p.setPage(myServive.getInquiryCount(map), cPage, 10, 5);
+		map = p.data1(p,myInquiry.getTypeSelect(),map);
+		
+		List<MyInquiry> ListAll = myServive.getAllInquiry(map);
+		
 		model.addAttribute("AllUsersInquiry", ListAll);
+		model.addAttribute("typeSelect", typeSelect);
+		model.addAttribute("command","/getAdminInquiryList");
 		
 		return "/mypage/adminInquiry";
 	}
@@ -147,6 +196,15 @@ public class InquiryController {
 	@RequestMapping(value="/getAdminInquiryDetail")
 	public String getAdminInquiryDetail(MyInquiry myInquiry, Model model, HttpServletRequest requetst) {
 		System.out.println(">> 관리자 : 유저문의 상세페이지 !");
+		
+		//상품번호 들어왔을때-_-..
+		Integer test = myInquiry.getP_id();
+		if (test!=null || test!=0) {
+			int p_id = test;
+			System.out.println(p_id);
+			Product targetProduct = storeService.getProductDetail(p_id);
+			model.addAttribute("targetProduct", targetProduct);
+		}
 		
 		MyInquiry uiq = myServive.getMyInquiry(myInquiry);
 		model.addAttribute("uiqDetail", uiq);

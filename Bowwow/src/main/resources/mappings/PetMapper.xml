@@ -77,7 +77,7 @@
 			FROM ( SELECT *
 					 FROM USER_PETINFO
 					ORDER BY PET_SERIAL DESC)
-		  WHERE ROWNUM <![CDATA[ <= ]]> 3 AND MEMBER_SERIAL = #{member_serial }
+		  WHERE ROWNUM <![CDATA[ <= ]]> 6 AND MEMBER_SERIAL = #{member_serial }
 	 </select>
 
 </mapper>

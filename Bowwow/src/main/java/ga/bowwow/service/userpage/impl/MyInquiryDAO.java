@@ -38,10 +38,10 @@ public class MyInquiryDAO {
 	}
 	
 	//유저문의 리스트
-	public List<MyInquiry> getMyInquiryList(Map<String, String> map){
+	public List<MyInquiry> getMyInquiryList(Map<String, Object> map){
 		System.out.println("유저문의DAO selectAll");
-		int member_serial = Integer.parseInt(map.get("member_serial"));
-		String typeSelect = map.get("typeSelect");
+		int member_serial = (int)map.get("member_serial");
+		String typeSelect = (String)map.get("typeSelect");
 		
 		System.out.println("타입검색 : " + typeSelect);
 		
@@ -105,7 +105,7 @@ public class MyInquiryDAO {
 		return mybatis.selectOne("inquiry.InquiryCount", map);
 	}
 	//개별 유저 문의갯수
-	public int getMyInquiryCount(Map<String, String> map) {
+	public int getMyInquiryCount(Map<String, Object> map) {
 		return mybatis.selectOne("inquiry.myInquiryCount", map);
 	}
 	

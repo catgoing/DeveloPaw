@@ -160,7 +160,7 @@
 	 </select>
 	 
 	 <!-- 최신순 포인트내역 검색 -->
-	 <select id="mainSerachPoint" parameterType="UserAccount" resultType="Order">
+	 <select id="mainSearchPoint" parameterType="UserAccount" resultType="Order">
 	
 	 SELECT MEMBER_SERIAL, ORDER_DATE, TOTALSUM, ORDER_POINT, POINT
 		FROM (SELECT O.MEMBER_SERIAL, O.ORDER_DATE, O.TOTALSUM, O.ORDER_POINT, A.POINT
@@ -168,7 +168,7 @@
 			   WHERE O.MEMBER_SERIAL = A.MEMBER_SERIAL
 			   AND O.MEMBER_SERIAL = #{member_serial}
 			   ORDER BY O.ORDER_DATE DESC)
-	  WHERE ROWNUM <![CDATA[ <= ]]> 5
+	  WHERE ROWNUM <![CDATA[ <= ]]> 10
 	 
 	 </select>
 	 

@@ -125,7 +125,7 @@
 	</div>
     <form class="pet-form" id="pet-detail-form" name="pet-detail-form">
 		<div class="popup-inner img-pet" id="detail_petimg" style="width: 200px; height: 200px; margin-left:50px;">
-			<img src="${petDetail.image_source_oriname }" id="thumb_container">
+			<img src="" id="thumb_container">
 		</div>
 		<div class="popup-inner text-pet">
 		<div class="form-group-detail">

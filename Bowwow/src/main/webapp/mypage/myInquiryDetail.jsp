@@ -4,6 +4,8 @@
     <% request.setCharacterEncoding("UTF-8"); %>
 <%@ taglib uri="http://tiles.apache.org/tags-tiles" prefix="tiles"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
+
 
 <!DOCTYPE html>
 <html>
@@ -104,13 +106,16 @@
 									<td colspan="3">
 									<pre><c:out value="${uiqDetail.inquiry_content }" /></pre>
 									</td>
-								</tr>	
-								<c:if test="${uiqDetail.p_id == null }">
+								</tr>
+								<c:if test="${empty targetProduct }">
+								</c:if>
+								<c:if test="${not empty targetProduct}">
 								<tr>
 									<th>문의상품</th>
-									<td></td>
+									<td colspan="3"><a href="detail?p_id=${targetProduct.p_id }">${targetProduct.p_name}</a><br>
+									<fmt:formatNumber value="${targetProduct.price}" pattern="#,###"/> 원</td>
 								</tr>
-								</c:if>			
+								</c:if>		
 							</table>
 							<hr>
 							<c:if test="${empty inquiryAnswer }">
@@ -131,7 +136,7 @@
 							</c:if>
 						</div>  	
 						<div class="btn-container">
-							<button onclick="history.back()">돌아가기</button>
+							<button onclick="/getUserInquiryList">돌아가기</button>
 						</div>
 					</div>
 				</div>
