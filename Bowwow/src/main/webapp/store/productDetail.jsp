@@ -195,7 +195,7 @@
 		var json = {
 				"p_id" : p_id,
 				"amount" : amount,
-				"totalSum" : totalSum
+				"totalSum" : numberRemoveCommas(totalSum)
 		}
 		
 		orderArr.push(json);
@@ -351,6 +351,10 @@
 		 var p_id = $("input:hidden[name='p_id']").val();
 		 
 		 location.href="/getUserInquiryList?p_id=" + p_id;
+	 }
+	 
+	 function numberRemoveCommas(x) {
+	    return parseInt(x.replace(/,/g,""));
 	 }
 	 
 </script>
