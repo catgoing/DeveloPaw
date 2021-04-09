@@ -11,7 +11,7 @@
 		<ul class="pcoded-item pcoded-left-item">
 		</ul>
 		<ul class="pcoded-item pcoded-left-item">
-			<li class=""><a href="/community/main"
+			<li class=""><a href="/community/main?board_idx=0"
 				class="waves-effect waves-dark"> <span class="pcoded-micon"><i
 						class="ti-layers"></i><b>FC</b></span> <span class="pcoded-mtext">커뮤니티</span>
 					<span class="pcoded-mcaret"></span>
@@ -54,14 +54,14 @@
 			</a></li>
 		</ul>
 		<ul class="pcoded-item pcoded-left-item">
-			<li class=""><a href="storeMain.html"
+			<li class=""><a href="/community/event_board?board_idx=6"
 				class="waves-effect waves-dark"> <span class="pcoded-micon"><i
 						class="ti-layers"></i><b>FC</b></span> <span class="pcoded-mtext">이벤트
 						</span> <span class="pcoded-mcaret"></span>
 			</a></li>
 		</ul>
 		<ul class="pcoded-item pcoded-left-item">
-			<li class=""><a href="/community/animal_hospital.jsp"
+			<li class=""><a href="/community/animal_hospital?board_idx=7"
 				class="waves-effect waves-dark"> <span class="pcoded-micon"><i
 						class="ti-layers"></i><b>FC</b></span> <span class="pcoded-mtext">동물병원지도
 						</span> <span class="pcoded-mcaret"></span>

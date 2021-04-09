@@ -54,19 +54,15 @@ public class Board {
 //		this.regdate = regdate.substring(0, 16);
 //	}
 	
-	
 	public void setBoard_content(String board_content) {
 		setBoard_scontent(board_content);
 		this.board_content = board_content;
 	}
 	
-	
 	public void setBoard_scontent(String board_scontent) {
 		
 		this.board_scontent = board_scontent.replaceAll("<(/)?([a-zA-Z]*)(\\s[a-zA-Z]*=[^>]*)?(\\s)*(/)?>"," ");
 	}
-	
-
 	
 	
 }
