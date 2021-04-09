@@ -184,15 +184,43 @@
    		}
 	}
 
-	function insertOrder(frm) {
-		console.log('order 함수');
-		var p_id = $('#product_id').val();
-		var p_count = $('#product_count').val();
-		var sum = $('#totalSum').val();
-		var pName = $("input:hidden[name='p_name']").val();
+	function insertOrder() {
 
-		location.href = "/store/storeOrder?p_id=" + p_id + "&p_count=" + p_count + 
-				"&totalSum=" + sum + "&p_name=" + pName;
+ 		var orderArr = [];
+		
+ 		var p_id = $("input:hidden[name='p_id']").val();
+		var amount = $("input:text[name='amount']").val();
+		var totalSum = $("input:text[id='sum']").val();
+		
+		var json = {
+				"p_id" : p_id,
+				"amount" : amount,
+				"totalSum" : totalSum
+		}
+		
+		orderArr.push(json);
+
+		orderArray = JSON.stringify(orderArr);
+		
+		$.ajax({
+			url : "/store/storeOrder",
+			type : "post",
+			data : {
+				orderArray : orderArray,
+				},
+			traditional : true,
+			async : true,
+			success : function(data){
+				alert("구매페이지로 이동합니다.");
+				window.location.href="/store/moveOrder";
+			},
+			error : function( jqXHR, textStatus, errorThrown ) {
+				alert( jqXHR.status );
+				alert( jqXHR.statusText );
+				alert( jqXHR.responseText );
+				alert( jqXHR.readyState );
+			}
+		});
 	}
 
 	
@@ -511,22 +539,6 @@
 															<br><br>
 															<section class="reviewList">
 																<ol class="appendReview">
-																	<%-- <li class="rev_${rList.review_id }">
-																		 <hr>
-																		 <div class="comment-body">
-																		 <div class="comment-img">
-																		 <img src="img/user.jpg" />
-																		 </div>
-																		 <div class="comment-text">
-																		 <h3>${rList.nickname }</h3>
-																		 <span>${rList.review_id }</span>
-																		 <p>${rList.review_id }</p>
-																		 <p>${rList.review_id }</p>
-																		 <button class="store_btn" onclick="deleteReview(${rList.review_id })">삭제</button>
-																		 </div>
-																		 </div>
-																		 <hr>
-																	 </li> --%>
 																 </ol>
 																<script>
 																	reviewList();

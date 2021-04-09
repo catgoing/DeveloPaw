@@ -1,23 +1,19 @@
 package ga.bowwow.controller.store;
 
 import java.io.IOException;
-import java.util.HashMap;
 import java.util.List;
-import java.util.Map;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import org.json.simple.JSONArray;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.ResponseBody;
 
 import ga.bowwow.service.store.Order;
-import ga.bowwow.service.store.Review;
 import ga.bowwow.service.store.StoreOrderService;
 
 @Controller
@@ -29,19 +25,23 @@ public class StoreOrderController {
 	public StoreOrderController() {
 		System.out.println(">> StoreOrderController 실행");
 	}
-
+	
+	@RequestMapping(value = "/store/moveOrder") 
+	public String moveOrder() {
+		return "/store/storeOrder";
+	}
+	
+	
 	@RequestMapping(value = "/store/storeOrder")
-	@ResponseBody
-	public String storeOrder(HttpServletRequest request, Model model) {
+	public ResponseEntity<String[]> storeOrder(HttpServletRequest request, Model model) {
 	    String[] orderArray = request.getParameterValues("orderArray");
 	    for (int i = 0; i < orderArray.length; i++) {
-			System.out.println(orderArray[i]);
+			System.out.println("orderArray" + orderArray[i]);
 		}
 	    
-		return "/store/storeOrder";
-}
-
-
+	    return ResponseEntity.ok(orderArray);
+	}
+	
 
 	// 주문내역 작성
 	@RequestMapping(value = "/store/insertOrder")
