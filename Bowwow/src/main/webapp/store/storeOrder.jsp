@@ -174,7 +174,6 @@
 															<th class="p-name" colspan="2">상품명</th>
 															<th>수량</th>
 															<th>주문금액</th>
-															<th></th>
 														</tr>
 													</thead>
 													<tbody>
@@ -189,13 +188,13 @@
 															</td>
 															<td class="qua-col first-row">
 																<div class="quantity">
-                                                                   	<div class="top__text cart-product-value" id="pCount2" style="text-align: right !important;"></div>
+                                                                   	<div class="top__text cart-product-value" id="pCount2"></div>
 																</div>
 															</td>
-															<td class="total-price first-row">                                                                    
+															<td class="total-price first-row">
+																<div class="quantity">                                                                 
                                                                     <div class="top__text cart-product-value" id="pSum2" style="text-align: right !important;"></div>
-															</td>
-															<td class="close-td first-row">
+																</div>   
 															</td>
 														</tr>
 													</tbody>
@@ -264,7 +263,7 @@
                                                 <div class="col-lg-4">
                                                     <div class="checkout__order" style="background-color: white;">
                                                         <h5>총 주문 내역</h5>
-                                                        <div class="checkout__order__product">
+                                                        <!-- <div class="checkout__order__product">
                                                             <ul>
                                                                 <li>
                                                                     <div class="top__text cart-product-title">상품명</div>
@@ -278,7 +277,7 @@
                                                                     <div class="top__text cart-product-value" id="pSum2" style="text-align: right !important;"></div>
                                                                 </li>
                                                             </ul>
-                                                        </div>
+                                                        </div> -->
                                                         <div class="checkout__order__total">
                                                             <ul>
                                                                 <li>사용 적립금 <span>무료</span></li>
