@@ -1,77 +1,77 @@
-    <%@ page language="java" contentType="text/html; charset=UTF-8"
-        pageEncoding="UTF-8"%>
-    <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
-    <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
-    <!DOCTYPE html>
-    <html>
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+    pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
+<!DOCTYPE html>
+<html>
 
-    <head>
-        <title>개발바닥</title>
-        <!-- Meta -->
-        <meta charset="utf-8">
-        <meta name="viewport"
-            content="width=device-width, initial-scale=1.0, user-scalable=0, minimal-ui">
-        <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<head>
+    <title>개발바닥</title>
+    <!-- Meta -->
+    <meta charset="utf-8">
+    <meta name="viewport"
+        content="width=device-width, initial-scale=1.0, user-scalable=0, minimal-ui">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
 
-        <meta name="keywords"
-            content="bootstrap, bootstrap admin template, admin theme, admin dashboard, dashboard template, admin template, responsive" />
-        <meta name="author" content="Codedthemes" />
-        <!--Jua 폰트 import-->
-        <link rel="preconnect" href="https://fonts.gstatic.com">
-        <link href="https://fonts.googleapis.com/css2?family=Jua&display=swap"
-            rel="stylesheet">
+    <meta name="keywords"
+        content="bootstrap, bootstrap admin template, admin theme, admin dashboard, dashboard template, admin template, responsive" />
+    <meta name="author" content="Codedthemes" />
+    <!--Jua 폰트 import-->
+    <link rel="preconnect" href="https://fonts.gstatic.com">
+    <link href="https://fonts.googleapis.com/css2?family=Jua&display=swap"
+        rel="stylesheet">
 
-        <!-- Dohyeon 폰트 import-->
-        <link rel="preconnect" href="https://fonts.gstatic.com">
-        <link href="https://fonts.googleapis.com/css2?family=Do+Hyeon&display=swap" rel="stylesheet">
-        <!-- Dohyeon 폰트 import-->
-        <link rel="preconnect" href="https://fonts.gstatic.com">
-        <link href="https://fonts.googleapis.com/css2?family=Cute+Font&display=swap" rel="stylesheet">
+    <!-- Dohyeon 폰트 import-->
+    <link rel="preconnect" href="https://fonts.gstatic.com">
+    <link href="https://fonts.googleapis.com/css2?family=Do+Hyeon&display=swap" rel="stylesheet">
+    <!-- Dohyeon 폰트 import-->
+    <link rel="preconnect" href="https://fonts.gstatic.com">
+    <link href="https://fonts.googleapis.com/css2?family=Cute+Font&display=swap" rel="stylesheet">
 
-        <!-- Favicon icon -->
-        <link rel="icon" href="/resources/images/favicon.ico" type="image/x-icon">
-        <!-- Google font-->
-        <link href="https://fonts.googleapis.com/css?family=Open+Sans:400,600,700" rel="stylesheet">
-        <!-- waves.css -->
-        <link rel="stylesheet" href="/resources/pages/waves/css/waves.min.css" type="text/css" media="all">
-        <!-- Required Fremwork -->
-        <link rel="stylesheet" type="text/css" href="/resources/css/bootstrap/css/bootstrap.min.css">
-        <!-- waves.css -->
-        <link rel="stylesheet" href="/resources/pages/waves/css/waves.min.css" type="text/css" media="all">
-        <!-- themify icon -->
-        <link rel="stylesheet" type="text/css" href="/resources/icon/themify-icons/themify-icons.css">
-        <!-- font-awesome-n -->
-        <link rel="stylesheet" type="text/css" href="/resources/css/font-awesome-n.min.css">
-        <link rel="stylesheet" type="text/css" href="/resources/css/font-awesome.min.css">
-        <!-- scrollbar.css -->
-        <link rel="stylesheet" type="text/css" href="/resources/css/jquery.mCustomScrollbar.css">
-        <!-- Style.css -->
-        <link rel="stylesheet" type="text/css" href="/resources/css/style.css">
-        <link rel="stylesheet" type="text/css" href="/resources/css/storeStyle.css">
-        <link rel="stylesheet" type="text/css" href="/resources/css/cartStyle.css">
-        <link rel="stylesheet" type="text/css" href="/resources/css/test.css">
-       <script type="text/javascript" src="/resources/js/jquery/jquery.min.js "></script>
-       <script src="//developers.kakao.com/sdk/js/kakao.min.js"></script>
-       <script src="//t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script>
-       <script src="//dapi.kakao.com/v2/maps/sdk.js?appkey=d5c1b87a3ea48432cd965082eccebcd8"></script>
+    <!-- Favicon icon -->
+    <link rel="icon" href="/resources/images/favicon.ico" type="image/x-icon">
+    <!-- Google font-->
+    <link href="https://fonts.googleapis.com/css?family=Open+Sans:400,600,700" rel="stylesheet">
+    <!-- waves.css -->
+    <link rel="stylesheet" href="/resources/pages/waves/css/waves.min.css" type="text/css" media="all">
+    <!-- Required Fremwork -->
+    <link rel="stylesheet" type="text/css" href="/resources/css/bootstrap/css/bootstrap.min.css">
+    <!-- waves.css -->
+    <link rel="stylesheet" href="/resources/pages/waves/css/waves.min.css" type="text/css" media="all">
+    <!-- themify icon -->
+    <link rel="stylesheet" type="text/css" href="/resources/icon/themify-icons/themify-icons.css">
+    <!-- font-awesome-n -->
+    <link rel="stylesheet" type="text/css" href="/resources/css/font-awesome-n.min.css">
+    <link rel="stylesheet" type="text/css" href="/resources/css/font-awesome.min.css">
+    <!-- scrollbar.css -->
+    <link rel="stylesheet" type="text/css" href="/resources/css/jquery.mCustomScrollbar.css">
+    <!-- Style.css -->
+    <link rel="stylesheet" type="text/css" href="/resources/css/style.css">
+    <link rel="stylesheet" type="text/css" href="/resources/css/storeStyle.css">
+    <link rel="stylesheet" type="text/css" href="/resources/css/cartStyle.css">
+    <link rel="stylesheet" type="text/css" href="/resources/css/test.css">
+   <script type="text/javascript" src="/resources/js/jquery/jquery.min.js "></script>
+   <script src="//developers.kakao.com/sdk/js/kakao.min.js"></script>
+   <script src="//t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script>
+   <script src="//dapi.kakao.com/v2/maps/sdk.js?appkey=d5c1b87a3ea48432cd965082eccebcd8"></script>
 
-    <style>
+   <style>
 
-    .featured__item__text {
-        width: 150px;
-    }
+   .featured__item__text {
+       width: 150px;
+   }
 
-    .cart-product-title{
-        width: 33%;
-    }
-    .cart-product-value{
-        width: 33%;
-    }
+   .cart-product-title{
+       width: 33%;
+   }
+   .cart-product-value{
+       width: 33%;
+   }
 
 
-    </style>
-    <script type="text/javascript">
-
+   </style>
+   <script type="text/javascript">
+    
        function execMap(){
             new daum.Postcode({
                 oncomplete: function(data) {
@@ -200,7 +200,7 @@
 																</div>
 															</td>
 															<td class="total-price first-row">
-																<div class="top__text cart-product-value">${order.sum }원</div>
+																<fmt:formatNumber value="${order.sum }" pattern="#,###" />원
 															</td>
 														</tr>
 													</tbody>
@@ -280,8 +280,12 @@
 													<h5>총 주문 내역</h5>
 													<div class="checkout__order__total">
 														<ul>
-															<li>사용 적립금 <span>무료</span></li>
-															<li>총 결제금액 <span>${order.totalSum }원</span></li>
+															<li>배송비 <span>무료</span></li>
+															<li>총 결제금액 
+																<span>
+																	<fmt:formatNumber value="${order.totalSum }" pattern="#,###" />원
+																</span>
+															</li>
 														</ul>
 													</div>
 													<div class="checkout__order__widget">
