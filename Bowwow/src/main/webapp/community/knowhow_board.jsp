@@ -17,20 +17,28 @@
 <title>펫 다이어리</title>
 <style>
 
+footer.footer.navbar-wrapper {
+    z-index: 3;
+}
+
 .block-item:hover{
 	cursor:pointer;
 }
-.active {
+.side_active {
 	background-color : #f7b5b7;
     -webkit-box-shadow: 0 15px 8px -11px rgba(0, 0, 0, 0.25);
     box-shadow: 0 15px 8px -11px rgba(0, 0, 0, 0.25);
 }
+input{
+	font-size:22px; display:inline-block; width:200px; background-color:transparent; border:none;
+}
+
 </style>
 <script>
 $(function (){
 	var board_idx = ${board_idx};
 	board_idx = board_idx + 3;
-	$(".pcoded-inner-navbar>ul:nth-child(" + board_idx + ")>li>a").addClass("active");
+	$(".pcoded-inner-navbar>ul:nth-child(" + board_idx + ")>li>a").addClass("side_active");
 });
 </script>
 </head>
@@ -77,24 +85,44 @@ $(function (){
 													<ul>
 														<c:forEach var="list" items="${ boardList}">
 															<li style="background-color : #f7f2f2; margin:5px; border-radius:10px">
-																<div class="block-item default-item col-lg-3 col-md-4 col-sm-6" onclick="location.href='/community/detail?board_idx=${board_idx }&board_no=${list.board_no}'">
-																	<div class="best-label">${list.board_no }</div>
-																	<div class="img-area" style="width:300px; height:300px;"
-																		onclick="location.href='/board/knowhow/311'">
+																<div class="block-item default-item col-lg-3-3 col-md-4 col-sm-6" onclick="location.href='/community/detail?board_idx=${board_idx }&board_no=${list.board_no}'">
+																<div class="best-label"><br></div>
+																	<div class="img-area" style="width:300px; height:300px;">
 																		<div class="imgItem" style="width:300px; height:300px;">
 																			<img src='https://projectbit.s3.us-east-2.amazonaws.com/${list.img1 }' onerror='this.src="/resources/images/alt_img.png"' width="100%" height="100%">
 																		</div>
 																	</div>
-																	<br>
+																	<c:set var="sub_class" value="${list.sub_class }"/>
+																	<c:if test="${sub_class eq 0 }">
+																			<span style="color : #ff0000;">															
+																			교육/훈련
+																			</span>
+																	</c:if>
+																	<c:if test="${sub_class eq 1 }">
+																			<span style="color : #ff0000;">															
+																			급여/식이
+																			</span>
+																	</c:if>
+																	<c:if test="${sub_class eq 2 }">
+																			<span style="color : #ff0000;">															
+																			건강
+																			</span>
+																	</c:if>
+																	<c:if test="${sub_class eq 3 }">
+																			<span style="color : #ff0000;">
+																			생활꿀팁
+																			</span>
+																	</c:if>
 																	<div class="text-area">
 																		<div class="item-title" style="width:300px; color:black;">
 																			<a href="/community/detail?board_idx=${board_idx }&board_no=${list.board_no}">
-																			</a><span style="font-size:22px;">${list.board_title }</span>
-																			<span style="postion:inline-block;float:right">${list.regdate }</span>
+																			</a>
+																			<input type="text" maxlength="15" value="${list.board_title }" style="text-overflow: ellipsis" >
+																			<span style="postion:inline-block;float:right;margin-top:8px;">${list.regdate }</span>
 																		</div>
 																		<div class="item-items">
 																			<div class="profile" style="width:300px;">
-																				<span>${list.nickname }</span>
+																				<span style="margin-left:2px">${list.nickname }</span>
 																				<span style="float:right">조회수 ${list.hits }</span>
 																				<br>
 																				<br>
@@ -133,10 +161,11 @@ $(function (){
 			<i class="fa fa-chevron-up" aria-hidden="true">TOP</i>
 		</button> -->
 		
+		
 		<!-- footer 푸터 영역 -->
 		<%@ include file="/common/footer.jsp"%>
 		<!-- footer 푸터 영역 -->
-		<!-- <div class="fixed-button active"><a href="/community/write_board.jsp" class="btn btn-md btn-primary"> 글쓰기</a> </div> -->
+		<div class="fixed-button active"><a href="/community/write_combination.jsp" class="btn btn-md btn-primary"> 글쓰기</a> </div>
 
 
 	</div>

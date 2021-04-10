@@ -2,6 +2,28 @@
 <script src="https://use.fontawesome.com/releases/v5.2.0/js/all.js"></script>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 
+<style>
+ .form-control{
+      width:250px;
+      height:40px;
+      border:none;
+      font-size:1em;
+      padding-left: 5px;
+      font-style: oblique;
+      display:inline;
+      outline:none;
+      box-sizing: border-box;
+      color:black;
+}
+
+input[type="submit"] {
+	font-family: FontAwesome;
+	background-color: #f7b5b7;
+	border: none;
+	color: #fff;
+}
+</style>
+
 <nav class="navbar header-navbar pcoded-header">
 	<div class="navbar-wrapper" style="color: red;">
 		<div class="navbar-logo">
@@ -42,13 +64,12 @@
 			<ul class="nav-right">
 				<li class="form-group form-primary">
 					<input type="text"
-					name="keyword" style="margin-top: 12px; width: 250px;"
-					class="form-control" placeholder="검색창">
+					name="keyword" class="form-control" placeholder="검색창">
 
 					<span class="form-bar"></span>
 				</li>
 				<li>
-				<button style = "margin-top: 5px; width: 100px" type="submit"><i class="fas fa-search"></i></button>
+					<input type="submit" name="search" value="&#xf002;">
 				</li>
 
 				<li class="header-notification"><a href="/store/cartList"
