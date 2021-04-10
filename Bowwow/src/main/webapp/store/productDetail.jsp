@@ -209,8 +209,6 @@
 	function reviewInsert() {
 
 		var formObj = $("#reviewForm").serialize();
-		/* var formdata = new FormData();
-		formdata.append(); */
 		$.ajax({
 			url : "/store/insertReview",
 			type : "post",
@@ -225,13 +223,14 @@
 							'<div class="comment-body">'+
 							'<div class="comment-img">'+
 							'<img src="/resources/images/reviewImage.jpg" />'+
+							'<label for="name">제목</label>'+ 
+							'<br>'+
+							'<label for="message">내용</label>'+
 							'</div>'+
 							'<div class="comment-text">'+
 							'<h3>'+data.nickname+'</h3>'+
 							'<span>'+data.revRegdate+'</span>'+
-							'<label for="name">후기 제목</label>'+ 
 							'<p>'+data.revTitle+'</p>'+
-							'<label for="message">후기 내용</label>'+
 							'<p>'+data.revContent+'</p>'+
 							'<button class="btn custom-btn" onclick="deleteReview('+data.revId+')">삭제</button>'+
 							'</div>'+
@@ -246,6 +245,8 @@
 				if(data.code == '0000') {
 					alert(data.msg);
 					reviewList();
+					$("#revTitle").val("");
+					$("#message").val("");
 				} else {
 					alert(data.msg);
 				}
@@ -290,13 +291,15 @@
 					 + '<div class="comment-body">'
 					 + '<div class="comment-img">'
 					 + '<img src="/resources/images/reviewImage.jpg" />'
+					 + '<label for="name">제목</label>'
+					 + '<br>'
+					 + '<label for="message">내용</label>'
 					 + '</div>'
 					 + '<div class="comment-text">'
 					 + '<h3>'+this.nickname+'</h3>'
-					 + '<span>'+this.review_regdate+'</span>'
-					 + '<label for="name">후기 제목</label>'
+					 + '<span style="display : inline-block;">'+this.review_regdate+'</span>'
+					 + '<br>'
 					 + '<p>'+this.review_title+'</p>'
-					 + '<label for="message">후기 내용</label>'
 					 + '<p>'+this.review_content+'</p>'
 					 + '<button class="btn custom-btn" onclick="deleteReview('+this.review_id+')">삭제</button>'
 					 + '</div>'

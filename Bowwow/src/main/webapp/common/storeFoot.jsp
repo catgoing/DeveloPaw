@@ -1,7 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"	pageEncoding="UTF-8"%>
 
 <button class="scroll-top" id="js-button"
-	style="margin-bottom: 190px; margin-right: 30px; font: 'Jua'">
+	style="margin-bottom: 240px; margin-right: 30px; font: 'Jua'">
 	<i class="fa fa-chevron-up" aria-hidden="true">TOP</i>
 </button>
 
@@ -29,10 +29,31 @@
 </script>
 <!-- footer 푸터 시작부분-->
 <div style="display: block;">
-	<footer class="footer navbar-wrapper">
 		<div class="footer-wrapper navbar-wrapper">
-			<div class="footer-box" style="height: 100px; text-align: center;">
-				푸터</div>
+			<footer class="footer navbar-wrapper">
+			<div class="container">
+				<br>
+				<div class="row">
+					<div class="col-sm-2" style="text-align: center;"><h5>Copyright &copy; 2021</h5><h5>bitcamp 183 Group2</h5></div>
+					<div class="col-sm-4"><h4>SAVANNA 소개</h4><p>책 사고 팔 땐 SAVANNA</p></div>
+					<div class="col-sm-2"><h4 style="text-align: center;">내비게이션</h4>
+						<div class="list-group">
+							<a href="#" class="list-group-item">소개</a>
+							<a href="#" class="list-group-item">프로젝트원</a>
+							<a href="#" class="list-group-item">기능구현</a>
+						</div>
+					</div>
+					<div class="col-sm-2"><h4 style="text-align: center;">SNS</h4>
+						<div class="list-group">
+							<a href="#" class="list-group-item">인스타그램</a>
+							<a href="https://github.com/catgoing/2ndProject_Group2" class="list-group-item" target="_blank">Github</a>
+							<a href="#" class="list-group-item">유튜브</a>
+						</div>
+					</div> 	
+					<div class="col-sm-2"><h4 style="text-align: center;"><span class="glyphicon glyphicon-ok">&nbsp;by Group2</span></h4>
+					</div>
+				</div>
+			</div>
+		</footer>
 		</div>
-	</footer>
 </div>

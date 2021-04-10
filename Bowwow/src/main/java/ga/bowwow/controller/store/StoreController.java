@@ -25,10 +25,12 @@ public class StoreController {
 		System.out.println(">> StoreController() 실행");
 	}
 
-	@RequestMapping(value = "/store/storeMain")
-	public String storeMain() {
-		return "storeMain";
-	}
+	
+	/*
+	 * @RequestMapping(value = "/store/storeMain") public String storeMain() {
+	 * return "storeMain"; }
+	 */
+	
 	
 	// 상품 상세 보기
 	@RequestMapping(value = "/store/detail")
@@ -39,12 +41,7 @@ public class StoreController {
 
 		Product p = storeService.getProductDetail(p_id);
 		model.addAttribute("p", p);
-		
-		/*
-		 * // 상품에 작성된 리뷰 리스트 출력 List<Review> reviewList =
-		 * storeReviewService.getReviewList(p_id); System.out.println(reviewList);
-		 * model.addAttribute("reviewList", reviewList);
-		 */
+
 		
 		return "/store/productDetail";
 	}
@@ -113,6 +110,29 @@ public class StoreController {
 	}
 
 	
+	  // 상품 메인 출력
+	  
+	  @RequestMapping(value = "/store/storeMain") 
+	  public String getProductByPrice(Product product, Model model, HttpServletRequest request) {
+	  
+		  System.out.println("products " + product);
+		  
+			/*
+			 * if (product.getP_type().equals("dog")) { model.addAttribute("imgDir",
+			 * "dogImg"); } else if (product.getP_type().equals("cat")) {
+			 * model.addAttribute("imgDir", "catImg"); }
+			 */
+		  
+		  List<Product> dogProductList = storeService.getDogProductByPrice(product);
+		  model.addAttribute("dogProductList", dogProductList); 
+		  List<Product> catProductList = storeService.getCatProductByPrice(product); 
+		  model.addAttribute("catProductList", catProductList); 
+		  return "storeMain";
+	 }
+
+	
+	
+
 }
 
 

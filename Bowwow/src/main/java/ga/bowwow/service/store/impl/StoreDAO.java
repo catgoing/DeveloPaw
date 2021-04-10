@@ -21,9 +21,9 @@ public class StoreDAO {
 	public StoreDAO() {
 		System.out.println(">> StoreDAO 객체 생성");
 	}
-	
+
 	// 상품 관련 dao
-	
+
 	public Product getProductDetail(int p_id) {
 	    return mybatis.selectOne("Store.getProductDetail", p_id);
 	}
@@ -31,49 +31,56 @@ public class StoreDAO {
 	public List<Product> getProductList(Map<String, String> map) {
 		return mybatis.selectList("Store.ProductList", map);
 	}
-	
+
 	public int getProductCount(Map<String, String> map) {
 		return mybatis.selectOne("Store.ProductCount", map);
+	}
+	public List<Product> getDogProductByPrice(Product products) {
+		return mybatis.selectList("Store.getDogProductByPrice", products);
+	}
+
+	public List<Product> getCatProductByPrice(Product products) {
+		return mybatis.selectList("Store.getCatProductByPrice", products);
 	}
 	
 	public int getSearchCount(Map<String, String> map) {
 		return mybatis.selectOne("Store.ProductSearchCount", map);
 	}
-	
+
 	public List<Product> searchProd(Map<String, String> map) {
 		return mybatis.selectList("Store.searchProd", map);
 	}
-	
-	
+
+
 	// 장바구니 관련 dao
-	
+
 	// 장바구니 추가
 	public void addCart(CartList cartList) {
 		mybatis.insert("Cart.addCart", cartList);
 	}
-	
+
 	// 장바구니 목록 조회
 	public List<CartList> getCartList(String id) {
 		return mybatis.selectList("Cart.getCartList", id);
 	}
-	
+
 	// 장바구니 동일한 제품 있는지 조회
 	public int cartCheck(CartList cartList) {
 		return mybatis.selectOne("Cart.cartCheck", cartList);
-		
+
 	}
-	
+
 	// 장바구니 상품 갯수 수정
 	public int updateCart(CartList cartList) {
 		return mybatis.update("Cart.updateCart", cartList);
 	}
-	
+
 	// 장바구니 상품 삭제
 	public int deleteCart(CartList cartList) {
 		return mybatis.delete("Cart.deleteCart", cartList);
 	}
-	
-	
+
+
 	// 상품 후기 dao
 	public int insertReview(Review review) {
 		System.out.println("후기 등록 : " + review);
@@ -105,12 +112,12 @@ public class StoreDAO {
 		System.out.println("주문내역 수정 : " + order);
 		mybatis.update("StoreOrder.updateOrder", order);
 	}
-	
+
 	public void deleteOrder(String order_id) {
 		System.out.println("삭제할 주문내역 : " + order_id);
 		mybatis.delete("StoreOrder.deleteOrder", order_id);
 	}
-	
+
 	public List<Order> getOrderList(Order order) {
 		System.out.println("회원 주문 내역 리스트 : " + order);
 		return mybatis.selectList("StoreOrder.orderList", order);
@@ -130,31 +137,3 @@ public class StoreDAO {
 	}
 
 }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-

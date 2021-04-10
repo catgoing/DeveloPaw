@@ -12,7 +12,9 @@ public interface StoreService {
 	public List<Product> getProductList(Map<String, String> map);
 	public int getProductCount(Map<String, String> map);
 	public int getSearchCount(Map<String, String> map);
-	public List<Product> prodSearch(Map<String, String> map); 
-	
+	public List<Product> prodSearch(Map<String, String> map);
+	public List<Product> getDogProductByPrice(Product products);
+  public List<Product> getCatProductByPrice(Product products);
+
 
 }

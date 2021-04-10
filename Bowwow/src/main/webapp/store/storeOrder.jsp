@@ -110,22 +110,22 @@
             alert("주소를 입력해 주세요.");
             checkout.userZonecode.focus();
             return false;
-        }  
-       
+        }
+
        if(document.getElementById('phone').value == ""){
             alert("핸드폰 번호를 입력해주세요");
             checkout.phone.focus();
             return false;
-        }  
+        }
 
        if ($("input:checkbox[name='chk_1']").is(":checked") == false || $("input:checkbox[name='chk_2']").is(":checked") == false){
             alert("동의 버튼을 눌러주셔야 결제가 진행됩니다.");
             checkout.chk_1.focus();
             checkout.chk_2.focus();
             return false;
-        } else return true;         
-       
-       
+        } else return true;
+
+
     }
 
 
@@ -199,8 +199,10 @@
 																	<div class="top__text cart-product-value">x${order.amount }</div>
 																</div>
 															</td>
-															<td class="total-price first-row">
-																<fmt:formatNumber value="${order.sum }" pattern="#,###" />원
+															<td class="qua-col first-row">
+																<div class="quantity">
+																	<fmt:formatNumber value="${order.sum }" pattern="#,###" />원
+																</div>
 															</td>
 														</tr>
 													</tbody>
@@ -341,8 +343,8 @@
     <script type="text/javascript" src="/resources/js/script.js "></script>
     <script type="text/javascript">
 
-            
-    </script>    
+
+    </script>
 </body>
 
 
