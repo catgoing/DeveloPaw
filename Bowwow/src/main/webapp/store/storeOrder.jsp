@@ -244,7 +244,7 @@
 															<div class="checkout__form__input">
 																<p>
 																	받으실 주소 <span>*</span><input type="button"
-																		style="margin-left: 20px; width: 120px; text-align: center"
+																		style="margin-left: 20px; width: 80px; text-align: left; font-size: 1.0em;"
 																		class="searchAddress" onclick="execMap()" value="주소찾기">
 																</p>
 
@@ -265,12 +265,12 @@
 																	placeholder="ex) 부재시 경비실에 맡겨주세요.">
 															</div>
 															<div class="checkout__form__input">
-																<input type="hidden" id="order_status"
-																	name="order_status" value="주문 완료"> <input
-																	type="hidden" id="pCount" name="amount"> <input
-																	type="hidden" id="pSum" name="totalSum"> <input
-																	type="hidden" id="pName" name="p_name"> <input
-																	type="hidden" id="orderPoint" name="order_point">
+																<input type="hidden" id="order_status" name="order_status" value="주문 완료"> 
+																<input type="hidden" name="p_id" value="${order.p_id }">
+																<input type="hidden" name="p_name" value="${order.p_name }">
+																<input type="hidden" name="amount" value="${order.amount }">
+																<input type="hidden" name="totalSum" value="${order.totalSum }">
+																<input type="hidden" name="s_image" value="${order.s_image }">
 															</div>
 														</div>
 													</div>
