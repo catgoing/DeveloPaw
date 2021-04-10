@@ -169,13 +169,9 @@
 		for (var i=0; i < count.length; i++ ) {
 
 			if (count.eq(i).is(":checked") == true ) {
-				console.log(count.is(":checked"));
-				console.log(price.eq(i).val());
-
 				sum += parseInt(numberRemoveCommas(price.eq(i).val()));
 		     }
 		}
-		  console.log(sum);
 		  totalPrice.val(numberAddCommas(sum));
  	}
 
@@ -223,51 +219,10 @@
 
  // 체크된 상품 주문 페이지로 넘기기
  	function toOrder() {
-
- 		var orderArr = [];
 		
-		$('input:checkbox[name="p_id"]').each(function() {
-			if(this.checked) {
-				/* console.log(this.value) */
-				var amount = $('.amount-' + this.value).val();
-				var totalSum = amount * $('.total_sum-' + this.value).val();
-				var json = {
-						"p_id" : this.value,
-						"amount" : amount,
-						"totalSum" : totalSum
-				}
-				
-				orderArr.push(json);
-			}
-
-		});
-		console.log(orderArr);
-		orderArray = JSON.stringify(orderArr);
- 		if ($("input[name='p_id']:checked").length == 0) {
- 				alert("선택된 상품이 없습니다.");
- 				return;
- 		}
- 		
-		$.ajax({
-			url : "/store/storeOrder",
-			type : "post",
-			data : {
-				orderArray : orderArray,
-				},
-			traditional : true,
-			success : function(data){
-				if(data) {
-					alert("성공");
-				}
-			},
-			error : function( jqXHR, textStatus, errorThrown ) {
-				alert( jqXHR.status );
-				alert( jqXHR.statusText );
-				alert( jqXHR.responseText );
-				alert( jqXHR.readyState );
-			}
-		});
- 	}  
+	 
+ 	}
+	
 </script>
 
 </head>
@@ -390,12 +345,20 @@
 															<li class="subtotal">선택  상품  금액
 																<input type="text" class="store_input4" name="totalPrice" value="0" readonly>원
 															</li>
-															<li class="subtotal">상품 할인 금액 <span>$240.00</span></li>
+															<li class="subtotal">상품 할인 금액
+																<input type="text" class="store_input4" name="" value="0" readonly>원
+															</li>
+															<%-- <c:if test="">
+																<li class="subtotal">상품 할인 금액 <span>$240.00</span></li>
+															</c:if>
+															<c:if test="">
+																<li class="subtotal">상품 할인 금액 <span>$240.00</span></li>
+															</c:if> --%>
 															<li class="cart-total">최종 결제 금액
 																<input type="text" class="store_input4" name="totalPrice" value="0" readonly>원
 															</li>
 														</ul>
-														<a onclick="toOrder()" class="proceed-btn">주문하기</a>
+														<a onclick="toOrder()" style="cursor: pointer;" class="proceed-btn">주문하기</a>
 													</div>
 												</div>
 												<div>
