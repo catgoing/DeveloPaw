@@ -214,8 +214,7 @@
 							</section>
 							<section class="checkout spad">
 								<div class="container" style="background-color: white;">
-								<form action="insertOrder" onsubmit="return chkBtn();"
-										method="POST" name="checkout" class="checkout__form"
+								<form action="insertOrder" onsubmit="return chkBtn();" method="POST" name="checkout" class="checkout__form"
 										accept-charset="UTF-8">
 										<div class="row">
 											<div class="col-lg-8">
@@ -286,6 +285,7 @@
 															<li>총 결제금액 
 																<span>
 																	<fmt:formatNumber value="${order.totalSum }" pattern="#,###" />원
+																	<input type="hidden" name="point" value="${Math.round(0.001*order.totalSum) }">
 																</span>
 															</li>
 														</ul>
@@ -308,6 +308,10 @@
 													</div>
 													<button type="submit" class="site-btn"
 														style="font-size: 1.5em;">결제하기</button>
+														<input type="hidden" name="" value="">
+														<input type="hidden" name="" value="">
+														<input type="hidden" name="" value="">
+														<input type="hidden" name="" value="">
 												</div>
 											</div>
 										</div>

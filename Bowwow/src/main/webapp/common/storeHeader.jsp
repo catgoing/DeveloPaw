@@ -1,18 +1,19 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"	pageEncoding="UTF-8"%>
 
 <style>
- .form-control{
-      width:250px;
-      height:40px;
-      border:none;
-      font-size:1em;
-      padding-left: 5px;
-      font-style: oblique;
-      display:inline;
-      outline:none;
-      box-sizing: border-box;
-      color:black;
+ .searchArea{
+      width:250px !important;
+      height:40px !important;
+      border:none !important;
+      font-size:1em !important;
+      padding-left: 5px !important;
+      font-style: oblique !important;
+      display:inline !important;
+      outline:none !important;
+      box-sizing: border-box !important;
+      color:black !important;
 }
+
 
 input[type="submit"] {
 	font-family: FontAwesome;
@@ -88,7 +89,7 @@ input[type="submit"] {
 									<div class="input-group">
 										<span class="input-group-prepend search-close"><i
 											class="ti-close input-group-text"></i></span> <input type="text"
-											class="form-control" placeholder="Enter Keyword"> <span
+											class="form-control searchArea" placeholder="Enter Keyword"> <span
 											class="input-group-append search-btn"><i
 											class="ti-search input-group-text"></i></span>
 									</div>
@@ -115,7 +116,7 @@ input[type="submit"] {
 						<form action="/store/searchProd" method="POST">
 						<ul class="nav-right">
 							<li class="form-group form-primary">
-								<input type="text" class="form-control" name="keyword" autocomplete="off" placeholder="검색창"> 
+								<input type="text" class="form-control searchArea" name="keyword" autocomplete="off" placeholder="검색창"> 
 								<span class="form-bar"></span>
 							</li>
 							<li>
