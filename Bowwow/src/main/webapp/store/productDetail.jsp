@@ -184,16 +184,6 @@
    		}
 	}
 
-	function insertOrder() {
-
- 		var p_id = $("input:hidden[name='p_id']").val();
-		var amount = $("input:text[name='amount']").val();
-		var totalSum = Number(numberRemoveCommas($("input:text[id='sum']").val()));
-		
-		location.href = "/store/storeOrder?p_id=" +p_id + "&amount=" + amount + "&totalSum=" + totalSum;
-	}
-
-	
 	function chkRev() {
 		if (document.getElementById('review_title').value == "") {
 			alert("제목을 입력해 주세요.");

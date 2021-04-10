@@ -143,10 +143,16 @@
         else return true;
 
         }
-    </script>
-    </head>
+    
+    function insertOrder(frm) {
+    	frm.action="/store/insertOrder";
+	  	frm.submit();
+    }
+    
+</script>
+</head>
 
-    <body>
+<body>
 	<div id="pcoded" class="pcoded">
 		<div class="pcoded-overlay-box"></div>
 		<div class="pcoded-container navbar-wrapper">
@@ -186,9 +192,10 @@
 													</thead>
 													<tbody>
 														<tr style="border-bottom: 1px solid #ddd;">
-															<td class="cart-pic first-row">
+															<td class="cart-pic first-row"><a
+															href="detail?p_id=${order.p_id }">
 															<img style="width: 100px; height: 100px;"
-																src="https://projectbit.s3.us-east-2.amazonaws.com/${imgDir }/${order.s_image }">
+																src="https://projectbit.s3.us-east-2.amazonaws.com/${imgDir }/${order.s_image }"></a>
 															<td class="cart-title first-row">
 																<p>
 																	<a href="detail?p_id=${order.p_id }">${order.p_name }</a>
@@ -214,9 +221,7 @@
 							</section>
 							<section class="checkout spad">
 								<div class="container" style="background-color: white;">
-								<form action="insertOrder" onsubmit="return chkBtn();"
-										method="POST" name="checkout" class="checkout__form"
-										accept-charset="UTF-8">
+								<form method="POST" name="checkout" class="checkout__form" accept-charset="UTF-8">
 										<div class="row">
 											<div class="col-lg-8">
 												<div class="checkout__order"
@@ -229,7 +234,6 @@
 																	주문자 성명 <span>* (*)항목은 필수 입력 항목입니다.</span>
 																</p>
 																<input type="text" name="member_serial" value=999>
-																<input type="hidden" id="p_id" name="p_id">
 															</div>
 														</div>
 														<div class="col-lg-6 col-md-6 col-sm-6">
@@ -249,10 +253,9 @@
 																</p>
 
 																<input type="text" id="userZonecode" name="zip" readonly
-																	placeholder="우편번호"> <input type="text"
-																	id="userAddress" name="address" placeholder="주소"
-																	readonly> <input type="text"
-																	name="address_detail" placeholder="동,호수 등 상세 주소를 입력하세요">
+																	placeholder="우편번호"> 
+																	<input type="text" id="userAddress" name="address" placeholder="주소" readonly> 
+																	<input type="text" name="address_detail" placeholder="동,호수 등 상세 주소를 입력하세요">
 															</div>
 														</div>
 														<div class="col-lg-12">
@@ -306,8 +309,8 @@
 															class="checkmark"></span>
 														</label>
 													</div>
-													<button type="submit" class="site-btn"
-														style="font-size: 1.5em;">결제하기</button>
+													<input type="button" class="site-btn" 
+													style="font-size: 1.5em;" value="결제하기" onclick="insertOrder(this.form)">
 												</div>
 											</div>
 										</div>
