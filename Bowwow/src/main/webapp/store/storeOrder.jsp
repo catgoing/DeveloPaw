@@ -199,8 +199,10 @@
 																	<div class="top__text cart-product-value">x${order.amount }</div>
 																</div>
 															</td>
-															<td class="total-price first-row">
-																<div class="top__text cart-product-value">${order.sum }원</div>
+															<td class="qua-col first-row">
+																<div class="quantity">
+																	<div class="top__text cart-product-value">${order.sum }원</div>
+																</div>
 															</td>
 														</tr>
 													</tbody>

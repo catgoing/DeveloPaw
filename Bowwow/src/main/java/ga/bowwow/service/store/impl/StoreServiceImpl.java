@@ -53,6 +53,7 @@ public class StoreServiceImpl implements StoreService {
 	@Override
 	public int getSearchCount(Map<String, String> map) {
 		return storeDAO.getSearchCount(map);
+	}	
 
 	public List<Product> getDogProductByPrice(Product products) {
 		return storeDAO.getDogProductByPrice(products);
