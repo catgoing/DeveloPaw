@@ -86,6 +86,24 @@
 .featured__item__text {
 	width: 150px;
 }
+
+.mainList .marker { 
+	overflow : hidden;
+	position : absolute; 
+	left : -5px; 
+	top : 0;
+	width : 100px;
+	height : 100px;	
+	
+}
+
+.mainList .marker div{ 
+	width : 100px; 
+	background : #eee48e; 
+	color : white;
+	text-align : center; 
+	transform : rotate(-45deg) translate(-29px, -15px);
+	}
 </style>
 </head>
 <body>
@@ -159,7 +177,7 @@
 													</div>
 												</div>
 												<div class="monthly-products">
-													<ul>
+													<ul class="mainList">
 														<c:forEach var="dList" items="${dogProductList }">
 															<li>
 																<div
@@ -185,6 +203,9 @@
 																			</h5>
 																		</div>
 																	</div>
+																<div class="marker">
+																	<div>NEW</div>
+																</div>
 																</div>
 															</li>
 														</c:forEach>

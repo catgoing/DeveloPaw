@@ -214,8 +214,9 @@
 							</section>
 							<section class="checkout spad">
 								<div class="container" style="background-color: white;">
-								<form action="insertOrder" onsubmit="return chkBtn();" method="POST" name="checkout" class="checkout__form"
-										accept-charset="UTF-8">
+								<!-- <form action="insertOrder" onsubmit="return chkBtn();" method="POST" name="checkout" class="checkout__form"
+										accept-charset="UTF-8"> -->
+										<div name="checkout" class="checkout__form">
 										<div class="row">
 											<div class="col-lg-8">
 												<div class="checkout__order"
@@ -308,14 +309,11 @@
 													</div>
 													<button type="submit" class="site-btn"
 														style="font-size: 1.5em;">결제하기</button>
-														<input type="hidden" name="" value="">
-														<input type="hidden" name="" value="">
-														<input type="hidden" name="" value="">
-														<input type="hidden" name="" value="">
 												</div>
 											</div>
 										</div>
-									</form>
+									<!-- </form> -->
+									</div>
 								</div>
 							</section>
 							<!-- Shopping Cart Section End -->
