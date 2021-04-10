@@ -54,17 +54,19 @@ public class PetController {
 		
 		System.out.println("pet " + pet);
 		
-		String default_url = "https://projectbit.s3.us-east-2.amazonaws.com/petImg/6262857e-1887-46fc-b77c-9209935f8657.jpg";
+		String default_url = "petImg/6262857e-1887-46fc-b77c-9209935f8657.jpg";
 		String fs_url = "https://projectbit.s3.us-east-2.amazonaws.com/";
 		
 		List<Pet> petList = petService.getPetInfoList(pet);
 		for(Pet onePet : petList) {
-			if(onePet.getImage_source_oriname() == null) {
+			if(onePet.getImage_source_oriname()=="" || 
+					onePet.getImage_source_oriname()==null) {
 				onePet.setImage_source_oriname(default_url);
-			} else {
-				String base_url = onePet.getImage_source_oriname();
-				onePet.setImage_source_oriname(fs_url + base_url);
-			}
+			} 
+//			else {
+//				String base_url = onePet.getImage_source_oriname();
+//				onePet.setImage_source_oriname(base_url);
+//			}
 		}
 		
 		model.addAttribute("petList", petList);
@@ -113,10 +115,10 @@ public class PetController {
 		return petDetail;
 	}
 
-	//ajax - 반려동물 정보 등록
-	@RequestMapping(value="/ajaxInsertPetInfo")
-	@ResponseBody //json으로 변환해서 보내줌!-@RequestBody : 받은 거 json으로 바꿔줌
-	public int ajaxInsertPetInfo(Pet pet, @RequestParam(value="file", required = false) MultipartFile file, HttpServletRequest request, MultipartController mc) throws AmazonClientException, IllegalStateException, IOException, InterruptedException {
+	//ajax X - 반려동물 정보 등록
+	@RequestMapping(value="/insertPetInfo")
+	//@ResponseBody //json으로 변환해서 보내줌!-@RequestBody : 받은 거 json으로 바꿔줌
+	public String insertPetInfo(Pet pet, @RequestParam(value="file", required = false) MultipartFile file, HttpServletRequest request, MultipartController mc) throws AmazonClientException, IllegalStateException, IOException, InterruptedException {
 		System.out.println("> insert 반려동물 정보 입력!");
 		System.out.println("pet~~:"+ pet);
 		System.out.println(file);
@@ -154,13 +156,13 @@ public class PetController {
 			System.out.println("insert 사진없음!");
 			result = petService.insertPetInfo(pet);	
 		}
-		return result;
+		return "redirect:/getPetInfoList";
 	}
 	
-	//ajax이용 -- 반려동물 정보 수정
-	@RequestMapping(value="/ajaxUpdatePetInfo")
-	@ResponseBody
-	public int ajaxUpdatePetInfo(Pet pet, @RequestParam(value="file", required = false) MultipartFile file, HttpServletRequest request, MultipartController mc) throws AmazonClientException, IllegalStateException, IOException, InterruptedException {
+	//ajax이용X -- 반려동물 정보 수정
+	@RequestMapping(value="/updatePetInfo")
+	//@ResponseBody
+	public String updatePetInfo(Pet pet, @RequestParam(value="file", required = false) MultipartFile file, HttpServletRequest request, MultipartController mc) throws AmazonClientException, IllegalStateException, IOException, InterruptedException {
 		System.out.println("> update 반려동물 정보 입력!");
 		System.out.println("pet~~:"+ pet);
 		
@@ -171,7 +173,9 @@ public class PetController {
 		pet.setMember_serial(member_serial);
 		
 		System.out.println("서엉고옹~");
-		System.out.println(file);
+		//System.out.println(file);
+		String d_img = pet.getImage_source_oriname();
+		System.out.println("수정 전 db에 있는 이미지 주소" + d_img);
 		
 		int result = 0;
 		if(!file.isEmpty()) { //첨부파일이 있을 때
@@ -198,17 +202,19 @@ public class PetController {
 			System.out.println("입력할 pet : " + pet);
 			result = petService.updatePetInfo(pet);	
 		
-		} else { //첨부한 파일이 없을 때
+		} else { //첨부한 파일이 없을 때 -- image_source에 null값이 들어감!!!노우~~
 			System.out.println("update 사진없음!!!");
+			pet.setImage_source_oriname(d_img);
+			result = petService.updatePetInfo(pet);	
 			result = 0;
 		}
-		return result;
+		return "redirect:/getPetInfoList";
 	}
 
-	//ajax이용 -- 반려동물 정보 삭제
-	@RequestMapping(value="/ajaxDeletePetInfo")
-	@ResponseBody
-	public int ajaxDeletePetInfo(Pet pet, HttpServletRequest request) {
+	//ajax이용X -- 반려동물 정보 삭제
+	@RequestMapping(value="/deletePetInfo")
+	//@ResponseBody
+	public String deletePetInfo(Pet pet, HttpServletRequest request) {
 		System.out.println("ajax 반려동물 정보 삭제 실행!!");
 		System.out.println("pet :"+pet);
 		
@@ -221,7 +227,7 @@ public class PetController {
 		int result = petService.deletePetInfo(pet);
 		System.out.println(result);
 
-		return result;
+		return "redirect:/getPetInfoList";
 	}
 	
 

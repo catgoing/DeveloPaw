@@ -34,7 +34,7 @@
       <div class="modal-header">
         <h4 class="modal-title" id="myModalLabe2">반려동물 정보등록</h4>
       </div>
-   		<form class="pet-form" id="insertPetform" enctype="multipart/form-data">
+   		<form class="pet-form" id="insertPetform" enctype="multipart/form-data" action="/insertPetInfo" method="post">
 	      <div class="modal-body">
 	       	<div class="form-group">
 		        <table class="table table-bordered">
@@ -107,7 +107,7 @@
 	          </div>
 	      	</div>
 	      <div class="modal-footer">
-	        <button type="button" class="btn btn-primary" id="newPetInsert" >반려동물 정보저장</button> 
+	        <button type="submit" class="btn btn-primary" id="newPetInsert" >반려동물 정보저장</button> 
 	        <!-- <button type="submit" class="btn btn-primary">반려동물 정보저장</button> -->
 	        <button type="button" class="btn btn-secondary" data-dismiss="modal" onclick="clearInput()">Close</button>
 	      </div>
@@ -123,16 +123,60 @@
 	<div class="modal-header">
 		<h4 class="modal-title" id="myModalLabel">반려동물 상세보기</h4>
 	</div>
-    <form class="pet-form" id="pet-detail-form" name="pet-detail-form">
+    <form class="pet-form" id="pet-detail-form" name="pet-detail-form" enctype="multipart/form-data" action="ajaxInsertPetInfo" method="post">>
 		<br>
 		<div class="popup-inner img-pet" id="detail_petimg">
 			<img id="thumb_container-detail">
 		</div>
 		<div class="popup-inner text-pet">
 		<div class="form-group-detail">
-			<h1 class="detailClass" id="detail_petname"><i class="fas fa-paw"></i></h1>
+			<h1 class="detailClass" id="detail_petname"></h1>
 			<div id="textMain-wrap">
-				<div class="box-detail">
+			<div class="ttest">
+        
+        <ul class="test1">
+            <li class="box-detail">
+                <h5 style="display: inline">성별 : </h5>
+                <p class="detailClass" id="detail_gender" style="display: inline"></p>
+            </li>
+            <li class="box-detail">
+                <h5 style="display: inline">품종 : </h5>
+                <p class="detailClass" id="detail_variety" style="display: inline"></p>
+            </li>
+            <li class="box-detail">
+                <h5 style="display: inline">생일 : </h5>
+                <p class="detailClass" id="detail_birth" style="display: inline"></p>
+            </li>
+            <li class="box-detail">
+                <h5 style="display: inline">나이 : </h5>
+                <p class="detailClass" id="detail_age" style="display: inline"></p>
+            </li>
+        </ul>
+        <ul class="test2">
+            <li class="box-detail">
+                <h5 style="display: inline">체형 : </h5>
+                <p class="detailClass" id="detail_size" style="display: inline"></p>
+            </li>
+            <li class="box-detail">
+                <h5 style="display: inline">무게 : </h5>
+                <p class="detailClass" id="detail_weight" style="display: inline"></p>
+            </li>  
+            <li class="box-detail">
+                <h5 style="display: inline">목둘레 : </h5>
+                <p class="detailClass" id="detail_neck" style="display: inline"></p>
+            </li>
+            <li class="box-detail">
+                <h5 style="display: inline">가슴둘레 : </h5>
+                <p class="detailClass" id="detail_chest" style="display: inline"></p>
+            </li>
+            <li class="box-detail">
+                <h5 style="display: inline">등길이 : </h5>
+                <p class="detailClass" id="detail_back" style="display: inline"></p>
+            </li>
+            
+        </ul>
+        </div>
+				<%-- <div class="box-detail">
 					<h5>성별</h5>
 					<p class="detailClass" id="detail_gender">${petDetail.pet_gender }</p>
 				</div>
@@ -167,26 +211,29 @@
 				<div class="box-detail">
 					<h5>가슴둘레</h5>
 					<p class="detailClass" id="detail_chest">${petDetail.chest_length }</p>
-				</div>
+				</div> --%>
 			</div>
 			<div class="textSub-wrap">
-				<div class="box-detail">
+				<div class="test3">
+		            <h5 style="display: inline">특이사항</h5>
+		            <pre class="detailClass" id="detail_etc"></pre>
+		        </div>
+				<%-- <div class="box-detail">
 					<h5>특이사항</h5>
 					<pre class="detailClass" id="detail_etc">${petDetail.pet_etc }
-						<%-- <p class="detailClass" id="detail_etc">${petDetail.pet_etc }</p> --%>
+						<p class="detailClass" id="detail_etc">${petDetail.pet_etc }</p>
 					</pre>
-				</div>
+				</div> --%>
 			</div>
 				<input type="hidden" id="detail_tnr" name="tnr" value="">
 				<input type="hidden" id="detail_animal_type" name="animal_type" value="">
 				<input type="hidden" id="detail_pet_serial" name="pet_serial" value="">
-				<%-- <input type="hidden" id="detail_member_serial" name="member_serial" value="${sessionScope.user.memberSerial}"> --%>
 				<input type="hidden" id="detail_member_serial" name="member_serial" value="">
 			</div>
 		</div>
       <div class="modal-footer">
 	    <button class="btn btn-primary" data-toggle="modal" data-dismiss="modal" data-target="#modiPetInfo">정보 수정</button>
-	    <button class="btn btn-primary" id="deletePetInfo">정보 삭제</button>
+	    <button type="button" class="btn btn-primary" id="deletePetInfo" onclick="deletepet(this.form)">정보 삭제</button>
       	<button type="button" class="btn btn-secondary" data-dismiss="modal" >Close</button>
       </div>
 	</form>
@@ -201,15 +248,15 @@
       <div class="modal-header">
 			<h4 class="modal-title" id="myModalLabel">반려동물 정보수정</h4>
 	  </div>
-      <form class="pet-form" id="updatePetInfo" enctype="multipart/form-data">
+      <form class="pet-form" id="updatePetInfo" enctype="multipart/form-data" action="/updatePetInfo" method="post">
       <div class="modal-body">
        	<div class="form-group">
 	        <table class="table table-bordered">
 	        <tbody>
 		        <tr>
-					<td class="insert-title">이름*</td>
+					<th class="insert-title">이름*</th>
 					<td><input type="text" name="pet_name" id="modi_petname"></td>
-					<td class="insert-title">나이*</td>
+					<th class="insert-title">나이*</th>
 					<td><input type="number" name="pet_age" id="modi_petage" value="${petDetail.pet_age }"></td>
 		        </tr>
 		        <tr>
@@ -274,8 +321,9 @@
       <div class="modal-footer">
 		<input type="hidden" id="modi_animal_type" name="animal_type" value="">
 		<input type="hidden" id="modi_pet_serial" name="pet_serial" value="">
+		<input type="hidden" id="modi_pet_img" name="image_source_oriname" value="">
 		<input type="hidden" id="modi_member_serial" name="member_serial" value="${sessionScope.userDTO.member_serial }">
-        <button type="button" class="btn btn-primary" id="updatePetInfobtn">반려동물 정보수정</button>
+        <button type="submit" class="btn btn-primary" id="updatePetInfobtn">반려동물 정보수정</button>
         <button type="button" class="btn btn-secondary" data-dismiss="modal" onclick="clearInput()">Close</button>
       </div>
 	 </form>

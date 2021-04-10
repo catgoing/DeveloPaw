@@ -1,6 +1,7 @@
 package ga.bowwow.service.userpage.impl;
 
 import java.util.List;
+import java.util.Map;
 
 import org.mybatis.spring.SqlSessionTemplate;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -38,5 +39,10 @@ public class UserPointDAO{
 			o.setOrder_date(date);
 		}
 		return list;
+	}
+	
+	//포인트탭 페이징처리용 구매내역수
+	public int getMyPointCount(Map<String, String> map) {
+		return mybatis.selectOne("UserAccount.searchforPointPaging", map);
 	}
 }

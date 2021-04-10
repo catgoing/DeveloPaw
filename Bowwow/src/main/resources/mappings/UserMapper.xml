@@ -170,8 +170,13 @@
 			   AND O.MEMBER_SERIAL = #{member_serial}
 			   ORDER BY O.ORDER_DATE DESC)
 	  WHERE ROWNUM <![CDATA[ <= ]]> 10
-	 
 	 </select>
 	 
+	 <!-- 개인 포인트내역출력 시 페이징을 위한 구매내역 count -->
+	 <select id="searchforPointPaging" resultType="int">
+	 	SELECT COUNT(*)
+		FROM STORE_ORDER 
+		WHERE MEMBER_SERIAL = #{member_serial}
+	 </select>
 	 
 </mapper>

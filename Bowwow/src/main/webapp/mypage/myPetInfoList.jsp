@@ -55,7 +55,7 @@
     <link rel="stylesheet" type="text/css" href="/resources/css/test.css">
 <style>
 .insert-title{
-	width : 17%;
+	width : 18%;
 }
 /* 반려동물 정보 출력영역 설정*/
 .col-md-4 .list-inner{
@@ -89,7 +89,10 @@ input[type="number"]::-webkit-inner-spin-button {
     margin: 0;
 }
 .modal-title { margin: 0 auto;}
-#detail_petname {text-align: center;}
+#detail_petname {
+	text-align: center;
+	margin: 5px 0 5px 0;
+}
 .classname { 
 	max-width:100%;
 	height:auto 
@@ -107,102 +110,63 @@ tr td textarea{
 }
 
 .detailClass, .box-detail {
-	padding-left:10px;
+	padding-left:5px;
+	padding-right:5px;
 }
 .detailClass {
 	font-size:1.2em;
 	color : #212529;
 }
+/*특이사항출력시 자동 줄바꿈*/
 pre{
 	overflow: auto;
 	white-space: pre-wrap;
 	word-break: break-all;
 }
+#updatePetInfo .input[type=text]{
+	border:none;
+	border-bottom: 1px solid black;
+}
+ul li {
+    list-style-type: none;
+}
+#textMain-wrap {
+	text-align: center;
+}
+ .ttest {
+     width: 80%;
+     margin : 5px 0 0 0; 
+     display: inline-block;
+ }
+
+ .test1 {
+     float: left;
+     width: 50%;
+     margin: 0 auto;
+     text-align: left;
+ }
+ .test2{
+     float: right;
+     width: 50%;
+     margin: 0 auto;
+       text-align: left;
+ }
+ 
+ .test3{
+     width: 80%;
+     margin: 0 auto;
+ }
+  .div-center { margin: 0 auto;}
+  .text-center {
+  	text-align : center;
+  	margin: 0 auto;
+  	color : #ff6347;
+  }
 </style>
 <script type="text/javascript" src="/common/commonThumbnail.js"></script>
 <script>
 
 $().ready(function(){
-	$("#deletePetInfo").on("click", function(){
-		console.log("deletePetInfo 실행");
-		var answer = confirm("정말로 삭제하시겠습니까?")
-		if(answer){
-			var pSerial = $("form[name='pet-detail-form'] input[id='detail_pet_serial']").val();
-			var Serial = { 'pet_serial' : pSerial };
-			console.log(pSerial);
-			console.log(Serial);
-			$.ajax({
-				url : "/ajaxDeletePetInfo",
-				type : "post",
-				data : Serial,
-				async : "false",
-				dataType : "text",
-				success : function(result){
-					$("#petDetail").modal("hide");
-					alert("삭제완료");
-					location.href = "/getPetInfoList";
-				}, error : function(request,status,error){
-					alert("삭제실패");
-					location.replace = "/getPetInfoList";
-				}
-			});
-		} else {
-			alert("삭제를 취소합니다!");
-		}
-	});
-
-	$("#newPetInsert").on("click", function(){
-		console.log("입력 실행");
-
-		var datas = new FormData(document.getElementById('insertPetform'));
-		console.log(datas);
-		console.log($("#insertPetform input[type='file']").val());
-		
-		$.ajax("/ajaxInsertPetInfo", {
-			type : "post",
-			enctype: "multipart/form-data",
-		    data : datas,
-			processData: false,
-			contentType: false,
-			cache: false,
-			dataType: "json",
-			success : function(result){
-				console.log("result : " + result);
-				alert("yes");
-				$("#newPet").modal("hide");
-				location.href = "/getPetInfoList";
-			}, error : function(request,status,error){
-				alert("no");
-			}
-		});
-	});
-	
-	$("#updatePetInfobtn").on("click", function(){
-		console.log("수정 실행");
-
-		var datas = new FormData(document.getElementById('updatePetInfo'));
-		console.log(datas);
-		console.log($("#updatePetInfo input[type='file']").val());
-		$.ajax("/ajaxUpdatePetInfo", {
-			type : "post",
-			enctype: "multipart/form-data",
-		    data : datas,
-			processData: false,
-			contentType: false,
-			cache: false,
-			dataType: "json",
-			success : function(result){
-				console.log("result : " + result);
-				alert("yes");
-				$("#modiPetInfo").modal("hide");
-				location.href = "/getPetInfoList?member_serial=${sessionScope.userDTO.member_serial }";
-			}, error : function(request,status,error){
-				alert("no");
-			}
-		});
-	});
-	
-	
 	var imgFile = $('#inputimage').val();
 	var fileForm = /(.*?)\.(jpg|jpeg|png|gif|bmp)$/;
 	
@@ -213,6 +177,12 @@ $().ready(function(){
 	    }
 	}
 });
+
+function deletepet(frm){
+	frm.action="/deletePetInfo";
+	frm.method="post";
+	frm.submit();
+}
 
 function getPetInfo(frm){
 	console.log("getPetInfo 시작");
@@ -286,10 +256,9 @@ function setModiInfo(petDetail){
 	
 	$("#modi_tnr").val(petDetail.tnr);				// hidden
 	$("#modi_member_serial").val("${sessionScope.userDTO.member_serial }");	// hidden
+	//$("#modi_pet_img").val("https://projectbit.s3.us-east-2.amazonaws.com/"+petDetail.image_source_oriname);	// hidden
 	$("#modi_pet_serial").val(petDetail.pet_serial);	// hidden
 }
-
-
 
  function transferType(){
 	 console.log("test");
@@ -366,7 +335,7 @@ function clearInput(){
 	                                        <div class="col-md-4">
 		                                        <div class="list-inner">
 			                                        <div class="pet-img" style="width: 200px; height: 200px;">
-			                                        	<img src="${pet.image_source_oriname }" alt="이미지" class="img-circle img-thumbnail" id="img-thumbnail" style="width: 200px; height: 200px;">
+			                                        	<img src="https://projectbit.s3.us-east-2.amazonaws.com/${pet.image_source_oriname }" alt="이미지" class="img-circle img-thumbnail" id="img-thumbnail" style="width: 200px; height: 200px;">
 			                                        </div>
 			                                        <div class="pet-name">${pet.pet_name }</div>
 			                                        <div class="pet-detail">
@@ -381,9 +350,9 @@ function clearInput(){
                                         </c:forEach>
                                         </c:if>
                                         <c:if test="${empty petList }">
-                                        	<div class="col-md-6">
+                                        	<div class="col-md-6 div-center">
 	                                        <div class="list-inner">
-		                                        	<h3>등록된 반려동물이 없습니다.</h3>
+		                                        	<h3 class="text-center">등록된 반려동물이 없습니다.</h3>
 		                                        </div>
 	                                        </div>
                                         </c:if>

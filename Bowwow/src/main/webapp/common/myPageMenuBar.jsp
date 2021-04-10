@@ -7,12 +7,10 @@
 		<a href="#"><i class="icon-close icons"></i></a>
 	</div>
 	<div class="pcoded-inner-navbar main-menu">
-		<div class="p-15 p-b-0">
-			<form class="form-material">
-				<!-- 이부분 form을 없애면 좌측메뉴 시작부분이 위쪽으로 조금 올라감 -->
-			</form>
-		</div>
 		
+		<br>
+		<ul class="pcoded-item pcoded-left-item">
+		</ul>
 		<ul class="pcoded-item pcoded-left-item">
 			<li class="">
 			<a href="/mypage/myPageMain"

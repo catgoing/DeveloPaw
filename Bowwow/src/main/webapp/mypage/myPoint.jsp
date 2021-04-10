@@ -2,7 +2,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
     <% request.setCharacterEncoding("UTF-8"); %>
-<%@ taglib uri="http://tiles.apache.org/tags-tiles" prefix="tiles"%>
+<%-- <%@ taglib uri="http://tiles.apache.org/tags-tiles" prefix="tiles"%> --%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 
 <!DOCTYPE html>
@@ -81,7 +81,10 @@
  td .input-group{
  	width : 100%;
  }
- 
+ .table-sm th{
+	color: 	#3C1E1E;
+	font-weight: bold;
+}
 </style>
 </head>
 
@@ -191,6 +194,13 @@
 										<td>${point.point }</td>
 									</tr>
 									</c:forEach>
+									<tr>
+										<td colspan="5" style="text-align: center;">
+											<div style="display:inline-block; margin:0 auto; font-size: 20px;">
+												<%@include file="/common/paging.jsp" %>
+											</div>
+										</td>
+									</tr>
 								</c:if>
 								</table>
 						     </div>

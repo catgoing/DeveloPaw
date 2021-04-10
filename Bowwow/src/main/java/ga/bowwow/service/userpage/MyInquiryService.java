@@ -10,7 +10,7 @@ public interface MyInquiryService {
 	int checkAnswer(MyInquiry myInquiry);
 	int insertAdminInquiryAnswer(MyInquiry myInquiry);
 	List<MyInquiry> getAllInquiry(Map<String, String> map);
-	int getInquiryCount(Map<String, String> map);
 	int getMyInquiryCount(Map<String, Object> map);
+	int getAllInquiryCount(Map<String, String> map);
 	
 }

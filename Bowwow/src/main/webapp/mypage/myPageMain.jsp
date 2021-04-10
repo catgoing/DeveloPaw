@@ -3,7 +3,14 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
-
+<%
+	int member_serial = 999;
+	//String id = 
+	//String nickname="황소";
+	UserDTO user = new UserDTO();
+	user.setMember_serial(member_serial);
+	session.setAttribute("userDTO", user);
+%>
 <!DOCTYPE html>
 <html>
 
@@ -57,6 +64,7 @@
   .div-center { margin: 0 auto;}
   .text-center {
   	text-align : center;
+  	margin: 0 auto;
   	color : #ff6347;
   }
  .petImg-container{
@@ -159,9 +167,9 @@
 											<h5 class="text-center">적립된 포인트가 없습니다.</h5>
 										</div>
 									</c:if>
-									<table>
+									<table class="table table-sm">
 									<c:if test="${not empty myHomePointList }">	
-										<h5>상품 구매 후 적립된 포인트 내역을 보여드립니다.</h5>
+										<h5 class="text-center">상품 구매 후 적립된 포인트 내역을 보여드립니다.</h5>
 										<tr>
 											<th width="200">추가일</th>
 											<th width="150">추가포인트</th>
@@ -200,10 +208,8 @@
 							    </div>
 							    </c:if>
 							    <c:if test="${empty myHomepetList }">
-							    	<div class="col-md-6">
-	                           			<div class="list-inner">
-		                               	<h3>등록된 반려동물이 없습니다.</h3>
-		                            	</div>
+							    	<div class="col-md-6 div-center">
+		                               	<h3 class="text-center">등록된 반려동물이 없습니다.</h3>
 	                            	</div>
 							    </c:if>
 							  </div>
