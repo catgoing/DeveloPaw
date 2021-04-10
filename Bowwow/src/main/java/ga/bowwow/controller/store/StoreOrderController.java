@@ -1,9 +1,7 @@
 package ga.bowwow.controller.store;
 
 import java.io.IOException;
-import java.util.HashMap;
 import java.util.List;
-import java.util.Map;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -13,10 +11,8 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.ResponseBody;
 
 import ga.bowwow.service.store.Order;
-import ga.bowwow.service.store.Review;
 import ga.bowwow.service.store.StoreOrderService;
 
 @Controller
@@ -28,11 +24,22 @@ public class StoreOrderController {
 	public StoreOrderController() {
 		System.out.println(">> StoreOrderController 실행");
 	}
-
-	@RequestMapping(value = "/store/storeOrder")
-	public String storeOrder() {
-		return "storeOrder";
+	
+	@RequestMapping(value = "/store/moveOrder") 
+	public String moveOrder() {
+		return "/store/storeOrder";
 	}
+	
+	
+	@RequestMapping(value = "/store/storeOrder")
+	public String storeOrder(Order order, Model model) {
+		System.out.println("order : " + order);
+		model.addAttribute("order", order);
+		
+		
+		return "/store/storeOrder";
+	}
+	
 
 	// 주문내역 작성
 	@RequestMapping(value = "/store/insertOrder")

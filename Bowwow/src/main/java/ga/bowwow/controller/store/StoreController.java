@@ -43,7 +43,7 @@ public class StoreController {
 		model.addAttribute("p", p);
 
 		
-		return "productDetail";
+		return "/store/productDetail";
 	}
 	
 	// 상품 전체 출력
@@ -76,8 +76,37 @@ public class StoreController {
 		model.addAttribute("p_type", product.getP_type());
 		model.addAttribute("p_category", product.getP_category());
 		
-		return "productList";
+		return "/store/productList";
 		
+	}
+	
+	// 상품 검색
+	@RequestMapping(value = "/store/searchProd")
+	public String searchProd(Product product, Model model, HttpServletRequest request) {
+		
+		System.out.println("검색 : " + product);
+		String cPage = request.getParameter("cPage");
+		
+		Page p = new Page();
+		
+		if (product.getKeyword() == null) {
+			product.setKeyword("");
+		}
+		
+		Map<String, String> map = new HashMap<String, String>();
+		map.put("keyword", product.getKeyword());
+		
+		p = p.setPage(storeService.getSearchCount(map), cPage, 20, 10);
+		map = p.data1(p, product.getKeyword(), map);
+		
+		List<Product> searchProd = storeService.prodSearch(map);
+		
+		model.addAttribute("pSearch", searchProd);
+		model.addAttribute("pvo", p);
+		model.addAttribute("keyword", product.getKeyword());
+		model.addAttribute("command", "/store/searchProd");
+	
+		return "/store/storeSearch";
 	}
 
 	

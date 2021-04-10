@@ -79,7 +79,7 @@
 
 
 <style>
-.carousel-inner>.carousel-item>a img {  width: 300px; height: 350px; 
+.carousel-inner>.carousel-item>a img {  width: 300px; height: 350px;
 }
 
 
@@ -246,19 +246,14 @@
 	</div>
 	<%@include file="/common/storeFoot.jsp"%>
 	<!-- Required Jquery -->
-	<script type="text/javascript"
-		src="/resources/js/jquery/jquery.min.js "></script>
-	<script type="text/javascript"
-		src="/resources/js/jquery-ui/jquery-ui.min.js "></script>
-	<script type="text/javascript"
-		src="/resources/js/popper.js/popper.min.js"></script>
-	<script type="text/javascript"
-		src="/resources/js/bootstrap/js/bootstrap.min.js "></script>
+	<script type="text/javascript" src="/resources/js/jquery/jquery.min.js "></script>
+	<script type="text/javascript" src="/resources/js/jquery-ui/jquery-ui.min.js "></script>
+	<script type="text/javascript" src="/resources/js/popper.js/popper.min.js"></script>
+	<script type="text/javascript" src="/resources/js/bootstrap/js/bootstrap.min.js "></script>
 	<!-- waves js -->
 	<script src="/resources/pages/waves/js/waves.min.js"></script>
 	<!-- jquery slimscroll js -->
-	<script type="text/javascript"
-		src="/resources/js/jquery-slimscroll/jquery.slimscroll.js"></script>
+	<script type="text/javascript" src="/resources/js/jquery-slimscroll/jquery.slimscroll.js"></script>
 
 	<!-- slimscroll js -->
 	<script src="/resources/js/jquery.mCustomScrollbar.concat.min.js "></script>

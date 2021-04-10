@@ -46,6 +46,10 @@
     <link rel="stylesheet" type="text/css" href="/resources/css/paging.css">
 	<script type="text/javascript" src="http://code.jquery.com/jquery-latest.js"></script>
 	
+<style>
+  .featured__item__text { width: 150px; }
+  
+</style>
 <script type="text/javascript">
 	  $(document).ready(function(){
 	   var max_h=400;
@@ -59,10 +63,6 @@
 	  });
 </script>
 
-<style>
-  .featured__item__text { width: 150px; }
-  
-</style>
 </head>
 
 <body>
@@ -92,18 +92,27 @@
 												<div class="row">
 													<div class="col-lg-12">
 														<div class="section-title">
-															<h3>스토어</h3>
+															<h3>검색 결과</h3>
 														</div>
 														<br>
 													</div>
 												</div>
 												<div class="monthly-products">
 													<ul>
-														<c:if test="${empty pList }">
-															<h4>상품이 없습니다.</h4>
+														<c:if test="${empty pSearch }">
+															<h4>검색 결과가 존재하지 않습니다.</h4>
 														</c:if>
-														<c:if test="${not empty pList }">
-														<c:forEach var="list" items="${pList }">
+														
+														<c:if test="${not empty pSearch }">
+														<c:forEach var="list" items="${pSearch }">
+															<c:choose>
+																<c:when test="${list.p_type == 'dog'}">
+																	<c:set var="imgDir" value="dogImg" />
+																</c:when>
+																<c:when test="${list.p_type == 'cat'}">
+																	<c:set var="imgDir" value="catImg" />
+																</c:when>
+															</c:choose>
 															<li>
 																<div
 																	class="col-lg-3 col-md-4 col-sm-6 mix oranges fresh-meat"

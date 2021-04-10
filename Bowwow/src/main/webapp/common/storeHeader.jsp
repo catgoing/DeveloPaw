@@ -1,5 +1,27 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"	pageEncoding="UTF-8"%>
 
+<style>
+ .form-control{
+      width:250px;
+      height:40px;
+      border:none;
+      font-size:1em;
+      padding-left: 5px;
+      font-style: oblique;
+      display:inline;
+      outline:none;
+      box-sizing: border-box;
+      color:black;
+}
+
+input[type="submit"] {
+	font-family: FontAwesome;
+	background-color: #f7b5b7;
+	border: none;
+	color: #fff;
+}
+</style>
+
 <!-- Pre-loader start -->
 	<div class="theme-loader">
 		<div class="loader-track">
@@ -73,7 +95,7 @@
 								</div>
 							</div>
 						</div>
-						<a href="storeMain"
+						<a href="store/storeMain"
 							style="text-align: center; font-weight: bold; font-size: 30px; margin-top: 7px;">BOW-WOW</a>
 
 						<a class="mobile-options waves-effect waves-light"> <i
@@ -88,20 +110,26 @@
 								</div>
 							</li>
 							<li><a href="/community/main"> 커뮤니티 </a></li>
-							<li><a href="storeMain"> 스토어 </a></li>
+							<li><a href="/store/storeMain"> 스토어 </a></li>
 						</ul>
+						<form action="/store/searchProd" method="POST">
 						<ul class="nav-right">
 							<li class="form-group form-primary">
-								<input type="text" name="footer-email" style="margin-top: 12px; width: 250px;" class="form-control" placeholder="검색창"> 
+								<input type="text" class="form-control" name="keyword" autocomplete="off" placeholder="검색창"> 
 								<span class="form-bar"></span>
+							</li>
+							<li>
+								<input type="submit" name="search" value="&#xf002;">
 							</li>
 							<li class="header-notification">
 								<a href="/store/cartList" class="waves-effect waves-light"> 
-									<i class="fa fa-shopping-cart" style="font-size : 22px;" aria-hidden="true" ></i> 
+									<i class="fa fa-shopping-cart" aria-hidden="true" ></i> 
 								</a>
 							</li>
-							<li class="user-profile header-notification"><a href="#!" class="waves-effect waves-light"> 
-								<img src="resources/images/avatar-4.jpg" class="img-radius" alt="User-Profile-Image"> <i class="ti-angle-down"></i>
+							<li class="user-profile header-notification"><a href="#!"
+								class="waves-effect waves-light"> <img
+									src="../resources/images/logo.png" class="img-radius"
+									alt="User-Profile-Image"> <i class="ti-angle-down"></i>
 							</a>
 								<ul class="show-notification profile-notification">
 									<li class="waves-effect waves-light"><a href="/mypage/myPageMain">마이홈
@@ -118,6 +146,7 @@
 										href="auth-normal-sign-in.html">로그아웃 </a></li>
 								</ul></li>
 						</ul>
+						</form>
 					</div>
 				</div>
 			</nav>

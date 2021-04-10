@@ -184,15 +184,13 @@
    		}
 	}
 
-	function insertOrder(frm) {
-		console.log('order 함수');
-		var p_id = $('#product_id').val();
-		var p_count = $('#product_count').val();
-		var sum = $('#totalSum').val();
-		var pName = $("input:hidden[name='p_name']").val();
+	function insertOrder() {
 
-		location.href = "/store/storeOrder?p_id=" + p_id + "&p_count=" + p_count + 
-				"&totalSum=" + sum + "&p_name=" + pName;
+ 		var p_id = $("input:hidden[name='p_id']").val();
+		var amount = $("input:text[name='amount']").val();
+		var totalSum = Number(numberRemoveCommas($("input:text[id='sum']").val()));
+		
+		location.href = "/store/storeOrder?p_id=" +p_id + "&amount=" + amount + "&totalSum=" + totalSum;
 	}
 
 	
@@ -318,9 +316,21 @@
 	 } // end of reviewList()
 	
 	 function storeOrder(frm) {
-	 	frm.action="/store/storeOrder";
+		var sum = Number(numberRemoveCommas($("input:text[id='sum']").val()));
+		 
+	 	frm.action="/store/storeOrder?sum=" + sum;
 	  	frm.submit();
      }
+	 
+	 function toMyPage() {
+		 var p_id = $("input:hidden[name='p_id']").val();
+		 
+		 location.href="/getUserInquiryList?p_id=" + p_id;
+	 }
+	 
+	 function numberRemoveCommas(x) {
+	    return parseInt(x.replace(/,/g,""));
+	 }
 	 
 </script>
 
@@ -375,6 +385,8 @@
 													<input type="hidden" name="p_name" value="${p.p_name }">
 													<input type="hidden" id="product_id" name="p_id" value="${p.p_id }"> 
 													<input type="hidden" id="stock" name="stock" value="${p.stock }">
+													<input type="hidden" name="s_image" value="${p.s_image }">
+													<input type="hidden" name="p_type" value="${p.p_type }">
 													<div class="product__details__button">
 														<div class="product__details__widget">
 															<ul>
@@ -415,7 +427,7 @@
 													<div class="btn_area">
 														<c:if test="${p.stock != 0 }">
 															<input type="button" class="store_btn" value="장바구니" onclick="cartList(this.form)">
-															<input type="button" class="store_btn" value="바로구매" onclick="insertOrder(this.form)">
+															<input type="button" class="store_btn" value="바로구매" onclick="storeOrder(this.form)">
 															<input type="hidden" id="totalSum" name="totalSum">
 														</c:if>
 														<c:if test="${p.stock == 0 }">
@@ -495,8 +507,10 @@
 																					style="resize: none;" placeholder="후기 내용"></textarea>
 																			</div>
 																			<div class="form-group">
-																				<button type="button" onclick="reviewInsert()"
-																					class="btn custom-btn" style="float: right;">작성</button>
+																				<input type="button" onclick="reviewInsert()" value="리뷰 등록"
+																					class="btn custom-btn" style="float: right;">
+																				<input type="button" onclick="toMyPage()" value="상품 문의하기"
+																					class="btn custom-btn">
 																				<input type="hidden" name="p_id" value="${p.p_id}">
 																				<input type="hidden" name="member_serial" value="999">
 																			</div>
@@ -506,22 +520,6 @@
 															<br><br>
 															<section class="reviewList">
 																<ol class="appendReview">
-																	<%-- <li class="rev_${rList.review_id }">
-																		 <hr>
-																		 <div class="comment-body">
-																		 <div class="comment-img">
-																		 <img src="img/user.jpg" />
-																		 </div>
-																		 <div class="comment-text">
-																		 <h3>${rList.nickname }</h3>
-																		 <span>${rList.review_id }</span>
-																		 <p>${rList.review_id }</p>
-																		 <p>${rList.review_id }</p>
-																		 <button class="store_btn" onclick="deleteReview(${rList.review_id })">삭제</button>
-																		 </div>
-																		 </div>
-																		 <hr>
-																	 </li> --%>
 																 </ol>
 																<script>
 																	reviewList();

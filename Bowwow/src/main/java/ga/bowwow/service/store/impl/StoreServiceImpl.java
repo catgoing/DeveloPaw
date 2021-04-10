@@ -11,10 +11,10 @@ import ga.bowwow.service.store.StoreService;
 
 @Service
 public class StoreServiceImpl implements StoreService {
-	
+
 	@Autowired
 	private StoreDAO storeDAO;
-	
+
 	@Override
 	public void insertProducts(Product product) {
 
@@ -34,7 +34,7 @@ public class StoreServiceImpl implements StoreService {
 	public Product getProductDetail(int p_id) {
 		return storeDAO.getProductDetail(p_id);
 	}
-	
+
 	@Override
 	public List<Product> getProductList(Map<String, String> map) {
 		return storeDAO.getProductList(map);
@@ -42,11 +42,18 @@ public class StoreServiceImpl implements StoreService {
 
 	@Override
 	public int getProductCount(Map<String, String> map) {
-		
 		return storeDAO.getProductCount(map);
 	}
 
 	@Override
+	public List<Product> prodSearch(Map<String, String> map) {
+		return storeDAO.searchProd(map);
+	}
+
+	@Override
+	public int getSearchCount(Map<String, String> map) {
+		return storeDAO.getSearchCount(map);
+
 	public List<Product> getDogProductByPrice(Product products) {
 		return storeDAO.getDogProductByPrice(products);
 	}
