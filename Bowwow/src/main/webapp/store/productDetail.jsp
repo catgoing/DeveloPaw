@@ -186,41 +186,11 @@
 
 	function insertOrder() {
 
- 		var orderArr = [];
-		
  		var p_id = $("input:hidden[name='p_id']").val();
 		var amount = $("input:text[name='amount']").val();
-		var totalSum = $("input:text[id='sum']").val();
+		var totalSum = Number(numberRemoveCommas($("input:text[id='sum']").val()));
 		
-		var json = {
-				"p_id" : p_id,
-				"amount" : amount,
-				"totalSum" : numberRemoveCommas(totalSum)
-		}
-		
-		orderArr.push(json);
-
-		orderArray = JSON.stringify(orderArr);
-		
-		$.ajax({
-			url : "/store/storeOrder",
-			type : "post",
-			data : {
-				orderArray : orderArray,
-				},
-			traditional : true,
-			async : true,
-			success : function(data){
-				alert("구매페이지로 이동합니다.");
-				window.location.href="/store/moveOrder";
-			},
-			error : function( jqXHR, textStatus, errorThrown ) {
-				alert( jqXHR.status );
-				alert( jqXHR.statusText );
-				alert( jqXHR.responseText );
-				alert( jqXHR.readyState );
-			}
-		});
+		location.href = "/store/storeOrder?p_id=" +p_id + "&amount=" + amount + "&totalSum=" + totalSum;
 	}
 
 	
@@ -343,7 +313,9 @@
 	 } // end of reviewList()
 	
 	 function storeOrder(frm) {
-	 	frm.action="/store/storeOrder";
+		var sum = Number(numberRemoveCommas($("input:text[id='sum']").val()));
+		 
+	 	frm.action="/store/storeOrder?sum=" + sum;
 	  	frm.submit();
      }
 	 
@@ -410,6 +382,8 @@
 													<input type="hidden" name="p_name" value="${p.p_name }">
 													<input type="hidden" id="product_id" name="p_id" value="${p.p_id }"> 
 													<input type="hidden" id="stock" name="stock" value="${p.stock }">
+													<input type="hidden" name="s_image" value="${p.s_image }">
+													<input type="hidden" name="p_type" value="${p.p_type }">
 													<div class="product__details__button">
 														<div class="product__details__widget">
 															<ul>
@@ -450,7 +424,7 @@
 													<div class="btn_area">
 														<c:if test="${p.stock != 0 }">
 															<input type="button" class="store_btn" value="장바구니" onclick="cartList(this.form)">
-															<input type="button" class="store_btn" value="바로구매" onclick="insertOrder(this.form)">
+															<input type="button" class="store_btn" value="바로구매" onclick="storeOrder(this.form)">
 															<input type="hidden" id="totalSum" name="totalSum">
 														</c:if>
 														<c:if test="${p.stock == 0 }">

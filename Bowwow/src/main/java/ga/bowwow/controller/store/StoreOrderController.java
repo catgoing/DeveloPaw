@@ -7,7 +7,6 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -33,13 +32,12 @@ public class StoreOrderController {
 	
 	
 	@RequestMapping(value = "/store/storeOrder")
-	public ResponseEntity<String[]> storeOrder(HttpServletRequest request, Model model) {
-	    String[] orderArray = request.getParameterValues("orderArray");
-	    for (int i = 0; i < orderArray.length; i++) {
-			System.out.println("orderArray" + orderArray[i]);
-		}
-	    
-	    return ResponseEntity.ok(orderArray);
+	public String storeOrder(Order order, Model model) {
+		System.out.println("order : " + order);
+		model.addAttribute("order", order);
+		
+		
+		return "/store/storeOrder";
 	}
 	
 

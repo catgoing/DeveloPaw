@@ -345,7 +345,7 @@
 																		</p>
 																	</td>
 																	<td class="p-price first-row">
-																		<input type="hidden" class="total_sum-${cart.p_id }" name="price" value="${cart.price}">
+																		<input type="hidden" class="total_sum${cart.p_id }" name="price" value="${cart.price}">
 																		<fmt:formatNumber value="${cart.price }" pattern="#,###" />원</td>
 																	<td class="qua-col first-row">
 																		<div class="quantity">
