@@ -54,6 +54,46 @@
 		 WHERE P_ID = #{p_id}
     </select>
     
+    
+    <!-- 메인 상품 출력 -->
+    <select id="getDogProductByPrice" parameterType="Product" resultType="Product">
+		SELECT * FROM 
+			(
+				SELECT ROWNUM AS RN, PROD.* FROM 
+				( 
+					SELECT 
+						P_ID, P_NAME, P_TYPE, P_CATEGORY, 
+		  				PRICE, STOCK, S_IMAGE, L_IMAGE 
+		  			FROM STORE_PRODUCTS
+		 			WHERE 1=1
+		 			
+		 			  AND P_TYPE = 'dog'
+		 			
+		 			ORDER BY DBMS_RANDOM.RANDOM()
+		 		) PROD 
+		 	)
+		 WHERE RN BETWEEN 0 AND 8
+    </select>
+    
+    <!-- 메인 상품 출력 -->
+    <select id="getCatProductByPrice" parameterType="Product" resultType="Product">
+		SELECT * FROM 
+			(
+				SELECT ROWNUM AS RN, PROD.* FROM 
+				( 
+					SELECT 
+						P_ID, P_NAME, P_TYPE, P_CATEGORY, 
+		  				PRICE, STOCK, S_IMAGE, L_IMAGE 
+		  			FROM STORE_PRODUCTS
+		 			WHERE 1=1
+		 			
+		 			  AND P_TYPE = 'cat'
+		 			
+		 			ORDER BY DBMS_RANDOM.RANDOM()
+		 		) PROD 
+		 	)
+		 WHERE RN BETWEEN 0 AND 8    
+    </select>    
 </mapper>
 
 

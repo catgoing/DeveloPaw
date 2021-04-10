@@ -60,14 +60,15 @@
 
 
 function delOrder(){
-	if(document.getElementById('orderStatus').value != "주문 완료"){
-		console.log(document.getElementById('orderStatus').value);
-		alert("배송이 시작된 상품입니다. 고객센터에 문의해 주세요.");
-		return false;
-
-	} else {
+	if(document.getElementById('orderStatus').value == "주문 완료"){
 		alert("주문이 취소되었습니다.");
 		return true;
+		
+
+	} else {
+		console.log(document.getElementById('orderStatus').value);
+		alert("배송이 시작된 상품입니다. 고객센터에 문의해 주세요.");
+		return false;		
 	}
 }	
 
@@ -147,7 +148,7 @@ function deleteOrder(frm) {
 															<h5>x ${o.amount }</h5>
 														</td>
 														<td>
-															<p>${o.totalSum }원</p>
+															<p><fmt:formatNumber value="${o.totalSum }" pattern="#,###" />원</p>
 														</td>
 													</tr>
 													<tr>
@@ -169,7 +170,7 @@ function deleteOrder(frm) {
 															<h5></h5>
 														</td>
 														<td>
-															<p>${o.totalSum}원</p>
+															<p><fmt:formatNumber value="${o.totalSum}" pattern="#,###" />원</p>
 														</td>
 													</tr>
 												</tbody>
@@ -181,7 +182,7 @@ function deleteOrder(frm) {
 										</div>
 									</div>
 								</form>
-								<form action="changeOrderStatus" method="post" class="deliveryForm">
+								<form action="changeOrderStatus" method="post" id="deliveryForm">
 									<input type="hidden" name="order_id" value="${o.order_id} ">
 									<input type="hidden" id="orderStatus1" name="order_status" value="">
 									<button type="button" class="delivery1_btn">배송중</button>
@@ -230,7 +231,7 @@ function deleteOrder(frm) {
 			});
 			
 			function run() {
-				$(".deliveryForm").submit();
+				$("#deliveryForm").submit();
 			}
 			
 		</script>		

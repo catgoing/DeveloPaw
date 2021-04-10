@@ -117,7 +117,7 @@
 																		href="storeOrderDetail?order_id=${oList.order_id }">${oList.order_id}</a></td>
 																	<td class="cart-title first-row">${oList.p_name }</td>
 																	<td class="p-price first-row">${oList.order_date}</td>
-																	<td class="total-price first-row" >${oList.totalSum }</td>
+																	<td class="total-price first-row" ><fmt:formatNumber value="${oList.totalSum }" pattern="#,###" />원</td>
 																</tr>
 															</tbody>
 														</c:forEach>

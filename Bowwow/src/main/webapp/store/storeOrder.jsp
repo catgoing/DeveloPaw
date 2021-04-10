@@ -48,6 +48,7 @@
         <!-- Style.css -->
         <link rel="stylesheet" type="text/css" href="/resources/css/style.css">
         <link rel="stylesheet" type="text/css" href="/resources/css/storeStyle.css">
+        <link rel="stylesheet" type="text/css" href="/resources/css/cartStyle.css">
         <link rel="stylesheet" type="text/css" href="/resources/css/test.css">
        <script type="text/javascript" src="/resources/js/jquery/jquery.min.js "></script>
        <script src="//developers.kakao.com/sdk/js/kakao.min.js"></script>
@@ -105,32 +106,35 @@
 
 
     function chkBtn(){
-        if ($("input:checkbox[name='chk_1']").is(":checked") == true && $("input:checkbox[name='chk_2']").is(":checked") == true){
-            return true; 
-        } 
-        else{
-             alert("동의 버튼을 눌러주셔야 결제가 진행됩니다.");
-             checkout.chk_1.focus();
-             checkout.chk_2.focus();
-             return false;
-            } 
+    	if(document.getElementById('userZonecode').value == ""){
+            alert("주소를 입력해 주세요.");
+            checkout.userZonecode.focus();
+            return false;
+        }  
+    	
+    	if(document.getElementById('phone').value == ""){
+            alert("핸드폰 번호를 입력해주세요");
+            checkout.phone.focus();
+            return false;
+        }  
+
+    	if ($("input:checkbox[name='chk_1']").is(":checked") == false || $("input:checkbox[name='chk_2']").is(":checked") == false){
+            alert("동의 버튼을 눌러주셔야 결제가 진행됩니다.");
+            checkout.chk_1.focus();
+            checkout.chk_2.focus();
+            return false;
+        } else return true;    	  
+    	
+       
     }
 
 
     function order_check(){
-        if(document.getElementById('address_first').value == ""){
+        if(document.getElementById('userZonecode').value == ""){
             alert("주소를 입력해 주세요.");
-            checkout.address_first.focus();
+            checkout.userZonecode.focus();
             return false;
-        } else if(document.getElementById('address_second').value == ""){
-            alert("주소를 입력해주세요");
-            checkout.address_second.focus();
-            return false;
-        } else if(document.getElementById('zip').value == ""){
-            alert("우편번호를 입력해주세요");
-            checkout.zip.focus();
-            return false;
-        } else if(document.getElementById('phone').value == ""){
+        }  else if(document.getElementByClassName('phone').value == ""){
             alert("핸드폰 번호를 입력해주세요");
             checkout.phone.focus();
             return false;
@@ -158,6 +162,49 @@
                             <div class="pcoded-inner-content">
                                 <!-- Main-body start -->
                                 <!-- Shopping Cart Section Begin -->
+                                <section class="shopping-cart spad">
+								<div class="container">
+									<div class="row">
+										<div class="col-lg-12">
+											<div class="cart-table" style="background-color: white;">
+												<table>
+													<thead>
+														<tr>
+															<th></th>
+															<th class="p-name" colspan="2">상품명</th>
+															<th>수량</th>
+															<th>주문금액</th>
+															<th></th>
+														</tr>
+													</thead>
+													<tbody>
+														<tr style="border-bottom: 1px solid #ddd;">
+															<td class="cart-pic first-row"><img style="width : 100px; height : 100px;"
+																src="/resources/images/reviewImage.jpg" alt="">
+															</td>
+															<td class="cart-title first-row" colspan="2">
+																<p>
+																	<a href="detail?p_id=${cart.p_id }">상품명</a>
+																</p>
+															</td>
+															<td class="qua-col first-row">
+																<div class="quantity">
+                                                                   	<div class="top__text cart-product-value" id="pCount2" style="text-align: right !important;"></div>
+																</div>
+															</td>
+															<td class="total-price first-row">                                                                    
+                                                                    <div class="top__text cart-product-value" id="pSum2" style="text-align: right !important;"></div>
+															</td>
+															<td class="close-td first-row">
+															</td>
+														</tr>
+													</tbody>
+												</table>
+											</div>
+										</div>
+									</div>
+								</div>
+							</section>
                                 <section class="checkout spad">
                                     <div class="container" style="background-color: white;">
                                         <form action="insertOrder" onsubmit="return chkBtn();" method="POST" name="checkout" class="checkout__form" accept-charset="UTF-8">
@@ -181,7 +228,7 @@
                                                                     <p>
                                                                       	  핸드폰 <span>*</span>
                                                                     </p>
-                                                                    <input type="text" name="phone">
+                                                                    <input type="text" id="phone" name="phone">
                                                                 </div>
                                                             </div>
                                                             <div class="col-lg-12">

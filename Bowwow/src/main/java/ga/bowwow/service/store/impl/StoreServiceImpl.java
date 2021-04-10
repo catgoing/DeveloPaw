@@ -46,4 +46,14 @@ public class StoreServiceImpl implements StoreService {
 		return storeDAO.getProductCount(map);
 	}
 
+	@Override
+	public List<Product> getDogProductByPrice(Product products) {
+		return storeDAO.getDogProductByPrice(products);
+	}
+
+	@Override
+	public List<Product> getCatProductByPrice(Product products) {
+		return storeDAO.getCatProductByPrice(products);
+	}
+
 }

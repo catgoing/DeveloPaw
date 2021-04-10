@@ -34,7 +34,14 @@ public class StoreDAO {
 	public int getProductCount(Map<String, String> map) {
 		return mybatis.selectOne("Store.ProductCount", map);
 	}
-	
+
+	public List<Product> getDogProductByPrice(Product products) {
+		return mybatis.selectList("Store.getDogProductByPrice", products);
+	}
+
+	public List<Product> getCatProductByPrice(Product products) {
+		return mybatis.selectList("Store.getCatProductByPrice", products);
+	}	
 	
 	// 장바구니 관련 dao
 	

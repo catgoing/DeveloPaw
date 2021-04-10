@@ -62,12 +62,24 @@
 <!-- Style.css -->
 <link rel="stylesheet" type="text/css" href="/resources/css/style.css">
 <link rel="stylesheet" type="text/css" href="/resources/css/test.css">
-
+<script type="text/javascript" src="http://code.jquery.com/jquery-latest.js"></script>
+<script type="text/javascript">
+	  $(document).ready(function(){
+	   var max_h=400;
+	   $(".monthly-products li").each(function(){
+	 var h = parseInt($(this).css("height"));
+	    if(max_h<h){ max_h = h; }
+	   });
+	   $(".monthly-products li").each(function(){
+	 $(this).css({height:max_h});
+	   });
+	  });
+</script>
 
 
 
 <style>
-.carousel-inner>.carousel-item>a img {  width: 300px; height: 400px; 
+.carousel-inner>.carousel-item>a img {  width: 300px; height: 350px; 
 }
 
 
@@ -93,24 +105,23 @@
 	<div id="pcoded" class="pcoded">
 		<div class="pcoded-overlay-box"></div>
 		<div class="pcoded-container navbar-wrapper">
-
 			<%@include file="/common/storeHeader.jsp"%>
-
 			<div class="pcoded-main-container">
 				<div class="pcoded-wrapper">
-
 					<%@include file="/common/storeMenuBar.jsp"%>
 					<div class="pcoded-content">
 						<div class="pcoded-inner-content">
-                     		<!-- body 본문 영역 -->
+							<!-- body 본문 영역 -->
 							<div id="demo" class="carousel slide" data-ride="carousel">
 								<div class="carousel-inner">
 									<!-- 슬라이드 쇼 -->
 									<div class="carousel-item active">
-										<a href="/account/signup"><img class="d-block w-100" src="/resources/images/storeBanner1.jpg" alt="Second slide"></a>
+										<a href="/account/signup"><img class="d-block w-100"
+											src="/resources/images/storeBanner1.jpg" alt="Second slide"></a>
 									</div>
 									<div class="carousel-item">
-										<a href="/account/signup"><img class="d-block w-100" src="/resources/images/storeBanner2.jpg" alt="Third slide"></a>
+										<a href="/account/signup"><img class="d-block w-100"
+											src="/resources/images/storeBanner2.jpg" alt="Third slide"></a>
 									</div>
 									<!-- / 슬라이드 쇼 끝 -->
 									<!-- 왼쪽 오른쪽 화살표 버튼 -->
@@ -132,17 +143,106 @@
 									<!-- 인디케이터 끝 -->
 								</div>
 							</div>
-							<section class="shopping-cart spad" style="margin : 20px;">
-								<div class="container">
-									<div class="row">
+							<div class="main-body">
+								<div class="page-wrapper" style="margin-top: 150px;">
+									<!-- Page-body start -->
+									<div class="page-body">
+										<section class="featured spad">
+											<div class="container">
+												<hr>
+												<div class="row">
+													<div class="col-lg-12">
+														<div class="section-title">
+															<h2>MD 추천 가장 핫한 상품 모음집</h2>
+														</div>
+														<br>
+													</div>
+												</div>
+												<div class="monthly-products">
+													<ul>
+														<c:forEach var="dList" items="${dogProductList }">
+															<li>
+																<div
+																	class="col-lg-3 col-md-4 col-sm-6 mix oranges fresh-meat"
+																	style="margin: 5px; margin-bottom: 10px;">
+																	<div class="featured__item">
+																		<div>
+																			<a href="detail?p_id=${dList.p_id }"> <img
+																				src="https://projectbit.s3.us-east-2.amazonaws.com/dogImg/${dList.s_image }"
+																				alt="">
+																			</a>
+																		</div>
+																		<br>
+																		<div class="featured__item__text"
+																			style="width: 200px;">
+																			<h6>
+																				<a href="detail?p_id=${dList.p_id }">${dList.p_name }</a>
+																			</h6>
+																			<h5>
+																				<fmt:formatNumber value="${dList.price }"
+																					pattern="#,###" />
+																				원
+																			</h5>
+																		</div>
+																	</div>
+																</div>
+															</li>
+														</c:forEach>
+													</ul>
+												</div>
+												<hr>
+												<div class="row">
+													<div class="col-lg-12">
+														<div class="section-title">
+															<h2>MD 추천 가장 핫한 상품 모음집</h2>
+														</div>
+														<br>
+													</div>
+												</div>
+												<div class="monthly-products">
+													<ul>
+														<c:forEach var="cList" items="${catProductList }">
+															<li>
+																<div
+																	class="col-lg-3 col-md-4 col-sm-6 mix oranges fresh-meat"
+																	style="margin: 5px; margin-bottom: 10px;">
+																	<div class="featured__item">
+																		<div>
+																			<a href="detail?p_id=${cList.p_id }"> <img
+																				src="https://projectbit.s3.us-east-2.amazonaws.com/catImg/${cList.s_image }"
+																				alt="">
+																			</a>
+																		</div>
+																		<div class="featured__item__pic set-bg"
+																			data-setbg="img/featured/feature-1.jpg"></div>
+																		<br>
+																		<div class="featured__item__text"
+																			style="width: 200px;">
+																			<h6>
+																				<a href="detail?p_id=${cList.p_id }">${cList.p_name }</a>
+																			</h6>
+																			<h5>
+																				<fmt:formatNumber value="${cList.price }"
+																					pattern="#,###" />
+																				원
+																			</h5>
+																		</div>
+																	</div>
+																</div>
+															</li>
+														</c:forEach>
+													</ul>
+												</div>
+											</div>
+										</section>
 									</div>
 								</div>
-							</section>
+							</div>
 						</div>
+					</div>
 				</div>
 			</div>
 		</div>
-	</div>
 	</div>
 	<%@include file="/common/storeFoot.jsp"%>
 	<!-- Required Jquery -->
