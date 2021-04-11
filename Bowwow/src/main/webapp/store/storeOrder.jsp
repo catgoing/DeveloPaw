@@ -105,7 +105,7 @@
 					});
 					});
 			});
-		
+
        function execMap(){
             new daum.Postcode({
                 oncomplete: function(data) {
@@ -177,12 +177,12 @@
         else return true;
 
         }
-    
+
     function insertOrder(frm) {
     	frm.action="/store/insertOrder";
 	  	frm.submit();
     }
-    
+
 </script>
 </head>
 
@@ -255,7 +255,9 @@
 							</section>
 							<section class="checkout spad">
 								<div class="container" style="background-color: white;">
-								<form method="POST" name="checkout" class="checkout__form" accept-charset="UTF-8">
+								<!-- <form action="insertOrder" onsubmit="return chkBtn();" method="POST" name="checkout" class="checkout__form"
+										accept-charset="UTF-8"> -->
+										<div name="checkout" class="checkout__form">
 										<div class="row">
 											<div class="col-lg-8">
 												<div class="checkout__order"
@@ -287,8 +289,8 @@
 																</p>
 
 																<input type="text" id="userZonecode" name="zip" readonly
-																	placeholder="우편번호"> 
-																	<input type="text" id="userAddress" name="address" placeholder="주소" readonly> 
+																	placeholder="우편번호">
+																	<input type="text" id="userAddress" name="address" placeholder="주소" readonly>
 																	<input type="text" name="address_detail" placeholder="동,호수 등 상세 주소를 입력하세요">
 															</div>
 														</div>
@@ -302,7 +304,7 @@
 																	placeholder="ex) 부재시 경비실에 맡겨주세요.">
 															</div>
 															<div class="checkout__form__input">
-																<input type="hidden" id="order_status" name="order_status" value="주문 완료"> 
+																<input type="hidden" id="order_status" name="order_status" value="주문 완료">
 																<input type="hidden" name="p_id" value="${order.p_id }">
 																<input type="hidden" name="p_name" value="${order.p_name }">
 																<input type="hidden" name="amount" value="${order.amount }">
@@ -320,9 +322,10 @@
 													<div class="checkout__order__total">
 														<ul>
 															<li>배송비 <span>무료</span></li>
-															<li>총 결제금액 
+															<li>총 결제금액
 																<span>
 																	<fmt:formatNumber value="${order.totalSum }" pattern="#,###" />원
+																	<input type="hidden" name="point" value="${Math.round(0.001*order.totalSum) }">
 																</span>
 															</li>
 														</ul>
@@ -348,7 +351,8 @@
 												</div>
 											</div>
 										</div>
-									</form>
+									<!-- </form> -->
+									</div>
 								</div>
 							</section>
 							<!-- Shopping Cart Section End -->

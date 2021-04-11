@@ -34,19 +34,16 @@
 			<div class="container">
 				<br>
 				<div class="row">
-					<div class="col-sm-2" style="text-align: center;"><h5>Copyright &copy; 2021</h5><h5>bitcamp 183 Group2</h5></div>
-					<div class="col-sm-4"><h4>SAVANNA 소개</h4><p>책 사고 팔 땐 SAVANNA</p></div>
-					<div class="col-sm-2"><h4 style="text-align: center;">내비게이션</h4>
-						<div class="list-group">
-							<a href="#" class="list-group-item">소개</a>
-							<a href="#" class="list-group-item">프로젝트원</a>
-							<a href="#" class="list-group-item">기능구현</a>
-						</div>
+				
+					<div class="col-sm-6" style="text-align: center;">
+						<img src="../resources/images/logo.png" class="img-radius" alt="User-Profile-Image">
+						<h6>Copyright &copy; 2021</h6>
 					</div>
+					<div class="col-sm-2"></div>
 					<div class="col-sm-2"><h4 style="text-align: center;">SNS</h4>
 						<div class="list-group">
 							<a href="#" class="list-group-item">인스타그램</a>
-							<a href="https://github.com/catgoing/2ndProject_Group2" class="list-group-item" target="_blank">Github</a>
+							<a href="https://github.com/catgoing/DeveloPaw" class="list-group-item" target="_blank">Github</a>
 							<a href="#" class="list-group-item">유튜브</a>
 						</div>
 					</div> 	
