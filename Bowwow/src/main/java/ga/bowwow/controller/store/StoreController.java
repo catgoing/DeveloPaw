@@ -25,10 +25,12 @@ public class StoreController {
 		System.out.println(">> StoreController() 실행");
 	}
 
-	@RequestMapping(value = "/store/storeMain")
-	public String storeMain() {
-		return "storeMain";
-	}
+	
+	/*
+	 * @RequestMapping(value = "/store/storeMain") public String storeMain() {
+	 * return "storeMain"; }
+	 */
+	
 	
 	// 상품 상세 보기
 	@RequestMapping(value = "/store/detail")
@@ -39,14 +41,9 @@ public class StoreController {
 
 		Product p = storeService.getProductDetail(p_id);
 		model.addAttribute("p", p);
+
 		
-		/*
-		 * // 상품에 작성된 리뷰 리스트 출력 List<Review> reviewList =
-		 * storeReviewService.getReviewList(p_id); System.out.println(reviewList);
-		 * model.addAttribute("reviewList", reviewList);
-		 */
-		
-		return "productDetail";
+		return "/store/productDetail";
 	}
 	
 	// 상품 전체 출력
@@ -79,11 +76,63 @@ public class StoreController {
 		model.addAttribute("p_type", product.getP_type());
 		model.addAttribute("p_category", product.getP_category());
 		
-		return "productList";
+		return "/store/productList";
 		
+	}
+	
+	// 상품 검색
+	@RequestMapping(value = "/store/searchProd")
+	public String searchProd(Product product, Model model, HttpServletRequest request) {
+		
+		System.out.println("검색 : " + product);
+		String cPage = request.getParameter("cPage");
+		
+		Page p = new Page();
+		
+		if (product.getKeyword() == null) {
+			product.setKeyword("");
+		}
+		
+		Map<String, String> map = new HashMap<String, String>();
+		map.put("keyword", product.getKeyword());
+		
+		p = p.setPage(storeService.getSearchCount(map), cPage, 20, 10);
+		map = p.data1(p, product.getKeyword(), map);
+		
+		List<Product> searchProd = storeService.prodSearch(map);
+		
+		model.addAttribute("pSearch", searchProd);
+		model.addAttribute("pvo", p);
+		model.addAttribute("keyword", product.getKeyword());
+		model.addAttribute("command", "/store/searchProd");
+	
+		return "/store/storeSearch";
 	}
 
 	
+	  // 상품 메인 출력
+	  
+	  @RequestMapping(value = "/store/storeMain") 
+	  public String getProductByPrice(Product product, Model model, HttpServletRequest request) {
+	  
+		  System.out.println("products " + product);
+		  
+			/*
+			 * if (product.getP_type().equals("dog")) { model.addAttribute("imgDir",
+			 * "dogImg"); } else if (product.getP_type().equals("cat")) {
+			 * model.addAttribute("imgDir", "catImg"); }
+			 */
+		  
+		  List<Product> dogProductList = storeService.getDogProductByPrice(product);
+		  model.addAttribute("dogProductList", dogProductList); 
+		  List<Product> catProductList = storeService.getCatProductByPrice(product); 
+		  model.addAttribute("catProductList", catProductList); 
+		  return "storeMain";
+	 }
+
+	
+	
+
 }
 
 

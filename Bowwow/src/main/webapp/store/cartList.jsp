@@ -162,21 +162,27 @@
 	// 체크된 상품만 총액 계산
  	function itemCheck() {
  		var sum = 0;
+ 		var total = 0;
  		var count = $("input:checkbox[name='p_id']");
  		var price = $("input:text[name='sum']");
  		var totalPrice = $("input:text[name='totalPrice']");
+ 		var totalSum = $("input:text[name='totalSum']");
+ 		var point = $("input:text[name='point']");
 
 		for (var i=0; i < count.length; i++ ) {
 
 			if (count.eq(i).is(":checked") == true ) {
-				console.log(count.is(":checked"));
-				console.log(price.eq(i).val());
-
 				sum += parseInt(numberRemoveCommas(price.eq(i).val()));
 		     }
 		}
-		  console.log(sum);
+		  total = sum - point.val();
+		  console.log("totalPrice.val() :" + totalPrice.val() );
+		  console.log("total : " + total);
+		  console.log("point :" + point.val());
 		  totalPrice.val(numberAddCommas(sum));
+		  totalSum.val(numberAddCommas(total));
+		  console.log("totalSum :" + totalSum.val());
+		  
  	}
 
  	// 체크된 상품 삭제
@@ -222,34 +228,11 @@
  	
 
  // 체크된 상품 주문 페이지로 넘기기
-/*  	function toOrder() {
-
- 		var pIdArr = [];
- 		var count = $("input:checkbox[name='p_id']");
- 		var userId = $("input[name='id']");
-		var amount = $("input:text[name='amount']");
-		var prodSum = $("input:text[name='sum']"); 		
-		
-		
-
- 		if ($("input[name='p_id']:checked").length == 0) {
- 				alert("선택된 상품이 없습니다.");
- 				return;
- 			}
-
- 		for (var i=0; i < count.length; i++ ) {
- 			if (count.eq(i).is(":checked") == true) {
- 				
- 				pIdArr.push(count.eq(i).val());
- 				pIdArr.push(userId.eq(i).val());
- 				pIdArr.push(amount.eq(i).val());
- 				pIdArr.push(parseInt(numberRemoveCommas(prodSum.eq(i).val())));
-				
- 			}
- 		}
- 		 location.href="/store/storeOrder?pIdArr=" + ; 
- 	}  */
- 
+ 	function toOrder() {
+		var frm = document.listForm;
+		frm.submit();
+ 	}
+	
 </script>
 
 </head>
@@ -275,6 +258,7 @@
 
 							<!-- Shopping Cart Section Begin -->
 							<section class="shopping-cart spad">
+							<form name="listForm" action="/store/orderArr" method="POST">
 								<div class="container">
 									<div class="row">
 										<div class="col-lg-12">
@@ -303,9 +287,12 @@
 															</tr>
 														</c:if>
 														<c:if test="${!empty cart}">
-														<form id="listForm" >
+															<input type="hidden" name="id" value="${userId }">
 															<c:forEach var="cart" items="${cart }">
-																<input type="hidden" name="id" value="${cart.id }">
+															<input type="hidden" name="p_name" value="${cart.p_name }">
+															<input type="hidden" name="s_image" value="${cart.s_image }">
+															<input type="hidden" name="p_type" value="${cart.p_type }">
+															
 																<c:choose>
 																	<c:when test="${cart.p_type == 'dog'}">
 																		<c:set var="imgDir" value="dogImg" />
@@ -346,7 +333,6 @@
 																	</td>
 																</tr>
 															</c:forEach>
-														</form>
 														</c:if>
 													</tbody>
 												</table>
@@ -359,10 +345,8 @@
 													</div>
 													<div class="discount-coupon">
 														<h6>적립금 사용</h6>
-														<form action="#" class="coupon-form">
 															<input type="text" placeholder="사용 가능 포인트 : ${p.p}원">
 															<button type="submit" class="site-btn coupon-btn">사용</button>
-														</form>
 													</div>
 												</div>
 												<div class="col-lg-4 offset-lg-4">
@@ -372,23 +356,29 @@
 															<li class="subtotal">선택  상품  금액
 																<input type="text" class="store_input4" name="totalPrice" value="0" readonly>원
 															</li>
-															<li class="subtotal">상품 할인 금액 <span>$240.00</span></li>
+															<li class="subtotal">상품 할인 금액
+																<input type="text" class="store_input4" name="point" value="0" readonly>원
+															</li>
+															<%-- <c:if test="">
+																<li class="subtotal">상품 할인 금액 <span>$240.00</span></li>
+															</c:if>
+															<c:if test="">
+																<li class="subtotal">상품 할인 금액 <span>$240.00</span></li>
+															</c:if> --%>
 															<li class="cart-total">최종 결제 금액
-																<input type="text" class="store_input4" name="totalPrice" value="0" readonly>원
+																<input type="text" class="store_input4" name="totalSum" value="0" readonly>원
 															</li>
 														</ul>
-														<a onclick="toOrder()" class="proceed-btn">주문하기</a>
+														<a onclick="toOrder()" style="cursor: pointer;" class="proceed-btn">주문하기</a>
 													</div>
 												</div>
 												<div>
-												<form>
-													<input type="hidden" name="totalPrice" value="">
-												</form>
 												</div>
 											</div>
 										</div>
 									</div>
 								</div>
+							</form>
 							</section>
 							<!-- Shopping Cart Section End -->
 

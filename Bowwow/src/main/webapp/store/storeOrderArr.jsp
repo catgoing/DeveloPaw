@@ -206,15 +206,16 @@
 								<div class="container">
 									<div class="row">
 										<div class="col-lg-12">
-										<c:choose>
-											<c:when test="${order.p_type == 'dog'}">
-												<c:set var="imgDir" value="dogImg" />
-											</c:when>
-											<c:when test="${order.p_type == 'cat'}">
-												<c:set var="imgDir" value="catImg" />
-											</c:when>
-										</c:choose>
 											<div class="cart-table" style="background-color: white;">
+											<c:forEach var="order" items="${order }">
+												<c:choose>
+													<c:when test="${order.p_type == 'dog'}">
+														<c:set var="imgDir" value="dogImg" />
+													</c:when>
+													<c:when test="${order.p_type == 'cat'}">
+														<c:set var="imgDir" value="catImg" />
+													</c:when>
+												</c:choose>
 												<table>
 													<thead>
 														<tr>
@@ -242,12 +243,13 @@
 															</td>
 															<td class="qua-col first-row">
 																<div class="quantity">
-																	<fmt:formatNumber value="${order.sum }" pattern="#,###" />원
+																	<fmt:formatNumber value="${sum }" pattern="#,###" />원
 																</div>
 															</td>
 														</tr>
 													</tbody>
 												</table>
+											</c:forEach>
 											</div>
 										</div>
 									</div>
@@ -322,7 +324,7 @@
 															<li>배송비 <span>무료</span></li>
 															<li>총 결제금액 
 																<span>
-																	<fmt:formatNumber value="${order.totalSum }" pattern="#,###" />원
+																	<fmt:formatNumber value="${totalSum }" pattern="#,###" />원
 																</span>
 															</li>
 														</ul>

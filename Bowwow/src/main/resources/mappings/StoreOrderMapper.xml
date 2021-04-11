@@ -6,10 +6,14 @@
 
 	<!-- 주문 내역 작성 -->
 	<insert parameterType="Order" id="insertOrder">
-		INSERT INTO STORE_ORDER (ORDER_ID, P_ID, MEMBER_SERIAL, AMOUNT, TOTALSUM, P_NAME, MEMO,ORDER_DATE, 
-								ORDER_STATUS, ADDRESS, ADDRESS_DETAIL, ZIP, ORDER_POINT, PHONE)
-		VALUES (ORDER_SEQ.NEXTVAL, #{p_id}, #{member_serial}, #{amount}, #{totalSum}, #{p_name}, #{memo}, 
-							SYSDATE,#{order_status}, #{address}, #{address_detail}, #{zip}, #{order_point}, #{phone}) 
+		INSERT INTO STORE_ORDER 
+			(ORDER_ID, P_ID, MEMBER_SERIAL, AMOUNT, TOTALSUM, 
+		 		P_NAME, MEMO, ORDER_DATE, ORDER_STATUS, ADDRESS, 
+		 		ADDRESS_DETAIL, ZIP, ORDER_POINT, PHONE, S_IMAGE)
+		VALUES 
+			(ORDER_SEQ.NEXTVAL, #{p_id}, #{member_serial}, #{amount}, #{totalSum}, 
+			#{p_name}, #{memo}, SYSDATE, #{order_status}, #{address}, 
+			#{address_detail}, #{zip}, #{order_point}, #{phone}, #{s_image}) 
 	</insert>
 	
 	<!-- 주문 내역 수정 -->
