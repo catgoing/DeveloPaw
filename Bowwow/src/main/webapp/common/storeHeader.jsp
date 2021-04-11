@@ -105,7 +105,7 @@ input[type="submit"] {
 					</div>
 					<div class="navbar-container container-fluid">
 						<ul class="nav-left">
-							<li>
+							<li>-
 								<div class="sidebar_toggle">
 									<a href="javascript:void(0)"><i class="ti-menu"></i></a>
 								</div>
