@@ -240,7 +240,7 @@ footer.footer.navbar-wrapper {
 																<label style="color:black;">조회 ${vo.hits }</label>
 															</h6>
 															</div>
-														</div>
+														
 														<hr>
 													
 													<!-- 여기에 회원정보(사진, 닉네임 등) 출력 -->
@@ -258,6 +258,7 @@ footer.footer.navbar-wrapper {
 																	</div>
 																</div>
 														</form>
+														</div>
 														<hr>
 															
 													<div style="border: solid 1px lightgray; border-radius : 5px; margin : 10px">
@@ -342,8 +343,8 @@ footer.footer.navbar-wrapper {
 													</div>
 													<br>
 												</div>
-											</div>
-										</section>
+											</section>
+										</div>
 									</div>
 
 								</div>
