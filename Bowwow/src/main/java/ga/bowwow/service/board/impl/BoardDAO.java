@@ -39,6 +39,7 @@ public class BoardDAO {
 		map.put("board_title", vo.getBoard_title());
 		map.put("member_serial", vo.getMember_serial());
 		map.put("board_content", vo.getBoard_content());
+		map.put("board_scontent", vo.getBoard_scontent());
 		map.put("img1", vo.getImg1());
 		map.put("animal_class", vo.getAnimal_class());
 		map.put("goods", vo.getGoods());
@@ -134,7 +135,7 @@ public class BoardDAO {
 
 	public List<Board> search(String board, String keyword) {
 		Map<String, String> map = new HashMap<String, String>();
-		map.put("board", board);
+		map.put("board_idx", board);
 		map.put("keyword", keyword);
 		System.out.println("map : " + map);
 		System.out.println("===> MyBatis로 search() 실행-vo");

@@ -111,20 +111,22 @@ input[type="submit"] {
 								</div>
 							</li>
 							<li><a href="/community/main"> 커뮤니티 </a></li>
+
 							<li><a href="/store/storeMain"> 스토어 </a></li>
+
 						</ul>
 						<form action="prodSearch" method="POST">
 						<ul class="nav-right">
 							<li class="form-group form-primary">
-								<input type="text" class="form-control" name="keyword" autocomplete="off" placeholder="검색창"> 
+								<input type="text" class="form-control" name="keyword" autocomplete="off" placeholder="검색창">
 								<span class="form-bar"></span>
 							</li>
 							<li>
 								<input type="submit" name="search" value="&#xf002;">
 							</li>
 							<li class="header-notification">
-								<a href="/store/cartList" class="waves-effect waves-light"> 
-									<i class="fa fa-shopping-cart" aria-hidden="true" ></i> 
+								<a href="/store/cartList" class="waves-effect waves-light">
+									<i class="fa fa-shopping-cart" aria-hidden="true" ></i>
 								</a>
 							</li>
 							<li class="user-profile header-notification"><c:choose>

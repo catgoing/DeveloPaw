@@ -72,6 +72,17 @@ public class Page {
 		return map;
 	}
 	
+	//2개의 파라미터로 페이징 처리할 때(ex:제목, 검색어)
+	public Map<String, Object> data22(Page p, int data1, String data2, Map<String, Object> map){
+		
+		map.put("begin", p.getRecordBeginIdx());
+		map.put("end", p.getRecordEndIdx());
+		map.put("data1", data1);
+		map.put("data2", data2);
+		
+		return map;
+	}
+	
 	//3개의 파라미터로 페이징 처리할 때(ex:게시판 종류, 제목, 검색어)
 	public Map<String, String> search(Page p, String data1, String data2, String data3){
 		

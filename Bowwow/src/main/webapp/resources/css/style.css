@@ -869,7 +869,7 @@ code {
 ==========================  **/
 
 .modal {
-    z-index: 1050;
+    z-index: 5000;
 }
 
 .modal .modal-dialog {
@@ -11071,7 +11071,7 @@ table.dataTable.dtr-inline.collapsed>tbody>tr>th:first-child:before {
 }
 
 footer.footer.navbar-wrapper {
-    z-index: 9999;
+    z-index: 4000;
 }
 
 

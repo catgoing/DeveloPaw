@@ -37,6 +37,10 @@ public class BoardServiceImpl implements BoardService{
 		boardDAO.insertBoard(vo);
 	}
 
+	/*
+	 * @Override public void insertBoard(Map<String, Object> map) {
+	 * boardDAO.insertBoard(map); }
+	 */
 	@Override
 	public void updateBoard(Board vo, HttpSession session) {
 		boardDAO.updateBoard(vo, session);

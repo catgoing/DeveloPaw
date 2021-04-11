@@ -1,8 +1,16 @@
+<%@page import="ga.bowwow.service.user.VO.UserDTO"%>
 <%@page import="ga.bowwow.service.user.VO.UserAccount"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
-
+<%
+	int member_serial = 999;
+	//String id = 
+	//String nickname="황소";
+	UserDTO user = new UserDTO();
+	user.setMember_serial(member_serial);
+	session.setAttribute("userDTO", user);
+%>
 <!DOCTYPE html>
 <html>
 
@@ -52,8 +60,22 @@
     <link rel="stylesheet" type="text/css" href="../resources/css/test.css">
 <style>
   .myPageInfo-header{ text-align : center;}
-  .container h3 { text-align: center;}
+  .container h3{ text-align: center;}
+  .div-center { margin: 0 auto;}
+  .text-center {
+  	text-align : center;
+  	margin: 0 auto;
+  	color : #ff6347;
+  }
+ .petImg-container{
+  	margin: 0 auto;
+  }
 </style>
+<script>
+/* (function(member_serial) {
+	이거어떻게하지??
+}('${sessoionScope.userDTO.member_serial}'); */
+</script>
 </head>
 
 <body>
@@ -131,34 +153,29 @@
 					<!-- Page-body start -->
 						<div class="page-body">
 						<div class="myPageInfo-header">
-							<h2> ${user.memberSerial} 님의 페이지</h2>
+							<h2> ${sessionScope.userDTO.nickname} 님의 페이지</h2>
 						</div>
 
 						<div class="mypage_main_content">
 
 							<div class="container mypage_main_content mypointlist">
-								<h3>누적적립금출력영역</h3>
-								<div class="container totalpoint">
-									<div clss="table">
+								<h3>누적 적립금</h3>
+								<div class="container point">
 									
-									<table>
-									<c:if test="${empty pointList }">
-										<tr>	
-											<td colspan="5" class="center">
-												<div style="">
-													<h3>적립된 포인트가 없습니다.</h3>
-												</div>
-											</td>
-										</tr>
+									<c:if test="${empty myHomePointList }">
+										<div >
+											<h5 class="text-center">적립된 포인트가 없습니다.</h5>
+										</div>
 									</c:if>
-									<c:if test="${not empty pointList }">	
-										<h5>상품 구매 후 적립된 포인트 내역을 보여드립니다.</h5>
+									<table class="table table-sm">
+									<c:if test="${not empty myHomePointList }">	
+										<h5 class="text-center">상품 구매 후 적립된 포인트 내역을 보여드립니다.</h5>
 										<tr>
 											<th width="200">추가일</th>
 											<th width="150">추가포인트</th>
-											<th width="150">누적포인트</th>
+											<th width="150">현재 총 포인트</th>
 										</tr>
-										<c:forEach var="point" items="${pointList }">
+										<c:forEach var="point" items="${myHomePointList }">
 										<tr>
 											<td>${point.order_date }</td>
 											<td>${point.order_point }</td>
@@ -173,24 +190,27 @@
 							<br>
 							<hr>
 							<div class="container petlist">
-							  	<h3>반려동물리스트</h3>
-							  <div class="row">
-							  	<c:if test="${not empty petList }">
-                       			<c:forEach var="petList" items="${petList }">
-							    <div class="col-sm">
-							      	${petList.pet_name }
-							    	<div class="card" style="width: 200px;">
-										<img src="${petList.image_source_oriname }" class="card-img-top" alt="...">
-									</div>
-							    </div>
+							  	<h3>반려동물 리스트</h3>
+								<div class="row">
+							  	<c:if test="${not empty myHomepetList }">
+                       			<c:forEach var="petList" items="${myHomepetList }">
+								    <div class="col-md-4" style="margin-bottom : 40px;">
+		                                <div class="list-inner">
+								      		<h5 class="text-center">${petList.pet_name }</h5>
+									    	<div class="card petImg-container" style="width: 250px; height: 200px;">
+												<img src="${petList.image_source_oriname }" class="card-img-top" alt="..." style="width: 250px; height: 200px;">
+											</div>
+								   		</div>
+								    </div>
 							    </c:forEach>
+							    <div class="div-center">
+							    	<h5 class="text-center">현재 페이지에서는 6마리까지 보여집니다.</h5>
+							    </div>
 							    </c:if>
-							    <c:if test="${empty petList }">
-						    	<div class="col-md-6">
-                           			<div class="list-inner">
-                               	<h3>등록된 반려동물이 없습니다.</h3>
-                            	</div>
-                            </div>
+							    <c:if test="${empty myHomepetList }">
+							    	<div class="col-md-6 div-center">
+		                               	<h3 class="text-center">등록된 반려동물이 없습니다.</h3>
+	                            	</div>
 							    </c:if>
 							  </div>
 							</div>
