@@ -53,6 +53,7 @@ public class CartListController {
 		
 		List<CartList> cart = cartListService.getCartList(id);
 		model.addAttribute("cart", cart);
+		model.addAttribute("userId", id);
 		
 		return "/store/cartList";
 	}
