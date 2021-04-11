@@ -6,19 +6,19 @@
 
 	<insert id="insertProduct" parameterType="Product">
 		INSERT INTO STORE_PRODUCTS (P_ID, P_NAME, P_TYPE, PRICE, STOCK, S_IMAGE, L_IMAGE, P_CATEGORY)
-		VALUES (P_SEQ.NEXTVAL, #{p_name}, #{p_type}, #{price},  
+		VALUES (P_SEQ.NEXTVAL, #{p_name}, #{p_type}, #{price},
 									#{stock}, #{s_image}, #{l_image}, #{p_category})
 	</insert>
-	
+
 	<!-- 전체 상품 조회 -->
 	<select id="ProductList" parameterType="Map" resultType="Product">
-		SELECT * FROM 
+		SELECT * FROM
 			(
-				SELECT ROWNUM AS RN, PROD.* FROM 
-				( 
-					SELECT 
-						P_ID, P_NAME, P_TYPE, P_CATEGORY, 
-		  				PRICE, STOCK, S_IMAGE, L_IMAGE 
+				SELECT ROWNUM AS RN, PROD.* FROM
+				(
+					SELECT
+						P_ID, P_NAME, P_TYPE, P_CATEGORY,
+		  				PRICE, STOCK, S_IMAGE, L_IMAGE
 		  			FROM STORE_PRODUCTS
 		 			WHERE 1=1
 		 			<if test='p_type != null'>
@@ -27,15 +27,15 @@
 		 			<if test='p_category != null'>
 		 			  AND P_CATEGORY = '${p_category}'
 		 			</if>
-		 			ORDER BY P_ID DESC 
-		 		) PROD 
+		 			ORDER BY P_ID DESC
+		 		) PROD
 		 	)
 		 WHERE RN BETWEEN ${begin} AND ${end}
 	</select>
-	
-	<!-- 전체 상품 수 -->
+
+	<!-- 검색 상품 수 -->
 	<select id="ProductCount" resultType="int">
-		SELECT 	COUNT(*) AS CNT 
+		SELECT 	COUNT(*) AS CNT
 		FROM	STORE_PRODUCTS
 		WHERE	1=1
 		<if test='p_type != null'>
@@ -46,21 +46,82 @@
 		</if>
 
 	</select>
-	
+
+	<!-- 전체 상품 수 -->
+	<select id="ProductSearchCount" resultType="int">
+		SELECT 	COUNT(*) AS CNT
+		FROM	STORE_PRODUCTS
+		WHERE	P_NAME LIKE '%' || #{keyword} || '%'
+	</select>
+
 	<!--상품 상세 조회 -->
 	<select id="getProductDetail" parameterType="int" resultType="Product">
 		SELECT P_ID, P_NAME, P_TYPE, P_CATEGORY, PRICE, STOCK, S_IMAGE, L_IMAGE
 		  FROM STORE_PRODUCTS
 		 WHERE P_ID = #{p_id}
     </select>
-    
+
+
+	<!-- 메인 상품 출력 -->
+	<select id="getDogProductByPrice" parameterType="Product" resultType="Product">
+		SELECT * FROM
+		
+		 (
+			SELECT ROWNUM AS RN, PROD.* FROM
+			
+				(
+					SELECT
+						P_ID, P_NAME, P_TYPE, P_CATEGORY, PRICE, STOCK, S_IMAGE, L_IMAGE
+					FROM STORE_PRODUCTS
+					WHERE 1=1
+
+					AND P_TYPE = 'dog'
+	
+					ORDER BY DBMS_RANDOM.RANDOM()
+					
+				) PROD
+				
+			)
+		WHERE RN BETWEEN 0 AND 8
+	</select>
+
+	<!-- 메인 상품 출력 -->
+	<select id="getCatProductByPrice" parameterType="Product" resultType="Product">
+		SELECT * FROM
+		
+			(
+				SELECT ROWNUM AS RN, PROD.* FROM
+				
+					(
+						SELECT
+							P_ID, P_NAME, P_TYPE, P_CATEGORY, PRICE, STOCK, S_IMAGE, L_IMAGE
+						FROM STORE_PRODUCTS
+						WHERE 1=1
+
+						AND P_TYPE = 'cat'
+
+						ORDER BY DBMS_RANDOM.RANDOM()
+						
+					) PROD
+			)
+		WHERE RN BETWEEN 0 AND 8
+	</select>
+
+	<select id="searchProd" parameterType="Map" resultType="Product">
+	  SELECT * FROM
+	    (
+	      SELECT ROWNUM AS RN, PROD.* FROM
+	      (
+	        SELECT
+	          P_ID, P_NAME, P_TYPE, P_CATEGORY,
+	            PRICE, STOCK, S_IMAGE, L_IMAGE
+	          FROM STORE_PRODUCTS
+	          WHERE P_NAME LIKE '%' || #{keyword} || '%'
+	          ORDER BY P_ID DESC
+	        ) PROD
+	      )
+	     WHERE RN BETWEEN ${begin} AND ${end}
+	  </select>
+
+
 </mapper>
-
-
-
-
-
-
-
-
-

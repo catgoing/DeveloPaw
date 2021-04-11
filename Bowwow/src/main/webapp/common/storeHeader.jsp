@@ -111,11 +111,9 @@ input[type="submit"] {
 								</div>
 							</li>
 							<li><a href="/community/main"> 커뮤니티 </a></li>
-
 							<li><a href="/store/storeMain"> 스토어 </a></li>
-
 						</ul>
-						<form action="prodSearch" method="POST">
+						<form action="/store/searchProd" method="POST">
 						<ul class="nav-right">
 							<li class="form-group form-primary">
 								<input type="text" class="form-control" name="keyword" autocomplete="off" placeholder="검색창">

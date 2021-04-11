@@ -1308,11 +1308,15 @@ transparent;
 	display: inline-block;
 }
 
-.quantity {
+.qua-col {
+	color : #000 !important;
+	font-size : 20px !important;	
+}
+/* .quantity {
 	float: left;
 	margin-right: 10px;
 	margin-bottom: 10px;
-}
+} */
 
 .quantity>span {
 	font-size: 14px;
