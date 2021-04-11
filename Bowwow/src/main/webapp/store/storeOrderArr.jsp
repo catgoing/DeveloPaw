@@ -105,7 +105,7 @@
 					});
 					});
 			});
-
+		
        function execMap(){
             new daum.Postcode({
                 oncomplete: function(data) {
@@ -177,12 +177,12 @@
         else return true;
 
         }
-
+    
     function insertOrder(frm) {
     	frm.action="/store/insertOrder";
 	  	frm.submit();
     }
-
+    
 </script>
 </head>
 
@@ -206,15 +206,16 @@
 								<div class="container">
 									<div class="row">
 										<div class="col-lg-12">
-										<c:choose>
-											<c:when test="${order.p_type == 'dog'}">
-												<c:set var="imgDir" value="dogImg" />
-											</c:when>
-											<c:when test="${order.p_type == 'cat'}">
-												<c:set var="imgDir" value="catImg" />
-											</c:when>
-										</c:choose>
 											<div class="cart-table" style="background-color: white;">
+											<c:forEach var="order" items="${order }">
+												<c:choose>
+													<c:when test="${order.p_type == 'dog'}">
+														<c:set var="imgDir" value="dogImg" />
+													</c:when>
+													<c:when test="${order.p_type == 'cat'}">
+														<c:set var="imgDir" value="catImg" />
+													</c:when>
+												</c:choose>
 												<table>
 													<thead>
 														<tr>
@@ -242,12 +243,13 @@
 															</td>
 															<td class="qua-col first-row">
 																<div class="quantity">
-																	<fmt:formatNumber value="${order.sum }" pattern="#,###" />원
+																	<fmt:formatNumber value="${sum }" pattern="#,###" />원
 																</div>
 															</td>
 														</tr>
 													</tbody>
 												</table>
+											</c:forEach>
 											</div>
 										</div>
 									</div>
@@ -287,8 +289,8 @@
 																</p>
 
 																<input type="text" id="userZonecode" name="zip" readonly
-																	placeholder="우편번호">
-																	<input type="text" id="userAddress" name="address" placeholder="주소" readonly>
+																	placeholder="우편번호"> 
+																	<input type="text" id="userAddress" name="address" placeholder="주소" readonly> 
 																	<input type="text" name="address_detail" placeholder="동,호수 등 상세 주소를 입력하세요">
 															</div>
 														</div>
@@ -302,7 +304,7 @@
 																	placeholder="ex) 부재시 경비실에 맡겨주세요.">
 															</div>
 															<div class="checkout__form__input">
-																<input type="hidden" id="order_status" name="order_status" value="주문 완료">
+																<input type="hidden" id="order_status" name="order_status" value="주문 완료"> 
 																<input type="hidden" name="p_id" value="${order.p_id }">
 																<input type="hidden" name="p_name" value="${order.p_name }">
 																<input type="hidden" name="amount" value="${order.amount }">
@@ -320,10 +322,9 @@
 													<div class="checkout__order__total">
 														<ul>
 															<li>배송비 <span>무료</span></li>
-															<li>총 결제금액
+															<li>총 결제금액 
 																<span>
-																	<fmt:formatNumber value="${order.totalSum }" pattern="#,###" />원
-																	<input type="hidden" name="point" value="${Math.round(0.001*order.totalSum) }">
+																	<fmt:formatNumber value="${totalSum }" pattern="#,###" />원
 																</span>
 															</li>
 														</ul>
@@ -349,8 +350,7 @@
 												</div>
 											</div>
 										</div>
-									<!-- </form> -->
-									</div>
+									</form>
 								</div>
 							</section>
 							<!-- Shopping Cart Section End -->

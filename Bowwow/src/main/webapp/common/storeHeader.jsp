@@ -120,7 +120,7 @@ input[type="submit"] {
 								<span class="form-bar"></span>
 							</li>
 							<li>
-								<input type="submit" name="search" value="&#xf002;">
+								<input type="submit" name="search" style="cursor: pointer;" value="&#xf002;">
 							</li>
 							<li class="header-notification">
 								<a href="/store/cartList" class="waves-effect waves-light"> 

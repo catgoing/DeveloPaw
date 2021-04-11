@@ -1,6 +1,7 @@
 package ga.bowwow.controller.store;
 
 import java.io.IOException;
+import java.util.ArrayList;
 import java.util.List;
 
 import javax.servlet.http.HttpServletRequest;
@@ -13,6 +14,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
 import ga.bowwow.service.store.Order;
+import ga.bowwow.service.store.OrderDTO;
 import ga.bowwow.service.store.StoreOrderService;
 
 @Controller
@@ -20,7 +22,7 @@ public class StoreOrderController {
 
 	@Autowired
 	private StoreOrderService storeOrderService;
-
+	
 	public StoreOrderController() {
 		System.out.println(">> StoreOrderController 실행");
 	}
@@ -64,6 +66,29 @@ public class StoreOrderController {
 	 
 		return "storeOrderList"; 
 	}
+	
+	@RequestMapping(value = "/store/orderArr")
+	public String insertOrderList(OrderDTO orderDTO, Model model) {
+		int result = 0;
+		int totalSum = 0;
+		List<Integer> sum = new ArrayList<Integer>();
+		
+		for (int i = 0; i < orderDTO.getP_id().size(); i++) {
+			result = orderDTO.getPrice().get(i) * orderDTO.getAmount().get(i);
+			sum.add(result);
+			totalSum += result;
+		}
+		
+		System.out.println("totalSum : " + totalSum);
+		System.out.println("orderDTO : " + orderDTO);
+		System.out.println("sum : " + sum);
+		model.addAttribute("sum", sum);
+		model.addAttribute("totalSum", totalSum);
+		model.addAttribute("order", orderDTO);
+		
+		return "/store/storeOrderArr";
+	}
+	
 	
 	@RequestMapping(value = "/store/deleteOrder")
 	public String deleteOrder(@RequestParam("order_id") int order_id, HttpServletRequest request, HttpServletResponse response) throws IllegalStateException, IOException {
