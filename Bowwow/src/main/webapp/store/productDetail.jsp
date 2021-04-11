@@ -49,7 +49,11 @@
 	<script type="text/javascript" src="/resources/js/ajax.js"></script>
 
 <style>
-
+.reviewList label {
+	margin-top : 9px;
+	margin-left : 8px;
+	margin-bottom : 0 !important;
+}
 
 
 .featured__item__text {

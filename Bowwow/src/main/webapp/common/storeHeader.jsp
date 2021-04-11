@@ -96,7 +96,7 @@ input[type="submit"] {
 								</div>
 							</div>
 						</div>
-						<a href="store/storeMain"
+						<a href="storeMain"
 							style="text-align: center; font-weight: bold; font-size: 30px; margin-top: 7px;">BOW-WOW</a>
 
 						<a class="mobile-options waves-effect waves-light"> <i

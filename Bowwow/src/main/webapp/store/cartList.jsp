@@ -390,7 +390,7 @@
 															<li class="subtotal">선택  상품  금액
 																<input type="text" class="store_input4" name="totalPrice" value="0" readonly>원
 															</li>
-															<li class="subtotal">상품 할인 금액 <span>$240.00</span></li>
+															<li class="subtotal">상품 할인 금액 <span>0원</span></li>
 															<li class="cart-total">최종 결제 금액
 																<input type="text" class="store_input4" name="totalPrice" value="0" readonly>원
 															</li>

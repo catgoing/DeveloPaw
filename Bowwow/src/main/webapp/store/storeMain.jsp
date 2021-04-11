@@ -90,20 +90,84 @@
 .mainList .marker { 
 	overflow : hidden;
 	position : absolute; 
-	left : -5px; 
-	top : 0;
+	left : 7px; 
+	top : -7px;
 	width : 100px;
 	height : 100px;	
 	
 }
 
 .mainList .marker div{ 
-	width : 100px; 
-	background : #eee48e; 
+	width : 110px; 
+	background : #ffbb00; 
 	color : white;
 	text-align : center; 
 	transform : rotate(-45deg) translate(-29px, -15px);
-	}
+	border: 1px dashed;
+  	box-shadow:0 0 0 3px #ffbb00,  0px 6px 0px 0px rgba(0,0,0,0.3);
+}
+
+.mainList .marker:before {
+	content: "" !important; 
+	position : absolute !important;  
+	left : -12px !important;
+	top : 61px !important;
+	border-width : 10px !important;
+	border-style : solid !important;
+	border-color : transparent #ab7d00 transparent transparent !important;
+}
+
+.mainList .marker:after {
+	content: "" !important; 
+	position : absolute !important;  
+	left : 63px !important;
+	top : -11px !important;
+	border-width : 9px !important;
+	border-style : solid !important;
+	border-color : transparent transparent #ab7d00 transparent !important;
+}
+
+
+.mainList2 .marker { 
+	overflow : hidden;
+	position : absolute; 
+	left : 7px; 
+	top : -7px;
+	width : 100px;
+	height : 100px;	
+	
+}
+
+.mainList2 .marker div{ 
+	width : 110px; 
+	background : #e10000; 
+	color : white;
+	text-align : center; 
+	transform : rotate(-45deg) translate(-29px, -15px);
+	border: 1px dashed;
+  	box-shadow:0 0 0 3px #e10000,  0px 6px 0px 0px rgba(0,0,0,0.3);
+}
+
+.mainList2 .marker:before {
+	content: "" !important; 
+	position : absolute !important;  
+	left : -12px !important;
+	top : 61px !important;
+	border-width : 10px !important;
+	border-style : solid !important;
+	border-color : transparent #980105 transparent transparent !important;
+}
+
+.mainList2 .marker:after {
+	content: "" !important; 
+	position : absolute !important;  
+	left : 63px !important;
+	top : -11px !important;
+	border-width : 9px !important;
+	border-style : solid !important;
+	border-color : transparent transparent #980105 transparent !important;
+}
+
 </style>
 </head>
 <body>
@@ -171,15 +235,15 @@
 												<div class="row">
 													<div class="col-lg-12">
 														<div class="section-title">
-															<h2>MD 추천 가장 핫한 상품 모음집</h2>
+															<h2>따끈따끈한 신상 모음집</h2>
 														</div>
 														<br>
 													</div>
 												</div>
-												<div class="monthly-products">
-													<ul class="mainList">
+												<div class="monthly-products swiper-container">
+													<ul class="mainList swiper-wrapper">
 														<c:forEach var="dList" items="${dogProductList }">
-															<li>
+															<li class="swiper-slide">
 																<div
 																	class="col-lg-3 col-md-4 col-sm-6 mix oranges fresh-meat"
 																	style="margin: 5px; margin-bottom: 10px;">
@@ -211,6 +275,8 @@
 														</c:forEach>
 													</ul>
 												</div>
+											</div>
+												<div class="container">
 												<hr>
 												<div class="row">
 													<div class="col-lg-12">
@@ -220,10 +286,10 @@
 														<br>
 													</div>
 												</div>
-												<div class="monthly-products">
-													<ul>
+												<div class="monthly-products swiper-container">
+													<ul class="mainList2 swiper-wrapper">
 														<c:forEach var="cList" items="${catProductList }">
-															<li>
+															<li class="swiper-slide">
 																<div
 																	class="col-lg-3 col-md-4 col-sm-6 mix oranges fresh-meat"
 																	style="margin: 5px; margin-bottom: 10px;">
@@ -234,8 +300,6 @@
 																				alt="">
 																			</a>
 																		</div>
-																		<div class="featured__item__pic set-bg"
-																			data-setbg="img/featured/feature-1.jpg"></div>
 																		<br>
 																		<div class="featured__item__text"
 																			style="width: 200px;">
@@ -249,12 +313,15 @@
 																			</h5>
 																		</div>
 																	</div>
+																<div class="marker">
+																	<div>HOT</div>
+																</div>
 																</div>
 															</li>
 														</c:forEach>
 													</ul>
 												</div>
-											</div>
+												</div>
 										</section>
 									</div>
 								</div>
@@ -284,5 +351,6 @@
 	<script src="/resources/js/vertical/vertical-layout.min.js "></script>
 
 	<script type="text/javascript" src="/resources/js/script.js "></script>
+	
 </body>
 </html>
