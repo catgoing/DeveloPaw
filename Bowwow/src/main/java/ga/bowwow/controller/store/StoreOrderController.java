@@ -13,13 +13,18 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
 import ga.bowwow.service.store.Order;
+import ga.bowwow.service.store.OrderDTO;
 import ga.bowwow.service.store.StoreOrderService;
+import ga.bowwow.service.store.StoreService;
 
 @Controller
 public class StoreOrderController {
 
 	@Autowired
 	private StoreOrderService storeOrderService;
+	
+	@Autowired
+	private StoreService storeService;
 
 	public StoreOrderController() {
 		System.out.println(">> StoreOrderController 실행");
@@ -64,6 +69,15 @@ public class StoreOrderController {
 	 
 		return "storeOrderList"; 
 	}
+	
+	@RequestMapping(value = "/store/orderList")
+	public String insertOrderList(OrderDTO orderDTO, Model model) {
+		System.out.println("orderDTO : " + orderDTO);
+			
+		
+		return null;
+	}
+	
 	
 	@RequestMapping(value = "/store/deleteOrder")
 	public String deleteOrder(@RequestParam("order_id") int order_id, HttpServletRequest request, HttpServletResponse response) throws IllegalStateException, IOException {

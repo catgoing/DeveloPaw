@@ -162,21 +162,27 @@
 	// 체크된 상품만 총액 계산
  	function itemCheck() {
  		var sum = 0;
+ 		var total = 0;
  		var count = $("input:checkbox[name='p_id']");
  		var price = $("input:text[name='sum']");
  		var totalPrice = $("input:text[name='totalPrice']");
+ 		var totalSum = $("input:text[name='totalSum']");
+ 		var point = $("input:text[name='point']");
 
 		for (var i=0; i < count.length; i++ ) {
 
 			if (count.eq(i).is(":checked") == true ) {
-				console.log(count.is(":checked"));
-				console.log(price.eq(i).val());
-
 				sum += parseInt(numberRemoveCommas(price.eq(i).val()));
 		     }
 		}
-		  console.log(sum);
+		  total = sum - point.val();
+		  console.log("totalPrice.val() :" + totalPrice.val() );
+		  console.log("total : " + total);
+		  console.log("point :" + point.val());
 		  totalPrice.val(numberAddCommas(sum));
+		  totalSum.val(numberAddCommas(total));
+		  console.log("totalSum :" + totalSum.val());
+		  
  	}
 
  	// 체크된 상품 삭제
@@ -223,51 +229,10 @@
 
  // 체크된 상품 주문 페이지로 넘기기
  	function toOrder() {
-
- 		var orderArr = [];
-		
-		$('input:checkbox[name="p_id"]').each(function() {
-			if(this.checked) {
-				/* console.log(this.value) */
-				var amount = $('.amount-' + this.value).val();
-				var totalSum = amount * $('.total_sum-' + this.value).val();
-				var json = {
-						"p_id" : this.value,
-						"amount" : amount,
-						"totalSum" : totalSum
-				}
-				
-				orderArr.push(json);
-			}
-
-		});
-		console.log(orderArr);
-		orderArray = JSON.stringify(orderArr);
- 		if ($("input[name='p_id']:checked").length == 0) {
- 				alert("선택된 상품이 없습니다.");
- 				return;
- 		}
- 		
-		$.ajax({
-			url : "/store/storeOrder",
-			type : "post",
-			data : {
-				orderArray : orderArray,
-				},
-			traditional : true,
-			success : function(data){
-				if(data) {
-					alert("성공");
-				}
-			},
-			error : function( jqXHR, textStatus, errorThrown ) {
-				alert( jqXHR.status );
-				alert( jqXHR.statusText );
-				alert( jqXHR.responseText );
-				alert( jqXHR.readyState );
-			}
-		});
- 	}  
+		var frm = document.listForm;
+		frm.submit();
+ 	}
+	
 </script>
 
 </head>
@@ -293,6 +258,7 @@
 
 							<!-- Shopping Cart Section Begin -->
 							<section class="shopping-cart spad">
+							<form name="listForm" action="/store/orderList" method="POST">
 								<div class="container">
 									<div class="row">
 										<div class="col-lg-12">
@@ -321,9 +287,12 @@
 															</tr>
 														</c:if>
 														<c:if test="${!empty cart}">
-														<form id="listForm" >
+															<input type="hidden" name="id" value="${userId }">
 															<c:forEach var="cart" items="${cart }">
-																<input type="hidden" name="id" value="${cart.id }">
+															<input type="hidden" name="p_name" value="${cart.p_name }">
+															<input type="hidden" name="s_image" value="${cart.s_image }">
+															<input type="hidden" name="p_type" value="${cart.p_type }">
+															
 																<c:choose>
 																	<c:when test="${cart.p_type == 'dog'}">
 																		<c:set var="imgDir" value="dogImg" />
@@ -345,13 +314,13 @@
 																		</p>
 																	</td>
 																	<td class="p-price first-row">
-																		<input type="hidden" class="total_sum${cart.p_id }" name="price" value="${cart.price}">
+																		<input type="hidden" name="price" value="${cart.price}">
 																		<fmt:formatNumber value="${cart.price }" pattern="#,###" />원</td>
 																	<td class="qua-col first-row">
 																		<div class="quantity">
 																			<div class="cartList_amount">
 																				<input type="button" class="store_btn2" value=" - " onclick="del('${cart.p_id}', '${cart.id }', '${cart.amount }')">
-																				<input type="text" class="amount-${cart.p_id }" name="amount" value="${cart.amount }" min="1" size="3" readonly>
+																				<input type="text" name="amount" value="${cart.amount }" min="1" size="3" readonly>
 																				<input type="button" class="store_btn2" value=" + " onclick="add('${cart.p_id}', '${cart.id }', '${cart.amount }')">
 																			</div>
 																		</div>
@@ -364,7 +333,6 @@
 																	</td>
 																</tr>
 															</c:forEach>
-														</form>
 														</c:if>
 													</tbody>
 												</table>
@@ -377,10 +345,8 @@
 													</div>
 													<div class="discount-coupon">
 														<h6>적립금 사용</h6>
-														<form action="#" class="coupon-form">
 															<input type="text" placeholder="사용 가능 포인트 : ${p.p}원">
 															<button type="submit" class="site-btn coupon-btn">사용</button>
-														</form>
 													</div>
 												</div>
 												<div class="col-lg-4 offset-lg-4">
@@ -390,23 +356,29 @@
 															<li class="subtotal">선택  상품  금액
 																<input type="text" class="store_input4" name="totalPrice" value="0" readonly>원
 															</li>
-															<li class="subtotal">상품 할인 금액 <span>$240.00</span></li>
+															<li class="subtotal">상품 할인 금액
+																<input type="text" class="store_input4" name="point" value="0" readonly>원
+															</li>
+															<%-- <c:if test="">
+																<li class="subtotal">상품 할인 금액 <span>$240.00</span></li>
+															</c:if>
+															<c:if test="">
+																<li class="subtotal">상품 할인 금액 <span>$240.00</span></li>
+															</c:if> --%>
 															<li class="cart-total">최종 결제 금액
-																<input type="text" class="store_input4" name="totalPrice" value="0" readonly>원
+																<input type="text" class="store_input4" name="totalSum" value="0" readonly>원
 															</li>
 														</ul>
-														<a onclick="toOrder()" class="proceed-btn">주문하기</a>
+														<a onclick="toOrder()" style="cursor: pointer;" class="proceed-btn">주문하기</a>
 													</div>
 												</div>
 												<div>
-												<form>
-													<input type="hidden" name="totalPrice" value="">
-												</form>
 												</div>
 											</div>
 										</div>
 									</div>
 								</div>
+							</form>
 							</section>
 							<!-- Shopping Cart Section End -->
 
