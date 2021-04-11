@@ -31,6 +31,11 @@
 	src="http://cdnjs.cloudflare.com/ajax/libs/summernote/0.8.8/summernote.js"></script>
 
 <style>
+
+footer.footer.navbar-wrapper {
+    z-index: 3;
+}
+
 #container {
 	width: 700px;
 	margin: 0 auto;
@@ -73,7 +78,7 @@ th {
 	padding: 5px;
 }
 
-.active {
+.side_active {
 	background-color : #f7b5b7;
     -webkit-box-shadow: 0 15px 8px -11px rgba(0, 0, 0, 0.25);
     box-shadow: 0 15px 8px -11px rgba(0, 0, 0, 0.25);
@@ -83,7 +88,7 @@ th {
 $(function (){
 	var board_idx = ${board_idx};
 	board_idx = board_idx + 3;
-	$(".pcoded-inner-navbar>ul:nth-child(" + board_idx + ")>li>a").addClass("active");
+	$(".pcoded-inner-navbar>ul:nth-child(" + board_idx + ")>li>a").addClass("side_active");
 });
 
 	$(function() {

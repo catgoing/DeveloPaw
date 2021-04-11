@@ -411,6 +411,40 @@ public class BoardController {
 		return "/community/detail_board";
 
 	}
+	
+	//상세페이지
+	@RequestMapping(value = "/community/transaction_detail", method = RequestMethod.GET)
+	public String getTransactionBoard(@RequestParam("board_idx") String sboard_idx,
+			@RequestParam("board_no") int board_no, Board vo, Model model) {
+		
+		int board_idx = Integer.parseInt(sboard_idx);
+		System.out.println("board_idx : "  + board_idx);
+		System.out.println(">>> 글상세 - String getBoard()");
+		
+		Map<String, Integer> map = new HashMap<String, Integer>();
+		map.put("board_idx", board_idx);
+		map.put("board_no", board_no );
+		vo = boardService.getBoard(map);
+		boardService.updateHits(map);
+		
+		List<Comment> commentList = boardService.getCommentList(map);
+		List<Comment> comment2List = boardService.getComment2List(map);
+		
+		System.out.println("detail vo : " + vo);
+		
+		System.out.println("commentList : " + commentList);
+		System.out.println("comment2List : " + comment2List);
+		
+		//TODO 임시 회원 시리얼을 실제 객체로 교체할 것
+		session.setAttribute("board_idx", board_idx);
+		model.addAttribute("board_no", board_no);
+		model.addAttribute("vo", vo);
+		model.addAttribute("commentList", commentList);
+		model.addAttribute("comment2List", comment2List);
+		
+		return "/community/transaction_detail_board";
+		
+	}
 
 
 	//댓글 입력
