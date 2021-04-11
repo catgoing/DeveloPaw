@@ -4,7 +4,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
-<%@ taglib uri="http://tiles.apache.org/tags-tiles" prefix="tiles"%>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
 
 
 <!DOCTYPE html>
@@ -217,7 +217,58 @@ footer.footer.navbar-wrapper {
 														<hr>
 													
 													<!-- 여기에 회원정보(사진, 닉네임 등) 출력 -->
-
+																	<div class="row">
+										<div class="col-lg-6">
+											<div class="product__details__pic">
+												<div class="product__details__slider__content">
+													<div class="details_pic">
+														<img
+															src="https://projectbit.s3.us-east-2.amazonaws.com/${vo.img1 }" style="width:200px; height:300px">
+													</div>
+												</div>
+											</div>
+										</div>
+										<div class="col-lg-6">
+											<div class="details_text">
+													<div class="product__details__button">
+														<div class="product__details__widget">
+															<ul>
+																<li>
+																<c:set var="status" value="${vo.is_selled }"/>
+																<c:if test="${status eq 0 }">
+																	<h4>
+																		&nbsp; <input type="text" value="판매 중" style="border:none; background-color:transparent; color": blue;" readonly />
+																	</h4>
+																</c:if>
+																<c:if test="${status eq 1 }">
+																	<h4>
+																		&nbsp; <input type="text" value="판매 완료" style="border:none; background-color:transparent;" readonly />
+																	</h4>
+																</c:if>
+																</li>
+															</ul>
+														</div>
+														
+														<div class="product__details__widget">
+															<ul>
+																<li>
+																	<h3>
+																		가격 :  <fmt:formatNumber value="${vo.price }"  pattern="#,###" />원
+																	</h3>
+																</li>
+															</ul>
+														</div>
+														<div class="quantity">
+															<div class="pro-qty">
+																<h5>지역 : ${vo.area2 }
+																</h5>
+															</div>
+															<br>
+														</div>
+													</div>
+											</div>
+										</div>
+									</div>		
 																<div class="product-title" style="background-color : #f7f2f2; margin:5px; border-radius:10px">
 																	<div class="product-img-div">
 																		<span class="box int_id" style="color:black; text-align:center; width:100%;"> ${vo.board_content } </span>

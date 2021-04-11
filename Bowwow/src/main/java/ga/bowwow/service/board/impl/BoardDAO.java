@@ -72,6 +72,15 @@ public class BoardDAO {
 		return mybatis.selectList("BoardDAO.getBoardList", map);
 	}
 	
+	public List<Board> getMainList(int board_idx) {
+		Map<String, Integer> map = new HashMap<String, Integer>();
+		map.put("board_idx", board_idx);
+		System.out.println("===> MyBatis로 getBoardList() 실행-vo");
+//		System.out.println("dao board_name: " + board_name);
+		
+		return mybatis.selectList("BoardDAO.getMainList", map);
+	}
+	
 	
 	public List<Comment> getCommentList(Map<String, Integer> map) {
 		System.out.println("===> MyBatis로 getCommentList() 실행-vo");

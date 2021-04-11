@@ -29,8 +29,18 @@
 	rel="stylesheet">
 <script
 	src="http://cdnjs.cloudflare.com/ajax/libs/summernote/0.8.8/summernote.js"></script>
+	
+<link href="https://www.jqueryscript.net/css/jquerysctipttop.css" rel="stylesheet" type="text/css">
+<link rel="stylesheet" href="https://netdna.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+<link href="/resources/jquery-radiocharm.css" rel="stylesheet" type="text/css">
+<script src="/resources/jquery-radiocharm.js"></script>
 
 <style>
+
+#board_title{
+	font-size:22px; display:inline-block; width:100%; background-color:transparent; border:none;
+	cursor : text;
+}
 
 footer.footer.navbar-wrapper {
     z-index: 3;
@@ -85,6 +95,10 @@ th {
 }
 </style>
 <script>
+$(document).ready(function(){
+	 $('input:radio').radiocharm();
+	 });
+
 $(function (){
 	var board_idx = ${board_idx};
 	board_idx = board_idx + 3;
@@ -230,10 +244,9 @@ $(function (){
 												<form action="insertBoard" method="post" enctype="multipart/form-data"
 												name="fr" onsubmit="return null_check()">
 													<div>
-														<input type="radio" name="animal_class" value="1">
-														강아지 <input type="radio" name="animal_class" value="2">
-														고양이 <input type="radio" name="animal_class" value="3" checked="checked">
-														자유
+														<input checked data-radiocharm-background-color="3498DB" data-radiocharm-label="강아지" name="default_background" type="radio" value="1" />
+														<input data-radiocharm-label="고양이" data-radiocharm-background-color="F1C40F" name="default_background" type="radio" value="2" />
+														<input data-radiocharm-label="자유" data-radiocharm-background-color="C0392B" name="default_background" type="radio" value="3" />
 													</div>
 													<div>
 														<input type="radio" name="sub_class" value="0">
@@ -244,13 +257,11 @@ $(function (){
 													</div>
 													<br>
 
-													<table>
-														<tr>
-															<th width="40">제목</th>
-															<td><input type="text" name="board_title" size="30">
-															</td>
-														</tr>
-													</table>
+													<div class="title-container" style="background-color : #f7f2f2; width : 100%; margin:auto; padding:15px; border-radius : 10px">
+															<div class="title">
+															<input type="text" id="board_title" name="board_title" >
+															</div>		
+															</div>	
 													<br>
 
 													<textarea id="summernote" name="board_content"></textarea>
@@ -282,31 +293,6 @@ $(function (){
 				</div>
 			</div>
 		</div>
-		<button class="scroll-top" id="js-button" style="margin-bottom: 190px; margin-right: 30px; font: 'Jua'">
-			<i class="fa fa-chevron-up" aria-hidden="true">TOP</i>
-		</button>
-		<script type="text/javascript">
-			scrollTop('js-button', 100);
-			function scrollTop(elem, duration) {
-				let target = document.getElementById(elem);
-
-				target.addEventListener('click', function() {
-					let currentY = window.pageYOffset;
-					let step = duration / currentY > 1 ? 10 : 100;
-					let timeStep = duration / currentY * step;
-					let intervalID = setInterval(scrollUp, timeStep);
-
-					function scrollUp() {
-						currentY = window.pageYOffset;
-						if (currentY === 0) {
-							clearInterval(intervalID);
-						} else {
-							scrollBy(0, -step);
-						}
-					}
-				});
-			}
-		</script>
 
 		<!-- footer 푸터 영역 -->
 		<%@ include file="/common/footer.jsp"%>

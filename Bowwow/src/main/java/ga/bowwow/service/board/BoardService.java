@@ -22,6 +22,7 @@ public interface BoardService {
 	List<Board> search(String string, String keyword);
 
 	List<Board> getBoardList(Map<String, String> map);
+	List<Board> getMainList(int board_idx);
 
 	void insertReport(Report vo);
 	void insertComment(Map<String, Object> map);

@@ -117,7 +117,7 @@ $(function (){
 																		<div class="item-title" style="width:300px; color:black;">
 																			<a href="/community/detail?board_idx=${board_idx }&board_no=${list.board_no}">
 																			</a>
-																			<input type="text" maxlength="15" value="${list.board_title }" style="text-overflow: ellipsis" >
+																			<input type="text" maxlength="15" value="${list.board_title }" style="text-overflow: ellipsis" readonly >
 																			<span style="postion:inline-block;float:right;margin-top:8px;">${list.regdate }</span>
 																		</div>
 																		<div class="item-items">

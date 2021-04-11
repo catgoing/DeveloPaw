@@ -2,7 +2,7 @@
 
 <button class="scroll-top" id="js-button" 
 	style="margin-bottom: 190px; margin-right: 30px; font: 'Jua'">
-	<i class="fa fa-chevron-up" aria-hidden="true">TOP</i>top
+	<i class="fa fa-chevron-up" aria-hidden="true">TOP</i>
 </button>
 
 <script type="text/javascript">

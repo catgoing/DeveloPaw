@@ -34,7 +34,7 @@
 
 <style>
 
-input[type="radio"]:checked  + label{
+input[type="radio"]:checked + label{
  background-color:red;
 }
 
@@ -100,9 +100,6 @@ th {
 }
 </style>
 <script>
-$(function (){
-	$(".btn-group-toggle").twbsToggleButtons();
-});
 
 $(function (){
 	var board_idx = ${board_idx};
@@ -337,7 +334,9 @@ $(function (){
 	<script src="/resources/js/vertical/vertical-layout.min.js "></script>
 
 	<script type="text/javascript" src="/resources/js/script.js "></script>
-
+    <script>
+      $(".btn-group-toggle").twbsToggleButtons();
+      </script>
 
 </body>
 </html>

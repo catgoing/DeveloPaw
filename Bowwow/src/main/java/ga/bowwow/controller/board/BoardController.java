@@ -71,7 +71,8 @@ public class BoardController {
 			//이미지 첨부된 거 없으면 바로 db에 저장
 			//			map.put("board", vo);
 			vo.setBoard_idx(board_idx);
-			boardService.insertBoard(vo);
+//			boardService.insertBoard(vo);
+			System.out.println(vo);
 
 		} else { //이미지가 있으면
 			//이미지 경로를 저장할 배열 생성
@@ -180,32 +181,49 @@ public class BoardController {
 		//		System.out.println("board_idx : " + board_idx);
 		String board_idx = "0";
 		String cPage = request.getParameter("cPage");
-
-		Page p = new Page();
-
+		
 		Map<String, String> map = new HashMap<String, String>();
 		map.put("board_idx", board_idx);
-
-		p = p.setPage(boardService.getBoardCount(map), cPage, 6, 5);
-		map = p.data1(p, board_idx, map);
-
-		//		for ( String key : map.keySet() ) {
-		//		    System.out.println("방법1) key : " + key +" / value : " + map.get(key));
-		//		}
-
-		List<Board> boardList = boardService.getBoardList(map);
-		//		
-		//		System.out.println("diary_board boardList input(map) : " + board_idx);
-		session.setAttribute("board_idx", board_idx);
-		model.addAttribute("boardList", boardList);
-		model.addAttribute("pvo", p);
-		model.addAttribute("command", "/community/main");
-		//
-		//		System.out.println("bowwow list : " + boardList);
-		//		System.out.println("board model : " + model);
+		
+		List<Board> diaryList = boardService.getMainList(1);
+		List<Board> introList = boardService.getMainList(2);
+		List<Board> knowhowList = boardService.getMainList(3);
+		List<Board> missingList = boardService.getMainList(4);
+//		List<Board> introList = boardService.search("2", keyword);
+//		List<Board> knowhowList = boardService.search("3", keyword);
+//		List<Board> missingList = boardService.search("4", keyword);
+		
+		System.out.println("searchboard d:" + diaryList);
+		//System.out.println("searchboard:" + introlist);
+		//System.out.println("searchboard:" + knowhowlist);
+		session.setAttribute("board_idx", 0);
+		session.setAttribute("diaryList.board_idx", 1);
+		session.setAttribute("introList.board_idx", 2);
+		session.setAttribute("knowhowList.board_idx", 3);
+		session.setAttribute("missingList.board_idx", 4);
+		model.addAttribute("diaryList", diaryList);
+		model.addAttribute("introList", introList);
+		model.addAttribute("knowhowList", knowhowList);
+		model.addAttribute("missingList", missingList);
 
 		return "/community/main";
-
+	}
+	
+	@RequestMapping(value = "/community/write", method = RequestMethod.GET)
+	public String mainWrite(Model model, @RequestParam("board_idx") int board_idx) {
+		String command = "";
+		
+		if(board_idx == 1 || board_idx == 2 || board_idx == 4) {
+			command = "write_combination";
+		} else if(board_idx == 3) {
+			command = "write_knowhow_board";
+		} else if(board_idx == 5) {
+			command = "write_used_transaction_board";
+		}
+		
+		session.setAttribute("board_idx", board_idx);
+		
+		return "/community/" + command;
 	}
 
 
@@ -733,9 +751,11 @@ public class BoardController {
 
 		System.out.println(board);
 		System.out.println("search vo:"+board.getKeyword());
-		List<Board> diarylist =boardService.search("1", keyword);
-		//List<Board> introlist =boardService.search("2", keyword);
-		//List<Board> knowhowlist =boardService.search("3", keyword);
+		List<Board> diarylist = boardService.search("1", keyword);
+		List<Board> introlist = boardService.search("2", keyword);
+		List<Board> knowhowlist = boardService.search("3", keyword);
+		List<Board> missinglist = boardService.search("4", keyword);
+		List<Board> transactionlist = boardService.search("5", keyword);
 		
 		//System.out.println(diarylist.toString().replaceAll(pattern,""));
 		System.out.println("searchboard d:" + diarylist);
@@ -743,8 +763,10 @@ public class BoardController {
 		//System.out.println("searchboard:" + knowhowlist);
 	
 		model.addAttribute("diarylist",diarylist);
-		//model.addAttribute("introlist",introlist);
-		//model.addAttribute("knowhowlist",knowhowlist);
+		model.addAttribute("introlist",introlist);
+		model.addAttribute("knowhowlist",knowhowlist);
+		model.addAttribute("missinglist",missinglist);
+		model.addAttribute("transactionlist",transactionlist);
 
 		return "/community/search";
 	}

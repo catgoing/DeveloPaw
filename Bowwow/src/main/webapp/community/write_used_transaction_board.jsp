@@ -26,8 +26,18 @@
 	rel="stylesheet">
 <script
 	src="http://cdnjs.cloudflare.com/ajax/libs/summernote/0.8.8/summernote.js"></script>
+	
+<link href="https://www.jqueryscript.net/css/jquerysctipttop.css" rel="stylesheet" type="text/css">
+<link rel="stylesheet" href="https://netdna.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+<link href="/resources/jquery-radiocharm.css" rel="stylesheet" type="text/css">
+<script src="/resources/jquery-radiocharm.js"></script>
 
 <style>
+
+#board_title{
+	font-size:22px; display:inline-block; width:100%; background-color:transparent; border:none;
+	cursor : text;
+}
 
 footer.footer.navbar-wrapper {
     z-index: 3;
@@ -245,6 +255,12 @@ $(function (){
 														자유
 													</div>
 													<br>
+													
+													<div class="title-container" style="background-color : #f7f2f2; width : 100%; margin:auto; padding:15px; border-radius : 10px">
+															<div class="title">
+															<input type="text" id="board_title" name="board_title" >
+															</div>		
+															</div>	
 
 													<table>
 														<tr>
@@ -333,31 +349,6 @@ $(function (){
 				</div>
 			</div>
 		</div>
-		<button class="scroll-top" id="js-button" style="margin-bottom: 190px; margin-right: 30px; font: 'Jua'">
-			<i class="fa fa-chevron-up" aria-hidden="true">TOP</i>
-		</button>
-		<script type="text/javascript">
-			scrollTop('js-button', 100);
-			function scrollTop(elem, duration) {
-				let target = document.getElementById(elem);
-
-				target.addEventListener('click', function() {
-					let currentY = window.pageYOffset;
-					let step = duration / currentY > 1 ? 10 : 100;
-					let timeStep = duration / currentY * step;
-					let intervalID = setInterval(scrollUp, timeStep);
-
-					function scrollUp() {
-						currentY = window.pageYOffset;
-						if (currentY === 0) {
-							clearInterval(intervalID);
-						} else {
-							scrollBy(0, -step);
-						}
-					}
-				});
-			}
-		</script>
 
 		<!-- footer 푸터 영역 -->
 		<%@ include file="/common/footer.jsp"%>
@@ -365,7 +356,7 @@ $(function (){
 
 	</div>
 
-	<!-- Required Jquery -
+	<!-- Required Jquery -->
 	<script type="text/javascript"
 		src="/resources/js/jquery/jquery.min.js "></script>
 	<script type="text/javascript"
@@ -388,7 +379,9 @@ $(function (){
 	<script src="/resources/js/vertical/vertical-layout.min.js "></script>
 
 	<script type="text/javascript" src="/resources/js/script.js "></script>
-
+    <script>
+      $(".btn-group-toggle").twbsToggleButtons();
+      </script>
 
 </body>
 </html>
