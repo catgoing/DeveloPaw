@@ -48,7 +48,9 @@ public class BoardController {
 		
 		//TODO INSERT
 		Map<String, Object> map = new HashMap<String, Object>();
-		int board_idx = Integer.parseInt((String) session.getAttribute("board_idx"));
+		int board_idx = Integer.parseInt(session.getAttribute("board_idx").toString());
+		System.out.println("insert idx: " + board_idx);
+		
 		map.put("board_idx", board_idx);
 		
 		
@@ -68,6 +70,7 @@ public class BoardController {
 		if(vo.getImg_locas() == null || vo.getImg_locas().length() == 0) {
 			//이미지 첨부된 거 없으면 바로 db에 저장
 			//			map.put("board", vo);
+			vo.setBoard_idx(board_idx);
 			boardService.insertBoard(vo);
 
 		} else { //이미지가 있으면
@@ -122,6 +125,7 @@ public class BoardController {
 
 			//경로 변환 후 최종 DB에 저장되는 VO값 콘솔에 출력
 			System.out.println("reLoca vo : " + vo);
+			vo.setBoard_idx(board_idx);
 
 			//			map.put("board", vo);
 			//			boardService.insertBoard(map);
@@ -528,19 +532,33 @@ public class BoardController {
 
 
 	//게시글 삭제
-	@RequestMapping(value = "/community/boardDelete", method = RequestMethod.GET)
+	@RequestMapping(value = "/community/boardDelete", method = RequestMethod.POST)
 	public String boardDelete(@RequestParam("board_no") int board_no ,
 			@RequestParam("board_idx") String board_idx, Model model) {
 
 		System.out.println(">>> 게시글 삭제 - boardDelete()");
-		System.out.println(board_no +  " / " +board_idx);
+		System.out.println(board_no +  " / " + board_idx);
+		String command = "";
+		
+		if(board_idx.equals("1")) {
+			command = "diary_board"; }
+		else if (board_idx.equals("2")) {
+			command = "intro_board"; }
+		else if (board_idx.equals("3")) {
+			command = "knowhow_board"; }
+		else if (board_idx.equals("4")) {
+			command = "missing_board"; }
+		else if (board_idx.equals("5")) {
+			command = "used_transaction_board"; }
+		else if (board_idx.equals("6")) {
+			command = "event_board"; }
 
 		Map<String, Object> map = new HashMap<String, Object>();
 		map.put("board_idx", board_idx);
 		map.put("board_no", board_no);
 		boardService.boardDelete(map);
 		
-		return "redirect:/community/diary_board";
+		return "redirect:/community/" + command;
 	}
 
 	//댓글 삭제
@@ -586,6 +604,7 @@ public class BoardController {
 	public String updateBoard(Board vo, HttpServletRequest request, MultipartController mc, Model model) 
 			throws AmazonClientException, IllegalStateException, IOException, InterruptedException {
 		System.out.println(">>> 게시글 수정화면 - updateBoard()");
+		String command = "";
 
 		int board_idx = (int) session.getAttribute("board_idx");
 		int board_no = vo.getBoard_no();
@@ -597,8 +616,16 @@ public class BoardController {
 		vo = boardService.getBoard(map);
 
 		model.addAttribute("vo", vo);
+		
+		if(board_idx == 3) {
+			command = "update_knowhow_board";
+		}
+		else if (board_idx == 5) {
+			command = "update_used_transaction_board";
+		}
+		else command = "update_board";
 
-		return "/community/update_board";
+		return "/community/" + command;
 	}
 
 

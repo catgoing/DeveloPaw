@@ -179,8 +179,8 @@ footer.footer.navbar-wrapper {
 														<br>
 													</div>
 												</div>
+												<form method="post">
 												<div class="monthly-products" style="background-color:white; width:900px; margin:auto; padding:15px">
-													<form method="post">
 														<div style="background-color : #f7f2f2; margin:5px; border-radius:10px">
 														<c:set var="a_class" value="${vo.animal_class }"/>
 														<c:if test="${a_class eq 1 }">
@@ -196,34 +196,7 @@ footer.footer.navbar-wrapper {
 														<c:if test="${a_class eq 3 }">
 															<div style="margin-left:20px; margin-top:50px; color:green">
 																자유
-															
-														</c:if>
-														<c:if test="${a_class eq null }">
-															<br>
-														</c:if>
-														<c:set var="sub_class" value="${vo.sub_class }"/>
-														<c:if test="${sub_class eq 0 }">
-																<span style="color : #ff0000;">															
-																&nbsp&nbsp&nbsp교육/훈련
-																</span>
-														</c:if>
-														<c:if test="${sub_class eq 1 }">
-																<span style="color : #ff0000;">															
-																&nbsp&nbsp&nbsp급여/식이
-																</span>
-														</c:if>
-														<c:if test="${sub_class eq 2 }">
-																<span style="color : #ff0000;">															
-																&nbsp&nbsp&nbsp건강
-																</span>
-														</c:if>
-														<c:if test="${sub_class eq 3 }">
-																<span style="color : #ff0000;">
-																&nbsp&nbsp&nbsp생활꿀팁
-																</span>
-														</c:if>
-														<c:if test="${sub_class eq null }">
-															
+											
 														</c:if>
 														</div>
 															<div class="title">
@@ -240,7 +213,7 @@ footer.footer.navbar-wrapper {
 																<label style="color:black;">조회 ${vo.hits }</label>
 															</h6>
 															</div>
-														
+														</div>
 														<hr>
 													
 													<!-- 여기에 회원정보(사진, 닉네임 등) 출력 -->
@@ -253,12 +226,12 @@ footer.footer.navbar-wrapper {
 																			<input type="hidden" name="board_idx" value="${board_idx }">
 																			<input type="hidden" name="board_no" value="${vo.board_no }">
 																			<input type="submit" class="button buttonbig" value="수정" formaction="/community/update/board" >
-																			<input type="submit" class="button buttonbig" value="삭제 " formaction="/community/delete/board">
+																			<input type="submit" class="button buttonbig" value="삭제 " formaction="/community/boardDelete">
 																		</div>
 																	</div>
 																</div>
 														</form>
-														</div>
+														
 														<hr>
 															
 													<div style="border: solid 1px lightgray; border-radius : 5px; margin : 10px">

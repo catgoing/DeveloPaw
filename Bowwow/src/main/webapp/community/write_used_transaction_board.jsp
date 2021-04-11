@@ -1,10 +1,7 @@
-<%@page import="ga.bowwow.service.board.Board"%>
-<%@page import="java.util.List"%>
-<%@page import="ga.bowwow.service.board.impl.BoardDAO"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
-<%@ taglib uri="http://tiles.apache.org/tags-tiles" prefix="tiles"%>
+
 <!DOCTYPE html>
 
 <html>
@@ -91,8 +88,13 @@ $(function (){
 	$(".pcoded-inner-navbar>ul:nth-child(" + board_idx + ")>li>a").addClass("side_active");
 });
 
+/*  	$(function() {
+		 $('#summernote').summernote('code', '지역 상세 : <br> 가격 : <br> 구매일 : <br> 상품 상태 : <br> 거래 방법 : 택배 / 직거래 <br> 상품 설명 : ');
+	});  */
+	
+	
 	$(function() {
-		$('#summernote').summernote('code', '지역 상세 : <br> 가격 : <br> 구매일 : <br> 상품 상태 : <br> 거래 방법 : 택배 / 직거래 <br> 상품 설명 : ');
+		$('#summernote').val("지역 상세 : <br> 가격 : <br> 구매일 : <br> 상품 상태 : <br> 거래 방법 : 택배 / 직거래 <br> 상품 설명 : ");
 		
 		$('#summernote').summernote({
 			placeholder : '최대 500자 작성 가능합니다.',
@@ -116,9 +118,9 @@ $(function (){
 		});
 	});
 
-	$('#summernote').on('summernote.change', function(we, contents, $editable) {
+/* 	$('#summernote').on('summernote.change', function(we, contents, $editable) {
 		console.log('summernote\'s content is changed.');
-	});
+	}); */
 
 	function uploadSummernoteImageFile(file, el) {
 
@@ -181,6 +183,23 @@ $(function (){
 		//확인 버튼 누르면 hidden img_locas 값으로 boardVO에 전달
 		$(".imgs").append('<input type="hidden" name="img_locas" value="' + imgar + '">');
 	}
+	
+	 function null_check(){
+		 var price = document.getElementById('price').value;
+		 var title = document.getElementById('title').value;
+			if(price == "" || price == null){
+				alert("가격을 입력해주세요");
+				fr.price.focus();
+				return false;
+			} else if(title == "" || title == null){
+				alert("제목을 입력해주세요");
+				fr.title.focus();
+				return false;
+			}
+			
+			else return true;
+			
+			}
 </script>
 
 </head>
@@ -217,7 +236,8 @@ $(function (){
 											<div class="container">
 												<hr>
 
-												<form action="insertBoard" method="post" enctype="multipart/form-data">
+												<form action="insertBoard" method="post" enctype="multipart/form-data"
+												 name="fr" onsubmit="return null_check()">
 													<div>
 														<input type="radio" name="animal_class" value="1">
 														강아지 <input type="radio" name="animal_class" value="2">
@@ -229,7 +249,7 @@ $(function (){
 													<table>
 														<tr>
 															<th width="40">제목</th>
-															<td><input type="text" name="board_title" size="30">
+															<td><input type="text" id="title" name="board_title" size="30">
 															</td>
 														</tr>
 																												<tr>
@@ -278,7 +298,7 @@ $(function (){
 														<tr>
 															<th width="40">가격</th>
 															<td>
-																<input type="text" name="price" size="30">
+																<input type="text" id="price" name="price" size="30">
 															</td>
 														</tr>
 														

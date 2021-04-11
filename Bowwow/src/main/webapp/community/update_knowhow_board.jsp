@@ -15,7 +15,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge" />
 <%@ include file="/common/import.jsp"%>
 
-<title>글 수정</title>
+<title>글 작성</title>
 <link
 	href="http://netdna.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.css"
 	rel="stylesheet">
@@ -31,6 +31,11 @@
 	src="http://cdnjs.cloudflare.com/ajax/libs/summernote/0.8.8/summernote.js"></script>
 
 <style>
+
+footer.footer.navbar-wrapper {
+    z-index: 3;
+}
+
 #container {
 	width: 700px;
 	margin: 0 auto;
@@ -73,7 +78,7 @@ th {
 	padding: 5px;
 }
 
-.active {
+.side_active {
 	background-color : #f7b5b7;
     -webkit-box-shadow: 0 15px 8px -11px rgba(0, 0, 0, 0.25);
     box-shadow: 0 15px 8px -11px rgba(0, 0, 0, 0.25);
@@ -83,18 +88,11 @@ th {
 $(function (){
 	var board_idx = ${board_idx};
 	board_idx = board_idx + 3;
-	$(".pcoded-inner-navbar>ul:nth-child(" + board_idx + ")>li>a").addClass("active");
+	$(".pcoded-inner-navbar>ul:nth-child(" + board_idx + ")>li>a").addClass("side_active");
 });
-
-$(function (){
-	imageChangeCheck();
-});
-
-
 
 	$(function() {
 		$('#summernote').val('${vo.board_content}');
-
 		
 		$('#summernote').summernote({
 			placeholder : '최대 500자 작성 가능합니다.',
@@ -116,6 +114,10 @@ $(function (){
 			}
 
 		});
+	});
+
+	$('#summernote').on('summernote.change', function(we, contents, $editable) {
+		console.log('summernote\'s content is changed.');
 	});
 
 	function uploadSummernoteImageFile(file, el) {
@@ -154,7 +156,9 @@ $(function (){
 		var imgar = new Array();
 
 		//summernote 안의 p태그 > img태그 모두 찾아 img태그 개수만큼 실행하는 메서드
-		$("p").find('img').each(
+		$("p")
+				.find('img')
+				.each(
 						function() {
 							console.log($(this).attr('src')); //이미지 경로 콘솔에 출력
 
@@ -177,6 +181,18 @@ $(function (){
 		//확인 버튼 누르면 hidden img_locas 값으로 boardVO에 전달
 		$(".imgs").append('<input type="hidden" name="img_locas" value="' + imgar + '">');
 	}
+	
+	 function null_check(){
+		 var title = document.getElementById('title').value;
+			if(title == "" || title == null){
+				alert("제목을 입력해주세요");
+				fr.title.focus();
+				return false;
+			}
+			
+			else return true;
+			
+			}
 </script>
 
 </head>
@@ -211,12 +227,12 @@ $(function (){
 									<div class="page-body">
 										<section class="featured spad">
 											<div class="container">
-												<h1>펫 일기장</h1>
 												<hr>
 
-												<form action="/community/do-update/board" method="post" enctype="multipart/form-data">
+												<form action="insertBoard" method="post" enctype="multipart/form-data"
+												name="fr" onsubmit="return null_check()">
 													<div>
-														<c:set var="class1" value="${vo.animal_class }"/>
+													<c:set var="class1" value="${vo.animal_class }"/>
 														<c:if test="${class1 eq '1' }">
 															<input type="radio" name="animal_class" value="1" checked="checked"> 강아지
 															<input type="radio" name="animal_class" value="2"> 고양이 
@@ -232,15 +248,40 @@ $(function (){
 															<input type="radio" name="animal_class" value="2">고양이 
 															<input type="radio" name="animal_class" value="3" checked="checked">자유
 														</c:if>
-
+													</div>
+													<div>
+													<c:set var="sub_class" value="${vo.sub_class }"/>
+														<c:if test="${sub_class eq '0' }">
+															<input type="radio" name="sub_class" value="0" checked="checked"> 교육/훈련
+															<input type="radio" name="sub_class" value="1"> 급여/식이
+															<input type="radio" name="sub_class" value="2"> 건강
+															<input type="radio" name="sub_class" value="3"> 생활꿀팁
+														</c:if>
+														<c:if test="${sub_class eq '1' }">
+															<input type="radio" name="sub_class" value="0">교육/훈련
+															<input type="radio" name="sub_class" value="1" checked="checked">급여/식이
+															<input type="radio" name="sub_class" value="2">건강
+															<input type="radio" name="sub_class" value="3">생활꿀팁
+														</c:if>
+														<c:if test="${sub_class eq '2' }">
+															<input type="radio" name="sub_class" value="0">교육/훈련
+															<input type="radio" name="sub_class" value="1">급여/식이
+															<input type="radio" name="sub_class" value="2" checked="checked"> 건강
+															<input type="radio" name="sub_class" value="3">생활꿀팁
+														</c:if>
+														<c:if test="${sub_class eq '3' }">
+															<input type="radio" name="sub_class" value="0">교육/훈련
+															<input type="radio" name="sub_class" value="1">급여/식이
+															<input type="radio" name="sub_class" value="2">건강
+															<input type="radio" name="sub_class" value="3" checked="checked">생활꿀팁
+														</c:if>
 													</div>
 													<br>
 
 													<table>
 														<tr>
 															<th width="40">제목</th>
-															<td>
-															<input type="text" name="board_title" size="30" value="${vo.board_title }">
+															<td><input type="text" name="board_title" value="${vo.board_title}" size="30">
 															</td>
 														</tr>
 													</table>
@@ -250,9 +291,13 @@ $(function (){
 													<div class="thum_select" id="thum_select" style="float: left; , padding: 500px;"></div>
 													<div class="imgs"></div>
 													<br> <br>
+													
+												
+													<input type="hidden" name="member_serial" value="994">
+													<input type="hidden" name="board_idx" value="3">
 													<input type="hidden" name="board_no" value="${vo.board_no }">
 													<div style="text-align: center" class="enter_button">
-														<input type="submit" value="수정">
+														<input type="submit" value="확인">
 													</div>
 
 												</form>

@@ -78,11 +78,13 @@ input[type="submit"] {
 						class="badge bg-c-red"></span>
 				</a>
 					</li>
+				<!-- 
 				<li class="user-profile header-notification"><a href="#!"
 					class="waves-effect waves-light"> <img
 						src="../resources/images/logo.png" class="img-radius"
 						alt="User-Profile-Image"> <i class="ti-angle-down"></i>
 				</a>
+				
 				<form name="memberSerialLink">
 				<input type="hidden" name="member_serial" value="${sessionScope.userDTO.member_serial }" >	
 					<ul class="show-notification profile-notification">
@@ -104,7 +106,7 @@ input[type="submit"] {
 						</script>
 						<li class="waves-effect waves-light"><a
 							href="/mypage/myPoint">포인트 내역 </a></li>
-<!-- 						로그아웃 시, 헤더의 목록을 동적으로 바꿔야 함->로그인 시 헤더목록을 동적으로 출력해야 함  -->
+<!-- 						로그아웃 시, 헤더의 목록을 동적으로 바꿔야 함->로그인 시 헤더목록을 동적으로 출력해야 함 
 						<li class="waves-effect waves-light"><a
 							href="/store/storeOrderList">나의 쇼핑 </a></li>
 						<li class="waves-effect waves-light"><a
@@ -113,7 +115,9 @@ input[type="submit"] {
 							href="/user/logout">로그아웃 </a></li>
 					</ul>
 				</form>
+				
 					</li>
+					 -->
 				</ul>
 			</form>
 		</div>

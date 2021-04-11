@@ -179,6 +179,18 @@ $(function (){
 		//확인 버튼 누르면 hidden img_locas 값으로 boardVO에 전달
 		$(".imgs").append('<input type="hidden" name="img_locas" value="' + imgar + '">');
 	}
+	
+	 function null_check(){
+		 var title = document.getElementById('title').value;
+			if(title == "" || title == null){
+				alert("제목을 입력해주세요");
+				fr.title.focus();
+				return false;
+			}
+			
+			else return true;
+			
+			}
 </script>
 
 </head>
@@ -215,7 +227,8 @@ $(function (){
 											<div class="container">
 												<hr>
 
-												<form action="insertBoard" method="post" enctype="multipart/form-data">
+												<form action="insertBoard" method="post" enctype="multipart/form-data"
+												name="fr" onsubmit="return null_check()">
 													<div>
 														<input type="radio" name="animal_class" value="1">
 														강아지 <input type="radio" name="animal_class" value="2">
@@ -223,10 +236,11 @@ $(function (){
 														자유
 													</div>
 													<div>
-														<input type="radio" name="sub_class" value="1">
-														생활꿀팁 <input type="radio" name="sub_class" value="2">
-														급여/식이 <input type="radio" name="sub_class" value="3" checked="checked">
-														교육/훈련
+														<input type="radio" name="sub_class" value="0">
+														교육/훈련 <input type="radio" name="sub_class" value="1">
+														급여/식이 <input type="radio" name="sub_class" value="2">
+														건강 <input type="radio" name="sub_class" value="3" checked="checked">
+														생활꿀팁
 													</div>
 													<br>
 

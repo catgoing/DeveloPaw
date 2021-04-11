@@ -179,8 +179,8 @@ footer.footer.navbar-wrapper {
 														<br>
 													</div>
 												</div>
+												<form method="post">
 												<div class="monthly-products" style="background-color:white; width:900px; margin:auto; padding:15px">
-													<form method="post">
 														<div style="background-color : #f7f2f2; margin:5px; border-radius:10px">
 														<c:set var="a_class" value="${vo.animal_class }"/>
 														<c:if test="${a_class eq 1 }">
@@ -240,6 +240,7 @@ footer.footer.navbar-wrapper {
 																<label style="color:black;">조회 ${vo.hits }</label>
 															</h6>
 															</div>
+														</div>
 														<hr>
 													
 													<!-- 여기에 회원정보(사진, 닉네임 등) 출력 -->
@@ -252,12 +253,12 @@ footer.footer.navbar-wrapper {
 																			<input type="hidden" name="board_idx" value="${board_idx }">
 																			<input type="hidden" name="board_no" value="${vo.board_no }">
 																			<input type="submit" class="button buttonbig" value="수정" formaction="/community/update/board" >
-																			<input type="submit" class="button buttonbig" value="삭제 " formaction="/community/delete/board">
+																			<input type="submit" class="button buttonbig" value="삭제 " formaction="/community/boardDelete">
 																		</div>
 																	</div>
 																</div>
+
 														</form>
-														</div>
 														<hr>
 															
 													<div style="border: solid 1px lightgray; border-radius : 5px; margin : 10px">
