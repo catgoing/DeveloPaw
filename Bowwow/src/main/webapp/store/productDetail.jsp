@@ -336,6 +336,20 @@
 	    return parseInt(x.replace(/,/g,""));
 	 }
 	 
+	 function chkBtn(){
+	       if(document.getElementById('revTitle').value == ""){
+	            alert("제목을 입력해 주세요.");
+	            checkout.message.focus();
+	            return false;
+	        }
+	       if(document.getElementById('message').value == ""){
+	            alert("내용을 입력해주세요");
+	            checkout.message.focus();
+	            return false;
+	        }
+	      else return true;
+	    }
+	 
 </script>
 
 </head>
@@ -461,7 +475,7 @@
 													<div class="tab-pane fade show active" id="review" role="tabpanel" aria-labelledby="review-tab" style="border : 2px solid #666666;">
 														<div id="reply" >
 															<section class="reviewForm">
-																<form name="reviewForm" id="reviewForm" method="post" autocomplete="off" >
+																<form name="reviewForm" id="reviewForm" method="post" onsubmit="return chkBtn()" autocomplete="off" >
 																	<div style="padding : 70px;">
 																		<h2>상품에 대한 후기를 자유롭게 남겨주세요!</h2>
 																		<div style="background-color : white;">

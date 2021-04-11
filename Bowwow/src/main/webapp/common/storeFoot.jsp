@@ -37,7 +37,7 @@
 					<div class="col-sm-6" style="text-align: left;">
 						<img src="../resources/images/logo.png" class="img-radius" alt="User-Profile-Image">
 						<br>
-						<h3 style="color : black;">100% AUTHENTIC</h3>
+						<h3 style="color : black;">BOW-WOW</h3>
 						<h5 style="color : black;">Bowwow에서 판매되는 모든  제품은 정식제조, <br>정식수입원을 통해 유통되는 100% 정품임을 보증합니다.</h5>
 						<h6>Copyright &copy; Bowwow All rights reserved. </h6>
 					</div>
