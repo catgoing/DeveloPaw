@@ -57,6 +57,10 @@
 /*  table, th, td{
  	border : 1px solid black;
  } */
+ .inquiry-detail{
+ 	width: 80%;
+ 	margin:0 auto;
+ }
  .inquiry_th {
 	width : 15%;
  }
@@ -96,7 +100,7 @@
 				<div class="page-body">
 					<div class="inquiry-detail">
 						<div class="question-title">
-					    	<h2>문의목록</h2>
+					    	<h3 style="text-align:center;">문의목록</h3>
 				     	</div>
 						<div class="table-container">
 							<table class="table table-sm">
@@ -141,7 +145,7 @@
 							</c:if>
 						</div>  	
 						<div class="btn-container">
-							<button onclick="/getUserInquiryList">돌아가기</button>
+							<button class="btn btn-outline-secondary"  onclick="/getUserInquiryList">돌아가기</button>
 						</div>
 					</div>
 				</div>
