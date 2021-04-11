@@ -258,7 +258,7 @@
 
 							<!-- Shopping Cart Section Begin -->
 							<section class="shopping-cart spad">
-							<form name="listForm" action="/store/orderList" method="POST">
+							<form name="listForm" action="/store/orderArr" method="POST">
 								<div class="container">
 									<div class="row">
 										<div class="col-lg-12">

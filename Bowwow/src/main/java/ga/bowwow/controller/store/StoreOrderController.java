@@ -1,6 +1,7 @@
 package ga.bowwow.controller.store;
 
 import java.io.IOException;
+import java.util.ArrayList;
 import java.util.List;
 
 import javax.servlet.http.HttpServletRequest;
@@ -15,7 +16,6 @@ import org.springframework.web.bind.annotation.RequestParam;
 import ga.bowwow.service.store.Order;
 import ga.bowwow.service.store.OrderDTO;
 import ga.bowwow.service.store.StoreOrderService;
-import ga.bowwow.service.store.StoreService;
 
 @Controller
 public class StoreOrderController {
@@ -23,9 +23,6 @@ public class StoreOrderController {
 	@Autowired
 	private StoreOrderService storeOrderService;
 	
-	@Autowired
-	private StoreService storeService;
-
 	public StoreOrderController() {
 		System.out.println(">> StoreOrderController 실행");
 	}
@@ -70,12 +67,26 @@ public class StoreOrderController {
 		return "storeOrderList"; 
 	}
 	
-	@RequestMapping(value = "/store/orderList")
+	@RequestMapping(value = "/store/orderArr")
 	public String insertOrderList(OrderDTO orderDTO, Model model) {
-		System.out.println("orderDTO : " + orderDTO);
-			
+		int result = 0;
+		int totalSum = 0;
+		List<Integer> sum = new ArrayList<Integer>();
 		
-		return null;
+		for (int i = 0; i < orderDTO.getP_id().size(); i++) {
+			result = orderDTO.getPrice().get(i) * orderDTO.getAmount().get(i);
+			sum.add(result);
+			totalSum += result;
+		}
+		
+		System.out.println("totalSum : " + totalSum);
+		System.out.println("orderDTO : " + orderDTO);
+		System.out.println("sum : " + sum);
+		model.addAttribute("sum", sum);
+		model.addAttribute("totalSum", totalSum);
+		model.addAttribute("order", orderDTO);
+		
+		return "/store/storeOrderArr";
 	}
 	
 	
