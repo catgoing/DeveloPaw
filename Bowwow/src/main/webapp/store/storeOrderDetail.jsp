@@ -149,7 +149,7 @@ function deleteOrder(frm) {
 															<h5>x ${od.amount }</h5>
 														</td>
 														<td>
-															<p><fmt:formatNumber value="${o.sum }" pattern="#,###" />원</p>
+															<p><fmt:formatNumber value="${od.sum }" pattern="#,###" />원</p>
 														</td>
 													</tr>
 													</c:forEach>
