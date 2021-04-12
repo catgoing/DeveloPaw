@@ -6,6 +6,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import ga.bowwow.service.store.Order;
+import ga.bowwow.service.store.OrderDTO;
+import ga.bowwow.service.store.OrderDetail;
 import ga.bowwow.service.store.StoreOrderService;
 @Service
 public class StoreOrderServiceImpl implements StoreOrderService {
@@ -15,11 +17,6 @@ public class StoreOrderServiceImpl implements StoreOrderService {
 	@Override
 	public void insertOrder(Order order) {
 		storeDAO.insertOrder(order);
-	}
-
-	@Override
-	public void updateOrder(Order order) {
-		storeDAO.updateOrder(order);
 	}
 	
 	@Override
@@ -46,6 +43,16 @@ public class StoreOrderServiceImpl implements StoreOrderService {
 	public void changeOrderStatus(int order_id) {
 		storeDAO.changeOrderStatus(order_id);
 		
+	}
+
+	@Override
+	public void insertOrderDetail(OrderDetail orderDetail) {
+		storeDAO.insertOrderDetail(orderDetail);
+	}
+
+	@Override
+	public List<Order> orderFromCartList(int order_id) {
+		return storeDAO.orderFromCartList(order_id);
 	}
 
 

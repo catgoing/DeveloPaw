@@ -462,7 +462,7 @@
 													style="margin: 30px;">
 													
 													<br>
-													<div class="tab-pane fade show active" id="review" role="tabpanel" aria-labelledby="review-tab" style="border : 2px solid #666666;">
+													<div class="tab-pane fade show active" id="review" role="tabpanel" aria-labelledby="review-tab" style="border : 2px solid #dee2e6;">
 														<div id="reply" >
 															<section class="reviewForm">
 																<form name="reviewForm" id="reviewForm" method="post" onsubmit="return chkBtn()" autocomplete="off" >
