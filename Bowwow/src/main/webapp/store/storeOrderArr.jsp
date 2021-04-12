@@ -109,7 +109,7 @@
 
     function chkBtn(){
        
-       if(document.getElementById('phone').value == ""){spd
+       if(document.getElementById('phone').value == ""){
            alert("핸드폰 번호를 입력해주세요");
            checkout.phone.focus();
            return false;
@@ -120,6 +120,12 @@
             checkout.userZonecode.focus();
             return false;
         }
+       
+       if(document.getElementById('addressDetail').value == ""){
+           alert("상세주소를 입력해 주세요.");
+           checkout.userZonecode.focus();
+           return false;
+       }
        
        if(document.getElementById('userZonecode').value == ""){
            alert("상세주소를 입력해 주세요.");
@@ -141,8 +147,6 @@
        frm.action="/store/insertOrder";
         frm.submit();
     }
-    
-         
     
 </script>
 </head>
@@ -222,7 +226,7 @@
                      </section>
                      <section class="checkout spad">
                         <div class="container" style="background-color: white;">
-                        <form method="POST" name="checkout" class="checkout__form" accept-charset="UTF-8">
+                        <form action="insertOrder" onsubmit="return chkBtn();" method="POST" name="checkout" class="checkout__form" accept-charset="UTF-8">
                               <div class="row">
                                  <div class="col-lg-8">
                                     <div class="checkout__order"
@@ -232,7 +236,7 @@
                                           <div class="col-lg-6 col-md-6 col-sm-6">
                                              <div class="checkout__form__input">
                                                 <p>
-                                                  	 주문자 성명 <span>* (*)항목은 필수 입력 항목입니다.</span>
+                                                	   주문자 성명 <span>* (*)항목은 필수 입력 항목입니다.</span>
                                                 </p>
                                                 <input type="text" name="realname" value="${sessionScope.userDTO.realname}">
 												<input type="hidden" name="member_serial" value="${sessionScope.userDTO.member_serial}">
@@ -241,7 +245,7 @@
                                           <div class="col-lg-6 col-md-6 col-sm-6">
                                              <div class="checkout__form__input">
                                                 <p>
-                                            	       핸드폰 <span>*</span>
+                                                 	  핸드폰 <span>*</span>
                                                 </p>
                                                 <input type="text" id="phone" name="phone">
                                              </div>
@@ -249,7 +253,7 @@
                                           <div class="col-lg-12">
                                              <div class="checkout__form__input">
                                                 <p>
-                                                 	  받으실 주소 <span>*</span><input type="button"
+                                                	   받으실 주소 <span>*</span><input type="button"
                                                       style="margin-left: 20px; width: 80px; text-align: left; font-size: 1.0em;"
                                                       class="searchAddress" onclick="execMap()" value="주소찾기">
                                                 </p>
@@ -257,7 +261,7 @@
                                                 <input type="text" id="userZonecode" name="zip" readonly
                                                    placeholder="우편번호"> 
                                                    <input type="text" id="userAddress" name="address" placeholder="주소" readonly> 
-                                                   <input type="text" name="address_detail" placeholder="동,호수 등 상세 주소를 입력하세요">
+                                                   <input type="text" id="addressDetail" name="address_detail" placeholder="동,호수 등 상세 주소를 입력하세요">
                                              </div>
                                           </div>
                                           <div class="col-lg-12">
@@ -275,7 +279,7 @@
                                                 <input type="hidden" name="p_name" value="${ord.p_name }">
                                                 <input type="hidden" name="amount" value="${ord.amount }">
                                                 <input type="hidden" name="s_image" value="${ord.s_image }">
-                                                <input type="text" name="price" value="${ord.price }">
+                                                <input type="hidden" name="price" value="${ord.price }">
                                              </c:forEach>
                                              </div>
                                           </div>
@@ -303,18 +307,17 @@
                                              class="checkmark"></span>
                                           </label>
                                           <p>Bowwow는 귀하께서 Bowwow 판매자로부터 상품 및 서비스를 구매하고자 할 경우,
-					                                             정보통신망 이용촉진 및 정보보호 등에 관한 법률 제 24조의 2(개인정보 공유동의 등)에 따라 귀하의
-					                                             동의를 받아 귀하의 개인정보를 판매자에게 공유합니다. "개인정보 제3자 공유 동의"를 체크하실 경우
-					                                             개인정보 공유에 대해 동의한 것으로 간주합니다. 만약 본 개인정보 공유에 동의하지 않으신다면 동의를
-					                                             거부할 수 있으며, 이 경우 거래가 제한됩니다.</p>
-					                                          <label for="check-payment"> 위 상품 정보 및 거래 조건을
-					                                             확인하였으며, 구매 진행에 동의합니다.(필수) <input type="checkbox"
-	                                             name="chk_2" id="check-payment"> <span
+						                                             정보통신망 이용촉진 및 정보보호 등에 관한 법률 제 24조의 2(개인정보 공유동의 등)에 따라 귀하의
+						                                             동의를 받아 귀하의 개인정보를 판매자에게 공유합니다. "개인정보 제3자 공유 동의"를 체크하실 경우
+						                                             개인정보 공유에 대해 동의한 것으로 간주합니다. 만약 본 개인정보 공유에 동의하지 않으신다면 동의를
+						                                             거부할 수 있으며, 이 경우 거래가 제한됩니다.</p>
+						                  <label for="check-payment"> 위 상품 정보 및 거래 조건을
+						                                             확인하였으며, 구매 진행에 동의합니다.(필수) <input type="checkbox"
+                                             name="chk_2" id="check-payment"> <span
                                              class="checkmark"></span>
                                           </label>
                                        </div>
-                                       <input type="button" class="site-btn" id="check_module"
-                                       style="font-size: 1.5em;" value="결제하기"  onclick="insertOrder(this.form)">
+                                       <button type="submit" class="site-btn" style="font-size: 1.5em;">결제하기</button>
                                     </div>
                                  </div>
                               </div>

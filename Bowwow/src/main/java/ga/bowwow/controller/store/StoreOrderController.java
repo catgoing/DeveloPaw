@@ -88,9 +88,9 @@ public class StoreOrderController {
 			storeOrderService.insertOrderDetail(orderDetail);
 			System.out.println("임시 테이블에 저장" + orderDetail);
 			
-			if (inOr >= 1) {
-				cartListService.OrderDelCart(order);
-			}
+//			if (inOr >= 1) {
+//				cartListService.OrderDelCart(order);
+//			}
 		}
 
 		return "redirect:/store/storeOrderList?member_serial=" + member_serial;
