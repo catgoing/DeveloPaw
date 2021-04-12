@@ -30,6 +30,7 @@ public class Order {
 	private String p_type;			// 상품 타입
 	private int sum;				// 상품 한개의 총 금액
 	
+	private int price;
 	private String realname;		// 실명
 
 }

@@ -18,6 +18,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import ga.bowwow.service.store.CartListService;
 import ga.bowwow.service.store.Order;
 import ga.bowwow.service.store.OrderDTO;
+import ga.bowwow.service.store.OrderDetail;
 import ga.bowwow.service.store.StoreOrderService;
 
 @Controller
@@ -26,15 +27,13 @@ public class StoreOrderController {
 	@Autowired
 	private StoreOrderService storeOrderService;
 	
-	@Autowired
-	private CartListService cartListService;
-	
 	public StoreOrderController() {
 		System.out.println(">> StoreOrderController 실행");
 	}
 	
 	@RequestMapping(value = "/store/moveOrder") 
 	public String moveOrder() {
+		
 		return "/store/storeOrder";
 	}
 	
@@ -52,28 +51,35 @@ public class StoreOrderController {
 	// 주문내역 작성
 	@RequestMapping(value = "/store/insertOrder")
 	// default로 get방식 요청, post 선언을 해줘야 함
-	public String insertOrder(Order order, HttpServletRequest request) throws IllegalStateException, IOException {
+	public String insertOrder(OrderDTO orderDTO, Order order, HttpServletRequest request) throws IllegalStateException, IOException {
 		System.out.println("order : "  + order);
 		System.out.println(">>> 주문내역 작성 - insertOrder()");
 		
-		List<Order> list = new ArrayList<Order>();
+		String order_status = "주문 완료";
+		order.setOrder_status(order_status);
 		
 		request.setCharacterEncoding("utf-8");
 		storeOrderService.insertOrder(order);
 		
+		OrderDetail orderDetail;
+		List<OrderDetail> orderList = new ArrayList<OrderDetail>();
+		List<Integer> sum = new ArrayList<Integer>();
+		int size = orderDTO.getP_id().size();
+		
+		for (int i = 0; i < size; i++) {
+			orderDetail = new OrderDetail();
+			orderDetail.setP_id(orderDTO.getP_id().get(i));
+			orderDetail.setAmount(orderDTO.getAmount().get(i));
+			orderDetail.setP_name(orderDTO.getP_name().get(i));
+			orderList.add(orderDetail);
+			System.out.println("orderList view ::" + orderList);
+			System.out.println("order ::" + orderDetail);
+			System.out.println("orderList " + i + "번째");
+			storeOrderService.insertOrderDetail(orderDetail);
+			System.out.println("임시 테이블에 저장" + orderDetail);
+		}
 		
 		return "redirect:/store/storeOrderList?member_serial=999";
-	}
-
-	
-	@RequestMapping(value = "/store/updateOrder") 
-	public String updateOrder(Order order, HttpServletRequest request) throws IllegalStateException, IOException{ 
-		System.out.println(">>> 주문내역 수정 - updateOrder()");
-		System.out.println("order : " + order);
-	
-		storeOrderService.updateOrder(order);
-	 
-		return "storeOrderList"; 
 	}
 	
 	@RequestMapping(value = "/store/orderArr")
@@ -89,6 +95,7 @@ public class StoreOrderController {
 		for (int i = 0; i < size; i++) {
 			order = new Order();
 			result = orderDTO.getPrice().get(i) * orderDTO.getAmount().get(i);
+			order.setPrice(orderDTO.getPrice().get(i));
 			order.setP_id(orderDTO.getP_id().get(i));
 			order.setAmount(orderDTO.getAmount().get(i));
 			order.setP_name(orderDTO.getP_name().get(i));
@@ -101,8 +108,11 @@ public class StoreOrderController {
 			sum.add(i, result);
 			order.setSum(sum.get(i));
 			totalSum += result;
+			/*
+			storeOrderService.insertOrderDetail(order);
+			System.out.println("임시 테이블에 저장" + order);
+			*/
 		}
-		
 		
 		System.out.println("totalSum : " + totalSum);
 		System.out.println("sum : " + sum);
@@ -110,8 +120,6 @@ public class StoreOrderController {
 		model.addAttribute("totalSum", totalSum);
 		model.addAttribute("order", orderList);
 		
-		
-		System.out.println("장바구니 삭제");
 		return "/store/storeOrderArr";
 	}
 	
@@ -145,10 +153,14 @@ public class StoreOrderController {
 
 		int order_id = Integer.parseInt(request.getParameter("order_id"));
 		System.out.println("order_id : " + order_id);
-
+		
+		
 		Order o = storeOrderService.getOrderDetail(order_id);
 		model.addAttribute("o", o);
-
+		
+		List<Order> od = storeOrderService.orderFromCartList(order_id);
+		model.addAttribute("od", od);
+		
 		return "storeOrderDetail";
 	}
 	

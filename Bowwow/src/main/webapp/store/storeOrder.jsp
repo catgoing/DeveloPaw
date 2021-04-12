@@ -309,7 +309,6 @@
 																	placeholder="ex) 부재시 경비실에 맡겨주세요.">
 															</div>
 															<div class="checkout__form__input">
-																<input type="hidden" id="order_status" name="order_status" value="주문 완료">
 																<input type="hidden" name="p_id" value="${order.p_id }">
 																<input type="hidden" name="p_name" value="${order.p_name }">
 																<input type="hidden" name="amount" value="${order.amount }">
