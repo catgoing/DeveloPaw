@@ -27,6 +27,7 @@ public class Order {
 	private String phone;			// 주문자 핸드폰 번호
 	private String s_image;			// 상품 이미지
 	private String p_type;			// 상품 타입
+	private String p_name;			// 상품 타입
 	private int sum;				// 상품 한개의 총 금액
 
 	private String realname;		// 실명
