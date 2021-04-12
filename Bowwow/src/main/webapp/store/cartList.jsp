@@ -232,6 +232,9 @@
 		var frm = document.listForm;
 		frm.submit();
  	}
+ 
+
+ 	
 
 </script>
 

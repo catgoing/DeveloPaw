@@ -50,29 +50,29 @@
     <link rel="stylesheet" type="text/css" href="/resources/css/storeStyle.css">
     <link rel="stylesheet" type="text/css" href="/resources/css/cartStyle.css">
     <link rel="stylesheet" type="text/css" href="/resources/css/test.css">
-   <script type="text/javascript" src="/resources/js/jquery/jquery.min.js "></script>
-   <script src="//developers.kakao.com/sdk/js/kakao.min.js"></script>
-   <script src="//t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script>
-   <script src="//dapi.kakao.com/v2/maps/sdk.js?appkey=d5c1b87a3ea48432cd965082eccebcd8"></script>
+    <script type="text/javascript" src="/resources/js/jquery/jquery.min.js "></script>
+    <script src="//developers.kakao.com/sdk/js/kakao.min.js"></script>
+    <script src="//t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script>
+    <script src="//dapi.kakao.com/v2/maps/sdk.js?appkey=d5c1b87a3ea48432cd965082eccebcd8"></script>
 
-   <style>
+    <style>
 
-   .featured__item__text {
-       width: 150px;
-   }
+    .featured__item__text {
+        width: 150px;
+    }
+ 
+    .cart-product-title{
+        width: 33%;
+    }
+    .cart-product-value{
+        width: 33%;
+    }
 
-   .cart-product-title{
-       width: 33%;
-   }
-   .cart-product-value{
-       width: 33%;
-   }
 
-
-   </style>
-   <script type="text/javascript" src="https://code.jquery.com/jquery-1.12.4.min.js"></script>
-<script type="text/javascript" src="https://service.iamport.kr/js/iamport.payment-1.1.5.js"></script>
-	<script type="text/javascript">
+    </style>
+    <script type="text/javascript" src="https://code.jquery.com/jquery-1.12.4.min.js"></script>
+    <script type="text/javascript" src="https://service.iamport.kr/js/iamport.payment-1.1.5.js"></script>
+    <script type="text/javascript">
 			$(function(){
 				$("#check_module").click(function () {
 					var IMP = window.IMP;

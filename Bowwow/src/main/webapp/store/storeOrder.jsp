@@ -74,38 +74,7 @@
    <script type="text/javascript" src="https://service.iamport.kr/js/iamport.payment-1.1.5.js"></script>
    <script type="text/javascript">
 	
-			$(function(){
-				$("#check_module").click(function () {
-					var IMP = window.IMP;
-					IMP.init('iamport');
-					IMP.request_pay({
-					pg: 'inicis',
-					pay_method: 'card',
-					merchant_uid: 'merchant_' + new Date().getTime(),
-					name: '주문명:결제테스트',
-					amount: 1000,
-					buyer_email: 'iamport@siot.do',
-					buyer_name: '구매자이름',
-					buyer_tel: '010-1234-5678',
-					buyer_addr: '서울특별시 강남구 삼성동',
-					buyer_postcode: '123-456',
-					m_redirect_url : 'https://www.yourdomain.com/payments/complete'
-					}, function (rsp) {
-					console.log(rsp);
-					if (rsp.success) {
-					var msg = '결제가 완료되었습니다.';
-					msg += '고유ID : ' + rsp.imp_uid;
-					msg += '상점 거래ID : ' + rsp.merchant_uid;
-					msg += '결제 금액 : ' + rsp.paid_amount;
-					msg += '카드 승인번호 : ' + rsp.apply_num;
-					} else {
-					var msg = '결제에 실패하였습니다.';
-					msg += '에러내용 : ' + rsp.error_msg;
-					}
-					alert(msg);
-					});
-					});
-			});
+			
 
        function execMap(){
             new daum.Postcode({
@@ -141,24 +110,61 @@
 
 
     function chkBtn(){
+       if(document.getElementById('phone').value == ""){
+            alert("핸드폰 번호를 입력해주세요");
+            checkout.phone.focus();
+            return false;
+        }
+       
        if(document.getElementById('userZonecode').value == ""){
             alert("주소를 입력해 주세요.");
             checkout.userZonecode.focus();
             return false;
         }
 
-       if(document.getElementById('phone').value == ""){
-            alert("핸드폰 번호를 입력해주세요");
-            checkout.phone.focus();
-            return false;
-        }
 
        if ($("input:checkbox[name='chk_1']").is(":checked") == false || $("input:checkbox[name='chk_2']").is(":checked") == false){
             alert("동의 버튼을 눌러주셔야 결제가 진행됩니다.");
             checkout.chk_1.focus();
             checkout.chk_2.focus();
             return false;
-        } else return true;
+        } else {
+        	
+        	$(function(){
+				$("#check_module").click(function () {
+					var IMP = window.IMP;
+					IMP.init('iamport');
+					IMP.request_pay({
+					pg: 'inicis',
+					pay_method: 'card',
+					merchant_uid: 'merchant_' + new Date().getTime(),
+					name: '주문명:결제테스트',
+					amount: 1000,
+					buyer_email: 'iamport@siot.do',
+					buyer_name: '구매자이름',
+					buyer_tel: '010-1234-5678',
+					buyer_addr: '서울특별시 강남구 삼성동',
+					buyer_postcode: '123-456',
+					m_redirect_url : 'https://www.yourdomain.com/payments/complete'
+					}, function (rsp) {
+					console.log(rsp);
+					if (rsp.success) {
+					var msg = '결제가 완료되었습니다.';
+					msg += '고유ID : ' + rsp.imp_uid;
+					msg += '상점 거래ID : ' + rsp.merchant_uid;
+					msg += '결제 금액 : ' + rsp.paid_amount;
+					msg += '카드 승인번호 : ' + rsp.apply_num;
+					} else {
+					var msg = '결제에 실패하였습니다.';
+					msg += '에러내용 : ' + rsp.error_msg;
+					}
+					alert(msg);
+					});
+					});
+			});
+        	insertOrder();
+        	return true;
+        }
 
 
     }
@@ -179,9 +185,9 @@
 
         }
 
-    function insertOrder(frm) {
-    	frm.action="/store/insertOrder";
-	  	frm.submit();
+    function insertOrder() {
+    	action="/store/insertOrder";
+	  	submit();
     }
 
 </script>
@@ -256,7 +262,7 @@
 							</section>
 							<section class="checkout spad">
 								<div class="container" style="background-color: white;">
-								<form method="POST" name="checkout" class="checkout__form" accept-charset="UTF-8">
+									<div class="checkout__form" >
 										<div class="row">
 											<div class="col-lg-8">
 												<div class="checkout__order"
@@ -346,11 +352,10 @@
 														</label>
 													</div>
 													<input type="button" class="site-btn" id="check_module"
-													style="font-size: 1.5em;" value="결제하기"  onclick="insertOrder(this.form)">
+													style="font-size: 1.5em;" value="결제하기"  onclick="return chkBtn(); "required>
 												</div>
 											</div>
 										</div>
-									<!-- </form> -->
 									</div>
 								</div>
 							</section>
