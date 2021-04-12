@@ -104,7 +104,7 @@ public class PetController {
 		}
 		else {
 			String base_url = petData.getImage_source_oriname();
-			petData.setImage_source_oriname(fs_url + base_url);
+			petData.setImage_source_oriname(base_url);
 		}
 		
 		Gson gson = new Gson();
@@ -175,7 +175,7 @@ public class PetController {
 		
 		System.out.println("서엉고옹~");
 		//System.out.println(file);
-		String d_img = pet.getImage_source_oriname().substring(45);
+		String d_img = pet.getImage_source_oriname().substring(46);
 		System.out.println("수정 전 db에 있는 이미지 주소" + d_img);
 		
 		int result = 0;

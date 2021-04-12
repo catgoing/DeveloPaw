@@ -17,6 +17,7 @@
 
 <title>BOWWOW 커뮤니티</title>
 <style>
+
 .pcoded-navbar{ z-index:99999;}
 
 footer.footer.navbar-wrapper {
