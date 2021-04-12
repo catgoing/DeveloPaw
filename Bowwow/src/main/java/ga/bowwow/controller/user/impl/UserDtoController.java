@@ -56,6 +56,7 @@ public class UserDtoController extends UserCRUDGenericController<UserAccount> {
 	public String loginUserDTO(@ModelAttribute("userDTO") UserDTO userDTO, Model model, HttpServletRequest request) {
 		final String baseUrl = ServletUriComponentsBuilder.fromCurrentContextPath().build().toUriString();
 		HttpSession session = request.getSession();
+		System.out.println("attepting account wtih : " +userDTO);
 		if(attemptUserLogin(baseUrl, userDTO).getStatusCode() == HttpStatus.OK) {
 			UserDTO completeUserDtoTest = (UserDTO) service.getVo(userDTO);
 			completeUserDtoTest.setImage_source("https://projectbit.s3.us-east-2.amazonaws.com/" + completeUserDtoTest.getImage_source());
@@ -65,7 +66,7 @@ public class UserDtoController extends UserCRUDGenericController<UserAccount> {
 			session.setAttribute("userAddress", userAddressList);
 			
 //			System.out.println("userDTO for login : " +completeUserDtoTest);
-			return "redirect:/mypage/myInfo";
+			return "redirect:/store/storeMain";
 		}
 		return "/auth.login";
 	}
@@ -81,6 +82,7 @@ public class UserDtoController extends UserCRUDGenericController<UserAccount> {
 	}
 	
 	//TODO 로직을 보이기 위해서 singleLine method로 두었는데, 그냥 인라인하거나 아니면 setRoute? 아니면 익명 콜백으로 추상화 할 수도 있음.
+	@RequestMapping("/attemptLogin")
 	public ResponseEntity<String> attemptUserLogin(String baseUrl, UserAccount userAccount) {
 		
 		HttpHeaders headers = new HttpHeaders();
@@ -93,7 +95,7 @@ public class UserDtoController extends UserCRUDGenericController<UserAccount> {
 //		System.out.println(re.getStatusCode());
 //		System.out.println(re.getBody());
 	}
-
+	
 	public boolean isSessionNewAndHasNoUserDTO(HttpSession session) {
 		return session.getAttribute("userDTO") == null ? true : false;
 	}
