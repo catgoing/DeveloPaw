@@ -124,6 +124,10 @@
 	border : 1px solid #e4e4e4;
 	border-radius : 10px;
 }
+.table {
+	max-width:80%;
+	min-width:80%
+}
 .table-sm th{
 	color: 	#3C1E1E;
 	font-weight: bold;

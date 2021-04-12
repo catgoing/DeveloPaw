@@ -73,6 +73,15 @@
 	word-break: break-all;
 }
 </style>
+<script>
+function goback(member_serial){
+	 var frm =document.goBackUserInquiryList;  //폼 name
+	  frm.member_serial.value = member_serial;  //POST방식으로 넘기고 싶은 값
+	  frm.action="/getUserInquiryList";  //이동할 페이지
+	  frm.method="post";  //POST방식
+	  frm.submit()
+}
+</script>
 </head>
 
 <body>
@@ -144,9 +153,12 @@
 							</table>
 							</c:if>
 						</div>  	
+						<form name="goBackUserInquiryList">
 						<div class="btn-container">
-							<button class="btn btn-outline-secondary"  onclick="/getUserInquiryList">돌아가기</button>
+							<input type="hidden" name="member_serial" value="${sessionScope.userDTO.member_serial }">
+							<button type="button" class="btn btn-outline-secondary" onclick="javascript:goback(${sessionScope.userDTO.member_serial})">돌아가기</button>
 						</div>
+						</form>
 					</div>
 				</div>
 			</div>

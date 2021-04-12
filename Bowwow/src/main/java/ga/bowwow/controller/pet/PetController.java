@@ -101,7 +101,8 @@ public class PetController {
 		//디폴트이미지 설정
 		if(petData.getImage_source_oriname() == null) {
 			petData.setImage_source_oriname(default_url);
-		} else {
+		}
+		else {
 			String base_url = petData.getImage_source_oriname();
 			petData.setImage_source_oriname(fs_url + base_url);
 		}
@@ -174,7 +175,7 @@ public class PetController {
 		
 		System.out.println("서엉고옹~");
 		//System.out.println(file);
-		String d_img = pet.getImage_source_oriname();
+		String d_img = pet.getImage_source_oriname().substring(45);
 		System.out.println("수정 전 db에 있는 이미지 주소" + d_img);
 		
 		int result = 0;

@@ -64,14 +64,9 @@
 }
 /*반려동물 리스트 썸네일 이미지 출력영역 사이즈조정*/
 .col-md-4 .list-inner .pet-img{
-	width : 300px;
-	height : 300px;
 	margin : 0 auto;
-}
-#detail_petimg, #detail_petimg #detail_thumb{
-	width : 330px;
-	height : 300px;
-	margin : 0 auto;
+	width : 100%;
+	height : 100%;
 }
 .action-button{
 	display : flex;
@@ -100,13 +95,20 @@ input[type="number"]::-webkit-inner-spin-button {
 tr td textarea{
 	width : 100%;
 }
-#thumb_container{
+/*파일첨부시 미리보기영역*/
+#thumb_container{ 
 	width : 200px;
 	height : 200px;
 }
+/**/
+#detail_petimg{
+	width : 100%;
+	height : 100%;
+	text-align : center;
+}
 #thumb_container-detail{
-	width : 330px;
-	height : 300px;
+	width : 50%;
+	height : 50%;
 }
 
 .detailClass, .box-detail {
@@ -256,7 +258,7 @@ function setModiInfo(petDetail){
 	
 	$("#modi_tnr").val(petDetail.tnr);				// hidden
 	$("#modi_member_serial").val("${sessionScope.userDTO.member_serial }");	// hidden
-	//$("#modi_pet_img").val("https://projectbit.s3.us-east-2.amazonaws.com/"+petDetail.image_source_oriname);	// hidden
+	$("#modi_pet_img").val("https://projectbit.s3.us-east-2.amazonaws.com/"+petDetail.image_source_oriname);	// hidden
 	$("#modi_pet_serial").val(petDetail.pet_serial);	// hidden
 }
 
@@ -296,6 +298,9 @@ function clearInput(){
 	for(var i = 0; i < typeCheck.length; i++){
 		typeCheck[i].checked = false;
 	}
+	var child = document.getElementById("thumbnailImage");
+	child.parentNode.removeChild(child);
+
 }
 
 
@@ -334,8 +339,8 @@ function clearInput(){
                                         <c:forEach var="pet" items="${petList }">
 	                                        <div class="col-md-4">
 		                                        <div class="list-inner">
-			                                        <div class="pet-img" style="width: 200px; height: 200px;">
-			                                        	<img src="https://projectbit.s3.us-east-2.amazonaws.com/${pet.image_source_oriname }" alt="이미지" class="img-circle img-thumbnail" id="img-thumbnail" style="width: 200px; height: 200px;">
+			                                        <div class="pet-img" style="width: 250px; height: 250px;">
+			                                        	<img src="https://projectbit.s3.us-east-2.amazonaws.com/${pet.image_source_oriname }" alt="이미지" class="img-circle img-thumbnail" id="img-thumbnail" style="width: 250px; height: 250px;">
 			                                        </div>
 			                                        <div class="pet-name">${pet.pet_name }</div>
 			                                        <div class="pet-detail">

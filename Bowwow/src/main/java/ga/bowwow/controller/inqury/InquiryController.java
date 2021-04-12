@@ -76,8 +76,9 @@ public class InquiryController {
 		}
 		
 		//문의유형 null아닐때
-		String typeSelect = "";
-		if (myInquiry.getTypeSelect() != null && myInquiry.getTypeSelect().length() != 0) {
+		String typeSelect = null;
+		if (myInquiry.getTypeSelect() != null ||
+				myInquiry.getTypeSelect() != "") {
 			typeSelect = myInquiry.getTypeSelect();
 		}
 		

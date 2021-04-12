@@ -10,13 +10,13 @@
 			<h4 class="modal-title" id="myModalLabel">강아지? 고양이?</h4>
 	</div>
     <form class="pet-form" name="petinform1" id="selectPetType">
-         <div class="form-group">
+         <div class="form-group" style="text-align:center;">
          	<label class="radio-inline">
-		  <input type="radio" name="animal_type" id="inlineRadio1" value="dog"> 강아지
-		</label>
-		<label class="radio-inline">
-		  <input type="radio" name="animal_type" id="inlineRadio2" value="cat"> 고양이
-		</label>
+			  <input type="radio" name="animal_type" id="inlineRadio1" value="dog"> 강아지
+			</label>
+			<label class="radio-inline">
+			  <input type="radio" name="animal_type" id="inlineRadio2" value="cat"> 고양이
+			</label>
          </div>
       <div class="modal-footer">
 	    <button class="btn btn-primary" data-toggle="modal" data-dismiss="modal" onclick="transferType()">선택</button>
@@ -123,7 +123,7 @@
 	<div class="modal-header">
 		<h4 class="modal-title" id="myModalLabel">반려동물 상세보기</h4>
 	</div>
-    <form class="pet-form" id="pet-detail-form" name="pet-detail-form" enctype="multipart/form-data" action="ajaxInsertPetInfo" method="post">>
+    <form class="pet-form" id="pet-detail-form" name="pet-detail-form" enctype="multipart/form-data" action="ajaxInsertPetInfo" method="post">
 		<br>
 		<div class="popup-inner img-pet" id="detail_petimg">
 			<img id="thumb_container-detail">
@@ -295,7 +295,7 @@
 		        </tr>
 		        <tr>
 			        <td rowspan="3" colspan="2">
-			        	<input type="file" id="inputimage" name="file" accept="image/jpg, image/gif image/png, image/jpeg image/bmp" onchange="setThumbnail(event)">
+			        	<input type="file" id="inputimage" name="file" accept="image/jpg, image/gif image/png, image/jpeg image/bmp" onchange="setThumbnail(event);">
 		        		<div id="thumb_container">
 		        		</div>
 			        </td>

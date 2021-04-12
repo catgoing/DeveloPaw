@@ -67,20 +67,20 @@
 	margin: 0 auto;
 }
 .panel-title {
-	border: 1px solid lightpink;
+	border: 1px solid lightgrey;
 	border-radius: 12px;
-	background-color:lightpink;
+	background-color:white;
 }
 .panel-title a{
 	font-size: 1.1rem;
-	color:white;
+	color:lightgrey;
 }
 .panel-collapse .collapse {
-	padding-left: 100px;
+	/*padding-left: 100px;*/
 
 }
 .panel-body{
-	width: 50%px;
+	width: 50%;
 	letter-spacing: inherit;
 	color:black;
     font-size: 15px;
@@ -158,18 +158,18 @@
 				<div class="pcoded-wrapper">
 
 				<!-- 좌측 메뉴바 시작 -->
-				<%@include file="/common/myPageMenuBar.jsp" %>
+				<%-- <%@include file="/common/myPageMenuBar.jsp" %> --%>
 
-				<div class="pcoded-content">
-				<div class="pcoded-inner-content">
+				<!-- <div class="pcoded-content">
+				<div class="pcoded-inner-content"> -->
 					<!-- Main-body start 본문 시작 -->
-					<div class="main-body">
-						<div class="page-wrapper">
+					<!-- <div class="main-body">
+						<div class="page-wrapper"> -->
 	                                
 							<!-- Page-body start -->
-							<div class="page-body">
+							<!-- <div class="page-body"> -->
 								<section class="featured spad">
-									<div class="container qna-container">
+									<div class="container qna-container" style="width:100%">
 										<div class="row">
 											<div class="col-lg-12">
 												<div class="section-title">
@@ -194,7 +194,7 @@
 		아이디 변경을 하시려면 탈퇴를 하셨다가 다시 회원가입을 하셔야 합니다.<br>
 		(동일아이디로의 가입은 불가능합니다.)<br>
 		<br>
-		이런 경우 적립되었던 적립금과 포인트 주문내역등의 모든 기록이 삭제되는 점에 유의하셔야 합니다.<br>
+		이런 경우 적립되었던 반려동물내역, 게시글내역, 주문내역, 포인트 등의 모든 기록이 삭제되는 점에 유의하셔야 합니다.<br>
 		<br>
 		*비밀번호 변경을 원하시면 왼쪽 상단의 내정보 > 프로필 에 들어가셔서 비밀번호를 수정하시면 됩니다.<br>
 		<br>
@@ -213,7 +213,7 @@
       <div class="panel-body">
 		홈페이지 상단에 로그인 > 로그인 입력창 하단의 아이디, 비밀번호 찾기를 통해 아이디찾기, 비밀번호 찾기가 가능합니다.<br>
 		<br>
-		이용 후에도 확인이 되지 못할 경우 고객센터(1661-3403)로 문의해 주시기 바랍니다.<br>
+		이용 후에도 확인이 되지 못할 경우 홈페이지 하단에 기재되어있는 SNS를 통해 문의해 주시기 바랍니다.<br>
       </div>
     </div>
   </div>
@@ -227,7 +227,7 @@
     </div>
     <div id="collapseThree" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingThree">
       <div class="panel-body">
-		MY 쇼핑에서 확인할 수 있습니다.<br>
+		왼쪽 상단의 내 정보 > 나의 쇼핑에서 확인하실 수 있습니다.<br>
       </div>
     </div>
   </div>
@@ -237,11 +237,11 @@
 								<!-- Page-body end -->
 							</div>
 						<div id="styleSelector"> </div>
-					</div>
+					<!-- </div> -->
 					<!-- Main-body start 본문 끝 -->
-				</div>
+				<!-- </div>
 			</div>
-		</div>
+		</div> -->
 	</div>
             
 	</div>
