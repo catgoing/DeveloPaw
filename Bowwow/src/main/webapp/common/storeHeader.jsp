@@ -128,7 +128,8 @@ input[type="submit"] {
 									<i class="fa fa-shopping-cart" aria-hidden="true" ></i>
 								</a>
 							</li>
-							<li class="user-profile header-notification"><c:choose>
+							<li class="user-profile header-notification">
+							<c:choose>
 							<c:when test="${sessionScope.userDTO != null}">
 								<a href="#!" class="waves-effect waves-light"> <img
 									src="${sessionScope.userDTO.image_source}" class="img-radius" style="height:40px; width:40px;"
