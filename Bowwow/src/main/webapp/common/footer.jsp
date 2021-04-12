@@ -50,8 +50,8 @@
 						</div>
 					</div> 	
 					<div class="col-sm-3" style="text-align: left;"><h4 ><span class="glyphicon glyphicon-ok">&nbsp;by Bowwow</span></h4>
-					<br><br><br><br>
-					<a href="/common/qna.jsp"><h6 style="color : black;">자주 묻는 질문 </h6></a>
+					<br><br><br>
+					<h6 style="color : black;"><a href="/common/qna.jsp">자주 묻는 질문 </a></h6>
 					<h6 style="color : black;">Copyright &copy; Bowwow All rights reserved. </h6>
 					</div>
 				</div>

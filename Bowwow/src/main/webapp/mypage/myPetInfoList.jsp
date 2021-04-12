@@ -100,7 +100,6 @@ tr td textarea{
 	width : 200px;
 	height : 200px;
 }
-/**/
 #detail_petimg{
 	width : 100%;
 	height : 100%;
@@ -132,29 +131,41 @@ pre{
 ul li {
     list-style-type: none;
 }
+#etc-area{
+	width: 100%;
+    height: 100%;
+    resize: none;
+    margin: 0;
+    font-family: inherit;
+    font-size: inherit;
+    font-style: normal;
+    line-height: inherit
+}
 #textMain-wrap {
 	text-align: center;
 }
- .ttest {
+ .ul-wrapper {
      width: 80%;
      margin : 5px 0 0 0; 
      display: inline-block;
  }
-
- .test1 {
+input[type="text"], select{
+	width:100%;
+}
+ .ulListOne {
      float: left;
      width: 50%;
      margin: 0 auto;
      text-align: left;
  }
- .test2{
+ .ulListTwo{
      float: right;
      width: 50%;
      margin: 0 auto;
        text-align: left;
  }
  
- .test3{
+ .pre-wrapper{
      width: 80%;
      margin: 0 auto;
  }
