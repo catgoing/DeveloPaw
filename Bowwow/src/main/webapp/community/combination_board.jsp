@@ -31,9 +31,11 @@ footer.footer.navbar-wrapper {
     -webkit-box-shadow: 0 15px 8px -11px rgba(0, 0, 0, 0.25);
     box-shadow: 0 15px 8px -11px rgba(0, 0, 0, 0.25);
 }
-input{
+
+.b_title{
 	font-size:22px; display:inline-block; width:200px; background-color:transparent; border:none;
 }
+
 
 </style>
 <script>
@@ -99,7 +101,7 @@ input{
 																		<div class="item-title" style="width:300px; color:black;">
 																			<a href="/community/detail?board_idx=${board_idx }&board_no=${list.board_no}">
 																			</a>
-																			<input type="text" maxlength="15" value="${list.board_title }" style="text-overflow: ellipsis" >
+																			<input class="b_title" type="text" maxlength="15" value="${list.board_title }" style="text-overflow: ellipsis" >
 																			<%-- <span style="font-size:22px;  display:inline-block; width:200px;" >${list.board_title }</span> --%>
 																			<span style="postion:inline-block;float:right; margin-top:8px">${list.regdate }</span>
 																		</div>
