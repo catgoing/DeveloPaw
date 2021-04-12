@@ -297,7 +297,7 @@ $(function(){
 						<div class="myPageInfo-wrapper">
 
 								<!-- 회원정보수정 부분 -->
-								<div class="form-group">
+								<div class="form-group" onsubmit="updateUserAccount();">
 									<div class="input-content">
 									<div class="side-content">
 										<div class="my-area">
@@ -308,7 +308,6 @@ $(function(){
 											</div>
 
 											<p>${sessionScope.userDTO.nickname }</p>
-											<p>${sessionScope.userAddress[0].address}</p>
 										</div>
 									</div>
 
@@ -317,7 +316,7 @@ $(function(){
 										<h3>정보수정</h3>
 										<a href="withdrawl">회원탈퇴</a>
 									</div>
-									<form class="form-myinfo">
+									<form class="form-myinfo" action="updateUserAccount();">
   <div class="form-group">
     <label for="inputId" class="col-sm-4 control-label">아이디(변경불가)</label>
     <div class="col-sm-8">
@@ -351,17 +350,6 @@ $(function(){
     </div>
   </div>
   <div class="form-group">
-    <label for="inputGender" class="col-sm-4 control-label">성별</label>
-    <div class="col-sm-8">
-      <label class="radio-inline">
-        <input type="radio" name="gender" id="gender_f" value="female"> 여자
-      </label>
-      <label class="radio-inline">
-        <input type="radio" name="gender" id="gender_m" value="male"> 남자
-      </label>
-    </div>
-  </div>
-  <div class="form-group">
     <label for="inputEmail" class="col-sm-4 control-label">이메일</label>
     <div class="col-sm-8">
       <input type="email" class="form-control" name="email" id="inputEmail" placeholder="hong@example.com" value="${sessionScope.userDTO.email }">
@@ -385,7 +373,7 @@ $(function(){
   <div class="form-group">
     <label for="inputPhone" class="col-sm-4 control-label" >전화번호</label>
     <div class="col-sm-8">
-	  <select>
+	  <select id="preNoPhone">
 		<option>010</option>
 		<option>011</option>
 		<option>017</option>
@@ -443,12 +431,30 @@ $(function(){
 
     <script type="text/javascript" src="/resources/js/script.js "></script>
     <script>
-    	function formBuilder() {
-    		init : {
-    			alert("formBuildingTest");
-    		}
-    		this.init();
-    	}();
+    	(()=>{
+    		var infoBuilder = {
+   				init: function () {
+       				this.initPhoneField();
+       			},
+    			initPhoneField: function () {
+   					var rawPhone = document.getElementById("inputPhone");
+       				var partPhone = rawPhone.value.split("-");
+       				var organizedPhone = partPhone[1] + "-" + partPhone[2];
+       				rawPhone.value = organizedPhone;
+
+       				this.identifyPreNo(partPhone[0]);
+    			},
+    			identifyPreNo: function (_preNo) {
+    				var preNoPhone = document.getElementById("preNoPhone");
+    				var preNo = _preNo;
+    				preNoPhone.value = preNo;
+    			}, 
+    			updateUserAccount: function () {
+    				console.log("test");
+    			},
+    		};
+    		infoBuilder.init();
+    	})();
     </script>
 </body>
 </html>

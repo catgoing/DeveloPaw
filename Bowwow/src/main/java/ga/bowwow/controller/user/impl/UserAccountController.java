@@ -99,7 +99,7 @@ public class UserAccountController extends UserCRUDGenericController<UserAccount
 													+ mc.s3upload(uploadfile, getRandomizeImageSource(getExtension(uploadfile.getName())) , domainFoldername));
 
 			} else {
-				vo.setImage_source(domainFoldername + "/default.jpg");
+				vo.setImage_source(domainFoldername + "/eb9b977d-2da2-4d50-a211-80909143b5b9.png.jpg");
 			}
 			
 			boolean result = service.addVo(vo);

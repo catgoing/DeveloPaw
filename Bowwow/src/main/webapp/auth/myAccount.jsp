@@ -286,12 +286,15 @@
              init:     function () {
                            var fs = document.getElementById("Address");
                            var row = document.getElementById("row");
+                           
                            var btnDiv = row.appendChild(this.make("div", {className: "btn"}));
                            var mapBtn = btnDiv.appendChild(this.make("input",  {id: "1", type: "button", value: "주소 찾기", className: "btn btn-primary"}));
                            mapBtn.onclick = this.registMapExecutor;
+                           
                            var div = fs.appendChild(this.make("div", {id: "here"}));
                            var btnDiv = div.appendChild(this.make("div", {className: "btn"}));
                            var btn = btnDiv.appendChild(this.make("input", {type: "button", value: "주소 추가", className: "btn btn-primary"}));
+                           
                            btn.onclick = (function (_self) {
                                return function () {
                                    _self.add();
