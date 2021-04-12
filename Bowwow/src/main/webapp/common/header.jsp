@@ -129,6 +129,19 @@ input[type="text"]:hover{
 											href="/user/logout">로그아웃 </a></li>
 									</ul>
 								</c:when>
+								<c:when test="${sessionScope.userDTO.status == '777'}">
+									<a href="#!" class="waves-effect waves-light"> <img
+										src="../resources/images/logo.png" class="img-radius"
+										style="height: 40px; width: 40px;" alt="User-Profile-Image">
+										<i class="ti-angle-down"></i>
+									</a>
+									<ul class="show-notification profile-notification">
+										<li class="waves-effect waves-light"><a
+											href="/user/manageList">회원관리</a></li>
+										<li class="waves-effect waves-light"><a
+											href="/admin/adminInquiry">문의관리</a></li>
+									</ul>
+								</c:when>
 								<c:otherwise>
 									<a href="#!" class="waves-effect waves-light"> <img
 										src="../resources/images/logo.png" class="img-radius"
