@@ -32,7 +32,7 @@
 			</when>
 			<when test='board_idx == 6'> 
 				EVENT_BOARD (BOARD_NO, BOARD_TITLE, BOARD_CONTENT, REGDATE, IMG1, HITS) 
-				VALUES (EVENT_BOARD_SEQ.NEXTVAL, #{board_title}, #{board_content}, #{img1}, SYSDATE, 0)
+				VALUES (EVENT_BOARD_SEQ.NEXTVAL, #{board_title}, #{board_content}, SYSDATE, #{img1}, 0)
 			</when>
 			
 		</choose>
@@ -55,15 +55,34 @@
 			(
 				SELECT ROWNUM AS RN, BOARD.* FROM 
 				( 	
-					SELECT BOARD_NO, B.MEMBER_SERIAL, BOARD_TITLE, ID, IMG1, HITS, NICKNAME, TO_CHAR(REGDATE, 'YY-MM-DD') AS REGDATE
-					FROM 
+
 						<choose>
-							<when test='board_idx == 1'> DIARY_BOARD B, USER_ACCOUNT U WHERE B.MEMBER_SERIAL = U.MEMBER_SERIAL </when>
-							<when test='board_idx == 2'> INTRO_BOARD B, USER_ACCOUNT U WHERE B.MEMBER_SERIAL = U.MEMBER_SERIAL </when>
-							<when test='board_idx == 3'> KNOWHOW_BOARD B, USER_ACCOUNT U WHERE B.MEMBER_SERIAL = U.MEMBER_SERIAL </when>
-							<when test='board_idx == 4'> MISSING_BOARD B, USER_ACCOUNT U WHERE B.MEMBER_SERIAL = U.MEMBER_SERIAL </when>
-							<when test='board_idx == 5'> USED_TRANSACTION_BOARD B, USER_ACCOUNT U WHERE B.MEMBER_SERIAL = U.MEMBER_SERIAL </when>
-							<when test='board_idx == 6'> EVENT_BOARD B, USER_ACCOUNT U WHERE B.MEMBER_SERIAL = U.MEMBER_SERIAL </when>
+							<when test='board_idx == 1'> 
+								SELECT	BOARD_NO, B.MEMBER_SERIAL, BOARD_TITLE, ID, IMG1, HITS, NICKNAME, TO_CHAR(REGDATE, 'YY-MM-DD') AS REGDATE
+								FROM	DIARY_BOARD B, USER_ACCOUNT U WHERE B.MEMBER_SERIAL = U.MEMBER_SERIAL 
+							</when>
+							<when test='board_idx == 2'> 
+								SELECT	BOARD_NO, B.MEMBER_SERIAL, BOARD_TITLE, ID, IMG1, HITS, NICKNAME, TO_CHAR(REGDATE, 'YY-MM-DD') AS REGDATE
+								FROM	INTRO_BOARD B, USER_ACCOUNT U WHERE B.MEMBER_SERIAL = U.MEMBER_SERIAL 
+							</when>
+							<when test='board_idx == 3'> 
+								SELECT	BOARD_NO, B.MEMBER_SERIAL, BOARD_TITLE, ID, IMG1, HITS, NICKNAME, TO_CHAR(REGDATE, 'YY-MM-DD') AS REGDATE, SUB_CLASS
+								FROM	
+								KNOWHOW_BOARD B, USER_ACCOUNT U WHERE B.MEMBER_SERIAL = U.MEMBER_SERIAL 
+							</when>
+							<when test='board_idx == 4'> 
+								SELECT	BOARD_NO, B.MEMBER_SERIAL, BOARD_TITLE, ID, IMG1, HITS, NICKNAME, TO_CHAR(REGDATE, 'YY-MM-DD') AS REGDATE
+								FROM	MISSING_BOARD B, USER_ACCOUNT U WHERE B.MEMBER_SERIAL = U.MEMBER_SERIAL 
+							</when>
+							<when test='board_idx == 5'> 
+								SELECT	BOARD_NO, B.MEMBER_SERIAL, BOARD_TITLE, ID, IMG1, HITS, NICKNAME, TO_CHAR(REGDATE, 'YY-MM-DD') AS REGDATE,
+										GOODS, AREA, PRICE, IS_SELLED
+								FROM	USED_TRANSACTION_BOARD B, USER_ACCOUNT U WHERE B.MEMBER_SERIAL = U.MEMBER_SERIAL 
+							</when>
+							<when test='board_idx == 6'> 
+								SELECT 	BOARD_NO, B.MEMBER_SERIAL, BOARD_TITLE, ID, IMG1, HITS, NICKNAME, TO_CHAR(REGDATE, 'YY-MM-DD') AS REGDATE
+								FROM 	EVENT_BOARD B, USER_ACCOUNT U WHERE B.MEMBER_SERIAL = U.MEMBER_SERIAL 
+							</when>
 						</choose>
 						ORDER BY BOARD_NO DESC
 				) 	BOARD
@@ -85,13 +104,33 @@
 	</select>
 	
 	<select id="getBoard" parameterType="Map" resultType="board">
-		SELECT BOARD_NO, BOARD_CONTENT, BOARD_TITLE, ANIMAL_CLASS, HITS, NICKNAME, TO_CHAR(REGDATE, 'YY-MM-DD HH24:MI') AS REGDATE
-		FROM 
+		
 		<choose>
-			<when test='board_idx == 1'> DIARY_BOARD B, USER_ACCOUNT U </when>
-			<when test='board_idx == 2'> INTRO_BOARD B, USER_ACCOUNT U  </when>
-			<when test='board_idx == 3'> KNOWHOW_BOARD B, USER_ACCOUNT U </when>
-			<when test='board_idx == 4'> MISSING_BOARD B, USER_ACCOUNT U </when>
+			<when test='board_idx == 1'> 
+				SELECT 	BOARD_NO, BOARD_CONTENT, BOARD_TITLE, ANIMAL_CLASS, HITS, NICKNAME, TO_CHAR(REGDATE, 'YY-MM-DD HH24:MI') AS REGDATE
+				FROM	DIARY_BOARD B, USER_ACCOUNT U 
+			</when>
+			<when test='board_idx == 2'> 
+				SELECT 	BOARD_NO, BOARD_CONTENT, BOARD_TITLE, ANIMAL_CLASS, HITS, NICKNAME, TO_CHAR(REGDATE, 'YY-MM-DD HH24:MI') AS REGDATE
+				FROM	INTRO_BOARD B, USER_ACCOUNT U 
+			 </when>
+			<when test='board_idx == 3'> 
+				SELECT 	BOARD_NO, BOARD_CONTENT, BOARD_TITLE, ANIMAL_CLASS, HITS, NICKNAME, TO_CHAR(REGDATE, 'YY-MM-DD HH24:MI') AS REGDATE, SUB_CLASS
+				FROM	KNOWHOW_BOARD B, USER_ACCOUNT U 
+			</when>
+			<when test='board_idx == 4'> 
+				SELECT 	BOARD_NO, BOARD_CONTENT, BOARD_TITLE, ANIMAL_CLASS, HITS, NICKNAME, TO_CHAR(REGDATE, 'YY-MM-DD HH24:MI') AS REGDATE
+				FROM 	MISSING_BOARD B, USER_ACCOUNT U 
+			</when>
+			<when test='board_idx == 5'> 
+				SELECT 	BOARD_NO, BOARD_TITLE, B.MEMBER_SERIAL, GOODS, AREA, PRICE, IS_SELLED, BOARD_CONTENT, IMG1, 
+						TO_CHAR(REGDATE, 'YY-MM-DD HH24:MI') AS REGDATE, HITS, ANIMAL_CLASS
+				FROM 	USED_TRANSACTION_BOARD B, USER_ACCOUNT U 
+			</when>
+			<when test='board_idx == 6'> 
+				SELECT	BOARD_NO, BOARD_CONTENT, BOARD_TITLE, HITS, NICKNAME, TO_CHAR(REGDATE, 'YY-MM-DD HH24:MI') AS REGDATE
+				FROM	EVENT_BOARD B, USER_ACCOUNT U 
+			</when>
 		</choose>
 		WHERE B.MEMBER_SERIAL = U.MEMBER_SERIAL 
 		AND BOARD_NO = ${board_no}
@@ -101,22 +140,22 @@
 		UPDATE  
 		<choose>
 			<when test='board_idx == 1'> 
-			DIARY_BOARD 
+				DIARY_BOARD 
 			</when>
 			<when test='board_idx == 2'> 
-			INTRO_BOARD 
+				INTRO_BOARD 
 			</when>
 			<when test='board_idx == 3'> 
-			KNOWHOW_BOARD 
+				KNOWHOW_BOARD 
 			</when>
 			<when test='board_idx == 4'> 
-			MISSING_BOARD 
+				MISSING_BOARD 
 			</when>
 			<when test='board_idx == 5'> 
-			USED_TRANSACTION_BOARD 
+				USED_TRANSACTION_BOARD 
 			</when>
 			<when test='board_idx == 6'> 
-			EVENT_BOARD 
+				EVENT_BOARD 
 			</when>
 		</choose> 
 		SET HITS = HITS + 1
@@ -127,44 +166,44 @@
 		UPDATE 
 		<choose>
 			<when test='board_idx == 1'> 
-			DIARY_BOARD 
-			SET BOARD_TITLE = '${vo.board_title}'
-				, BOARD_CONTENT = '${vo.board_content}'
-				, ANIMAL_CLASS = '${vo.animal_class}'
+				DIARY_BOARD 
+				SET BOARD_TITLE = '${vo.board_title}'
+					, BOARD_CONTENT = '${vo.board_content}'
+					, ANIMAL_CLASS = '${vo.animal_class}'
 			</when>
 			<when test='board_idx == 2'> 
-			INTRO_BOARD 
-			SET BOARD_TITLE = '${vo.board_title}'
-				, BOARD_CONTENT = '${vo.board_content}'
-				, ANIMAL_CLASS = '${vo.animal_class}'
+				INTRO_BOARD 
+				SET BOARD_TITLE = '${vo.board_title}'
+					, BOARD_CONTENT = '${vo.board_content}'
+					, ANIMAL_CLASS = '${vo.animal_class}'
 			</when>
 			<when test='board_idx == 3'> 
-			KNOWHOW_BOARD 
-			SET BOARD_TITLE = '${vo.board_title}'
-				, BOARD_CONTENT = '${vo.board_content}'
-				, ANIMAL_CLASS = '${vo.animal_class}'
-				, SUB_CLASS = '${vo.sub_class}'
+				KNOWHOW_BOARD 
+				SET BOARD_TITLE = '${vo.board_title}'
+					, BOARD_CONTENT = '${vo.board_content}'
+					, ANIMAL_CLASS = '${vo.animal_class}'
+					, SUB_CLASS = '${vo.sub_class}'
 			</when>
 			<when test='board_idx == 4'> 
-			MISSING_BOARD 
-			SET BOARD_TITLE = '${vo.board_title}'
-				, BOARD_CONTENT = '${vo.board_content}'
-				, ANIMAL_CLASS = '${vo.animal_class}'
+				MISSING_BOARD 
+				SET BOARD_TITLE = '${vo.board_title}'
+					, BOARD_CONTENT = '${vo.board_content}'
+					, ANIMAL_CLASS = '${vo.animal_class}'
 			</when>
 			<when test='board_idx == 5'> 
-			USED_TRANSACTION_BOARD 
-			SET BOARD_TITLE = '${vo.board_title}'
-				, GOODS = '${vo.goods}'
-				, AREA = '${vo.area}'
-				, PRICE = '${vo.price}'
-				, IS_SELLED = '${vo.is_selled}'
-				, BOARD_CONTENT = '${vo.board_content}'
-				, ANIMAL_CLASS = '${vo.animal_class}'
+				USED_TRANSACTION_BOARD 
+				SET BOARD_TITLE = '${vo.board_title}'
+					, GOODS = '${vo.goods}'
+					, AREA = '${vo.area}'
+					, PRICE = '${vo.price}'
+					, IS_SELLED = '${vo.is_selled}'
+					, BOARD_CONTENT = '${vo.board_content}'
+					, ANIMAL_CLASS = '${vo.animal_class}'
 			</when>
 			<when test='board_idx == 6'> 
-			EVENT_BOARD 
-			SET BOARD_TITLE = '${vo.board_title}'
-				, BOARD_CONTENT = '${vo.board_content}'
+				EVENT_BOARD 
+				SET BOARD_TITLE = '${vo.board_title}'
+					, BOARD_CONTENT = '${vo.board_content}'
 			</when>
 		</choose> 
 		WHERE BOARD_NO = ${vo.board_no}
@@ -194,6 +233,14 @@
 				VALUES (MISSING_COMMENTS_SEQ.NEXTVAL, 994, #{comment.board_no}, #{comment.comment_content}, SYSDATE)
 		<!-- 		VALUES (DIARY_COMMENTS_SEQ.NEXTVAL, #{member_serial}, #{board_no}, #{comment_content}, SYSDATE) -->
 			</when>
+			<when test='board_idx == 5'> 
+				USED_TRANSACTION_COMMENTS (COMMENT_NO2, MEMBER_SERIAL, COMMENT_NO, COMMENT_CONTENT2, REGDATE) 
+				VALUES (MISSING_COMMENTS2_SEQ.NEXTVAL, 994, #{comment.comment_no}, #{comment.comment_content}, SYSDATE)
+			</when>
+			<when test='board_idx == 6'> 
+				EVENT_COMMENTS (COMMENT_NO2, MEMBER_SERIAL, COMMENT_NO, COMMENT_CONTENT2, REGDATE) 
+				VALUES (MISSING_COMMENTS2_SEQ.NEXTVAL, 994, #{comment.comment_no}, #{comment.comment_content}, SYSDATE)
+			</when>
 		</choose>
 		
 	</insert>
@@ -217,6 +264,14 @@
 			MISSING_COMMENTS2 (COMMENT_NO2, MEMBER_SERIAL, COMMENT_NO, COMMENT_CONTENT2, REGDATE) 
 			VALUES (MISSING_COMMENTS2_SEQ.NEXTVAL, 994, #{comment.comment_no}, #{comment.comment_content}, SYSDATE)
 		</when>
+		<when test='board_idx == 5'> 
+			USED_TRANSACTION_COMMENTS2 (COMMENT_NO2, MEMBER_SERIAL, COMMENT_NO, COMMENT_CONTENT2, REGDATE) 
+			VALUES (MISSING_COMMENTS2_SEQ.NEXTVAL, 994, #{comment.comment_no}, #{comment.comment_content}, SYSDATE)
+		</when>
+		<when test='board_idx == 6'> 
+			EVENT_COMMENTS2 (COMMENT_NO2, MEMBER_SERIAL, COMMENT_NO, COMMENT_CONTENT2, REGDATE) 
+			VALUES (MISSING_COMMENTS2_SEQ.NEXTVAL, 994, #{comment.comment_no}, #{comment.comment_content}, SYSDATE)
+		</when>
 	</choose>
 	</insert>
 		
@@ -231,6 +286,8 @@
 			<when test='board_idx == 2'> INTRO_COMMENTS C, USER_ACCOUNT U WHERE C.MEMBER_SERIAL = U.MEMBER_SERIAL </when>
 			<when test='board_idx == 3'> KNOWHOW_COMMENTS C, USER_ACCOUNT U WHERE C.MEMBER_SERIAL = U.MEMBER_SERIAL </when>
 			<when test='board_idx == 4'> MISSING_COMMENTS C, USER_ACCOUNT U WHERE C.MEMBER_SERIAL = U.MEMBER_SERIAL </when>
+			<when test='board_idx == 5'> USED_TRANSACTION_COMMENTS C, USER_ACCOUNT U WHERE C.MEMBER_SERIAL = U.MEMBER_SERIAL </when>
+			<when test='board_idx == 6'> EVENT_COMMENTS C, USER_ACCOUNT U WHERE C.MEMBER_SERIAL = U.MEMBER_SERIAL </when>
 		</choose>
 		AND BOARD_NO = ${board_no}
 	</select>
@@ -240,16 +297,22 @@
 		FROM 
 		<choose>
 			<when test='board_idx == 1'> 
-			DIARY_COMMENTS2 C2, DIARY_COMMENTS C, USER_ACCOUNT U 
+				DIARY_COMMENTS2 C2, DIARY_COMMENTS C, USER_ACCOUNT U 
 			</when>
 			<when test='board_idx == 2'> 
-			INTRO_COMMENTS2 C2, INTRO_COMMENTS C, USER_ACCOUNT U 
+				INTRO_COMMENTS2 C2, INTRO_COMMENTS C, USER_ACCOUNT U 
 			</when>
 			<when test='board_idx == 3'> 
-			KNOWHOW_COMMENTS2 C2, KNOWHOW_COMMENTS C, USER_ACCOUNT U 
+				KNOWHOW_COMMENTS2 C2, KNOWHOW_COMMENTS C, USER_ACCOUNT U 
 			</when>
 			<when test='board_idx == 4'> 
-			MISSING_COMMENTS2 C2, MISSING_COMMENTS C, USER_ACCOUNT U 
+				MISSING_COMMENTS2 C2, MISSING_COMMENTS C, USER_ACCOUNT U 
+			</when>
+			<when test='board_idx == 5'> 
+				USED_TRANSACTION_COMMENTS2 C2, MISSING_COMMENTS C, USER_ACCOUNT U 
+			</when>
+			<when test='board_idx == 6'> 
+				EVENT_COMMENTS2 C2, MISSING_COMMENTS C, USER_ACCOUNT U 
 			</when>
 		</choose>
 		WHERE C2.COMMENT_NO = C.COMMENT_NO
@@ -261,16 +324,16 @@
 		FROM 
 		<choose>
 			<when test='board_idx.equals("1")'> 
-			DIARY_BOARD
+				DIARY_BOARD
 			</when>
 			<when test='board_idx.equals("2")'> 
-			INTRO_BOARD 
+				INTRO_BOARD 
 			</when>
 			<when test='board_idx.equals("3")'> 
-			KNOWHOW_BOARD
+				KNOWHOW_BOARD
 			</when>
 			<when test='board_idx.equals("4")'> 
-			MISSING_BOARD
+				MISSING_BOARD
 			</when>
 		</choose>
 			WHERE BOARD_SCONTENT LIKE '%'||#{keyword}||'%'
@@ -284,59 +347,45 @@
 			<when test='board_idx == 2'> INTRO_BOARD</when>
 			<when test='board_idx == 3'> KNOWHOW_BOARD</when>
 			<when test='board_idx == 4'> MISSING_BOARD</when>
+			<when test='board_idx == 5'> USED_TRANSACTION_BOARD</when>
+			<when test='board_idx == 6'> EVENT_BOARD</when>
 		</choose>
-		WHERE BOARD_NO=#{board_no}
+		WHERE BOARD_NO = #{board_no}
 	</delete>
 	
 	<update id="commentDelete" parameterType="Map">
 		UPDATE 
 		<choose>
 			<when test='board_idx == 1'> 
-			DIARY_COMMENTS 
-			SET MEMBER_SERIAL = NULL
-			, COMMENT_CONTENT = NULL
-		 
+				DIARY_COMMENTS 
+				SET MEMBER_SERIAL = NULL
+				, COMMENT_CONTENT = NULL
 			</when>
 			<when test='board_idx == 2'> 
-			INTRO_COMMENTS 
-			SET MEMBER_SERIAL = NULL
-			, COMMENT_CONTENT = NULL
+				INTRO_COMMENTS 
+				SET MEMBER_SERIAL = NULL
+				, COMMENT_CONTENT = NULL
 			</when>
-			
 			<when test='board_idx == 3'> 
-			KNOWHOW_COMMENTS 
-			SET MEMBER_SERIAL = NULL
-			, COMMENT_CONTENT = NULL
+				KNOWHOW_COMMENTS 
+				SET MEMBER_SERIAL = NULL
+				, COMMENT_CONTENT = NULL
 			</when>
-			
 			<when test='board_idx == 4'> 
-			KNOWHOW_COMMENTS 
-			SET MEMBER_SERIAL = NULL
-			, COMMENT_CONTENT = NULL
+				KNOWHOW_COMMENTS 
+				SET MEMBER_SERIAL = NULL
+				, COMMENT_CONTENT = NULL
 			</when>
-			<!--
-			<when test='board_idx.equals("4"> 
-			MISSING_BOARD 
-			SET BOARD_TITLE = #{board_title}
-				, BOARD_CONTENT = #{board_content}
-				, ANIMAL_CLASS = #{animal_class}
+			<when test='board_idx == 5'> 
+				USED_TRANSACTION_COMMENTS 
+				SET MEMBER_SERIAL = NULL
+				, COMMENT_CONTENT = NULL
 			</when>
-			<when test='board_idx.equals("5"> 
-			USED_TRANSACTION_BOARD 
-			SET BOARD_TITLE = #{board_title}
-				, GOODS = #{goods}
-				, AREA = #{area}
-				, PRICE = #{price}
-				, IS_SELLED = #{is_selled}
-				, BOARD_CONTENT = #{board_content}
-				, ANIMAL_CLASS = #{animal_class}
+			<when test='board_idx == 6'> 
+				EVENT_COMMENTS 
+				SET MEMBER_SERIAL = NULL
+				, COMMENT_CONTENT = NULL
 			</when>
-			<when test='board_idx.equals("6"> 
-			EVENT_BOARD 
-			SET BOARD_TITLE = #{board_title}
-				, BOARD_CONTENT = #{board_content}
-			</when>
-			 -->
 		</choose> 
 		WHERE COMMENT_NO = ${comment.comment_no}
 	</update>
@@ -345,54 +394,40 @@
 		UPDATE 
 		<choose>
 			<when test='board_idx == 1'> 
-			DIARY_COMMENTS2 
-			SET MEMBER_SERIAL = NULL
-			, COMMENT_CONTENT2 = NULL
-		 
+				DIARY_COMMENTS2 
+				SET MEMBER_SERIAL = NULL
+				, COMMENT_CONTENT2 = NULL
 			</when>
 			<when test='board_idx == 2'> 
-			INTRO_COMMENTS2 
-			SET MEMBER_SERIAL = NULL
-			, COMMENT_CONTENT2 = NULL
+				INTRO_COMMENTS2 
+				SET MEMBER_SERIAL = NULL
+				, COMMENT_CONTENT2 = NULL
 			</when>
-			
 			<when test='board_idx == 3'> 
-			KNOWHOW_COMMENTS2 
-			SET MEMBER_SERIAL = NULL
-			, COMMENT_CONTENT2 = NULL
+				KNOWHOW_COMMENTS2 
+				SET MEMBER_SERIAL = NULL
+				, COMMENT_CONTENT2 = NULL
 			</when>
-			
 			<when test='board_idx == 4'> 
-			MISSING_COMMENTS2 
-			SET MEMBER_SERIAL = NULL
-			, COMMENT_CONTENT2 = NULL
+				MISSING_COMMENTS2 
+				SET MEMBER_SERIAL = NULL
+				, COMMENT_CONTENT2 = NULL
 			</when>
-			<!--
-			<when test='board_idx.equals("4"> 
-			MISSING_BOARD 
-			SET BOARD_TITLE = #{board_title}
-				, BOARD_CONTENT = #{board_content}
-				, ANIMAL_CLASS = #{animal_class}
+			<when test='board_idx == 5'> 
+				USED_TRANSACTION_COMMENTS2 
+				SET MEMBER_SERIAL = NULL
+				, COMMENT_CONTENT2 = NULL
 			</when>
-			<when test='board_idx.equals("5"> 
-			USED_TRANSACTION_BOARD 
-			SET BOARD_TITLE = #{board_title}
-				, GOODS = #{goods}
-				, AREA = #{area}
-				, PRICE = #{price}
-				, IS_SELLED = #{is_selled}
-				, BOARD_CONTENT = #{board_content}
-				, ANIMAL_CLASS = #{animal_class}
+			<when test='board_idx == 6'> 
+				EVENT_COMMENTS2 
+				SET MEMBER_SERIAL = NULL
+				, COMMENT_CONTENT2 = NULL
 			</when>
-			<when test='board_idx.equals("6"> 
-			EVENT_BOARD 
-			SET BOARD_TITLE = #{board_title}
-				, BOARD_CONTENT = #{board_content}
-			</when>
-			 -->
 		</choose> 
 		WHERE COMMENT_NO = ${comment.comment_no}
 	</update>
+	
+<!-- 	
 
 	<select id="getReportList" parameterType="Map" resultType="report" >
 		<choose>
@@ -440,7 +475,7 @@
 	
 	
 	
-<!-- 	
+	
 
 	<select id="getBoardList" parameterType="string" resultType="board" >
 		SELECT BOARD_NO, MEMBER_SERIAL, BOARD_TITLE

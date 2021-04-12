@@ -34,23 +34,24 @@
 			<div class="container">
 				<br>
 				<div class="row">
-					<div class="col-sm-2" style="text-align: center;"><h5>Copyright &copy; 2021</h5><h5>bitcamp 183 Group2</h5></div>
-					<div class="col-sm-4"><h4>SAVANNA 소개</h4><p>책 사고 팔 땐 SAVANNA</p></div>
-					<div class="col-sm-2"><h4 style="text-align: center;">내비게이션</h4>
-						<div class="list-group">
-							<a href="#" class="list-group-item">소개</a>
-							<a href="#" class="list-group-item">프로젝트원</a>
-							<a href="#" class="list-group-item">기능구현</a>
-						</div>
+					<div class="col-sm-7" style="text-align: left;">
+						<img src="/resources/images/logo.png" class="img-radius" alt="User-Profile-Image">
+						<br>
+						<h3 style="color : black;">BOW-WOW</h3>
+						<h5 style="color : black;">Bowwow에서 판매되는 모든  제품은 정식제조, <br>정식수입원을 통해 유통되는 100% 정품임을 보증합니다.</h5>
+						<h6 style="color : black;">BOW-WOW ｜ 서울시 서초구 강남대로 459 (서초동, 백암빌딩)｜ 사업자등록번호 : 210-11-12345</h6>
+						
 					</div>
 					<div class="col-sm-2"><h4 style="text-align: center;">SNS</h4>
 						<div class="list-group">
 							<a href="#" class="list-group-item">인스타그램</a>
-							<a href="https://github.com/catgoing/2ndProject_Group2" class="list-group-item" target="_blank">Github</a>
+							<a href="https://github.com/catgoing/DeveloPaw" class="list-group-item" target="_blank">Github</a>
 							<a href="#" class="list-group-item">유튜브</a>
 						</div>
 					</div> 	
-					<div class="col-sm-2"><h4 style="text-align: center;"><span class="glyphicon glyphicon-ok">&nbsp;by Group2</span></h4>
+					<div class="col-sm-3" style="text-align: left;"><h4 ><span class="glyphicon glyphicon-ok">&nbsp;by Bowwow</span></h4>
+					<br><br><br><br>
+					<h6 style="color : black;">Copyright &copy; Bowwow All rights reserved. </h6>
 					</div>
 				</div>
 			</div>

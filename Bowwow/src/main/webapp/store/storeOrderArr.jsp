@@ -50,29 +50,29 @@
     <link rel="stylesheet" type="text/css" href="/resources/css/storeStyle.css">
     <link rel="stylesheet" type="text/css" href="/resources/css/cartStyle.css">
     <link rel="stylesheet" type="text/css" href="/resources/css/test.css">
-   <script type="text/javascript" src="/resources/js/jquery/jquery.min.js "></script>
-   <script src="//developers.kakao.com/sdk/js/kakao.min.js"></script>
-   <script src="//t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script>
-   <script src="//dapi.kakao.com/v2/maps/sdk.js?appkey=d5c1b87a3ea48432cd965082eccebcd8"></script>
+    <script type="text/javascript" src="/resources/js/jquery/jquery.min.js "></script>
+    <script src="//developers.kakao.com/sdk/js/kakao.min.js"></script>
+    <script src="//t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script>
+    <script src="//dapi.kakao.com/v2/maps/sdk.js?appkey=d5c1b87a3ea48432cd965082eccebcd8"></script>
 
-   <style>
+    <style>
 
-   .featured__item__text {
-       width: 150px;
-   }
+    .featured__item__text {
+        width: 150px;
+    }
+ 
+    .cart-product-title{
+        width: 33%;
+    }
+    .cart-product-value{
+        width: 33%;
+    }
 
-   .cart-product-title{
-       width: 33%;
-   }
-   .cart-product-value{
-       width: 33%;
-   }
 
-
-   </style>
-   <script type="text/javascript" src="https://code.jquery.com/jquery-1.12.4.min.js"></script>
-<script type="text/javascript" src="https://service.iamport.kr/js/iamport.payment-1.1.5.js"></script>
-	<script type="text/javascript">
+    </style>
+    <script type="text/javascript" src="https://code.jquery.com/jquery-1.12.4.min.js"></script>
+    <script type="text/javascript" src="https://service.iamport.kr/js/iamport.payment-1.1.5.js"></script>
+    <script type="text/javascript">
 			$(function(){
 				$("#check_module").click(function () {
 					var IMP = window.IMP;
@@ -207,15 +207,6 @@
 									<div class="row">
 										<div class="col-lg-12">
 											<div class="cart-table" style="background-color: white;">
-											<c:forEach var="order" items="${order }">
-												<c:choose>
-													<c:when test="${order.p_type == 'dog'}">
-														<c:set var="imgDir" value="dogImg" />
-													</c:when>
-													<c:when test="${order.p_type == 'cat'}">
-														<c:set var="imgDir" value="catImg" />
-													</c:when>
-												</c:choose>
 												<table>
 													<thead>
 														<tr>
@@ -226,30 +217,39 @@
 														</tr>
 													</thead>
 													<tbody>
+													<c:forEach var="o" items="${order}">
+														<c:choose>
+														 	<c:when test="${o.p_type == 'dog'}">
+																<c:set var="imgDir" value="dogImg" />
+															</c:when>
+															<c:when test="${o.p_type == 'cat'}">
+																<c:set var="imgDir" value="catImg" />
+															</c:when>
+														</c:choose> 
 														<tr style="border-bottom: 1px solid #ddd;">
 															<td class="cart-pic first-row"><a
-															href="detail?p_id=${order.p_id }">
+															href="detail?p_id=${o.p_id }">
 															<img style="width: 100px; height: 100px;"
-																src="https://projectbit.s3.us-east-2.amazonaws.com/${imgDir }/${order.s_image }"></a>
+																src="https://projectbit.s3.us-east-2.amazonaws.com/${imgDir }/${o.s_image }"></a>
 															<td class="cart-title first-row">
 																<p>
-																	<a href="detail?p_id=${order.p_id }">${order.p_name }</a>
+																	<a href="detail?p_id=${o.p_id }">${o.p_name }</a>
 																</p>
 															</td>
 															<td class="qua-col first-row">
 																<div class="quantity">
-																	<div class="top__text cart-product-value">x${order.amount }</div>
+																	<div class="top__text cart-product-value">x${o.amount }</div>
 																</div>
 															</td>
 															<td class="qua-col first-row">
 																<div class="quantity">
-																	<fmt:formatNumber value="${sum }" pattern="#,###" />원
+																	<fmt:formatNumber value="${o.sum }" pattern="#,###" />원
 																</div>
 															</td>
 														</tr>
+													</c:forEach>
 													</tbody>
 												</table>
-											</c:forEach>
 											</div>
 										</div>
 									</div>
@@ -304,12 +304,13 @@
 																	placeholder="ex) 부재시 경비실에 맡겨주세요.">
 															</div>
 															<div class="checkout__form__input">
-																<input type="hidden" id="order_status" name="order_status" value="주문 완료"> 
-																<input type="hidden" name="p_id" value="${order.p_id }">
-																<input type="hidden" name="p_name" value="${order.p_name }">
-																<input type="hidden" name="amount" value="${order.amount }">
-																<input type="hidden" name="totalSum" value="${order.totalSum }">
-																<input type="hidden" name="s_image" value="${order.s_image }">
+															<c:forEach var="ord" items="${order }">
+																<input type="hidden" id="order_status" name="order_status" value="주문 완료">
+																<input type="hidden" name="p_id" value="${ord.p_id }">
+																<input type="hidden" name="p_name" value="${ord.p_name }">
+																<input type="hidden" name="amount" value="${ord.amount }">
+																<input type="hidden" name="s_image" value="${ord.s_image }">
+															</c:forEach>
 															</div>
 														</div>
 													</div>
@@ -325,6 +326,7 @@
 															<li>총 결제금액 
 																<span>
 																	<fmt:formatNumber value="${totalSum }" pattern="#,###" />원
+																	<input type="hidden" name="totalSum" value="${totalSum }">
 																</span>
 															</li>
 														</ul>

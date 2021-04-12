@@ -95,6 +95,9 @@
 		SET PASSWORD = #{password}
 		, EMAIL = #{email}
 		, PHONE = #{phone}
+		, NICKNAME,
+		, PASSWORD
+		, IMAGE_SOURCE
 		WHERE ID = #{id}
 	</update>
 
@@ -106,7 +109,6 @@
 	<select id="searchUserAccount" parameterType="UserAccount" resultType="UserAccount">
 		SELECT * FROM USER_ACCOUNT
 		WHERE ID = #{id}
-		AND PASSWORD = #{password}
 		AND EMAIL = #{email}
 		AND PHONE = #{phone}
 	</select>

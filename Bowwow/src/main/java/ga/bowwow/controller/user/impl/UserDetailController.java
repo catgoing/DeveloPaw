@@ -7,6 +7,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 import ga.bowwow.controller.user.UserCRUDGenericController;
@@ -18,7 +19,7 @@ import ga.bowwow.service.user.impl.UserDetailServiceImpl;
 public class UserDetailController extends UserCRUDGenericController<UserDetail> {
 	
 	@PostMapping(value= "/add")
-	protected ResponseEntity<String> addDetailResponse(UserDetail vo) {
+	protected ResponseEntity<String> addDetailResponse(@RequestBody UserDetail vo) {
 		System.out.println("detail controller Test");
 		try {
 			return service.addVo(vo) ? ResponseEntity.ok().build() : ResponseEntity.badRequest().build();

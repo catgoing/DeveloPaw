@@ -33,6 +33,10 @@
 .placeinfo .tel {color:#0f7833;}
 .placeinfo .jibun {color:#999;font-size:11px;margin-top:0;}
 
+footer.footer.navbar-wrapper {
+    z-index: 3;
+}
+
 .active {
 	background-color : #f7b5b7;
     -webkit-box-shadow: 0 15px 8px -11px rgba(0, 0, 0, 0.25);

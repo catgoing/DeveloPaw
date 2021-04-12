@@ -5,25 +5,11 @@
 							<a href="#"><i class="icon-close icons"></i></a>
 						</div>
 						<div class="pcoded-inner-navbar main-menu">
-							<div class="">
-
-								<div class="main-menu-content">
-									<ul>
-										<li class="more-details"><a href="user-profile.html"><i
-												class="ti-user"></i>View Profile</a> <a href="#!"><i
-												class="ti-settings"></i>Settings</a> <a
-											href="auth-normal-sign-in.html"><i
-												class="ti-layout-sidebar-left"></i>Logout</a></li>
-									</ul>
-								</div>
-							</div>
-							<div class="p-15 p-b-0">
-								<form class="form-material"></form>
-							</div>
+						
+							<br>
 							<ul class="pcoded-item pcoded-left-item">
-								<li class="pcoded-hasmenu">
-								</li>
 							</ul>
+							
 							<ul class="pcoded-item pcoded-left-item">
 								<li class=""><a href="storeMain"
 									class="waves-effect waves-dark"> <span class="pcoded-micon"><i

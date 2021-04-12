@@ -2,7 +2,9 @@ package ga.bowwow.controller.store;
 
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -13,6 +15,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
+import ga.bowwow.service.store.CartListService;
 import ga.bowwow.service.store.Order;
 import ga.bowwow.service.store.OrderDTO;
 import ga.bowwow.service.store.StoreOrderService;
@@ -22,6 +25,9 @@ public class StoreOrderController {
 
 	@Autowired
 	private StoreOrderService storeOrderService;
+	
+	@Autowired
+	private CartListService cartListService;
 	
 	public StoreOrderController() {
 		System.out.println(">> StoreOrderController 실행");
@@ -47,12 +53,15 @@ public class StoreOrderController {
 	@RequestMapping(value = "/store/insertOrder")
 	// default로 get방식 요청, post 선언을 해줘야 함
 	public String insertOrder(Order order, HttpServletRequest request) throws IllegalStateException, IOException {
-
+		System.out.println("order : "  + order);
 		System.out.println(">>> 주문내역 작성 - insertOrder()");
+		
+		List<Order> list = new ArrayList<Order>();
+		
 		request.setCharacterEncoding("utf-8");
-
 		storeOrderService.insertOrder(order);
-
+		
+		
 		return "redirect:/store/storeOrderList?member_serial=999";
 	}
 
@@ -68,24 +77,41 @@ public class StoreOrderController {
 	}
 	
 	@RequestMapping(value = "/store/orderArr")
-	public String insertOrderList(OrderDTO orderDTO, Model model) {
+	public String insertOrderList(OrderDTO orderDTO, Model model) throws Exception {
+		String id = "test2";
+		
 		int result = 0;
 		int totalSum = 0;
+		List<Order> orderList = new ArrayList<Order>();
+		int size = orderDTO.getP_id().size();
+		Order order;
 		List<Integer> sum = new ArrayList<Integer>();
-		
-		for (int i = 0; i < orderDTO.getP_id().size(); i++) {
+		for (int i = 0; i < size; i++) {
+			order = new Order();
 			result = orderDTO.getPrice().get(i) * orderDTO.getAmount().get(i);
-			sum.add(result);
+			order.setP_id(orderDTO.getP_id().get(i));
+			order.setAmount(orderDTO.getAmount().get(i));
+			order.setP_name(orderDTO.getP_name().get(i));
+			order.setS_image(orderDTO.getS_image().get(i));
+			order.setP_type(orderDTO.getP_type().get(i));
+			orderList.add(order);
+			System.out.println("orderList view ::" + orderList);
+			System.out.println("order ::" + order);
+			System.out.println("orderList " + i + "번째");
+			sum.add(i, result);
+			order.setSum(sum.get(i));
 			totalSum += result;
 		}
 		
+		
 		System.out.println("totalSum : " + totalSum);
-		System.out.println("orderDTO : " + orderDTO);
 		System.out.println("sum : " + sum);
 		model.addAttribute("sum", sum);
 		model.addAttribute("totalSum", totalSum);
-		model.addAttribute("order", orderDTO);
+		model.addAttribute("order", orderList);
 		
+		
+		System.out.println("장바구니 삭제");
 		return "/store/storeOrderArr";
 	}
 	

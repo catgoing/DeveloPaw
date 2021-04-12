@@ -48,7 +48,7 @@ public class UserDtoController extends UserCRUDGenericController<UserAccount> {
 	public String loginPage(HttpServletRequest request) {
 		System.out.println("getLogin");
 		if(!isSessionNewAndHasNoUserDTO(request.getSession())) {
-			return "redirect:/mypage/myInfo";
+			return "redirect:/store/storeMain";
 		}
 		return "/auth.login";
 	}
@@ -68,20 +68,6 @@ public class UserDtoController extends UserCRUDGenericController<UserAccount> {
 			return "redirect:/mypage/myInfo";
 		}
 		return "/auth.login";
-	}
-	
-	public String autoAdminLogin() {
-		
-		final String baseUrl = ServletUriComponentsBuilder.fromCurrentContextPath().build().toUriString();
-		UserDTO adminUser = new UserDTO();
-		adminUser.setId("z");
-		adminUser.setPassword("z");
-		
-		HttpHeaders headers = new HttpHeaders();
-        headers.setAccept(Arrays.asList(MediaType.APPLICATION_JSON));
-        headers.add("user-agent", "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/54.0.2840.99 Safari/537.36");
-        
-		return rt.postForEntity(baseUrl + "/user/login", new HttpEntity<UserDTO>(adminUser, headers), String.class).getBody();
 	}
 
 	//추상화된 REST 자원 받아오기 명령 : (baseUrl, 체킹 T(추상VO, 또는 Serial), 경로(rest자원명), 파라미터)=>{}
@@ -117,7 +103,7 @@ public class UserDtoController extends UserCRUDGenericController<UserAccount> {
 //		System.out.println("onSession userDTO : " + session.getAttribute("userDTO"));
 		session.removeAttribute("userDTO");
 		sessionStatus.setComplete();
-		return "redirect:/mypage/myInfo";
+		return "redirect:/store/storeMain";
 	}
 
 	//modelAttribute for Method Test -> works

@@ -23,9 +23,5 @@ public class Comment {
 	private String regdate;			//작성일
 	
 
-	public void setRegdate(String regdate) {
-		this.regdate = regdate.substring(0, 16);
-	}
-	
 
 }
