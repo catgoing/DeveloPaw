@@ -343,7 +343,7 @@ $(function (){
 		</script>
 
 		<!-- footer 푸터 영역 -->
-		<%@ include file="/common/footer.jsp"%>
+		<%@ include file="/common/storeFoot.jsp"%>
 		<!-- footer 푸터 영역 -->
 
 	</div>

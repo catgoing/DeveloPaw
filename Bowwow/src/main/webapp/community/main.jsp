@@ -31,7 +31,7 @@ footer.footer.navbar-wrapper {
     -webkit-box-shadow: 0 15px 8px -11px rgba(0, 0, 0, 0.25);
     box-shadow: 0 15px 8px -11px rgba(0, 0, 0, 0.25);
 }
-input{
+.b_title{
 	font-size:22px; display:inline-block; width:200px; background-color:transparent; border:none;
 }
 
@@ -140,7 +140,7 @@ input{
 																		<div class="item-title" style="width:300px; color:black;">
 																			<a href="/community/detail?board_idx=1&board_no=${diaryList.board_no}">
 																			</a>
-																			<input type="text" maxlength="15" value="${diaryList.board_title }" style="text-overflow: ellipsis" >
+																			<input type="text" class="b_title" maxlength="15" value="${diaryList.board_title }" style="text-overflow: ellipsis" >
 																			<%-- <span style="font-size:22px;  display:inline-block; width:200px;" >${list.board_title }</span> --%>
 																			<span style="postion:inline-block;float:right; margin-top:8px">${diaryList.regdate }</span>
 																		</div>
@@ -190,7 +190,7 @@ input{
 																		<div class="item-title" style="width:300px; color:black;">
 																			<a href="/community/detail?board_idx=2&board_no=${introList.board_no}">
 																			</a>
-																			<input type="text" maxlength="15" value="${introList.board_title }" style="text-overflow: ellipsis" >
+																			<input type="text" class="b_title" maxlength="15" value="${introList.board_title }" style="text-overflow: ellipsis" >
 																			<%-- <span style="font-size:22px;  display:inline-block; width:200px;" >${list.board_title }</span> --%>
 																			<span style="postion:inline-block;float:right; margin-top:8px">${introList.regdate }</span>
 																		</div>
@@ -240,7 +240,7 @@ input{
 																		<div class="item-title" style="width:300px; color:black;">
 																			<a href="/community/detail?board_idx=3&board_no=${knowhowList.board_no}">
 																			</a>
-																			<input type="text" maxlength="15" value="${knowhowList.board_title }" style="text-overflow: ellipsis" >
+																			<input type="text" class="b_title" maxlength="15" value="${knowhowList.board_title }" style="text-overflow: ellipsis" >
 																			<%-- <span style="font-size:22px;  display:inline-block; width:200px;" >${list.board_title }</span> --%>
 																			<span style="postion:inline-block;float:right; margin-top:8px">${knowhowList.regdate }</span>
 																		</div>
@@ -290,7 +290,7 @@ input{
 																		<div class="item-title" style="width:300px; color:black;">
 																			<a href="/community/detail?board_idx=4&board_no=${missingList.board_no}">
 																			</a>
-																			<input type="text" maxlength="15" value="${missingList.board_title }" style="text-overflow: ellipsis" >
+																			<input type="text" maxlength="15" class="b_title" value="${missingList.board_title }" style="text-overflow: ellipsis" >
 																			<%-- <span style="font-size:22px;  display:inline-block; width:200px;" >${list.board_title }</span> --%>
 																			<span style="postion:inline-block;float:right; margin-top:8px">${missingList.regdate }</span>
 																		</div>
@@ -335,10 +335,10 @@ input{
 		</button> -->
 		
 		<!-- footer 푸터 영역 -->
-		<%@ include file="/common/footer.jsp"%>
+		<%@ include file="/common/storeFoot.jsp"%>
 		<!-- footer 푸터 영역 -->
 		<div class="fixed-button2 active dropdown"><a href="/community/write_combination.jsp" class="btn2 btn-md btn-primary"> 글쓰기</a> 
-		 <div class="dropdown-content">
+		 <div class="dropdown-content" style="right:5px;bottom:10px">
 			  <a href="/community/write?board_idx=1">펫 다이어리</a>
 			  <a href="/community/write?board_idx=2">펫 소개</a>
 			  <a href="/community/write?board_idx=3">펫 노하우</a>

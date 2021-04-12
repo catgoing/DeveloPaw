@@ -30,10 +30,7 @@
 <script
 	src="http://cdnjs.cloudflare.com/ajax/libs/summernote/0.8.8/summernote.js"></script>
 	
-<link href="https://www.jqueryscript.net/css/jquerysctipttop.css" rel="stylesheet" type="text/css">
-<link rel="stylesheet" href="https://netdna.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
-<link href="/resources/jquery-radiocharm.css" rel="stylesheet" type="text/css">
-<script src="/resources/jquery-radiocharm.js"></script>
+<script src="/resources/jquery.twbs-toggle-buttons.min.js"></script>
 
 <style>
 
@@ -95,6 +92,10 @@ th {
 }
 </style>
 <script>
+$(function (){
+	$(".btn-group-toggle").twbsToggleButtons();
+});
+
 $(document).ready(function(){
 	 $('input:radio').radiocharm();
 	 });
@@ -243,23 +244,42 @@ $(function (){
 
 												<form action="insertBoard" method="post" enctype="multipart/form-data"
 												name="fr" onsubmit="return null_check()">
+													    <div class="card-body">
+													      <div class="btn-group btn-group-toggle" data-toggle="buttons">
+													        <label for="dog" class="btn" role="button">강아지
+												          		<input id="dog" type="radio" name="animal_class" value="1">
+												          	</label>
+													       	 <label for="cat" class="btn" role="button">고양이
+												          <input id="cat"type="radio" name="animal_class" value="2">
+												          </label>
+													        <label class="btn active" role="button">
+													          <input type="radio" name="animal_class" value="3" checked="checked" >자유
+													        </label>
+													      </div>
+													    </div>
 													<div>
-														<input checked data-radiocharm-background-color="3498DB" data-radiocharm-label="강아지" name="default_background" type="radio" value="1" />
-														<input data-radiocharm-label="고양이" data-radiocharm-background-color="F1C40F" name="default_background" type="radio" value="2" />
-														<input data-radiocharm-label="자유" data-radiocharm-background-color="C0392B" name="default_background" type="radio" value="3" />
-													</div>
-													<div>
-														<input type="radio" name="sub_class" value="0">
-														교육/훈련 <input type="radio" name="sub_class" value="1">
-														급여/식이 <input type="radio" name="sub_class" value="2">
-														건강 <input type="radio" name="sub_class" value="3" checked="checked">
-														생활꿀팁
+													    <div class="card-body">
+													      <div class="btn-group btn-group-toggle" data-toggle="buttons">
+													        <label for="dog" class="btn active" role="button" >교육/훈련
+												          		<input id="dog" type="radio" name="sub_class" value="0" checked="checked">
+												          	</label>
+													       	 <label for="cat" class="btn" role="button">급여/식이
+												          <input id="cat"type="radio" name="sub_class" value="1">
+												          </label>
+													        <label class="btn" role="button">건강
+													          <input type="radio" name="sub_class" value="2">
+													        </label>
+													        <label class="btn" role="button">생활꿀팁
+													          <input type="radio" name="sub_class" value="3" checked="checked" >
+													        </label>
+													      </div>
+													    </div>
 													</div>
 													<br>
 
 													<div class="title-container" style="background-color : #f7f2f2; width : 100%; margin:auto; padding:15px; border-radius : 10px">
 															<div class="title">
-															<input type="text" id="board_title" name="board_title" >
+															<input type="text" id="board_title" name="board_title" placeholder="제목">
 															</div>		
 															</div>	
 													<br>
@@ -273,8 +293,8 @@ $(function (){
 													<input type="hidden" name="member_serial" value="994">
 													<input type="hidden" name="board_idx" value="1">
 													
-													<div style="text-align: center" class="enter_button">
-														<input type="submit" value="확인">
+													<div style="text-align: center;" class="enter_button">
+														<input type="submit" style="font-size:17px; width:100px; height:50px; border-radius:5px" value="등록">
 													</div>
 
 												</form>
@@ -295,7 +315,7 @@ $(function (){
 		</div>
 
 		<!-- footer 푸터 영역 -->
-		<%@ include file="/common/footer.jsp"%>
+		<%@ include file="/common/storeFoot.jsp"%>
 		<!-- footer 푸터 영역 -->
 
 	</div>

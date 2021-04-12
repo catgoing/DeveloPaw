@@ -117,7 +117,7 @@ $(function (){
 			</div>
 		</div>
 
-		<%@ include file="/common/footer.jsp"%>
+		<%@ include file="/common/storeFoot.jsp"%>
 
 	</div>
 
