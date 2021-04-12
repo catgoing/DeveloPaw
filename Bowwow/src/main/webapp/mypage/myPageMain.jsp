@@ -3,14 +3,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
-<%
-	int member_serial = 999;
-	//String id = 
-	//String nickname="황소";
-	UserDTO user = new UserDTO();
-	user.setMember_serial(member_serial);
-	session.setAttribute("userDTO", user);
-%>
+
 <!DOCTYPE html>
 <html>
 
