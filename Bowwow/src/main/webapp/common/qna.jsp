@@ -171,7 +171,7 @@
 								<section class="featured spad">
 									<div class="container qna-container" style="width:100%">
 										<div class="row">
-											<div class="col-lg-12">
+											<div class="col-lg-12" style="margin-top: 20px;">
 												<div class="section-title">
 													<h3>자주 묻는 질문</h3>
 												</div>
