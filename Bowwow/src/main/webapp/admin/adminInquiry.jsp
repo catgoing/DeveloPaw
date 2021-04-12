@@ -269,7 +269,7 @@ $(document).ready(function(){
 									</tr>
 								</c:if>
 								</table>
-								<form action="/getUserInquiryList" method="post">
+								<form action="/getAdminInquiryList" method="post">
 								<table class="border-none width-control">
 									<tr>
 										<td class="input-group">

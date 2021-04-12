@@ -109,7 +109,7 @@ function goback(member_serial){
 				<div class="page-body">
 					<div class="inquiry-detail">
 						<div class="question-title">
-					    	<h3 style="text-align:center;">문의목록</h3>
+					    	<h3 style="text-align:center;">문의 상세</h3>
 				     	</div>
 						<div class="table-container">
 							<table class="table table-sm">
@@ -130,7 +130,7 @@ function goback(member_serial){
 								<c:if test="${not empty targetProduct}">
 								<tr>
 									<th>문의상품</th>
-									<td colspan="3"><a href="detail?p_id=${targetProduct.p_id }">${targetProduct.p_name}</a><br>
+									<td colspan="3"><a href="/store/detail?p_id=${targetProduct.p_id }">${targetProduct.p_name}</a><br>
 									<fmt:formatNumber value="${targetProduct.price}" pattern="#,###"/> 원</td>
 								</tr>
 								</c:if>		

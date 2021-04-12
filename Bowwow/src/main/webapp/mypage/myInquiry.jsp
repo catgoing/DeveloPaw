@@ -57,12 +57,7 @@
     <link rel="stylesheet" type="text/css" href="../resources/css/style.css">
     <link rel="stylesheet" type="text/css" href="../resources/css/test.css">
 <style>
- /* table { border-collapse: collapse; }
- th, td {
-	border: 1px solid black;
-	margin: 0 auto;
- }
- th { background-color: orange; } */
+
  .center { text-align: center; }
  .border-none, .border-none td { border: none; }
  td .input-group{
@@ -86,10 +81,6 @@
 	margin: 5px 0px; 
 	width: 100%;
 	font-size: 20px;
- }
- 
- .textarea {
- 	height: 200px;
  }
  .question-section {
   	width : 700px;
@@ -124,15 +115,18 @@
 	border : 1px solid #e4e4e4;
 	border-radius : 10px;
 }
-.table {
-	max-width:80%;
-	min-width:80%
-}
 .table-sm th{
 	color: 	#3C1E1E;
 	font-weight: bold;
 }
-
+#tabletest {
+	width:100%;
+	max-width:80%;
+	min-width:80%;
+}
+.td-adjust{
+	line-height:30px;
+}
 </style>
 <script>
 
@@ -152,7 +146,7 @@ $(document).ready(function(){
 
 //빈칸, 문의유형선택안하면 경고
 function allInputCheck(frm) {
-	if(frm.inquiry_type.value==""){
+	if(frm.inquiry_type.value=="" || frm.inquiry_type.value!='product'){
 		if(frm.p_id){ //p_id가 들어왔을 때
 			alert("문의 유형은 상품유형을 선택하세요");
 		}
@@ -169,6 +163,9 @@ function allInputCheck(frm) {
 		frm.inquiry_content.focus();
 	} 
 	else {
+		console.log(frm.p_id.value);
+		console.log(frm.nickname.value);
+		console.log(frm.member_serial.value);
 		frm.action = "/insertUserInquiry";
 		frm.method = "post";
 		frm.submit();
@@ -275,7 +272,7 @@ function allInputCheck(frm) {
                                            <div class="accordion-content accordion-desc">
                                            <form id="inquiry_form" name="inquiry_input_form" method="post">
                                                <div class="form-group row" id="question-section">
-                                              		<input type="text" class="form-control" name="inquiry_title" placeholder="제목을 입력하세요">							    					
+                                              		<input type="text" class="form-control" name="inquiry_title" style="border-bottom:1px solid lightgrey;"placeholder="제목을 입력하세요">							    					
 											    		<select class="form-control" id="inquiry_type" aria-label="문의유형선택" name="inquiry_type" style="border : 1px solid #e4e4e4">
 														  <option value="" selected disabled hidden>문의 유형 선택</option>
 														  <option value="contactUs" onclick="inquiryType('contactUs')">이용문의</option>
@@ -283,30 +280,44 @@ function allInputCheck(frm) {
 														  <option value="delivery" onclick="inquiryType('delivery')">배송문의</option>
 														  <option value="etc" onclick="inquiryType('etc')">기타문의</option>
 														</select>
-							    					<textarea class="form-control" name="inquiry_content" rows="5" placeholder="질문을 입력하세요!"></textarea>
+							    					<textarea class="form-control" name="inquiry_content" rows="5" style="height:200px; border-bottom:1px solid lightgrey;"placeholder="질문을 입력하세요!"></textarea>
 							  					</div>
 							  					<c:if test="${not empty targetProduct }">
 							  					<div class="form-group">
-							  						<table class="form-control" style="line-height:0">
+							  						<%-- <div style="width: 80%; padding-left: 80px;">
+								  						<div id="img" style="float:left; width: 50%; height:50%;">
+								  							<img src="https://projectbit.s3.us-east-2.amazonaws.com/${foldername }/${targetProduct.s_image }" style="max-width:100%; min-height:50%;">
+								  						</div>
+								  						<div id="name" style="float:right;width: 200px;">
+								  							<a href="/store/detail?p_id=${targetProduct.p_id }" style="font-size: 20px;">${targetProduct.p_name }</a>
+								  						</div>
+								  						<div id="price" style="float:right;width: 200px;">
+								  							<fmt:formatNumber value="${targetProduct.price}" pattern="#,###"/> 원
+								  						</div>
+							  						</div> --%>
+							  						<input type="hidden" id="targetPid" name="p_id" value="${targetProduct.p_id }">							  						
+							  						<table class="tabletable" id="tabletest" >
 							  							<tr>
-							  								<td rowspan="2" style="line-height:0">
-							  									상품이미지<img src="https://projectbit.s3.us-east-2.amazonaws.com/${foldername }/${targetProduct.s_image }" style="max-width:100%;">
+								  							<td rowspan="2">
+																<img src="https://projectbit.s3.us-east-2.amazonaws.com/${foldername }/${targetProduct.s_image }" style="max-width:100%; max-height:50%;">
 							  								</td>
-							  								<td> <a href="/store/detail?p_id=${targetProduct.p_id }">상품명 ${targetProduct.p_name }</a> </td>
+							  								<td style="padding-top:30px;"> <a href="/store/detail?p_id=${targetProduct.p_id }" style="font-size:20px;"> ${targetProduct.p_name }</a> </td>
+							  							</tr>
 							  							<tr>
-							  							<tr>
-							  								<td><fmt:formatNumber value="${targetProduct.price}" pattern="#,###"/> 원</td>
+															<td style="padding-bottom:30px;"><fmt:formatNumber value="${targetProduct.price}" pattern="#,###"/> 원</td>
 						  								</tr>
 							  						</table>
-							  						<input type="hidden" id="targetPid" name="p_id" value="${targetProduct.p_id }">							  						
 							  					</div>
 							  					</c:if>
-							    				<div class="form-group input_product" id="input_product"></div>
-							    				<input type="hidden" name="nickname" value="${sessionScope.userDTO.nickname }">
-							    				<input type="hidden" name="member_serial" value="${sessionScope.userDTO.member_serial }">
-	                                           <input type="button" class="btn btn-outline-secondary" id="contact-btn" value="문의하기" onclick="allInputCheck(this.form)">	
-							    			   <input type="button" class="btn btn-outline-secondary" id="cancel-btn" value="취소">
-                                           </form>
+							    				<div class="form-group input_product" id="input_product">
+								    				<input type="hidden" name="nickname" value="${sessionScope.userDTO.nickname }">
+								    				<input type="hidden" name="member_serial" value="${sessionScope.userDTO.member_serial }">								 
+							    				</div>
+	                                           	<div style="overflow:hidden; padding:10px;">
+		                                           <input type="button" class="btn btn-outline-secondary" id="contact-btn" value="문의하기" onclick="allInputCheck(this.form);">	
+								    			   <input type="button" class="btn btn-outline-secondary" id="cancel-btn" value="취소">
+	                                           	</div>
+                                            </form>
                                            	</div>
                                          </div>
 	                                  </div>

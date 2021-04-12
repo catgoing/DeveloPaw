@@ -71,7 +71,7 @@ public class BoardController {
 			//이미지 첨부된 거 없으면 바로 db에 저장
 			//			map.put("board", vo);
 			vo.setBoard_idx(board_idx);
-//			boardService.insertBoard(vo);
+			boardService.insertBoard(vo);
 			System.out.println(vo);
 
 		} else { //이미지가 있으면

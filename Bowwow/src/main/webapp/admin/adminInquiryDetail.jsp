@@ -91,7 +91,8 @@ hr {
 		
 		<div class="pcoded-main-container">
 			<div class="pcoded-wrapper">
-				<!-- 좌측메뉴바 -->
+			
+				<!-- 좌측 메뉴바 시작 -->
 				<%@include file="/auth/common/myPageMenuBar.jsp" %>
 
 <div class="pcoded-content">
