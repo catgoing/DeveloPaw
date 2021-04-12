@@ -15,12 +15,16 @@
       box-sizing: border-box;
       color:black;
 }
-
 input[type="submit"] {
 	font-family: FontAwesome;
 	background-color: #f7b5b7;
 	border: none;
 	color: #fff;
+}
+
+
+input[type="text"]:hover{
+	cursor:pointer;
 }
 </style>
 

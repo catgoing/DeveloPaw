@@ -193,9 +193,10 @@ function getPetInfo(frm){
 
 	var serialData =  { 'pet_serial' : pSerial };
 	console.log(serialData);
-	
-	var location = "https://projectbit.s3.us-east-2.amazonaws.com/";
-	
+
+	var imgloca = $('.pet-img').attr('src');
+	console.log(imgloca);
+
 	$.ajax("/ajaxGetPetInfo", {
 		type : "post",
 		data : serialData ,
@@ -223,8 +224,8 @@ function getPetInfo(frm){
 			$("#detail_back").html(petDetail.back_length + " cm");
 			$("#detail_chest").html(petDetail.chest_length + " cm");
 			$("#detail_etc").html(petDetail.pet_etc);
-			$("#thumb_container-detail").prop("src", location + petDetail.image_source_oriname);
-			
+			$("#thumb_container-detail").prop("src", "https://projectbit.s3.us-east-2.amazonaws.com/"+petDetail.image_source_oriname);
+
 			$("#detail_tnr").val(petDetail.tnr);									 // hidden
 			$("#detail_member_serial").val("${sessionScope.userDTO.member_serial }");// hidden
 			$("#detail_pet_serial").val(petDetail.pet_serial);					     // hidden

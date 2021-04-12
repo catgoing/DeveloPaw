@@ -14,8 +14,9 @@ public abstract class UserGenericService<T> {
 		return isRegistSuccess(vo);
 	}
 	public boolean updateVo(T vo) {
+		System.out.println("UPDATE TVO : " + vo);
 		dao.update(vo);
-		return isModifySuccess(vo);
+		return isRegistSuccess(vo);
 	} 
 	public boolean deleteVo(T vo) {
 		dao.delete(vo);

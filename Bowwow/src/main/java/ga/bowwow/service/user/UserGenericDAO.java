@@ -33,7 +33,9 @@ public abstract class UserGenericDAO<T> {
 		mybatis.insert(insertQuery, t);
 	}
 	public void update(T t) {
-		mybatis.update(updateQuery, t);
+		System.out.println("update result CHECK : " + 
+				mybatis.update(updateQuery, t)
+				);
 	}
 	public void delete(T t) {
 		mybatis.update(deleteQuery, t);

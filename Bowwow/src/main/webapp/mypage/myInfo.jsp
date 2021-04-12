@@ -316,85 +316,87 @@ $(function(){
 										<h3>정보수정</h3>
 										<a href="withdrawl">회원탈퇴</a>
 									</div>
-									<form class="form-myinfo" action="updateUserAccount();">
-  <div class="form-group">
-    <label for="inputId" class="col-sm-4 control-label">아이디(변경불가)</label>
-    <div class="col-sm-8">
-		<input type="text" class="form-control" id="noborderline" value="${sessionScope.userDTO.id }" disabled>
-    </div>
-  </div>
-  <div class="form-group">
-    <label for="inputPassword" class="col-sm-4 control-label">Password</label>
-    <div class="col-sm-8 passinput">
-      <input type="password" class="form-control password" name="password" id="password" placeholder="Password">
-
-    </div>
-  </div>
-  <div class="form-group">
-    <label for="inputPassword2" class="col-sm-4 control-label">Password 확인</label>
-    <div class="col-sm-8 passinput2">
-      <input type="password" class="form-control password" id="password2" placeholder="Password 재입력">
-
-    </div>
-  </div>
-  <div class="form-group">
-    <label for="inputPassword3" class="col-sm-4 control-label">이름</label>
-    <div class="col-sm-8">
-   		<input type="text" class="form-control" id="noborderline" value="${sessionScope.userDTO.realname }" disabled>
-    </div>
-  </div>
-  <div class="form-group">
-    <label for="inputNickname" class="col-sm-4 control-label">닉네임</label>
-    <div class="col-sm-8">
-      <input type="text" class="form-control" name="nickname" id="inputNickname" placeholder="닉네임" value="${sessionScope.userDTO.nickname}">
-    </div>
-  </div>
-  <div class="form-group">
-    <label for="inputEmail" class="col-sm-4 control-label">이메일</label>
-    <div class="col-sm-8">
-      <input type="email" class="form-control" name="email" id="inputEmail" placeholder="hong@example.com" value="${sessionScope.userDTO.email }">
-    </div>
-  </div>
-  <div class="form-group">
-    <label for="inputAddress" class="col-sm-4 control-label">주소</label>
-    <div class="col-sm-8">
-     <div>
-
-		<input type="text" id="sample4_postcode" placeholder="우편번호" value="${sessionScope.userAddress[0].zonecode}">
-		<input type="button" onclick="sample4_execDaumPostcode()" value="우편번호 찾기"><br>
-		<input type="text" id="sample4_roadAddress" placeholder="도로명주소" value="${sessionScope.userAddress[0].address}">
-<!-- 		<input type="text" id="sample4_jibunAddress" placeholder="지번주소"> -->
-		<span id="guide" style="color:#999;display:none"></span>
-		<input type="text" id="sample4_detailAddress" placeholder="상세주소" value="${sessionScope.userAddress[0].address_detail}">
-<!-- 		<input type="text" id="sample4_extraAddress" placeholder="참고항목"> -->
-	</div>
-    </div>
-  </div>
-  <div class="form-group">
-    <label for="inputPhone" class="col-sm-4 control-label" >전화번호</label>
-    <div class="col-sm-8">
-	  <select id="preNoPhone">
-		<option>010</option>
-		<option>011</option>
-		<option>017</option>
-		<option>018</option>
-		<option>019</option>
-		</select>
-      <input type="text" class="form-control" name="phone" id="inputPhone" value="${sessionScope.userDTO.phone }" placeholder="123-4567 혹은 1234-5678 형식으로 입력">
-    </div>
-  </div>
-     <div class="form-group">
-    <label for="inputBirth" class="col-sm-4 control-label">생일</label>
-    <div class="col-sm-8">
-      <input type="date" class="form-control" name="birthday" value="${sessionScope.userDTO.birthday}" id="inputBirthday" >
-    </div>
-  </div>
-  <div class="form-group">
-    <div class="col-sm-offset-2 col-sm-8">
-      <button type="submit"  class="btn btn-outline-secondary" >정보수정!</button>
-    </div>
-  </div>
-</form>
+									<form class="form-myinfo" id="account_form" action="/account/update" method="post">
+										<div class="form-group">
+										  <label for="inputId" class="col-sm-4 control-label">아이디(변경불가)</label>
+										  <div class="col-sm-8">
+										<input type="hidden" class="form-control" name="id" id="id" value="${sessionScope.userDTO.id }">
+										<input type="text" class="form-control" id="visibleId" value="${sessionScope.userDTO.id }" disabled>
+										  </div>
+										</div>
+										<div class="form-group">
+										  <label for="inputPassword" class="col-sm-4 control-label">비밀번호</label>
+										  <div class="col-sm-8 passinput">
+										    <input type="password" class="form-control password" name="password" id="password" placeholder="비밀번호">
+										
+										  </div>
+										</div>
+										<div class="form-group">
+										  <label for="inputPassword2" class="col-sm-4 control-label">비밀번호 확인</label>
+										  <div class="col-sm-8 passinput2">
+										    <input type="password" class="form-control password" id="password2" placeholder="비밀전호 확인">
+										
+										  </div>
+										</div>
+										<div class="form-group">
+										  <label for="inputPassword3" class="col-sm-4 control-label">이름</label>
+										  <div class="col-sm-8">
+										 		<input type="text" class="form-control" id="noborderline" value="${sessionScope.userDTO.realname }" disabled>
+										  </div>
+										</div>
+										<div class="form-group">
+										  <label for="inputNickname" class="col-sm-4 control-label">닉네임</label>
+										  <div class="col-sm-8">
+										    <input type="text" class="form-control" name="nickname" id="inputNickname" placeholder="닉네임" value="${sessionScope.userDTO.nickname}">
+										  </div>
+										</div>
+										<div class="form-group">
+										  <label for="inputEmail" class="col-sm-4 control-label">이메일</label>
+										  <div class="col-sm-8">
+										    <input type="email" class="form-control" name="email" id="inputEmail" placeholder="hong@example.com" value="${sessionScope.userDTO.email }">
+										  </div>
+										</div>
+										<div class="form-group">
+										  <label for="inputAddress" class="col-sm-4 control-label">주소</label>
+										  <div class="col-sm-8">
+										   <div>
+										
+										<input type="text" id="sample4_postcode" placeholder="우편번호" value="${sessionScope.userAddress[0].zonecode}">
+										<input type="button" onclick="sample4_execDaumPostcode()" value="우편번호 찾기"><br>
+										<input type="text" id="sample4_roadAddress" placeholder="도로명주소" value="${sessionScope.userAddress[0].address}">
+										<!-- 		<input type="text" id="sample4_jibunAddress" placeholder="지번주소"> -->
+										<span id="guide" style="color:#999;display:none"></span>
+										<input type="text" id="sample4_detailAddress" placeholder="상세주소" value="${sessionScope.userAddress[0].address_detail}">
+										<!-- 		<input type="text" id="sample4_extraAddress" placeholder="참고항목"> -->
+										</div>
+										   </div>
+										 </div>
+										 <div class="form-group">
+										   <label for="inputPhone" class="col-sm-4 control-label" >전화번호</label>
+										   <div class="col-sm-8">
+										  <select id="phonePrecode">
+											<option>010</option>
+											<option>011</option>
+											<option>017</option>
+											<option>018</option>
+											<option>019</option>
+											</select>
+										     <input type="text" class="form-control" name="phone" id="inputPhone" value="${sessionScope.userDTO.phone }" placeholder="123-4567 혹은 1234-5678 형식으로 입력">
+										  </div>
+										</div>
+										   <div class="form-group">
+										  <label for="inputBirth" class="col-sm-4 control-label">생일</label>
+										  <div class="col-sm-8">
+										    <input type="date" class="form-control" name="birthday" value="${sessionScope.userDTO.birthday}" id="inputBirthday" disabled>
+										  </div>
+										</div>
+										<div class="form-group">
+										  <div class="col-sm-offset-2 col-sm-8">
+										    <button type="button"  class="btn btn-outline-secondary"
+										    onclick="return updateUserAccount(preCheckPassword());">수정하기</button>
+										    </div>
+										  </div>
+									</form>
 									</div>
 									</div>
 		  						  </div>
@@ -431,30 +433,62 @@ $(function(){
 
     <script type="text/javascript" src="/resources/js/script.js "></script>
     <script>
-    	(()=>{
-    		var infoBuilder = {
-   				init: function () {
-       				this.initPhoneField();
-       			},
-    			initPhoneField: function () {
-   					var rawPhone = document.getElementById("inputPhone");
-       				var partPhone = rawPhone.value.split("-");
-       				var organizedPhone = partPhone[1] + "-" + partPhone[2];
-       				rawPhone.value = organizedPhone;
+    function preCheckPassword() {
+	    var pw = document.getElementById("password").value;
+	    var pw2 = document.getElementById("password2").value;
+	
+	    if(pw.length == 0) {
+	           alert("비밀번호를 입력해주세요");
+	           return false;
+	     } else {
+	            if(pw != pw2) {
+	                  alert("비밀번호가 일치하지 않습니다.");
+	                  return false;
+	             }
+	     }
+	    return true;
+    }
+    function updateUserAccount(_preCheckPassword) {
+    	var account_form = document.getElementById("account_form");
+		var preCheckPassword = _preCheckPassword;
+		
+		if(preCheckPassword ===  false) {
+			return;
+		}
+// 		console.log(account_form.id);
+		
+		account_form.phone.value = getPrecode() + '-' + account_form.phone.value;
+// 		console.log(getPrecode());
+// 		console.log(account_form.phone.value);
+		account_form.submit();
+		alert("변경된 정보로 로그인을 시도해주세요.")
+	}
+    function getPrecode() {
+    	var phonePrecode = document.getElementById("phonePrecode");
+    	return phonePrecode.value;
+    }
+    
+   	(()=>{
+   		var infoBuilder = {
+  				init: function () {
+      				this.initPhoneField();
+      			},
+   			initPhoneField: function () {
+  					var rawPhone = document.getElementById("inputPhone");
+      				var partPhone = rawPhone.value.split("-");
+      				var organizedPhone = partPhone[1] + "-" + partPhone[2];
+      				rawPhone.value = organizedPhone;
 
-       				this.identifyPreNo(partPhone[0]);
-    			},
-    			identifyPreNo: function (_preNo) {
-    				var preNoPhone = document.getElementById("preNoPhone");
-    				var preNo = _preNo;
-    				preNoPhone.value = preNo;
-    			}, 
-    			updateUserAccount: function () {
-    				console.log("test");
-    			},
-    		};
-    		infoBuilder.init();
-    	})();
+      				this.identifyPrecode(partPhone[0]);
+   			},
+   			identifyPrecode: function (_precode) {
+   				var phonePrecode = document.getElementById("phonePrecode");
+   				var precode = _precode;
+   				phonePrecode.value = precode;
+   			}
+   		};
+   		infoBuilder.init();
+   	})();
     </script>
 </body>
 </html>

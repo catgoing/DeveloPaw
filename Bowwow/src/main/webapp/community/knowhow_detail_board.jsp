@@ -240,7 +240,7 @@ footer.footer.navbar-wrapper {
 																<label style="color:black;">조회 ${vo.hits }</label>
 															</h6>
 															</div>
-														</div>
+														</div>															
 														<hr>
 													
 													<!-- 여기에 회원정보(사진, 닉네임 등) 출력 -->
@@ -257,8 +257,8 @@ footer.footer.navbar-wrapper {
 																		</div>
 																	</div>
 																</div>
-
 														</form>
+
 														<hr>
 															
 													<div style="border: solid 1px lightgray; border-radius : 5px; margin : 10px">
@@ -362,7 +362,7 @@ footer.footer.navbar-wrapper {
 		<!-- footer 푸터 영역 -->
 		<%@ include file="/common/storeFoot.jsp"%>
 		<!-- footer 푸터 영역 -->
-		<div class="fixed-button active"><a href="/community/write_combination.jsp" class="btn btn-md btn-primary"> 글쓰기</a> </div>
+		<div class="fixed-button active"><a href="/community/write_knowhow_board.jsp" class="btn btn-md btn-primary"> 글쓰기</a> </div>
 		
 
 	</div>

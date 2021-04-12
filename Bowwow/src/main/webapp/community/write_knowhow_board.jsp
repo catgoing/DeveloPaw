@@ -29,8 +29,15 @@
 	rel="stylesheet">
 <script
 	src="http://cdnjs.cloudflare.com/ajax/libs/summernote/0.8.8/summernote.js"></script>
+	
+<script src="/resources/jquery.twbs-toggle-buttons.min.js"></script>
 
 <style>
+
+#board_title{
+	font-size:22px; display:inline-block; width:100%; background-color:transparent; border:none;
+	cursor : text;
+}
 
 footer.footer.navbar-wrapper {
     z-index: 3;
@@ -85,6 +92,14 @@ th {
 }
 </style>
 <script>
+$(function (){
+	$(".btn-group-toggle").twbsToggleButtons();
+});
+
+$(document).ready(function(){
+	 $('input:radio').radiocharm();
+	 });
+
 $(function (){
 	var board_idx = ${board_idx};
 	board_idx = board_idx + 3;
@@ -179,6 +194,18 @@ $(function (){
 		//확인 버튼 누르면 hidden img_locas 값으로 boardVO에 전달
 		$(".imgs").append('<input type="hidden" name="img_locas" value="' + imgar + '">');
 	}
+	
+	 function null_check(){
+		 var title = document.getElementById('title').value;
+			if(title == "" || title == null){
+				alert("제목을 입력해주세요");
+				fr.title.focus();
+				return false;
+			}
+			
+			else return true;
+			
+			}
 </script>
 
 </head>
@@ -215,28 +242,46 @@ $(function (){
 											<div class="container">
 												<hr>
 
-												<form action="insertBoard" method="post" enctype="multipart/form-data">
+												<form action="insertBoard" method="post" enctype="multipart/form-data"
+												name="fr" onsubmit="return null_check()">
+													    <div class="card-body">
+													      <div class="btn-group btn-group-toggle" data-toggle="buttons">
+													        <label for="dog" class="btn" role="button">강아지
+												          		<input id="dog" type="radio" name="animal_class" value="1">
+												          	</label>
+													       	 <label for="cat" class="btn" role="button">고양이
+												          <input id="cat"type="radio" name="animal_class" value="2">
+												          </label>
+													        <label class="btn active" role="button">
+													          <input type="radio" name="animal_class" value="3" checked="checked" >자유
+													        </label>
+													      </div>
+													    </div>
 													<div>
-														<input type="radio" name="animal_class" value="1">
-														강아지 <input type="radio" name="animal_class" value="2">
-														고양이 <input type="radio" name="animal_class" value="3" checked="checked">
-														자유
-													</div>
-													<div>
-														<input type="radio" name="sub_class" value="1">
-														생활꿀팁 <input type="radio" name="sub_class" value="2">
-														급여/식이 <input type="radio" name="sub_class" value="3" checked="checked">
-														교육/훈련
+													    <div class="card-body">
+													      <div class="btn-group btn-group-toggle" data-toggle="buttons">
+													        <label for="dog" class="btn active" role="button" >교육/훈련
+												          		<input id="dog" type="radio" name="sub_class" value="0" checked="checked">
+												          	</label>
+													       	 <label for="cat" class="btn" role="button">급여/식이
+												          <input id="cat"type="radio" name="sub_class" value="1">
+												          </label>
+													        <label class="btn" role="button">건강
+													          <input type="radio" name="sub_class" value="2">
+													        </label>
+													        <label class="btn" role="button">생활꿀팁
+													          <input type="radio" name="sub_class" value="3" checked="checked" >
+													        </label>
+													      </div>
+													    </div>
 													</div>
 													<br>
 
-													<table>
-														<tr>
-															<th width="40">제목</th>
-															<td><input type="text" name="board_title" size="30">
-															</td>
-														</tr>
-													</table>
+													<div class="title-container" style="background-color : #f7f2f2; width : 100%; margin:auto; padding:15px; border-radius : 10px">
+															<div class="title">
+															<input type="text" id="board_title" name="board_title" placeholder="제목">
+															</div>		
+															</div>	
 													<br>
 
 													<textarea id="summernote" name="board_content"></textarea>
@@ -248,8 +293,8 @@ $(function (){
 													<input type="hidden" name="member_serial" value="994">
 													<input type="hidden" name="board_idx" value="1">
 													
-													<div style="text-align: center" class="enter_button">
-														<input type="submit" value="확인">
+													<div style="text-align: center;" class="enter_button">
+														<input type="submit" style="font-size:17px; width:100px; height:50px; border-radius:5px" value="등록">
 													</div>
 
 												</form>
@@ -268,34 +313,9 @@ $(function (){
 				</div>
 			</div>
 		</div>
-		<button class="scroll-top" id="js-button" style="margin-bottom: 190px; margin-right: 30px; font: 'Jua'">
-			<i class="fa fa-chevron-up" aria-hidden="true">TOP</i>
-		</button>
-		<script type="text/javascript">
-			scrollTop('js-button', 100);
-			function scrollTop(elem, duration) {
-				let target = document.getElementById(elem);
-
-				target.addEventListener('click', function() {
-					let currentY = window.pageYOffset;
-					let step = duration / currentY > 1 ? 10 : 100;
-					let timeStep = duration / currentY * step;
-					let intervalID = setInterval(scrollUp, timeStep);
-
-					function scrollUp() {
-						currentY = window.pageYOffset;
-						if (currentY === 0) {
-							clearInterval(intervalID);
-						} else {
-							scrollBy(0, -step);
-						}
-					}
-				});
-			}
-		</script>
 
 		<!-- footer 푸터 영역 -->
-		<%@ include file="/common/footer.jsp"%>
+		<%@ include file="/common/storeFoot.jsp"%>
 		<!-- footer 푸터 영역 -->
 
 	</div>

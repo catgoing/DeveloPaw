@@ -160,7 +160,7 @@ input{
 		</button> -->
 		
 		<!-- footer 푸터 영역 -->
-		<%@ include file="/common/footer.jsp"%>
+		<%@ include file="/common/storeFoot.jsp"%>
 		<!-- footer 푸터 영역 -->
 		<div class="fixed-button active"><a href="/community/write_used_transaction_board.jsp" class="btn btn-md btn-primary"> 글쓰기</a> </div>
 

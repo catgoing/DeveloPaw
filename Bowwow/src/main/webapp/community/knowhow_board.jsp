@@ -85,7 +85,7 @@ $(function (){
 													<ul>
 														<c:forEach var="list" items="${ boardList}">
 															<li style="background-color : #f7f2f2; margin:5px; border-radius:10px">
-																<div class="block-item default-item col-lg-3-3 col-md-4 col-sm-6" onclick="location.href='/community/detail?board_idx=${board_idx }&board_no=${list.board_no}'">
+																<div class="block-item default-item col-lg-3-3 col-md-4 col-sm-6" onclick="location.href='/community/knowhow_detail?board_idx=${board_idx }&board_no=${list.board_no}'">
 																<div class="best-label"><br></div>
 																	<div class="img-area" style="width:300px; height:300px;">
 																		<div class="imgItem" style="width:300px; height:300px;">
@@ -117,7 +117,7 @@ $(function (){
 																		<div class="item-title" style="width:300px; color:black;">
 																			<a href="/community/detail?board_idx=${board_idx }&board_no=${list.board_no}">
 																			</a>
-																			<input type="text" maxlength="15" value="${list.board_title }" style="text-overflow: ellipsis" >
+																			<input type="text" maxlength="15" value="${list.board_title }" style="text-overflow: ellipsis" readonly >
 																			<span style="postion:inline-block;float:right;margin-top:8px;">${list.regdate }</span>
 																		</div>
 																		<div class="item-items">
@@ -163,9 +163,9 @@ $(function (){
 		
 		
 		<!-- footer 푸터 영역 -->
-		<%@ include file="/common/footer.jsp"%>
+		<%@ include file="/common/storeFoot.jsp"%>
 		<!-- footer 푸터 영역 -->
-		<div class="fixed-button active"><a href="/community/write_combination.jsp" class="btn btn-md btn-primary"> 글쓰기</a> </div>
+		<div class="fixed-button active"><a href="/community/write_knowhow_board.jsp" class="btn btn-md btn-primary"> 글쓰기</a> </div>
 
 
 	</div>

@@ -1,9 +1,7 @@
-<%@page import="ga.bowwow.service.board.Board"%>
-<%@page import="java.util.List"%>
-<%@page import="ga.bowwow.service.board.impl.BoardDAO"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+
 <!DOCTYPE html>
 
 <html>
@@ -26,31 +24,15 @@
 <link
 	href="http://cdnjs.cloudflare.com/ajax/libs/summernote/0.8.8/summernote.css"
 	rel="stylesheet">
-	
-<script	src="http://cdnjs.cloudflare.com/ajax/libs/summernote/0.8.8/summernote.js"></script>
-
-<script src="/resources/jquery.twbs-toggle-buttons.min.js"></script>
-
+<script
+	src="http://cdnjs.cloudflare.com/ajax/libs/summernote/0.8.8/summernote.js"></script>
 
 <style>
-
-input[type="radio"]:checked  + label{
- background-color:red;
-}
-
-input:checked + label {
-	background-color:red;
-  color: red;
-}
-
-#board_title{
-	font-size:22px; display:inline-block; width:100%; background-color:transparent; border:none;
-	cursor : text;
-}
 
 footer.footer.navbar-wrapper {
     z-index: 3;
 }
+
 #container {
 	width: 700px;
 	margin: 0 auto;
@@ -100,17 +82,20 @@ th {
 }
 </style>
 <script>
-$(function (){
-	$(".btn-group-toggle").twbsToggleButtons();
-});
-
-$(function (){
-	var board_idx = ${board_idx};
-	board_idx = board_idx + 3;
-	$(".pcoded-inner-navbar>ul:nth-child(" + board_idx + ")>li>a").addClass("side_active");
-});
-
+	$(function (){
+		var board_idx = ${board_idx};
+		board_idx = board_idx + 3;
+		$(".pcoded-inner-navbar>ul:nth-child(" + board_idx + ")>li>a").addClass("side_active");
+		
+		var area = ${vo.area};
+		area = area + 1;
+		$(".area>option:nth-child(" + area + ")").attr("selected", "selected");
+		
+	});
+	
 	$(function() {
+		$('#summernote').val('${vo.board_content}');
+		
 		$('#summernote').summernote({
 			placeholder : '최대 500자 작성 가능합니다.',
 			height : 300,
@@ -133,9 +118,9 @@ $(function (){
 		});
 	});
 
-	$('#summernote').on('summernote.change', function(we, contents, $editable) {
+/* 	$('#summernote').on('summernote.change', function(we, contents, $editable) {
 		console.log('summernote\'s content is changed.');
-	});
+	}); */
 
 	function uploadSummernoteImageFile(file, el) {
 
@@ -200,13 +185,17 @@ $(function (){
 	}
 	
 	 function null_check(){
+		 var price = document.getElementById('price').value;
 		 var title = document.getElementById('title').value;
-
-		 if(title == "" || title == null){
+			if(price == "" || price == null){
+				alert("가격을 입력해주세요");
+				fr.price.focus();
+				return false;
+			} else if(title == "" || title == null){
 				alert("제목을 입력해주세요");
 				fr.title.focus();
 				return false;
-			} 
+			}
 			
 			else return true;
 			
@@ -247,34 +236,114 @@ $(function (){
 											<div class="container">
 												<hr>
 
-												<form action="insertBoard" method="post" enctype="multipart/form-data"
-												name="fr" onsubmit="return null_check()">
-												<!-- 	<div>
+												<form action="/community/do-update/board" method="post" enctype="multipart/form-data"
+												 name="fr" onsubmit="return null_check()">
+													<div>
 														<input type="radio" name="animal_class" value="1">
 														강아지 <input type="radio" name="animal_class" value="2">
 														고양이 <input type="radio" name="animal_class" value="3" checked="checked">
 														자유
-													</div> -->
-													    <div class="card-body">
-													      <div class="btn-group btn-group-toggle" data-toggle="buttons">
-													        <label for="dog" class="btn" role="button">강아지
-												          		<input id="dog" type="radio" name="animal_class" value="1">
-												          	</label>
-													       	 <label for="cat" class="btn" role="button">고양이
-												          <input id="cat"type="radio" name="animal_class" value="2">
-												          </label>
-													        <label class="btn active" role="button">
-													          <input type="radio" name="animal_class" value="3" checked="checked" >자유
-													        </label>
-													      </div>
-													    </div>
+													</div>
 													<br>
 
-														<div class="title-container" style="background-color : #f7f2f2; width : 100%; margin : auto; padding : 15px; border-radius : 10px">
-															<div class="title">
-															<input type="text" id="board_title" name="board_title" placeholder="제목" >
-															</div>		
-															</div>				
+													<table>
+														<tr>
+															<th width="40">제목</th>
+															<td><input type="text" id="title" name="board_title" value="${vo.board_title }" size="30">
+															</td>
+														</tr>
+														<c:set var="goods" value="${vo.goods }"/>
+														<tr>
+														
+															<th width="40">상품종류</th>
+															<td>
+														<c:if test="${goods == 0 }">														
+								                    			<select name="goods" style="height:20px">
+												                   	<option value="0" selected>식품</option>
+														            <option value="1">장난감</option>
+														            <option value="2">의류</option>
+														            <option value="3">생활용품</option>
+														            <option value="4">기타</option>
+										                    	</select>
+														</c:if>
+														<c:if test="${goods == 1 }">														
+								                    			<select name="goods" style="height:20px">
+												                   	<option value="0">식품</option>
+														            <option value="1" selected>장난감</option>
+														            <option value="2">의류</option>
+														            <option value="3">생활용품</option>
+														            <option value="4">기타</option>
+										                    	</select>
+														</c:if>
+														<c:if test="${goods == 2 }">														
+								                    			<select name="goods" style="height:20px">
+												                   	<option value="0">식품</option>
+														            <option value="1">장난감</option>
+														            <option value="2" selected>의류</option>
+														            <option value="3">생활용품</option>
+														            <option value="4">기타</option>
+										                    	</select>
+														</c:if>
+														<c:if test="${goods == 3 }">														
+								                    			<select name="goods" style="height:20px">
+												                   	<option value="0">식품</option>
+														            <option value="1">장난감</option>
+														            <option value="2">의류</option>
+														            <option value="3" selected>생활용품</option>
+														            <option value="4">기타</option>
+										                    	</select>
+														</c:if>
+														<c:if test="${goods == 4 }">														
+								                    			<select name="goods" style="height:20px">
+												                   	<option value="0">식품</option>
+														            <option value="1">장난감</option>
+														            <option value="2">의류</option>
+														            <option value="3">생활용품</option>
+														            <option value="4" selected>기타</option>
+										                    	</select>
+														</c:if>
+															</td>
+														</tr>
+																			
+														<tr>
+															<th width="40">지역</th>
+															<td>
+								                    			<select class="area" name="area" style="height:20px">
+												                   	<option value="0" selected>서울</option>
+														            <option value="1">경기</option>
+														            <option value="2">인천</option>
+														            <option value="3">대구</option>
+														            <option value="4">부산</option>
+														            <option value="5">울산</option>
+														            <option value="6">광주</option>
+														            <option value="7">강원</option>
+														            <option value="8">충북</option>
+														            <option value="9">충남</option>
+														            <option value="10">경북</option>
+														            <option value="11">경남</option>
+														            <option value="12">전북</option>
+														            <option value="13">전남</option>
+														            <option value="14">제주</option>
+										                    	</select>
+															</td>
+														</tr>
+														<tr>
+															<th width="40">판매 여부</th>
+															<td>
+								                    			<select name="is_selled" style="height:20px">
+												                   	<option value="0" selected>판매 중</option>
+														            <option value="1">판매 완료</option>
+										                    	</select>
+															</td>
+														</tr>
+														<tr>
+															<th width="40">가격</th>
+															<td>
+																<input type="text" id="price" name="price"  value="${vo.price }" size="30">
+															</td>
+														</tr>
+														
+													</table>
 													<br>
 
 													<textarea id="summernote" name="board_content"></textarea>
@@ -283,10 +352,10 @@ $(function (){
 													<br> <br>
 													
 													<input type="hidden" name="member_serial" value="994">
-													<input type="hidden" name="board_idx" value="${board_idx }">
-													
-													<div style="text-align: center;" class="enter_button">
-														<input type="submit" style="font-size:17px; width:100px; height:50px; border-radius:5px" value="등록">
+													<input type="hidden" name="board_idx" value="5">
+													<input type="hidden" name="board_no" value="${vo.board_no }">
+													<div style="text-align: center" class="enter_button">
+														<input type="submit" value="확인">
 													</div>
 
 												</form>
@@ -308,6 +377,29 @@ $(function (){
 		<button class="scroll-top" id="js-button" style="margin-bottom: 190px; margin-right: 30px; font: 'Jua'">
 			<i class="fa fa-chevron-up" aria-hidden="true">TOP</i>
 		</button>
+		<script type="text/javascript">
+			scrollTop('js-button', 100);
+			function scrollTop(elem, duration) {
+				let target = document.getElementById(elem);
+
+				target.addEventListener('click', function() {
+					let currentY = window.pageYOffset;
+					let step = duration / currentY > 1 ? 10 : 100;
+					let timeStep = duration / currentY * step;
+					let intervalID = setInterval(scrollUp, timeStep);
+
+					function scrollUp() {
+						currentY = window.pageYOffset;
+						if (currentY === 0) {
+							clearInterval(intervalID);
+						} else {
+							scrollBy(0, -step);
+						}
+					}
+				});
+			}
+		</script>
+
 		<!-- footer 푸터 영역 -->
 		<%@ include file="/common/storeFoot.jsp"%>
 		<!-- footer 푸터 영역 -->

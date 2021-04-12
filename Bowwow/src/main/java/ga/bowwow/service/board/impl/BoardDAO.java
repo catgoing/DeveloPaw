@@ -31,46 +31,10 @@ public class BoardDAO {
 	//글 입력
 	public void insertBoard(Board vo) {
 		System.out.println("===> MyBatis로 insertBoard() 실행");
-		Map<String, Object> map = new HashMap<String, Object>();
-		map.put("board_idx", vo.getBoard_idx());
-//		map.put("board_idx", 1);
-//		map.put("board", vo);
 		
-		map.put("board_title", vo.getBoard_title());
-		map.put("member_serial", vo.getMember_serial());
-		map.put("board_content", vo.getBoard_content());
-		map.put("board_scontent", vo.getBoard_scontent());
-		map.put("img1", vo.getImg1());
-		map.put("animal_class", vo.getAnimal_class());
-		map.put("goods", vo.getGoods());
-		map.put("area", vo.getArea());
-		map.put("price", vo.getPrice());
-		map.put("is_selled", vo.getIs_selled());
-		
-		mybatis.insert("BoardDAO.insertBoard", map);
+		mybatis.insert("BoardDAO.insertBoard", vo);
 		System.out.println("boarddao : " + vo);
 	}
-//	//글 입력
-//	public void insertBoard(int board_idx, int board_no, Board vo) {
-//		System.out.println("===> MyBatis로 insertBoard() 실행");
-//		Map<String, Object> map = new HashMap<String, Object>();
-//		map.put("board_idx", board_idx);
-//		map.put("board_no", board_no);
-//		map.put("board", vo);
-//		
-////		map.put("board_title", vo.getBoard_title());
-////		map.put("member_serial", vo.getMember_serial());
-////		map.put("board_content", vo.getBoard_content());
-////		map.put("img1", vo.getImg1());
-////		map.put("animal_class", vo.getAnimal_class());
-////		map.put("goods", vo.getGoods());
-////		map.put("area", vo.getArea());
-////		map.put("price", vo.getPrice());
-////		map.put("is_selled", vo.getIs_selled());
-//		
-//		mybatis.insert("BoardDAO.insertBoard", map);
-//		System.out.println("boarddao : " + vo);
-//	}
 	
 	//글 수정
 	public void updateBoard(Board vo, HttpSession session) {
@@ -106,6 +70,15 @@ public class BoardDAO {
 //		System.out.println("dao board_name: " + board_name);
 		
 		return mybatis.selectList("BoardDAO.getBoardList", map);
+	}
+	
+	public List<Board> getMainList(int board_idx) {
+		Map<String, Integer> map = new HashMap<String, Integer>();
+		map.put("board_idx", board_idx);
+		System.out.println("===> MyBatis로 getBoardList() 실행-vo");
+//		System.out.println("dao board_name: " + board_name);
+		
+		return mybatis.selectList("BoardDAO.getMainList", map);
 	}
 	
 	

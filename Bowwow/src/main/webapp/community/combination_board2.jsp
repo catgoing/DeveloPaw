@@ -47,32 +47,18 @@
 	<!-- Style.css -->
 	<link rel="stylesheet" type="text/css" href="/resources/css/style.css">
 	<link rel="stylesheet" type="text/css" href="/resources/css/test.css">
-	
-<title>펫 다이어리</title>
+
 <style>
+.carousel-inner>.carousel-item>a img {  width: 300px; height: 400px; 
+}
+
+
 .featured__item__text {
 	width: 150px;
 }
-
-.block-item:hover{
-	cursor:pointer;
-}
-.active {
-	background-color : #f7b5b7;
-    -webkit-box-shadow: 0 15px 8px -11px rgba(0, 0, 0, 0.25);
-    box-shadow: 0 15px 8px -11px rgba(0, 0, 0, 0.25);
-}
 </style>
-<script>
-	$(function (){
-		var board_idx = ${board_idx};
-		board_idx = board_idx + 3;
-		$(".pcoded-inner-navbar>ul:nth-child(" + board_idx + ")>li>a").addClass("active");
-	});
-</script>
 </head>
 <body>
-
    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
       integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo"
       crossorigin="anonymous"></script>
@@ -84,111 +70,62 @@
       src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"
       integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM"
       crossorigin="anonymous"></script>
+   <script> $('.carousel').carousel({ interval: 2000  }) </script>
 
 	<div id="pcoded" class="pcoded">
 		<div class="pcoded-overlay-box"></div>
 		<div class="pcoded-container navbar-wrapper">
 
-			<!-- header 헤더 영역 -->
-			<%@ include file="/common/header.jsp"%>
-			<!-- header 헤더 영역 -->
-			
+			<%@include file="/common/header.jsp"%>
+
 			<div class="pcoded-main-container">
 				<div class="pcoded-wrapper">
 
-					<!-- sidebar 좌측메뉴바 -->
 					<%@include file="/common/storeMenuBar.jsp"%>
-					<!-- sidebar 좌측메뉴바 -->
-
 					<div class="pcoded-content">
-
-						<!-- Page-header start -->
-
-						<!-- Page-header end -->
 						<div class="pcoded-inner-content">
-
-							<!-- body 본문 영역 -->
-							<div class="main-body">
-								<div class="page-wrapper">
-									<!-- Page-body start -->
-									<div class="page-body">
-										<section class="featured spad">
-											<div class="container">
-												<div class="row">
-													<div class="col-lg-12">
-														<div class="section-title">
-															
-														</div>
-														<br>
-													</div>
-												</div>
-												<div class="monthly-products">
-													<ul>
-														<c:forEach var="list" items="${ boardList}">
-															<li style="background-color : #f7f2f2; margin:5px; border-radius:10px">
-																<div class="block-item default-item col-lg-3 col-md-4 col-sm-6" onclick="location.href='/community/detail?board_idx=${board_idx }&board_no=${list.board_no}'">
-																	<div class="best-label">${list.board_no }</div>
-																	<div class="img-area" style="width:300px; height:300px;"
-																		onclick="location.href='/board/knowhow/311'">
-																		<div class="imgItem" style="width:300px; height:300px;">
-																			<img src='https://projectbit.s3.us-east-2.amazonaws.com/${list.img1 }' onerror='this.src="/resources/images/alt_img.png"' width="100%" height="100%">
-																		</div>
-																	</div>
-																	<br>
-																	<div class="text-area">
-																		<div class="item-title" style="width:300px; color:black;">
-																			<a href="/community/detail?board_idx=${board_idx }&board_no=${list.board_no}">
-																			</a><span style="font-size:22px;">${list.board_title }</span>
-																			<span style="postion:inline-block;float:right">${list.regdate }</span>
-																		</div>
-																		<div class="item-items">
-																			<div class="profile" style="width:300px;">
-																				<span>${list.nickname }</span>
-																				<span style="float:right">조회수 ${list.hits }</span>
-																				<br>
-																				<br>
-																			</div>
-																			<div class="profile" style="margin-right:0">
-																			</div>
-																		</div>
-																	</div>
-																</div>
-															</li>
-														</c:forEach>
-													</ul>
-												</div>
-												<br>
-												<div>
-										<%@include file="/common/paging.jsp"%>
-												</div>
-											</div>
-										</section>
-										
+                     		<!-- body 본문 영역 -->
+							<div id="demo" class="carousel slide" data-ride="carousel">
+								<div class="carousel-inner">
+									<!-- 슬라이드 쇼 -->
+									<div class="carousel-item active">
+										<a href="/account/signup"><img class="d-block w-100" src="/resources/images/storeBanner1.jpg" alt="Second slide"></a>
 									</div>
-
+									<div class="carousel-item">
+										<a href="/account/signup"><img class="d-block w-100" src="/resources/images/storeBanner2.jpg" alt="Third slide"></a>
+									</div>
+									<!-- / 슬라이드 쇼 끝 -->
+									<!-- 왼쪽 오른쪽 화살표 버튼 -->
+									<a class="carousel-control-prev" href="#demo" data-slide="prev">
+										<span class="carousel-control-prev-icon" aria-hidden="true"></span>
+										<!-- <span>Previous</span> -->
+									</a> <a class="carousel-control-next" href="#demo"
+										data-slide="next"> <span
+										class="carousel-control-next-icon" aria-hidden="true"></span>
+										<!-- <span>Next</span> -->
+									</a>
+									<!-- / 화살표 버튼 끝 -->
+									<!-- 인디케이터 -->
+									<ul class="carousel-indicators">
+										<li data-target="#demo" data-slide-to="0" class="active"></li>
+										<!--0번부터시작-->
+										<li data-target="#demo" data-slide-to="1"></li>
+									</ul>
+									<!-- 인디케이터 끝 -->
 								</div>
-								<!-- Page-body end -->
 							</div>
-							<!-- body 본문 영역 -->
-
-							<div id="styleSelector"></div>
+							<section class="shopping-cart spad" style="margin : 20px;">
+								<div class="container">
+									<div class="row">
+									</div>
+								</div>
+							</section>
 						</div>
-					</div>
 				</div>
 			</div>
 		</div>
-		
-		</div>
-	
-		
-<!-- 		<button class="scroll-top" id="js-button"
-			style="margin-bottom: 190px; margin-right: 30px; font: 'Jua'">
-			<i class="fa fa-chevron-up" aria-hidden="true">TOP</i>
-		</button> -->
-		
-		<!-- footer 푸터 영역 -->
-		<!-- footer 푸터 영역 -->
-
+	</div>
+	</div>
 	<%@include file="/common/storeFoot.jsp"%>
 	<!-- Required Jquery -->
 	<script type="text/javascript" src="/resources/js/jquery/jquery.min.js "></script>
@@ -208,13 +145,5 @@
 	<script src="/resources/js/vertical/vertical-layout.min.js "></script>
 
 	<script type="text/javascript" src="/resources/js/script.js "></script>
-
 </body>
 </html>
-
-
-
-
-
-
-																			

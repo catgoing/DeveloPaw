@@ -4,6 +4,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<%@ taglib uri="http://tiles.apache.org/tags-tiles" prefix="tiles"%>
 <!DOCTYPE html>
 
 <html>
@@ -26,31 +27,15 @@
 <link
 	href="http://cdnjs.cloudflare.com/ajax/libs/summernote/0.8.8/summernote.css"
 	rel="stylesheet">
-	
-<script	src="http://cdnjs.cloudflare.com/ajax/libs/summernote/0.8.8/summernote.js"></script>
-
-<script src="/resources/jquery.twbs-toggle-buttons.min.js"></script>
-
+<script
+	src="http://cdnjs.cloudflare.com/ajax/libs/summernote/0.8.8/summernote.js"></script>
 
 <style>
-
-input[type="radio"]:checked  + label{
- background-color:red;
-}
-
-input:checked + label {
-	background-color:red;
-  color: red;
-}
-
-#board_title{
-	font-size:22px; display:inline-block; width:100%; background-color:transparent; border:none;
-	cursor : text;
-}
 
 footer.footer.navbar-wrapper {
     z-index: 3;
 }
+
 #container {
 	width: 700px;
 	margin: 0 auto;
@@ -101,16 +86,14 @@ th {
 </style>
 <script>
 $(function (){
-	$(".btn-group-toggle").twbsToggleButtons();
-});
-
-$(function (){
 	var board_idx = ${board_idx};
 	board_idx = board_idx + 3;
 	$(".pcoded-inner-navbar>ul:nth-child(" + board_idx + ")>li>a").addClass("side_active");
 });
 
 	$(function() {
+		$('#summernote').val('${vo.board_content}');
+		
 		$('#summernote').summernote({
 			placeholder : '최대 500자 작성 가능합니다.',
 			height : 300,
@@ -201,12 +184,11 @@ $(function (){
 	
 	 function null_check(){
 		 var title = document.getElementById('title').value;
-
-		 if(title == "" || title == null){
+			if(title == "" || title == null){
 				alert("제목을 입력해주세요");
 				fr.title.focus();
 				return false;
-			} 
+			}
 			
 			else return true;
 			
@@ -249,32 +231,60 @@ $(function (){
 
 												<form action="insertBoard" method="post" enctype="multipart/form-data"
 												name="fr" onsubmit="return null_check()">
-												<!-- 	<div>
-														<input type="radio" name="animal_class" value="1">
-														강아지 <input type="radio" name="animal_class" value="2">
-														고양이 <input type="radio" name="animal_class" value="3" checked="checked">
-														자유
-													</div> -->
-													    <div class="card-body">
-													      <div class="btn-group btn-group-toggle" data-toggle="buttons">
-													        <label for="dog" class="btn" role="button">강아지
-												          		<input id="dog" type="radio" name="animal_class" value="1">
-												          	</label>
-													       	 <label for="cat" class="btn" role="button">고양이
-												          <input id="cat"type="radio" name="animal_class" value="2">
-												          </label>
-													        <label class="btn active" role="button">
-													          <input type="radio" name="animal_class" value="3" checked="checked" >자유
-													        </label>
-													      </div>
-													    </div>
+													<div>
+													<c:set var="class1" value="${vo.animal_class }"/>
+														<c:if test="${class1 eq '1' }">
+															<input type="radio" name="animal_class" value="1" checked="checked"> 강아지
+															<input type="radio" name="animal_class" value="2"> 고양이 
+															<input type="radio" name="animal_class" value="3"> 자유
+														</c:if>
+														<c:if test="${class1 eq '2' }">
+															<input type="radio" name="animal_class" value="1">강아지 
+															<input type="radio" name="animal_class" value="2" checked="checked">고양이 
+															<input type="radio" name="animal_class" value="3">자유
+														</c:if>
+														<c:if test="${class1 eq '3' }">
+															<input type="radio" name="animal_class" value="1">강아지 
+															<input type="radio" name="animal_class" value="2">고양이 
+															<input type="radio" name="animal_class" value="3" checked="checked">자유
+														</c:if>
+													</div>
+													<div>
+													<c:set var="sub_class" value="${vo.sub_class }"/>
+														<c:if test="${sub_class eq '0' }">
+															<input type="radio" name="sub_class" value="0" checked="checked"> 교육/훈련
+															<input type="radio" name="sub_class" value="1"> 급여/식이
+															<input type="radio" name="sub_class" value="2"> 건강
+															<input type="radio" name="sub_class" value="3"> 생활꿀팁
+														</c:if>
+														<c:if test="${sub_class eq '1' }">
+															<input type="radio" name="sub_class" value="0">교육/훈련
+															<input type="radio" name="sub_class" value="1" checked="checked">급여/식이
+															<input type="radio" name="sub_class" value="2">건강
+															<input type="radio" name="sub_class" value="3">생활꿀팁
+														</c:if>
+														<c:if test="${sub_class eq '2' }">
+															<input type="radio" name="sub_class" value="0">교육/훈련
+															<input type="radio" name="sub_class" value="1">급여/식이
+															<input type="radio" name="sub_class" value="2" checked="checked"> 건강
+															<input type="radio" name="sub_class" value="3">생활꿀팁
+														</c:if>
+														<c:if test="${sub_class eq '3' }">
+															<input type="radio" name="sub_class" value="0">교육/훈련
+															<input type="radio" name="sub_class" value="1">급여/식이
+															<input type="radio" name="sub_class" value="2">건강
+															<input type="radio" name="sub_class" value="3" checked="checked">생활꿀팁
+														</c:if>
+													</div>
 													<br>
 
-														<div class="title-container" style="background-color : #f7f2f2; width : 100%; margin : auto; padding : 15px; border-radius : 10px">
-															<div class="title">
-															<input type="text" id="board_title" name="board_title" placeholder="제목" >
-															</div>		
-															</div>				
+													<table>
+														<tr>
+															<th width="40">제목</th>
+															<td><input type="text" name="board_title" value="${vo.board_title}" size="30">
+															</td>
+														</tr>
+													</table>
 													<br>
 
 													<textarea id="summernote" name="board_content"></textarea>
@@ -282,11 +292,12 @@ $(function (){
 													<div class="imgs"></div>
 													<br> <br>
 													
+												
 													<input type="hidden" name="member_serial" value="994">
-													<input type="hidden" name="board_idx" value="${board_idx }">
-													
-													<div style="text-align: center;" class="enter_button">
-														<input type="submit" style="font-size:17px; width:100px; height:50px; border-radius:5px" value="등록">
+													<input type="hidden" name="board_idx" value="3">
+													<input type="hidden" name="board_no" value="${vo.board_no }">
+													<div style="text-align: center" class="enter_button">
+														<input type="submit" value="확인">
 													</div>
 
 												</form>
@@ -308,6 +319,29 @@ $(function (){
 		<button class="scroll-top" id="js-button" style="margin-bottom: 190px; margin-right: 30px; font: 'Jua'">
 			<i class="fa fa-chevron-up" aria-hidden="true">TOP</i>
 		</button>
+		<script type="text/javascript">
+			scrollTop('js-button', 100);
+			function scrollTop(elem, duration) {
+				let target = document.getElementById(elem);
+
+				target.addEventListener('click', function() {
+					let currentY = window.pageYOffset;
+					let step = duration / currentY > 1 ? 10 : 100;
+					let timeStep = duration / currentY * step;
+					let intervalID = setInterval(scrollUp, timeStep);
+
+					function scrollUp() {
+						currentY = window.pageYOffset;
+						if (currentY === 0) {
+							clearInterval(intervalID);
+						} else {
+							scrollBy(0, -step);
+						}
+					}
+				});
+			}
+		</script>
+
 		<!-- footer 푸터 영역 -->
 		<%@ include file="/common/storeFoot.jsp"%>
 		<!-- footer 푸터 영역 -->

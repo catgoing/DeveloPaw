@@ -65,6 +65,11 @@ public class BoardServiceImpl implements BoardService{
 	public List<Board> getBoardList(Map<String, String> map) {
 		return boardDAO.getBoardList(map);
 	}
+	
+	@Override
+	public List<Board> getMainList(int board_idx) {
+		return boardDAO.getMainList(board_idx);
+	}
 
 	
 

@@ -95,9 +95,7 @@
 		SET PASSWORD = #{password}
 		, EMAIL = #{email}
 		, PHONE = #{phone}
-		, NICKNAME,
-		, PASSWORD
-		, IMAGE_SOURCE
+		, NICKNAME = #{nickname}
 		WHERE ID = #{id}
 	</update>
 

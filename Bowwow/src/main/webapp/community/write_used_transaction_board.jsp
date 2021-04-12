@@ -1,10 +1,7 @@
-<%@page import="ga.bowwow.service.board.Board"%>
-<%@page import="java.util.List"%>
-<%@page import="ga.bowwow.service.board.impl.BoardDAO"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
-<%@ taglib uri="http://tiles.apache.org/tags-tiles" prefix="tiles"%>
+
 <!DOCTYPE html>
 
 <html>
@@ -29,8 +26,18 @@
 	rel="stylesheet">
 <script
 	src="http://cdnjs.cloudflare.com/ajax/libs/summernote/0.8.8/summernote.js"></script>
+	
+<link href="https://www.jqueryscript.net/css/jquerysctipttop.css" rel="stylesheet" type="text/css">
+<link rel="stylesheet" href="https://netdna.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+<link href="/resources/jquery-radiocharm.css" rel="stylesheet" type="text/css">
+<script src="/resources/jquery-radiocharm.js"></script>
 
 <style>
+
+#board_title{
+	font-size:22px; display:inline-block; width:100%; background-color:transparent; border:none;
+	cursor : text;
+}
 
 footer.footer.navbar-wrapper {
     z-index: 3;
@@ -91,8 +98,13 @@ $(function (){
 	$(".pcoded-inner-navbar>ul:nth-child(" + board_idx + ")>li>a").addClass("side_active");
 });
 
+/*  	$(function() {
+		 $('#summernote').summernote('code', '지역 상세 : <br> 가격 : <br> 구매일 : <br> 상품 상태 : <br> 거래 방법 : 택배 / 직거래 <br> 상품 설명 : ');
+	});  */
+	
+	
 	$(function() {
-		$('#summernote').summernote('code', '지역 상세 : <br> 가격 : <br> 구매일 : <br> 상품 상태 : <br> 거래 방법 : 택배 / 직거래 <br> 상품 설명 : ');
+		$('#summernote').val("지역 상세 : <br> 가격 : <br> 구매일 : <br> 상품 상태 : <br> 거래 방법 : 택배 / 직거래 <br> 상품 설명 : ");
 		
 		$('#summernote').summernote({
 			placeholder : '최대 500자 작성 가능합니다.',
@@ -116,9 +128,9 @@ $(function (){
 		});
 	});
 
-	$('#summernote').on('summernote.change', function(we, contents, $editable) {
+/* 	$('#summernote').on('summernote.change', function(we, contents, $editable) {
 		console.log('summernote\'s content is changed.');
-	});
+	}); */
 
 	function uploadSummernoteImageFile(file, el) {
 
@@ -181,6 +193,23 @@ $(function (){
 		//확인 버튼 누르면 hidden img_locas 값으로 boardVO에 전달
 		$(".imgs").append('<input type="hidden" name="img_locas" value="' + imgar + '">');
 	}
+	
+	 function null_check(){
+		 var price = document.getElementById('price').value;
+		 var title = document.getElementById('title').value;
+			if(price == "" || price == null){
+				alert("가격을 입력해주세요");
+				fr.price.focus();
+				return false;
+			} else if(title == "" || title == null){
+				alert("제목을 입력해주세요");
+				fr.title.focus();
+				return false;
+			}
+			
+			else return true;
+			
+			}
 </script>
 
 </head>
@@ -217,7 +246,8 @@ $(function (){
 											<div class="container">
 												<hr>
 
-												<form action="insertBoard" method="post" enctype="multipart/form-data">
+												<form action="insertBoard" method="post" enctype="multipart/form-data"
+												 name="fr" onsubmit="return null_check()">
 													<div>
 														<input type="radio" name="animal_class" value="1">
 														강아지 <input type="radio" name="animal_class" value="2">
@@ -225,11 +255,17 @@ $(function (){
 														자유
 													</div>
 													<br>
+													
+													<div class="title-container" style="background-color : #f7f2f2; width : 100%; margin:auto; padding:15px; border-radius : 10px">
+															<div class="title">
+															<input type="text" id="board_title" name="board_title" >
+															</div>		
+															</div>	
 
 													<table>
 														<tr>
 															<th width="40">제목</th>
-															<td><input type="text" name="board_title" size="30">
+															<td><input type="text" id="title" name="board_title" size="30">
 															</td>
 														</tr>
 																												<tr>
@@ -278,7 +314,7 @@ $(function (){
 														<tr>
 															<th width="40">가격</th>
 															<td>
-																<input type="text" name="price" size="30">
+																<input type="text" id="price" name="price" size="30">
 															</td>
 														</tr>
 														
@@ -313,39 +349,14 @@ $(function (){
 				</div>
 			</div>
 		</div>
-		<button class="scroll-top" id="js-button" style="margin-bottom: 190px; margin-right: 30px; font: 'Jua'">
-			<i class="fa fa-chevron-up" aria-hidden="true">TOP</i>
-		</button>
-		<script type="text/javascript">
-			scrollTop('js-button', 100);
-			function scrollTop(elem, duration) {
-				let target = document.getElementById(elem);
-
-				target.addEventListener('click', function() {
-					let currentY = window.pageYOffset;
-					let step = duration / currentY > 1 ? 10 : 100;
-					let timeStep = duration / currentY * step;
-					let intervalID = setInterval(scrollUp, timeStep);
-
-					function scrollUp() {
-						currentY = window.pageYOffset;
-						if (currentY === 0) {
-							clearInterval(intervalID);
-						} else {
-							scrollBy(0, -step);
-						}
-					}
-				});
-			}
-		</script>
 
 		<!-- footer 푸터 영역 -->
-		<%@ include file="/common/footer.jsp"%>
+		<%@ include file="/common/storeFoot.jsp"%>
 		<!-- footer 푸터 영역 -->
 
 	</div>
 
-	<!-- Required Jquery -
+	<!-- Required Jquery -->
 	<script type="text/javascript"
 		src="/resources/js/jquery/jquery.min.js "></script>
 	<script type="text/javascript"
@@ -368,7 +379,9 @@ $(function (){
 	<script src="/resources/js/vertical/vertical-layout.min.js "></script>
 
 	<script type="text/javascript" src="/resources/js/script.js "></script>
-
+    <script>
+      $(".btn-group-toggle").twbsToggleButtons();
+      </script>
 
 </body>
 </html>

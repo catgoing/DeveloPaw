@@ -90,6 +90,37 @@
 		WHERE RN BETWEEN ${begin} AND ${end}
 	</select>
 	
+	<select id="getMainList" parameterType="Map" resultType="board" >
+	SELECT * FROM 
+			(
+				SELECT ROWNUM AS RN, BOARD.* FROM 
+				( 	
+
+						<choose>
+							<when test='board_idx == 1'> 
+								SELECT	BOARD_NO, B.MEMBER_SERIAL, BOARD_TITLE, ID, IMG1, HITS, NICKNAME, TO_CHAR(REGDATE, 'YY-MM-DD') AS REGDATE
+								FROM	DIARY_BOARD B, USER_ACCOUNT U WHERE B.MEMBER_SERIAL = U.MEMBER_SERIAL 
+							</when>
+							<when test='board_idx == 2'> 
+								SELECT	BOARD_NO, B.MEMBER_SERIAL, BOARD_TITLE, ID, IMG1, HITS, NICKNAME, TO_CHAR(REGDATE, 'YY-MM-DD') AS REGDATE
+								FROM	INTRO_BOARD B, USER_ACCOUNT U WHERE B.MEMBER_SERIAL = U.MEMBER_SERIAL 
+							</when>
+							<when test='board_idx == 3'> 
+								SELECT	BOARD_NO, B.MEMBER_SERIAL, BOARD_TITLE, ID, IMG1, HITS, NICKNAME, TO_CHAR(REGDATE, 'YY-MM-DD') AS REGDATE, SUB_CLASS
+								FROM	
+								KNOWHOW_BOARD B, USER_ACCOUNT U WHERE B.MEMBER_SERIAL = U.MEMBER_SERIAL 
+							</when>
+							<when test='board_idx == 4'> 
+								SELECT	BOARD_NO, B.MEMBER_SERIAL, BOARD_TITLE, ID, IMG1, HITS, NICKNAME, TO_CHAR(REGDATE, 'YY-MM-DD') AS REGDATE
+								FROM	MISSING_BOARD B, USER_ACCOUNT U WHERE B.MEMBER_SERIAL = U.MEMBER_SERIAL 
+							</when>
+						</choose>
+						ORDER BY HITS DESC
+				) 	BOARD
+			)
+		WHERE RN BETWEEN 1 AND 4
+	</select>
+	
 	<select id="getBoardCount" parameterType="Map" resultType="int" >
 		SELECT COUNT(*) AS CNT
 		FROM 
@@ -320,24 +351,27 @@
 	</select>
 	
 	 <select id="search" parameterType="Map" resultType="board">
-		SELECT BOARD_NO, BOARD_SCONTENT, BOARD_TITLE, IMG1, TO_CHAR(REGDATE, 'MM-DD HH24:MI') AS REGDATE
+		SELECT BOARD_NO, BOARD_SCONTENT, BOARD_TITLE, IMG1, TO_CHAR(REGDATE, 'MM-DD HH24:MI') AS REGDATE, NICKNAME
 		FROM 
 		<choose>
 			<when test='board_idx.equals("1")'> 
-				DIARY_BOARD
+				DIARY_BOARD B 
 			</when>
 			<when test='board_idx.equals("2")'> 
-				INTRO_BOARD 
+				INTRO_BOARD B  
 			</when>
 			<when test='board_idx.equals("3")'> 
-				KNOWHOW_BOARD
+				KNOWHOW_BOARD B 
 			</when>
 			<when test='board_idx.equals("4")'> 
-				MISSING_BOARD
+				MISSING_BOARD B 
+			</when>
+			<when test='board_idx.equals("5")'> 
+				USED_TRANSACTION_BOARD B
 			</when>
 		</choose>
-			WHERE BOARD_SCONTENT LIKE '%'||#{keyword}||'%'
-			OR  BOARD_TITLE LIKE '%'||#{keyword}||'%' 	
+			, USER_ACCOUNT U WHERE (BOARD_SCONTENT LIKE '%'||#{keyword}||'%' OR BOARD_TITLE LIKE '%'||#{keyword}||'%') 
+			AND  B.MEMBER_SERIAL = U.MEMBER_SERIAL
 	</select> 
 	
 	<delete id="boardDelete" parameterType="Map">

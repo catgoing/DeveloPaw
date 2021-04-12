@@ -34,7 +34,7 @@
 
 <style>
 
-input[type="radio"]:checked  + label{
+input[type="radio"]:checked + label{
  background-color:red;
 }
 
@@ -100,9 +100,6 @@ th {
 }
 </style>
 <script>
-$(function (){
-	$(".btn-group-toggle").twbsToggleButtons();
-});
 
 $(function (){
 	var board_idx = ${board_idx};
@@ -272,7 +269,7 @@ $(function (){
 
 														<div class="title-container" style="background-color : #f7f2f2; width : 100%; margin : auto; padding : 15px; border-radius : 10px">
 															<div class="title">
-															<input type="text" id="board_title" name="board_title" placeholder="제목" >
+															<input type="text" id="board_title" name="board_title" >
 															</div>		
 															</div>				
 													<br>
@@ -285,8 +282,8 @@ $(function (){
 													<input type="hidden" name="member_serial" value="994">
 													<input type="hidden" name="board_idx" value="${board_idx }">
 													
-													<div style="text-align: center;" class="enter_button">
-														<input type="submit" style="font-size:17px; width:100px; height:50px; border-radius:5px" value="등록">
+													<div style="text-align: center" class="enter_button">
+														<input type="submit" value="확인">
 													</div>
 
 												</form>
@@ -309,7 +306,7 @@ $(function (){
 			<i class="fa fa-chevron-up" aria-hidden="true">TOP</i>
 		</button>
 		<!-- footer 푸터 영역 -->
-		<%@ include file="/common/storeFoot.jsp"%>
+		<%@ include file="/common/footer.jsp"%>
 		<!-- footer 푸터 영역 -->
 
 	</div>
@@ -337,7 +334,9 @@ $(function (){
 	<script src="/resources/js/vertical/vertical-layout.min.js "></script>
 
 	<script type="text/javascript" src="/resources/js/script.js "></script>
-
+    <script>
+      $(".btn-group-toggle").twbsToggleButtons();
+      </script>
 
 </body>
 </html>

@@ -14634,11 +14634,33 @@ footer.footer.navbar-wrapper {
     border-radius: 25px;
 }
 
+.fixed-button2 {
+    position: fixed;
+    bottom: 200px;
+    right: 30px;
+    opacity: 0;
+    z-index: 5000;
+    -webkit-transition: all 0.5s ease;
+    transition: all 0.5s ease;
+    border-radius: 25px;
+}
+
 
 /* 글쓰기 버튼 스타일 */
 
 .fixed-button .btn {
     margin-bottom: 100px;
+    padding: 12px 25px;
+    background: #ff8787;
+    border: 1px solid #fff;
+    border-radius: 25px;
+    text-transform: capitalize;
+    font-weight: bold;
+    font-size: 16px;
+    color: #fff;
+}
+
+.fixed-button2 .btn2 {
     padding: 12px 25px;
     background: #ff8787;
     border: 1px solid #fff;
@@ -14666,6 +14688,23 @@ footer.footer.navbar-wrapper {
 
 .fixed-button.active {
     bottom: 50px;
+    opacity: 1
+}
+
+.fixed-button2 .btn2:focus,
+.fixed-button2 .btn2:active,
+.fixed-button2 .btn2:hover {
+    background: #fc5f5f;
+    color: #fff;
+}
+
+.fixed-button2:hover {
+    -webkit-animation: none;
+    animation: none
+}
+
+.fixed-button2.active {
+    bottom: 160px;
     opacity: 1
 }
 

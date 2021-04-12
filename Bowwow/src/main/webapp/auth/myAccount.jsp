@@ -296,11 +296,6 @@
 														<span class="form-bar"></span> <label class="float-label">이메일</label>
 													</div>
 													<div class="form-group form-primary">
-														<input type="text" name="citizen_id" id="citizen_id"
-															class="form-control form-control">
-														<span class="form-bar"></span> <label class="float-label">주민번호</label>
-													</div>
-													<div class="form-group form-primary">
 														<input type="text" name="phone" id="phone"
 															class="form-control form-control">
 														<span class="form-bar"></span> <label class="float-label">전화번호</label>

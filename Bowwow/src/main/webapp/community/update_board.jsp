@@ -84,13 +84,17 @@ $(function (){
 	var board_idx = ${board_idx};
 	board_idx = board_idx + 3;
 	$(".pcoded-inner-navbar>ul:nth-child(" + board_idx + ")>li>a").addClass("active");
-	if(board_idx == 1){
-	
-	}
 });
 
+$(function (){
+	imageChangeCheck();
+});
+
+
+
 	$(function() {
-		$('#summernote').summernote('code', '${vo.board_content}');
+		$('#summernote').val('${vo.board_content}');
+
 		
 		$('#summernote').summernote({
 			placeholder : '최대 500자 작성 가능합니다.',
@@ -112,10 +116,6 @@ $(function (){
 			}
 
 		});
-	});
-
-	$('#summernote').on('summernote.change', function(we, contents, $editable) {
-		console.log('summernote\'s content is changed.');
 	});
 
 	function uploadSummernoteImageFile(file, el) {
@@ -298,7 +298,7 @@ $(function (){
 		</script>
 
 		<!-- footer 푸터 영역 -->
-		<%@ include file="/common/footer.jsp"%>
+		<%@ include file="/common/storeFoot.jsp"%>
 		<!-- footer 푸터 영역 -->
 
 	</div>

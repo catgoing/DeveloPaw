@@ -47,36 +47,49 @@
 									<!-- Page-body start -->
 									<div class="page-body">
 									
+										<h2>펫 다이어리</h2>
 									<c:if test="${empty diarylist }">
-											<a>검색결과가 없습니다.</a>
-									</c:if>									
-									<c:if test="${not empty diarylist }">
-										<h2>{펫일기장}</h2>
-										<c:forEach var="diarylist" items="${diarylist }">
 											<div class="card-deck">
 											  <div class="card">
-											    <img class="card-img-top" src=".../100px180/" alt="Card image cap">
 											    <div class="card-body">
-											      <h5 class="card-title">제목 :${diarylist.board_title }</h5>
-											      <p class="card-text">내용 :${diarylist.board_scontent}</p>
-											    </div>
-											    <div class="card-footer">
-											      <small class="text-muted">닉네임</small>
+											      <h5 class="card-title">검색결과가 없습니다.</h5>
 											    </div>
 											  </div>				 
 											</div>
+									</c:if>									
+									<c:if test="${not empty diarylist }">
+										<c:forEach var="diarylist" items="${diarylist }">
+											<div class="card-deck">
+											  <div class="card" style="float:left">
+											      <h5 class="card-title" style=" margin:20px; margin-top:20px">
+											      <img class="card-img-top" src="https://projectbit.s3.us-east-2.amazonaws.com/${diarylist.img1 }" onerror='this.src="/resources/images/alt_img.png"'
+											    	style="width:150px; height:180px; float:left; margin-right:20px;">
+											    	<span style=" margin:20px; font-size:30px">${diarylist.board_title }</span> 
+											   		 <br><br>
+												    <span class="card-text" style=" margin:0;">${diarylist.board_scontent}</span>
+												    </h5>
+											    <br>
+										      <small class="text-muted" style="text-align:right">${diarylist.nickname} / ${diarylist.regdate}</small>
+											    </div>
+										    </div>
 										</c:forEach>
 									</c:if>	
 									
+									<h2>펫 소개</h2>
 									<c:if test="${empty introlist }">
-											<a>검색결과가 없습니다.</a>
+											<div class="card-deck">
+											  <div class="card">
+											    <div class="card-body">
+											      <h5 class="card-title">검색결과가 없습니다.</h5>
+											    </div>
+											  </div>				 
+											</div>
 									</c:if>									
 									<c:if test="${not empty introlist }">
-										<h2>{펫 소개}</h2>
 										<c:forEach var="introlist" items="${introlist }">
 											<div class="card-deck">
 											  <div class="card">
-											    <img class="card-img-top" src=".../100px180/" alt="Card image cap">
+											    <img class="card-img-top" src="https://projectbit.s3.us-east-2.amazonaws.com/${introlist.img1 }" onerror='this.src="/resources/images/alt_img.png"'>
 											    <div class="card-body">
 											      <h5 class="card-title">제목 :${introlist.board_title }</h5>
 											      <p class="card-text">내용 :${introlist.board_scontent}</p>
@@ -89,11 +102,17 @@
 										</c:forEach>
 									</c:if>	
 									
+									<h2>펫 노하우</h2>
 									<c:if test="${empty knowhowlist }">
-											<a>검색결과가 없습니다.</a>
+											<div class="card-deck">
+											  <div class="card">
+											    <div class="card-body">
+											      <h5 class="card-title">검색결과가 없습니다.</h5>
+											    </div>
+											  </div>				 
+											</div>
 									</c:if>									
 									<c:if test="${not empty knowhowlist }">
-										<h2>{펫 노하우}</h2>
 										<c:forEach var="knowhowlist" items="${knowhowlist }">
 											<div class="card-deck">
 											  <div class="card">
@@ -101,6 +120,60 @@
 											    <div class="card-body">
 											      <h5 class="card-title">제목 :${knowhowlist.board_title }</h5>
 											      <p class="card-text">내용 :${knowhowlist.board_scontent}</p>
+											    </div>
+											    <div class="card-footer">
+											      <small class="text-muted">닉네임</small>
+											    </div>
+											  </div>				 
+											</div>
+										</c:forEach>
+									</c:if>	
+									
+									<h2>잃어버린 반려동물 찾아요</h2>
+									<c:if test="${empty missinglist }">
+											<div class="card-deck">
+											  <div class="card">
+											    <div class="card-body">
+											      <h5 class="card-title">검색결과가 없습니다.</h5>
+											    </div>
+											  </div>				 
+											</div>
+									</c:if>									
+									<c:if test="${not empty missinglist }">
+										<c:forEach var="missinglist" items="${missinglist }">
+											<div class="card-deck">
+											  <div class="card">
+											    <img class="card-img-top" src=".../100px180/" alt="Card image cap">
+											    <div class="card-body">
+											      <h5 class="card-title">제목 :${missinglist.board_title }</h5>
+											      <p class="card-text">내용 :${missinglist.board_scontent}</p>
+											    </div>
+											    <div class="card-footer">
+											      <small class="text-muted">닉네임</small>
+											    </div>
+											  </div>				 
+											</div>
+										</c:forEach>
+									</c:if>	
+									
+									<h2>중고거래</h2>
+									<c:if test="${empty transactionlist }">
+											<div class="card-deck">
+											  <div class="card">
+											    <div class="card-body">
+											      <h5 class="card-title">검색결과가 없습니다.</h5>
+											    </div>
+											  </div>				 
+											</div>
+									</c:if>									
+									<c:if test="${not empty transactionlist }">
+										<c:forEach var="transactionlist" items="${transactionlist }">
+											<div class="card-deck">
+											  <div class="card">
+											    <img class="card-img-top" src=".../100px180/" alt="Card image cap">
+											    <div class="card-body">
+											      <h5 class="card-title">제목 :${transactionlist.board_title }</h5>
+											      <p class="card-text">내용 :${transactionlist.board_scontent}</p>
 											    </div>
 											    <div class="card-footer">
 											      <small class="text-muted">닉네임</small>
@@ -182,17 +255,4 @@
 	<script type="text/javascript" src="/resources/js/script.js "></script>
 
 </body>
-
-
-
 </html>
-
-
-
-<form action="search">
-				<input type="text" name="keyword" />
-				<input type="submit" value="검색"/> 
-			</form>
-			
-			
-			

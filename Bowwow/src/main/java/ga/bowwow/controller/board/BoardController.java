@@ -48,7 +48,9 @@ public class BoardController {
 		
 		//TODO INSERT
 		Map<String, Object> map = new HashMap<String, Object>();
-		int board_idx = Integer.parseInt((String) session.getAttribute("board_idx"));
+		int board_idx = Integer.parseInt(session.getAttribute("board_idx").toString());
+		System.out.println("insert idx: " + board_idx);
+		
 		map.put("board_idx", board_idx);
 		
 		
@@ -68,7 +70,9 @@ public class BoardController {
 		if(vo.getImg_locas() == null || vo.getImg_locas().length() == 0) {
 			//이미지 첨부된 거 없으면 바로 db에 저장
 			//			map.put("board", vo);
-			boardService.insertBoard(vo);
+			vo.setBoard_idx(board_idx);
+//			boardService.insertBoard(vo);
+			System.out.println(vo);
 
 		} else { //이미지가 있으면
 			//이미지 경로를 저장할 배열 생성
@@ -122,6 +126,7 @@ public class BoardController {
 
 			//경로 변환 후 최종 DB에 저장되는 VO값 콘솔에 출력
 			System.out.println("reLoca vo : " + vo);
+			vo.setBoard_idx(board_idx);
 
 			//			map.put("board", vo);
 			//			boardService.insertBoard(map);
@@ -176,32 +181,49 @@ public class BoardController {
 		//		System.out.println("board_idx : " + board_idx);
 		String board_idx = "0";
 		String cPage = request.getParameter("cPage");
-
-		Page p = new Page();
-
+		
 		Map<String, String> map = new HashMap<String, String>();
 		map.put("board_idx", board_idx);
-
-		p = p.setPage(boardService.getBoardCount(map), cPage, 6, 5);
-		map = p.data1(p, board_idx, map);
-
-		//		for ( String key : map.keySet() ) {
-		//		    System.out.println("방법1) key : " + key +" / value : " + map.get(key));
-		//		}
-
-		List<Board> boardList = boardService.getBoardList(map);
-		//		
-		//		System.out.println("diary_board boardList input(map) : " + board_idx);
-		session.setAttribute("board_idx", board_idx);
-		model.addAttribute("boardList", boardList);
-		model.addAttribute("pvo", p);
-		model.addAttribute("command", "/community/main");
-		//
-		//		System.out.println("bowwow list : " + boardList);
-		//		System.out.println("board model : " + model);
+		
+		List<Board> diaryList = boardService.getMainList(1);
+		List<Board> introList = boardService.getMainList(2);
+		List<Board> knowhowList = boardService.getMainList(3);
+		List<Board> missingList = boardService.getMainList(4);
+//		List<Board> introList = boardService.search("2", keyword);
+//		List<Board> knowhowList = boardService.search("3", keyword);
+//		List<Board> missingList = boardService.search("4", keyword);
+		
+		System.out.println("searchboard d:" + diaryList);
+		//System.out.println("searchboard:" + introlist);
+		//System.out.println("searchboard:" + knowhowlist);
+		session.setAttribute("board_idx", 0);
+		session.setAttribute("diaryList.board_idx", 1);
+		session.setAttribute("introList.board_idx", 2);
+		session.setAttribute("knowhowList.board_idx", 3);
+		session.setAttribute("missingList.board_idx", 4);
+		model.addAttribute("diaryList", diaryList);
+		model.addAttribute("introList", introList);
+		model.addAttribute("knowhowList", knowhowList);
+		model.addAttribute("missingList", missingList);
 
 		return "/community/main";
-
+	}
+	
+	@RequestMapping(value = "/community/write", method = RequestMethod.GET)
+	public String mainWrite(Model model, @RequestParam("board_idx") int board_idx) {
+		String command = "";
+		
+		if(board_idx == 1 || board_idx == 2 || board_idx == 4) {
+			command = "write_combination";
+		} else if(board_idx == 3) {
+			command = "write_knowhow_board";
+		} else if(board_idx == 5) {
+			command = "write_used_transaction_board";
+		}
+		
+		session.setAttribute("board_idx", board_idx);
+		
+		return "/community/" + command;
 	}
 
 
@@ -413,6 +435,40 @@ public class BoardController {
 	}
 	
 	//상세페이지
+	@RequestMapping(value = "/community/knowhow_detail", method = RequestMethod.GET)
+	public String getKnowhowBoard(@RequestParam("board_idx") String sboard_idx,
+			@RequestParam("board_no") int board_no, Board vo, Model model) {
+		
+		int board_idx = Integer.parseInt(sboard_idx);
+		System.out.println("board_idx : "  + board_idx);
+		System.out.println(">>> 글상세 - String getBoard()");
+		
+		Map<String, Integer> map = new HashMap<String, Integer>();
+		map.put("board_idx", board_idx);
+		map.put("board_no", board_no );
+		vo = boardService.getBoard(map);
+		boardService.updateHits(map);
+		
+		List<Comment> commentList = boardService.getCommentList(map);
+		List<Comment> comment2List = boardService.getComment2List(map);
+		
+		System.out.println("detail vo : " + vo);
+		
+		System.out.println("commentList : " + commentList);
+		System.out.println("comment2List : " + comment2List);
+		
+		//TODO 임시 회원 시리얼을 실제 객체로 교체할 것
+		session.setAttribute("board_idx", board_idx);
+		model.addAttribute("board_no", board_no);
+		model.addAttribute("vo", vo);
+		model.addAttribute("commentList", commentList);
+		model.addAttribute("comment2List", comment2List);
+		
+		return "/community/knowhow_detail_board";
+		
+	}
+	
+	//상세페이지
 	@RequestMapping(value = "/community/transaction_detail", method = RequestMethod.GET)
 	public String getTransactionBoard(@RequestParam("board_idx") String sboard_idx,
 			@RequestParam("board_no") int board_no, Board vo, Model model) {
@@ -494,19 +550,33 @@ public class BoardController {
 
 
 	//게시글 삭제
-	@RequestMapping(value = "/community/boardDelete", method = RequestMethod.GET)
+	@RequestMapping(value = "/community/boardDelete", method = RequestMethod.POST)
 	public String boardDelete(@RequestParam("board_no") int board_no ,
 			@RequestParam("board_idx") String board_idx, Model model) {
 
 		System.out.println(">>> 게시글 삭제 - boardDelete()");
-		System.out.println(board_no +  " / " +board_idx);
+		System.out.println(board_no +  " / " + board_idx);
+		String command = "";
+		
+		if(board_idx.equals("1")) {
+			command = "diary_board"; }
+		else if (board_idx.equals("2")) {
+			command = "intro_board"; }
+		else if (board_idx.equals("3")) {
+			command = "knowhow_board"; }
+		else if (board_idx.equals("4")) {
+			command = "missing_board"; }
+		else if (board_idx.equals("5")) {
+			command = "used_transaction_board"; }
+		else if (board_idx.equals("6")) {
+			command = "event_board"; }
 
 		Map<String, Object> map = new HashMap<String, Object>();
 		map.put("board_idx", board_idx);
 		map.put("board_no", board_no);
 		boardService.boardDelete(map);
 		
-		return "redirect:/community/diary_board";
+		return "redirect:/community/" + command;
 	}
 
 	//댓글 삭제
@@ -552,6 +622,7 @@ public class BoardController {
 	public String updateBoard(Board vo, HttpServletRequest request, MultipartController mc, Model model) 
 			throws AmazonClientException, IllegalStateException, IOException, InterruptedException {
 		System.out.println(">>> 게시글 수정화면 - updateBoard()");
+		String command = "";
 
 		int board_idx = (int) session.getAttribute("board_idx");
 		int board_no = vo.getBoard_no();
@@ -563,8 +634,16 @@ public class BoardController {
 		vo = boardService.getBoard(map);
 
 		model.addAttribute("vo", vo);
+		
+		if(board_idx == 3) {
+			command = "update_knowhow_board";
+		}
+		else if (board_idx == 5) {
+			command = "update_used_transaction_board";
+		}
+		else command = "update_board";
 
-		return "/community/update_board";
+		return "/community/" + command;
 	}
 
 
@@ -672,9 +751,11 @@ public class BoardController {
 
 		System.out.println(board);
 		System.out.println("search vo:"+board.getKeyword());
-		List<Board> diarylist =boardService.search("1", keyword);
-		//List<Board> introlist =boardService.search("2", keyword);
-		//List<Board> knowhowlist =boardService.search("3", keyword);
+		List<Board> diarylist = boardService.search("1", keyword);
+		List<Board> introlist = boardService.search("2", keyword);
+		List<Board> knowhowlist = boardService.search("3", keyword);
+		List<Board> missinglist = boardService.search("4", keyword);
+		List<Board> transactionlist = boardService.search("5", keyword);
 		
 		//System.out.println(diarylist.toString().replaceAll(pattern,""));
 		System.out.println("searchboard d:" + diarylist);
@@ -682,8 +763,10 @@ public class BoardController {
 		//System.out.println("searchboard:" + knowhowlist);
 	
 		model.addAttribute("diarylist",diarylist);
-		//model.addAttribute("introlist",introlist);
-		//model.addAttribute("knowhowlist",knowhowlist);
+		model.addAttribute("introlist",introlist);
+		model.addAttribute("knowhowlist",knowhowlist);
+		model.addAttribute("missinglist",missinglist);
+		model.addAttribute("transactionlist",transactionlist);
 
 		return "/community/search";
 	}
