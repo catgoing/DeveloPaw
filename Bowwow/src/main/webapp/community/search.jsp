@@ -88,17 +88,18 @@
 									<c:if test="${not empty introlist }">
 										<c:forEach var="introlist" items="${introlist }">
 											<div class="card-deck">
-											  <div class="card">
-											    <img class="card-img-top" src="https://projectbit.s3.us-east-2.amazonaws.com/${introlist.img1 }" onerror='this.src="/resources/images/alt_img.png"'>
-											    <div class="card-body">
-											      <h5 class="card-title">제목 :${introlist.board_title }</h5>
-											      <p class="card-text">내용 :${introlist.board_scontent}</p>
+											  <div class="card" style="float:left">
+											      <h5 class="card-title" style=" margin:20px; margin-top:20px">
+											      <img class="card-img-top" src="https://projectbit.s3.us-east-2.amazonaws.com/${introlist.img1 }" onerror='this.src="/resources/images/alt_img.png"'
+											    	style="width:150px; height:180px; float:left; margin-right:20px;">
+											    	<span style=" margin:20px; font-size:30px">${introlist.board_title }</span> 
+											   		 <br><br>
+												    <span class="card-text" style=" margin:0;">${introlist.board_scontent}</span>
+												    </h5>
+											    <br>
+										      <small class="text-muted" style="text-align:right">${introlist.nickname} / ${introlist.regdate}</small>
 											    </div>
-											    <div class="card-footer">
-											      <small class="text-muted">닉네임</small>
-											    </div>
-											  </div>				 
-											</div>
+										    </div>
 										</c:forEach>
 									</c:if>	
 									
@@ -115,17 +116,18 @@
 									<c:if test="${not empty knowhowlist }">
 										<c:forEach var="knowhowlist" items="${knowhowlist }">
 											<div class="card-deck">
-											  <div class="card">
-											    <img class="card-img-top" src=".../100px180/" alt="Card image cap">
-											    <div class="card-body">
-											      <h5 class="card-title">제목 :${knowhowlist.board_title }</h5>
-											      <p class="card-text">내용 :${knowhowlist.board_scontent}</p>
+											  <div class="card" style="float:left">
+											      <h5 class="card-title" style=" margin:20px; margin-top:20px">
+											      <img class="card-img-top" src="https://projectbit.s3.us-east-2.amazonaws.com/${knowhowlist.img1 }" onerror='this.src="/resources/images/alt_img.png"'
+											    	style="width:150px; height:180px; float:left; margin-right:20px;">
+											    	<span style=" margin:20px; font-size:30px">${knowhowlist.board_title }</span> 
+											   		 <br><br>
+												    <span class="card-text" style=" margin:0;">${knowhowlist.board_scontent}</span>
+												    </h5>
+											    <br>
+										      <small class="text-muted" style="text-align:right">${knowhowlist.nickname} / ${knowhowlist.regdate}</small>
 											    </div>
-											    <div class="card-footer">
-											      <small class="text-muted">닉네임</small>
-											    </div>
-											  </div>				 
-											</div>
+										    </div>
 										</c:forEach>
 									</c:if>	
 									
@@ -142,17 +144,18 @@
 									<c:if test="${not empty missinglist }">
 										<c:forEach var="missinglist" items="${missinglist }">
 											<div class="card-deck">
-											  <div class="card">
-											    <img class="card-img-top" src=".../100px180/" alt="Card image cap">
-											    <div class="card-body">
-											      <h5 class="card-title">제목 :${missinglist.board_title }</h5>
-											      <p class="card-text">내용 :${missinglist.board_scontent}</p>
+											  <div class="card" style="float:left">
+											      <h5 class="card-title" style=" margin:20px; margin-top:20px">
+											      <img class="card-img-top" src="https://projectbit.s3.us-east-2.amazonaws.com/${missinglist.img1 }" onerror='this.src="/resources/images/alt_img.png"'
+											    	style="width:150px; height:180px; float:left; margin-right:20px;">
+											    	<span style=" margin:20px; font-size:30px">${missinglist.board_title }</span> 
+											   		 <br><br>
+												    <span class="card-text" style=" margin:0;">${missinglist.board_scontent}</span>
+												    </h5>
+											    <br>
+										      <small class="text-muted" style="text-align:right">${missinglist.nickname} / ${missinglist.regdate}</small>
 											    </div>
-											    <div class="card-footer">
-											      <small class="text-muted">닉네임</small>
-											    </div>
-											  </div>				 
-											</div>
+										    </div>
 										</c:forEach>
 									</c:if>	
 									
@@ -169,17 +172,18 @@
 									<c:if test="${not empty transactionlist }">
 										<c:forEach var="transactionlist" items="${transactionlist }">
 											<div class="card-deck">
-											  <div class="card">
-											    <img class="card-img-top" src=".../100px180/" alt="Card image cap">
-											    <div class="card-body">
-											      <h5 class="card-title">제목 :${transactionlist.board_title }</h5>
-											      <p class="card-text">내용 :${transactionlist.board_scontent}</p>
+											  <div class="card" style="float:left">
+											      <h5 class="card-title" style=" margin:20px; margin-top:20px">
+											      <img class="card-img-top" src="https://projectbit.s3.us-east-2.amazonaws.com/${transactionlist.img1 }" onerror='this.src="/resources/images/alt_img.png"'
+											    	style="width:150px; height:180px; float:left; margin-right:20px;">
+											    	<span style=" margin:20px; font-size:30px">${transactionlist.board_title }</span> 
+											   		 <br><br>
+												    <span class="card-text" style=" margin:0;">${transactionlist.board_scontent}</span>
+												    </h5>
+											    <br>
+										      <small class="text-muted" style="text-align:right">${transactionlist.nickname} / ${transactionlist.regdate}</small>
 											    </div>
-											    <div class="card-footer">
-											      <small class="text-muted">닉네임</small>
-											    </div>
-											  </div>				 
-											</div>
+										    </div>
 										</c:forEach>
 									</c:if>	
 				
