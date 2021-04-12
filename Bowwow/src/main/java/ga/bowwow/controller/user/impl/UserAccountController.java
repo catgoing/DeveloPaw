@@ -6,6 +6,8 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.UUID;
 
+import javax.servlet.http.HttpSession;
+
 import org.apache.ibatis.exceptions.TooManyResultsException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.dao.DataIntegrityViolationException;
@@ -20,6 +22,7 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.bind.support.SessionStatus;
 import org.springframework.web.multipart.MultipartFile;
 
 import com.amazonaws.AmazonClientException;
@@ -37,13 +40,13 @@ public class UserAccountController extends UserCRUDGenericController<UserAccount
 	public UserAccountController(@Autowired UserAccountServiceImpl service) {
 		System.out.println("---->>> UserAccountController() 객체생성");
 		this.service = service;
-		this.setDomainRoute("/store/storeMain", "/auth.login");
+		this.setDomainRoute("redirect:/store/storeMain", "/auth.login");
 	}
 	
 	@ResponseBody
 	@RequestMapping(value="/loginValidateUserAccount")
 	public ResponseEntity getUserAccount(@RequestBody UserAccount userAccount) {
-		System.out.println("userAccountController userAccount :" + userAccount);
+//		System.out.println("userAccountController userAccount :" + userAccount);
 		boolean result = ((UserAccountServiceImpl)this.service).loginAttemp(userAccount);
 //		System.out.println("Rest loginValidation : " + result);
 		return result ? ResponseEntity.ok().build() : ResponseEntity.status(204).build();
@@ -56,10 +59,10 @@ public class UserAccountController extends UserCRUDGenericController<UserAccount
 
 	@GetMapping("/getList")
 	protected String getList(@ModelAttribute ArrayList<UserAccount> userDtoList, Model model) {
-		System.out.println("GETLIST RESOLVING TEST");
+//		System.out.println("GETLIST RESOLVING TEST");
 		userDtoList = (ArrayList<UserAccount>) service.getVoList();
 		model.addAttribute("userDtoList", userDtoList);
-		System.out.println(userDtoList);
+//		System.out.println(userDtoList);
 		return "/auth.userList";
 	}
 	
@@ -80,6 +83,29 @@ public class UserAccountController extends UserCRUDGenericController<UserAccount
 			e.printStackTrace();
 		}
 		return "/ok";
+	}
+	@PostMapping("/update")
+	protected String update(UserAccount vo, @Autowired HttpSession session, @Autowired SessionStatus sessionStatus) {
+				
+		String result = super.update(vo);
+		return logout(session, sessionStatus);
+	}
+	
+
+	@RequestMapping(value="/restLogout")
+	public ResponseEntity<String> restLogout(@Autowired HttpSession session, SessionStatus sessionStatus) {
+//		System.out.println("onSession userDTO : " + session.getAttribute("userDTO"));
+		session.removeAttribute("userDTO");
+		sessionStatus.setComplete();
+		return ResponseEntity.ok().build();
+	}
+	
+	@RequestMapping(value="/logout")
+	public String logout(@Autowired HttpSession session, SessionStatus sessionStatus) {
+//		System.out.println("onSession userDTO : " + session.getAttribute("userDTO"));
+		session.removeAttribute("userDTO");
+		sessionStatus.setComplete();
+		return "redirect:/store/storeMain";
 	}
 	
 	@PostMapping(value= "/addJson")
