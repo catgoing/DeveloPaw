@@ -374,6 +374,44 @@
 			AND  B.MEMBER_SERIAL = U.MEMBER_SERIAL
 	</select> 
 	
+	 <select id="boardSearch" parameterType="Map" resultType="board">
+		<choose>
+			<when test='board_idx.equals("1")'> 
+				SELECT BOARD_NO, BOARD_SCONTENT, BOARD_TITLE, IMG1, TO_CHAR(REGDATE, 'MM-DD HH24:MI') AS REGDATE, NICKNAME
+				FROM DIARY_BOARD B 
+			</when>
+			<when test='board_idx.equals("2")'> 
+				SELECT BOARD_NO, BOARD_SCONTENT, BOARD_TITLE, IMG1, TO_CHAR(REGDATE, 'MM-DD HH24:MI') AS REGDATE, NICKNAME
+				FROM INTRO_BOARD B  
+			</when>
+			<when test='board_idx.equals("3")'> 
+				SELECT BOARD_NO, BOARD_SCONTENT, BOARD_TITLE, IMG1, TO_CHAR(REGDATE, 'MM-DD HH24:MI') AS REGDATE, NICKNAME, SUB_CLASS
+				FROM KNOWHOW_BOARD B 
+			</when>
+			<when test='board_idx.equals("4")'> 
+				SELECT BOARD_NO, BOARD_SCONTENT, BOARD_TITLE, IMG1, TO_CHAR(REGDATE, 'MM-DD HH24:MI') AS REGDATE, NICKNAME
+				FROM MISSING_BOARD B 
+			</when>
+			<when test='board_idx.equals("5")'> 
+				SELECT BOARD_NO, BOARD_SCONTENT, BOARD_TITLE, IMG1, TO_CHAR(REGDATE, 'MM-DD HH24:MI') AS REGDATE, NICKNAME, IS_SELLED, GOODS, AREA, PRICE
+				FROM USED_TRANSACTION_BOARD B
+			</when>
+			<when test='board_idx.equals("6")'> 
+				SELECT BOARD_NO, BOARD_SCONTENT, BOARD_TITLE, IMG1, TO_CHAR(REGDATE, 'MM-DD HH24:MI') AS REGDATE, NICKNAME
+				FROM EVENT_BOARD B
+			</when>
+		</choose>
+		<choose>
+			<when test='idx == 0'> 
+				, USER_ACCOUNT U WHERE BOARD_TITLE LIKE '%'||#{keyword}||'%'
+			</when>
+			<when test='idx == 1'> 
+				, USER_ACCOUNT U WHERE BOARD_SCONTENT LIKE '%'||#{keyword}||'%'
+			</when>
+		</choose>
+			AND  B.MEMBER_SERIAL = U.MEMBER_SERIAL
+	</select> 
+	
 	<delete id="boardDelete" parameterType="Map">
 		DELETE FROM 
 		<choose>

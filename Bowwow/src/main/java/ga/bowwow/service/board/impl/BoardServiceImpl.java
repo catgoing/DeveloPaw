@@ -185,6 +185,11 @@ public class BoardServiceImpl implements BoardService{
 		return boardDAO.getBoardCount(map);
 	}
 
+	@Override
+	public List<Board> boardSearch(String board_idx, int idx, String keyword) {
+		return boardDAO.boardSearch(board_idx, idx, keyword);
+	}
+
 
 
 	

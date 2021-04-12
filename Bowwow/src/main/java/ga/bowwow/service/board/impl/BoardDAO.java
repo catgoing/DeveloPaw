@@ -115,6 +115,16 @@ public class BoardDAO {
 		return mybatis.selectList("BoardDAO.search",map);
 	}
 	
+	public List<Board> boardSearch(String board_idx, int idx, String keyword) {
+		Map<String, Object> map = new HashMap<String, Object>();
+		map.put("board_idx", board_idx);
+		map.put("idx", idx);
+		map.put("keyword", keyword);
+		System.out.println("map : " + map);
+		System.out.println("===> MyBatis로 search() 실행-vo");
+		return mybatis.selectList("BoardDAO.boardSearch",map);
+	}
+	
 	
 	public void insertReport(Report vo) {
 		System.out.println("===> MyBatis로 insertReport() 실행");

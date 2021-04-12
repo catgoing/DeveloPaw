@@ -770,6 +770,34 @@ public class BoardController {
 
 		return "/community/search";
 	}
+	
+	@RequestMapping("/community/boardSearch")
+	public String boardSearch(Board board, Model model, @RequestParam("board_idx") int board_idx,
+								@RequestParam("idx") int idx, @RequestParam("keyword") String keyword) {
+		
+		String b_idx = Integer.toString(board_idx);
+		List<Board> boardList = boardService.boardSearch(b_idx, idx, keyword);
+		
+		String command = "";
+		
+		if(b_idx.equals("1")) {
+			command = "combination_board"; }
+		else if (b_idx.equals("2")) {
+			command = "combination_board"; }
+		else if (b_idx.equals("3")) {
+			command = "knowhow_board"; }
+		else if (b_idx.equals("4")) {
+			command = "combination_board"; }
+		else if (b_idx.equals("5")) {
+			command = "used_transaction_board"; }
+		else if (b_idx.equals("6")) {
+			command = "event_board"; }
+		
+		System.out.println("searchboard d:" + boardList);
+		model.addAttribute("boardList", boardList);
+		
+		return "/community/" + command;
+	}
 
 
 	@RequestMapping("/community/insertComment")
