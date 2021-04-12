@@ -1,7 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
     <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
-    
+
 
 		<nav class="pcoded-navbar">
 			<div class="sidebar_toggle"><a href="#"><i class="icon-close icons"></i></a></div>
@@ -10,12 +10,12 @@
 			         <form class="form-material">
 			         </form>
 			     </div>
-			  
+
 			     <ul class="pcoded-item pcoded-left-item">
 			         <li class="">
 			             <a href="/user/login" class="waves-effect waves-dark">
 			                 <span class="pcoded-micon"><i class="ti-layers"></i><b>FC</b></span>
-			                 <span class="pcoded-mtext">로그인 테스트</span>
+			                 <span class="pcoded-mtext">로그인</span>
 			                 <span class="pcoded-mcaret"></span>
 			             </a>
 			         </li>

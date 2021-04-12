@@ -140,17 +140,19 @@ function deleteOrder(frm) {
 													</tr>
 												</thead>
 												<tbody>
+													<c:forEach var="od" items="${od }">
 													<tr>
 														<td>
-															<p>${o.p_name }</p>
+															<p>${od.p_name }</p>
 														</td>
 														<td>
-															<h5>x ${o.amount }</h5>
+															<h5>x ${od.amount }</h5>
 														</td>
 														<td>
-															<p><fmt:formatNumber value="${o.totalSum }" pattern="#,###" />원</p>
+															<p><fmt:formatNumber value="${od.sum }" pattern="#,###" />원</p>
 														</td>
 													</tr>
+													</c:forEach>
 													<tr>
 														<td>
 															<h4>배송비</h4>

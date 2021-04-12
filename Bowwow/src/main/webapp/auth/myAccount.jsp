@@ -19,14 +19,14 @@
 	src="../resources/js/bootstrap/js/bootstrap.min.js "></script>
 <script type="text/javascript">
 
-//     function fn_pw_check() {
-//     	try {
-//     		var flag = true;
-// 			var form = document.getElementById("account_form");
-// 			var id = form.id.value;
-// 			var password = form.pw.value;
-// 			var passwordConfirm = form.pwC.value;
-// 			const msg = [];
+    function fn_pw_check() {
+    	try {
+    		var flag = true;
+			var form = document.getElementById("account_form");
+			var id = form.id.value;
+			var password = form.pw.value;
+			var passwordConfirm = form.pwC.value;
+			const msg = [];
 			
 // 			if(!isValid("id", id)) {
 // 				msg.push("id는 1-19자 입니다.");
@@ -207,11 +207,47 @@
 		alert("폼이 정상적으로 입력되었습니다.");
    		return true;
    }
+			if(!isValid("id", id)) {
+				msg.push("id는 1-19자 입니다.");
+				flag = false;
+			}
+			if(!isValid("password", password)) {
+				msg.push('숫자와 영문자 조합으로 10~15자리를 사용해야 합니다.');
+				flag = false;
+			} else msg.push("");
+			if(password !== passwordConfirm) {
+				msg.push('비밀번호가 일치하지 않습니다.');
+				flag = false;
+			}
+			var msgBox = document.getElementById("msgBox");
+			msgBox.innerHTML = "";
+			msg.forEach(function (m) {
+				msgBox.innerHTML += m + '<br>'
+			})
+
+			return flag;
+    	} catch(e) {
+			return false;    		
+    	}
+        return false;
+    }
+    function isValid(type, value) {
+    	var validation = {
+    			id: (id) => { return (id.length < 20 && id.length > 0)},
+    			password: (password) => {
+    				return /^[a-zA-Z0-9]{10,15}$/.test(password);
+    			}
+    	}
+    	var result = validation[type](value);
+    	console.log(type, value, result);
+		return result;
+    }
+	
  	</script>
 <script type="text/javascript">
 
 
-	function submit() {
+    function submit() {
        var form = document.createElement("form");
        form.setAttribute("charset", "UTF-8");
        form.setAttribute("method", "Post");  //Post 방식
@@ -258,11 +294,10 @@
 												<div class="block-title">
 													<h3>회원가입</h3>
 												</div>
-<!-- 												<form id="account_form" name="account_form" -->
-<!-- 													enctype="multipart/form-data" action="/account/add" -->
-<!-- 													method="post"> -->
-												<form id="account_form" name="account_form" enctype="multipart/form-data" action="/account/add"	method="post">
-												
+												<form id="account_form" name="account_form"
+													enctype="multipart/form-data" action="/account/add"
+													method="post">
+													<!-- 													<form id="account_form" onsubmit="return fn_pw_check();"> -->
 													<div class="form-group form-primary">
 														<input type="text" name="id" id="id" value="tesasdfet"
 															class="form-control form-control"> <span
@@ -360,7 +395,7 @@
 													</fieldset>
 													<div class="btn">
 														<input type="button" value="회원 가입" class="btn btn-primary"
-															onclick="dynamicAjaxSubmit(fn_pw_check());">
+															onclick="dynamicAjaxSubmit();">
 													</div>
 												</form>
 												<form id="wallet_form" name="wallet_form"
@@ -577,7 +612,7 @@
 	function checkIdDuplication() {
 		const idData = getSelectedFieldForm(document.account_form, ["id"]);
 //      	console.log(idData);
-        
+		
 		$.ajax("/account/checkIdDuplication", {
 	        type: "POST",
 	        data: JSON.stringify(idData),
@@ -595,9 +630,8 @@
 <script>
 // 		TODO: 하나의 요청/컨트롤러로 합쳐야함
 	
-      function dynamicAjaxSubmit(_formResult) {
+      function dynamicAjaxSubmit() {
 
-		
 	   	const detailData = getSingleForm(document.account_form);
 	   	const addressData = getMultiForm(document.address_form);
 	   	console.log(addressData);
@@ -606,45 +640,38 @@
          var form_data = new FormData(document.account_form);
          var account_member_serial;
          form_data.append('file', files);
-       
-         if(_formResult == false) {
-        	 return;
-         }
-         else {
-        	 
+         
 		$.ajax("/account/addJson", {
-		           type: "POST",
-		 			enctype: "multipart/form-data",
-		            data: form_data,
-		            contentType: false,
-		            processData: false,
-	      }).then((response)=>{
-	    	  	console.log(detailData.member_serial);
-	    	  	console.log(response.member_serial);
-	    	  	account_member_serial = response.member_serial;
-	    	  	detailData.member_serial = response.member_serial;
-	        	console.log(detailData);
-	        	$.ajax("/detail/add", {
-	        		type: "POST",
-	  	           data: JSON.stringify(detailData),
-	  	           contentType:"application/json; charset=UTF-8",
-	        }).then(()=>{
-	        	addressData.forEach((address)=>{
-	        		address.member_serial = account_member_serial;
-	        	})
-	        	 $.ajax("/address/addAddressList", {
-	  	           type: "POST",
-	  	           data: JSON.stringify(addressData),
-	  	           contentType:"application/json; charset=UTF-8",
-	  	           success: function() {
-	  	        	   alert("환영합니다");
-	  	        	   window.location.href = 'http://localhost:8080/store/storeMain';
-	  	           }
-	           });
-	        })
-	      })
-
-         } 
+	           type: "POST",
+	 			enctype: "multipart/form-data",
+	            data: form_data,
+	            contentType: false,
+	            processData: false,
+      }).then((response)=>{
+    	  	console.log(detailData.member_serial);
+    	  	console.log(response.member_serial);
+    	  	account_member_serial = response.member_serial;
+    	  	detailData.member_serial = response.member_serial;
+        	console.log(detailData);
+        	$.ajax("/detail/add", {
+        		type: "POST",
+  	           data: JSON.stringify(detailData),
+  	           contentType:"application/json; charset=UTF-8",
+        }).then(()=>{
+        	addressData.forEach((address)=>{
+        		address.member_serial = account_member_serial;
+        	})
+        	 $.ajax("/address/addAddressList", {
+  	           type: "POST",
+  	           data: JSON.stringify(addressData),
+  	           contentType:"application/json; charset=UTF-8",
+  	           success: function() {
+  	        	   alert("환영합니다");
+  	        	   window.location.href = 'http://localhost:8080/store/storeMain';
+  	           }
+           });
+        })
+      })
     };
    	</script>
 <script type="text/javascript" src="/common/commonThumbnail.js"></script>

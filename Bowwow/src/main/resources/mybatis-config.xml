@@ -24,6 +24,7 @@
 		<typeAlias type="ga.bowwow.service.store.CartList" alias="CartList" />
 		<typeAlias type="ga.bowwow.service.store.Order" alias="Order" />
 		<typeAlias type="ga.bowwow.service.store.OrderDTO" alias="OrderDTO" />
+		<typeAlias type="ga.bowwow.service.store.OrderDetail" alias="OrderDetail" />
 		<typeAlias type="ga.bowwow.service.userpage.MyInquiry" alias="inquiry" />
 	</typeAliases>
 

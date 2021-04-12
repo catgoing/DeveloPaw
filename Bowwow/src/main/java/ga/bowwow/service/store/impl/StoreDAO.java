@@ -9,6 +9,8 @@ import org.springframework.stereotype.Repository;
 
 import ga.bowwow.service.store.CartList;
 import ga.bowwow.service.store.Order;
+import ga.bowwow.service.store.OrderDTO;
+import ga.bowwow.service.store.OrderDetail;
 import ga.bowwow.service.store.Product;
 import ga.bowwow.service.store.Review;
 
@@ -112,11 +114,6 @@ public class StoreDAO {
 		mybatis.insert("StoreOrder.insertOrder", order);
 	}
 
-	public void updateOrder(Order order) {
-		System.out.println("주문내역 수정 : " + order);
-		mybatis.update("StoreOrder.updateOrder", order);
-	}
-
 	public void deleteOrder(String order_id) {
 		System.out.println("삭제할 주문내역 : " + order_id);
 		mybatis.delete("StoreOrder.deleteOrder", order_id);
@@ -138,6 +135,14 @@ public class StoreDAO {
 
 	public void changeOrderStatus(int order_id) {
 		mybatis.update("StoreOrder.changeOrderStatus",order_id);
+	}
+
+	public void insertOrderDetail(OrderDetail orderDetail) {
+		mybatis.insert("StoreOrder.insertOrderDetail", orderDetail);
+	}
+
+	public List<Order> orderFromCartList(int order_id) {
+		return mybatis.selectList("StoreOrder.orderFromCartList", order_id);
 	}
 
 

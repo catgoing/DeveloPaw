@@ -11,18 +11,11 @@
 		 		P_NAME, MEMO, ORDER_DATE, ORDER_STATUS, ADDRESS, 
 		 		ADDRESS_DETAIL, ZIP, ORDER_POINT, PHONE, S_IMAGE)
 		VALUES 
-			(ORDER_SEQ.NEXTVAL, #{p_id}, #{member_serial}, #{amount}, #{totalSum}, 
-			#{p_name}, #{memo}, SYSDATE, #{order_status}, #{address}, 
+			(ORDER_SEQ.NEXTVAL, #{p_id}, #{member_serial}, #{amount}, #{totalSum}, #{p_name},
+			#{memo}, SYSDATE, #{order_status}, #{address}, 
 			#{address_detail}, #{zip}, #{order_point}, #{phone}, #{s_image}) 
+		
 	</insert>
-	
-	<!-- 주문 내역 수정 -->
-	<update id="updateOrder" parameterType="Order">
-		UPDATE STORE_ORDER 
-		SET AMOUNT = #{AMOUNT}, MEMO = #{MEMO}, 
-			ADDRESS = #{address}, ADDRESS_DETAIL = #{address_detail}, ZIP = #{zip} 
-		WHERE ORDER_ID = #{ORDER_ID}
-	</update>
 	
 	<!-- 주문 내역 삭제 -->
 	<delete id="deleteOrder" parameterType="String">
@@ -47,6 +40,13 @@
 		WHERE O.MEMBER_SERIAL = U.MEMBER_SERIAL AND O.ORDER_ID = #{order_id}
 	</select>
 	
+	<!-- 장바구니에서 넘어온 내역 출력 -->
+	<select id="orderFromCartList" parameterType="int" resultType="Order">
+		SELECT ORDERDETAIL_ID, ORDER_ID, P_ID, P_NAME, AMOUNT,SUM
+		FROM STORE_ORDERDETAIL
+		WHERE ORDER_ID = #{order_id}
+	</select>
+	
 	<!-- 배송 상태 변경 -->
 	<update id="changeOrderStatus" parameterType="int">
 		UPDATE STORE_ORDER
@@ -60,6 +60,15 @@
 		SET STOCK = STOCK - ${amount}
 		WHERE P_ID = #{p_id}
 	</update>
+	
+	<!-- 주문 임시 테이블에 저장 -->
+	<insert id="insertOrderDetail" parameterType="OrderDetail">
+		<selectKey keyProperty="order_id" resultType="int" order="BEFORE">  
+       		SELECT  ORDER_SEQ.CURRVAL FROM DUAL
+     	</selectKey>
+			INSERT INTO STORE_ORDERDETAIL (ORDERDETAIL_ID, ORDER_ID, P_ID, P_NAME, AMOUNT, SUM)
+			VALUES (ORDERDETAIL_SEQ.NEXTVAL, #{order_id}, #{p_id}, #{p_name}, #{amount}, #{sum})
+	</insert>
 </mapper>
 
 
