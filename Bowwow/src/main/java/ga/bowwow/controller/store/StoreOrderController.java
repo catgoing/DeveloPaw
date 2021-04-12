@@ -6,6 +6,7 @@ import java.util.List;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -13,12 +14,12 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
-import ga.bowwow.service.store.CartList;
 import ga.bowwow.service.store.CartListService;
 import ga.bowwow.service.store.Order;
 import ga.bowwow.service.store.OrderDTO;
 import ga.bowwow.service.store.OrderDetail;
 import ga.bowwow.service.store.StoreOrderService;
+import ga.bowwow.service.user.VO.UserDTO;
 
 @Controller
 public class StoreOrderController {
@@ -90,8 +91,9 @@ public class StoreOrderController {
 	}
 
 	@RequestMapping(value = "/store/orderArr")
-	public String insertOrderList(OrderDTO orderDTO, Model model) throws Exception {
-		String id = "test2";
+	public String insertOrderList(OrderDTO orderDTO, Model model, HttpSession session) throws Exception {
+		
+		String id = ((UserDTO) session.getAttribute("userDTO")).getId();
 
 		int result = 0;
 		int totalSum = 0;
@@ -173,18 +175,18 @@ public class StoreOrderController {
 	
 	// 주문 상태 변경하기
 	@RequestMapping(value = "/store/changeOrderStatus")
-	public String changeOrderStatus(int order_id) throws Exception {
+	public String changeOrderStatus(int order_id, HttpSession session) throws Exception {
 		storeOrderService.changeOrderStatus(order_id);
-
-		return "redirect:/store/storeOrderList?member_serial=999";
+		int member_serial = ((UserDTO) session.getAttribute("userDTO")).getMember_serial();
+		return "redirect:/store/storeOrderList?member_serial=" + member_serial;
 	}
 
 
 	// 배송 시작시 재고 줄이기
 	@RequestMapping(value = "/store/changeStock")
-	public String changeStock(Order order) throws Exception {
+	public String changeStock(Order order, HttpSession session) throws Exception {
 		storeOrderService.changeStock(order);
-
-		return "redirect:/store/storeOrderList?member_serial=999";
+		int member_serial = ((UserDTO) session.getAttribute("userDTO")).getMember_serial();
+		return "redirect:/store/storeOrderList?member_serial=" + member_serial;
 	}
 }
