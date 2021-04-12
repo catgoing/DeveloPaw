@@ -506,7 +506,7 @@ public class BoardController {
 	//댓글 입력
 	@RequestMapping(value = "/community/comment", method = RequestMethod.GET)
 	public String reply(Comment comment, @RequestParam("board_idx") int board_idx ,
-			@RequestParam("board_no") int board_no ,
+			@RequestParam("board_no") int board_no, @RequestParam("member_serial") String member_serial,
 			Model model, HttpSession session) {
 		String comment_content = comment.getComment_content();
 
@@ -518,7 +518,8 @@ public class BoardController {
 
 		Map<String, Object> map = new HashMap<String, Object>();
 		map.put("board_idx", board_idx);
-		map.put("comment",comment);
+		map.put("member_serial", member_serial);
+		map.put("comment", comment);
 		boardService.insertComment(map);
 
 		return "redirect:/community/detail?board_idx=" + session.getAttribute("board_idx") + "&board_no=" + board_no;
@@ -527,7 +528,7 @@ public class BoardController {
 	//대댓글 입력
 	@RequestMapping(value = "/community/comment2", method = RequestMethod.GET)
 	public String reply2(Comment comment, @RequestParam("board_no") int board_no ,
-						@RequestParam("board_idx") int board_idx, 
+						@RequestParam("board_idx") int board_idx, @RequestParam("member_serial") String member_serial,
 						@RequestParam("comment_no") String comment_no,
 						Model model, HttpSession session) {
 
@@ -541,6 +542,7 @@ public class BoardController {
 
 		Map<String, Object> map = new HashMap<String, Object>();
 		map.put("board_idx", board_idx);
+		map.put("member_serial", member_serial);
 		map.put("comment",comment);
 		boardService.insertComment2(map);
 

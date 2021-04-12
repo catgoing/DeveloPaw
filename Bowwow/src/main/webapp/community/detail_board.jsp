@@ -264,13 +264,14 @@ footer.footer.navbar-wrapper {
 													<div style="border: solid 1px lightgray; border-radius : 5px; margin : 10px">
 													<form action="/community/comment" method="GET">												
 													<div style="padding:20px; position:relative">
-													추후 닉네임 출력	
+													${sessionScope.userDTO.nickname }	
 													<br>							
 															<textarea placeholder="댓글 입력" class="autosize" name="comment_content" id="comment_content" 
 															style="border:none; width:800px; min-height: 50px; resize:none;"></textarea>
 															<br>
 															<input type="hidden" name="board_no" value=${board_no }>											
 															<input type="hidden" name="board_idx" value=${board_idx }>
+															<input type="hidden" name="member_serial" value="${sessionScope.userDTO.member_serial }">
 															<div class="clearfix">
 																<input type="submit" class="button buttonsmbt" value="등록" style=" float: right;">
 															</div>

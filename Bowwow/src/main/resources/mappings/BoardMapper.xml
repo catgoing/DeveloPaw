@@ -246,31 +246,31 @@
 		<choose>
 			<when test='board_idx == 1'> 
 				DIARY_COMMENTS (COMMENT_NO, MEMBER_SERIAL, BOARD_NO, COMMENT_CONTENT, REGDATE) 
-				VALUES (DIARY_COMMENTS_SEQ.NEXTVAL, 994, #{comment.board_no}, #{comment.comment_content}, SYSDATE)
+				VALUES (DIARY_COMMENTS_SEQ.NEXTVAL, #{member_serial}, #{comment.board_no}, #{comment.comment_content}, SYSDATE)
 		<!-- 		VALUES (DIARY_COMMENTS_SEQ.NEXTVAL, #{member_serial}, #{board_no}, #{comment_content}, SYSDATE) -->
 			</when>
 			<when test='board_idx == 2'> 
 				INTRO_COMMENTS (COMMENT_NO, MEMBER_SERIAL, BOARD_NO, COMMENT_CONTENT, REGDATE) 
-				VALUES (INTRO_COMMENTS_SEQ.NEXTVAL, 994, #{comment.board_no}, #{comment.comment_content}, SYSDATE)
+				VALUES (INTRO_COMMENTS_SEQ.NEXTVAL, #{member_serial}, #{comment.board_no}, #{comment.comment_content}, SYSDATE)
 		<!-- 		VALUES (DIARY_COMMENTS_SEQ.NEXTVAL, #{member_serial}, #{board_no}, #{comment_content}, SYSDATE) -->
 			</when>
 			<when test='board_idx == 3'> 
 				KNOWHOW_COMMENTS (COMMENT_NO, MEMBER_SERIAL, BOARD_NO, COMMENT_CONTENT, REGDATE) 
-				VALUES (KNOWHOW_COMMENTS_SEQ.NEXTVAL, 994, #{comment.board_no}, #{comment.comment_content}, SYSDATE)
+				VALUES (KNOWHOW_COMMENTS_SEQ.NEXTVAL, #{member_serial}, #{comment.board_no}, #{comment.comment_content}, SYSDATE)
 		<!-- 		VALUES (DIARY_COMMENTS_SEQ.NEXTVAL, #{member_serial}, #{board_no}, #{comment_content}, SYSDATE) -->
 			</when>
 			<when test='board_idx == 4'> 
 				MISSING_COMMENTS (COMMENT_NO, MEMBER_SERIAL, BOARD_NO, COMMENT_CONTENT, REGDATE) 
-				VALUES (MISSING_COMMENTS_SEQ.NEXTVAL, 994, #{comment.board_no}, #{comment.comment_content}, SYSDATE)
+				VALUES (MISSING_COMMENTS_SEQ.NEXTVAL, #{member_serial}, #{comment.board_no}, #{comment.comment_content}, SYSDATE)
 		<!-- 		VALUES (DIARY_COMMENTS_SEQ.NEXTVAL, #{member_serial}, #{board_no}, #{comment_content}, SYSDATE) -->
 			</when>
 			<when test='board_idx == 5'> 
 				USED_TRANSACTION_COMMENTS (COMMENT_NO2, MEMBER_SERIAL, COMMENT_NO, COMMENT_CONTENT2, REGDATE) 
-				VALUES (MISSING_COMMENTS2_SEQ.NEXTVAL, 994, #{comment.comment_no}, #{comment.comment_content}, SYSDATE)
+				VALUES (MISSING_COMMENTS2_SEQ.NEXTVAL, #{member_serial}, #{comment.comment_no}, #{comment.comment_content}, SYSDATE)
 			</when>
 			<when test='board_idx == 6'> 
 				EVENT_COMMENTS (COMMENT_NO2, MEMBER_SERIAL, COMMENT_NO, COMMENT_CONTENT2, REGDATE) 
-				VALUES (MISSING_COMMENTS2_SEQ.NEXTVAL, 994, #{comment.comment_no}, #{comment.comment_content}, SYSDATE)
+				VALUES (MISSING_COMMENTS2_SEQ.NEXTVAL, #{member_serial}, #{comment.comment_no}, #{comment.comment_content}, SYSDATE)
 			</when>
 		</choose>
 		
@@ -281,27 +281,27 @@
 	<choose>
 		<when test='board_idx == 1'> 
 			DIARY_COMMENTS2 (COMMENT_NO2, MEMBER_SERIAL, COMMENT_NO, COMMENT_CONTENT2, REGDATE) 
-			VALUES (DIARY_COMMENTS2_SEQ.NEXTVAL, 994, #{comment.comment_no}, #{comment.comment_content}, SYSDATE)
+			VALUES (DIARY_COMMENTS2_SEQ.NEXTVAL, #{member_serial}, #{comment.comment_no}, #{comment.comment_content}, SYSDATE)
 		</when>
 		<when test='board_idx == 2'> 
 			INTRO_COMMENTS2 (COMMENT_NO2, MEMBER_SERIAL, COMMENT_NO, COMMENT_CONTENT2, REGDATE) 
-			VALUES (INTRO_COMMENTS2_SEQ.NEXTVAL, 994, #{comment.comment_no}, #{comment.comment_content}, SYSDATE)
+			VALUES (INTRO_COMMENTS2_SEQ.NEXTVAL, #{member_serial}, #{comment.comment_no}, #{comment.comment_content}, SYSDATE)
 		</when>
 		<when test='board_idx == 3'> 
 			KNOWHOW_COMMENTS2 (COMMENT_NO2, MEMBER_SERIAL, COMMENT_NO, COMMENT_CONTENT2, REGDATE) 
-			VALUES (KNOWHOW_COMMENTS2_SEQ.NEXTVAL, 994, #{comment.comment_no}, #{comment.comment_content}, SYSDATE)
+			VALUES (KNOWHOW_COMMENTS2_SEQ.NEXTVAL, #{member_serial}, #{comment.comment_no}, #{comment.comment_content}, SYSDATE)
 		</when>
 		<when test='board_idx == 4'> 
 			MISSING_COMMENTS2 (COMMENT_NO2, MEMBER_SERIAL, COMMENT_NO, COMMENT_CONTENT2, REGDATE) 
-			VALUES (MISSING_COMMENTS2_SEQ.NEXTVAL, 994, #{comment.comment_no}, #{comment.comment_content}, SYSDATE)
+			VALUES (MISSING_COMMENTS2_SEQ.NEXTVAL, #{member_serial}, #{comment.comment_no}, #{comment.comment_content}, SYSDATE)
 		</when>
 		<when test='board_idx == 5'> 
 			USED_TRANSACTION_COMMENTS2 (COMMENT_NO2, MEMBER_SERIAL, COMMENT_NO, COMMENT_CONTENT2, REGDATE) 
-			VALUES (MISSING_COMMENTS2_SEQ.NEXTVAL, 994, #{comment.comment_no}, #{comment.comment_content}, SYSDATE)
+			VALUES (MISSING_COMMENTS2_SEQ.NEXTVAL, #{member_serial}, #{comment.comment_no}, #{comment.comment_content}, SYSDATE)
 		</when>
 		<when test='board_idx == 6'> 
 			EVENT_COMMENTS2 (COMMENT_NO2, MEMBER_SERIAL, COMMENT_NO, COMMENT_CONTENT2, REGDATE) 
-			VALUES (MISSING_COMMENTS2_SEQ.NEXTVAL, 994, #{comment.comment_no}, #{comment.comment_content}, SYSDATE)
+			VALUES (MISSING_COMMENTS2_SEQ.NEXTVAL, #{member_serial}, #{comment.comment_no}, #{comment.comment_content}, SYSDATE)
 		</when>
 	</choose>
 	</insert>
