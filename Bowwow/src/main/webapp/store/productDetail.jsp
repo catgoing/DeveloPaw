@@ -513,12 +513,11 @@
 																					class="btn custom-btn" style="float: right;">
 																				<input type="button" onclick="noID2()" value="상품 문의하기"
 																					class="btn custom-btn">
-																				<input type="hidden" name="member_serial" value="${sessionScope.userDTO.member_serial}">
 																			</div>
 																		</c:if>
 																		<c:if test="${!empty sessionScope.userDTO.id}">
 																			<div class="form-group">
-																				<input type="button" onclick="return chkBtn(); reviewInsert();" value="리뷰 등록"
+																				<input type="button" onclick="reviewInsert();" value="리뷰 등록"
 																					class="btn custom-btn" style="float: right;">
 																				<input type="button" onclick="toMyPage()" value="상품 문의하기"
 																					class="btn custom-btn">
