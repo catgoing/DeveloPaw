@@ -12,5 +12,6 @@ public interface MyInquiryService {
 	List<MyInquiry> getAllInquiry(Map<String, String> map);
 	int getMyInquiryCount(Map<String, Object> map);
 	int getAllInquiryCount(Map<String, String> map);
+	MyInquiry getUserInquiry(MyInquiry myInquiry);
 	
 }

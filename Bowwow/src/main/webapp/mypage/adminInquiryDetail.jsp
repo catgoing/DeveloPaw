@@ -92,7 +92,7 @@ hr {
 		<div class="pcoded-main-container">
 			<div class="pcoded-wrapper">
 				<!-- 좌측메뉴바 -->
-				<%@include file="/common/myPageMenuBar.jsp" %>
+				<%@include file="/auth/common/myPageMenuBar.jsp" %>
 
 <div class="pcoded-content">
 	<div class="pcoded-inner-content">
@@ -102,6 +102,7 @@ hr {
 				<%-- <tiles:insertAttribute name="body" /> --%>
 				<div class="page-body">
 					<div class="inquiry-detail">
+						<c:if test="${empty inquiryAnswer }">
 						<div class="question-title">
 					    	<h4 style="text-align:center">문의 답변 작성</h4>
 				     	</div>
@@ -137,6 +138,7 @@ hr {
 							</table>
 						</div>
 						<hr>
+						
 						<form action="/insertInquiryAnswer" method="post">
 							<div>
 								<table class="table table-sm">
@@ -151,9 +153,63 @@ hr {
 							<div class="btn-container">
 								<input type="hidden" name="inquiry_serial" value="${uiqDetail.inquiry_serial }">
 								<input type="submit" class="btn btn-outline-secondary" value="답변등록">
-								<input type="button" class="btn btn-outline-secondaty" value="돌아가기" onclick="javascript:history.back(-2))">
+								<input type="button" class="btn btn-outline-secondaty" value="돌아가기" onclick="javascript:history.back()">
 							</div>
 						</form>
+						</c:if>
+						<c:if test="${not empty inquiryAnswer }">
+						<div class="question-title">
+					    	<h4 style="text-align:center">문의 답변 확인</h4>
+				     	</div>
+						<div class="table-container">
+							<table class="table table-sm">
+								<tr>
+									<th class="inquiry_th">제목</th>
+									<td>${uiqDetail.inquiry_title }</td>
+									<th class="inquiry_th">작성일시</th>
+									<td>${uiqDetail.inquiry_writedate }</td>
+								</tr>
+								<tr>	
+									<th class="inquiry_th">작성자</th>
+									<td>${uiqDetail.nickname }</td>
+									<th class="inquiry_th">문의유형</th>
+									<td>${uiqDetail.inquiry_type }</td>
+								</tr>
+								<tr>							
+									<th class="inquiry_th">문의내용</th>
+									<td colspan="3">
+									<pre>${uiqDetail.inquiry_content }</pre>
+									</td>
+								</tr>	
+								<c:if test="${not empty targetProduct }">
+								<tr>
+									<th class="inquiry_th">문의상품</th>
+									<td colspan="3"><a href="/store/detail?p_id=${targetProduct.p_id }">${targetProduct.p_name}</a><br>
+									<fmt:formatNumber value="${targetProduct.price}" pattern="#,###"/> 원</td>
+								</tr>
+								</c:if>			
+								<c:if test="${empty targetProduct  }">
+								</c:if>			
+							</table>
+						</div>
+						<hr>
+						
+						<table class="table table-sm">
+							<tr>
+								<th class="inquiry_th">관리자 답변</th>
+								<td>
+								<pre><c:out value="${inquiryAnswer.inquiry_re_content} " /></pre>
+								</td>
+							</tr>
+							<tr>
+								<th class="inquiry_th">등록일</th>
+								<td>${inquiryAnswer.inquiry_re_date} </td>
+							</tr>
+						</table>
+						<form>
+							<input type="button" class="btn btn-outline-secondaty" value="돌아가기" onclick="javascript:history.back()">
+						</form>
+						</c:if>
 					</div>
 				</div>
 			</div>

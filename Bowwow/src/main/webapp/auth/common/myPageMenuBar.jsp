@@ -85,6 +85,16 @@
 		                         </ul>
 		                     </li>
 		                 </ul>
+		                 <ul class="pcoded-item pcoded-left-item">
+					         <li class="">
+					             <a href="/getAdminInquiryList" class="waves-effect waves-dark">
+					                 <span class="pcoded-micon">
+					                 </span>
+					                 <span class="pcoded-mtext">문의 확인</span>
+					                 <span class="pcoded-mcaret"></span>
+					             </a>
+					         </li>
+					     </ul>
 	                 </c:when>
                  </c:choose>
 			 </div>

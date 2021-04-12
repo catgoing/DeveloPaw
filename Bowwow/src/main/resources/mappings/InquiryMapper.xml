@@ -112,6 +112,24 @@
 		<if test="typeSelect != null">AND INQUIRY_TYPE = #{typeSelect}</if>
 	</select>
 	
+	<!-- 관리자 문의조회(개별-답변있으면 답변도 조회) -->
+	<select id="userInquirySearch" parameterType="inquiry" resultType="inquiry">
+	SELECT A.MEMBER_SERIAL, 
+		A.NICKNAME, A.INQUIRY_TITLE,
+				    A.INQUIRY_CONTENT,
+				    A.INQUIRY_WRITEDATE,
+				    A.INQUIRY_TYPE,
+				    A.P_ID,
+				    U.INQUIRY_SERIAL,
+				    U.INQUIRY_RE_SERIAL, 
+				    U.INQUIRY_RE_CONTENT, 
+				    U.INQUIRY_RE_DATE, 
+				    U.ADMIN_NAME
+		FROM INQUIRY_ADMIN U LEFT OUTER JOIN INQUIRY_USER A
+		ON U.INQUIRY_SERIAL = A.INQUIRY_SERIAL
+		WHERE a.INQUIRY_SERIAL = #{inquiry_serial}
+	</select>
+	
 	
 </mapper>
 

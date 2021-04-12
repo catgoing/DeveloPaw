@@ -57,6 +57,11 @@ public class MyInquiryServiceImpl implements MyInquiryService{
 	public int getAllInquiryCount(Map<String, String> map) {
 		return uiqDAO.getAllInquiryCount(map);
 	}
+
+	@Override
+	public MyInquiry getUserInquiry(MyInquiry myInquiry) {
+		return uiqDAO.getUserInquiry(myInquiry);
+	}
 	
 
 }

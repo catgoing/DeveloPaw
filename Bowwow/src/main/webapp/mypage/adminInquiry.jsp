@@ -215,7 +215,7 @@ $(document).ready(function(){
 				<div class="pcoded-wrapper">
 
 				<!-- 좌측 메뉴바 시작 -->
-				<%@include file="/common/myPageMenuBar.jsp" %>
+				<%@include file="/auth/common/myPageMenuBar.jsp" %>
 
 <div class="pcoded-content">
 	<div class="pcoded-inner-content">
