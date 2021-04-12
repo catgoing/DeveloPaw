@@ -235,7 +235,6 @@
 														<input type="hidden" name="p_name" value="${o.p_name }">
 														<input type="hidden" name="amount" value="${o.amount }">
 														<input type="hidden" name="sum" value="${o.sum }">
-														<input type="text" name="price" value="${o.price }">
 													</c:forEach>
 													</tbody>
 												</table>
@@ -298,6 +297,7 @@
 																<input type="hidden" name="p_name" value="${ord.p_name }">
 																<input type="hidden" name="amount" value="${ord.amount }">
 																<input type="hidden" name="s_image" value="${ord.s_image }">
+																<input type="text" name="price" value="${ord.price }">
 															</c:forEach>
 															</div>
 														</div>

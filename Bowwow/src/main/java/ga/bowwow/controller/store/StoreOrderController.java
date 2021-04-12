@@ -61,6 +61,7 @@ public class StoreOrderController {
 		request.setCharacterEncoding("utf-8");
 		storeOrderService.insertOrder(order);
 		
+		int result = 0;
 		OrderDetail orderDetail;
 		List<OrderDetail> orderList = new ArrayList<OrderDetail>();
 		List<Integer> sum = new ArrayList<Integer>();
@@ -68,10 +69,14 @@ public class StoreOrderController {
 		
 		for (int i = 0; i < size; i++) {
 			orderDetail = new OrderDetail();
+			result = orderDTO.getPrice().get(i) * orderDTO.getAmount().get(i);
+			orderDetail.setPrice(orderDTO.getPrice().get(i));
 			orderDetail.setP_id(orderDTO.getP_id().get(i));
 			orderDetail.setAmount(orderDTO.getAmount().get(i));
 			orderDetail.setP_name(orderDTO.getP_name().get(i));
 			orderList.add(orderDetail);
+			sum.add(i, result);
+			orderDetail.setSum(sum.get(i));
 			System.out.println("orderList view ::" + orderList);
 			System.out.println("order ::" + orderDetail);
 			System.out.println("orderList " + i + "번째");
