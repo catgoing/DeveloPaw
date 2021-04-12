@@ -50,7 +50,7 @@
 	<script type="text/javascript" src="/resources/js/ajax.js"></script>
 
 <script type="text/javascript">
-	
+
 	$(function() {
 		var sell_price = $("input:hidden[name='price']");
 		var amount = $("input:text[name='amount']");
@@ -63,11 +63,11 @@
 		}
 
 	});
-	
+
 	// 장바구니 상품 수량 수정
 	var tUrl = '/store/updateCart';
 	var result;
-		
+
 	function add(pId, userId, amount) {
 		var amount = Number(amount) + 1;
 		var param = {
@@ -75,9 +75,9 @@
 				id : userId,
 				amount : amount
 			}
-		
+
 		result = callAjax(tUrl, 'post', param, 'data');
-		
+
 		if (result.code == '0000') {
 			alert(result.msg);
 			location.reload();
@@ -85,7 +85,7 @@
 			alter(result.msg);
 		}
 	}
-	
+
 	function del(pId, userId, amount) {
 		var amount = Number(amount) - 1;
 		var param = {
@@ -93,9 +93,9 @@
 				id : userId,
 				amount : amount
 			}
-		
+
 		result = callAjax(tUrl, 'post', param, 'data');
-		
+
 		if (result.code == '1111') {
 			amount = 1;
 			alert(result.msg);
@@ -106,7 +106,7 @@
 			alter(result.msg);
 		}
 	}
-	
+
 	// 장바구니 상품 삭제
 	function delCart(pId, userId) {
 
@@ -139,7 +139,7 @@
 	  const checked = document.querySelectorAll("input[name='p_id']:checked");
 	  // select all 체크박스
 	  const selectAll = document.querySelector("input[name='selectall']");
-	  
+
 	  if(checkboxes.length === checked.length)  {
 	    selectAll.checked = true;
 	    itemCheck();
@@ -147,12 +147,12 @@
 	    selectAll.checked = false;
 	    itemCheck();
 	  }
-	
+
 	}
 
 	function selectAll(selectAll)  {
 	  const checkboxes = document.getElementsByName('p_id');
-	  
+
 	  checkboxes.forEach((checkbox) => {
 	    checkbox.checked = selectAll.checked
 	    itemCheck();
@@ -182,7 +182,7 @@
 		  totalPrice.val(numberAddCommas(sum));
 		  totalSum.val(numberAddCommas(total));
 		  console.log("totalSum :" + totalSum.val());
-		  
+
  	}
 
  	// 체크된 상품 삭제
@@ -225,14 +225,17 @@
  	function hsBack() {
  		history.back();
  	}
- 	
+
 
  // 체크된 상품 주문 페이지로 넘기기
  	function toOrder() {
 		var frm = document.listForm;
 		frm.submit();
  	}
-	
+ 
+
+ 	
+
 </script>
 
 </head>
@@ -258,7 +261,7 @@
 
 							<!-- Shopping Cart Section Begin -->
 							<section class="shopping-cart spad">
-							<form name="listForm" action="/store/orderList" method="POST">
+							<form name="listForm" action="/store/orderArr" method="POST">
 								<div class="container">
 									<div class="row">
 										<div class="col-lg-12">
@@ -292,7 +295,7 @@
 															<input type="hidden" name="p_name" value="${cart.p_name }">
 															<input type="hidden" name="s_image" value="${cart.s_image }">
 															<input type="hidden" name="p_type" value="${cart.p_type }">
-															
+
 																<c:choose>
 																	<c:when test="${cart.p_type == 'dog'}">
 																		<c:set var="imgDir" value="dogImg" />

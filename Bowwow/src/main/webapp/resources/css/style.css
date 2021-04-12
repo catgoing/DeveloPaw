@@ -23,6 +23,7 @@ File: style.css
 ==========================  **/
 style="max-width: 100%; height: auto;"
 
+
 .orderBtn
 {font-size: 1.5em; float: right;}
 
@@ -321,6 +322,7 @@ font-size: 16px; color : #fff; border-radius: 2px; line-height: 42px;}
 
 .monthly-products li { 
     float: left;
+    margin-top : 10px;
 }
 
 .itemsList ul { 

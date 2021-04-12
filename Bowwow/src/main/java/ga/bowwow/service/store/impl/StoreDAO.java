@@ -79,7 +79,11 @@ public class StoreDAO {
 	public int deleteCart(CartList cartList) {
 		return mybatis.delete("Cart.deleteCart", cartList);
 	}
-
+	
+	// 장바구니 상품 전체 삭제
+	public void deleteCartAll(String id) {
+		mybatis.delete("Cart.deleteCartAll", id);
+	}
 
 	// 상품 후기 dao
 	public int insertReview(Review review) {
@@ -135,5 +139,6 @@ public class StoreDAO {
 	public void changeOrderStatus(int order_id) {
 		mybatis.update("StoreOrder.changeOrderStatus",order_id);
 	}
+
 
 }
