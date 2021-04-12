@@ -123,6 +123,19 @@ public class MyInquiryDAO {
 				
 		return inquiryList;
 	}
+	
+	//관리자 유저문의 상세
+	public MyInquiry getUserInquiry(MyInquiry myInquiry) {
+		System.out.println("관리자 유저문의DAO selectOne");
+		System.out.println(">> MyInquiry :" + myInquiry);
+
+		MyInquiry uiqDetail = mybatis.selectOne("inquiry.userInquirySearch", myInquiry);
+		System.out.println("관리자test : " + uiqDetail);
+				
+		return uiqDetail;
+	}
+		
+		
 	//전 유저 문의갯수(관리자사용)
 	public int getAllInquiryCount(Map<String, String> map) {
 		return mybatis.selectOne("inquiry.InquiryCount", map);

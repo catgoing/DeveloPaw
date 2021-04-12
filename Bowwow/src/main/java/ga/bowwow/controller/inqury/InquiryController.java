@@ -183,6 +183,22 @@ public class InquiryController {
 		}
 		
 		MyInquiry uiq = myServive.getMyInquiry(myInquiry);
+		System.out.println("출력할 문의" + uiq);
+		
+		//관리자답변등록시
+		if(uiq.getInquiry_re_content()!=null) {
+			String answerDate = uiq.getInquiry_re_date().substring(0, 10);
+			uiq.setInquiry_re_date(answerDate);
+
+			Map<String, String> map = new HashMap<String, String>();
+			map.put("inquiry_re_content", uiq.getInquiry_re_content());	
+			map.put("inquiry_re_date", uiq.getInquiry_re_date());
+			map.put("admin_name", uiq.getAdmin_name());	
+			
+			System.out.println("map : " + map);
+			model.addAttribute("inquiryAnswer", map);
+		}
+		
 		model.addAttribute("uiqDetail", uiq);
 		
 		return "/mypage/adminInquiryDetail";
@@ -211,6 +227,6 @@ public class InquiryController {
 
 		myServive.insertAdminInquiryAnswer(myInquiry);
 		
-		return "/getAdminInquiryDetail";
+		return "redirect:/getAdminInquiryList";
 	}
 }
