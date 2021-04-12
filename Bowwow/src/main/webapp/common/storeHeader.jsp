@@ -24,6 +24,12 @@ input[type="submit"] {
 }
 </style>
 
+<script type="text/javascript">
+	function noId() {
+		alert("로그인후 장바구니 사용이 가능합니다.");
+	}
+</script>
+
 <!-- Pre-loader start -->
 	<div class="theme-loader">
 		<div class="loader-track">
@@ -124,9 +130,18 @@ input[type="submit"] {
 								<input type="submit" name="search" style="cursor: pointer;" value="&#xf002;">
 							</li>
 							<li class="header-notification">
+							<c:choose>
+							<c:when test="${sessionScope.userDTO != null}">
 								<a href="/store/cartList" class="waves-effect waves-light">
 									<i class="fa fa-shopping-cart" aria-hidden="true" ></i>
 								</a>
+							</c:when>
+							<c:when test="${sessionScope.userDTO == null}">
+								<a onclick="noId()" class="waves-effect waves-light">
+									<i class="fa fa-shopping-cart" aria-hidden="true" ></i>
+								</a>
+							</c:when>
+							</c:choose>
 							</li>
 							<li class="user-profile header-notification"><c:choose>
 							<c:when test="${sessionScope.userDTO != null}">

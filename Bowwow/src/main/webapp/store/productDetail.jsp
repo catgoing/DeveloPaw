@@ -514,15 +514,17 @@
 																					cols="20" rows="2" name="review_content"
 																					style="resize: none;" placeholder="후기 내용"></textarea>
 																			</div>
+																		<c:if test="${empty sessionScope.userDTO.member_serial}">
 																			<div class="form-group">
 																				<input type="button" onclick="reviewInsert()" value="리뷰 등록"
 																					class="btn custom-btn" style="float: right;">
 																				<input type="button" onclick="toMyPage()" value="상품 문의하기"
 																					class="btn custom-btn">
 																				<input type="hidden" name="p_id" value="${p.p_id}">
-																				<input type="hidden" name="member_serial" value="999">
+																				<input type="hidden" name="member_serial" value="${sessionScope.userDTO.member_serial}">
 																			</div>
-																		</div>
+																		</c:if>
+																	</div>
 																</form>
 															</section>
 															<br><br>

@@ -9,12 +9,12 @@ import javax.servlet.http.HttpSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import ga.bowwow.service.store.CartList;
 import ga.bowwow.service.store.CartListService;
+import ga.bowwow.service.user.VO.UserDTO;
 
 @Controller
 public class CartListController {
@@ -33,7 +33,7 @@ public class CartListController {
 		
 		Map<String, String> result = new HashMap<String, String>();
 
-		cartList.setId("test2");
+		cartList.setId( ((UserDTO) session.getAttribute("userDTO")).getId());
 		int count = cartListService.cartCheck(cartList);
 		
 		if (count == 0) {
@@ -50,9 +50,9 @@ public class CartListController {
 	
 	// 장바구니 리스트 조회
 	@RequestMapping(value = "/store/cartList")
-	public String getCartList(CartList cartList, Model model) {
+	public String getCartList(CartList cartList, Model model, HttpSession session) {
 		
-		String id = "test2";
+		String id = ((UserDTO) session.getAttribute("userDTO")).getId();
 		
 		List<CartList> cart = cartListService.getCartList(id);
 		model.addAttribute("cart", cart);
