@@ -15,6 +15,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
+import ga.bowwow.service.store.CartList;
 import ga.bowwow.service.store.CartListService;
 import ga.bowwow.service.store.Order;
 import ga.bowwow.service.store.OrderDTO;
@@ -26,6 +27,9 @@ public class StoreOrderController {
 
 	@Autowired
 	private StoreOrderService storeOrderService;
+	
+	@Autowired
+	private CartListService cartListService;
 	
 	public StoreOrderController() {
 		System.out.println(">> StoreOrderController 실행");
