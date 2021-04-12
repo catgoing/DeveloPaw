@@ -30,4 +30,11 @@
 <link rel="stylesheet" type="text/css" href="/resources/css/style.css">
 <link rel="stylesheet" type="text/css" href="/resources/css/test.css">
 <link rel="stylesheet" type="text/css" href="/resources/css/paging.css">
-<script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>   
+<script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>  
+
+<style>
+@font-face { 
+   font-family: 'NanumBarunpenB'; !important
+   src: url(/resources/fonts/NanumBarunpenB.ttf) format('truetype'); 
+}
+</style>

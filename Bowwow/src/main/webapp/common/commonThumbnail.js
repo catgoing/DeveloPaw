@@ -8,7 +8,7 @@ function setThumbnail(event){
 			document.querySelector("div#thumb_container").appendChild(img);
 			
 			img.setAttribute("id", "thumbnailImage");
-			img.setAttribute("style", "width:300px; height: 200px;");
+			img.setAttribute("style", "width:280px; height: 200px; margin-top:10px;");
 			console.log("imgDiv Creating test", img);
 		} else {
 			img = imgTag;

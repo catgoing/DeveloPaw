@@ -93,7 +93,7 @@ input[type="text"]:hover{
 						</a>
 					</li>
 						<li class="user-profile header-notification"><c:choose>
-								<c:when test="${sessionScope.userDTO != null}">
+								<c:when test="${sessionScope.userDTO != null && sessionScope.userDTO.status != '777'}">
 									<a href="#!" class="waves-effect waves-light"> <img
 										src="${sessionScope.userDTO.image_source}" class="img-radius"
 										style="height: 40px; width: 40px;" alt="User-Profile-Image">
@@ -112,8 +112,7 @@ input[type="text"]:hover{
 										</a></li>
 										<script>
 											//a태그 POST방식으로 넘기기!
-											function page_move_petList(
-													member_serial) {
+											function page_move_petList(member_serial) {
 												var frm = document.goLinkPetList; //폼 name
 												frm.member_serial.value = member_serial; //POST방식으로 넘기고 싶은 값
 												frm.action = "/getPetInfoList"; //이동할 페이지
@@ -125,6 +124,21 @@ input[type="text"]:hover{
 											href="/mypage/myPoint">포인트 내역 </a></li>
 										<li class="waves-effect waves-light"><a
 											href="/store/storeOrderList">나의 쇼핑 </a></li>
+										<li class="waves-effect waves-light"><a
+											href="/user/logout">로그아웃 </a></li>
+									</ul>
+								</c:when>
+								<c:when test="${sessionScope.userDTO != null && sessionScope.userDTO.status == '777'}">
+									<a href="#!" class="waves-effect waves-light"> <img
+										src="../resources/images/logo.png" class="img-radius"
+										style="height: 40px; width: 40px;" alt="User-Profile-Image">
+										<i class="ti-angle-down"></i>
+									</a>
+									<ul class="show-notification profile-notification">
+										<li class="waves-effect waves-light"><a
+											href="/user/manageList">회원관리</a></li>
+										<li class="waves-effect waves-light"><a
+											href="/getAdminInquiryList">문의관리</a></li>
 										<li class="waves-effect waves-light"><a
 											href="/user/logout">로그아웃 </a></li>
 									</ul>

@@ -59,7 +59,7 @@
     table-layout: fixed;
     border-top: 1px #7F858F solid;
     border-bottom: 1px #7F858F solid;
-    font-size: 15px;
+    font-size: 20px;
 }
 .reason_one>ul, .reason_two>ul{
 	display : table-row;
@@ -73,12 +73,26 @@
 .center{
 	text-align : center;
 }
-.textarea {
+#reasonTwo {
 	box-sizing: border-box;
-    padding: 6px 9px;
+	height:100px;
     width: 100%;
-    font-size: 13px;
+    font-size: 18px;
+    font-style:normal;
     line-height: 1.4;
+    resize:none;
+}
+.th{
+	text-align: center;
+    vertical-align: middle;
+}
+#list-td-one{
+    vertical-align: middle;
+    width: 80%;
+    padding-top: 10px;
+}
+#list-td-two{
+	width: 80%;
 }
 
 /* 
@@ -98,8 +112,8 @@ function checkAgree(frm){
 	} else if($('#reasonTwo').val()==""){
 		alert("상세사유를 입력하셔야 탈퇴할 수 있습니다.");
 	} else {
-		frm.action="";
-		frm.method="";
+		frm.action="/account/delete";
+		frm.method="post";
 		frm.submit();
 	}
 	return false;
@@ -131,13 +145,14 @@ function checkAgree(frm){
 						<!-- Page-body start -->
 						<div class="page-body">
 						<div class="myPageInfo-header">
-							<h2> 탈퇴페이지</h2>
+							<h3 style="text-align:center; margin-bottom:15px;"> 탈퇴 신청 페이지</h3>
 						</div>
 						<form>
+						<input type="hidden" name="member_serial" value="${sessionScope.userDTO.member_serial }">
 							<div class="form-group container reason_one">					
 								<ul class="tr">
 									<li class="th">탈퇴사유</li>
-									<li class="td">
+									<li class="td" id="list-td-one">
 										<div class="label-group">
 										<label>
 											<input type="radio" name="reasonOne" id="inlineRadio1" value="사이트 이용 불편">
@@ -166,7 +181,7 @@ function checkAgree(frm){
 							<div class="form-group container reason_two">
 								<ul class="tr">
 									<li class="th">상세사유</li>
-									<li class="td">
+									<li class="td" id="list-td-two">
 										<textarea class="form-control" name="reasonTwo" id="reasonTwo"></textarea>
 									</li>
 								</ul>

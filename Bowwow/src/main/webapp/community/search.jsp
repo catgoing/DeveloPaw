@@ -14,6 +14,15 @@
 <%@ include file="/common/import.jsp"%>
 
 <title>게시판 검색 결과</title>
+<style>
+.box {
+    -ms-overflow-style: none; /* IE and Edge */
+    scrollbar-width: none; /* Firefox */
+}
+.box::-webkit-scrollbar {
+    display: none; /* Chrome, Safari, Opera*/
+}
+</style>
 </head>
 
 <body>
@@ -66,7 +75,9 @@
 											    	style="width:150px; height:180px; float:left; margin-right:20px;">
 											    	<span style=" margin:20px; font-size:30px">${diarylist.board_title }</span> 
 											   		 <br><br>
-												    <span class="card-text" style=" margin:0;">${diarylist.board_scontent}</span>
+<%-- 												    <input type="text"  class="card-text" style=" margin:0;">${diarylist.board_scontent}</span> --%>
+												     <textarea class="box card-text" cols="40" rows="3" style=" margin:0; border:none; width:80%; resize:none; overflow: hiddden;
+												     														display: -webkit-box; -webkit-line-clamp: 2; -webkit-box-orient: vertical; " readonly>${diarylist.board_scontent}</textarea>
 												    </h5>
 											    <br>
 										      <small class="text-muted" style="text-align:right">${diarylist.nickname} / ${diarylist.regdate}</small>
@@ -94,7 +105,8 @@
 											    	style="width:150px; height:180px; float:left; margin-right:20px;">
 											    	<span style=" margin:20px; font-size:30px">${introlist.board_title }</span> 
 											   		 <br><br>
-												    <span class="card-text" style=" margin:0;">${introlist.board_scontent}</span>
+												     <textarea class="box card-text" cols="40" rows="3" style=" margin:0; border:none; width:80%; resize:none; overflow: hiddden;
+												     														display: -webkit-box; -webkit-line-clamp: 2; -webkit-box-orient: vertical; " readonly>${introlist.board_scontent}</textarea>
 												    </h5>
 											    <br>
 										      <small class="text-muted" style="text-align:right">${introlist.nickname} / ${introlist.regdate}</small>
@@ -122,7 +134,8 @@
 											    	style="width:150px; height:180px; float:left; margin-right:20px;">
 											    	<span style=" margin:20px; font-size:30px">${knowhowlist.board_title }</span> 
 											   		 <br><br>
-												    <span class="card-text" style=" margin:0;">${knowhowlist.board_scontent}</span>
+												    <textarea class="box card-text" cols="40" rows="3" style=" margin:0; border:none; width:80%; resize:none; overflow: hiddden;
+												     														display: -webkit-box; -webkit-line-clamp: 2; -webkit-box-orient: vertical; " readonly>${knowhowlist.board_scontent}</textarea>
 												    </h5>
 											    <br>
 										      <small class="text-muted" style="text-align:right">${knowhowlist.nickname} / ${knowhowlist.regdate}</small>
@@ -150,7 +163,8 @@
 											    	style="width:150px; height:180px; float:left; margin-right:20px;">
 											    	<span style=" margin:20px; font-size:30px">${missinglist.board_title }</span> 
 											   		 <br><br>
-												    <span class="card-text" style=" margin:0;">${missinglist.board_scontent}</span>
+												   <textarea class="box card-text" cols="40" rows="3" style=" margin:0; border:none; width:80%; resize:none; overflow: hiddden;
+												     														display: -webkit-box; -webkit-line-clamp: 2; -webkit-box-orient: vertical; " readonly>${missinglist.board_scontent}</textarea>
 												    </h5>
 											    <br>
 										      <small class="text-muted" style="text-align:right">${missinglist.nickname} / ${missinglist.regdate}</small>
@@ -178,7 +192,8 @@
 											    	style="width:150px; height:180px; float:left; margin-right:20px;">
 											    	<span style=" margin:20px; font-size:30px">${transactionlist.board_title }</span> 
 											   		 <br><br>
-												    <span class="card-text" style=" margin:0;">${transactionlist.board_scontent}</span>
+												    <textarea class="box card-text" cols="40" rows="3" style=" margin:0; border:none; width:80%; resize:none; overflow: hiddden;
+												     														display: -webkit-box; -webkit-line-clamp: 2; -webkit-box-orient: vertical; " readonly>${transactionlist.board_scontent}</textarea>
 												    </h5>
 											    <br>
 										      <small class="text-muted" style="text-align:right">${transactionlist.nickname} / ${transactionlist.regdate}</small>
