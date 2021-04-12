@@ -2,9 +2,7 @@ package ga.bowwow.controller.store;
 
 import java.io.IOException;
 import java.util.ArrayList;
-import java.util.HashMap;
 import java.util.List;
-import java.util.Map;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -53,16 +51,14 @@ public class StoreOrderController {
 	@RequestMapping(value = "/store/insertOrder")
 	// default로 get방식 요청, post 선언을 해줘야 함
 	public String insertOrder(Order order, HttpServletRequest request) throws IllegalStateException, IOException {
-		System.out.println("order : "  + order);
+		System.out.println("INSERTorder : "  + order);
 		System.out.println(">>> 주문내역 작성 - insertOrder()");
-		
-		List<Order> list = new ArrayList<Order>();
 		
 		request.setCharacterEncoding("utf-8");
 		storeOrderService.insertOrder(order);
 		
 		
-		return "redirect:/store/storeOrderList?member_serial=999";
+		return "/store/storeOrderList?member_serial=999";
 	}
 
 	
