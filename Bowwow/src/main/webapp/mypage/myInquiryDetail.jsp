@@ -2,8 +2,10 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
     <% request.setCharacterEncoding("UTF-8"); %>
-<%@ taglib uri="http://tiles.apache.org/tags-tiles" prefix="tiles"%>
+<%-- <%@ taglib uri="http://tiles.apache.org/tags-tiles" prefix="tiles"%> --%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
+
 
 <!DOCTYPE html>
 <html>
@@ -52,15 +54,20 @@
     <link rel="stylesheet" type="text/css" href="/resources/css/style.css">
     <link rel="stylesheet" type="text/css" href="/resources/css/test.css">
 <style>
- table, th, td{
+/*  table, th, td{
  	border : 1px solid black;
- }
+ } */
  .inquiry_th {
 	width : 15%;
  }
  .inquiry_td {
  	widgh : 30%;
  }
+ pre{
+	overflow: auto;
+	white-space: pre-wrap;
+	word-break: break-all;
+}
 </style>
 </head>
 
@@ -92,7 +99,7 @@
 					    	<h2>문의목록</h2>
 				     	</div>
 						<div class="table-container">
-							<table class="table">
+							<table class="table table-sm">
 								<tr>
 									<th class="inquiry_th">제목</th>
 									<td>${uiqDetail.inquiry_title }</td>
@@ -102,21 +109,24 @@
 								<tr>							
 									<th class="inquiry_th">문의내용</th>
 									<td colspan="3">
-									<pre><c:out value="${uiqDetail.inquiry_content }" /></pre>
+									<pre>${uiqDetail.inquiry_content }</pre>
 									</td>
-								</tr>	
-								<c:if test="${uiqDetail.p_id == null }">
+								</tr>
+								<c:if test="${empty targetProduct }">
+								</c:if>
+								<c:if test="${not empty targetProduct}">
 								<tr>
 									<th>문의상품</th>
-									<td></td>
+									<td colspan="3"><a href="detail?p_id=${targetProduct.p_id }">${targetProduct.p_name}</a><br>
+									<fmt:formatNumber value="${targetProduct.price}" pattern="#,###"/> 원</td>
 								</tr>
-								</c:if>			
+								</c:if>		
 							</table>
 							<hr>
 							<c:if test="${empty inquiryAnswer }">
 							</c:if>
 							<c:if test="${not empty inquiryAnswer }">
-							<table class="table">
+							<table class="table table-sm">
 								<tr>
 									<th class="inquiry_th">관리자 답변</th>
 									<td>
@@ -131,7 +141,7 @@
 							</c:if>
 						</div>  	
 						<div class="btn-container">
-							<button onclick="history.back()">돌아가기</button>
+							<button onclick="/getUserInquiryList">돌아가기</button>
 						</div>
 					</div>
 				</div>

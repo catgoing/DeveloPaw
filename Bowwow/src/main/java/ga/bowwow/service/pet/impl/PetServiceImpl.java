@@ -7,6 +7,8 @@ import org.springframework.stereotype.Service;
 
 import ga.bowwow.service.pet.Pet;
 import ga.bowwow.service.pet.PetService;
+import ga.bowwow.service.user.VO.UserAccount;
+import ga.bowwow.service.user.VO.UserDTO;
 
 @Service("petService")
 public class PetServiceImpl implements PetService {
@@ -41,6 +43,11 @@ public class PetServiceImpl implements PetService {
 	@Override
 	public Pet getPetInfo(Pet pet) {
 		return petDAO.getPetInfo(pet);
+	}
+
+	@Override
+	public List<Pet> getMyHomePetList(int member_serial) {
+		return petDAO.getMyHomePetList(member_serial);
 	}
 
 }

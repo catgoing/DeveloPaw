@@ -68,4 +68,16 @@
 		ORDER BY PET_SERIAL ASC
 	</select>
 
+	<!-- 동물번호 순 6마리 검색 -->
+	 <select id="mainSearchAnimal" parameterType="int" resultType="pet"> 
+		SELECT PET_SERIAL, MEMBER_SERIAL, IMAGE_SOURCE, ANIMAL_TYPE, PET_NAME,
+				PET_GENDER, PET_VARIETY, PET_AGE, PET_SIZE, TNR,
+				PET_WEIGHT, PET_BIRTH, NECK_LENGTH, BACK_LENGTH,
+				CHEST_LENGTH, PET_ETC, IMAGE_SOURCE_ORINAME
+			FROM ( SELECT *
+					 FROM USER_PETINFO
+					ORDER BY PET_SERIAL DESC)
+		  WHERE ROWNUM <![CDATA[ <= ]]> 6 AND MEMBER_SERIAL = #{member_serial }
+	 </select>
+
 </mapper>

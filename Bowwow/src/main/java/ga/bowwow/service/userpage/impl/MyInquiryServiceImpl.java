@@ -1,6 +1,7 @@
 package ga.bowwow.service.userpage.impl;
 
 import java.util.List;
+import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -26,8 +27,8 @@ public class MyInquiryServiceImpl implements MyInquiryService{
 	}
 
 	@Override
-	public List<MyInquiry> getMyInquiryList(MyInquiry myInquiry) {
-		List<MyInquiry> list = uiqDAO.getMyInquiryList(myInquiry);
+	public List<MyInquiry> getMyInquiryList(Map<String, Object> map) {
+		List<MyInquiry> list = uiqDAO.getMyInquiryList(map);
 		return list;
 	}
 
@@ -42,11 +43,20 @@ public class MyInquiryServiceImpl implements MyInquiryService{
 	}
 
 	@Override
-	public List<MyInquiry> getAllInquiry(MyInquiry myInquiry) {
-		List<MyInquiry> list = uiqDAO.getAllInquiry(myInquiry);
+	public List<MyInquiry> getAllInquiry(Map<String, String> map) {
+		List<MyInquiry> list = uiqDAO.getAllInquiry(map);
 		return list;
 	}
+
+	@Override
+	public int getMyInquiryCount(Map<String, Object> map) {
+		return uiqDAO.getMyInquiryCount(map);
+	}
 	
+	@Override
+	public int getAllInquiryCount(Map<String, String> map) {
+		return uiqDAO.getAllInquiryCount(map);
+	}
 	
 
 }

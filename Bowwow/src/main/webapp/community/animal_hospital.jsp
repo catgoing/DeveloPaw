@@ -12,35 +12,7 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=0, minimal-ui">
 <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-
-<meta name="keywords"
-	content="bootstrap, bootstrap admin template, admin theme, admin dashboard, dashboard template, admin template, responsive" />
-<meta name="author" content="Codedthemes" />
-<!--Jua 폰트 import-->
-<link rel="preconnect" href="https://fonts.gstatic.com">
-<link href="https://fonts.googleapis.com/css2?family=Do+Hyeon&display=swap" rel="stylesheet">
-
-<!-- Favicon icon -->
-<link rel="icon" href="/resources/images/favicon.ico" type="image/x-icon">
-<!-- Google font-->
-<link href="https://fonts.googleapis.com/css?family=Open+Sans:400,600,700" rel="stylesheet">
-<!-- waves.css -->
-<link rel="stylesheet" href="/resources/pages/waves/css/waves.min.css" type="text/css" media="all">
-<!-- Required Fremwork -->
-<link rel="stylesheet" type="text/css" href="/resources/css/bootstrap/css/bootstrap.min.css">
-<!-- waves.css -->
-<link rel="stylesheet" href="/resources/pages/waves/css/waves.min.css" type="text/css" media="all">
-<!-- themify icon -->
-<link rel="stylesheet" type="text/css" href="/resources/icon/themify-icons/themify-icons.css">
-<!-- font-awesome-n -->
-<link rel="stylesheet" type="text/css" href="/resources/css/font-awesome-n.min.css">
-<link rel="stylesheet" type="text/css" href="/resources/css/font-awesome.min.css">
-<!-- scrollbar.css -->
-<link rel="stylesheet" type="text/css" href="/resources/css/jquery.mCustomScrollbar.css">
-<!-- Style.css -->
-<!-- <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/resources/css/style.css"> -->
-<link rel="stylesheet" type="text/css" href="/resources/css/style.css">
-<link rel="stylesheet" type="text/css" href="/resources/css/test.css">
+<%@ include file="/common/import.jsp"%>
 
 
  <title>키워드로 장소검색하기</title>
@@ -50,20 +22,34 @@
 .block-item:hover{cursor:pointer;}
 
   
-   .placeinfo_wrap {position:absolute;bottom:28px;left:-150px;width:300px;}
-   .placeinfo {position:relative;width:100%;border-radius:6px;border: 1px solid #ccc;border-bottom:2px solid #ddd;padding-bottom: 10px;background: #fff;}
-   .placeinfo:nth-of-type(n) {border:0; box-shadow:0px 1px 2px #888;}
-   .placeinfo_wrap .after {content:'';position:relative;margin-left:-12px;left:50%;width:22px;height:12px;background:url('https://t1.daumcdn.net/localimg/localimages/07/mapapidoc/vertex_white.png')}
-   .placeinfo a, .placeinfo a:hover, .placeinfo a:active{color:#fff;text-decoration: none;}
-   .placeinfo a, .placeinfo span {display: block;text-overflow: ellipsis;overflow: hidden;white-space: nowrap;}
-   .placeinfo span {margin:5px 5px 0 5px;cursor: default;font-size:13px;}
-   .placeinfo .title {font-weight: bold; font-size:14px;border-radius: 6px 6px 0 0;margin: -1px -1px 0 -1px;padding:10px; color: #fff;background: #d95050;background: #d95050 url(https://t1.daumcdn.net/localimg/localimages/07/mapapidoc/arrow_white.png) no-repeat right 14px center;}
-   .placeinfo .tel {color:#0f7833;}
-   .placeinfo .jibun {color:#999;font-size:11px;margin-top:0;}
-   </style>
+.placeinfo_wrap {position:absolute;bottom:28px;left:-150px;width:300px;}
+.placeinfo {position:relative;width:100%;border-radius:6px;border: 1px solid #ccc;border-bottom:2px solid #ddd;padding-bottom: 10px;background: #fff;}
+.placeinfo:nth-of-type(n) {border:0; box-shadow:0px 1px 2px #888;}
+.placeinfo_wrap .after {content:'';position:relative;margin-left:-12px;left:50%;width:22px;height:12px;background:url('https://t1.daumcdn.net/localimg/localimages/07/mapapidoc/vertex_white.png')}
+.placeinfo a, .placeinfo a:hover, .placeinfo a:active{color:#fff;text-decoration: none;}
+.placeinfo a, .placeinfo span {display: block;text-overflow: ellipsis;overflow: hidden;white-space: nowrap;}
+.placeinfo span {margin:5px 5px 0 5px;cursor: default;font-size:13px;}
+.placeinfo .title {font-weight: bold; font-size:14px;border-radius: 6px 6px 0 0;margin: -1px -1px 0 -1px;padding:10px; color: #fff;background: #d95050;background: #d95050 url(https://t1.daumcdn.net/localimg/localimages/07/mapapidoc/arrow_white.png) no-repeat right 14px center;}
+.placeinfo .tel {color:#0f7833;}
+.placeinfo .jibun {color:#999;font-size:11px;margin-top:0;}
 
+footer.footer.navbar-wrapper {
+    z-index: 3;
+}
 
-
+.active {
+	background-color : #f7b5b7;
+    -webkit-box-shadow: 0 15px 8px -11px rgba(0, 0, 0, 0.25);
+    box-shadow: 0 15px 8px -11px rgba(0, 0, 0, 0.25);
+}
+</style>
+<script>
+$(function (){
+	var board_idx = ${board_idx};
+	board_idx = board_idx + 3;
+	$(".pcoded-inner-navbar>ul:nth-child(" + board_idx + ")>li>a").addClass("active");
+});   
+  </script>
 </head>
 <body>
 	

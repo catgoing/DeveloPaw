@@ -24,7 +24,7 @@ public class MyInquiry {
 	private String inquiry_writedate;	//문의날짜
 	private String inquiry_type;		//문의유형(이용문의, 구매문의, 배송문의, 기타문의)
 
-	private int p_id;					//상품문의 할 때?
+	private int p_id;					//상품문의 할 때
 	
 	//답변이 있는지 확인 ?? 
 	private String have_answer;

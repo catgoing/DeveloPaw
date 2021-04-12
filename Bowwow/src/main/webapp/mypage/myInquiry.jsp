@@ -4,8 +4,9 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
     <% request.setCharacterEncoding("UTF-8"); %>
-<%@ taglib uri="http://tiles.apache.org/tags-tiles" prefix="tiles"%>
+<%-- <%@ taglib uri="http://tiles.apache.org/tags-tiles" prefix="tiles"%> --%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
 
 <!DOCTYPE html>
 <html>
@@ -56,16 +57,20 @@
     <link rel="stylesheet" type="text/css" href="../resources/css/style.css">
     <link rel="stylesheet" type="text/css" href="../resources/css/test.css">
 <style>
- table { border-collapse: collapse; }
+ /* table { border-collapse: collapse; }
  th, td {
 	border: 1px solid black;
 	margin: 0 auto;
  }
- th { background-color: orange; }
+ th { background-color: orange; } */
  .center { text-align: center; }
  .border-none, .border-none td { border: none; }
  td .input-group{
  	width : 100%;
+ }
+ .width-control{
+	width:60%;
+ 	margin: 0 auto;
  }
  .my-inquiry{
 	position: relative;
@@ -73,7 +78,7 @@
  .question-write, .content-list, table{
 	padding-bottom: 30px;
 	text-align:center;
-	margin : 50px;
+	margin : 0 auto;
 	width: 80%;	
  }
  .question-write div, .question-write input[type="text"], 
@@ -96,11 +101,11 @@
  .question-title {
  	width : 100%;	
     font-size: 25px;
-    font-weight: 700;
+    font-weight: bold;;
     line-height: 37px;
     float: left;
  }
- .question-title .cancel-btn{
+ .question-title #cancel-btn{
 	float: right;
     line-height: 37px;
  }
@@ -118,7 +123,10 @@
 	width : 100%;
 	border : 1px solid #e4e4e4;
 	border-radius : 10px;
-	
+}
+.table-sm th{
+	color: 	#3C1E1E;
+	font-weight: bold;
 }
 
 </style>
@@ -130,7 +138,7 @@ $(document).ready(function(){
 		console.log(checked);
 	});
 	
-	$('.cancel-btn').click(function(){
+	$('#cancel-btn').click(function(){
 		console.log($(this));
 		$('input[type="text"]').val('');
 		$('form-control fill').removeAttr("selected");
@@ -141,10 +149,13 @@ $(document).ready(function(){
 //빈칸, 문의유형선택안하면 경고
 function allInputCheck(frm) {
 	if(frm.inquiry_type.value==""){
-		alert("문의 유형을 선택하세요");
-		console.log(frm.inquiry_type);
-		frm.inquiry_type.focus();
-	} 
+		if(frm.p_id){ //p_id가 들어왔을 때
+			alert("문의 유형은 상품유형을 선택하세요");
+		}
+		else if(!frm.p_id){	 //p_id가 안들어왔을 때 
+			alert("문의 유형을 선택하세요");
+		}
+	}
 	else if(frm.inquiry_title.value==""){
 		alert("문의 제목을 입력하세요");
 		frm.inquiry_title.focus();
@@ -258,11 +269,11 @@ function allInputCheck(frm) {
 										  </div>
                                       	  <div id="collapseOne" class="panel-collapse collapse in" role="tabpanel" aria-labelledby="headingOne">
                                            <div class="accordion-content accordion-desc">
-                                           <form id="inquiry_form" name="inquiry_input_form">
+                                           <form id="inquiry_form" name="inquiry_input_form" method="post">
                                                <div class="form-group row" id="question-section">
                                               		<input type="text" class="form-control" name="inquiry_title" placeholder="제목을 입력하세요">							    					
 											    		<select class="form-control" id="inquiry_type" aria-label="문의유형선택" name="inquiry_type" style="border : 1px solid #e4e4e4">
-														  <option disabled>문의 유형 선택</option>
+														  <option value="" selected disabled hidden>문의 유형 선택</option>
 														  <option value="contactUs" onclick="inquiryType('contactUs')">이용문의</option>
 														  <option value="product" onclick="inquiryType('product')">상품문의</option>
 														  <option value="delivery" onclick="inquiryType('delivery')">배송문의</option>
@@ -270,11 +281,27 @@ function allInputCheck(frm) {
 														</select>
 							    					<textarea class="form-control" name="inquiry_content" rows="5" placeholder="질문을 입력하세요!"></textarea>
 							  					</div>
+							  					<c:if test="${not empty targetProduct }">
+							  					<div class="form-group">
+							  						<table class="form-control" style="line-height:0">
+							  							<tr>
+							  								<td rowspan="2" style="line-height:0">
+							  									상품이미지<img src="https://projectbit.s3.us-east-2.amazonaws.com/${foldername }/${targetProduct.s_image }" style="max-width:100%;">
+							  								</td>
+							  								<td> <a href="/store/detail?p_id=${targetProduct.p_id }">상품명 ${targetProduct.p_name }</a> </td>
+							  							<tr>
+							  							<tr>
+							  								<td><fmt:formatNumber value="${targetProduct.price}" pattern="#,###"/> 원</td>
+						  								</tr>
+							  						</table>
+							  						<input type="hidden" id="targetPid" name="p_id" value="${targetProduct.p_id }">							  						
+							  					</div>
+							  					</c:if>
 							    				<div class="form-group input_product" id="input_product"></div>
-							    				<input type="hidden" name="nickname" value="${sessionScope.user.nickname }">
-							    				<input type="hidden" name="member_serial" value="${sessionScope.user.memberSerial }">
-	                                           <input type="button" class="contact-btn" value="문의하기" onclick="allInputCheck(this.form)">	
-							    			   <input type="button" class="cancel-btn" value="취소">
+							    				<input type="hidden" name="nickname" value="${sessionScope.userDTO.nickname }">
+							    				<input type="hidden" name="member_serial" value="${sessionScope.userDTO.member_serial }">
+	                                           <input type="button" class="btn btn-outline-secondary" id="contact-btn" value="문의하기" onclick="allInputCheck(this.form)">	
+							    			   <input type="button" class="btn btn-outline-secondary" id="cancel-btn" value="취소">
                                            </form>
                                            	</div>
                                          </div>
@@ -284,9 +311,9 @@ function allInputCheck(frm) {
 								</div>
 							
 							<div class="content-list">
-						     	<table>
+						     	<table class="table table-sm">
 									<tr>
-										<th width="100">문의유형</th>
+										<th width="15%">문의유형</th>
 										<th width="200">제목</th>
 										<th width="150">작성자</th>
 										<th width="150">작성일</th>
@@ -294,7 +321,7 @@ function allInputCheck(frm) {
 									</tr>
 								<c:if test="${empty sessionScope.userinquiryList }">
 									<tr>
-										<td colspan="5" class="center">데이터가 없습니다.</td>
+										<td colspan="5" class="center">문의 이력이 없습니다.</td>
 									</tr>
 								</c:if>
 								<c:if test="${not empty sessionScope.userinquiryList }">	
@@ -310,14 +337,22 @@ function allInputCheck(frm) {
 										<td>${inquiry.have_answer }</td>
 									</tr>
 									</c:forEach>
+									<tr>
+										<td colspan="5" style="text-align: center;">
+											<div style="display:inline-block; margin:0 auto; font-size: 20px;">
+												<%@include file="/common/paging.jsp" %>
+											</div>
+										</td>
+									</tr>
 								</c:if>
 								</table>
 								<form action="/getUserInquiryList" method="post">
-								<table class="border-none">
+								<table class="border-none width-control">
 									<tr>
 										<td class="input-group">
+										    <input type="hidden" name="member_serial" value="${sessionScope.userDTO.member_serial }">
 										    <select class="form-control" id="inputGroupSelect04" name="typeSelect" aria-label="Example select with button addon">
-										      <option selected>전체보기</option>
+										      <option value="" selected>전체보기</option>
 										      <option value="contactUs">이용문의</option>
 										      <option value="product">상품문의</option>
 										      <option value="delivery">배송문의</option>
@@ -336,47 +371,14 @@ function allInputCheck(frm) {
 	            <div id="styleSelector"> </div>
 	        </div>
 	      </div>
-	      
-	<button class="scroll-top" id="js-button" style="margin-bottom: 190px; margin-right: 30px;">
-        <i class="fa fa-chevron-up" aria-hidden="true">TOP</i>
-    </button>
-    <script type="text/javascript">
-        scrollTop('js-button', 500);
-        function scrollTop(elem,duration) {
-            let target = document.getElementById(elem);
-        
-            target.addEventListener('click', function() {
-                let currentY = window.pageYOffset; 
-                let step = duration/currentY > 1 ? 10 : 100;
-                let timeStep = duration/currentY * step;
-                let intervalID = setInterval(scrollUp, timeStep);
-        
-                function scrollUp(){
-                    currentY = window.pageYOffset;
-                    if(currentY === 0) {
-                        clearInterval(intervalID);
-                    } else {
-                        scrollBy( 0, -step );
-                    }
-                }
-            });
-        }
-        </script>
-        
-	<!-- footer 푸터 시작부분-->
-            <div style="display: block;">
-                <footer class="footer navbar-wrapper">
-                    <div class="footer-wrapper navbar-wrapper">
-                        <div class="footer-box" style="height: 100px; text-align: center;">
-                            푸터
-                        </div>
-                    </div>
-                </footer>
-         	 </div>
-     <!-- footer 푸터 끝부분-->
-        </div>
-      </div>
-    </div></div></div>
+	</div>
+	</div>
+	</div>
+   	<!-- footer 푸터 시작부분-->
+	<%@include file="/common/footer.jsp" %>
+	<!-- footer 푸터 끝부분-->
+    </div>
+    </div>
 	<!-- Required Jquery -->
     <script type="text/javascript" src="../resources/js/jquery/jquery.min.js "></script>
     <script type="text/javascript" src="../resources/js/jquery-ui/jquery-ui.min.js "></script>

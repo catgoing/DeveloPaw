@@ -2,7 +2,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
     <% request.setCharacterEncoding("UTF-8"); %>
-<%@ taglib uri="http://tiles.apache.org/tags-tiles" prefix="tiles"%>
+<%-- <%@ taglib uri="http://tiles.apache.org/tags-tiles" prefix="tiles"%> --%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 
 <!DOCTYPE html>
@@ -54,45 +54,37 @@
     <link rel="stylesheet" type="text/css" href="../resources/css/style.css">
     <link rel="stylesheet" type="text/css" href="../resources/css/test.css">
 <style>
-  .featured__item__text { width: 150px; }
-  
-  .input-content .input-wrap {
-	margin-bottom: 15px;
-	position: relative;
-}
- .input-content .input-wrap:last-of-type {
-	margin-bottom: 0;
-}
-
- .input-content .input-wrap input {
-	width: 100%;
-	height: 50px;
-	border-radius: 10px;
-	color: #48484d;
-	font-size: 15px;
-	font-weight: 700;
-	padding: 14px 20px;
-	border: 1px solid #e4e4e4;
-	padding-right: 50px;
-}
+ .point-container{
+ 	text-align: center;
+ }
+ 
  .content-list {
    display : block;
    width: 80%;
-    margin-bottom: 50px;
+   margin : 0 auto;
+   margin-bottom: 50px;
  } 
  
- table { border-collapse: collapse; }
+/*  table { 
+ 	width: 100%;
+ 	border-collapse: collapse; 
+ 	margin : 0 auto;
+ }
  th, td {
 	border: 1px solid black;
 	margin: 0 auto;
  }
- th { background-color: orange; }
+ th { background-color: orange; } */
+ 
  .center { text-align: center; }
- .border-none, .border-none td { border: none; }
+ 
  td .input-group{
  	width : 100%;
  }
- 
+ .table-sm th{
+	color: 	#3C1E1E;
+	font-weight: bold;
+}
 </style>
 </head>
 
@@ -172,23 +164,22 @@
 							<!-- Page-body start -->
 							<div class="page-body">
 								<section class="featured spad">
-									<div class="container">
+									<div class="container point-container">
 										<div class="row">
 											<div class="col-lg-12">
 												<div class="section-title">
-													<h2>포인트 출력</h2>
+													<h2>${sessionScope.userDTO.nickname}님의 포인트</h2>
 												</div>
 												<br>
 											</div>
 										</div>			
 								<div class="content-list">
-						     	<table>
+						     	<table class="table table-sm">
 									<tr>
-										<th width="200">추가일</th>
-										<th width="150">추가포인트</th>
+										<th width="45%">추가일</th>
+										<th width="25%">추가포인트</th>
 										<th width="150">누적포인트</th>
 									</tr>
-									
 								<c:if test="${empty pointList }">
 									<tr>
 										<td colspan="5" class="center">적립된 포인트가 없습니다.</td>
@@ -203,6 +194,13 @@
 										<td>${point.point }</td>
 									</tr>
 									</c:forEach>
+									<tr>
+										<td colspan="5" style="text-align: center;">
+											<div style="display:inline-block; margin:0 auto; font-size: 20px;">
+												<%@include file="/common/paging.jsp" %>
+											</div>
+										</td>
+									</tr>
 								</c:if>
 								</table>
 						     </div>

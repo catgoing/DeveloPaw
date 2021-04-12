@@ -95,6 +95,9 @@
 		SET PASSWORD = #{password}
 		, EMAIL = #{email}
 		, PHONE = #{phone}
+		, NICKNAME,
+		, PASSWORD
+		, IMAGE_SOURCE
 		WHERE ID = #{id}
 	</update>
 
@@ -106,7 +109,6 @@
 	<select id="searchUserAccount" parameterType="UserAccount" resultType="UserAccount">
 		SELECT * FROM USER_ACCOUNT
 		WHERE ID = #{id}
-		AND PASSWORD = #{password}
 		AND EMAIL = #{email}
 		AND PHONE = #{phone}
 	</select>
@@ -160,5 +162,23 @@
 		ORDER BY ORDER_DATE DESC -->
 	 </select>
 	 
-	 	 
+	 <!-- 최신순 포인트내역 검색 -->
+	 <select id="mainSearchPoint" parameterType="UserAccount" resultType="Order">
+	
+	 SELECT MEMBER_SERIAL, ORDER_DATE, TOTALSUM, ORDER_POINT, POINT
+		FROM (SELECT O.MEMBER_SERIAL, O.ORDER_DATE, O.TOTALSUM, O.ORDER_POINT, A.POINT
+			   FROM STORE_ORDER O, USER_ACCOUNT A
+			   WHERE O.MEMBER_SERIAL = A.MEMBER_SERIAL
+			   AND O.MEMBER_SERIAL = #{member_serial}
+			   ORDER BY O.ORDER_DATE DESC)
+	  WHERE ROWNUM <![CDATA[ <= ]]> 10
+	 </select>
+	 
+	 <!-- 개인 포인트내역출력 시 페이징을 위한 구매내역 count -->
+	 <select id="searchforPointPaging" resultType="int">
+	 	SELECT COUNT(*)
+		FROM STORE_ORDER 
+		WHERE MEMBER_SERIAL = #{member_serial}
+	 </select>
+	 
 </mapper>

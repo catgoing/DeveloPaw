@@ -1,10 +1,6 @@
 package ga.bowwow.service.pet;
 
-import java.util.Date;
-
-import org.springframework.format.annotation.DateTimeFormat;
 import org.springframework.stereotype.Component;
-import org.springframework.web.multipart.MultipartFile;
 
 import lombok.AllArgsConstructor;
 import lombok.Getter;

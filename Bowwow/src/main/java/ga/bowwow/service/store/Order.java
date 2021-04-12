@@ -17,7 +17,6 @@ public class Order {
 	private int member_serial;		// 회원 번호
 	private int amount;				// 주문한 상품 수량
 	private int totalSum;			// 총 구매 가격
-	private String p_name;			// 주문한 상품 이름
 	private String memo;			// 배송 관련 메모
 	private String order_date;		// 주문 날짜
 	private String order_status;	// 주문 진행 상황
@@ -29,7 +28,7 @@ public class Order {
 	private String s_image;			// 상품 이미지
 	private String p_type;			// 상품 타입
 	private int sum;				// 상품 한개의 총 금액
-	
+
 	private String realname;		// 실명
 
 }
