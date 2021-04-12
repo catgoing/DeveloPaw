@@ -23,8 +23,8 @@
 	</c:if>
 	<c:if test="${pageNo != pvo.nowPage }">
 	<c:choose>
-		<c:when test="${p_type != null && p_category != null}">
-			<a href="${command }?cPage=${pageNo }&p_type=${p_type}&p_category=${p_category}">${pageNo }</a>
+		<c:when test="${p_type != null }">
+			<a href="${command }?cPage=${pageNo }&p_type=${p_type}">${pageNo }</a>
 		</c:when>
 		<c:when test="${p_type != null && p_category != null}">
 			<a href="${command }?cPage=${pageNo }&p_type=${p_type}&p_category=${p_category}">${pageNo }</a>
