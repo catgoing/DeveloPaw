@@ -44,11 +44,19 @@ public class UserAccountController extends UserCRUDGenericController<UserAccount
 	}
 	
 	@ResponseBody
+	@RequestMapping(value="/setPassword")
+	public ResponseEntity setPassword(UserAccount userAccount) {
+		System.out.println(userAccount);
+		int result = ((UserAccountServiceImpl)this.service).setPassword(userAccount);
+		return result == 1 ? ResponseEntity.ok().build() : ResponseEntity.status(204).build();
+	}
+	
+	@ResponseBody
 	@RequestMapping(value="/loginValidateUserAccount")
 	public ResponseEntity getUserAccount(@RequestBody UserAccount userAccount) {
-//		System.out.println("userAccountController userAccount :" + userAccount);
+		System.out.println("userAccountController userAccount :" + userAccount);
 		boolean result = ((UserAccountServiceImpl)this.service).loginAttemp(userAccount);
-//		System.out.println("Rest loginValidation : " + result);
+		System.out.println("Rest loginValidation : " + result);
 		return result ? ResponseEntity.ok().build() : ResponseEntity.status(204).build();
 	}
 	

@@ -19,9 +19,14 @@ public class UserAccountServiceImpl extends UserGenericService<UserAccount> {
 	public UserAccountServiceImpl(@Autowired UserAccountDAO dao) {
 		this.dao = dao;
 	}
+	
+	public int setPassword(UserAccount userAccount) {
+		return ((UserAccountDAO)dao).setPassword(userAccount);
+	}
 
 	public boolean loginAttemp(UserAccount userAccount) {
 		System.out.println("loginAttemptTest : " + userAccount);
+		System.out.println("verifying" +((UserAccountDAO)dao).verifyAccount(userAccount));
 		return StaticUtil.isListNotNull(((UserAccountDAO)dao).verifyAccount(userAccount));
 	}
 	

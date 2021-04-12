@@ -19,6 +19,7 @@ public class UserDTO extends UserAccount {
 	String citizen_id;
 	String phone;
 	String status;
+	String password;
 	long point;
 	String coupons;
 	String image_source;

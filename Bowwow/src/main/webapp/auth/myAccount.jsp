@@ -28,7 +28,6 @@
 			var passwordConfirm = form.pwC.value;
 			const msg = [];
 			
-<<<<<<< HEAD
 // 			if(!isValid("id", id)) {
 // 				msg.push("id는 1-19자 입니다.");
 // 				flag = false;
@@ -208,7 +207,6 @@
 		alert("폼이 정상적으로 입력되었습니다.");
    		return true;
    }
-=======
 			if(!isValid("id", id)) {
 				msg.push("id는 1-19자 입니다.");
 				flag = false;
@@ -245,7 +243,6 @@
 		return result;
     }
 	
->>>>>>> parent of ff768f0 (fixed header)
  	</script>
 <script type="text/javascript">
 
