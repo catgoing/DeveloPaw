@@ -252,9 +252,9 @@ footer.footer.navbar-wrapper {
 																		<div style="text-align:right; margin-right:10px">
 																			<input type="hidden" name="board_idx" value="${board_idx }">
 																			<input type="hidden" name="board_no" value="${vo.board_no }">
-																			<c:set var="userid" value="${sessionScope.userDTO.member_serial }"/>
-																			<c:set var="writerid" value="${vo.member_serial }"/>
-																			<c:if test="${userid eq writerid }">
+																			<c:set var="userid" value="${sessionScope.userDTO.nickname }"/>
+																			<c:set var="writerid" value="${vo.nickname }"/>
+																			<c:if test="${userid == writerid }">
 																			<input type="submit" class="button buttonbig" value="수정" formaction="/community/update/board" >
 																			<input type="submit" class="button buttonbig" value="삭제 " formaction="/community/boardDelete">
 																			</c:if>
