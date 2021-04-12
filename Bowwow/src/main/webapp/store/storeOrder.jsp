@@ -74,39 +74,7 @@
    </style>
 			
 	<script type="text/javascript">
-    	$(document).ready(function() {
-        	function goRefreshTab() {
-        		var IMP = window.IMP; // 생략가능
-        		IMP.init('iamport'); // 'iamport' 대신 부여받은 "가맹점 식별코드"를 사용
-        		IMP.request_pay({
-        		    pg : 'inicis', // version 1.1.0부터 지원.
-        		    pay_method : 'card',
-        		    merchant_uid : 'merchant_' + new Date().getTime(),
-        		    name : '주문명:결제테스트',
-        		    amount : 100,
-        		    buyer_email : 'iamport@siot.do',
-        		    buyer_name : '구매자이름',
-        		    buyer_tel : '010-1234-5678',
-        		    buyer_addr : '서울특별시 강남구 삼성동',
-        		    buyer_postcode : '123-456',
-        		    m_redirect_url : 'https://www.yourdomain.com/payments/complete'
-        		}, function(rsp) {
-        		    if ( rsp.success ) {
-        		        var msg = '결제가 완료되었습니다.';
-        		        msg += '고유ID : ' + rsp.imp_uid;
-        		        msg += '상점 거래ID : ' + rsp.merchant_uid;
-        		        msg += '결제 금액 : ' + rsp.paid_amount;
-        		        msg += '카드 승인번호 : ' + rsp.apply_num;
-        		        
-        		    } else {
-        		        var msg = '결제에 실패하였습니다.';
-        		        msg += '에러내용 : ' + rsp.error_msg;
-        		    }
-        		    alert(msg);
-        		});
-        	}
-        	refreshTabFunc = goRefreshTab;
-    	});
+	
        function execMap(){
             new daum.Postcode({
                 oncomplete: function(data) {
@@ -141,32 +109,33 @@
 
 
     function chkBtn(){
-       if(document.getElementById('phone').value == ""){
+    	
+    	if(document.getElementById('phone').value == ""){
             alert("핸드폰 번호를 입력해주세요");
             checkout.phone.focus();
             return false;
-        }
-       
-       if(document.getElementById('userZonecode').value == ""){
-            alert("주소를 입력해 주세요.");
-            checkout.userZonecode.focus();
+        }  
+    	
+        if(document.getElementById('userZonecode').value == ""){
+             alert("주소를 입력해 주세요.");
+             checkout.userZonecode.focus();
+             return false;
+         }
+        
+        if(document.getElementById('addressDetail').value == ""){
+            alert("상세주소를 입력해 주세요.");
             return false;
         }
-
-
-       if ($("input:checkbox[name='chk_1']").is(":checked") == false || $("input:checkbox[name='chk_2']").is(":checked") == false){
-            alert("동의 버튼을 눌러주셔야 결제가 진행됩니다.");
-            checkout.chk_1.focus();
-            checkout.chk_2.focus();
-            return false;
-        } else {
-        	refreshTabFunc();
-        	return true;
-        }
-
-
-    }
-
+        
+        if ($("input:checkbox[name='chk_1']").is(":checked") == false || $("input:checkbox[name='chk_2']").is(":checked") == false){
+             alert("동의 버튼을 눌러주셔야 결제가 진행됩니다.");
+             checkout.chk_1.focus();
+             checkout.chk_2.focus();
+             return false;
+         } else return true;         
+        
+        
+     }
 
     function order_check(){
         if(document.getElementById('userZonecode').value == ""){
@@ -183,11 +152,11 @@
 
         }
 
-    function insertOrder() {
-    	action="/store/insertOrder";
-	  	submit();
+    function insertOrder(frm) {
+    	frm.action="/store/insertOrder";
+	  	frm.submit();
     }
-
+    
 </script>
 </head>
 
@@ -207,7 +176,6 @@
 						<div class="pcoded-inner-content">
 							<!-- Main-body start -->
 							<!-- Shopping Cart Section Begin -->
-							<form method="POST" name="orderForm" >
 							<section class="shopping-cart spad">
 								<div class="container">
 									<div class="row">
@@ -249,6 +217,7 @@
 															<td class="qua-col first-row">
 																<div class="quantity">
 																	<fmt:formatNumber value="${order.sum }" pattern="#,###" />원
+											
 																</div>
 															</td>
 														</tr>
@@ -261,7 +230,7 @@
 							</section>
 							<section class="checkout spad">
 								<div class="container" style="background-color: white;">
-									<div class="checkout__form" >
+								<form action="insertOrder" onsubmit="return chkBtn();" method="POST" name="checkout" class="checkout__form" accept-charset="UTF-8">
 										<div class="row">
 											<div class="col-lg-8">
 												<div class="checkout__order"
@@ -293,9 +262,9 @@
 																</p>
 
 																<input type="text" id="userZonecode" name="zip" readonly
-																	placeholder="우편번호">
-																	<input type="text" id="userAddress" name="address" placeholder="주소" readonly>
-																	<input type="text" name="address_detail" placeholder="동,호수 등 상세 주소를 입력하세요">
+																	placeholder="우편번호"> 
+																	<input type="text" id="userAddress" name="address" placeholder="주소" readonly> 
+																	<input type="text" id="addressDetail" name="address_detail" placeholder="동,호수 등 상세 주소를 입력하세요">
 															</div>
 														</div>
 														<div class="col-lg-12">
@@ -308,7 +277,7 @@
 																	placeholder="ex) 부재시 경비실에 맡겨주세요.">
 															</div>
 															<div class="checkout__form__input">
-																<input type="hidden" id="order_status" name="order_status" value="주문 완료">
+																<input type="hidden" id="order_status" name="order_status" value="주문 완료"> 
 																<input type="hidden" name="p_id" value="${order.p_id }">
 																<input type="hidden" name="p_name" value="${order.p_name }">
 																<input type="hidden" name="amount" value="${order.amount }">
@@ -326,10 +295,9 @@
 													<div class="checkout__order__total">
 														<ul>
 															<li>배송비 <span>무료</span></li>
-															<li>총 결제금액
+															<li>총 결제금액 
 																<span>
 																	<fmt:formatNumber value="${order.totalSum }" pattern="#,###" />원
-																	<input type="hidden" name="point" value="${Math.round(0.001*order.totalSum) }">
 																</span>
 															</li>
 														</ul>
@@ -350,16 +318,15 @@
 															class="checkmark"></span>
 														</label>
 													</div>
-													<input type="button" class="site-btn"
-													style="font-size: 1.5em;" value="결제하기"  onclick="return chkBtn(); "required>
+													<button type="submit" class="site-btn" style="font-size: 1.5em;">결제하기</button>
 												</div>
 											</div>
 										</div>
-									</div>
+									</form>
 								</div>
 							</section>
+							
 							<!-- Shopping Cart Section End -->
-							</form>
 						</div>
 					</div>
 				</div>
@@ -384,12 +351,9 @@
     <!-- menu js -->
     <script src="/resources/js/pcoded.min.js"></script>
     <script src="/resources/js/vertical/vertical-layout.min.js "></script>
-
     <script type="text/javascript" src="/resources/js/script.js "></script>
-    <script type="text/javascript">
 
 
-    </script>
 </body>
 
 

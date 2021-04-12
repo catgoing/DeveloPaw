@@ -58,7 +58,7 @@ public class StoreOrderController {
 		storeOrderService.insertOrder(order);
 		
 		
-		return "/store/storeOrderList?member_serial=999";
+		return "redirect:/store/storeOrderList?member_serial=999";
 	}
 
 	
