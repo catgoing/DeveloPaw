@@ -2,6 +2,13 @@
 	pageEncoding="UTF-8"%>
 <html>
 <head>
+<style>
+
+.form-control {
+	width:400px;
+	border: 1px solid grey;
+}
+</style>
 <script src="//developers.kakao.com/sdk/js/kakao.min.js"></script>
 <script
 	src="//t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script>
@@ -294,19 +301,14 @@
 												<div class="block-title">
 													<h3>회원가입</h3>
 												</div>
-												<form id="account_form" name="account_form"
-													enctype="multipart/form-data" action="/account/add"
-													method="post">
-													<!-- 													<form id="account_form" onsubmit="return fn_pw_check();"> -->
-													<div class="form-group form-primary">
-														<input type="text" name="id" id="id" value="tesasdfet"
+												<form id="account_form" name="account_form"	enctype="multipart/form-data" action="/account/add"	method="post">
+														<input type="text" name="id" id="id"
 															class="form-control form-control"> <span
 															class="form-bar"></span> <label class="float-label">아이디</label>
 														<div class="action_btn">
 															<button type="button" class="btn btn-primary"
 																onclick="checkIdDuplication();">중복 확인</button>
 														</div>
-													</div>
 													<div class="form-group form-primary">
 														<input type="password" name="password" id="pw"
 															class="form-control form-control">
@@ -365,8 +367,6 @@
 														<p></p>
 													</div>
 													<div id="msgBox"></div>
-													<!-- 													<input type="submit" value="회원 가입" class="btn btn-primary"> -->
-
 												</form>
 												<form id="address_form" name="address_form"
 													action="/address/addAddressList" method="post">

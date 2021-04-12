@@ -83,7 +83,7 @@
 </script>
 </head>
 
-<section class="login-block">	w
+<section class="login-block">
     <!-- Container-fluid starts -->
     <div class="container">
         <div class="row">
