@@ -59,8 +59,17 @@ input[type="submit"] {
 				</li>
 				<li><a href="/community/main"> 커뮤니티 </a></li>
 				<li><a href="/store/storeMain"> 스토어 </a></li>
+				<li>
+				<c:choose>
+					<c:when test="${sessionScope.userDTO.status == '777'}">
+					<script>
+					</script>
+						<a href="/user/manageList">커뮤니티 관리</a>
+					</c:when>
+				</c:choose>
+				</li>
 			</ul>
-			<form action="/community/search">
+			<form action="/community/search" name="memberSerialLink">
 			<ul class="nav-right">
 				<li class="form-group form-primary">
 					<input type="text"
@@ -78,41 +87,53 @@ input[type="submit"] {
 						class="badge bg-c-red"></span>
 				</a>
 					</li>
-				<li class="user-profile header-notification"><a href="#!"
-					class="waves-effect waves-light"> <img
-						src="../resources/images/logo.png" class="img-radius"
-						alt="User-Profile-Image"> <i class="ti-angle-down"></i>
-				</a>
-				<form name="memberSerialLink">
-				<input type="hidden" name="member_serial" value="${sessionScope.userDTO.member_serial }" >
-					<ul class="show-notification profile-notification">
-						<li class="waves-effect waves-light"><a href="/mypage/myPageMain">마이홈
-						</a></li>
-						<li class="waves-effect waves-light"><a
-							href="/mypage/myInfo">프로필 </a></li>
-						<li class="waves-effect waves-light"><a
-							href="javascript:page_move_petList('${sessionScope.userDTO.member_serial }');">반려동물 </a></li>
-						<script>
-							//a태그 POST방식으로 넘기기!
-							function page_move_petList(member_serial){
-								  var frm =document.goLinkPetList;  //폼 name
-								  frm.member_serial.value = member_serial;  //POST방식으로 넘기고 싶은 값
-								  frm.action="/getPetInfoList";  //이동할 페이지
-								  frm.method="post";  //POST방식
-								  frm.submit();
-							}
-						</script>
-						<li class="waves-effect waves-light"><a
-							href="/mypage/myPoint">포인트 내역 </a></li>
-<!-- 						로그아웃 시, 헤더의 목록을 동적으로 바꿔야 함->로그인 시 헤더목록을 동적으로 출력해야 함  -->
-						<li class="waves-effect waves-light"><a
-							href="/store/storeOrderList">나의 쇼핑 </a></li>
-						<li class="waves-effect waves-light"><a
-							href="/user/login">로그인 </a></li>
-						<li class="waves-effect waves-light"><a
-							href="/user/logout">로그아웃 </a></li>
-					</ul>
-				</form>
+				<li class="user-profile header-notification">
+					<c:choose>
+						<c:when test="${sessionScope.userDTO != null}">
+								<a href="#!" class="waves-effect waves-light"> <img
+									src="${sessionScope.userDTO.image_source}" class="img-radius" style="height:40px; width:40px;"
+									alt="User-Profile-Image"> <i class="ti-angle-down"></i>
+								</a>
+						<input type="hidden" name="member_serial" value="${sessionScope.userDTO.member_serial }" >
+						<ul class="show-notification profile-notification">
+						
+							<li class="waves-effect waves-light"><a href="/mypage/myPageMain">마이홈
+							</a></li>
+							<li class="waves-effect waves-light"><a
+								href="/mypage/myInfo">프로필 </a></li>
+							<li class="waves-effect waves-light"><a
+								href="javascript:page_move_petList('${sessionScope.userDTO.member_serial }');">반려동물 </a></li>
+							<script>
+								//a태그 POST방식으로 넘기기!
+								function page_move_petList(member_serial){
+									  var frm =document.goLinkPetList;  //폼 name
+									  frm.member_serial.value = member_serial;  //POST방식으로 넘기고 싶은 값
+									  frm.action="/getPetInfoList";  //이동할 페이지
+									  frm.method="post";  //POST방식
+									  frm.submit();
+								}
+							</script>
+							<li class="waves-effect waves-light"><a
+								href="/mypage/myPoint">포인트 내역 </a></li>
+							<li class="waves-effect waves-light"><a
+								href="/store/storeOrderList">나의 쇼핑 </a></li>
+							<li class="waves-effect waves-light"><a
+								href="/user/logout">로그아웃 </a></li>
+						</ul>
+					</c:when>
+					<c:otherwise>
+						<a href="#!" class="waves-effect waves-light"> <img
+									src="../resources/images/logo.png" class="img-radius" style="height:40px; width:40px;"
+									alt="User-Profile-Image"> <i class="ti-angle-down"></i>
+						</a>
+						<ul class="show-notification profile-notification">
+							<li class="waves-effect waves-light"><a
+								href="/user/login">로그인</a></li>
+							<li class="waves-effect waves-light"><a
+								href="/account/signup">회원가입</a></li>
+						</ul>
+					</c:otherwise>
+					</c:choose>
 					</li>
 				</ul>
 			</form>

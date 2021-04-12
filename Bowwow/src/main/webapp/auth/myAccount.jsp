@@ -19,56 +19,199 @@
 	src="../resources/js/bootstrap/js/bootstrap.min.js "></script>
 <script type="text/javascript">
 
-    function fn_pw_check() {
-    	try {
-    		var flag = true;
-			var form = document.getElementById("account_form");
-			var id = form.id.value;
-			var password = form.pw.value;
-			var passwordConfirm = form.pwC.value;
-			const msg = [];
+//     function fn_pw_check() {
+//     	try {
+//     		var flag = true;
+// 			var form = document.getElementById("account_form");
+// 			var id = form.id.value;
+// 			var password = form.pw.value;
+// 			var passwordConfirm = form.pwC.value;
+// 			const msg = [];
 			
-			if(!isValid("id", id)) {
-				msg.push("id는 1-19자 입니다.");
-				flag = false;
-			}
-			if(!isValid("password", password)) {
-				msg.push('숫자와 영문자 조합으로 10~15자리를 사용해야 합니다.');
-				flag = false;
-			} else msg.push("");
-			if(password !== passwordConfirm) {
-				msg.push('비밀번호가 일치하지 않습니다.');
-				flag = false;
-			}
-			var msgBox = document.getElementById("msgBox");
-			msgBox.innerHTML = "";
-			msg.forEach(function (m) {
-				msgBox.innerHTML += m + '<br>'
-			})
+// 			if(!isValid("id", id)) {
+// 				msg.push("id는 1-19자 입니다.");
+// 				flag = false;
+// 			}
+// 			if(!isValid("password", password)) {
+// 				msg.push('숫자와 영문자 조합으로 10~15자리를 사용해야 합니다.');
+// 				flag = false;
+// 			} else msg.push("");
+// 			if(password !== passwordConfirm) {
+// 				msg.push('비밀번호가 일치하지 않습니다.');
+// 				flag = false;
+// 			}
+// 			var msgBox = document.getElementById("msgBox");
+// 			msgBox.innerHTML = "";
+// 			msg.forEach(function (m) {
+// 				msgBox.innerHTML += m + '<br>'
+// 			})
 
-			return flag;
-    	} catch(e) {
-			return false;    		
-    	}
-        return false;
-    }
-    function isValid(type, value) {
-    	var validation = {
-    			id: (id) => { return (id.length < 20 && id.length > 0)},
-    			password: (password) => {
-    				return /^[a-zA-Z0-9]{10,15}$/.test(password);
-    			}
-    	}
-    	var result = validation[type](value);
-    	console.log(type, value, result);
-		return result;
-    }
-	
+// 			return flag;
+//     	} catch(e) {
+// 			return false;    		
+//     	}
+//         return false;
+//     }
+//     function isValid(type, value) {
+//     	var validation = {
+//     			id: (id) => { return (id.length < 20 && id.length > 0)},
+//     			password: (password) => {
+//     				return /^[a-zA-Z0-9]{10,15}$/.test(password);
+//     			}
+//     	}
+//     	var result = validation[type](value);
+//     	console.log(type, value, result);
+// 		return result;
+//     }
+	var pw_passed = true;
+	function fn_pw_check() {
+        var pw = document.getElementById("pw").value;
+        var pw2 = document.getElementById("pwC").value;
+        var id = document.getElementById("id").value;
+        var name = document.getElementById("realname").value;
+        //var year = document.getElementById("bYear").value;
+        //var month = document.getElementById("bMonth").value;
+        //var day = document.getElementById("bDay").value; //생년월일
+        var phone = document.getElementById("phone").value;
+        //var location = document.getElementById("optLocation").value;
+        var email = document.getElementById("email").value;
+        //var inText = document.getElementById("txtIn").value;
+        //var profileimg = document.getElementById("txtimg").value;
+        
+//         var idMsg = document.getElementById("idMsg").value;
+//         var pwMsg = document.getElementById("pwMsg").value;
+//         var nameMsg = document.getElementById("nameMsg").value;
+//         var phoneMsg = document.getElementById("phoneMsg").value;
+//         var emailMsg = document.getElementById("emailMsg").value;
+        
+        
+        pw_passed = true;
+        
+        var pattern1 = /[0-9]/;
+        var pattern2 = /[a-zA-Z]/;
+        var pattern3 = /[~!@\#$%<>^&*]/;
+        var pattern4 = /^01(?:0|1|[6-9])(?:\d{3}|\d{4})\d{4}$/;
+        var pattern5 = /^[0-9a-zA-Z]([-_\.]?[0-9a-zA-Z])*@[0-9a-zA-Z]([-_\.]?[0-9a-zA-Z])*\.[a-zA-Z]{2,3}$/i;
+        
+        var pw_msg = "";
+        if(id.length == 0) {
+               alert("아이디를 입력해주세요");
+               return false;
+         } else {
+         }
+        if(pw.length == 0) {
+               alert("비밀번호를 입력해주세요");
+               return false;
+         } else {
+                if(pw != pw2) {
+                      alert("비밀번호가 일치하지 않습니다.");
+                      return false;
+                 }
+         }
+        if(name.length == 0){
+        	alert("이름을 입력해주세요.");
+        	return false;
+        }
+        if(phone.length == 0){
+        	alert("전화번호를 입력해주세요.");
+        	return false;
+        }
+        if(email.length == 0){
+        	alert("이메일을 입력해주세요.");
+        	return false;
+        }
+        if(!pattern1.test(pw)||!pattern2.test(pw)||!pattern3.test(pw)||pw.length<8||pw.length>50){
+            alert("비밀번호엔 영문과 숫자, 특수문자를 모두 입력해야 합니다.");
+            return false;
+        }          
+        if(pw.indexOf(id) > -1) {
+            alert("비밀번호에 ID를 포함할 수 없습니다.");
+            return false;
+        }
+        
+        var SamePass_0 = 0;
+        var SamePass_1 = 0;
+        var SamePass_2 = 0;
+
+        for(var i=0; i < pw.length; i++) {
+             var chr_pass_0;
+             var chr_pass_1;
+             var chr_pass_2;
+
+             if(i >= 2) {
+                 chr_pass_0 = pw.charCodeAt(i-2);
+                 chr_pass_1 = pw.charCodeAt(i-1);
+                 chr_pass_2 = pw.charCodeAt(i);
+
+                 if((chr_pass_0 == chr_pass_1) && (chr_pass_1 == chr_pass_2)) {
+                    SamePass_0++;
+                  } 
+                  else {
+                   SamePass_0 = 0;
+                   }
+                 if(chr_pass_0 - chr_pass_1 == 1 && chr_pass_1 - chr_pass_2 == 1) {
+                     SamePass_1++;
+                  }
+                  else {
+                   SamePass_1 = 0;
+                  }
+                 if(chr_pass_0 - chr_pass_1 == -1 && chr_pass_1 - chr_pass_2 == -1) {
+                     SamePass_2++;
+                  }
+                  else {
+                   SamePass_2 = 0;
+                  }  
+             }     
+            if(SamePass_0 > 0) {
+               alert("동일문자를 3자 이상 연속 입력할 수 없습니다.");
+               pw_passed=false;
+             }
+            if(SamePass_1 > 0 || SamePass_2 > 0 ) {
+               alert("영문, 숫자는 3자 이상 연속 입력할 수 없습니다.");
+               pw_passed=false;
+             } 
+             if(!pw_passed) {             
+                  return false;
+                  break;
+            }
+        }
+		//if (year.length+month.length+day.length <=8) {
+        //	if(1900 > year || year > yearNow){
+        //		alert("정확한 년도를 입력해 주세요.");
+        //		return false;
+        //	}else if(month < 1 || month > 12){
+        //		alert("정확한 월수를 입력해 주세요.");
+        //		return false;
+        //	}else if(day < 1 || day > 31){
+        //		alert("정확한 일수를 입력해 주세요.");
+        //		return false;
+        //	}
+        //}else{
+        //	alert("생년월일을 정확히 기입해주세요. YYYY/MM/DD");
+        //	return false;
+        //}
+
+		if(!pattern4.test(phone)){
+			alert("- 없이, 정확한 전화번호를 입력해주세요.");
+			return false;
+		}
+		if(!pattern5.test(email)){
+			alert("정확한 이메일을 입력해주세요.");
+			return false;
+		}
+		//if(!(result == inText)){
+		//	alert("틀린 인증번호입니다.");
+		//	return false;
+		//}
+		
+		alert("폼이 정상적으로 입력되었습니다.");
+   		return true;
+   }
  	</script>
 <script type="text/javascript">
 
 
-    function submit() {
+	function submit() {
        var form = document.createElement("form");
        form.setAttribute("charset", "UTF-8");
        form.setAttribute("method", "Post");  //Post 방식
@@ -115,10 +258,11 @@
 												<div class="block-title">
 													<h3>회원가입</h3>
 												</div>
-												<form id="account_form" name="account_form"
-													enctype="multipart/form-data" action="/account/add"
-													method="post">
-													<!-- 													<form id="account_form" onsubmit="return fn_pw_check();"> -->
+<!-- 												<form id="account_form" name="account_form" -->
+<!-- 													enctype="multipart/form-data" action="/account/add" -->
+<!-- 													method="post"> -->
+												<form id="account_form" name="account_form" enctype="multipart/form-data" action="/account/add"	method="post">
+												
 													<div class="form-group form-primary">
 														<input type="text" name="id" id="id" value="tesasdfet"
 															class="form-control form-control"> <span
@@ -221,7 +365,7 @@
 													</fieldset>
 													<div class="btn">
 														<input type="button" value="회원 가입" class="btn btn-primary"
-															onclick="dynamicAjaxSubmit();">
+															onclick="dynamicAjaxSubmit(fn_pw_check());">
 													</div>
 												</form>
 												<form id="wallet_form" name="wallet_form"
@@ -438,7 +582,7 @@
 	function checkIdDuplication() {
 		const idData = getSelectedFieldForm(document.account_form, ["id"]);
 //      	console.log(idData);
-		
+        
 		$.ajax("/account/checkIdDuplication", {
 	        type: "POST",
 	        data: JSON.stringify(idData),
@@ -456,8 +600,9 @@
 <script>
 // 		TODO: 하나의 요청/컨트롤러로 합쳐야함
 	
-      function dynamicAjaxSubmit() {
+      function dynamicAjaxSubmit(_formResult) {
 
+		
 	   	const detailData = getSingleForm(document.account_form);
 	   	const addressData = getMultiForm(document.address_form);
 	   	console.log(addressData);
@@ -466,38 +611,45 @@
          var form_data = new FormData(document.account_form);
          var account_member_serial;
          form_data.append('file', files);
-         
+       
+         if(_formResult == false) {
+        	 return;
+         }
+         else {
+        	 
 		$.ajax("/account/addJson", {
-	           type: "POST",
-	 			enctype: "multipart/form-data",
-	            data: form_data,
-	            contentType: false,
-	            processData: false,
-      }).then((response)=>{
-    	  	console.log(detailData.member_serial);
-    	  	console.log(response.member_serial);
-    	  	account_member_serial = response.member_serial;
-    	  	detailData.member_serial = response.member_serial;
-        	console.log(detailData);
-        	$.ajax("/detail/add", {
-        		type: "POST",
-  	           data: JSON.stringify(detailData),
-  	           contentType:"application/json; charset=UTF-8",
-        }).then(()=>{
-        	addressData.forEach((address)=>{
-        		address.member_serial = account_member_serial;
-        	})
-        	 $.ajax("/address/addAddressList", {
-  	           type: "POST",
-  	           data: JSON.stringify(addressData),
-  	           contentType:"application/json; charset=UTF-8",
-  	           success: function() {
-  	        	   alert("환영합니다");
-  	        	   window.location.href = 'http://localhost:8080/store/storeMain';
-  	           }
-           });
-        })
-      })
+		           type: "POST",
+		 			enctype: "multipart/form-data",
+		            data: form_data,
+		            contentType: false,
+		            processData: false,
+	      }).then((response)=>{
+	    	  	console.log(detailData.member_serial);
+	    	  	console.log(response.member_serial);
+	    	  	account_member_serial = response.member_serial;
+	    	  	detailData.member_serial = response.member_serial;
+	        	console.log(detailData);
+	        	$.ajax("/detail/add", {
+	        		type: "POST",
+	  	           data: JSON.stringify(detailData),
+	  	           contentType:"application/json; charset=UTF-8",
+	        }).then(()=>{
+	        	addressData.forEach((address)=>{
+	        		address.member_serial = account_member_serial;
+	        	})
+	        	 $.ajax("/address/addAddressList", {
+	  	           type: "POST",
+	  	           data: JSON.stringify(addressData),
+	  	           contentType:"application/json; charset=UTF-8",
+	  	           success: function() {
+	  	        	   alert("환영합니다");
+	  	        	   window.location.href = 'http://localhost:8080/store/storeMain';
+	  	           }
+	           });
+	        })
+	      })
+
+         } 
     };
    	</script>
 <script type="text/javascript" src="/common/commonThumbnail.js"></script>
