@@ -90,7 +90,7 @@
         var pattern1 = /[0-9]/;
         var pattern2 = /[a-zA-Z]/;
         var pattern3 = /[~!@\#$%<>^&*]/;
-        var pattern4 = /^01(?:0|1|[6-9])(?:\d{3}|\d{4})\d{4}$/;
+        var pattern4 = /^01(?:0|1|[6-9])-(?:\d{3}|\d{4})-\d{4}$/;
         var pattern5 = /^[0-9a-zA-Z]([-_\.]?[0-9a-zA-Z])*@[0-9a-zA-Z]([-_\.]?[0-9a-zA-Z])*\.[a-zA-Z]{2,3}$/i;
         
         var pw_msg = "";
@@ -192,7 +192,7 @@
         //}
 
 		if(!pattern4.test(phone)){
-			alert("- 없이, 정확한 전화번호를 입력해주세요.");
+			alert("-를 입력하셨나요? 정확한 전화번호를 입력해주세요.");
 			return false;
 		}
 		if(!pattern5.test(email)){
