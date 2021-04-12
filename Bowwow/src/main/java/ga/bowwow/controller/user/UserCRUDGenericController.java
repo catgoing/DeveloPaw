@@ -30,6 +30,7 @@ public abstract class UserCRUDGenericController<T> {
 	}
 	@RequestMapping("/update")
 	protected String update(T vo) {
+		System.out.println("update controller tvo : " + vo);
 		return router(service.updateVo(vo), resolveRoute, errorRoute);
 	}
 	@RequestMapping("/delete")
