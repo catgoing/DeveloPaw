@@ -134,6 +134,7 @@ input{
 														</c:forEach>
 													</ul>
 												</div>
+												<%@include file="/community/searchbar.jsp"%>
 												<br>
 												<div>
 										<%@include file="/common/paging.jsp"%>
