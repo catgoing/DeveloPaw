@@ -18,31 +18,15 @@
 	<select id="myInquiryListSelect" parameterType="Map" resultType="inquiry"> <!-- 기존페이징사용하면 member_serial에서 에러남(타입안맞음) -->
 		SELECT * 
 	    FROM(SELECT ROWNUM AS RN, IQUSER.* 
-	       	 FROM(SELECT *
+	       	 FROM(SELECT INQUIRY_SERIAL, MEMBER_SERIAL, NICKNAME, INQUIRY_TITLE, INQUIRY_CONTENT,
+				INQUIRY_WRITEDATE, INQUIRY_TYPE, P_ID
 		            FROM INQUIRY_USER
-		            WHERE MEMBER_SERIAL = #{member_serial} 
-		            <if test="typeSelect != null">AND INQUIRY_TYPE = #{typeSelect}</if>
+		            WHERE MEMBER_SERIAL = #{member_serial}
+		            <if test='typeSelect != null'>AND INQUIRY_TYPE LIKE '%'||#{typeSelect}||'%'</if>
 	           		 ORDER BY INQUIRY_WRITEDATE DESC
 					 ) IQUSER
 			  )
 	    WHERE RN BETWEEN ${begin} AND ${end}
-		<!-- SELECT * FROM INQUIRY_USER
-		WHERE MEMBER_SERIAL = #{member_serial} 
-			AND #{typeSelect} IS NULL OR INQUIRY_TYPE = #{typeSelect} -->
-		<!-- <where>
-			MEMBER_SERIAL = #{member_serial}
-		    <if test='typeSelect.equals("contactUs")'>AND INQUIRY_TYPE = 'contactUs'</if>
-		    <if test='typeSelect.equals("product")'>AND INQUIRY_TYPE = 'buy'</if>
-		    <if test='typeSelect.equals("delivery")'>AND INQUIRY_TYPE = 'delivery'</if>
-		    <if test='typeSelect.equals("etc")'>AND INQUIRY_TYPE = 'etc'</if>
-		</where> -->
-		<!-- <choose>
-			<when test='typeSelect.equals("all")'>WHERE MEMBER_SERIAL = #{member_serial}</when>
-			<when test='typeSelect.equals("contactUs")'>WHERE MEMBER_SERIAL = #{member_serial} AND INQUIRY_TYPE = 'contactUs'</when>
-			<when test='typeSelect.equals("buy")'>WHERE MEMBER_SERIAL = #{member_serial} AND INQUIRY_TYPE = 'buy'</when>
-			<when test='typeSelect.equals("delivery")'>WHERE MEMBER_SERIAL = #{member_serial} AND INQUIRY_TYPE = 'delivery'</when>
-			<when test='typeSelect.equals("etc")'>WHERE MEMBER_SERIAL = #{member_serial} AND INQUIRY_TYPE = 'etc'</when> 
-		</choose> -->
 		ORDER BY INQUIRY_WRITEDATE DESC
 	</select>
 	
@@ -92,11 +76,12 @@
 	<select id="selectAllInquiry" parameterType="Map" resultType="inquiry">
 		SELECT * 
 		 FROM(SELECT ROWNUM AS RN, IQUSER.* 
-				FROM(SELECT *
+				FROM(SELECT INQUIRY_SERIAL, MEMBER_SERIAL, NICKNAME, INQUIRY_TITLE, INQUIRY_CONTENT,
+				INQUIRY_WRITEDATE, INQUIRY_TYPE, P_ID
 					 FROM INQUIRY_USER
 					 WHERE 1=1
 					<!-- <if test="typeSelect != null">#{typeSelect} IS NULL OR AND INQUIRY_TYPE = #{typeSelect}</if> -->
-					<if test="typeSelect != null">AND INQUIRY_TYPE = #{typeSelect}</if>
+					<if test='typeSelect != null'>AND INQUIRY_TYPE LIKE '%'||#{typeSelect}||'%'</if>
 					 ORDER BY INQUIRY_WRITEDATE DESC
 					 ) IQUSER
 		 	   )
@@ -119,7 +104,7 @@
 		WHERE U.INQUIRY_SERIAL = #{inquiry_serial }
 	</delete>
 	
-	<!-- 전체 문의 수  -->
+	<!-- 관리자가 확인 할 수 있는 전체 문의 수  -->
 	<select id="InquiryCount" resultType="int">
 		SELECT COUNT(*) AS COUNT
 		FROM INQUIRY_USER

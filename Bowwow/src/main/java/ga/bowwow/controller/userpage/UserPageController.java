@@ -1,6 +1,8 @@
 package ga.bowwow.controller.userpage;
 
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
@@ -13,6 +15,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.SessionAttributes;
 
+import ga.bowwow.service.paging.Page;
 import ga.bowwow.service.pet.Pet;
 import ga.bowwow.service.pet.PetService;
 import ga.bowwow.service.store.Order;
@@ -28,6 +31,8 @@ public class UserPageController {
 	private UserPointService uPointService;
 	@Autowired
 	private PetService pService;
+	
+	//private int member_serial = 999;
 	
 	public UserPageController() {
 		System.out.println("유저페이지컨트롤러 생성");
@@ -45,14 +50,30 @@ public class UserPageController {
 	public String withdrawl() {
 		return "/mypage/withdrawl";
 	}
-	
+	//포인트탭 클릭시 출력
 	@RequestMapping(value="/getMyPointList", method=RequestMethod.POST)
 	public String getMyPointList(Order order, Model model, HttpServletRequest request) {
 		System.out.println("getMyPointList 시작!!");
 		System.out.println("order : " + order);
+		
+		HttpSession session = request.getSession();
+		UserDTO user = (UserDTO)session.getAttribute("userDTO");
+		int member_serial = user.getMember_serial();
+		
+		String cPage = request.getParameter("cPage");
+		Page p = new Page();
+		Map<String, String> map = new HashMap<String, String>();
+		map.put("member_serial", member_serial + "");
+		
+		p = p.setPage(uPointService.getMyPointCount(map), cPage, 10, 5);
+		map = p.data1(p, member_serial + "", map);
+		
 		List<Order> pointList = uPointService.getUserPointList(order);
 		
 		model.addAttribute("pointList", pointList);
+		model.addAttribute("member_serial", member_serial + "");
+		model.addAttribute("pvo", p);
+		model.addAttribute("command","/getMyPointList");
 		
 		return "/mypage/myPoint";
 	}
@@ -62,7 +83,7 @@ public class UserPageController {
 	public String getMyHome(UserAccount userAccount, Model model, HttpServletRequest request) {
 		System.out.println("getMyHome~~ 마이홈화면 출력");
 		System.out.println("UserDTO 1 : " + userAccount);
-
+		
 		HttpSession session = request.getSession();
 		UserDTO user = (UserDTO)session.getAttribute("userDTO");
 		int member_serial = user.getMember_serial();

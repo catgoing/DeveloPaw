@@ -1,6 +1,7 @@
 package ga.bowwow.service.userpage.impl;
 
 import java.util.List;
+import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -25,6 +26,11 @@ public class UserPointServiceImpl implements UserPointService {
 	@Override
 	public List<Order> getMyHomePointList(int member_serial) {
 		return uPointDAO.getMyHomePointList(member_serial);
+	}
+
+	@Override
+	public int getMyPointCount(Map<String, String> map) {
+		return uPointDAO.getMyPointCount(map);
 	}
 	
 }

@@ -99,6 +99,10 @@
 												</div>
 												<div class="monthly-products">
 													<ul>
+														<c:if test="${empty pList }">
+															<h4>상품이 없습니다.</h4>
+														</c:if>
+														<c:if test="${not empty pList }">
 														<c:forEach var="list" items="${pList }">
 															<li>
 																<div
@@ -132,6 +136,7 @@
 																</div>
 															</li>
 														</c:forEach>
+														</c:if>
 													</ul>
 												</div>
 												<div>

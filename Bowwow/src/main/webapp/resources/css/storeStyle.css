@@ -159,9 +159,9 @@ ul, ol {
 	cursor : pointer;
 	font-size: 14px;
 	color: #ffffff;
-	background: #000;
+	background: #000 !important;
 	font-weight: 600;
-	border: none;
+	border: none !important;
 	text-transform: uppercase;
 	display: inline-block;
 	padding: 12px 30px;
@@ -1308,11 +1308,15 @@ transparent;
 	display: inline-block;
 }
 
-.quantity {
+.qua-col {
+	color : #000 !important;
+	font-size : 20px !important;	
+}
+/* .quantity {
 	float: left;
 	margin-right: 10px;
 	margin-bottom: 10px;
-}
+} */
 
 .quantity>span {
 	font-size: 14px;

@@ -80,22 +80,12 @@
 										<input type="button" value="맵" onclick="execMap()"/><br>
 									<form>
 										<div class="form-group form-primary">
-	                                        <input type="number" id="addressId" name="addressId" class="form-control">
-	                                        <span class="form-bar"></span>
-	                                        <label class="float-label">주소ID</label>
-	                                 	</div>
-										<div class="form-group form-primary">
-	                                        <input type="number" id="memberSerial" name="memberSerial" class="form-control">
-	                                        <span class="form-bar"></span>
-	                                        <label class="float-label">멤버시리얼</label>
-	                                 	</div>
-										<div class="form-group form-primary">
 	                                        <input type="text" id="userAddress" name="address" class="form-control" readonly>
 	                                        <span class="form-bar"></span>
 	                                        <label class="float-label">주소입력</label>
 	                                 	</div>
 	                                 	<div class="form-group form-primary">
-	                                        <input type="text" name="addressDetail" class="form-control">
+	                                        <input type="text" name="address_detail" class="form-control">
 	                                        <span class="form-bar"></span>
 	                                        <label class="float-label">상세주소</label>
 	                                 	</div>
@@ -121,10 +111,10 @@
 <!-- 											<input type="submit" value="주소입력" formaction="/address/registAddr"> -->
 <!-- 										</div> -->
 										<div class="action_btn">
-											<input type="submit" value="부모컨트롤러 주소입력" formaction="/address/add">
+											<input type="submit" value="주소입력" formaction="/address/addAdditional">
 										</div>
 										<div class="action_btn">
-											<input type="submit" value="부모컨트롤러 주소삭제" formaction="/address/delete">
+											<input type="submit" value="주소삭제" formaction="/address/delete">
 										</div>
 									</form>
 									</div>

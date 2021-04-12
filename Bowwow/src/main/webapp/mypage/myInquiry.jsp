@@ -4,7 +4,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
     <% request.setCharacterEncoding("UTF-8"); %>
-<%@ taglib uri="http://tiles.apache.org/tags-tiles" prefix="tiles"%>
+<%-- <%@ taglib uri="http://tiles.apache.org/tags-tiles" prefix="tiles"%> --%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
 
@@ -57,16 +57,20 @@
     <link rel="stylesheet" type="text/css" href="../resources/css/style.css">
     <link rel="stylesheet" type="text/css" href="../resources/css/test.css">
 <style>
- table { border-collapse: collapse; }
+ /* table { border-collapse: collapse; }
  th, td {
 	border: 1px solid black;
 	margin: 0 auto;
  }
- th { background-color: orange; }
+ th { background-color: orange; } */
  .center { text-align: center; }
  .border-none, .border-none td { border: none; }
  td .input-group{
  	width : 100%;
+ }
+ .width-control{
+	width:60%;
+ 	margin: 0 auto;
  }
  .my-inquiry{
 	position: relative;
@@ -97,7 +101,7 @@
  .question-title {
  	width : 100%;	
     font-size: 25px;
-    font-weight: 700;
+    font-weight: bold;;
     line-height: 37px;
     float: left;
  }
@@ -119,7 +123,14 @@
 	width : 100%;
 	border : 1px solid #e4e4e4;
 	border-radius : 10px;
-	
+}
+.table {
+	max-width:80%;
+	min-width:80%
+}
+.table-sm th{
+	color: 	#3C1E1E;
+	font-weight: bold;
 }
 
 </style>
@@ -281,7 +292,7 @@ function allInputCheck(frm) {
 							  								<td rowspan="2" style="line-height:0">
 							  									상품이미지<img src="https://projectbit.s3.us-east-2.amazonaws.com/${foldername }/${targetProduct.s_image }" style="max-width:100%;">
 							  								</td>
-							  								<td> <a href="detail?p_id=${targetProduct.p_id }">상품명 ${targetProduct.p_name }</a> </td>
+							  								<td> <a href="/store/detail?p_id=${targetProduct.p_id }">상품명 ${targetProduct.p_name }</a> </td>
 							  							<tr>
 							  							<tr>
 							  								<td><fmt:formatNumber value="${targetProduct.price}" pattern="#,###"/> 원</td>
@@ -304,9 +315,9 @@ function allInputCheck(frm) {
 								</div>
 							
 							<div class="content-list">
-						     	<table>
+						     	<table class="table table-sm">
 									<tr>
-										<th width="100">문의유형</th>
+										<th width="15%">문의유형</th>
 										<th width="200">제목</th>
 										<th width="150">작성자</th>
 										<th width="150">작성일</th>
@@ -314,7 +325,7 @@ function allInputCheck(frm) {
 									</tr>
 								<c:if test="${empty sessionScope.userinquiryList }">
 									<tr>
-										<td colspan="5" class="center">데이터가 없습니다.</td>
+										<td colspan="5" class="center">문의 이력이 없습니다.</td>
 									</tr>
 								</c:if>
 								<c:if test="${not empty sessionScope.userinquiryList }">	
@@ -330,18 +341,22 @@ function allInputCheck(frm) {
 										<td>${inquiry.have_answer }</td>
 									</tr>
 									</c:forEach>
+									<tr>
+										<td colspan="5" style="text-align: center;">
+											<div style="display:inline-block; margin:0 auto; font-size: 20px;">
+												<%@include file="/common/paging.jsp" %>
+											</div>
+										</td>
+									</tr>
 								</c:if>
 								</table>
-								<div style="text-align: center; margin:0 auto;">
-									<%@include file="/common/paging.jsp" %>
-								</div>
 								<form action="/getUserInquiryList" method="post">
-								<table class="border-none">
+								<table class="border-none width-control">
 									<tr>
 										<td class="input-group">
 										    <input type="hidden" name="member_serial" value="${sessionScope.userDTO.member_serial }">
 										    <select class="form-control" id="inputGroupSelect04" name="typeSelect" aria-label="Example select with button addon">
-										      <option selected>전체보기</option>
+										      <option value="" selected>전체보기</option>
 										      <option value="contactUs">이용문의</option>
 										      <option value="product">상품문의</option>
 										      <option value="delivery">배송문의</option>

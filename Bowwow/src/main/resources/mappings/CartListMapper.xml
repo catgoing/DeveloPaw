@@ -42,6 +42,11 @@
 		</foreach> 
 	</delete>
 	
+	<!-- 카트 비우기 -->
+	<delete id="deleteCartAll" parameterType="String">
+		DELETE FROM STORE_CARTLIST
+		WHERE ID = #{id}
+	</delete>
 	
 </mapper>
 

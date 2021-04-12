@@ -39,8 +39,9 @@ public class CartListServiceImpl implements CartListService {
 		return storeDAO.deleteCart(cartList);
 	}
 
-
-	
-	
+	@Override
+	public void deleteCartAll(String id) {
+		storeDAO.deleteCartAll(id);
+	}
 
 }

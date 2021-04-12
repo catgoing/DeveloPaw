@@ -67,7 +67,7 @@ public class InquiryController {
 		int member_serial = user.getMember_serial();
 		
 		System.out.println("member_serial : " + member_serial);
-		System.out.println("겟번호 : " + myInquiry.getP_id());
+		System.out.println("겟 상품번호 : " + myInquiry.getP_id());
 		
 		//상품문의 - 상품번호 들어왔을때-_-..
 		Integer p_id = myInquiry.getP_id();
@@ -76,8 +76,9 @@ public class InquiryController {
 		}
 		
 		//문의유형 null아닐때
-		String typeSelect = "";
-		if (myInquiry.getTypeSelect() != null && myInquiry.getTypeSelect().length() != 0) {
+		String typeSelect = null;
+		if (myInquiry.getTypeSelect() != null ||
+				myInquiry.getTypeSelect() != "") {
 			typeSelect = myInquiry.getTypeSelect();
 		}
 		
@@ -90,7 +91,6 @@ public class InquiryController {
 		
 		p = p.setPage(myServive.getMyInquiryCount(map), cPage, 10, 5);
 		map = p.data22(p, member_serial, myInquiry.getTypeSelect(), map);
-		System.out.println("확인!!!!!! : "+map);
 		
 		List<MyInquiry> uiqList = myServive.getMyInquiryList(map);
 		
@@ -141,30 +141,31 @@ public class InquiryController {
 		return "/mypage/myInquiryDetail";
 	}
 	
-	
 	//관리자의 유저문의리스트 출력페이지
 	@RequestMapping(value="/getAdminInquiryList")
 	public String getAdminInquiryList(MyInquiry myInquiry, Model model, HttpServletRequest request) {
 		System.out.println(">> 관리자 : 유저문의리스트 출력페이지 !");
 		
-		String cPage = request.getParameter("cPage");
-		Page p = new Page();
-		
+		//문의유형 null아닐때
 		String typeSelect = "";
 		if (myInquiry.getTypeSelect() != null && myInquiry.getTypeSelect().length() != 0) {
 			typeSelect = myInquiry.getTypeSelect();
 		}
 		
+		//페이징처리
+		String cPage = request.getParameter("cPage");
+		Page p = new Page();
 		Map<String, String> map = new HashMap<String, String>();
 		map.put("typeSelect", myInquiry.getTypeSelect());
 		
-		p = p.setPage(myServive.getInquiryCount(map), cPage, 10, 5);
-		map = p.data1(p,myInquiry.getTypeSelect(),map);
+		p = p.setPage(myServive.getAllInquiryCount(map), cPage, 10, 5);
+		map = p.data1(p, myInquiry.getTypeSelect(), map);
 		
 		List<MyInquiry> ListAll = myServive.getAllInquiry(map);
 		
 		model.addAttribute("AllUsersInquiry", ListAll);
 		model.addAttribute("typeSelect", typeSelect);
+		model.addAttribute("pvo", p);
 		model.addAttribute("command","/getAdminInquiryList");
 		
 		return "/mypage/adminInquiry";
@@ -187,8 +188,8 @@ public class InquiryController {
 		return "/mypage/adminInquiryDetail";
 	}
 
+	//상품번호로 상품상세정보 불러온 후 model에 저장
 	private void addProductDetail(Model model, Integer p_id) {
-		//상품번호로 상품상세정보 불러오기!
 		Product targetProduct = storeService.getProductDetail(p_id);
 		if(targetProduct!=null&&targetProduct.getP_type().equals("cat")) {
 			model.addAttribute("foldername", "catImg");
@@ -198,6 +199,7 @@ public class InquiryController {
 		model.addAttribute("targetProduct", targetProduct);			
 	}
 	
+	//상품번호null체크
 	public boolean isPIdNotNull(Integer p_id) {
 		return (p_id != null && p_id != 0) ? true : false;
 	}

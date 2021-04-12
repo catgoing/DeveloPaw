@@ -2,8 +2,9 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
     <% request.setCharacterEncoding("UTF-8"); %>
-<%@ taglib uri="http://tiles.apache.org/tags-tiles" prefix="tiles"%>
+<%-- <%@ taglib uri="http://tiles.apache.org/tags-tiles" prefix="tiles"%> --%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
 
 <!DOCTYPE html>
 <html>
@@ -52,15 +53,28 @@
     <link rel="stylesheet" type="text/css" href="/resources/css/style.css">
     <link rel="stylesheet" type="text/css" href="/resources/css/test.css">
 <style>
- table, th, td{
+/*  table, th, td{
  	border : 1px solid black;
- }
+ } */
  .inquiry_th {
 	width : 15%;
  }
  .inquiry_td {
  	widgh : 30%;
  }
+ textarea {
+ 	width: 100%;
+ 	border:1px dashed pink;
+ }
+ pre{
+	overflow: auto;
+	white-space: pre-wrap;
+	word-break: break-all;
+}
+hr {
+  border-top: 4px double #bbb;
+  text-align: center;
+}
 </style>
 </head>
 
@@ -89,38 +103,45 @@
 				<div class="page-body">
 					<div class="inquiry-detail">
 						<div class="question-title">
-					    	<h2>문의목록</h2>
+					    	<h4 style="text-align:center">문의 답변 작성</h4>
 				     	</div>
 						<div class="table-container">
-							<table class="table">
+							<table class="table table-sm">
 								<tr>
 									<th class="inquiry_th">제목</th>
 									<td>${uiqDetail.inquiry_title }</td>
 									<th class="inquiry_th">작성일시</th>
 									<td>${uiqDetail.inquiry_writedate }</td>
 								</tr>
+								<tr>	
+									<th class="inquiry_th">작성자</th>
+									<td>${uiqDetail.nickname }</td>
+									<th class="inquiry_th">문의유형</th>
+									<td>${uiqDetail.inquiry_type }</td>
+								</tr>
 								<tr>							
 									<th class="inquiry_th">문의내용</th>
 									<td colspan="3">
-									<pre><c:out value="${uiqDetail.inquiry_content }" /></pre>
+									<pre>${uiqDetail.inquiry_content }</pre>
 									</td>
 								</tr>	
-								<c:if test="${uiqDetail.p_id != null }">
+								<c:if test="${not empty targetProduct }">
 								<tr>
-									<th>문의상품</th>
-									<td colspan="3"></td>
+									<th class="inquiry_th">문의상품</th>
+									<td colspan="3"><a href="/store/detail?p_id=${targetProduct.p_id }">${targetProduct.p_name}</a><br>
+									<fmt:formatNumber value="${targetProduct.price}" pattern="#,###"/> 원</td>
 								</tr>
 								</c:if>			
-								<c:if test="${uiqDetail.p_id == null }">
+								<c:if test="${empty targetProduct  }">
 								</c:if>			
 							</table>
 						</div>
 						<hr>
 						<form action="/insertInquiryAnswer" method="post">
 							<div>
-								<table class="table">
+								<table class="table table-sm">
 									<tr>
-										<th class="inquiry_th">관리자 답변</th>
+										<th class="inquiry_th">관리자<br>답변</th>
 										<td>
 										<textarea rows="10" name="inquiry_re_content" placeholder="답변 입력 필드"></textarea>
 										</td>
@@ -130,7 +151,7 @@
 							<div class="btn-container">
 								<input type="hidden" name="inquiry_serial" value="${uiqDetail.inquiry_serial }">
 								<input type="submit" class="btn btn-outline-secondary" value="답변등록">
-								<button onclick="history.back()">돌아가기</button>
+								<input type="button" class="btn btn-outline-secondaty" value="돌아가기" onclick="javascript:history.back(-2))">
 							</div>
 						</form>
 					</div>

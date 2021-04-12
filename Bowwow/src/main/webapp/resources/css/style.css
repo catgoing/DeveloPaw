@@ -23,6 +23,7 @@ File: style.css
 ==========================  **/
 style="max-width: 100%; height: auto;"
 
+
 .orderBtn
 {font-size: 1.5em; float: right;}
 
@@ -40,7 +41,7 @@ form .field {
 
 form .field.half {
 	display: inline-block;
-	width: 48%;
+	width: 48% ;
 	margin-left : 2px;
 	margin-bottom: 4px;
 }
@@ -321,6 +322,7 @@ font-size: 16px; color : #fff; border-radius: 2px; line-height: 42px;}
 
 .monthly-products li { 
     float: left;
+    margin-top : 10px;
 }
 
 .itemsList ul { 
@@ -5491,9 +5493,8 @@ table tbody .border-bottom-info td {
 .header-navbar .navbar-wrapper .navbar-container .header-notification .profile-notification i {
     font-size: 15px;
     margin-left: 0;
-    margin-right: 5px;
+    marginght: 5px;
 }
-
 .header-navbar .navbar-wrapper .navbar-container .header-notification .profile-notification li {
     border-top: none;
     padding: 0.7em 20px;

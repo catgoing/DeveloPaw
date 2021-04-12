@@ -2,7 +2,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
     <% request.setCharacterEncoding("UTF-8"); %>
-<%@ taglib uri="http://tiles.apache.org/tags-tiles" prefix="tiles"%>
+<%-- <%@ taglib uri="http://tiles.apache.org/tags-tiles" prefix="tiles"%> --%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 
 <!DOCTYPE html>
@@ -65,7 +65,7 @@
    margin-bottom: 50px;
  } 
  
- table { 
+/*  table { 
  	width: 100%;
  	border-collapse: collapse; 
  	margin : 0 auto;
@@ -74,12 +74,17 @@
 	border: 1px solid black;
 	margin: 0 auto;
  }
- th { background-color: orange; }
+ th { background-color: orange; } */
+ 
  .center { text-align: center; }
+ 
  td .input-group{
  	width : 100%;
  }
- 
+ .table-sm th{
+	color: 	#3C1E1E;
+	font-weight: bold;
+}
 </style>
 </head>
 
@@ -169,13 +174,12 @@
 											</div>
 										</div>			
 								<div class="content-list">
-						     	<table>
+						     	<table class="table table-sm">
 									<tr>
 										<th width="45%">추가일</th>
 										<th width="25%">추가포인트</th>
 										<th width="150">누적포인트</th>
 									</tr>
-									
 								<c:if test="${empty pointList }">
 									<tr>
 										<td colspan="5" class="center">적립된 포인트가 없습니다.</td>
@@ -190,6 +194,13 @@
 										<td>${point.point }</td>
 									</tr>
 									</c:forEach>
+									<tr>
+										<td colspan="5" style="text-align: center;">
+											<div style="display:inline-block; margin:0 auto; font-size: 20px;">
+												<%@include file="/common/paging.jsp" %>
+											</div>
+										</td>
+									</tr>
 								</c:if>
 								</table>
 						     </div>

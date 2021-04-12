@@ -33,6 +33,15 @@ public class UserAccountServiceImpl extends UserGenericService<UserAccount> {
 		return !StaticUtil.isListNotNull(((UserAccountDAO)dao).verifyId(userAccount));
 	}
 	
+	public int getMemberSerial(UserAccount userAccount) {
+		//should be null;
+//		System.out.println("<getting memberserial>");
+//		System.out.println(userAccount);
+//		System.out.println(((UserAccountDAO)dao).searchQuery);
+//		System.out.println(((UserAccountDAO)dao).search(userAccount).getMember_serial());
+		return ((UserAccountDAO)dao).search(userAccount).getMember_serial();
+	}
+	
 	@Override
 	public List<UserAccount> getVoList(Map<String, String> map) {
 		return null;

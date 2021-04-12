@@ -1,8 +1,8 @@
-<%-- <%@page import="ga.bowwow.service.user.VO.UserAccount"%> --%>
+<%@page import="ga.bowwow.service.user.VO.UserAccount"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
     <% request.setCharacterEncoding("UTF-8"); %>
-<%@ taglib uri="http://tiles.apache.org/tags-tiles" prefix="tiles"%>
+<%-- <%@ taglib uri="http://tiles.apache.org/tags-tiles" prefix="tiles"%> --%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 
 <!DOCTYPE html>
@@ -59,12 +59,12 @@
 <style>
   .myPageInfo-header {
   	text-align: center;
-  }  
+  }
   .myPageInfo-wrapper {
 	display: flex;
 	justify-content: center;
   }
-  
+
  .side-content {
 	position: relative;
 	display: inline-block;
@@ -75,7 +75,7 @@
     margin: 30px;
     border: 1px solid rgba(228, 228, 228, 0.5);
     border-radius: 10px;
- 
+
  }
  .side-content .my-area .side-profile-img{
 	/* float: left; */
@@ -116,18 +116,18 @@
 	background-color : f3f3f3;
 	border: none;
 }
-.passinput { 
-	position: relative; 
-} 
-.passinput .eyes { 
-	position: absolute; 
-	top: 0; 
-	bottom: 0; 
-	right: 20px; 
-	margin: auto 2px; 
-	height: 30px; 
-	font-size: 20px; 
-	cursor: pointer; 
+.passinput {
+	position: relative;
+}
+.passinput .eyes {
+	position: absolute;
+	top: 0;
+	bottom: 0;
+	right: 20px;
+	margin: auto 2px;
+	height: 30px;
+	font-size: 20px;
+	cursor: pointer;
 }
 
 </style>
@@ -137,7 +137,7 @@ $(function(){
 	//email검증
 	$("input[name=email]").on("keyup", function(event){
 		if(!(event.keyCode >=37 && event.keyCode<=40)){
-			var inputVal = $(this).val(); //input name="email"에 입력한 value값 
+			var inputVal = $(this).val(); //input name="email"에 입력한 value값
 			$(this).val(inputVal.replace(/[^a-z0-9@_.-]/gi,''));//한글과 @_.-를 제외한 특수문자입력금지
 		}
 	});
@@ -145,7 +145,7 @@ $(function(){
 
  function goModify(form){
 	 var idCheck = form.id.value;
-	
+
 	//휴대폰번호 검증=_=
    	 var cellPhoneRule = /^\d{3}-\d{3,4}-\d{4}$/;
 	if(!/01[01689]-[1-9]{1}[0-9]{2,3}-[0-9]{4}$/.test(phoneCheck) ||
@@ -153,9 +153,9 @@ $(function(){
 		console.log(phoneCheck);
 		alert("전화번호 형식을 지켜주세요.");
 	}
-	
+
  }
- 
+
  function sample4_execDaumPostcode() {
      new daum.Postcode({
          oncomplete: function(data) {
@@ -297,15 +297,16 @@ $(function(){
 						<div class="myPageInfo-wrapper">
 
 								<!-- 회원정보수정 부분 -->
-								<div class="form-group">
+								<div class="form-group" onsubmit="updateUserAccount();">
 									<div class="input-content">
 									<div class="side-content">
 										<div class="my-area">
 											<div class="side-profile-img">
-											
+
 <%-- 												<img src="${sessionScope.userDTO.image_source }" alt="이미지없음~"> --%>
-												<img src="${sessionScope.userDTO.image_source }" alt="이미지없음~">
+												<img style="height:200px; width:200px;" src="${sessionScope.userDTO.image_source }" alt="이미지없음~">
 											</div>
+
 											<p>${sessionScope.userDTO.nickname }</p>
 										</div>
 									</div>
@@ -315,7 +316,7 @@ $(function(){
 										<h3>정보수정</h3>
 										<a href="withdrawl">회원탈퇴</a>
 									</div>
-									<form class="form-myinfo">
+									<form class="form-myinfo" action="updateUserAccount();">
   <div class="form-group">
     <label for="inputId" class="col-sm-4 control-label">아이디(변경불가)</label>
     <div class="col-sm-8">
@@ -337,7 +338,7 @@ $(function(){
     </div>
   </div>
   <div class="form-group">
-    <label for="inputPassword3" class="col-sm-4 control-label">이름(변경불가)</label>
+    <label for="inputPassword3" class="col-sm-4 control-label">이름</label>
     <div class="col-sm-8">
    		<input type="text" class="form-control" id="noborderline" value="${sessionScope.userDTO.realname }" disabled>
     </div>
@@ -346,17 +347,6 @@ $(function(){
     <label for="inputNickname" class="col-sm-4 control-label">닉네임</label>
     <div class="col-sm-8">
       <input type="text" class="form-control" name="nickname" id="inputNickname" placeholder="닉네임" value="${sessionScope.userDTO.nickname}">
-    </div>
-  </div>
-  <div class="form-group">
-    <label for="inputGender" class="col-sm-4 control-label">성별</label>
-    <div class="col-sm-8">
-      <label class="radio-inline">
-        <input type="radio" name="gender" id="gender_f" value="female"> 여자
-      </label>
-      <label class="radio-inline">
-        <input type="radio" name="gender" id="gender_m" value="male"> 남자
-      </label>
     </div>
   </div>
   <div class="form-group">
@@ -369,20 +359,21 @@ $(function(){
     <label for="inputAddress" class="col-sm-4 control-label">주소</label>
     <div class="col-sm-8">
      <div>
-		<input type="text" id="sample4_postcode" placeholder="우편번호">
+
+		<input type="text" id="sample4_postcode" placeholder="우편번호" value="${sessionScope.userAddress[0].zonecode}">
 		<input type="button" onclick="sample4_execDaumPostcode()" value="우편번호 찾기"><br>
-		<input type="text" id="sample4_roadAddress" placeholder="도로명주소">
-		<input type="text" id="sample4_jibunAddress" placeholder="지번주소">
+		<input type="text" id="sample4_roadAddress" placeholder="도로명주소" value="${sessionScope.userAddress[0].address}">
+<!-- 		<input type="text" id="sample4_jibunAddress" placeholder="지번주소"> -->
 		<span id="guide" style="color:#999;display:none"></span>
-		<input type="text" id="sample4_detailAddress" placeholder="상세주소">
-		<input type="text" id="sample4_extraAddress" placeholder="참고항목">
+		<input type="text" id="sample4_detailAddress" placeholder="상세주소" value="${sessionScope.userAddress[0].address_detail}">
+<!-- 		<input type="text" id="sample4_extraAddress" placeholder="참고항목"> -->
 	</div>
     </div>
   </div>
   <div class="form-group">
     <label for="inputPhone" class="col-sm-4 control-label" >전화번호</label>
     <div class="col-sm-8">
-	  <select>
+	  <select id="preNoPhone">
 		<option>010</option>
 		<option>011</option>
 		<option>017</option>
@@ -439,5 +430,31 @@ $(function(){
     <script src="/resources/js/vertical/vertical-layout.min.js "></script>
 
     <script type="text/javascript" src="/resources/js/script.js "></script>
+    <script>
+    	(()=>{
+    		var infoBuilder = {
+   				init: function () {
+       				this.initPhoneField();
+       			},
+    			initPhoneField: function () {
+   					var rawPhone = document.getElementById("inputPhone");
+       				var partPhone = rawPhone.value.split("-");
+       				var organizedPhone = partPhone[1] + "-" + partPhone[2];
+       				rawPhone.value = organizedPhone;
+
+       				this.identifyPreNo(partPhone[0]);
+    			},
+    			identifyPreNo: function (_preNo) {
+    				var preNoPhone = document.getElementById("preNoPhone");
+    				var preNo = _preNo;
+    				preNoPhone.value = preNo;
+    			}, 
+    			updateUserAccount: function () {
+    				console.log("test");
+    			},
+    		};
+    		infoBuilder.init();
+    	})();
+    </script>
 </body>
 </html>

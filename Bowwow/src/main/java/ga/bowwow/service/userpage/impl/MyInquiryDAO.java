@@ -124,13 +124,14 @@ public class MyInquiryDAO {
 		return inquiryList;
 	}
 	//전 유저 문의갯수(관리자사용)
-	public int getInquiryCount(Map<String, String> map) {
+	public int getAllInquiryCount(Map<String, String> map) {
 		return mybatis.selectOne("inquiry.InquiryCount", map);
 	}
 	//개별 유저 문의갯수
 	public int getMyInquiryCount(Map<String, Object> map) {
 		return mybatis.selectOne("inquiry.myInquiryCount", map);
 	}
+
 	
 	
 	
