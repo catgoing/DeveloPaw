@@ -72,9 +72,9 @@
 
 
    </style>
-			
+
 	<script type="text/javascript">
-	
+
        function execMap(){
             new daum.Postcode({
                 oncomplete: function(data) {
@@ -109,32 +109,32 @@
 
 
     function chkBtn(){
-    	
+
     	if(document.getElementById('phone').value == ""){
             alert("핸드폰 번호를 입력해주세요");
             checkout.phone.focus();
             return false;
-        }  
-    	
+        }
+
         if(document.getElementById('userZonecode').value == ""){
              alert("주소를 입력해 주세요.");
              checkout.userZonecode.focus();
              return false;
          }
-        
+
         if(document.getElementById('addressDetail').value == ""){
             alert("상세주소를 입력해 주세요.");
             return false;
         }
-        
+
         if ($("input:checkbox[name='chk_1']").is(":checked") == false || $("input:checkbox[name='chk_2']").is(":checked") == false){
              alert("동의 버튼을 눌러주셔야 결제가 진행됩니다.");
              checkout.chk_1.focus();
              checkout.chk_2.focus();
              return false;
-         } else return true;         
-        
-        
+         } else return true;
+
+
      }
 
     function order_check(){
@@ -156,7 +156,7 @@
     	frm.action="/store/insertOrder";
 	  	frm.submit();
     }
-    
+
 </script>
 </head>
 
@@ -217,7 +217,7 @@
 															<td class="qua-col first-row">
 																<div class="quantity">
 																	<fmt:formatNumber value="${order.sum }" pattern="#,###" />원
-											
+
 																</div>
 															</td>
 														</tr>
@@ -262,8 +262,8 @@
 																</p>
 
 																<input type="text" id="userZonecode" name="zip" readonly
-																	placeholder="우편번호"> 
-																	<input type="text" id="userAddress" name="address" placeholder="주소" readonly> 
+																	placeholder="우편번호">
+																	<input type="text" id="userAddress" name="address" placeholder="주소" readonly>
 																	<input type="text" id="addressDetail" name="address_detail" placeholder="동,호수 등 상세 주소를 입력하세요">
 															</div>
 														</div>
@@ -277,7 +277,6 @@
 																	placeholder="ex) 부재시 경비실에 맡겨주세요.">
 															</div>
 															<div class="checkout__form__input">
-																<input type="hidden" id="order_status" name="order_status" value="주문 완료"> 
 																<input type="hidden" name="p_id" value="${order.p_id }">
 																<input type="hidden" name="p_name" value="${order.p_name }">
 																<input type="hidden" name="amount" value="${order.amount }">
@@ -295,7 +294,7 @@
 													<div class="checkout__order__total">
 														<ul>
 															<li>배송비 <span>무료</span></li>
-															<li>총 결제금액 
+															<li>총 결제금액
 																<span>
 																	<fmt:formatNumber value="${order.totalSum }" pattern="#,###" />원
 																</span>
@@ -325,7 +324,7 @@
 									</form>
 								</div>
 							</section>
-							
+
 							<!-- Shopping Cart Section End -->
 						</div>
 					</div>

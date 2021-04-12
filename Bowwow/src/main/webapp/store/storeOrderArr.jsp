@@ -137,22 +137,6 @@
 
     }
 
-
-    function order_check(){
-        if(document.getElementById('userZonecode').value == ""){
-            alert("주소를 입력해 주세요.");
-            checkout.userZonecode.focus();
-            return false;
-        }  else if(document.getElementByClassName('phone').value == ""){
-            alert("핸드폰 번호를 입력해주세요");
-            checkout.phone.focus();
-            return false;
-        }
-
-        else return true;
-
-        }
-    
     function insertOrder(frm) {
     	frm.action="/store/insertOrder";
 	  	frm.submit();
@@ -198,7 +182,7 @@
 																<c:set var="imgDir" value="dogImg" />
 															</c:when>
 															<c:when test="${o.p_type == 'cat'}">
-																<c:set var="imgDir" value="catImg" />
+																<c:set var="imgDir" value="catImg"/>
 															</c:when>
 														</c:choose> 
 														<tr style="border-bottom: 1px solid #ddd;">
@@ -222,6 +206,10 @@
 																</div>
 															</td>
 														</tr>
+														<input type="hidden" name="p_id" value="${o.p_id }">
+														<input type="hidden" name="p_name" value="${o.p_name }">
+														<input type="hidden" name="amount" value="${o.amount }">
+														<input type="hidden" name="sum" value="${o.sum }">
 													</c:forEach>
 													</tbody>
 												</table>
@@ -280,11 +268,11 @@
 															</div>
 															<div class="checkout__form__input">
 															<c:forEach var="ord" items="${order }">
-																<input type="hidden" id="order_status" name="order_status" value="주문 완료">
 																<input type="hidden" name="p_id" value="${ord.p_id }">
 																<input type="hidden" name="p_name" value="${ord.p_name }">
 																<input type="hidden" name="amount" value="${ord.amount }">
 																<input type="hidden" name="s_image" value="${ord.s_image }">
+																<input type="text" name="price" value="${ord.price }">
 															</c:forEach>
 															</div>
 														</div>

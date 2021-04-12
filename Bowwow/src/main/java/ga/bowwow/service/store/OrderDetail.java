@@ -14,8 +14,10 @@ import lombok.ToString;
 public class OrderDetail {
 
 	private int orderdetail_id;
+	private int order_id;
 	private int p_id;
+	private String p_name;
 	private int amount;
-	private int total_price;
-	
+	private int sum;
+	private int price;
 }
