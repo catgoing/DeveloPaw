@@ -12,7 +12,6 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.SessionAttributes;
 
 import ga.bowwow.service.paging.Page;
@@ -114,8 +113,9 @@ public class InquiryController {
 		MyInquiry uiq = myServive.getMyInquiry(myInquiry);
 		
 		//상품문의 - 상품번호 들어왔을때-_-....
-		Integer p_id = myInquiry.getP_id();
+		Integer p_id = uiq.getP_id();
 		if (isPIdNotNull(p_id)) {
+			System.out.println(p_id);
 			addProductDetail(model, p_id);
 		}
 		
@@ -168,23 +168,22 @@ public class InquiryController {
 		model.addAttribute("pvo", p);
 		model.addAttribute("command","/getAdminInquiryList");
 		
-		return "/mypage/adminInquiry";
+		return "/admin/adminInquiry";
 	}
 	
 	//관리자의 유저문의 상세페이지
 	@RequestMapping(value="/getAdminInquiryDetail")
 	public String getAdminInquiryDetail(MyInquiry myInquiry, Model model, HttpServletRequest requetst) {
 		System.out.println(">> 관리자 : 유저문의 상세페이지 !");
+
+		MyInquiry uiq = myServive.getMyInquiry(myInquiry);
+		System.out.println("출력할 문의" + uiq);		
 		
 		//상품번호 들어왔을때-_-..
-		Integer p_id = myInquiry.getP_id();
+		Integer p_id = uiq.getP_id();
 		if (isPIdNotNull(p_id)) {
 			addProductDetail(model, p_id);
 		}
-		
-		MyInquiry uiq = myServive.getMyInquiry(myInquiry);
-		System.out.println("출력할 문의" + uiq);
-		
 		//관리자답변등록시
 		if(uiq.getInquiry_re_content()!=null) {
 			String answerDate = uiq.getInquiry_re_date().substring(0, 10);
@@ -201,7 +200,7 @@ public class InquiryController {
 		
 		model.addAttribute("uiqDetail", uiq);
 		
-		return "/mypage/adminInquiryDetail";
+		return "/admin/adminInquiryDetail";
 	}
 
 	//상품번호로 상품상세정보 불러온 후 model에 저장

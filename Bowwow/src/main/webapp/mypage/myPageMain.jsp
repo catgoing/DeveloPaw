@@ -152,7 +152,7 @@
 						<div class="mypage_main_content">
 
 							<div class="container mypage_main_content mypointlist">
-								<h3>누적 적립금</h3>
+								<h3>포인트</h3>
 								<div class="container point">
 									
 									<c:if test="${empty myHomePointList }">
