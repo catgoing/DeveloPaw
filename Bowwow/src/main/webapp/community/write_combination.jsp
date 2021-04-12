@@ -51,13 +51,29 @@ input:checked + label {
 footer.footer.navbar-wrapper {
     z-index: 3;
 }
+
 #container {
 	width: 700px;
 	margin: 0 auto;
 }
 
-h1, h3, p {
-	
+ul {
+  list-style-type: none;
+  margin: 0;
+  padding: 0;
+  overflow: hidden;
+}
+
+
+.thum_li {
+  float: left;
+  list-style-type: none;
+}
+
+li div {
+  display: block;
+  color: white;
+  text-align: center;
 }
 
 table {
@@ -167,7 +183,8 @@ $(function (){
 		 } */
 
 		//이미지 추가되면 썸네일 영역 초기화
-		$("#thum_select").html("");
+//		$("#thum_select").html("");
+		$("#thum_ul").html("");
 		//이미지 추가되면 썸네일 영역 초기화
 		$(".imgs").html('');
 		var imgar = new Array();
@@ -181,11 +198,18 @@ $(function (){
 
 							//썸네일 영역에 이미지 추가 및 radio로 선택하는 부분 구현
 							//radio 필요없으면 input type 변경하면 됨
-							$("#thum_select").append('<div class="radio-container" style="text-align:center">');
+/* 							$("#thum_select").append('<div class="radio-container" style="text-align:center">');
 							$("#thum_select").append('<input type="radio" style="text-align:center" class="thum" name="img1" checked="checked" value="'
 													+ $(this).attr('src') + '"/>');
-							$("#thum_select").append('<img style="width:200px" src="'+ $(this).attr('src') + '"/>');
-							$("#thum_select").append('</div>');
+							$("#thum_select").append('<img style="width:100px" src="'+ $(this).attr('src') + '"/>');
+							$("#thum_select").append('</div>'); */
+ 							$("#thum_ul").append('<li class="thum_li">');
+							$("#thum_ul").append('</div>');
+							$("#thum_ul").append('<input type="radio" class="thum" name="img1" checked="checked" value="'
+													+ $(this).attr('src') + '"/>');
+							$("#thum_ul").append('<img style="width:100px" src="'+ $(this).attr('src') + '"/>');
+							$("#thum_ul").append('</div>');
+							$("#thum_ul").append('</li>'); 
 
 							//여러 개의 이미지 경로 각각 imgar 배열에 담는 부분
 							imgar.push($(this).attr("src"));
@@ -278,15 +302,17 @@ $(function (){
 													<br>
 
 													<textarea id="summernote" name="board_content"></textarea>
-													<div class="thum_select" id="thum_select" style="float: left; , padding: 500px;"></div>
+													<div class="thum_select" id="thum_select" style="float: left; width: 70%"></div>
+													<ul id="thum_ul">
+													</ul>
 													<div class="imgs"></div>
 													<br> <br>
 													
 													<input type="hidden" name="member_serial" value="${sessionScope.userDTO.member_serial }">
 													<input type="hidden" name="board_idx" value="${board_idx }">
 													
-													<div style="text-align: center;" class="enter_button">
-														<input type="submit" style="font-size:17px; width:100px; height:50px; border-radius:5px" value="등록">
+													<div style="text-align: center;  bottom:0; clear:both" class="enter_button">
+														<input type="submit" style="font-size:17px; width:100px; height:50px; border-radius:5px;" value="등록">
 													</div>
 
 												</form>

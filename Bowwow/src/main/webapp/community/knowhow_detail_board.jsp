@@ -98,6 +98,10 @@ footer.footer.navbar-wrapper {
     max-width:860px;
 }
 
+.tag-item > img {
+    max-width:860px;
+}
+
 </style>
 <!-- 신고하기  -->
 	<script>
