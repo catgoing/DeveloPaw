@@ -344,7 +344,6 @@ footer.footer.navbar-wrapper {
 			  <a href="/community/write?board_idx=2">펫 소개</a>
 			  <a href="/community/write?board_idx=3">펫 노하우</a>
 			  <a href="/community/write?board_idx=4">잃어버린 반려동물</a>
-			  <a href="/community/write?board_idx=5">중고거래</a>
 			  </div>
 			</div>
 

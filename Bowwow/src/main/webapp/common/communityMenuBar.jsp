@@ -47,13 +47,6 @@
 			</a></li>
 		</ul>
 		<ul class="pcoded-item pcoded-left-item">
-			<li class=""><a href="/community/used_transaction_board?board_idx=5"
-				class="waves-effect waves-dark"> <span class="pcoded-micon"><i
-						class="ti-layers"></i><b>FC</b></span> <span class="pcoded-mtext">중고거래
-						</span> <span class="pcoded-mcaret"></span>
-			</a></li>
-		</ul>
-		<ul class="pcoded-item pcoded-left-item">
 			<li class=""><a href="/community/event_board?board_idx=6"
 				class="waves-effect waves-dark"> <span class="pcoded-micon"><i
 						class="ti-layers"></i><b>FC</b></span> <span class="pcoded-mtext">이벤트

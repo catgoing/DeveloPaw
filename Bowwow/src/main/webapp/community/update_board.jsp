@@ -16,7 +16,7 @@
 <%@ include file="/common/import.jsp"%>
 
 <title>글 수정</title>
-<link
+<!-- <link
 	href="http://netdna.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.css"
 	rel="stylesheet">
 <script
@@ -28,9 +28,34 @@
 	href="http://cdnjs.cloudflare.com/ajax/libs/summernote/0.8.8/summernote.css"
 	rel="stylesheet">
 <script
-	src="http://cdnjs.cloudflare.com/ajax/libs/summernote/0.8.8/summernote.js"></script>
+	src="http://cdnjs.cloudflare.com/ajax/libs/summernote/0.8.8/summernote.js"></script> -->
+	<link
+	href="/resources/bootstrap.css"
+	rel="stylesheet">
+<script
+	src="http://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.js"></script>
+<script
+	src="http://netdna.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.js"></script>
+
+<link
+	href="http://cdnjs.cloudflare.com/ajax/libs/summernote/0.8.8/summernote.css"
+	rel="stylesheet">
+	
+<script	src="http://cdnjs.cloudflare.com/ajax/libs/summernote/0.8.8/summernote.js"></script>
+
+<script src="/resources/jquery.twbs-toggle-buttons.min.js"></script>
 
 <style>
+
+#board_title{
+	font-size:22px; display:inline-block; width:100%; background-color:transparent; border:none;
+	cursor : text;
+}
+
+footer.footer.navbar-wrapper {
+    z-index: 3;
+}
+
 #container {
 	width: 700px;
 	margin: 0 auto;
@@ -80,6 +105,10 @@ th {
 }
 </style>
 <script>
+$(function (){
+	$(".btn-group-toggle").twbsToggleButtons();
+});
+
 $(function (){
 	var board_idx = ${board_idx};
 	board_idx = board_idx + 3;
@@ -148,7 +177,7 @@ $(function (){
 		 } */
 
 		//이미지 추가되면 썸네일 영역 초기화
-		$("#thum_select").html("");
+		$("#thum_ul").html("");
 		//이미지 추가되면 썸네일 영역 초기화
 		$(".imgs").html('');
 		var imgar = new Array();
@@ -160,11 +189,18 @@ $(function (){
 
 							//썸네일 영역에 이미지 추가 및 radio로 선택하는 부분 구현
 							//radio 필요없으면 input type 변경하면 됨
-							$("#thum_select").append('<div class="radio-container" style="text-align:center">');
+							/*$("#thum_select").append('<div class="radio-container" style="text-align:center">');
 							$("#thum_select").append('<input type="radio" style="text-align:center" class="thum" name="img1" checked="checked" value="'
 													+ $(this).attr('src') + '"/>');
 							$("#thum_select").append('<img style="width:200px" src="'+ $(this).attr('src') + '"/>');
-							$("#thum_select").append('</div>');
+							$("#thum_select").append('</div>');*/
+							$("#thum_ul").append('<li class="thum_li">');
+							$("#thum_ul").append('</div>');
+							$("#thum_ul").append('<input type="radio" class="thum" name="img1" checked="checked" value="'
+													+ $(this).attr('src') + '"/>');
+							$("#thum_ul").append('<img style="width:100px" src="'+ $(this).attr('src') + '"/>');
+							$("#thum_ul").append('</div>');
+							$("#thum_ul").append('</li>'); 
 
 							//여러 개의 이미지 경로 각각 imgar 배열에 담는 부분
 							imgar.push($(this).attr("src"));
@@ -218,36 +254,64 @@ $(function (){
 													<div>
 														<c:set var="class1" value="${vo.animal_class }"/>
 														<c:if test="${class1 eq '1' }">
-															<input type="radio" name="animal_class" value="1" checked="checked"> 강아지
-															<input type="radio" name="animal_class" value="2"> 고양이 
-															<input type="radio" name="animal_class" value="3"> 자유
+														    <div class="card-body">
+														      <div class="btn-group btn-group-toggle" data-toggle="buttons">
+														        <label for="dog" class="btn" role="button">강아지
+													          		<input id="dog" type="radio" name="animal_class" value="1"  checked="checked" >
+													          	</label>
+														       	 <label for="cat" class="btn" role="button">고양이
+													          <input id="cat"type="radio" name="animal_class" value="2">
+													          </label>
+														        <label class="btn active" role="button">
+														          <input type="radio" name="animal_class" value="3">자유
+														        </label>
+														      </div>
+													    </div>
 														</c:if>
 														<c:if test="${class1 eq '2' }">
-															<input type="radio" name="animal_class" value="1">강아지 
-															<input type="radio" name="animal_class" value="2" checked="checked">고양이 
-															<input type="radio" name="animal_class" value="3">자유
+															<div class="card-body">
+														      <div class="btn-group btn-group-toggle" data-toggle="buttons">
+														        <label for="dog" class="btn" role="button">강아지
+													          		<input id="dog" type="radio" name="animal_class" value="1" >
+													          	</label>
+														       	 <label for="cat" class="btn" role="button">고양이
+													          <input id="cat"type="radio" name="animal_class" value="2" checked="checked" >
+													          </label>
+														        <label class="btn active" role="button">
+														          <input type="radio" name="animal_class" value="3">자유
+														        </label>
+														      </div>
+													      	</div>
 														</c:if>
 														<c:if test="${class1 eq '3' }">
-															<input type="radio" name="animal_class" value="1">강아지 
-															<input type="radio" name="animal_class" value="2">고양이 
-															<input type="radio" name="animal_class" value="3" checked="checked">자유
+															<div class="card-body">
+														      <div class="btn-group btn-group-toggle" data-toggle="buttons">
+														        <label for="dog" class="btn" role="button">강아지
+													          		<input id="dog" type="radio" name="animal_class" value="1" >
+													          	</label>
+														       	 <label for="cat" class="btn" role="button">고양이
+													          <input id="cat"type="radio" name="animal_class" value="2" >
+													          </label>
+														        <label class="btn active" role="button">
+														          <input type="radio" name="animal_class" value="3" checked="checked" >자유
+														        </label>
+														      </div>
+													      	</div>
 														</c:if>
 
 													</div>
 													<br>
-
-													<table>
-														<tr>
-															<th width="40">제목</th>
-															<td>
-															<input type="text" name="board_title" size="30" value="${vo.board_title }">
-															</td>
-														</tr>
-													</table>
+													<div class="title-container" style="background-color : #f7f2f2; width : 100%; margin : auto; padding : 15px; border-radius : 10px">
+															<div class="title">
+															<input type="text" id="board_title" name="board_title" value="${vo.board_title }" >
+															</div>		
+															</div>	
 													<br>
 
 													<textarea id="summernote" name="board_content"></textarea>
-													<div class="thum_select" id="thum_select" style="float: left; , padding: 500px;"></div>
+													<div class="thum_select" id="thum_select" style="float: left; width: 70%"></div>
+													<ul id="thum_ul">
+													</ul>
 													<div class="imgs"></div>
 													<br> <br>
 													<input type="hidden" name="board_no" value="${vo.board_no }">
