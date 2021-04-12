@@ -54,7 +54,7 @@ public class StoreOrderController {
 	// 주문내역 작성
 	@RequestMapping(value = "/store/insertOrder")
 	// default로 get방식 요청, post 선언을 해줘야 함
-	public String insertOrder(OrderDTO orderDTO, Order order, HttpServletRequest request) throws IllegalStateException, IOException {
+	public String insertOrder(OrderDTO orderDTO, Order order, HttpServletRequest request, HttpSession session) throws IllegalStateException, IOException {
 		System.out.println("order : "  + order);
 		System.out.println(">>> 주문내역 작성 - insertOrder()");
 
@@ -62,14 +62,16 @@ public class StoreOrderController {
 		order.setOrder_status(order_status);
 
 		request.setCharacterEncoding("utf-8");
-		storeOrderService.insertOrder(order);
+		int inOr = storeOrderService.insertOrder(order);
 
 		int result = 0;
 		OrderDetail orderDetail;
 		List<OrderDetail> orderList = new ArrayList<OrderDetail>();
 		List<Integer> sum = new ArrayList<Integer>();
 		int size = orderDTO.getP_id().size();
-
+		
+		int member_serial = ((UserDTO) session.getAttribute("userDTO")).getMember_serial();
+		
 		for (int i = 0; i < size; i++) {
 			orderDetail = new OrderDetail();
 			result = orderDTO.getPrice().get(i) * orderDTO.getAmount().get(i);
@@ -85,16 +87,18 @@ public class StoreOrderController {
 			System.out.println("orderList " + i + "번째");
 			storeOrderService.insertOrderDetail(orderDetail);
 			System.out.println("임시 테이블에 저장" + orderDetail);
+			
+			if (inOr >= 1) {
+				cartListService.OrderDelCart(order);
+			}
 		}
 
-		return "redirect:/store/storeOrderList?member_serial=999";
+		return "redirect:/store/storeOrderList?member_serial=" + member_serial;
 	}
 
 	@RequestMapping(value = "/store/orderArr")
 	public String insertOrderList(OrderDTO orderDTO, Model model, HttpSession session) throws Exception {
 		
-		String id = ((UserDTO) session.getAttribute("userDTO")).getId();
-
 		int result = 0;
 		int totalSum = 0;
 		List<Order> orderList = new ArrayList<Order>();
@@ -117,10 +121,6 @@ public class StoreOrderController {
 			sum.add(i, result);
 			order.setSum(sum.get(i));
 			totalSum += result;
-			/*
-			storeOrderService.insertOrderDetail(order);
-			System.out.println("임시 테이블에 저장" + order);
-			*/
 		}
 
 		System.out.println("totalSum : " + totalSum);
@@ -134,13 +134,14 @@ public class StoreOrderController {
 
 
 	@RequestMapping(value = "/store/deleteOrder")
-	public String deleteOrder(@RequestParam("order_id") int order_id, HttpServletRequest request, HttpServletResponse response) throws IllegalStateException, IOException {
+	public String deleteOrder(@RequestParam("order_id") int order_id, HttpServletRequest request, HttpServletResponse response, HttpSession session) throws IllegalStateException, IOException {
+		int member_serial = ((UserDTO) session.getAttribute("userDTO")).getMember_serial();
 		System.out.println(">>> 주문내역 삭제 - deleteOrder()");
 		System.out.println(request.getParameter("order_id"));
 		String o_id = request.getParameter("order_id");
 		storeOrderService.deleteOrder(o_id);
 
-		return "redirect:/store/storeOrderList?member_serial=999";
+		return "redirect:/store/storeOrderList?member_serial=" + member_serial;
 	}
 
 	// 주문내역 전체 출력

@@ -152,11 +152,6 @@
 
         }
 
-    function insertOrder(frm) {
-    	frm.action="/store/insertOrder";
-	  	frm.submit();
-    }
-
 </script>
 </head>
 
@@ -217,7 +212,6 @@
 															<td class="qua-col first-row">
 																<div class="quantity">
 																	<fmt:formatNumber value="${order.sum }" pattern="#,###" />원
-
 																</div>
 															</td>
 														</tr>
@@ -230,7 +224,7 @@
 							</section>
 							<section class="checkout spad">
 								<div class="container" style="background-color: white;">
-								<form action="insertOrder" onsubmit="return chkBtn();" method="POST" name="checkout" class="checkout__form" accept-charset="UTF-8">
+								<form action="/store/insertOrder" onsubmit="return chkBtn();" method="POST" name="checkout" class="checkout__form" accept-charset="UTF-8">
 										<div class="row">
 											<div class="col-lg-8">
 												<div class="checkout__order"
@@ -242,7 +236,8 @@
 																<p>
 																	주문자 성명 <span>* (*)항목은 필수 입력 항목입니다.</span>
 																</p>
-																<input type="text" name="member_serial" value=999>
+																<input type="text" name="realname" value="${sessionScope.userDTO.realname}">
+																<input type="hidden" name="member_serial" value="${sessionScope.userDTO.member_serial}">
 															</div>
 														</div>
 														<div class="col-lg-6 col-md-6 col-sm-6">
@@ -250,7 +245,7 @@
 																<p>
 																	핸드폰 <span>*</span>
 																</p>
-																<input type="text" id="phone" name="phone">
+																<input type="text" id="phone" name="phone" placeholder="(-)제외 숫자만 입력해주세요">
 															</div>
 														</div>
 														<div class="col-lg-12">
@@ -280,8 +275,8 @@
 																<input type="hidden" name="p_id" value="${order.p_id }">
 																<input type="hidden" name="p_name" value="${order.p_name }">
 																<input type="hidden" name="amount" value="${order.amount }">
-																<input type="hidden" name="totalSum" value="${order.totalSum }">
 																<input type="hidden" name="s_image" value="${order.s_image }">
+																<input type="hidden" name="price" value="${order.price }">
 															</div>
 														</div>
 													</div>
@@ -297,6 +292,7 @@
 															<li>총 결제금액
 																<span>
 																	<fmt:formatNumber value="${order.totalSum }" pattern="#,###" />원
+																	<input type="hidden" name="totalSum" value="${order.totalSum }">
 																</span>
 															</li>
 														</ul>

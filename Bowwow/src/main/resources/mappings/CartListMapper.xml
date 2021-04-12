@@ -48,6 +48,13 @@
 		WHERE ID = #{id}
 	</delete>
 	
+	<!-- 장바구니 상품 삭제2 -->
+	<delete id="OrderDelCart" parameterType="Order">
+		DELETE FROM STORE_ORDER
+		WHERE P_ID = #{p_id}
+		  AND MEMBER_SERIAL = ${member_serial}
+	</delete>
+	
 </mapper>
 
 
