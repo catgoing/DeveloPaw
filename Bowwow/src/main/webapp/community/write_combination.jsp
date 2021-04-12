@@ -282,7 +282,7 @@ $(function (){
 													<div class="imgs"></div>
 													<br> <br>
 													
-													<input type="hidden" name="member_serial" value="994">
+													<input type="hidden" name="member_serial" value="${sessionScope.userDTO.member_serial }">
 													<input type="hidden" name="board_idx" value="${board_idx }">
 													
 													<div style="text-align: center;" class="enter_button">
