@@ -26,6 +26,10 @@ public class UserAccountDAO extends UserGenericDAO<UserAccount> {
 				, "UserAccount.getUserList");
 //		TODO REPLACE TEMPORARY INSERT mybatis.insert("UserAccount.insertUserAccount", userAccount);
 	}
+	
+	public int setPassword(UserAccount userAccount) {
+		return mybatis.update("UserAccount.setPassword", userAccount);
+	}
 
 	public List<UserAccount> verifyAccount(UserAccount userAccount) {
 		return mybatis.selectList("UserAccount.loginValidation", userAccount, new RowBounds(0, 1));

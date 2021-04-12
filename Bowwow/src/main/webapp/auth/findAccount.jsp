@@ -21,10 +21,48 @@
 			};
 			emailjs.send('service_yg1gt33','template_36fkok7', templateParams)
 			.then(function(response){
-				alert("인증번호 전송 성공!");
+				alert("인증번호 전송 성공!" + result);
 			}, function(error){
 				alert("인증번호 전송 실패!");
 			});
+		}
+		function isMatchNumber() {
+
+
+			var matchNumber = document.getElementById("code").value;
+	        var passwordDiv = document.getElementById("passwordDiv");
+            var verifyDiv = document.getElementById("verifyDiv");
+            console.log(passwordDiv);
+            
+
+			var textResult = ""+result;
+			console.log(matchNumber);
+			console.log(result);
+			if(textResult === matchNumber) {
+				alert("새로운 비밀번호를 입력해주세요.");
+				passwordDiv.style.display="block";
+				verifyDiv.style.display="none";
+			} else {
+				alert("인증번호가 틀립니다.");
+			}
+		}
+		function changePassword() {
+			var findForm = document.getElementById("find_form");
+            var form_data = new FormData(findForm);
+           	
+  			
+			$.ajax("/account/setPassword", {
+		           type: "POST",
+	   	 			enctype: "multipart/form-data",
+	   	            data: form_data,
+	   	            contentType: false,
+	   	            processData: false,
+	   	            
+		            success: function() {
+		  	        	   alert("비밀번호가 변경되었습니다.");
+		  	        	   window.location.href = '/user/login';
+		  	           }
+	      });
 		}
 // function checker() {
 //   var id = document.getElementById("id").value;
@@ -52,7 +90,7 @@
             <div class="col-sm-12">
                 <!-- Authentication card start -->
 
-                    <form class="md-float-material form-material" action="/user/login" >
+                    <form id="find_form" class="md-float-material form-material" action="/user/login" >
                     <!-- onsubmit = "return checker();">  -->
                         <div class="text-center">
                             <img src="/resources/images/logo.png" alt="logo.png">
@@ -61,7 +99,7 @@
                             <div class="card-block">
                                 <div class="row m-b-20">
                                     <div class="col-md-12">
-                                        <h3 class="text-center">아아디 찾기</h3>
+                                        <h3 class="text-center">비밀번호 찾기</h3>
                                     </div>
                                 </div>
                                 <%
@@ -91,15 +129,32 @@
                                     <span class="form-bar"></span>
                                     <label class="float-label">이메일</label>
                                 </div>
-                                <div class="form-group form-primary">
-                                		<button type="button" onclick="send_email()">인증번호 전송</button>
+                                <div  class="form-group form-primary">
+                                </div>
+                                <div id="verifyDiv" >
+                                <button type="button" onclick="send_email()" class="btn btn-primary btn-md btn-block waves-effect waves-light text-center m-b-20">인증번호 전송</button>
+                                <div class="form-group form-primary" id="">
                                 		<input type="text" name="code" id="code" class="form-control">
 										<label class="float-label">인증번호</label>
                                 </div>
                                 <div class="row m-t-30">
                                     <div class="col-md-12">
-                                        <button type="submit" class="btn btn-primary btn-md btn-block waves-effect waves-light text-center m-b-20">찾기</button>
+                                        <button type="button" class="btn btn-primary btn-md btn-block waves-effect waves-light text-center m-b-20"
+                                        onclick="isMatchNumber();">찾기</button>
                                     </div>
+                                </div>
+                                </div>
+                                <div id="passwordDiv" style="display:none;">
+                                <div class="form-group form-primary" >
+	                               		<input type="text" name="password" id="password" class="form-control">
+											<label class="float-label">비밀번호</label>
+	                                </div>
+                               		<div class="form-group form-primary" >
+	                                    <div class="col-md-12">
+	                                        <button type="button" class="btn btn-primary btn-md btn-block waves-effect waves-light text-center m-b-20"
+	                                        onclick="changePassword();">비밀번호 변경</button>
+	                                    </div>
+	                                </div>
                                 </div>
                                 <hr/>
                                 <div class="row">

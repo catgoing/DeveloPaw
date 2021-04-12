@@ -90,6 +90,12 @@
 		DELETE FROM USER_ACCOUNT WHERE ID = #{id}
 	</delete>
 
+	<update id="setPassword" parameterType="UserAccount">
+		UPDATE USER_ACCOUNT
+		SET PASSWORD = #{password}
+		WHERE ID = #{id}
+	</update>
+	
 	<update id="updateUserAccount" parameterType="UserAccount">
 		UPDATE USER_ACCOUNT
 		SET PASSWORD = #{password}
