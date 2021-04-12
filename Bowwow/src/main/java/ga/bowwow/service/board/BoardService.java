@@ -20,6 +20,7 @@ public interface BoardService {
 	//List<Board> getBoardList(int idx);
 	
 	List<Board> search(String string, String keyword);
+	List<Board> boardSearch(String board_idx, int idx, String keyword);
 
 	List<Board> getBoardList(Map<String, String> map);
 	List<Board> getMainList(int board_idx);
