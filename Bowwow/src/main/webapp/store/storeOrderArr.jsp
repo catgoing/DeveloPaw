@@ -127,12 +127,6 @@
            return false;
        }
        
-       if(document.getElementById('userZonecode').value == ""){
-           alert("상세주소를 입력해 주세요.");
-           checkout.userZonecode.focus();
-           return false;
-       }
-
        if ($("input:checkbox[name='chk_1']").is(":checked") == false || $("input:checkbox[name='chk_2']").is(":checked") == false){
             alert("동의 버튼을 눌러주셔야 결제가 진행됩니다.");
             checkout.chk_1.focus();
