@@ -12,7 +12,8 @@ import lombok.ToString;
 @NoArgsConstructor
 @AllArgsConstructor
 public class Order {
-	private int order_id;		// 주문 번호
+	private int order_id;			// 주문 번호
+	private String id;				// 회원 아이디
 	private int p_id;				// 주문한 상품 번호
 	private int member_serial;		// 회원 번호
 	private int amount;				// 주문한 상품 수량

@@ -10,4 +10,5 @@ public interface CartListService {
 	public int updateCart(CartList cartList);
 	public int deleteCart(CartList cartList);
 	public void deleteCartAll(String id);
+	public int OrderDelCart(Order order);
 }

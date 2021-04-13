@@ -107,7 +107,13 @@
 														</tr>
 													</thead>
 													<c:if test="${empty orderList}">
-														<h3>주문 내역이 존재하지 않습니다.</h3>
+														<tbody>
+															<tr>
+															</tr>
+															<tr>
+																<td><h4>주문 내역이 존재하지 않습니다.</h4></td>
+															</tr>
+														</tbody>
 													</c:if>
 													<c:if test="${not empty orderList}">
 														<c:forEach var="oList" items="${orderList }">

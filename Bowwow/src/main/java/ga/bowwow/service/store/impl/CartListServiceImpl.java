@@ -7,6 +7,7 @@ import org.springframework.stereotype.Service;
 
 import ga.bowwow.service.store.CartList;
 import ga.bowwow.service.store.CartListService;
+import ga.bowwow.service.store.Order;
 
 @Service
 public class CartListServiceImpl implements CartListService {
@@ -42,6 +43,11 @@ public class CartListServiceImpl implements CartListService {
 	@Override
 	public void deleteCartAll(String id) {
 		storeDAO.deleteCartAll(id);
+	}
+	
+	@Override
+	public int OrderDelCart(Order order) {
+		return storeDAO.OrderDelCart(order);
 	}
 
 }

@@ -4,78 +4,70 @@
   "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="StoreOrder">
 
-	<!-- 주문 내역 작성 -->
-	<insert parameterType="Order" id="insertOrder">
-		INSERT INTO STORE_ORDER 
-			(ORDER_ID, P_ID, MEMBER_SERIAL, AMOUNT, TOTALSUM, 
-		 		P_NAME, MEMO, ORDER_DATE, ORDER_STATUS, ADDRESS, 
-		 		ADDRESS_DETAIL, ZIP, ORDER_POINT, PHONE, S_IMAGE)
-		VALUES 
-			(ORDER_SEQ.NEXTVAL, #{p_id}, #{member_serial}, #{amount}, #{totalSum}, #{p_name},
-			#{memo}, SYSDATE, #{order_status}, #{address}, 
-			#{address_detail}, #{zip}, #{order_point}, #{phone}, #{s_image}) 
-		
-	</insert>
-	
-	<!-- 주문 내역 삭제 -->
-	<delete id="deleteOrder" parameterType="String">
-		DELETE FROM STORE_ORDER
-		WHERE ORDER_ID = #{order_id}
-	</delete>
-	
-	<!-- 회원 주문 내역 전체 출력 -->
-	<select id="orderList" parameterType="Order" resultType="Order">
-		SELECT O.ORDER_ID, O.P_ID, O.MEMBER_SERIAL, O.AMOUNT, O.TOTALSUM, O.MEMO, O.ORDER_DATE, O.P_NAME,
-								O.ORDER_STATUS, O.ADDRESS, O.ADDRESS_DETAIL, O.ZIP, O.ORDER_POINT, O.PHONE, U.REALNAME 
-		FROM STORE_ORDER O, USER_DETAIL U
-		WHERE O.MEMBER_SERIAL = U.MEMBER_SERIAL AND O.MEMBER_SERIAL = #{member_serial}
-		ORDER BY ORDER_ID DESC
-	</select>
-	
-	<!-- 주문 내역 하나만 출력 -->	
-	<select id="orderDetail" parameterType="int" resultType="Order">
-		SELECT O.ORDER_ID, O.P_ID, O.MEMBER_SERIAL, O.AMOUNT, O.TOTALSUM, O.MEMO, O.ORDER_DATE, O.P_NAME,
-								O.ORDER_STATUS, O.ADDRESS, O.ADDRESS_DETAIL, O.ZIP, O.ORDER_POINT, O.PHONE, U.REALNAME 
-		FROM STORE_ORDER O, USER_DETAIL U
-		WHERE O.MEMBER_SERIAL = U.MEMBER_SERIAL AND O.ORDER_ID = #{order_id}
-	</select>
-	
-	<!-- 장바구니에서 넘어온 내역 출력 -->
-	<select id="orderFromCartList" parameterType="int" resultType="Order">
-		SELECT ORDERDETAIL_ID, ORDER_ID, P_ID, P_NAME, AMOUNT,SUM
-		FROM STORE_ORDERDETAIL
-		WHERE ORDER_ID = #{order_id}
-	</select>
-	
-	<!-- 배송 상태 변경 -->
-	<update id="changeOrderStatus" parameterType="int">
-		UPDATE STORE_ORDER
-		SET ORDER_STATUS = ${order_status}
-		WHERE ORDER_ID = #{order_id}	
-	</update>
-	
-	<!-- 배송 시작시 재고 감소 -->
-	<update id="changeStock">
-		UPDATE STORE_PRODUCT
-		SET STOCK = STOCK - ${amount}
-		WHERE P_ID = #{p_id}
-	</update>
-	
-	<!-- 주문 임시 테이블에 저장 -->
-	<insert id="insertOrderDetail" parameterType="OrderDetail">
-		<selectKey keyProperty="order_id" resultType="int" order="BEFORE">  
-       		SELECT  ORDER_SEQ.CURRVAL FROM DUAL
-     	</selectKey>
-			INSERT INTO STORE_ORDERDETAIL (ORDERDETAIL_ID, ORDER_ID, P_ID, P_NAME, AMOUNT, SUM)
-			VALUES (ORDERDETAIL_SEQ.NEXTVAL, #{order_id}, #{p_id}, #{p_name}, #{amount}, #{sum})
-	</insert>
+   <!-- 주문 내역 작성 -->
+   <insert parameterType="Order" id="insertOrder">
+      INSERT INTO STORE_ORDER 
+         (ORDER_ID, P_ID, MEMBER_SERIAL, AMOUNT, TOTALSUM, 
+             P_NAME, MEMO, ORDER_DATE, ORDER_STATUS, ADDRESS, 
+             ADDRESS_DETAIL, ZIP, ORDER_POINT, PHONE, S_IMAGE)
+      VALUES 
+         (ORDER_SEQ.NEXTVAL, #{p_id}, #{member_serial}, #{amount}, #{totalSum}, #{p_name},
+         #{memo}, SYSDATE, #{order_status}, #{address}, 
+         #{address_detail}, #{zip}, #{order_point}, #{phone}, #{s_image}) 
+      
+   </insert>
+   
+   <!-- 주문 내역 삭제 -->
+   <delete id="deleteOrder" parameterType="String">
+      DELETE FROM STORE_ORDER
+      WHERE ORDER_ID = #{order_id}
+   </delete>
+   
+   <!-- 회원 주문 내역 전체 출력 -->
+   <select id="orderList" parameterType="Order" resultType="Order">
+      SELECT O.ORDER_ID, O.P_ID, O.MEMBER_SERIAL, O.AMOUNT, O.TOTALSUM, O.MEMO, O.ORDER_DATE, O.P_NAME,
+                        O.ORDER_STATUS, O.ADDRESS, O.ADDRESS_DETAIL, O.ZIP, O.ORDER_POINT, O.PHONE, U.REALNAME 
+      FROM STORE_ORDER O, USER_DETAIL U
+      WHERE O.MEMBER_SERIAL = U.MEMBER_SERIAL AND O.MEMBER_SERIAL = #{member_serial}
+      ORDER BY ORDER_ID DESC
+   </select>
+   
+   <!-- 주문 내역 하나만 출력 -->   
+   <select id="orderDetail" parameterType="int" resultType="Order">
+      SELECT O.ORDER_ID, O.P_ID, O.MEMBER_SERIAL, O.AMOUNT, O.TOTALSUM, O.MEMO, O.ORDER_DATE, O.P_NAME,
+                        O.ORDER_STATUS, O.ADDRESS, O.ADDRESS_DETAIL, O.ZIP, O.ORDER_POINT, O.PHONE, U.REALNAME 
+      FROM STORE_ORDER O, USER_DETAIL U
+      WHERE O.MEMBER_SERIAL = U.MEMBER_SERIAL AND O.ORDER_ID = #{order_id}
+   </select>
+   
+   <!-- 장바구니에서 넘어온 내역 출력 -->
+   <select id="orderFromCartList" parameterType="int" resultType="Order">
+      SELECT ORDERDETAIL_ID, ORDER_ID, P_ID, P_NAME, AMOUNT,SUM
+      FROM STORE_ORDERDETAIL
+      WHERE ORDER_ID = #{order_id}
+   </select>
+   
+   <!-- 배송 상태 변경 -->
+   <update id="changeOrderStatus" parameterType="int">
+      UPDATE STORE_ORDER
+      SET ORDER_STATUS = ${order_status}
+      WHERE ORDER_ID = #{order_id}   
+   </update>
+   
+   <!-- 배송 시작시 재고 감소 -->
+   <update id="changeStock">
+      UPDATE STORE_PRODUCT
+      SET STOCK = STOCK - ${amount}
+      WHERE P_ID = #{p_id}
+   </update>
+   
+   <!-- 주문 임시 테이블에 저장 -->
+   <insert id="insertOrderDetail" parameterType="OrderDetail">
+      <selectKey keyProperty="order_id" resultType="int" order="BEFORE">  
+             SELECT  ORDER_SEQ.CURRVAL FROM DUAL
+        </selectKey>
+         INSERT INTO STORE_ORDERDETAIL (ORDERDETAIL_ID, ORDER_ID, P_ID, P_NAME, AMOUNT, SUM)
+         VALUES (ORDERDETAIL_SEQ.NEXTVAL, #{order_id}, #{p_id}, #{p_name}, #{amount}, #{sum})
+   </insert>
 </mapper>
-
-
-
-
-
-
-
-
 

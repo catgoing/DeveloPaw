@@ -3,7 +3,7 @@ package ga.bowwow.service.store;
 import java.util.List;
 
 public interface StoreOrderService {
-	public void insertOrder(Order order);
+	public int insertOrder(Order order);
 	public void deleteOrder(String o_id);
 	public List<Order> getOrderList(Order order);
 	public Order getOrderDetail(int order_id);
