@@ -69,7 +69,7 @@ input[type="text"]:hover{
 					<c:when test="${sessionScope.userDTO.status == '777'}">
 					<script>
 					</script>
-						<a href="/user/manageList">커뮤니티 관리</a>
+						<a href="/user/manageList">회원 목록</a>
 					</c:when>
 				</c:choose>
 				</li>
