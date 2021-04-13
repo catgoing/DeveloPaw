@@ -341,7 +341,7 @@ footer.footer.navbar-wrapper {
 		<div class="fixed-button2 active dropdown">
 		
 			<c:if test="${sessionScope.userDTO != null }">
-				<a href="/community/write_combination.jsp" class="btn2 btn-md btn-primary"> 글쓰기</a> 
+				<a class="btn2 btn-md btn-primary"> 글쓰기</a> 
 			</c:if>
 			
 		

@@ -52,6 +52,24 @@
 	cursor : text;
 }
 
+ul {
+  list-style-type: none;
+  margin: 0;
+  padding: 0;
+  overflow: hidden;
+}
+
+.thum_li {
+  float: left;
+  list-style-type: none;
+}
+
+li div {
+  display: block;
+  color: white;
+  text-align: center;
+}
+
 footer.footer.navbar-wrapper {
     z-index: 3;
 }

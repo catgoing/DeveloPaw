@@ -307,7 +307,11 @@ footer.footer.navbar-wrapper {
 																<input type="hidden" name="board_no" value=${board_no }>		
 																<input type="hidden" name="board_idx" value=${board_idx }>									
 																<input type="hidden" name="comment_no" value=${comvo.comment_no }>
+																<c:set var="userid" value="${sessionScope.userDTO.member_serial}"/>
+																<c:set var="writerid2" value="${comvo.member_serial }"/>
+																<c:if test="${userid == writerid2 }">
 																<input class="nonbutton" type="submit" value="삭제">
+																</c:if>
 																</div>
 															</form>
 															
@@ -344,7 +348,11 @@ footer.footer.navbar-wrapper {
 																		<input type="hidden" name="board_no" value=${board_no }>		
 																		<input type="hidden" name="board_idx" value=${board_idx }>									
 																		<input type="hidden" name="comment_no" value=${com2vo.comment_no }>
-																		<input type="submit" value="삭제하기" >
+																		<c:set var="userid" value="${sessionScope.userDTO.member_serial}"/>
+																		<c:set var="writerid3" value="${com2vo.member_serial }"/>
+																		<c:if test="${userid == writerid3 }">	
+																		<input type="submit" value="삭제" >
+																		</c:if>
 																	</form>
 																	</div>
 																<hr>
