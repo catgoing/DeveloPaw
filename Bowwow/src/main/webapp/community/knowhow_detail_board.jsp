@@ -371,7 +371,13 @@ footer.footer.navbar-wrapper {
 		<%@ include file="/common/storeFoot.jsp"%>
 		<!-- footer 푸터 영역 -->
 		<div class="fixed-button active"><a href="/community/write_knowhow_board.jsp" class="btn btn-md btn-primary"> 글쓰기</a> </div>
-		
+		<c:choose>
+			<c:when test="${sessionScope.userDTO != null }">
+			</c:when>
+			<c:otherwise>
+				<a href="/user/login" class="btn btn-md btn-primary"> 글쓰기</a> 
+			</c:otherwise>
+		</c:choose>
 
 	</div>
 <!-- 
