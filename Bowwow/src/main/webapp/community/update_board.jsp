@@ -16,7 +16,7 @@
 <%@ include file="/common/import.jsp"%>
 
 <title>글 수정</title>
-<!-- <link
+ <link
 	href="http://netdna.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.css"
 	rel="stylesheet">
 <script
@@ -28,8 +28,8 @@
 	href="http://cdnjs.cloudflare.com/ajax/libs/summernote/0.8.8/summernote.css"
 	rel="stylesheet">
 <script
-	src="http://cdnjs.cloudflare.com/ajax/libs/summernote/0.8.8/summernote.js"></script> -->
-	<link
+	src="http://cdnjs.cloudflare.com/ajax/libs/summernote/0.8.8/summernote.js"></script> 
+<!-- 	<link
 	href="/resources/bootstrap.css"
 	rel="stylesheet">
 <script
@@ -41,7 +41,7 @@
 	href="http://cdnjs.cloudflare.com/ajax/libs/summernote/0.8.8/summernote.css"
 	rel="stylesheet">
 	
-<script	src="http://cdnjs.cloudflare.com/ajax/libs/summernote/0.8.8/summernote.js"></script>
+<script	src="http://cdnjs.cloudflare.com/ajax/libs/summernote/0.8.8/summernote.js"></script> -->
 
 <script src="/resources/jquery.twbs-toggle-buttons.min.js"></script>
 
@@ -50,6 +50,24 @@
 #board_title{
 	font-size:22px; display:inline-block; width:100%; background-color:transparent; border:none;
 	cursor : text;
+}
+
+ul {
+  list-style-type: none;
+  margin: 0;
+  padding: 0;
+  overflow: hidden;
+}
+
+.thum_li {
+  float: left;
+  list-style-type: none;
+}
+
+li div {
+  display: block;
+  color: white;
+  text-align: center;
 }
 
 footer.footer.navbar-wrapper {
@@ -119,11 +137,8 @@ $(function (){
 	imageChangeCheck();
 });
 
-
-
 	$(function() {
 		$('#summernote').val('${vo.board_content}');
-
 		
 		$('#summernote').summernote({
 			placeholder : '최대 500자 작성 가능합니다.',
@@ -154,7 +169,7 @@ $(function (){
 		$.ajax({
 			data : data,
 			type : "POST",
-			url : "uploadSummernoteImageFile",
+			url : "/community/uploadSummernoteImageFile",
 			contentType : false,
 			enctype : 'multipart/form-data',
 			processData : false,
@@ -335,9 +350,6 @@ $(function (){
 				</div>
 			</div>
 		</div>
-		<button class="scroll-top" id="js-button" style="margin-bottom: 190px; margin-right: 30px; font: 'Jua'">
-			<i class="fa fa-chevron-up" aria-hidden="true">TOP</i>
-		</button>
 		<script type="text/javascript">
 			scrollTop('js-button', 100);
 			function scrollTop(elem, duration) {

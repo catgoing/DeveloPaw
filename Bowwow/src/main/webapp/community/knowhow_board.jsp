@@ -167,14 +167,11 @@ $(function (){
 		<!-- footer 푸터 영역 -->
 		<%@ include file="/common/storeFoot.jsp"%>
 		<!-- footer 푸터 영역 -->
-		<div class="fixed-button active"><a href="/community/write_knowhow_board.jsp" class="btn btn-md btn-primary"> 글쓰기</a> </div>
-		<c:choose>
-			<c:when test="${sessionScope.userDTO != null }">
-			</c:when>
-			<c:otherwise>
-				<a href="/user/login" class="btn btn-md btn-primary"> 글쓰기</a> 
-			</c:otherwise>
-		</c:choose>
+			<c:if test="${sessionScope.userDTO != null }">
+				<div class="fixed-button2 active active">
+						<a href="/community/write_combination.jsp" class="btn2 btn-md btn-primary"> 글쓰기</a> 
+				 </div>
+			</c:if>
 
 	</div>
 
