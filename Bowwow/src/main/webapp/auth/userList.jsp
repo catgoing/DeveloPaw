@@ -25,16 +25,15 @@
                         <th>회원 번호</th>
                         <th>ID</th>
                         <th>Email</th>
+                        <th>닉네임</th>
                         <th>주민 번호</th>
                         <th>휴대전화 번호</th>
                         <th>회원 등급</th>
                         <th>포인트</th>
-                        <th>닉네임:DETAIL</th>
-                        <th>이름:DETAIL</th>
-                        <th>가입일:DETAIL</th>
-                        <th>생일:DETAIL</th>
-                        <th>성별:DETAIL</th>
-                        <th>프로필이미지:DETAIL</th>
+                        <th>이름</th>
+                        <th>가입일</th>
+                        <th>생일</th>
+                        <th>성별</th>
                     </tr>
                 </thead>
                 
@@ -44,16 +43,15 @@
 							<td>${userAccount.member_serial}</td>
 							<td>${userAccount.id}</td>
 							<td>${userAccount.email}</td>
+							<td>${userAccount.nickname}</td>
 							<td>${userAccount.citizen_id}</td>
 							<td>${userAccount.phone}</td>
 							<td>${userAccount.status}</td>
 							<td>${userAccount.point}</td>
-							<td>${userAccount.nickname}</td>
-							<td>${userAccount.realname};</td>
-							<td>${userAccount.reg_date};</td>
-							<td>${userAccount.birthday};</td>
-							<td>${userAccount.gender};</td>
-							<td>${userAccount.image_source};</td>
+							<td>${userAccount.realname}</td>
+							<td>${userAccount.reg_date}</td>
+							<td>${userAccount.birthday}</td>
+							<td>${userAccount.gender}</td>
 						</tr>
 					</c:forEach>
                 </tbody>
