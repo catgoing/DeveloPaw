@@ -2,12 +2,15 @@ package ga.bowwow.controller.pet;
 
 import java.io.File;
 import java.io.IOException;
+import java.io.InputStream;
 import java.util.List;
 import java.util.UUID;
 
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletRequestWrapper;
 import javax.servlet.http.HttpSession;
 
+import org.apache.commons.io.FileUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -130,17 +133,21 @@ public class PetController {
 		
 		pet.setMember_serial(member_serial);
 		
+				
 		int result = 0;
 		if(!file.isEmpty()) { //첨부한 파일이 있을 때
 			System.out.println("insert 사진있음~");
 			String foldername = "petImg";
+
+			//contextroot 받기
+			String contextRoot = new HttpServletRequestWrapper(request).getRealPath("/");
 			
 			String originalFileName = file.getOriginalFilename();
 			System.out.println("originalFileName : " + originalFileName);
 			String extension = originalFileName.substring(originalFileName.lastIndexOf("."));
 			String savedFileName = UUID.randomUUID() + extension;
 			
-			File uploadfile = new File(originalFileName);
+			File uploadfile = new File(contextRoot + originalFileName);
 			file.transferTo(uploadfile);
 			String imgName = mc.s3upload(uploadfile, savedFileName, foldername);
 			
@@ -179,19 +186,26 @@ public class PetController {
 		System.out.println("수정 전 db에 있는 이미지 주소" + d_img);
 		
 		int result = 0;
-		if(!file.isEmpty()) { //첨부파일이 있을 때
+		if(!file.isEmpty()) { //첨부파일이 있을 때			
 			System.out.println("update 사진있음~~");
 			String foldername = "petImg";
-			//int thumb_w = 200;
-			//int thumb_h = 200;
+			
+			String contextRoot = new HttpServletRequestWrapper(request).getRealPath("/");
+			String fileRoot = contextRoot+"resources/upload/";
 			
 			String originalFileName = file.getOriginalFilename();
 			System.out.println("originalFileName : " + originalFileName);
 			String extension = originalFileName.substring(originalFileName.lastIndexOf("."));
 			String savedFileName = UUID.randomUUID() + extension;
 			
+			
+			
 			File uploadfile = new File(originalFileName);
-			file.transferTo(uploadfile);
+			
+			InputStream fileStream = file.getInputStream();
+			FileUtils.copyInputStreamToFile(fileStream, uploadfile);
+			
+//			file.transferTo(uploadfile);
 			String imgName = mc.s3upload(uploadfile, savedFileName, foldername);
 			
 			String fs_url = "https://projectbit.s3.us-east-2.amazonaws.com/";

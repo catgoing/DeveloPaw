@@ -98,7 +98,7 @@
 			        </tr>
 			        <tr>
 						<td class="insert-title">특이사항</td>
-						<td colspan="3"><textarea class="form-control" id="etc-area"  name="pet_etc" ></textarea></td>
+						<td colspan="3"><textarea class="form-control textarea" id="etc-area" name="pet_etc" ></textarea></td>
 			        </tr>
 		         </tbody>
 	            </table>
@@ -312,7 +312,7 @@
 		        </tr>
 		        <tr>
 					<td class="insert-title">특이사항</td>
-					<td colspan="3"><textarea class="form-control" name="pet_etc" id="modi_etc"></textarea></td>
+					<td colspan="3"><textarea class="form-control textarea" name="pet_etc" id="modi_etc"></textarea></td>
 		        </tr>
 	         </tbody>
             </table>
