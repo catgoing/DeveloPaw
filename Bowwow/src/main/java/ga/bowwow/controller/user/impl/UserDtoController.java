@@ -66,6 +66,10 @@ public class UserDtoController extends UserCRUDGenericController<UserAccount> {
 			session.setAttribute("userAddress", userAddressList);
 			
 //			System.out.println("userDTO for login : " +completeUserDtoTest);
+			
+			if(completeUserDtoTest.getStatus().equals("777")) {
+				return "redirect:/user/manageList";
+			}
 			return "redirect:/store/storeMain";
 		}
 		return "/auth.login";
