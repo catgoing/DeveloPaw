@@ -92,8 +92,10 @@ input[type="number"]::-webkit-inner-spin-button {
 	max-width:100%;
 	height:auto 
 }
-tr td textarea{
+.textarea{
+	height:100px;
 	width : 100%;
+	resize:none;
 }
 /*파일첨부시 미리보기영역*/
 #thumb_container{ 
@@ -131,7 +133,7 @@ pre{
 ul li {
     list-style-type: none;
 }
-#modi_etc{
+#modi_etc, #etc-area{
 	width: 100%;
     height: 100%;
     resize: none;
