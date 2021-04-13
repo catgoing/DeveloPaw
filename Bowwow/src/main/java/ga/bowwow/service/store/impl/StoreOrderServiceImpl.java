@@ -15,8 +15,8 @@ public class StoreOrderServiceImpl implements StoreOrderService {
 	private StoreDAO storeDAO;
 	
 	@Override
-	public void insertOrder(Order order) {
-		storeDAO.insertOrder(order);
+	public int insertOrder(Order order) {
+		return storeDAO.insertOrder(order);
 	}
 	
 	@Override

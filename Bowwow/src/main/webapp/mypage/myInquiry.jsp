@@ -127,6 +127,13 @@
 .td-adjust{
 	line-height:30px;
 }
+#inquiry_type, #no-style-title, 
+#no-style-textarea, #mo-style-select{
+    font-family: inherit;
+    font-size: inherit;
+    font-style: normal;
+    line-height: inherit
+}
 </style>
 <script>
 
@@ -146,7 +153,7 @@ $(document).ready(function(){
 
 //빈칸, 문의유형선택안하면 경고
 function allInputCheck(frm) {
-	if(frm.inquiry_type.value=="" || frm.inquiry_type.value!='product'){
+	if(frm.inquiry_type.value==""){
 		if(frm.p_id){ //p_id가 들어왔을 때
 			alert("문의 유형은 상품유형을 선택하세요");
 		}
@@ -163,9 +170,6 @@ function allInputCheck(frm) {
 		frm.inquiry_content.focus();
 	} 
 	else {
-		console.log(frm.p_id.value);
-		console.log(frm.nickname.value);
-		console.log(frm.member_serial.value);
 		frm.action = "/insertUserInquiry";
 		frm.method = "post";
 		frm.submit();
@@ -272,7 +276,7 @@ function allInputCheck(frm) {
                                            <div class="accordion-content accordion-desc">
                                            <form id="inquiry_form" name="inquiry_input_form" method="post">
                                                <div class="form-group row" id="question-section">
-                                              		<input type="text" class="form-control" name="inquiry_title" style="border-bottom:1px solid lightgrey;"placeholder="제목을 입력하세요">							    					
+                                              		<input type="text" class="form-control" id="no-style-title" name="inquiry_title" style="border-bottom:1px solid lightgrey;" placeholder="제목을 입력하세요">							    					
 											    		<select class="form-control" id="inquiry_type" aria-label="문의유형선택" name="inquiry_type" style="border : 1px solid #e4e4e4">
 														  <option value="" selected disabled hidden>문의 유형 선택</option>
 														  <option value="contactUs" onclick="inquiryType('contactUs')">이용문의</option>
@@ -280,7 +284,7 @@ function allInputCheck(frm) {
 														  <option value="delivery" onclick="inquiryType('delivery')">배송문의</option>
 														  <option value="etc" onclick="inquiryType('etc')">기타문의</option>
 														</select>
-							    					<textarea class="form-control" name="inquiry_content" rows="5" style="height:200px; border-bottom:1px solid lightgrey;"placeholder="질문을 입력하세요!"></textarea>
+							    					<textarea class="form-control" id="no-style-textarea" name="inquiry_content" rows="5" style="height:200px; border-bottom:1px solid lightgrey;"placeholder="질문을 입력하세요!"></textarea>
 							  					</div>
 							  					<c:if test="${not empty targetProduct }">
 							  					<div class="form-group">
@@ -366,7 +370,7 @@ function allInputCheck(frm) {
 									<tr>
 										<td class="input-group">
 										    <input type="hidden" name="member_serial" value="${sessionScope.userDTO.member_serial }">
-										    <select class="form-control" id="inputGroupSelect04" name="typeSelect" aria-label="Example select with button addon">
+										    <select class="form-control" id="mo-style-select" name="typeSelect" aria-label="Example select with button addon">
 										      <option value="" selected>전체보기</option>
 										      <option value="contactUs">이용문의</option>
 										      <option value="product">상품문의</option>

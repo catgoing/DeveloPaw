@@ -188,18 +188,6 @@
    		}
 	}
 
-	function chkRev() {
-		if (document.getElementById('review_title').value == "") {
-			alert("제목을 입력해 주세요.");
-			return false;
-		} else if (document.getElementById('review_content').value == "") {
-			alert("내용을 입력해주세요");
-			return false;
-		} else
-			return true;
-
-	}
-
 	function reviewInsert() {
 
 		var formObj = $("#reviewForm").serialize();
@@ -329,15 +317,16 @@
 	 function chkBtn(){
 	       if(document.getElementById('revTitle').value == ""){
 	            alert("제목을 입력해 주세요.");
-	            checkout.message.focus();
 	            return false;
 	        }
 	       if(document.getElementById('message').value == ""){
 	            alert("내용을 입력해주세요");
-	            checkout.message.focus();
 	            return false;
 	        }
-	      else return true;
+	      else {
+	       	reviewInsert();
+	    	  return true;
+	      }
 	    }
 	 
 </script>
@@ -401,6 +390,7 @@
 																<li>
 																	<h4>
 																		판매금액&nbsp; <fmt:formatNumber value="${p.price }" pattern="#,###" />원
+																		<input type="hidden" name="price" value="${p.price }">
 																	</h4>
 																</li>
 															</ul>
@@ -408,7 +398,7 @@
 														<div class="quantity">
 															<div class="pro-qty">
 																<h5>상품 수량
-															      	 <input type="hidden" id="sell_price" name="price" value="${p.price }"> 
+															      	 <input type="hidden" id="sell_price" value="${p.price }"> 
 																	 <input type="button" class="store_btn2" value=" - " onclick="del();">
 																	 <input type="text" id="product_count" class="store_input" onkeyup="onlyNumber(this); amountChk(this); changeValue();" maxlength="3" autocomplete="off" 
 																	 	min="1" name="amount" value="1" size="3">
@@ -433,14 +423,19 @@
 														</ul>
 													</div>
 													<div class="btn_area">
-														<c:if test="${p.stock != 0 }">
-															<input type="button" class="store_btn" value="장바구니" onclick="cartList(this.form)">
-															<input type="button" class="store_btn" value="바로구매" onclick="storeOrder(this.form)">
-															<input type="hidden" id="totalSum" name="totalSum">
-														</c:if>
-														<c:if test="${p.stock == 0 }">
-															<h4>품절된 상품입니다.</h4>
-														</c:if>
+													<c:if test="${!empty sessionScope.userDTO.id}">
+														<input type="button" class="store_btn" value="장바구니" onclick="cartList(this.form)">
+														<input type="button" class="store_btn" value="바로구매" onclick="storeOrder(this.form)">
+														<input type="hidden" id="totalSum" name="totalSum">
+													</c:if>
+													<c:if test="${empty sessionScope.userDTO.id}">
+														<input type="button" class="store_btn" value="장바구니" onclick="noID1()">
+														<input type="button" class="store_btn" value="바로구매" onclick="noID3()">
+														<input type="hidden" id="totalSum" name="totalSum">
+													</c:if>
+													<c:if test="${p.stock == 0 }">
+														<h4>품절된 상품입니다.</h4>
+													</c:if>
 													</div>
 												</form>
 											</div>
@@ -465,7 +460,7 @@
 													<div class="tab-pane fade show active" id="review" role="tabpanel" aria-labelledby="review-tab" style="border : 2px solid #dee2e6;">
 														<div id="reply" >
 															<section class="reviewForm">
-																<form name="reviewForm" id="reviewForm" method="post" onsubmit="return chkBtn()" autocomplete="off" >
+																<form name="reviewForm" id="reviewForm" method="post" onsubmit="return chkBtn();" autocomplete="off" >
 																	<div style="padding : 70px;">
 																		<h2>상품에 대한 후기를 자유롭게 남겨주세요!</h2>
 																		<div style="background-color : white;">
@@ -493,8 +488,7 @@
 																						<ul>
 																							<li>
 																								<h5>
-																									<fmt:formatNumber value="${p.price }" pattern="#,###" />
-																									원
+																									<fmt:formatNumber value="${p.price }" pattern="#,###" />원
 																								</h5>
 																							</li>
 																						</ul>
@@ -514,9 +508,17 @@
 																					cols="20" rows="2" name="review_content"
 																					style="resize: none;" placeholder="후기 내용"></textarea>
 																			</div>
-																		<c:if test="${empty sessionScope.userDTO.member_serial}">
+																		<c:if test="${empty sessionScope.userDTO.id}">
 																			<div class="form-group">
-																				<input type="button" onclick="reviewInsert()" value="리뷰 등록"
+																				<input type="button" onclick="noID2()" value="리뷰 등록"
+																					class="btn custom-btn" style="float: right;">
+																				<input type="button" onclick="noID2()" value="상품 문의하기"
+																					class="btn custom-btn">
+																			</div>
+																		</c:if>
+																		<c:if test="${!empty sessionScope.userDTO.id}">
+																			<div class="form-group">
+																				<input type="button" onclick="return chkBtn();" value="리뷰 등록"
 																					class="btn custom-btn" style="float: right;">
 																				<input type="button" onclick="toMyPage()" value="상품 문의하기"
 																					class="btn custom-btn">

@@ -100,7 +100,6 @@ tr td textarea{
 	width : 200px;
 	height : 200px;
 }
-/**/
 #detail_petimg{
 	width : 100%;
 	height : 100%;
@@ -132,29 +131,41 @@ pre{
 ul li {
     list-style-type: none;
 }
+#modi_etc{
+	width: 100%;
+    height: 100%;
+    resize: none;
+    margin: 0;
+    font-family: inherit;
+    font-size: inherit;
+    font-style: normal;
+    line-height: inherit
+}
 #textMain-wrap {
 	text-align: center;
 }
- .ttest {
+ .ul-wrapper {
      width: 80%;
      margin : 5px 0 0 0; 
      display: inline-block;
  }
-
- .test1 {
+input[type="text"], select{
+	width:100%;
+}
+ .ulListOne {
      float: left;
      width: 50%;
      margin: 0 auto;
      text-align: left;
  }
- .test2{
+ .ulListTwo{
      float: right;
      width: 50%;
      margin: 0 auto;
        text-align: left;
  }
  
- .test3{
+ .pre-wrapper{
      width: 80%;
      margin: 0 auto;
  }
@@ -254,7 +265,7 @@ function setModiInfo(petDetail){
 	$("#modi_neck").val(petDetail.neck_length);
 	$("#modi_back").val(petDetail.back_length);
 	$("#modi_chest").val(petDetail.chest_length);
-	$("#modi_etc").html(petDetail.pet_etc);
+	$("textarea#modi_etc").val(petDetail.pet_etc);
 	$("#modi_animal_type").val(petDetail.animal_type);
 	//$("#thumb_container").prop("src", petDetail.image_source);
 	//$("#modi_image").val(petDetail.image_source);
@@ -301,8 +312,8 @@ function clearInput(){
 	for(var i = 0; i < typeCheck.length; i++){
 		typeCheck[i].checked = false;
 	}
-	var child = document.getElementById("thumbnailImage");
-	child.parentNode.removeChild(child);
+	/* var child = document.getElementById("thumbnailImage");
+	child.parentNode.removeChild(child); */
 
 }
 

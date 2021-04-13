@@ -86,6 +86,11 @@ public class StoreDAO {
 	public void deleteCartAll(String id) {
 		mybatis.delete("Cart.deleteCartAll", id);
 	}
+	
+	// 장바구니 상품 삭제2
+	public int OrderDelCart(Order Order) {
+		return mybatis.delete("Cart.OrderDelCart", Order);
+	}
 
 	// 상품 후기 dao
 	public int insertReview(Review review) {
@@ -109,9 +114,9 @@ public class StoreDAO {
 	}
 
 	// 상품 주문 dao
-	public void insertOrder(Order order) {
+	public int insertOrder(Order order) {
 		System.out.println("주문내역 추가 : " + order);
-		mybatis.insert("StoreOrder.insertOrder", order);
+		return mybatis.insert("StoreOrder.insertOrder", order);
 	}
 
 	public void deleteOrder(String order_id) {

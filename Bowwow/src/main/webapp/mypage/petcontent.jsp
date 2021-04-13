@@ -98,7 +98,7 @@
 			        </tr>
 			        <tr>
 						<td class="insert-title">특이사항</td>
-						<td colspan="3"><textarea class="form-control" name="pet_etc" ></textarea></td>
+						<td colspan="3"><textarea class="form-control" id="etc-area"  name="pet_etc" ></textarea></td>
 			        </tr>
 		         </tbody>
 	            </table>
@@ -132,9 +132,9 @@
 		<div class="form-group-detail">
 			<h1 class="detailClass" id="detail_petname"></h1>
 			<div id="textMain-wrap">
-			<div class="ttest">
+			<div class="ul-wrapper">
         
-        <ul class="test1">
+        <ul class="ulListOne">
             <li class="box-detail">
                 <h5 style="display: inline">성별 : </h5>
                 <p class="detailClass" id="detail_gender" style="display: inline"></p>
@@ -152,7 +152,7 @@
                 <p class="detailClass" id="detail_age" style="display: inline"></p>
             </li>
         </ul>
-        <ul class="test2">
+        <ul class="ulListTwo">
             <li class="box-detail">
                 <h5 style="display: inline">체형 : </h5>
                 <p class="detailClass" id="detail_size" style="display: inline"></p>
@@ -214,7 +214,7 @@
 				</div> --%>
 			</div>
 			<div class="textSub-wrap">
-				<div class="test3">
+				<div class="pre-wrapper">
 		            <h5 style="display: inline">특이사항</h5>
 		            <pre class="detailClass" id="detail_etc"></pre>
 		        </div>

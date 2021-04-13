@@ -184,6 +184,9 @@
 							<hr>
 							<div class="container petlist">
 							  	<h3>반려동물 리스트</h3>
+							    <div class="div-center" style="margin-top:10px; margin-bottom:10px;">
+							    	<h5 class="text-center">현재 페이지에서는 6마리까지 보여집니다.</h5>
+							    </div>
 								<div class="row">
 							  	<c:if test="${not empty myHomepetList }">
                        			<c:forEach var="petList" items="${myHomepetList }">
@@ -196,9 +199,6 @@
 								   		</div>
 								    </div>
 							    </c:forEach>
-							    <div class="div-center">
-							    	<h5 class="text-center">현재 페이지에서는 6마리까지 보여집니다.</h5>
-							    </div>
 							    </c:if>
 							    <c:if test="${empty myHomepetList }">
 							    	<div class="col-md-6 div-center">

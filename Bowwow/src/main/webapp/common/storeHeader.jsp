@@ -25,8 +25,19 @@ input[type="submit"] {
 </style>
 
 <script type="text/javascript">
-	function noId() {
-		alert("로그인후 장바구니 사용이 가능합니다.");
+	function noID1() {
+		alert("로그인 후 장바구니를 이용해주세요.");
+	}
+	
+	function noID2() {
+		alert("로그인 후 작성 가능합니다.");
+	}
+	
+	function noID3() {
+		var chk = confirm(" 로그인 후 구매하기가 가능합니다.\n 로그인 화면으로 이동하시겠습니까?");
+		if (chk) {
+			location.href="/user/login";
+		}
 	}
 </script>
 
@@ -137,7 +148,7 @@ input[type="submit"] {
 								</a>
 							</c:when>
 							<c:when test="${sessionScope.userDTO == null}">
-								<a onclick="noId()" class="waves-effect waves-light">
+								<a onclick="noID1()" class="waves-effect waves-light">
 									<i class="fa fa-shopping-cart" aria-hidden="true" ></i>
 								</a>
 							</c:when>
@@ -160,7 +171,7 @@ input[type="submit"] {
 									<li class="waves-effect waves-light"><a
 										href="/mypage/myPoint">포인트 내역 </a></li>
 									<li class="waves-effect waves-light"><a
-										href="/store/storeOrderList">나의 쇼핑 </a></li>
+										href="/store/storeOrderList?member_serial=${sessionScope.userDTO.member_serial }">나의 쇼핑 </a></li>
 									<li class="waves-effect waves-light"><a
 										href="/user/logout">로그아웃 </a></li>
 								</ul>

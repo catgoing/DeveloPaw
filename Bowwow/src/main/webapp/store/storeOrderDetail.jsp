@@ -80,117 +80,119 @@ function deleteOrder(frm) {
 
 </script>
 <body>
-<div id="pcoded" class="pcoded">
-	<div class="pcoded-overlay-box"></div>
+	<div id="pcoded" class="pcoded">
+		<div class="pcoded-overlay-box"></div>
 		<div class="pcoded-container navbar-wrapper">
-			
+
 			<%@include file="/common/storeHeader.jsp"%>
 
 			<div class="pcoded-main-container">
 				<div class="pcoded-wrapper">
-					
+
 					<%@include file="/common/storeMenuBar.jsp"%>
-					
+
 					<div class="pcoded-content">
 						<div class="pcoded-inner-content">
 							<!-- Main-body start -->
 
-							
+
 							<!--================Order Details Area =================-->
-							<section class="order_details section_gap" >
+							<section class="order_details section_gap">
 								<div class="container" style="background-color: white;">
-								<form action="deleteOrder" onsubmit="return delOrder();" method="POST" style="border : 2px solid #eee; margin : 60px; padding : 30px;">
-									<br>
-									<h2	 class="title_confirmation">주문 상세 내역</h2>
-									<hr>
-									<div class="row order_d_inner">
-										<div class="col-lg-4">
-											<div class="details_item">
-												<h4>Order Info</h4>
-												<br>
-												<ul class="list">
-													<li><span>주문번호</span> : ${o.order_id}</li>
-													<li><span>주문자 성명</span> : ${o.realname}</li>
-													<li><span>주문자 전화번호</span> : ${o.phone}</li>
-												</ul>
-											</div>
-										</div>
-										<div class="col-lg-4">
-											<div class="details_item">
-												<h4>주문인 주소</h4>
-												<br>
-												<ul class="list">
-													<li><span>우편번호 </span>${o.zip }</li>
-													<li><span>주소</span> : ${o.address } ${o.address_detail }</li>
-												</ul>
-											</div>
-										</div>
-									</div>
-									<br>
-									<div class="order_details_table">
-										<h2>주문한 상품 목록</h2>
+									<form action="deleteOrder" onsubmit="return delOrder();"
+										method="POST"
+										style="border: 2px solid #eee; margin: 60px; padding: 30px;">
 										<br>
-										<div class="table-responsive">
-											<table class="table">
-												<thead>
-													<tr>
-														<th scope="col">상품명</th>
-														<th scope="col">상품 수량</th>
-														<th scope="col">결제 금액</th>
-													</tr>
-												</thead>
-												<tbody>
-													<c:forEach var="od" items="${od }">
-													<tr>
-														<td>
-															<p>${od.p_name }</p>
-														</td>
-														<td>
-															<h5>x ${od.amount }</h5>
-														</td>
-														<td>
-															<p><fmt:formatNumber value="${od.sum }" pattern="#,###" />원</p>
-														</td>
-													</tr>
-													</c:forEach>
-													<tr>
-														<td>
-															<h4>배송비</h4>
-														</td>
-														<td>
-															<h5></h5>
-														</td>
-														<td>
-															<p>무료</p>
-														</td>
-													</tr>
-													<tr>
-														<td>
-															<h4>총 결제금액</h4>
-														</td>
-														<td>
-															<h5></h5>
-														</td>
-														<td>
-															<p><fmt:formatNumber value="${o.totalSum}" pattern="#,###" />원</p>
-														</td>
-													</tr>
-												</tbody>
-											</table>
-											<input type="submit" class="orderBtn" value="주문 취소">
-											<input type="hidden" name="order_id" value="${o.order_id} ">
-											<input type="hidden" id="orderStatus" name="order_status" value="${o.order_status}">
-											
+										<h2 class="title_confirmation">주문 상세 내역</h2>
+										<hr>
+										<div class="row order_d_inner">
+											<div class="col-lg-4">
+												<div class="details_item">
+													<h4>Order Info</h4>
+													<br>
+													<ul class="list">
+														<li><span>주문번호</span> : ${o.order_id}</li>
+														<li><span>주문자 성명</span> : ${o.realname}</li>
+														<li><span>주문자 전화번호</span> : ${o.phone}</li>
+													</ul>
+												</div>
+											</div>
+											<div class="col-lg-4">
+												<div class="details_item">
+													<h4>주문인 주소</h4>
+													<br>
+													<ul class="list">
+														<li><span>우편번호 </span>${o.zip }</li>
+														<li><span>주소</span> : ${o.address }
+															${o.address_detail }</li>
+													</ul>
+												</div>
+											</div>
 										</div>
-									</div>
-								</form>
-								<form action="changeOrderStatus" method="post" id="deliveryForm">
-									<input type="hidden" name="order_id" value="${o.order_id} ">
-									<input type="hidden" id="orderStatus1" name="order_status" value="">
-									<button type="button" class="delivery1_btn">배송중</button>
-									<button type="button" class="delivery2_btn">배송완료</button>
-								</form>
-							</div>
+										<br>
+										<div class="order_details_table">
+											<h2>주문한 상품 목록</h2>
+											<br>
+											<div class="table-responsive">
+												<table class="table">
+													<thead>
+														<tr>
+															<th scope="col">상품명</th>
+															<th scope="col">상품 수량</th>
+															<th scope="col">결제 금액</th>
+														</tr>
+													</thead>
+													<tbody>
+														<c:forEach var="od" items="${od }">
+															<tr>
+																<td>
+																	<p>${od.p_name }</p>
+																</td>
+																<td>
+																	<h5>x ${od.amount }</h5>
+																</td>
+																<td>
+																	<p>
+																		<fmt:formatNumber value="${od.sum }" pattern="#,###" />
+																		원
+																	</p>
+																</td>
+															</tr>
+														</c:forEach>
+														<tr>
+															<td>
+																<h4>배송비</h4>
+															</td>
+															<td>
+																<h5></h5>
+															</td>
+															<td>
+																<p>무료</p>
+															</td>
+														</tr>
+														<tr>
+															<td>
+																<h4>총 결제금액</h4>
+															</td>
+															<td>
+																<h5></h5>
+															</td>
+															<td>
+																<p>
+																	<fmt:formatNumber value="${o.totalSum}" pattern="#,###" />
+																	원
+																</p>
+															</td>
+														</tr>
+													</tbody>
+												</table>
+												<input type="submit" class="orderBtn" value="주문 취소">
+												<input type="hidden" name="order_id" value="${o.order_id} ">
+												<input type="hidden" id="orderStatus" name="order_status" value="${o.order_status}">
+											</div>
+										</div>
+									</form>
+								</div>
 							</section>
 							<br> <br>
 							<!--================End Order Details Area =================-->
@@ -201,7 +203,7 @@ function deleteOrder(frm) {
 			</div>
 		</div>
 	</div>
-<%@include file="/common/storeFoot.jsp" %>
+	<%@include file="/common/storeFoot.jsp" %>
 		
 		<!-- Required Jquery -->
 		<script type="text/javascript" src="/resources/js/jquery/jquery.min.js "></script>
@@ -221,22 +223,6 @@ function deleteOrder(frm) {
 		<script src="/resources/js/vertical/vertical-layout.min.js "></script>
 
 		<script type="text/javascript" src="/resources/js/script2.js "></script>
-		<script>
-			$(".delivery1_btn").click(function(){
-				$("#orderStatus1").val("배송중");
-				run();
-			});
-			
-			$(".delivery2_btn").click(function(){
-				$("#orderStatus1").val("배송완료");
-				run();
-			});
-			
-			function run() {
-				$("#deliveryForm").submit();
-			}
-			
-		</script>		
 </body>
 
 
