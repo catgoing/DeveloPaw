@@ -269,22 +269,25 @@ footer.footer.navbar-wrapper {
 
 														<hr>
 															
+													<c:if test="${sessionScope.userDTO != null }">
 													<div style="border: solid 1px lightgray; border-radius : 5px; margin : 10px">
 													<form action="/community/comment" method="GET">												
 													<div style="padding:20px; position:relative">
-													추후 닉네임 출력	
+													${sessionScope.userDTO.nickname }	
 													<br>							
 															<textarea placeholder="댓글 입력" class="autosize" name="comment_content" id="comment_content" 
 															style="border:none; width:800px; min-height: 50px; resize:none;"></textarea>
 															<br>
 															<input type="hidden" name="board_no" value=${board_no }>											
 															<input type="hidden" name="board_idx" value=${board_idx }>
+															<input type="hidden" name="member_serial" value="${sessionScope.userDTO.member_serial }">
 															<div class="clearfix">
 																<input type="submit" class="button buttonsmbt" value="등록" style=" float: right;">
 															</div>
 														</div>
 													</form>
 													</div>
+													</c:if>
 														<div class="comments_div" style="margin:20px">
 															<c:forEach var="comvo" items="${commentList }">
 															<form action="commentDelete">
@@ -371,14 +374,9 @@ footer.footer.navbar-wrapper {
 		<%@ include file="/common/storeFoot.jsp"%>
 		<!-- footer 푸터 영역 -->
 		<div class="fixed-button active"> 
-		<c:choose>
-			<c:when test="${sessionScope.userDTO != null }">
-			<a href="/community/write_knowhow_board.jsp" class="btn btn-md btn-primary"> 글쓰기</a>
-			</c:when>
-			<c:otherwise>
-				<a href="/user/login" class="btn btn-md btn-primary"> 글쓰기</a> 
-			</c:otherwise>
-		</c:choose>
+			<c:if test="${sessionScope.userDTO != null }">
+				<a href="/community/write_combination.jsp" class="btn2 btn-md btn-primary"> 글쓰기</a> 
+			</c:if>
 		</div>
 
 	</div>

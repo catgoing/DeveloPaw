@@ -340,14 +340,10 @@ footer.footer.navbar-wrapper {
 		<!-- footer 푸터 영역 -->
 		<div class="fixed-button2 active dropdown">
 		
-		<c:choose>
-			<c:when test="${sessionScope.userDTO != null }">
+			<c:if test="${sessionScope.userDTO != null }">
 				<a href="/community/write_combination.jsp" class="btn2 btn-md btn-primary"> 글쓰기</a> 
-			</c:when>
-			<c:otherwise>
-				<a href="/user/login" class="btn btn-md btn-primary"> 글쓰기</a> 
-			</c:otherwise>
-		</c:choose>
+			</c:if>
+			
 		
 		 <div class="dropdown-content" style="right:5px;bottom:10px">
 			  <a href="/community/write?board_idx=1">펫 다이어리</a>

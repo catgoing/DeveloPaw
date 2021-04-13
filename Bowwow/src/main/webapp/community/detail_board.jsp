@@ -264,7 +264,7 @@ footer.footer.navbar-wrapper {
 
 														</form>
 														<hr>
-															
+													<c:if test="${sessionScope.userDTO != null }">
 													<div style="border: solid 1px lightgray; border-radius : 5px; margin : 10px">
 													<form action="/community/comment" method="GET">												
 													<div style="padding:20px; position:relative">
@@ -282,6 +282,7 @@ footer.footer.navbar-wrapper {
 														</div>
 													</form>
 													</div>
+													</c:if>
 														<div class="comments_div" style="margin:20px">
 															<c:forEach var="comvo" items="${commentList }">
 															<form action="commentDelete">
@@ -368,14 +369,9 @@ footer.footer.navbar-wrapper {
 		<%@ include file="/common/storeFoot.jsp"%>
 		<!-- footer 푸터 영역 -->
 		<div class="fixed-button active">
-		<c:choose>
-			<c:when test="${sessionScope.userDTO != null }">
-			<a href="/community/write_combination.jsp" class="btn btn-md btn-primary"> 글쓰기</a> 
-			</c:when>
-			<c:otherwise>
-				<a href="/user/login" class="btn btn-md btn-primary"> 글쓰기</a> 
-			</c:otherwise>
-		</c:choose>
+			<c:if test="${sessionScope.userDTO != null }">
+				<a href="/community/write_combination.jsp" class="btn2 btn-md btn-primary"> 글쓰기</a> 
+			</c:if>
 		</div>
 	</div>
 <!-- 
