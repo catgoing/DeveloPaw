@@ -88,8 +88,8 @@ public class PetController {
 		
 		pet.setMember_serial(member_serial);
 		
-		String default_url = "https://projectbit.s3.us-east-2.amazonaws.com/petImg/6262857e-1887-46fc-b77c-9209935f8657.jpg";
-		String fs_url = "https://projectbit.s3.us-east-2.amazonaws.com/";
+		String default_url = "petImg/6262857e-1887-46fc-b77c-9209935f8657.jpg";
+		//String fs_url = "https://projectbit.s3.us-east-2.amazonaws.com/";
 		
 		Pet petData = petService.getPetInfo(pet);
 		System.out.println("petData : " + petData.toString());
@@ -102,10 +102,10 @@ public class PetController {
 		if(petData.getImage_source_oriname() == null) {
 			petData.setImage_source_oriname(default_url);
 		}
-		else {
-			String base_url = petData.getImage_source_oriname();
-			petData.setImage_source_oriname(base_url);
-		}
+//		else {
+//			String base_url = petData.getImage_source_oriname();
+//			petData.setImage_source_oriname(base_url);
+//		}
 		
 		Gson gson = new Gson();
 		String petDetail = gson.toJson(petData);
