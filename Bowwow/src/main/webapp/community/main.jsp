@@ -338,10 +338,11 @@ footer.footer.navbar-wrapper {
 		<!-- footer 푸터 영역 -->
 		<%@ include file="/common/storeFoot.jsp"%>
 		<!-- footer 푸터 영역 -->
-		<div class="fixed-button2 active dropdown"><a href="/community/write_combination.jsp" class="btn2 btn-md btn-primary"> 글쓰기</a> 
+		<div class="fixed-button2 active dropdown">
 		
 		<c:choose>
 			<c:when test="${sessionScope.userDTO != null }">
+				<a href="/community/write_combination.jsp" class="btn2 btn-md btn-primary"> 글쓰기</a> 
 			</c:when>
 			<c:otherwise>
 				<a href="/user/login" class="btn btn-md btn-primary"> 글쓰기</a> 
