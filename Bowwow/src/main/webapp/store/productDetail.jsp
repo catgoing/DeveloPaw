@@ -459,7 +459,7 @@
 													<div class="tab-pane fade show active" id="review" role="tabpanel" aria-labelledby="review-tab" style="border : 2px solid #dee2e6;">
 														<div id="reply" >
 															<section class="reviewForm">
-																<form name="reviewForm" id="reviewForm" method="post" onsubmit="return chkBtn()" autocomplete="off" >
+																<form name="reviewForm" id="reviewForm" method="post" onsubmit="reviewInsert()" autocomplete="off" >
 																	<div style="padding : 70px;">
 																		<h2>상품에 대한 후기를 자유롭게 남겨주세요!</h2>
 																		<div style="background-color : white;">
@@ -517,7 +517,7 @@
 																		</c:if>
 																		<c:if test="${!empty sessionScope.userDTO.id}">
 																			<div class="form-group">
-																				<input type="button" onclick="reviewInsert();" value="리뷰 등록"
+																				<input type="button" onclick="return chkBtn();" value="리뷰 등록"
 																					class="btn custom-btn" style="float: right;">
 																				<input type="button" onclick="toMyPage()" value="상품 문의하기"
 																					class="btn custom-btn">
