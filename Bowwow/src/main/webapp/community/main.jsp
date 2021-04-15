@@ -338,7 +338,13 @@ footer.footer.navbar-wrapper {
 		<!-- footer 푸터 영역 -->
 		<%@ include file="/common/storeFoot.jsp"%>
 		<!-- footer 푸터 영역 -->
-		<div class="fixed-button2 active dropdown"><a href="/community/write_combination.jsp" class="btn2 btn-md btn-primary"> 글쓰기</a> 
+		<div class="fixed-button2 active dropdown">
+		
+			<c:if test="${sessionScope.userDTO != null }">
+				<a class="btn2 btn-md btn-primary"> 글쓰기</a> 
+			</c:if>
+			
+		
 		 <div class="dropdown-content" style="right:5px;bottom:10px">
 			  <a href="/community/write?board_idx=1">펫 다이어리</a>
 			  <a href="/community/write?board_idx=2">펫 소개</a>
@@ -346,7 +352,7 @@ footer.footer.navbar-wrapper {
 			  <a href="/community/write?board_idx=4">잃어버린 반려동물</a>
 			  </div>
 			</div>
-
+		
 
 	</div>
 

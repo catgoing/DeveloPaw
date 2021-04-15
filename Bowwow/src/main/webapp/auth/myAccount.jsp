@@ -26,14 +26,14 @@
 	src="../resources/js/bootstrap/js/bootstrap.min.js "></script>
 <script type="text/javascript">
 
-    function fn_pw_check() {
-    	try {
-    		var flag = true;
-			var form = document.getElementById("account_form");
-			var id = form.id.value;
-			var password = form.pw.value;
-			var passwordConfirm = form.pwC.value;
-			const msg = [];
+//     function fn_pw_check() {
+//     	try {
+//     		var flag = true;
+// 			var form = document.getElementById("account_form");
+// 			var id = form.id.value;
+// 			var password = form.pw.value;
+// 			var passwordConfirm = form.pwC.value;
+// 			const msg = [];
 			
 // 			if(!isValid("id", id)) {
 // 				msg.push("id는 1-19자 입니다.");
@@ -214,30 +214,6 @@
 		alert("폼이 정상적으로 입력되었습니다.");
    		return true;
    }
-			if(!isValid("id", id)) {
-				msg.push("id는 1-19자 입니다.");
-				flag = false;
-			}
-			if(!isValid("password", password)) {
-				msg.push('숫자와 영문자 조합으로 10~15자리를 사용해야 합니다.');
-				flag = false;
-			} else msg.push("");
-			if(password !== passwordConfirm) {
-				msg.push('비밀번호가 일치하지 않습니다.');
-				flag = false;
-			}
-			var msgBox = document.getElementById("msgBox");
-			msgBox.innerHTML = "";
-			msg.forEach(function (m) {
-				msgBox.innerHTML += m + '<br>'
-			})
-
-			return flag;
-    	} catch(e) {
-			return false;    		
-    	}
-        return false;
-    }
     function isValid(type, value) {
     	var validation = {
     			id: (id) => { return (id.length < 20 && id.length > 0)},
@@ -395,7 +371,7 @@
 													</fieldset>
 													<div class="btn">
 														<input type="button" value="회원 가입" class="btn btn-primary"
-															onclick="dynamicAjaxSubmit();">
+															onclick="dynamicAjaxSubmit(fn_pw_check());">
 													</div>
 												</form>
 												<form id="wallet_form" name="wallet_form"
@@ -630,8 +606,9 @@
 <script>
 // 		TODO: 하나의 요청/컨트롤러로 합쳐야함
 	
-      function dynamicAjaxSubmit() {
+      function dynamicAjaxSubmit(_checkvalidation) {
 
+		var check = _checkvalidation;
 	   	const detailData = getSingleForm(document.account_form);
 	   	const addressData = getMultiForm(document.address_form);
 	   	console.log(addressData);
@@ -640,7 +617,7 @@
          var form_data = new FormData(document.account_form);
          var account_member_serial;
          form_data.append('file', files);
-         
+    	if(_checkvalidation == true) {
 		$.ajax("/account/addJson", {
 	           type: "POST",
 	 			enctype: "multipart/form-data",
@@ -672,6 +649,7 @@
            });
         })
       })
+        }
     };
    	</script>
 <script type="text/javascript" src="/common/commonThumbnail.js"></script>

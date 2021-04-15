@@ -153,7 +153,7 @@ $(document).ready(function(){
 
 //빈칸, 문의유형선택안하면 경고
 function allInputCheck(frm) {
-	if(frm.inquiry_type.value=="" || frm.inquiry_type.value!='product'){
+	if(frm.inquiry_type.value==""){
 		if(frm.p_id){ //p_id가 들어왔을 때
 			alert("문의 유형은 상품유형을 선택하세요");
 		}
@@ -170,9 +170,6 @@ function allInputCheck(frm) {
 		frm.inquiry_content.focus();
 	} 
 	else {
-		console.log(frm.p_id.value);
-		console.log(frm.nickname.value);
-		console.log(frm.member_serial.value);
 		frm.action = "/insertUserInquiry";
 		frm.method = "post";
 		frm.submit();

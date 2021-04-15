@@ -149,10 +149,6 @@ $(function (){
 		});
 	});
 
-	$('#summernote').on('summernote.change', function(we, contents, $editable) {
-		console.log('summernote\'s content is changed.');
-	});
-
 	function uploadSummernoteImageFile(file, el) {
 
 		data = new FormData();

@@ -252,9 +252,9 @@ footer.footer.navbar-wrapper {
 																		<div style="text-align:right; margin-right:10px">
 																			<input type="hidden" name="board_idx" value="${board_idx }">
 																			<input type="hidden" name="board_no" value="${vo.board_no }">
-																			<c:set var="userid" value="${sessionScope.userDTO.member_serial }"/>
-																			<c:set var="writerid" value="${vo.member_serial }"/>
-																			<c:if test="${userid eq writerid }">
+																			<c:set var="userid" value="${sessionScope.userDTO.nickname }"/>
+																			<c:set var="writerid" value="${vo.nickname }"/>
+																			<c:if test="${userid == writerid }">
 																			<input type="submit" class="button buttonbig" value="수정" formaction="/community/update/board" >
 																			<input type="submit" class="button buttonbig" value="삭제 " formaction="/community/boardDelete">
 																			</c:if>
@@ -264,7 +264,7 @@ footer.footer.navbar-wrapper {
 
 														</form>
 														<hr>
-															
+													<c:if test="${sessionScope.userDTO != null }">
 													<div style="border: solid 1px lightgray; border-radius : 5px; margin : 10px">
 													<form action="/community/comment" method="GET">												
 													<div style="padding:20px; position:relative">
@@ -282,6 +282,7 @@ footer.footer.navbar-wrapper {
 														</div>
 													</form>
 													</div>
+													</c:if>
 														<div class="comments_div" style="margin:20px">
 															<c:forEach var="comvo" items="${commentList }">
 															<form action="commentDelete">
@@ -301,7 +302,11 @@ footer.footer.navbar-wrapper {
 																<input type="hidden" name="board_no" value=${board_no }>		
 																<input type="hidden" name="board_idx" value=${board_idx }>									
 																<input type="hidden" name="comment_no" value=${comvo.comment_no }>
+																<c:set var="userid" value="${sessionScope.userDTO.member_serial}"/>
+																<c:set var="writerid2" value="${comvo.member_serial }"/>
+																<c:if test="${userid == writerid2 }">
 																<input class="nonbutton" type="submit" value="삭제">
+																</c:if>
 																</div>
 															</form>
 															
@@ -338,7 +343,11 @@ footer.footer.navbar-wrapper {
 																		<input type="hidden" name="board_no" value=${board_no }>		
 																		<input type="hidden" name="board_idx" value=${board_idx }>									
 																		<input type="hidden" name="comment_no" value=${com2vo.comment_no }>
-																		<input type="submit" value="삭제하기" >
+																		<c:set var="userid" value="${sessionScope.userDTO.member_serial}"/>
+																		<c:set var="writerid3" value="${com2vo.member_serial }"/>
+																		<c:if test="${userid == writerid3 }">	
+																		<input type="submit" value="삭제" >
+																		</c:if>
 																	</form>
 																	</div>
 																<hr>
@@ -367,9 +376,11 @@ footer.footer.navbar-wrapper {
 		<!-- footer 푸터 영역 -->
 		<%@ include file="/common/storeFoot.jsp"%>
 		<!-- footer 푸터 영역 -->
-		<div class="fixed-button active"><a href="/community/write_combination.jsp" class="btn btn-md btn-primary"> 글쓰기</a> </div>
-		
-
+		<div class="fixed-button active">
+			<c:if test="${sessionScope.userDTO != null }">
+				<a href="/community/write_combination.jsp" class="btn2 btn-md btn-primary"> 글쓰기</a> 
+			</c:if>
+		</div>
 	</div>
 <!-- 
 	<form action="~~~" method="POST">

@@ -92,8 +92,10 @@ input[type="number"]::-webkit-inner-spin-button {
 	max-width:100%;
 	height:auto 
 }
-tr td textarea{
+.textarea{
+	height:100px;
 	width : 100%;
+	resize:none;
 }
 /*파일첨부시 미리보기영역*/
 #thumb_container{ 
@@ -131,7 +133,7 @@ pre{
 ul li {
     list-style-type: none;
 }
-#etc-area{
+#modi_etc, #etc-area{
 	width: 100%;
     height: 100%;
     resize: none;
@@ -265,7 +267,7 @@ function setModiInfo(petDetail){
 	$("#modi_neck").val(petDetail.neck_length);
 	$("#modi_back").val(petDetail.back_length);
 	$("#modi_chest").val(petDetail.chest_length);
-	$("#modi_etc").html(petDetail.pet_etc);
+	$("textarea#modi_etc").val(petDetail.pet_etc);
 	$("#modi_animal_type").val(petDetail.animal_type);
 	//$("#thumb_container").prop("src", petDetail.image_source);
 	//$("#modi_image").val(petDetail.image_source);
@@ -312,8 +314,8 @@ function clearInput(){
 	for(var i = 0; i < typeCheck.length; i++){
 		typeCheck[i].checked = false;
 	}
-	var child = document.getElementById("thumbnailImage");
-	child.parentNode.removeChild(child);
+	/* var child = document.getElementById("thumbnailImage");
+	child.parentNode.removeChild(child); */
 
 }
 

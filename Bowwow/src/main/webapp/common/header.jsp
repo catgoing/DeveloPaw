@@ -69,7 +69,7 @@ input[type="text"]:hover{
 					<c:when test="${sessionScope.userDTO.status == '777'}">
 					<script>
 					</script>
-						<a href="/user/manageList">커뮤니티 관리</a>
+						<a href="/user/manageList">회원 목록</a>
 					</c:when>
 				</c:choose>
 				</li>
@@ -85,12 +85,23 @@ input[type="text"]:hover{
 						<li>
 							<input type="submit" name="search" value="&#xf002;">
 						</li>
-		
-						<li class="header-notification"><a href="/store/cartList"
-							class="waves-effect waves-light"> <i
+						
+						
+						<li class="header-notification">
+						<c:choose>
+							<c:when test="${sessionScope.userDTO != null }">
+								<a href="/store/cartList" class="waves-effect waves-light"> <i
 								class="fa fa-shopping-cart" aria-hidden="true"></i> <span
 								class="badge bg-c-red"></span>
-						</a>
+								</a>
+							</c:when>
+							<c:otherwise>
+								<a href="/user/login" class="waves-effect waves-light"> <i
+								class="fa fa-shopping-cart" aria-hidden="true"></i> <span
+								class="badge bg-c-red"></span>
+								</a>
+							</c:otherwise>
+						</c:choose>
 					</li>
 						<li class="user-profile header-notification"><c:choose>
 								<c:when test="${sessionScope.userDTO != null && sessionScope.userDTO.status != '777'}">
