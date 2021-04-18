@@ -137,8 +137,15 @@ public class BoardController {
 		String rtn = "redirect:" + "/community/" + command;
 		return rtn;
 	}
+<<<<<<< Updated upstream
 
 
+=======
+	
+
+	
+	
+>>>>>>> Stashed changes
 	//펫 다이어리(list)
 	@RequestMapping(value = "/community/diary_board", method = RequestMethod.GET)
 	public String getDiaryBoardList(Model model) {
@@ -177,6 +184,7 @@ public class BoardController {
 
 	@RequestMapping(value = "/community/main", method = RequestMethod.GET)
 	public String communityMain(Model model) {
+<<<<<<< Updated upstream
 		//		System.out.println(">>> 게시글 전체 목록- String getDiaryBoardList()");
 		//		System.out.println("board_idx : " + board_idx);
 		String board_idx = "0";
@@ -222,6 +230,27 @@ public class BoardController {
 		}
 		
 		session.setAttribute("board_idx", board_idx);
+=======
+//		System.out.println(">>> 게시글 전체 목록- String getDiaryBoardList()");
+//		System.out.println("board_idx : " + board_idx);
+//		String board_idx = "1";
+
+//		Map<String, String> map = new HashMap<String, String>();
+//		map.put("board_idx", board_idx);
+	
+		List<Board> boardList = boardService.mainList();
+//		
+//		System.out.println("diary_board boardList input(map) : " + board_idx);
+//		session.setAttribute("board_idx", board_idx);
+		model.addAttribute("boardList", boardList);
+//		model.addAttribute("board_idx", board_idx);
+
+//
+//		System.out.println("bowwow list : " + boardList);
+//		System.out.println("board model : " + model);
+		
+		return "/community/main";
+>>>>>>> Stashed changes
 		
 		return "/community/" + command;
 	}
@@ -751,6 +780,7 @@ public class BoardController {
 
 		System.out.println(board);
 		System.out.println("search vo:"+board.getKeyword());
+<<<<<<< Updated upstream
 		List<Board> diarylist = boardService.search("1", keyword);
 		List<Board> introlist = boardService.search("2", keyword);
 		List<Board> knowhowlist = boardService.search("3", keyword);
@@ -767,6 +797,22 @@ public class BoardController {
 		model.addAttribute("knowhowlist",knowhowlist);
 		model.addAttribute("missinglist",missinglist);
 		model.addAttribute("transactionlist",transactionlist);
+=======
+		List<Board> diarylist =boardService.search("1", keyword);
+		List<Board> introlist =boardService.search("2", keyword);
+		List<Board> knowhowlist =boardService.search("3", keyword);
+		
+		//System.out.println(diarylist.toString().replaceAll(pattern,""));
+		System.out.println("searchboard d:" + diarylist);
+		System.out.println("searchboard:" + introlist);
+		System.out.println("searchboard:" + knowhowlist);
+		
+
+		model.addAttribute("diarylist",diarylist);
+		model.addAttribute("introlist",introlist);
+		model.addAttribute("knowhowlist",knowhowlist);
+
+>>>>>>> Stashed changes
 
 		return "/community/search";
 	}

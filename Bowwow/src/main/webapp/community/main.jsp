@@ -119,14 +119,19 @@ footer.footer.navbar-wrapper {
 												<div class="row">
 													<div class="col-lg-12" style="width:1400px; height:70px">
 														<div class="section-title">
+<<<<<<< Updated upstream
 															<h3 style="margin: 20px 0 0 20px">펫 다이어리</h3>
 															<span style="float:right; margin-right:20px"><a href="/community/diary_board">더 보기</a></span>
+=======
+															
+>>>>>>> Stashed changes
 														</div>
 														<br>
 													</div>
 												</div>
 												<div class="monthly-products">
 													<ul>
+<<<<<<< Updated upstream
 														<c:forEach var="diaryList" items="${ diaryList}">
 															<li style="background-color : #ece4e4; margin:5px; border-radius:10px">
 																<div class="block-item default-item col-lg-3 col-md-4 col-sm-6" onclick="location.href='/community/detail?board_idx=1&board_no=${diaryList.board_no}'">
@@ -184,11 +189,22 @@ footer.footer.navbar-wrapper {
 																	<div class="img-area" style="width:300px; height:300px;">
 																		<div class="imgItem" style="width:300px; height:300px;">
 																			<img src='https://projectbit.s3.us-east-2.amazonaws.com/${introList.img1 }' onerror='this.src="/resources/images/alt_img.png"' width="100%" height="100%">
+=======
+														<c:forEach var="list" items="${ boardList}">
+															<li style="background-color : #f7f2f2; margin:5px; border-radius:10px">
+																<div class="block-item default-item col-lg-3 col-md-4 col-sm-6" onclick="location.href='/community/detail?board_idx=${board_idx }&board_no=${list.board_no}'">
+																	<div class="best-label">${list.board_no }</div>
+																	<div class="img-area" style="width:300px; height:300px;"
+																		onclick="location.href='/board/knowhow/311'">
+																		<div class="imgItem" style="width:300px; height:300px;">
+																			<img src='https://projectbit.s3.us-east-2.amazonaws.com/${list.img1 }' onerror='this.src="/resources/images/alt_img.png"' width="100%" height="100%">
+>>>>>>> Stashed changes
 																		</div>
 																	</div>
 																	<br>
 																	<div class="text-area">
 																		<div class="item-title" style="width:300px; color:black;">
+<<<<<<< Updated upstream
 																			<a href="/community/detail?board_idx=2&board_no=${introList.board_no}">
 																			</a>
 																			<input type="text" class="b_title" maxlength="15" value="${introList.board_title }" style="text-overflow: ellipsis" >
@@ -199,6 +215,16 @@ footer.footer.navbar-wrapper {
 																			<div class="profile" style="width:300px;">
 																				<span style="margin-left:2px">${introList.nickname }</span>
 																				<span style="float:right">조회수 ${introList.hits }</span>
+=======
+																			<a href="/community/detail?board_idx=${board_idx }&board_no=${list.board_no}">
+																			</a><span style="font-size:22px;">${list.board_title }</span>
+																			<span style="postion:inline-block;float:right">${list.regdate }</span>
+																		</div>
+																		<div class="item-items">
+																			<div class="profile" style="width:300px;">
+																				<span>${list.nickname }</span>
+																				<span style="float:right">조회수 ${list.hits }</span>
+>>>>>>> Stashed changes
 																				<br>
 																				<br>
 																			</div>
@@ -209,6 +235,7 @@ footer.footer.navbar-wrapper {
 																</div>
 															</li>
 														</c:forEach>
+<<<<<<< Updated upstream
 													</ul>
 												</div>
 												<br>
@@ -314,6 +341,11 @@ footer.footer.navbar-wrapper {
 												<br>
 												<div>
 												</div>
+=======
+													</ul>
+												</div>
+												<br>	
+>>>>>>> Stashed changes
 											</div>
 										</section>
 										
@@ -338,6 +370,7 @@ footer.footer.navbar-wrapper {
 		<!-- footer 푸터 영역 -->
 		<%@ include file="/common/storeFoot.jsp"%>
 		<!-- footer 푸터 영역 -->
+<<<<<<< Updated upstream
 		<div class="fixed-button2 active dropdown"><a href="/community/write_combination.jsp" class="btn2 btn-md btn-primary"> 글쓰기</a> 
 		 <div class="dropdown-content" style="right:5px;bottom:10px">
 			  <a href="/community/write?board_idx=1">펫 다이어리</a>
@@ -347,6 +380,9 @@ footer.footer.navbar-wrapper {
 			  <a href="/community/write?board_idx=5">중고거래</a>
 			  </div>
 			</div>
+=======
+		<!-- <div class="fixed-button active"><a href="/community/write_board.jsp" class="btn btn-md btn-primary"> 글쓰기</a> </div> -->
+>>>>>>> Stashed changes
 
 
 	</div>

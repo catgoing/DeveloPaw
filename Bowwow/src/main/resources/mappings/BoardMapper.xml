@@ -13,22 +13,22 @@
 			</when>
 
 			<when test='board_idx == 2'> 
-				INTRO_BOARD (BOARD_NO, BOARD_TITLE, MEMBER_SERIAL, BOARD_CONTENT, IMG1, REGDATE, HITS, ANIMAL_CLASS) 
-				VALUES (INTRO_BOARD_SEQ.NEXTVAL, #{board_title}, #{member_serial}, #{board_content}, #{img1}, SYSDATE, 0, #{animal_class})
+				INTRO_BOARD (BOARD_NO, BOARD_TITLE, MEMBER_SERIAL, BOARD_CONTENT, IMG1, REGDATE, HITS, ANIMAL_CLASS, BOARD_SCONTENT) 
+				VALUES (INTRO_BOARD_SEQ.NEXTVAL, #{board_title}, #{member_serial}, #{board_content}, #{img1}, SYSDATE, 0, #{animal_class}, #{board_scontent})
 			</when>
 			<when test='board_idx == 3'> 
-				KNOWHOW_BOARD (BOARD_NO, BOARD_TITLE, MEMBER_SERIAL, BOARD_CONTENT, IMG1, REGDATE, HITS, SUB_CLASS, ANIMAL_CLASS) 
-				VALUES (KNOWHOW_BOARD_SEQ.NEXTVAL, #{board_title}, #{member_serial}, #{board_content}, #{img1}, SYSDATE, 0, #{sub_class}, #{animal_class})
+				KNOWHOW_BOARD (BOARD_NO, BOARD_TITLE, MEMBER_SERIAL, BOARD_CONTENT, IMG1, REGDATE, HITS, SUB_CLASS, ANIMAL_CLASS, BOARD_SCONTENT) 
+				VALUES (KNOWHOW_BOARD_SEQ.NEXTVAL, #{board_title}, #{member_serial}, #{board_content}, #{img1}, SYSDATE, 0, #{sub_class}, #{animal_class}, #{board_scontent})
 			</when>
 			<when test='board_idx == 4'> 
-				MISSING_BOARD (BOARD_NO, BOARD_TITLE, MEMBER_SERIAL, BOARD_CONTENT, IMG1, REGDATE, HITS, ANIMAL_CLASS) 
-				VALUES (MISSING_BOARD_SEQ.NEXTVAL, #{board_title}, #{member_serial}, #{board_content}, #{img1}, SYSDATE, 0, #{animal_class})
+				MISSING_BOARD (BOARD_NO, BOARD_TITLE, MEMBER_SERIAL, BOARD_CONTENT, IMG1, REGDATE, HITS, ANIMAL_CLASS, BOARD_SCONTENT) 
+				VALUES (MISSING_BOARD_SEQ.NEXTVAL, #{board_title}, #{member_serial}, #{board_content}, #{img1}, SYSDATE, 0, #{animal_class}, #{board_scontent})
 			</when>
 			<when test='board_idx == 5'> 
 				USED_TRANSACTION_BOARD (BOARD_NO, BOARD_TITLE, MEMBER_SERIAL, GOODS, AREA, PRICE, IS_SELLED, 
-										BOARD_CONTENT, IMG1, REGDATE, HITS, ANIMAL_CLASS) 
+										BOARD_CONTENT, IMG1, REGDATE, HITS, ANIMAL_CLASS, BOARD_SCONTENT) 
 				VALUES (USED_TRANSACTION_BOARD_SEQ.NEXTVAL, #{board_title}, #{member_serial}, #{goods}, #{area}, #{price}, #{is_selled}
-						, #{board_content}, #{img1}, SYSDATE, 0, #{animal_class})
+						, #{board_content}, #{img1}, SYSDATE, 0, #{animal_class}, #{board_scontent})
 			</when>
 			<when test='board_idx == 6'> 
 				EVENT_BOARD (BOARD_NO, BOARD_TITLE, BOARD_CONTENT, REGDATE, IMG1, HITS) 
@@ -90,11 +90,16 @@
 		WHERE RN BETWEEN ${begin} AND ${end}
 	</select>
 	
+<<<<<<< Updated upstream
 	<select id="getMainList" parameterType="Map" resultType="board" >
+=======
+		<select id="mainList" resultType="board" >
+>>>>>>> Stashed changes
 	SELECT * FROM 
 			(
 				SELECT ROWNUM AS RN, BOARD.* FROM 
 				( 	
+<<<<<<< Updated upstream
 
 						<choose>
 							<when test='board_idx == 1'> 
@@ -119,6 +124,22 @@
 				) 	BOARD
 			)
 		WHERE RN BETWEEN 1 AND 4
+=======
+					SELECT BOARD_NO, B.MEMBER_SERIAL, BOARD_TITLE, ID, IMG1, HITS, NICKNAME, REGDATE
+					FROM 
+						<choose>
+							<when test='board_idx == 1'> DIARY_BOARD B, USER_ACCOUNT U WHERE B.MEMBER_SERIAL = U.MEMBER_SERIAL </when>
+							<when test='board_idx == 2'> INTRO_BOARD B, USER_ACCOUNT U WHERE B.MEMBER_SERIAL = U.MEMBER_SERIAL </when>
+							<when test='board_idx == 3'> KNOWHOW_BOARD B, USER_ACCOUNT U WHERE B.MEMBER_SERIAL = U.MEMBER_SERIAL </when>
+							<when test='board_idx == 4'> MISSING_BOARD B, USER_ACCOUNT U WHERE B.MEMBER_SERIAL = U.MEMBER_SERIAL </when>
+							<when test='board_idx == 5'> USED_TRANSACTION_BOARD B, USER_ACCOUNT U WHERE B.MEMBER_SERIAL = U.MEMBER_SERIAL </when>
+							<when test='board_idx == 6'> EVENT_BOARD B, USER_ACCOUNT U WHERE B.MEMBER_SERIAL = U.MEMBER_SERIAL </when>
+						</choose>
+						ORDER BY BOARD_NO DESC
+				) 	BOARD
+			)
+		WHERE RN BETWEEN ${begin} AND ${end}
+>>>>>>> Stashed changes
 	</select>
 	
 	<select id="getBoardCount" parameterType="Map" resultType="int" >

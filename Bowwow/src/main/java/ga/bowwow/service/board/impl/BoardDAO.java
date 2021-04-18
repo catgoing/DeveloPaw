@@ -150,4 +150,9 @@ public class BoardDAO {
 		return mybatis.selectOne("BoardDAO.getBoardCount", map);
 	}
 
+	public List<Board> mainList() {
+		
+		return mybatis.selectList("BoardDAO.mainList");
+	}
+
 }
